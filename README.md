@@ -13,7 +13,7 @@ This is a lightweight library that works as a connector to the [Binance public A
 - Test cases and examples
 
 ## Installation
-Replace `<version>` with the latest version number.
+Replace `LASTEST_VERSION` with the latest version number and paste the snippet below in `pom.xml`
 ```
 <dependency>
     <groupId>io.github.binance</groupId>
@@ -21,7 +21,10 @@ Replace `<version>` with the latest version number.
     <version>LASTEST_VERSION</version>
 </dependency>
 ```
+Run `mvn install` where `pom.xml` is located to install the dependency.
+
 The latest jar file is also available [here](https://github.com/binance/binance-connector-java/releases/new).
+
 ## Documentation
 [https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html](https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html)
 
@@ -130,7 +133,7 @@ logger.log(Level.INFO, result);
 ```
 output:
 ```
-INFO: {"data":"{\"serverTime\":1633434339494}","x-mbx-used-weight":"1","x-mbx-used-weight-1m":"1"}
+INFO: {"data":"{"serverTime":1633434339494}","x-mbx-used-weight":"1","x-mbx-used-weight-1m":"1"}
 ```
 ### Logging
 
