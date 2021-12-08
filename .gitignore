@@ -1,0 +1,9 @@
+# General
+*.class
+target/
+src/.DS_Store
+.idea/
+.DS_Store
+.gitignore
+*.log
+logs/

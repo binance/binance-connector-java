@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" shutdownHook="disabled">
+
+    <Properties>
+        <Property name="SYSTEM">binance-java-connector</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS}[%d{UNIX_MILLIS}] | %-5level | %-10t | %-36.36logger{1.} - %msg%n</Property>
+        <Property name="BASE_DIR">./logs</Property>
+        <Property name="OLD_DIR">${SYSTEM}</Property>
+        <Property name="FILE_NAME">${SYSTEM}.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <RollingRandomAccessFile name="dailyFile"
+                                 append="true"
+                                 bufferSize="1048576"
+                                 fileName="${BASE_DIR}/${FILE_NAME}"
+                                 filePattern="${BASE_DIR}/${OLD_DIR}/${FILE_NAME}.%d{yyyy-MM-dd}.gz"
+                                 immediateFlush="true" >
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="dailyFile" />
+        </Root>
+    </Loggers>
+</Configuration>
