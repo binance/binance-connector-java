@@ -134,9 +134,8 @@ INFO: {"data":"{"serverTime":1633434339494}","x-mbx-used-weight":"1","x-mbx-used
 ```
 ### Logging
 
-`org.apache.logging.log4j` is used for logging in this connector. The configuration xml file can be found under
-`src/main/resources`. Read more about configuring the logger 
-[here](https://logging.apache.org/log4j/2.x/manual/configuration.html).
+`ch.qos.logback` is used for logging in this connector. The configuration xml file can be found under
+`src/main/resources`.
 
 ### Error
 
