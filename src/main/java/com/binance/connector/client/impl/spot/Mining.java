@@ -296,4 +296,27 @@ public class Mining {
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    private final String ACCOUNT_EARNING = "/sapi/v1/mining/payment/uid";
+    /**
+     * GET /sapi/v1/mining/payment/uid
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * algo -- mandatory/string -- Algorithm(sha256) <br>
+     * startDate -- optional/long -- Millisecond timestamp <br>
+     * endDate -- optional/long -- Millisecond timestamp <br>
+     * pageIndex -- optional/int -- Default 1 <br>
+     * pageSize -- optional/int -- 	Min 10,Max 200 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data</a>
+     */
+    public String accountEarning(LinkedHashMap<String,Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "algo", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_EARNING, parameters, HttpMethod.GET, showLimitUsage);
+    }
 }

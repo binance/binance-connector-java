@@ -284,4 +284,69 @@ public class BSwap {
         return requestHandler.sendSignedRequest(baseUrl, REMOVE_LIQUIDITY_PREVIEW, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String UNCLAIMED_REWARDS = "/sapi/v1/bswap/unclaimedRewards";
+    /**
+     * Get unclaimed rewards record.
+     * <br><br>
+     * GET /sapi/v1/bswap/unclaimedRewards
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * type -- optional/int -- 0: Swap rewards,1:Liquidity rewards, default to 0 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-unclaimed-rewards-record-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-unclaimed-rewards-record-user_data</a>
+     */
+    public String unclaimedRewards(LinkedHashMap<String,Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, UNCLAIMED_REWARDS, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String CLAIM_REWARDS = "/sapi/v1/bswap/claimRewards";
+    /**
+     * Claim swap rewards or liquidity rewards
+     * <br><br>
+     * POST /sapi/v1/bswap/claimRewards
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * type -- optional/int -- 0: Swap rewards,1:Liquidity rewards, default to 0 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#claim-rewards-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#claim-rewards-trade</a>
+     */
+    public String claimRewards(LinkedHashMap<String,Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, CLAIM_REWARDS, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String CLAIM_HISTORY = "/sapi/v1/bswap/claimedHistory";
+    /**
+     * Claim swap rewards or liquidity rewards
+     * <br><br>
+     * GET /sapi/v1/bswap/claimedHistory
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * poolId -- optional/long <br>
+     * assetRewards -- optional/string <br>
+     * type -- optional/int -- 0: Swap rewards,1:Liquidity rewards, default to 0 <br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long <br>
+     * limit -- optional/long -- Default 3, max 100 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-claimed-history-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-claimed-history-user_data</a>
+     */
+    public String claimedHistory(LinkedHashMap<String,Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, CLAIM_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
 }

@@ -864,7 +864,6 @@ public class Margin {
      * vipLevel -- optional/int -- Default: user's vip level <br>
      * startTime -- optional/long -- Default: 7 days ago <br>
      * endTime -- optional/long -- Default: present. Maximum range: 3 months. <br>
-     * limit -- optional/int -- Default: 20. Maximum: 100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-interest-rate-history-user_data">
