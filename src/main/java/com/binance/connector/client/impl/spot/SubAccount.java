@@ -509,6 +509,7 @@ public class SubAccount {
      * toEmail -- optional/string <br>
      * fromAccountType -- mandatory/string -- "SPOT","USDT_FUTURE","COIN_FUTURE" <br>
      * toAccountType -- mandatory/string -- "SPOT","USDT_FUTURE","COIN_FUTURE" <br>
+     * clientTranId -- optional/string -- Must be unique <br>
      * asset -- mandatory/string <br>
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long <br>
@@ -533,6 +534,7 @@ public class SubAccount {
      * <br><br>
      * fromEmail -- optional/string <br>
      * toEmail -- optional/string <br>
+     * clientTranId -- optional/string -- Must be unique <br>
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
      * page -- optional/int -- Default 1 <br>
