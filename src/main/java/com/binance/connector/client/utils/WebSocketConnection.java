@@ -21,14 +21,13 @@ public class WebSocketConnection extends WebSocketListener {
 
     private final Object mutex;
 
-    public WebSocketConnection
-            (
-                    WebSocketCallback onOpenCallback,
-                    WebSocketCallback onMessageCallback,
-                    WebSocketCallback onClosingCallback,
-                    WebSocketCallback onFailureCallback,
-                    Request request
-            ) {
+    public WebSocketConnection(
+            WebSocketCallback onOpenCallback,
+            WebSocketCallback onMessageCallback,
+            WebSocketCallback onClosingCallback,
+            WebSocketCallback onFailureCallback,
+            Request request
+    ) {
         this.onOpenCallback = onOpenCallback;
         this.onMessageCallback = onMessageCallback;
         this.onClosingCallback = onClosingCallback;
