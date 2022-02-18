@@ -277,6 +277,23 @@ public class Wallet {
         return requestHandler.sendSignedRequest(baseUrl, DUST_LOG, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String BNB_CONVERTABLE_ASSETS = "/sapi/v1/asset/dust-btc";
+    /**
+     * POST /sapi/v1/asset/dust-btc
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data</a>
+     */
+    public String bnbConvertableAssets(LinkedHashMap<String,Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, BNB_CONVERTABLE_ASSETS, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
     private final String DUST_TRANSFER = "/sapi/v1/asset/dust";
     /**
      * Convert dust assets to BNB.

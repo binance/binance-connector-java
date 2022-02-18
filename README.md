@@ -12,12 +12,12 @@ This is a lightweight library that works as a connector to the [Binance public A
 - Test cases and examples
 
 ## Installation
-Replace `LASTEST_VERSION` with the latest version number and paste the snippet below in `pom.xml`
+Replace `LATEST_VERSION` with the latest version number and paste the snippet below in `pom.xml`
 ```
 <dependency>
     <groupId>io.github.binance</groupId>
     <artifactId>binance-connector-java</artifactId>
-    <version>LASTEST_VERSION</version>
+    <version>LATEST_VERSION</version>
 </dependency>
 ```
 Run `mvn install` where `pom.xml` is located to install the dependency.

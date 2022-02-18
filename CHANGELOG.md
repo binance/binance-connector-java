@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0 - 2022-02-18
+
+### Added
+- Websocket status callback
+- New endpoints for Binance Code, named as Gift Card to avoid technical confusion.
+  - POST /sapi/v1/giftcard/createCode to create a Binance Code.
+  - POST /sapi/v1/giftcard/redeemCode to redeem a Binance Code.
+  - GET /sapi/v1/giftcard/verify to verify a Binance Code.
+- New endpoint for Wallet:
+  - POST /sapi/v1/asset/dust-btc to get assets that can be converted into BNB
+
 ## 1.2.0 - 2022-01-12
 
 ### Added
