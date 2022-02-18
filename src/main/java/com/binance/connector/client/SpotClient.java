@@ -7,6 +7,7 @@ import com.binance.connector.client.impl.spot.Convert;
 import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Fiat;
 import com.binance.connector.client.impl.spot.Futures;
+import com.binance.connector.client.impl.spot.GiftCard;
 import com.binance.connector.client.impl.spot.Margin;
 import com.binance.connector.client.impl.spot.Market;
 import com.binance.connector.client.impl.spot.Mining;
@@ -28,6 +29,7 @@ public interface SpotClient {
     CryptoLoans createCryptoLoans();
     Fiat createFiat();
     Futures createFutures();
+    GiftCard createGiftCard();
     Market createMarket();
     Margin createMargin();
     Mining createMining();

@@ -9,6 +9,7 @@ import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Convert;
 import com.binance.connector.client.impl.spot.Fiat;
 import com.binance.connector.client.impl.spot.Futures;
+import com.binance.connector.client.impl.spot.GiftCard;
 import com.binance.connector.client.impl.spot.Margin;
 import com.binance.connector.client.impl.spot.Market;
 import com.binance.connector.client.impl.spot.Mining;
@@ -95,6 +96,9 @@ public class SpotClientImpl implements SpotClient {
     public Futures createFutures() {
         return new Futures(baseUrl, apiKey, secretKey, showLimitUsage);
     }
+
+    @Override
+    public GiftCard createGiftCard() {return new GiftCard(baseUrl, apiKey, secretKey, showLimitUsage);}
 
     @Override
     public Margin createMargin() {
