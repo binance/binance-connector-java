@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.4.0 - 2022-04-06
+
+### Added
+- Update endpoint for Sub-Account:
+  - New endpoint GET /sapi/v1/managed-subaccount/accountSnapshot to support investor master account query asset snapshot of managed sub-account
+
+### Changed
+- Fixed typo in function name.
+  - CloseIsloatedListenKey => CloseIsolatedMarginListenKey
+  - CreateIsloatedListenKey => CreateIsolatedMarginListenKey
+  - ExtendIsloatedListenKey => ExtendIsolatedMarginListenKey
+  
 ## 1.3.0 - 2022-02-18
 
 ### Added

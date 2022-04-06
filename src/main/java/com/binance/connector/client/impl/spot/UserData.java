@@ -137,7 +137,7 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String createIsolatedListenKey(LinkedHashMap<String, Object> parameters) {
+    public String createIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -155,7 +155,7 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String extendIsolatedListenKey(LinkedHashMap<String, Object> parameters) {
+    public String extendIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
@@ -174,7 +174,7 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String closeIsolatedListenKey(LinkedHashMap<String, Object> parameters) {
+    public String closeIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
