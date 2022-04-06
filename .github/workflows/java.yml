@@ -10,13 +10,14 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest, macOS-latest ]
+        java-version: [ 8, 9, 11, 17 ]
 
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
       - name: Run unit tests
         run: mvn clean test
