@@ -1,23 +1,26 @@
-package unit.userdata;
+package unit.subaccount;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
+import com.binance.connector.client.utils.UrlBuilder;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
-public class TestCreateIsolatedListenKey {
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+
+public class TestManagedSubAccountSnapshot {
     private MockWebServer mockWebServer;
     private String baseUrl;
     private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"listenKey\": \"value_1\", \"key_2\": \"value_2\"}";
+    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
     private final String apiKey = "apiKey";
     private final String secretKey = "secretKey";
 
@@ -31,30 +34,31 @@ public class TestCreateIsolatedListenKey {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreateIsolatedListenKeyWithoutParameters() {
-        String path = "/sapi/v1/userDataStream/isolated";
+    public void testManagedSubAccountSnapshotWithoutParameters() {
+        String path = "/sapi/v1/managed-subaccount/accountSnapshot";
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createUserData().createIsloatedListenKey(parameters);
+        client.createSubAccount().managedSubAccountSnapshot(parameters);
     }
 
     @Test
-    public void testCreateIsolatedListenKey() {
-        String path = "/sapi/v1/userDataStream/isolated?symbol=BNBUSDT&listenKey=test";
+    public void testManagedSubAccountSnapshot() {
+        String path = String.format("/sapi/v1/managed-subaccount/accountSnapshot?email=%s&type=SPOT",
+                UrlBuilder.urlEncode("alice@test.com"));
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol", "BNBUSDT");
-        parameters.put("listenKey","test");
+        parameters.put("email","alice@test.com");
+        parameters.put("type","SPOT");
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        String result = client.createUserData().createIsloatedListenKey(parameters);
+        String result = client.createSubAccount().managedSubAccountSnapshot(parameters);
         assertEquals(MOCK_RESPONSE, result);
     }
 }

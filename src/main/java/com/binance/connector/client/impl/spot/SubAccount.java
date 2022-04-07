@@ -789,4 +789,28 @@ public class SubAccount {
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, MANAGED_SUB_WITHDRAW, parameters, HttpMethod.POST, showLimitUsage);
     }
+
+    private final String MANAGED_SUB_SNAPSHOT = "/sapi/v1/managed-subaccount/accountSnapshot";
+    /**
+     * GET /sapi/v1/managed-subaccount/accountSnapshot
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * email -- mandatory/string <br>
+     * type -- mandatory/string -- "SPOT", "MARGIN"(Cross), "FUTURES"(UM) <br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long <br>
+     * limit -- int/long <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account">
+     *     https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account</a>
+     */
+    public String managedSubAccountSnapshot(LinkedHashMap<String,Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "email", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, MANAGED_SUB_SNAPSHOT, parameters, HttpMethod.GET, showLimitUsage);
+    }
 }

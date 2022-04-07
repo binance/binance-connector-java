@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
-public class TestCloseIsolatedListenKey {
+public class TestCloseIsolatedMarginListenKey {
     private MockWebServer mockWebServer;
     private String baseUrl;
     private final String prefix = "/";
@@ -40,7 +40,7 @@ public class TestCloseIsolatedListenKey {
 
         thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createUserData().closeIsloatedListenKey(parameters);
+        client.createUserData().closeIsolatedMarginListenKey(parameters);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class TestCloseIsolatedListenKey {
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        String result = client.createUserData().closeIsloatedListenKey(parameters);
+        String result = client.createUserData().closeIsolatedMarginListenKey(parameters);
         assertEquals(MOCK_RESPONSE, result);
     }
 }
