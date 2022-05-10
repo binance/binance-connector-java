@@ -16,6 +16,7 @@ import com.binance.connector.client.impl.spot.Pay;
 import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
 import com.binance.connector.client.impl.spot.Savings;
+import com.binance.connector.client.impl.spot.Stakings;
 import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
@@ -39,6 +40,7 @@ public interface SpotClient {
     PortfolioMargin createPortfolioMargin();
     Rebate createRebate();
     Savings createSavings();
+    Stakings createStakings();
     SubAccount createSubAccount();
     Trade createTrade();
     UserData createUserData();

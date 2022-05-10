@@ -18,6 +18,7 @@ import com.binance.connector.client.impl.spot.Pay;
 import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
 import com.binance.connector.client.impl.spot.Savings;
+import com.binance.connector.client.impl.spot.Stakings;
 import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
@@ -138,6 +139,11 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public Savings createSavings() {
         return new Savings(baseUrl, apiKey, secretKey, showLimitUsage);
+    }
+
+    @Override
+    public Stakings createStakings() {
+        return new Stakings(baseUrl, apiKey, secretKey, showLimitUsage);
     }
 
     @Override

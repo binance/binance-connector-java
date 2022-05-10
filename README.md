@@ -53,6 +53,7 @@ to call its respective endpoints.
 | Pay             | createPay        | 
 | Rebate          | createRebate     |
 | Savings         | createSavings    | 
+| Stakings        | createStakings   |
 | Sub Account     | createsubAccount | 
 | Trade           | createTrade      | 
 | UserData        | createUserData   | 
