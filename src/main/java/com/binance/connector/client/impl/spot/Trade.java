@@ -45,6 +45,7 @@ public class Trade {
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
      * icebergQty -- optional/deciaml <br>
+     * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
      * @return String
@@ -78,6 +79,7 @@ public class Trade {
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
      * icebergQty -- optional/deciaml <br>
+     * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
      * @return String
@@ -219,6 +221,7 @@ public class Trade {
      * limitClientOrderId -- optional/string <br>
      * price -- mandatory/decimal <br>
      * limitIcebergQty -- optional/decimal <br>
+     * trailingDelta -- optional/long <br>
      * stopClientOrderId -- optional/string <br>
      * stopPrice -- mandatory/decimal <br>
      * stopLimitPrice -- optional/decimal <br>

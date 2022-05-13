@@ -937,4 +937,25 @@ public class Margin {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_MARGIN_TIER, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    private final String ORDER_RATE_LIMIT = "/sapi/v1/margin/rateLimit/order";
+    /**
+     * Displays the user's current margin order count usage for all intervals.
+     * <br><br>
+     * GET /sapi/v1/margin/rateLimit/order
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE"，default "FALSE" <br>
+     * symbol -- optional/string -- isolated symbol, mandatory for isolated margin <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade</a>
+     */
+    public String orderRateLimit(LinkedHashMap<String,Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, ORDER_RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
+    }
 }

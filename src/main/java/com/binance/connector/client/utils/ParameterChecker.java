@@ -9,22 +9,21 @@ public class ParameterChecker {
     }
 
     public static void checkParameter(LinkedHashMap<String,Object> parameters, String parameter, Class t) {
-        if (checkRequiredParameter(parameters, parameter)) {
-            checkParameterType(parameters.get(parameter), t, parameter);
-        }
+        checkRequiredParameter(parameters, parameter);
+        checkParameterType(parameters.get(parameter), t, parameter);
     }
 
-    public static boolean checkRequiredParameter(LinkedHashMap<String,Object> parameters, String parameter) {
+    public static void checkRequiredParameter(LinkedHashMap<String,Object> parameters, String parameter) {
         if (!parameters.containsKey(parameter)) {
             throw new BinanceConnectorException(String.format("\"%s\" is a mandatory parameter!", parameter));
         }
-        return true;
     }
 
-    public static boolean checkParameterType(Object parameter, Class t, String name) {
+    public static void checkParameterType(Object parameter, Class t, String name) {
         if (!t.isInstance(parameter)) {
             throw new BinanceConnectorException(String.format("\"%s\" must be of %s type.", name, t));
+        } else if (t == String.class && parameter.toString().trim().equals("")) {
+            throw new BinanceConnectorException(String.format("\"%s\" must not be empty.", name));
         }
-        return true;
     }
 }

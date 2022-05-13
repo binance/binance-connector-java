@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.0 - 2022-05-13
+
+### Added
+- GET /sapi/v1/margin/rateLimit/order added The endpoint will display the user's current margin order count usage for all intervals.
+- GET /sapi/v1/portfolio/account to support query portfolio margin account info
+- Information on Trailing Stops (Documentation)
+
+### Changed
+- Websocket symbol will be converted to lower case regardless of user input
+
 ## 1.4.0 - 2022-04-06
 
 ### Added

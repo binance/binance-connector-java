@@ -15,6 +15,7 @@ import com.binance.connector.client.impl.spot.Market;
 import com.binance.connector.client.impl.spot.Mining;
 import com.binance.connector.client.impl.spot.NFT;
 import com.binance.connector.client.impl.spot.Pay;
+import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
 import com.binance.connector.client.impl.spot.Savings;
 import com.binance.connector.client.impl.spot.SubAccount;
@@ -123,6 +124,11 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public Pay createPay() {
         return new Pay(baseUrl, apiKey, secretKey, showLimitUsage);
+    }
+
+    @Override
+    public PortfolioMargin createPortfolioMargin() {
+        return new PortfolioMargin(baseUrl, apiKey, secretKey, showLimitUsage);
     }
 
     @Override

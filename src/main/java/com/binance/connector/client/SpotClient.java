@@ -13,6 +13,7 @@ import com.binance.connector.client.impl.spot.Market;
 import com.binance.connector.client.impl.spot.Mining;
 import com.binance.connector.client.impl.spot.NFT;
 import com.binance.connector.client.impl.spot.Pay;
+import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
 import com.binance.connector.client.impl.spot.Savings;
 import com.binance.connector.client.impl.spot.SubAccount;
@@ -35,6 +36,7 @@ public interface SpotClient {
     Mining createMining();
     NFT createNFT();
     Pay createPay();
+    PortfolioMargin createPortfolioMargin();
     Rebate createRebate();
     Savings createSavings();
     SubAccount createSubAccount();
