@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.6.0 - 2022-05-22
+
+### Added
+- New endpoints for Staking:
+  - GET `/sapi/v1/staking/productList` to get Staking product list
+  - POST `/sapi/v1/staking/purchase` to stake product
+  - POST `/sapi/v1/staking/redeem` to redeem product
+  - GET `/sapi/v1/staking/position` to get Staking product holding position
+  - GET `/sapi/v1/staking/stakingRecord` to inquiry Staking history records
+  - POST `/sapi/v1/staking/setAutoStaking` to set Auto Staking function
+  - GET `/sapi/v1/staking/personalLeftQuota` to inquiry Staking left quota
+- New endpoint for Binance Code:
+  - GET `/sapi/v1/giftcard/cryptography/rsa-public-key` to fetch RSA public key.
+- Update endpoint for Binance Code:
+  - POST `/sapi/v1/giftcard/redeemCode`: new optional parameter externalUid. Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users.
+
 ## 1.5.0 - 2022-05-13
 
 ### Added
