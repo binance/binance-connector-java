@@ -39,20 +39,23 @@ to call its respective endpoints.
 
 | Category        |     Object       |         
 | --------------- | ---------------- |
+| Binance Code    | createGiftCard   | 
 | BLVT            | createBlvt       | 
 | BSwap           | createBswap      | 
 | C2C             | createC2C        | 
 | Convert         | createConvert    | 
 | CryptoLoans     | createCrytoLoans | 
 | Fiat            | createFiat       | 
-| Futures         | createFutures    | 
+| Futures         | createFutures    |
 | Margin          | createMargin     | 
 | Market          | createMarket     | 
 | Mining          | createMining     | 
 | NFT             | createNFT        | 
 | Pay             | createPay        | 
+| Portfolio Margin| createPortfolioMargin | 
 | Rebate          | createRebate     |
 | Savings         | createSavings    | 
+| Staking         | createStaking    | 
 | Sub Account     | createsubAccount | 
 | Trade           | createTrade      | 
 | UserData        | createUserData   | 
