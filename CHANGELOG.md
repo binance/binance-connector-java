@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.6.1 - 2022-05-26
+- Added Java checkstyle to pom.xml and github actions
+
 ## 1.6.0 - 2022-05-22
 
 ### Added
