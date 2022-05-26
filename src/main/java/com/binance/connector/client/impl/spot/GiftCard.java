@@ -47,7 +47,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data</a>
      */
-    public String createCode(LinkedHashMap<String,Object> parameters) {
+    public String createCode(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "token", String.class);
         ParameterChecker.checkParameter(parameters, "amount", Double.class);
         return requestHandler.sendSignedRequest(baseUrl, CREATE_CODE, parameters, HttpMethod.POST, showLimitUsage);
@@ -76,7 +76,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data</a>
      */
-    public String redeemCode(LinkedHashMap<String,Object> parameters) {
+    public String redeemCode(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "code", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEEM_CODE, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -99,7 +99,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data</a>
      */
-    public String verify(LinkedHashMap<String,Object> parameters) {
+    public String verify(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "referenceNo", String.class);
         return requestHandler.sendSignedRequest(baseUrl, VERIFY, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -119,7 +119,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data</a>
      */
-    public String rsaPublicKey(LinkedHashMap<String,Object> parameters) {
+    public String rsaPublicKey(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, RSA_PUB, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

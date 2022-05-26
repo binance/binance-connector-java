@@ -1,6 +1,6 @@
 package com.binance.connector.client.exceptions;
 
-public class BinanceServerException extends RuntimeException{
+public class BinanceServerException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
     private final int httpStatusCode;

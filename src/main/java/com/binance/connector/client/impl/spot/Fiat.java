@@ -42,7 +42,7 @@ public class Fiat {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fiat-deposit-withdraw-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-fiat-deposit-withdraw-history-user_data</a>
      */
-    public String orders(LinkedHashMap<String,Object> parameters) {
+    public String orders(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transactionType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -65,7 +65,7 @@ public class Fiat {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fiat-payments-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-fiat-payments-history-user_data</a>
      */
-    public String payments(LinkedHashMap<String,Object> parameters) {
+    public String payments(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transactionType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PAYMENTS, parameters, HttpMethod.GET, showLimitUsage);
     }

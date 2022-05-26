@@ -41,7 +41,7 @@ public class Convert {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-convert-trade-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-convert-trade-history-user_data</a>
      */
-    public String tradeFlow(LinkedHashMap<String,Object> parameters) {
+    public String tradeFlow(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "startTime", Long.class);
         ParameterChecker.checkParameter(parameters, "endTime", Long.class);
         return requestHandler.sendSignedRequest(baseUrl, TRADE_FLOW, parameters, HttpMethod.GET, showLimitUsage);

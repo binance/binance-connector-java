@@ -1,7 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestHandler;
 
 import java.util.LinkedHashMap;
@@ -38,7 +37,7 @@ public class PortfolioMargin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-account-info-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-account-info-user_data</a>
      */
-    public String getAccount(LinkedHashMap<String,Object> parameters) {
+    public String getAccount(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

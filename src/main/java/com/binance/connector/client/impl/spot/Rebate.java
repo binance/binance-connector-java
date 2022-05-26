@@ -40,7 +40,7 @@ public class Rebate {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data</a>
      */
-    public String taxQuery(LinkedHashMap<String,Object> parameters) {
+    public String taxQuery(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TAX_QUERY, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

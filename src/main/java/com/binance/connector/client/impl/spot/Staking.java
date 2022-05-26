@@ -44,7 +44,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-list-user_data</a>
      */
-    public String productList(LinkedHashMap<String,Object> parameters) {
+    public String productList(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PRODUCT_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -66,7 +66,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#purchase-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#purchase-staking-product-user_data</a>
      */
-    public String purchase(LinkedHashMap<String,Object> parameters) {
+    public String purchase(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         ParameterChecker.checkParameter(parameters, "amount", Double.class);
@@ -92,7 +92,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-staking-product-user_data</a>
      */
-    public String redeem(LinkedHashMap<String,Object> parameters) {
+    public String redeem(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEEM, parameters, HttpMethod.POST, showLimitUsage);
@@ -116,7 +116,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-position-user_data</a>
      */
-    public String getPosition(LinkedHashMap<String,Object> parameters) {
+    public String getPosition(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         return requestHandler.sendSignedRequest(baseUrl, POSITION, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -141,7 +141,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-history-user_data</a>
      */
-    public String stakingRecord(LinkedHashMap<String,Object> parameters) {
+    public String stakingRecord(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "txnType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, STAKING_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -165,7 +165,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#set-auto-staking-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#set-auto-staking-user_data</a>
      */
-    public String setAutoStaking(LinkedHashMap<String,Object> parameters) {
+    public String setAutoStaking(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "positionId", String.class);
         ParameterChecker.checkParameter(parameters, "renewable", String.class);
@@ -187,7 +187,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-personal-left-quota-of-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-personal-left-quota-of-staking-product-user_data</a>
      */
-    public String personalLeftQuota(LinkedHashMap<String,Object> parameters) {
+    public String personalLeftQuota(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LEFT_QUOTA, parameters, HttpMethod.GET, showLimitUsage);

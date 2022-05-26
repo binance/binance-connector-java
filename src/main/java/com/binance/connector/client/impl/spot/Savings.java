@@ -41,7 +41,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-list-user_data</a>
      */
-    public String flexibleProducts(LinkedHashMap<String,Object> parameters) {
+    public String flexibleProducts(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_PRODUCT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -59,7 +59,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-left-daily-purchase-quota-of-flexible-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-left-daily-purchase-quota-of-flexible-product-user_data</a>
      */
-    public String purchaseQuotaFlexible(LinkedHashMap<String,Object> parameters) {
+    public String purchaseQuotaFlexible(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PURCHASE_QUOTA, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -79,7 +79,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#purchase-flexible-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#purchase-flexible-product-user_data</a>
      */
-    public String purchaseFlexibleProduct(LinkedHashMap<String,Object> parameters) {
+    public String purchaseFlexibleProduct(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, PURCHASE_PRODUCT, parameters, HttpMethod.POST, showLimitUsage);
@@ -100,7 +100,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-left-daily-redemption-quota-of-flexible-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-left-daily-redemption-quota-of-flexible-product-user_data</a>
      */
-    public String dailyRedemptionQuota(LinkedHashMap<String,Object> parameters) {
+    public String dailyRedemptionQuota(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
         return requestHandler.sendSignedRequest(baseUrl, DAILY_REDEMPTION_QUOTA, parameters, HttpMethod.GET, showLimitUsage);
@@ -122,7 +122,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-flexible-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-flexible-product-user_data</a>
      */
-    public String redeemFlexibleProduct(LinkedHashMap<String,Object> parameters) {
+    public String redeemFlexibleProduct(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -143,7 +143,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data</a>
      */
-    public String flexibleProductPosition(LinkedHashMap<String,Object> parameters) {
+    public String flexibleProductPosition(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PRODUCT_POSTION, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -168,7 +168,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fixed-and-activity-project-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-fixed-and-activity-project-list-user_data</a>
      */
-    public String projectList(LinkedHashMap<String,Object> parameters) {
+    public String projectList(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACTIVITY_PROJECT, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -188,7 +188,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#purchase-fixed-activity-project-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#purchase-fixed-activity-project-user_data</a>
      */
-    public String purchaseProject(LinkedHashMap<String,Object> parameters) {
+    public String purchaseProject(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "projectId", String.class);
         ParameterChecker.checkParameter(parameters, "lot", Long.class);
         return requestHandler.sendSignedRequest(baseUrl, PURCHASE_ACTIVITY, parameters, HttpMethod.POST, showLimitUsage);
@@ -210,7 +210,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fixed-activity-project-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-fixed-activity-project-position-user_data</a>
      */
-    public String projectPostion(LinkedHashMap<String,Object> parameters) {
+    public String projectPostion(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PROJECT_POSITION, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -228,7 +228,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#lending-account-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#lending-account-user_data</a>
      */
-    public String lendingAccount(LinkedHashMap<String,Object> parameters) {
+    public String lendingAccount(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LENDING_ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -251,7 +251,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-purchase-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-purchase-record-user_data</a>
      */
-    public String purchaseRecord(LinkedHashMap<String,Object> parameters) {
+    public String purchaseRecord(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "lendingType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PURCHASE_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -275,7 +275,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-redemption-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-redemption-record-user_data</a>
      */
-    public String redemptionRecord(LinkedHashMap<String,Object> parameters) {
+    public String redemptionRecord(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "lendingType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEMPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -299,7 +299,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data-2">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data-2</a>
      */
-    public String interestHistory(LinkedHashMap<String,Object> parameters) {
+    public String interestHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "lendingType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -320,7 +320,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#change-fixed-activity-position-to-daily-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#change-fixed-activity-position-to-daily-position-user_data</a>
      */
-    public String changeToDailyPosition(LinkedHashMap<String,Object> parameters) {
+    public String changeToDailyPosition(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "projectId", String.class);
         ParameterChecker.checkParameter(parameters, "lot", Long.class);
         return requestHandler.sendSignedRequest(baseUrl, CHANGE_TO_DAILY_POSITION, parameters, HttpMethod.POST, showLimitUsage);
