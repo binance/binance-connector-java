@@ -3,17 +3,17 @@ package com.binance.connector.client.utils;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import java.util.LinkedHashMap;
 
-public class ParameterChecker {
+public final class ParameterChecker {
 
     private ParameterChecker() {
     }
 
-    public static void checkParameter(LinkedHashMap<String,Object> parameters, String parameter, Class t) {
+    public static void checkParameter(LinkedHashMap<String, Object> parameters, String parameter, Class t) {
         checkRequiredParameter(parameters, parameter);
         checkParameterType(parameters.get(parameter), t, parameter);
     }
 
-    public static void checkRequiredParameter(LinkedHashMap<String,Object> parameters, String parameter) {
+    public static void checkRequiredParameter(LinkedHashMap<String, Object> parameters, String parameter) {
         if (!parameters.containsKey(parameter)) {
             throw new BinanceConnectorException(String.format("\"%s\" is a mandatory parameter!", parameter));
         }

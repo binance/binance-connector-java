@@ -38,7 +38,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#create-a-virtual-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#create-a-virtual-sub-account-for-master-account</a>
      */
-    public String createVirtualSubAccount(LinkedHashMap<String,Object> parameters) {
+    public String createVirtualSubAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "subAccountString", String.class);
         return requestHandler.sendSignedRequest(baseUrl, CREATE_SUB, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -60,7 +60,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-list-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-list-for-master-account</a>
      */
-    public String subAccountList(LinkedHashMap<String,Object> parameters) {
+    public String subAccountList(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, QUERY_SUB_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -83,7 +83,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-asset-transfer-history-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-asset-transfer-history-for-master-account</a>
      */
-    public String spotTransferHistory(LinkedHashMap<String,Object> parameters) {
+    public String spotTransferHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, QUERY_SPOT_TRANSFER_HIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -106,7 +106,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-futures-asset-transfer-history-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-futures-asset-transfer-history-for-master-account</a>
      */
-    public String getFuturesInternalTransfer(LinkedHashMap<String,Object> parameters) {
+    public String getFuturesInternalTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, FUTURES_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
@@ -129,7 +129,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account</a>
      */
-    public String futuresInternalTransfer(LinkedHashMap<String,Object> parameters) {
+    public String futuresInternalTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromEmail", String.class);
         ParameterChecker.checkParameter(parameters, "toEmail", String.class);
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
@@ -154,7 +154,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account</a>
      */
-    public String assets(LinkedHashMap<String,Object> parameters) {
+    public String assets(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -177,7 +177,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-assets-summary-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-assets-summary-for-master-account</a>
      */
-    public String spotAccountSummary(LinkedHashMap<String,Object> parameters) {
+    public String spotAccountSummary(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SPOT_ASSET_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -199,7 +199,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-address-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-address-for-master-account</a>
      */
-    public String depositAddress(LinkedHashMap<String,Object> parameters) {
+    public String depositAddress(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_DEPOSIT_ADDRESS, parameters, HttpMethod.GET, showLimitUsage);
@@ -227,7 +227,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-history-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-history-for-master-account</a>
      */
-    public String depositHistory(LinkedHashMap<String,Object> parameters) {
+    public String depositHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_DEPOSIT_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -246,7 +246,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-39-s-status-on-margin-futures-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-39-s-status-on-margin-futures-for-master-account</a>
      */
-    public String accountStatus(LinkedHashMap<String,Object> parameters) {
+    public String accountStatus(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_STATUS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -264,7 +264,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-margin-for-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-margin-for-sub-account-for-master-account</a>
      */
-    public String enableMargin(LinkedHashMap<String,Object> parameters) {
+    public String enableMargin(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ENABLE_MARGIN, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -283,7 +283,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-margin-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-margin-account-for-master-account</a>
      */
-    public String marginAccount(LinkedHashMap<String,Object> parameters) {
+    public String marginAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_MARGIN, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -301,7 +301,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-margin-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-margin-account-for-master-account</a>
      */
-    public String marginAccountSummary(LinkedHashMap<String,Object> parameters) {
+    public String marginAccountSummary(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_MARGIN_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -319,7 +319,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-futures-for-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-futures-for-sub-account-for-master-account</a>
      */
-    public String enableFutures(LinkedHashMap<String,Object> parameters) {
+    public String enableFutures(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ENABLE_FUTURES, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -338,7 +338,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-for-master-account</a>
      */
-    public String futuresAccount(LinkedHashMap<String,Object> parameters) {
+    public String futuresAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_FUTURES, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -356,7 +356,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-for-master-account</a>
      */
-    public String futuresAccountSummary(LinkedHashMap<String,Object> parameters) {
+    public String futuresAccountSummary(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_FUTURES_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -374,7 +374,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-for-master-account</a>
      */
-    public String futuresPositionRisk(LinkedHashMap<String,Object> parameters) {
+    public String futuresPositionRisk(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_POSITION_RISK, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -398,7 +398,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#futures-transfer-for-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#futures-transfer-for-sub-account-for-master-account</a>
      */
-    public String futuresTransfer(LinkedHashMap<String,Object> parameters) {
+    public String futuresTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -423,7 +423,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-transfer-for-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-transfer-for-sub-account-for-master-account</a>
      */
-    public String marginTransfer(LinkedHashMap<String,Object> parameters) {
+    public String marginTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -447,7 +447,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account</a>
      */
-    public String subAccountToSubAccount(LinkedHashMap<String,Object> parameters) {
+    public String subAccountToSubAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "toEmail", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -469,7 +469,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account</a>
      */
-    public String subAccountToMaster(LinkedHashMap<String,Object> parameters) {
+    public String subAccountToMaster(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, SUB_TO_MASTER, parameters, HttpMethod.POST, showLimitUsage);
@@ -493,7 +493,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-transfer-history-for-sub-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-transfer-history-for-sub-account</a>
      */
-    public String transferHistory(LinkedHashMap<String,Object> parameters) {
+    public String transferHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_TRANSFER_HIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -517,7 +517,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#universal-transfer-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#universal-transfer-for-master-account</a>
      */
-    public String universalTransfer(LinkedHashMap<String,Object> parameters) {
+    public String universalTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromAccountType", String.class);
         ParameterChecker.checkParameter(parameters, "toAccountType", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -544,7 +544,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-universal-transfer-history-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-universal-transfer-history-for-master-account</a>
      */
-    public String queryUniversalTransfer(LinkedHashMap<String,Object> parameters) {
+    public String queryUniversalTransfer(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_UNIVERSAL_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -563,7 +563,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-v2-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-v2-for-master-account</a>
      */
-    public String futuresAccountV2(LinkedHashMap<String,Object> parameters) {
+    public String futuresAccountV2(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_FUTURES_ACCOUNT_V2, parameters, HttpMethod.GET, showLimitUsage);
@@ -585,7 +585,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-v2-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-v2-for-master-account</a>
      */
-    public String futuresAccountSummaryV2(LinkedHashMap<String,Object> parameters) {
+    public String futuresAccountSummaryV2(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_FUTURES_ACCOUNT_SUMMARY_V2, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -605,7 +605,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-v2-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-v2-for-master-account</a>
      */
-    public String futuresPositionRiskV2(LinkedHashMap<String,Object> parameters) {
+    public String futuresPositionRiskV2(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, SUB_FUTURES_POSITION_RISK_V2, parameters, HttpMethod.GET, showLimitUsage);
@@ -626,7 +626,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-leverage-token-for-sub-account-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-leverage-token-for-sub-account-for-master-account</a>
      */
-    public String enableLeverageToken(LinkedHashMap<String,Object> parameters) {
+    public String enableLeverageToken(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "enableBlvt", Boolean.class);
         return requestHandler.sendSignedRequest(baseUrl, ENABLE_LEVERAGE, parameters, HttpMethod.POST, showLimitUsage);
@@ -648,7 +648,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-or-disable-ip-restriction-for-a-sub-account-api-key-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-or-disable-ip-restriction-for-a-sub-account-api-key-for-master-account</a>
      */
-    public String enableIpRestriction(LinkedHashMap<String,Object> parameters) {
+    public String enableIpRestriction(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "subAccountApiKey", String.class);
         ParameterChecker.checkParameter(parameters, "ipRestrict", Boolean.class);
@@ -669,7 +669,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-ip-restriction-for-a-sub-account-api-key-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-ip-restriction-for-a-sub-account-api-key-for-master-account</a>
      */
-    public String getIpRestriction(LinkedHashMap<String,Object> parameters) {
+    public String getIpRestriction(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "subAccountApiKey", String.class);
         return requestHandler.sendSignedRequest(baseUrl, IP_RESTRICTION, parameters, HttpMethod.GET, showLimitUsage);
@@ -694,7 +694,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-ip-list-for-a-sub-account-api-key-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#add-ip-list-for-a-sub-account-api-key-for-master-account</a>
      */
-    public String addIpList(LinkedHashMap<String,Object> parameters) {
+    public String addIpList(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "subAccountApiKey", String.class);
         ParameterChecker.checkParameter(parameters, "ipAddress", String.class);
@@ -716,7 +716,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account</a>
      */
-    public String deleteIpList(LinkedHashMap<String,Object> parameters) {
+    public String deleteIpList(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "subAccountApiKey", String.class);
         ParameterChecker.checkParameter(parameters, "ipAddress", String.class);
@@ -739,7 +739,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#deposit-assets-into-the-managed-sub-account-for-investor-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#deposit-assets-into-the-managed-sub-account-for-investor-master-account</a>
      */
-    public String managedSubDeposit(LinkedHashMap<String,Object> parameters) {
+    public String managedSubDeposit(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "toEmail", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -760,7 +760,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-asset-details-for-investor-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-asset-details-for-investor-master-account</a>
      */
-    public String managedSubDetails(LinkedHashMap<String,Object> parameters) {
+    public String managedSubDetails(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MANAGED_SUB_DETAILS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -783,7 +783,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#withdrawl-assets-from-the-managed-sub-account-for-investor-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#withdrawl-assets-from-the-managed-sub-account-for-investor-master-account</a>
      */
-    public String managedSubWithdraw(LinkedHashMap<String,Object> parameters) {
+    public String managedSubWithdraw(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromEmail", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -808,7 +808,7 @@ public class SubAccount {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account</a>
      */
-    public String managedSubAccountSnapshot(LinkedHashMap<String,Object> parameters) {
+    public String managedSubAccountSnapshot(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MANAGED_SUB_SNAPSHOT, parameters, HttpMethod.GET, showLimitUsage);

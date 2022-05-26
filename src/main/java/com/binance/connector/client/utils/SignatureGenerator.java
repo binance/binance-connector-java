@@ -4,13 +4,13 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
 
-public class SignatureGenerator {
+public final class SignatureGenerator {
     private static final String HMAC_SHA256 = "HmacSHA256";
 
     private SignatureGenerator() {
     }
 
-    public static final String getSignature(String data, String key) {
+    public static String getSignature(String data, String key) {
         byte[] hmacSha256;
         try {
             SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), HMAC_SHA256);

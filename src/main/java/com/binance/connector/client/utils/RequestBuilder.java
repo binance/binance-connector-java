@@ -6,12 +6,12 @@ import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class RequestBuilder {
+public final class RequestBuilder {
     private static final MediaType JSON_TYPE = MediaType.parse("application/json; charset=utf-8");
 
-    private RequestBuilder(){
+    private RequestBuilder() {
     }
-    public static final Request buildPublicRequest(String fullUrl, HttpMethod httpMethod) {
+    public static Request buildPublicRequest(String fullUrl, HttpMethod httpMethod) {
         try {
             final Request request;
             switch (httpMethod) {
@@ -42,13 +42,12 @@ public class RequestBuilder {
                     throw new BinanceConnectorException("Invalid HTTP method: " + httpMethod);
             }
             return request;
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new BinanceConnectorException("Invalid URL: " + e.getMessage());
         }
      }
 
-    public static final Request buildApiKeyRequest(String fullUrl, HttpMethod httpMethod, String apiKey) {
+    public static Request buildApiKeyRequest(String fullUrl, HttpMethod httpMethod, String apiKey) {
         try {
             final Request request;
             switch (httpMethod) {
@@ -83,13 +82,12 @@ public class RequestBuilder {
                     throw new BinanceConnectorException("Invalid HTTP method: " + httpMethod);
             }
             return request;
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new BinanceConnectorException("Invalid URL: " + e.getMessage());
         }
     }
 
-    public static final Request buildWebsocketRequest(String fullUrl) {
+    public static Request buildWebsocketRequest(String fullUrl) {
         return new Request.Builder().url(fullUrl).build();
     }
 }

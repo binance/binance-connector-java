@@ -19,6 +19,8 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
+      - name: Run checkstyle
+        run: mvn checkstyle:check
       - name: Run unit tests
         run: mvn clean test
       - name: Build with Maven

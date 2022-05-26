@@ -62,7 +62,7 @@ public class SpotClientImpl implements SpotClient {
         this.baseUrl = baseUrl;
     }
 
-    public void setShowLimitUsage (boolean showLimitUsage) {
+    public void setShowLimitUsage(boolean showLimitUsage) {
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -87,7 +87,8 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public CryptoLoans createCryptoLoans() { return new CryptoLoans(baseUrl, apiKey, secretKey, showLimitUsage);}
+    public CryptoLoans createCryptoLoans() {
+        return new CryptoLoans(baseUrl, apiKey, secretKey, showLimitUsage); }
 
     @Override
     public Fiat createFiat() {
@@ -100,7 +101,8 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public GiftCard createGiftCard() {return new GiftCard(baseUrl, apiKey, secretKey, showLimitUsage);}
+    public GiftCard createGiftCard() {
+        return new GiftCard(baseUrl, apiKey, secretKey, showLimitUsage); }
 
     @Override
     public Margin createMargin() {

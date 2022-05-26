@@ -37,7 +37,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-blvt-info-market_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-blvt-info-market_data</a>
      */
-    public String blvtInfo(LinkedHashMap<String,Object> parameters) {
+    public String blvtInfo(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendWithApiKeyRequest(baseUrl, BLVT_INFO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -56,7 +56,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#subscribe-blvt-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#subscribe-blvt-user_data</a>
      */
-    public String subscribe(LinkedHashMap<String,Object> parameters) {
+    public String subscribe(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "tokenName", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "cost");
         return requestHandler.sendSignedRequest(baseUrl, SUBSCRIBE, parameters, HttpMethod.POST, showLimitUsage);
@@ -80,7 +80,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-subscription-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-subscription-record-user_data</a>
      */
-    public String subscriptionRecord(LinkedHashMap<String,Object> parameters) {
+    public String subscriptionRecord(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUBSCRIPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -99,7 +99,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-blvt-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-blvt-user_data</a>
      */
-    public String redeem(LinkedHashMap<String,Object> parameters) {
+    public String redeem(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "tokenName", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, REDEEM, parameters, HttpMethod.POST, showLimitUsage);
@@ -123,7 +123,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-redemption-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-redemption-record-user_data</a>
      */
-    public String redeemRecord(LinkedHashMap<String,Object> parameters) {
+    public String redeemRecord(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REDEEM_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -141,7 +141,7 @@ public class Blvt {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-blvt-user-limit-info-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-blvt-user-limit-info-user_data</a>
      */
-    public String userLimit(LinkedHashMap<String,Object> parameters) {
+    public String userLimit(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, USER_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

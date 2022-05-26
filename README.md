@@ -1,6 +1,7 @@
 # Binance Public API connector Java
 [![maven](https://img.shields.io/maven-central/v/io.github.binance/binance-connector-java)](https://repo1.maven.org/maven2/io/github/binance/binance-connector-java/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Style](https://img.shields.io/badge/code%20style-checkstyle-yellow)](https://checkstyle.org/checks.html)
 
 This is a lightweight library that works as a connector to the [Binance public API](https://github.com/binance/binance-spot-api-docs)
 

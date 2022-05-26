@@ -45,7 +45,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-future-account-transfer-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#new-future-account-transfer-user_data</a>
      */
-    public String futuresTransfer(LinkedHashMap<String,Object> parameters) {
+    public String futuresTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         ParameterChecker.checkParameter(parameters, "type", Integer.class);
@@ -69,7 +69,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-future-account-transaction-history-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-future-account-transaction-history-list-user_data</a>
      */
-    public String futuresTransferHistory(LinkedHashMap<String,Object> parameters) {
+    public String futuresTransferHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkParameter(parameters, "startTime", Long.class);
         return requestHandler.sendSignedRequest(baseUrl, FUTURES_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
@@ -92,7 +92,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-for-cross-collateral-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#borrow-for-cross-collateral-trade</a>
      */
-    public String borrow(LinkedHashMap<String,Object> parameters) {
+    public String borrow(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BORROW, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -113,7 +113,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-borrow-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-borrow-history-user_data</a>
      */
-    public String borrowHistory(LinkedHashMap<String,Object> parameters) {
+    public String borrowHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -133,7 +133,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-for-cross-collateral-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#repay-for-cross-collateral-trade</a>
      */
-    public String repay(LinkedHashMap<String,Object> parameters) {
+    public String repay(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -157,7 +157,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-repayment-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-repayment-history-user_data</a>
      */
-    public String repayHistory(LinkedHashMap<String,Object> parameters) {
+    public String repayHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REPAY_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -174,7 +174,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-wallet-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-wallet-user_data</a>
      */
-    public String loanWallet(LinkedHashMap<String,Object> parameters) {
+    public String loanWallet(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, WALLET, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -193,7 +193,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-information-v2-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-information-v2-user_data</a>
      */
-    public String loanConfigs(LinkedHashMap<String,Object> parameters) {
+    public String loanConfigs(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_CONFIGS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -214,7 +214,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data</a>
      */
-    public String calcAdjustLevel(LinkedHashMap<String,Object> parameters) {
+    public String calcAdjustLevel(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -237,7 +237,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-max-amount-for-adjust-cross-collateral-ltv-v2-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-max-amount-for-adjust-cross-collateral-ltv-v2-user_data</a>
      */
-    public String calcMaxAdjustAmount(LinkedHashMap<String,Object> parameters) {
+    public String calcMaxAdjustAmount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         return requestHandler.sendSignedRequest(baseUrl, CALCU_MAX_ADJUST_AMOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -260,7 +260,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data</a>
      */
-    public String adjustCollateral(LinkedHashMap<String,Object> parameters) {
+    public String adjustCollateral(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -286,7 +286,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-cross-collateral-ltv-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#adjust-cross-collateral-ltv-history-user_data</a>
      */
-    public String adjustCollateralHistory(LinkedHashMap<String,Object> parameters) {
+    public String adjustCollateralHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ADJUST_COLLATERAL_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -308,7 +308,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-liquidation-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-liquidation-history-user_data</a>
      */
-    public String liquidationHistory(LinkedHashMap<String,Object> parameters) {
+    public String liquidationHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LIQUIDATION_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -329,7 +329,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-limit-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-limit-user_data</a>
      */
-    public String collateralRepayLimit(LinkedHashMap<String,Object> parameters) {
+    public String collateralRepayLimit(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
@@ -353,7 +353,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-repay-quote-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-collateral-repay-quote-user_data</a>
      */
-    public String collateralRepayQuote(LinkedHashMap<String,Object> parameters) {
+    public String collateralRepayQuote(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -375,7 +375,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-with-collateral-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#repay-with-collateral-user_data</a>
      */
-    public String collateralRepay(LinkedHashMap<String,Object> parameters) {
+    public String collateralRepay(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "quoteId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -396,7 +396,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#collateral-repayment-result-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#collateral-repayment-result-user_data</a>
      */
-    public String collateralRepayResult(LinkedHashMap<String,Object> parameters) {
+    public String collateralRepayResult(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "quoteId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY_RESULT, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -419,7 +419,7 @@ public class Futures {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-interest-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-interest-history-user_data</a>
      */
-    public String interestHistory(LinkedHashMap<String,Object> parameters) {
+    public String interestHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

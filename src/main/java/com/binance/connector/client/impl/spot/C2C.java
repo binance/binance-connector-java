@@ -42,7 +42,7 @@ public class C2C {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data</a>
      */
-    public String listUserOrderHistory(LinkedHashMap<String,Object> parameters) {
+    public String listUserOrderHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "tradeType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LIST_ORDER_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }

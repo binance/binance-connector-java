@@ -40,7 +40,7 @@ public class Pay {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-pay-trade-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-pay-trade-history-user_data</a>
      */
-    public String transactions(LinkedHashMap<String,Object> parameters) {
+    public String transactions(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRANSACTIONS, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

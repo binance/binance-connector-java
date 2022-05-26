@@ -34,7 +34,7 @@ public class RequestHandler {
      * @return String - response from server
      */
 
-    private String sendApiRequest(String baseUrl, String urlPath, String signature, LinkedHashMap<String,Object> parameters,
+    private String sendApiRequest(String baseUrl, String urlPath, String signature, LinkedHashMap<String, Object> parameters,
                                   HttpMethod httpMethod, RequestType requestType, boolean showLimitUsage) {
         String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters, signature);
         logger.info("{} {}", httpMethod, fullUrl);
@@ -53,12 +53,12 @@ public class RequestHandler {
         return ResponseHandler.handleResponse(request, showLimitUsage);
     }
 
-    public String sendPublicRequest(String baseUrl, String urlPath, LinkedHashMap<String,Object> parameters,
+    public String sendPublicRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
                                     HttpMethod httpMethod, boolean showLimitUsage) {
         return sendApiRequest(baseUrl, urlPath, null, parameters, httpMethod, RequestType.PUBLIC, showLimitUsage);
     }
 
-    public String sendWithApiKeyRequest(String baseUrl, String urlPath, LinkedHashMap<String,Object> parameters,
+    public String sendWithApiKeyRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
                                         HttpMethod httpMethod, boolean showLimitUsage) {
         if (null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] API key cannot be null or empty!");
@@ -66,7 +66,7 @@ public class RequestHandler {
         return sendApiRequest(baseUrl, urlPath, null, parameters, httpMethod, RequestType.WITH_API_KEY, showLimitUsage);
     }
 
-    public String sendSignedRequest(String baseUrl, String urlPath, LinkedHashMap<String,Object> parameters,
+    public String sendSignedRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
                                     HttpMethod httpMethod, boolean showLimitUsage) {
         if (null == secretKey || secretKey.isEmpty() || null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] Secret key/API key cannot be null or empty!");

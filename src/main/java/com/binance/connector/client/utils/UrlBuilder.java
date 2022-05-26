@@ -9,13 +9,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class UrlBuilder {
+public final class UrlBuilder {
+    private static final int MAX_DECIMAL_DIGITS = 30;
     private static DecimalFormat df;
+
 
     private UrlBuilder() {
     }
 
-    public static final String buildFullUrl(String baseUrl, String urlPath, LinkedHashMap<String,Object> parameters, String signature) {
+    public static String buildFullUrl(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters, String signature) {
         if (parameters != null && !parameters.isEmpty()) {
             StringBuilder sb = new StringBuilder(baseUrl);
             sb.append(urlPath).append('?');
@@ -29,24 +31,24 @@ public class UrlBuilder {
         }
     }
 
-    public static final String buildStreamUrl(String baseUrl, ArrayList<String> streams) {
+    public static String buildStreamUrl(String baseUrl, ArrayList<String> streams) {
         StringBuilder sb = new StringBuilder(baseUrl);
         sb.append("?streams=");
         return joinStreamUrls(sb, streams);
     }
 
     //concatenate query parameters
-    public static final String joinQueryParameters(LinkedHashMap<String,Object> parameters) {
+    public static String joinQueryParameters(LinkedHashMap<String, Object> parameters) {
         return joinQueryParameters(new StringBuilder(), parameters).toString();
     }
 
-    public static final StringBuilder joinQueryParameters(StringBuilder urlPath, LinkedHashMap<String,Object> parameters) {
+    public static StringBuilder joinQueryParameters(StringBuilder urlPath, LinkedHashMap<String, Object> parameters) {
         if (parameters == null || parameters.isEmpty()) {
             return urlPath;
         }
 
         boolean isFirst = true;
-        for (Map.Entry<String,Object> mapElement : parameters.entrySet()) {
+        for (Map.Entry<String, Object> mapElement : parameters.entrySet()) {
 
             if (mapElement.getValue() instanceof Double) {
                 parameters.replace(mapElement.getKey(), getFormatter().format(mapElement.getValue()));
@@ -74,7 +76,7 @@ public class UrlBuilder {
     }
 
     private static void joinArrayListParameters(String key, StringBuilder urlPath, ArrayList<?> values, boolean isFirst) {
-        for(Object value: values) {
+        for (Object value: values) {
             if (isFirst) {
                 isFirst = false;
             } else {
@@ -114,13 +116,13 @@ public class UrlBuilder {
     private static DecimalFormat getFormatter() {
         if (null == df) {
             df = new DecimalFormat();
-            df.setMaximumFractionDigits(30);
+            df.setMaximumFractionDigits(MAX_DECIMAL_DIGITS);
             df.setGroupingUsed(false);
         }
         return df;
     }
 
-    public static final String buildTimestamp() {
+    public static String buildTimestamp() {
         return String.valueOf(System.currentTimeMillis());
     }
 }
