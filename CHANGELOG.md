@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.2 - 2022-05-27
+
+### Changed
+- `maven-checkstyle-plugin` dependencies package version changed to scope `test`
+- Pumped `logback-classic` version to `1.2.11`
+
 ## 1.6.1 - 2022-05-26
 
 ### Added
