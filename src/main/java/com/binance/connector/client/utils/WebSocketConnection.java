@@ -15,7 +15,10 @@ public class WebSocketConnection extends WebSocketListener {
     private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketConnection.class);
 
-    private final WebSocketCallback onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback;
+    private final WebSocketCallback onOpenCallback;
+    private final WebSocketCallback onMessageCallback;
+    private final WebSocketCallback onClosingCallback;
+    private final WebSocketCallback onFailureCallback;
     private final int connectionId;
     private final Request request;
     private final String streamName;
@@ -66,24 +69,24 @@ public class WebSocketConnection extends WebSocketListener {
     }
 
     @Override
-    public void onOpen(WebSocket webSocket, Response response) {
+    public void onOpen(WebSocket ws, Response response) {
         logger.info("[Connection {}] Connected to Server", connectionId);
         onOpenCallback.onReceive(null);
     }
 
     @Override
-    public void onClosing(WebSocket webSocket, int code, String reason) {
-        super.onClosing(webSocket, code, reason);
+    public void onClosing(WebSocket ws, int code, String reason) {
+        super.onClosing(ws, code, reason);
         onClosingCallback.onReceive(reason);
     }
 
     @Override
-    public void onMessage(WebSocket webSocket, String text) {
+    public void onMessage(WebSocket ws, String text) {
         onMessageCallback.onReceive(text);
     }
 
     @Override
-    public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+    public void onFailure(WebSocket ws, Throwable t, Response response) {
         logger.error("[Connection {}] Failure", connectionId, t);
         onFailureCallback.onReceive(null);
     }

@@ -11,6 +11,8 @@ public class TestParameterChecker {
         put("key1","value1");
         put("key2",2);
     }};
+    private final String mockObject = "mockObject";
+    private final String emptyString = "";
 
     @Test
     public void testcheckParameter() {
@@ -20,12 +22,22 @@ public class TestParameterChecker {
 
     @Test(expected = BinanceConnectorException.class)
     public void testcheckParameterNoKey() {
-        ParameterChecker.checkParameter(mockParameters, "InvalidKey", String.class);
+        ParameterChecker.checkRequiredParameter(mockParameters, "InvalidKey");
     }
 
     @Test(expected = BinanceConnectorException.class)
     public void testcheckParameterWrongType() {
-        ParameterChecker.checkParameter(mockParameters, "key1", Integer.class);
+        ParameterChecker.checkParameterType(mockObject, Integer.class, "mockObject");
+    }
+
+    @Test(expected = BinanceConnectorException.class)
+    public void testcheckEmptyString() {
+        ParameterChecker.checkParameterType(emptyString, String.class, "mockObject");
+    }
+
+    @Test(expected = BinanceConnectorException.class)
+    public void testcheckNull() {
+        ParameterChecker.checkParameterType(null, String.class, "mockObject");
     }
 
 }

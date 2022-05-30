@@ -1,5 +1,54 @@
 # Changelog
 
+## 1.6.2 - 2022-05-27
+
+### Changed
+- `maven-checkstyle-plugin` dependencies package version changed to scope `test`
+- Pumped `logback-classic` version to `1.2.11`
+
+## 1.6.1 - 2022-05-26
+
+### Added
+- Java checkstyle to pom.xml and github actions
+
+## 1.6.0 - 2022-05-22
+
+### Added
+- New endpoints for Staking:
+  - GET `/sapi/v1/staking/productList` to get Staking product list
+  - POST `/sapi/v1/staking/purchase` to stake product
+  - POST `/sapi/v1/staking/redeem` to redeem product
+  - GET `/sapi/v1/staking/position` to get Staking product holding position
+  - GET `/sapi/v1/staking/stakingRecord` to inquiry Staking history records
+  - POST `/sapi/v1/staking/setAutoStaking` to set Auto Staking function
+  - GET `/sapi/v1/staking/personalLeftQuota` to inquiry Staking left quota
+- New endpoint for Binance Code:
+  - GET `/sapi/v1/giftcard/cryptography/rsa-public-key` to fetch RSA public key.
+- Update endpoint for Binance Code:
+  - POST `/sapi/v1/giftcard/redeemCode`: new optional parameter externalUid. Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users.
+
+## 1.5.0 - 2022-05-13
+
+### Added
+- GET /sapi/v1/margin/rateLimit/order added The endpoint will display the user's current margin order count usage for all intervals.
+- GET /sapi/v1/portfolio/account to support query portfolio margin account info
+- Information on Trailing Stops (Documentation)
+
+### Changed
+- Websocket symbol will be converted to lower case regardless of user input
+
+## 1.4.0 - 2022-04-06
+
+### Added
+- Update endpoint for Sub-Account:
+  - New endpoint GET /sapi/v1/managed-subaccount/accountSnapshot to support investor master account query asset snapshot of managed sub-account
+
+### Changed
+- Fixed typo in function name.
+  - CloseIsloatedListenKey => CloseIsolatedMarginListenKey
+  - CreateIsloatedListenKey => CreateIsolatedMarginListenKey
+  - ExtendIsloatedListenKey => ExtendIsolatedMarginListenKey
+  
 ## 1.3.0 - 2022-02-18
 
 ### Added

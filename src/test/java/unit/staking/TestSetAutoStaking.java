@@ -1,19 +1,21 @@
-package unit.userdata;
+package unit.staking;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
-public class TestExtendIsolatedListenKey {
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+
+public class TestSetAutoStaking {
     private MockWebServer mockWebServer;
     private String baseUrl;
     private final String prefix = "/";
@@ -31,30 +33,31 @@ public class TestExtendIsolatedListenKey {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testExtendIsolatedListenKeyWithoutParameters() {
-        String path = "/sapi/v1/userDataStream/isolated";
+    public void testSetAutoStakingWithoutParameters() {
+        String path = "/sapi/v1/staking/setAutoStaking";
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.PUT, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createUserData().extendIsloatedListenKey(parameters);
+        client.createStaking().setAutoStaking(parameters);
     }
 
     @Test
-    public void testExtendIsolatedListenKey() {
-        String path = "/sapi/v1/userDataStream/isolated?symbol=BNBUSDT&listenKey=test";
+    public void testSetAutoStaking() {
+        String path = "/sapi/v1/staking/setAutoStaking?product=STAKING&positionId=1234&renewable=false";
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("listenKey","test");
+        parameters.put("product", "STAKING");
+        parameters.put("positionId", "1234");
+        parameters.put("renewable", "false");
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.PUT, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        String result = client.createUserData().extendIsloatedListenKey(parameters);
+        String result = client.createStaking().setAutoStaking(parameters);
         assertEquals(MOCK_RESPONSE, result);
     }
 }

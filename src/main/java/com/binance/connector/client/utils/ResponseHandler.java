@@ -11,13 +11,16 @@ import okhttp3.ResponseBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ResponseHandler {
+public final class ResponseHandler {
     private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
+    private static final int HTTP_STATUS_CODE_400 = 400;
+    private static final int HTTP_STATUS_CODE_499 = 499;
+    private static final int HTTP_STATUS_CODE_500 = 500;
 
     private ResponseHandler() {
     }
 
-    public static final String handleResponse(Request request, boolean showLimitUsage) {
+    public static String handleResponse(Request request, boolean showLimitUsage) {
         try (Response response = client.newCall(request).execute()) {
             if (null == response) {
                 throw new BinanceServerException("[ResponseHandler] No response from server");
@@ -25,9 +28,9 @@ public class ResponseHandler {
 
             String responseAsString = getResponseBodyAsString(response.body());
 
-            if (response.code() >= 400 && response.code() <= 499) {
+            if (response.code() >= HTTP_STATUS_CODE_400 && response.code() <= HTTP_STATUS_CODE_499) {
                 throw handleErrorResponse(responseAsString, response.code());
-            } else if (response.code() >= 500) {
+            } else if (response.code() >= HTTP_STATUS_CODE_500) {
                 throw new BinanceServerException(responseAsString, response.code());
             }
 
@@ -36,8 +39,7 @@ public class ResponseHandler {
             } else {
                 return responseAsString;
             }
-        }
-        catch (IOException | IllegalStateException e) {
+        } catch (IOException | IllegalStateException e) {
             throw new BinanceConnectorException("[ResponseHandler] OKHTTP Error: " + e.getMessage());
         }
     }
@@ -57,8 +59,7 @@ public class ResponseHandler {
             String errorMsg = JSONParser.getJSONStringValue(responseBody, "msg");
             int errorCode = JSONParser.getJSONIntValue(responseBody, "code");
             return new BinanceClientException(responseBody, errorMsg, responseCode, errorCode);
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             throw new BinanceClientException(responseBody, responseCode);
         }
     }

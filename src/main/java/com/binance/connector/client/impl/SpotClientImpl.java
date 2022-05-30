@@ -15,8 +15,10 @@ import com.binance.connector.client.impl.spot.Market;
 import com.binance.connector.client.impl.spot.Mining;
 import com.binance.connector.client.impl.spot.NFT;
 import com.binance.connector.client.impl.spot.Pay;
+import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
 import com.binance.connector.client.impl.spot.Savings;
+import com.binance.connector.client.impl.spot.Staking;
 import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
@@ -60,7 +62,7 @@ public class SpotClientImpl implements SpotClient {
         this.baseUrl = baseUrl;
     }
 
-    public void setShowLimitUsage (boolean showLimitUsage) {
+    public void setShowLimitUsage(boolean showLimitUsage) {
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -85,7 +87,8 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public CryptoLoans createCryptoLoans() { return new CryptoLoans(baseUrl, apiKey, secretKey, showLimitUsage);}
+    public CryptoLoans createCryptoLoans() {
+        return new CryptoLoans(baseUrl, apiKey, secretKey, showLimitUsage); }
 
     @Override
     public Fiat createFiat() {
@@ -98,7 +101,8 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public GiftCard createGiftCard() {return new GiftCard(baseUrl, apiKey, secretKey, showLimitUsage);}
+    public GiftCard createGiftCard() {
+        return new GiftCard(baseUrl, apiKey, secretKey, showLimitUsage); }
 
     @Override
     public Margin createMargin() {
@@ -126,12 +130,23 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
+    public PortfolioMargin createPortfolioMargin() {
+        return new PortfolioMargin(baseUrl, apiKey, secretKey, showLimitUsage);
+    }
+
+    @Override
     public Rebate createRebate() {
         return new Rebate(baseUrl, apiKey, secretKey, showLimitUsage);
     }
+
     @Override
     public Savings createSavings() {
         return new Savings(baseUrl, apiKey, secretKey, showLimitUsage);
+    }
+
+    @Override
+    public Staking createStaking() {
+        return new Staking(baseUrl, apiKey, secretKey, showLimitUsage);
     }
 
     @Override

@@ -44,7 +44,7 @@ public class NFT {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-transaction-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-transaction-history-user_data</a>
      */
-    public String transactionsHistory(LinkedHashMap<String,Object> parameters) {
+    public String transactionsHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderType", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, TRANSACTIONS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -66,7 +66,7 @@ public class NFT {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-deposit-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-deposit-history-user_data</a>
      */
-    public String depositHistory(LinkedHashMap<String,Object> parameters) {
+    public String depositHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, DEPOSIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -87,7 +87,7 @@ public class NFT {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-withdraw-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-withdraw-history-user_data</a>
      */
-    public String withdrawHistory(LinkedHashMap<String,Object> parameters) {
+    public String withdrawHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, WITHDRAW, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -106,7 +106,7 @@ public class NFT {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-asset-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-asset-user_data</a>
      */
-    public String getAsset(LinkedHashMap<String,Object> parameters) {
+    public String getAsset(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_ASSET, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

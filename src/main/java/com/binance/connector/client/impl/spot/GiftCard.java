@@ -47,7 +47,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data</a>
      */
-    public String createCode(LinkedHashMap<String,Object> parameters) {
+    public String createCode(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "token", String.class);
         ParameterChecker.checkParameter(parameters, "amount", Double.class);
         return requestHandler.sendSignedRequest(baseUrl, CREATE_CODE, parameters, HttpMethod.POST, showLimitUsage);
@@ -66,12 +66,17 @@ public class GiftCard {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * code -- mandatory/string -- Binance code <br>
+     * externalUid -- optional/string -- Each external unique ID represents a unique user on the partner platform.
+     *                                  The function helps you to identify the redemption behavior of different users,
+     *                                  such as redemption frequency and amount. It also helps risk and limit control of a single account,
+     *                                  such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Binance codes on your platform.
+     *                                  To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data</a>
      */
-    public String redeemCode(LinkedHashMap<String,Object> parameters) {
+    public String redeemCode(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "code", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEEM_CODE, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -94,8 +99,27 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data</a>
      */
-    public String verify(LinkedHashMap<String,Object> parameters) {
+    public String verify(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "referenceNo", String.class);
         return requestHandler.sendSignedRequest(baseUrl, VERIFY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String RSA_PUB = "/sapi/v1/giftcard/cryptography/rsa-public-key";
+    /**
+     * This API is for fetching the RSA Public Key. This RSA Public key will be used to encrypt the card code.
+     * <br><br>
+     * GET /sapi/v1/giftcard/cryptography/rsa-public-key
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data</a>
+     */
+    public String rsaPublicKey(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, RSA_PUB, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

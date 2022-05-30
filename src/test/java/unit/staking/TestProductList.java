@@ -1,23 +1,25 @@
-package unit.userdata;
+package unit.staking;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
-public class TestCreateIsolatedListenKey {
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+
+public class TestProductList {
     private MockWebServer mockWebServer;
     private String baseUrl;
     private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"listenKey\": \"value_1\", \"key_2\": \"value_2\"}";
+    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
     private final String apiKey = "apiKey";
     private final String secretKey = "secretKey";
 
@@ -31,30 +33,29 @@ public class TestCreateIsolatedListenKey {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testCreateIsolatedListenKeyWithoutParameters() {
-        String path = "/sapi/v1/userDataStream/isolated";
+    public void testProductListWithoutParameters() {
+        String path = "/sapi/v1/staking/productList";
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createUserData().createIsloatedListenKey(parameters);
+        client.createStaking().productList(parameters);
     }
 
     @Test
-    public void testCreateIsolatedListenKey() {
-        String path = "/sapi/v1/userDataStream/isolated?symbol=BNBUSDT&listenKey=test";
+    public void testProductList() {
+        String path = "/sapi/v1/staking/productList?product=STAKING";
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol", "BNBUSDT");
-        parameters.put("listenKey","test");
+        parameters.put("product","STAKING");
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        String result = client.createUserData().createIsloatedListenKey(parameters);
+        String result = client.createStaking().productList(parameters);
         assertEquals(MOCK_RESPONSE, result);
     }
 }

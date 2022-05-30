@@ -43,7 +43,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-crypto-loans-income-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-crypto-loans-income-history-user_data</a>
      */
-    public String loanIncome(LinkedHashMap<String,Object> parameters) {
+    public String loanIncome(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LOAN_INCOME, parameters, HttpMethod.GET, showLimitUsage);
     }

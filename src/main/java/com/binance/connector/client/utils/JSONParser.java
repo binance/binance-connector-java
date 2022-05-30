@@ -5,7 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JSONParser {
+public final class JSONParser {
 
     private JSONParser() {
     }
@@ -14,8 +14,7 @@ public class JSONParser {
         try {
             JSONObject obj = new JSONObject(json);
             return obj.getString(key);
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             throw new JSONException(String.format("[JSONParser] Failed to get \"%s\"  from JSON object", key));
         }
     }
@@ -24,8 +23,7 @@ public class JSONParser {
         try {
             JSONObject obj = new JSONObject(json);
             return obj.getInt(key);
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             throw new JSONException(String.format("[JSONParser] Failed to get \"%s\" from JSON object", key));
         }
     }
@@ -34,8 +32,7 @@ public class JSONParser {
         try {
             JSONArray arr = new JSONArray(symbols);
             return arr.toString();
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             throw new JSONException(String.format("[JSONParser] Failed to convert \"%s\" to JSON array", key));
         }
     }

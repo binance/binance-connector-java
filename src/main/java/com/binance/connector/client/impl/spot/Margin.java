@@ -42,7 +42,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-margin-account-transfer-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#cross-margin-account-transfer-margin</a>
      */
-    public String crossMarginTransfer(LinkedHashMap<String,Object> parameters) {
+    public String crossMarginTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         ParameterChecker.checkParameter(parameters, "type", Integer.class);
@@ -68,7 +68,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-borrow-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-borrow-margin</a>
      */
-    public String borrow(LinkedHashMap<String,Object> parameters) {
+    public String borrow(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, BORROW, parameters, HttpMethod.POST, showLimitUsage);
@@ -93,7 +93,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-repay-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-repay-margin</a>
      */
-    public String repay(LinkedHashMap<String,Object> parameters) {
+    public String repay(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, REPAY, parameters, HttpMethod.POST, showLimitUsage);
@@ -112,7 +112,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-asset-market_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-asset-market_data</a>
      */
-    public String asset(LinkedHashMap<String,Object> parameters) {
+    public String asset(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, ASSET, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -130,7 +130,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-pair-market_data">
      *    https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-pair-market_data</a>
      */
-    public String pair(LinkedHashMap<String,Object> parameters) {
+    public String pair(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, PAIR, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -172,7 +172,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-priceindex-market_data">
      *    https://binance-docs.github.io/apidocs/spot/en/#query-margin-priceindex-market_data</a>
      */
-    public String priceIndex(LinkedHashMap<String,Object> parameters) {
+    public String priceIndex(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, PRICE_INDEX, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -205,7 +205,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-order-trade</a>
      */
-    public String newOrder(LinkedHashMap<String,Object> parameters) {
+    public String newOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -231,7 +231,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-order-trade</a>
      */
-    public String cancelOrder(LinkedHashMap<String,Object> parameters) {
+    public String cancelOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDER, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -254,7 +254,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-all-open-orders-on-a-symbol-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-all-open-orders-on-a-symbol-trade</a>
      */
-    public String cancelOpenOrders(LinkedHashMap<String,Object> parameters) {
+    public String cancelOpenOrders(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, OPEN_ORDERS, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -279,7 +279,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-cross-margin-transfer-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-cross-margin-transfer-history-user_data</a>
      */
-    public String transferHistory(LinkedHashMap<String,Object> parameters) {
+    public String transferHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRANSFER_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -304,7 +304,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-loan-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-loan-record-user_data</a>
      */
-    public String loanRecord(LinkedHashMap<String,Object> parameters) {
+    public String loanRecord(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LOAN_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -330,7 +330,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-repay-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-repay-record-user_data</a>
      */
-    public String repayRecord(LinkedHashMap<String,Object> parameters) {
+    public String repayRecord(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REPAY_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -355,7 +355,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data</a>
      */
-    public String interestHistory(LinkedHashMap<String,Object> parameters) {
+    public String interestHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -377,7 +377,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-force-liquidation-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-force-liquidation-record-user_data</a>
      */
-    public String forceLiquidationRec(LinkedHashMap<String,Object> parameters) {
+    public String forceLiquidationRec(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FORCE_LIQUIDATION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -394,7 +394,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-account-details-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-account-details-user_data</a>
      */
-    public String account(LinkedHashMap<String,Object> parameters) {
+    public String account(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -414,7 +414,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-order-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-order-user_data</a>
      */
-    public String getOrder(LinkedHashMap<String,Object> parameters) {
+    public String getOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -432,7 +432,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-orders-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-orders-user_data</a>
      */
-    public String getOpenOrders(LinkedHashMap<String,Object> parameters) {
+    public String getOpenOrders(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, OPEN_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -455,7 +455,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-orders-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-orders-user_data</a>
      */
-    public String getAllOrders(LinkedHashMap<String,Object> parameters) {
+    public String getAllOrders(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ALL_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -490,7 +490,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-oco-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-oco-trade</a>
      */
-    public String ocoOrder(LinkedHashMap<String,Object> parameters) {
+    public String ocoOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "quantity");
@@ -519,7 +519,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-oco-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-oco-trade</a>
      */
-    public String cancelOcoOrder(LinkedHashMap<String,Object> parameters) {
+    public String cancelOcoOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDER_LIST, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -542,7 +542,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-oco-user_data</a>
      */
-    public String getOcoOrder(LinkedHashMap<String,Object> parameters) {
+    public String getOcoOrder(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -567,7 +567,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-oco-user_data</a>
      */
-    public String getAllOcoOrders(LinkedHashMap<String,Object> parameters) {
+    public String getAllOcoOrders(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_ALL_OCO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -586,7 +586,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-oco-user_data</a>
      */
-    public String getOcoOpenOrders(LinkedHashMap<String,Object> parameters) {
+    public String getOcoOpenOrders(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_OPEN_OCO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -609,7 +609,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-trade-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-trade-list-user_data</a>
      */
-    public String trades(LinkedHashMap<String,Object> parameters) {
+    public String trades(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MY_TRADES, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -629,7 +629,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-max-borrow-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-max-borrow-user_data</a>
      */
-    public String maxBorrow(LinkedHashMap<String,Object> parameters) {
+    public String maxBorrow(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MAX_BORROW, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -649,7 +649,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-max-transfer-out-amount-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-max-transfer-out-amount-user_data</a>
      */
-    public String maxTransferable(LinkedHashMap<String,Object> parameters) {
+    public String maxTransferable(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MAX_TRANSFERABLE, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -672,7 +672,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#isolated-margin-account-transfer-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#isolated-margin-account-transfer-margin</a>
      */
-    public String isolatedTransfer(LinkedHashMap<String,Object> parameters) {
+    public String isolatedTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "transFrom", String.class);
@@ -701,7 +701,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-isolated-margin-transfer-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-isolated-margin-transfer-history-user_data</a>
      */
-    public String getIsolatedTransfer(LinkedHashMap<String,Object> parameters) {
+    public String getIsolatedTransfer(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -720,7 +720,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-account-info-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-account-info-user_data</a>
      */
-    public String isolatedAccount(LinkedHashMap<String,Object> parameters) {
+    public String isolatedAccount(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -737,7 +737,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#disable-isolated-margin-account-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#disable-isolated-margin-account-trade</a>
      */
-    public String disableIsolatedAccount(LinkedHashMap<String,Object> parameters) {
+    public String disableIsolatedAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -757,7 +757,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-isolated-margin-account-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-isolated-margin-account-trade</a>
      */
-    public String enableIsolatedAccount(LinkedHashMap<String,Object> parameters) {
+    public String enableIsolatedAccount(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -777,7 +777,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-enabled-isolated-margin-account-limit-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-enabled-isolated-margin-account-limit-user_data</a>
      */
-    public String getIsolatedAccountLimit(LinkedHashMap<String,Object> parameters) {
+    public String getIsolatedAccountLimit(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -795,7 +795,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-symbol-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-symbol-user_data</a>
      */
-    public String getIsolatedSymbol(LinkedHashMap<String,Object> parameters) {
+    public String getIsolatedSymbol(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -813,7 +813,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-all-isolated-margin-symbol-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-all-isolated-margin-symbol-user_data</a>
      */
-    public String getAllIsolatedSymbols(LinkedHashMap<String,Object> parameters) {
+    public String getAllIsolatedSymbols(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_ISOLATED_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -832,7 +832,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#toggle-bnb-burn-on-spot-trade-and-margin-interest-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#toggle-bnb-burn-on-spot-trade-and-margin-interest-user_data</a>
      */
-    public String bnbBurn(LinkedHashMap<String,Object> parameters) {
+    public String bnbBurn(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BNB_BURN, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -848,7 +848,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-bnb-burn-status-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-bnb-burn-status-user_data</a>
      */
-    public String getBnbBurn(LinkedHashMap<String,Object> parameters) {
+    public String getBnbBurn(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BNB_BURN, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -869,7 +869,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-interest-rate-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-interest-rate-history-user_data</a>
      */
-    public String interestRateHistory(LinkedHashMap<String,Object> parameters) {
+    public String interestRateHistory(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_RATE_HIST, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -891,7 +891,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-fee-data-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-fee-data-user_data</a>
      */
-    public String crossMarginData(LinkedHashMap<String,Object> parameters) {
+    public String crossMarginData(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CROSS_MARGIN_DATA, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -912,7 +912,7 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-fee-data-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-fee-data-user_data</a>
      */
-    public String isolatedMarginData(LinkedHashMap<String,Object> parameters) {
+    public String isolatedMarginData(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_MARGIN_DATA, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -933,8 +933,29 @@ public class Margin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-tier-data-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-tier-data-user_data</a>
      */
-    public String isolatedMarginTier(LinkedHashMap<String,Object> parameters) {
+    public String isolatedMarginTier(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_MARGIN_TIER, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String ORDER_RATE_LIMIT = "/sapi/v1/margin/rateLimit/order";
+    /**
+     * Displays the user's current margin order count usage for all intervals.
+     * <br><br>
+     * GET /sapi/v1/margin/rateLimit/order
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE"，default "FALSE" <br>
+     * symbol -- optional/string -- isolated symbol, mandatory for isolated margin <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade</a>
+     */
+    public String orderRateLimit(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, ORDER_RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

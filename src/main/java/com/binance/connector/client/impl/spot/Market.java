@@ -70,7 +70,7 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#exchange-information">
      *     https://binance-docs.github.io/apidocs/spot/en/#exchange-information</a>
      */
-    public String exchangeInfo(LinkedHashMap<String,Object> parameters) {
+    public String exchangeInfo(LinkedHashMap<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
             throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
         }
@@ -97,8 +97,8 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#order-book">
      *     https://binance-docs.github.io/apidocs/spot/en/#order-book</a>
      */
-    public String depth(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
+    public String depth(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendPublicRequest(baseUrl, DEPTH, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -118,8 +118,8 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#recent-trades-list">
      *     https://binance-docs.github.io/apidocs/spot/en/#recent-trades-list</a>
      */
-    public String trades(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
+    public String trades(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendPublicRequest(baseUrl, TRADES, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -141,8 +141,8 @@ public class Market {
      *     https://binance-docs.github.io/apidocs/spot/en/#old-trade-lookup</a>
      *
      */
-    public String historicalTrades(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
+    public String historicalTrades(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendWithApiKeyRequest(baseUrl, HISTORICAL_TRADES, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -166,8 +166,8 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#compressed-aggregate-trades-list">
      *     https://binance-docs.github.io/apidocs/spot/en/#compressed-aggregate-trades-list</a>
      */
-    public String aggTrades(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
+    public String aggTrades(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendPublicRequest(baseUrl, AGG_TRADES, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -191,9 +191,9 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-data">
      *     https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-data</a>
      */
-    public String klines(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
-        ParameterChecker.checkParameter(parameters, "interval" ,String.class);
+    public String klines(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "interval", String.class);
         return requestHandler.sendPublicRequest(baseUrl, KLINES, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -212,8 +212,8 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#current-average-price">
      *     https://binance-docs.github.io/apidocs/spot/en/#current-average-price</a>
      */
-    public String averagePrice(LinkedHashMap<String,Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol" ,String.class);
+    public String averagePrice(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendPublicRequest(baseUrl, AVG_PRICE, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -232,7 +232,7 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics">
      *     https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics</a>
      */
-    public String ticker24H(LinkedHashMap<String,Object> parameters) {
+    public String ticker24H(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, TICKER_24H, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -252,7 +252,7 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker">
      *     https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker</a>
      */
-    public String tickerSymbol(LinkedHashMap<String,Object> parameters) {
+    public String tickerSymbol(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, TICKER_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -272,7 +272,7 @@ public class Market {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#symbol-order-book-ticker">
      *     https://binance-docs.github.io/apidocs/spot/en/#symbol-order-book-ticker</a>
      */
-    public String bookTicker(LinkedHashMap<String,Object> parameters) {
+    public String bookTicker(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, BOOK_TICKER, parameters, HttpMethod.GET, showLimitUsage);
     }
 }
