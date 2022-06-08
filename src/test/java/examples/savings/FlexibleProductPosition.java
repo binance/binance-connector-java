@@ -10,7 +10,6 @@ public class FlexibleProductPosition {
     private static final Logger logger = LoggerFactory.getLogger(FlexibleProductPosition.class);
     public static void main(String[] args) {
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("asset", "BNB");
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSavings().flexibleProductPosition(parameters);

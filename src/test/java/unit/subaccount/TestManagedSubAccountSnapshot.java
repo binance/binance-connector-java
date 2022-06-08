@@ -7,14 +7,13 @@ import com.binance.connector.client.utils.UrlBuilder;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestManagedSubAccountSnapshot {
     private MockWebServer mockWebServer;
@@ -30,9 +29,6 @@ public class TestManagedSubAccountSnapshot {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testManagedSubAccountSnapshotWithoutParameters() {
         String path = "/sapi/v1/managed-subaccount/accountSnapshot";
@@ -41,9 +37,8 @@ public class TestManagedSubAccountSnapshot {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createSubAccount().managedSubAccountSnapshot(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createSubAccount().managedSubAccountSnapshot(parameters));
     }
 
     @Test

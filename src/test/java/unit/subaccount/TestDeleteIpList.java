@@ -7,14 +7,13 @@ import com.binance.connector.client.utils.UrlBuilder;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestDeleteIpList {
     private MockWebServer mockWebServer;
@@ -30,9 +29,6 @@ public class TestDeleteIpList {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testDeleteIpListWithoutParameters() {
         String path = "/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList";
@@ -41,15 +37,14 @@ public class TestDeleteIpList {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.DELETE, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createSubAccount().deleteIpList(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createSubAccount().deleteIpList(parameters));
     }
 
     @Test
     public void  testDeleteIpList() {
         String path = String.format("/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList?email=%s&subAccountApiKey=abc&ipAddress=1.1.1.1",
-                UrlBuilder.urlEncode("alice@test.com"));;
+                UrlBuilder.urlEncode("alice@test.com"));
         LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
         parameters.put("email","alice@test.com");
         parameters.put("subAccountApiKey", "abc");

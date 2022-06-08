@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.6.3 - 2022-06-08
+
+### Changed
+- Code Cleanup
+  - Removed unused variables
+  - Replaced deprecated unittest variable
+  - Removed extra semicolon
+- Remove unnecessary mandatory field for `/sapi/v1/lending/daily/token/position`
+
 ## 1.6.2 - 2022-05-27
 
 ### Changed

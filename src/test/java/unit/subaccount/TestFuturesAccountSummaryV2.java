@@ -3,15 +3,16 @@ package unit.subaccount;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
+
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestFuturesAccountSummaryV2 {
     private MockWebServer mockWebServer;
@@ -27,9 +28,6 @@ public class TestFuturesAccountSummaryV2 {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testFuturesSummaryWithoutType() {
         String path = "/sapi/v2/sub-account/futures/accountSummary";
@@ -38,9 +36,8 @@ public class TestFuturesAccountSummaryV2 {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createSubAccount().futuresAccountSummaryV2(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createSubAccount().futuresAccountSummaryV2(parameters));
     }
 
     @Test

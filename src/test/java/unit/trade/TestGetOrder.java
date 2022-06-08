@@ -4,15 +4,16 @@ import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
+
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestGetOrder {
     private MockWebServer mockWebServer;
@@ -28,9 +29,6 @@ public class TestGetOrder {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testGetOrderWithoutSymbol() {
         String path = "/api/v3/order";
@@ -39,9 +37,8 @@ public class TestGetOrder {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createTrade().getOrder(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createTrade().getOrder(parameters));
     }
 
     @Test
@@ -54,9 +51,8 @@ public class TestGetOrder {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 400);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceClientException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createTrade().getOrder(parameters);
+        assertThrows(BinanceClientException.class, () -> client.createTrade().getOrder(parameters));
     }
 
     @Test

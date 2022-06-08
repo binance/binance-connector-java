@@ -6,19 +6,15 @@ import com.binance.connector.client.utils.ResponseHandler;
 import okhttp3.Request;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
 
 public class TestResponseHandler {
     private MockWebServer mockWebServer;
     private Request request;
     private final String VALID_RESPONSE = "VALID";
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void init() {
@@ -48,9 +44,8 @@ public class TestResponseHandler {
                 .setResponseCode(400)
                 .setBody(mockErrorMsg));
 
-        thrown.expect(BinanceClientException.class);
-        thrown.expectMessage(mockErrorMsg);
-        ResponseHandler.handleResponse(request, false);
+        BinanceClientException thrown = assertThrows(BinanceClientException.class, () -> ResponseHandler.handleResponse(request, false));
+        assertTrue(thrown.getMessage().contains(mockErrorMsg));
     }
 
     @Test
@@ -61,9 +56,8 @@ public class TestResponseHandler {
                 .setResponseCode(400)
                 .setBody(mockErrorMsg));
 
-        thrown.expect(BinanceClientException.class);
-        thrown.expectMessage(mockErrorMsg);
-        ResponseHandler.handleResponse(request, false);
+        BinanceClientException thrown = assertThrows(BinanceClientException.class, () -> ResponseHandler.handleResponse(request, false));
+        assertTrue(thrown.getMessage().contains(mockErrorMsg));
     }
 
     @Test
@@ -74,8 +68,7 @@ public class TestResponseHandler {
                 .setResponseCode(502)
                 .setBody(mockErrorMsg));
 
-        thrown.expect(BinanceServerException.class);
-        thrown.expectMessage(mockErrorMsg);
-        ResponseHandler.handleResponse(request, false);
+        BinanceServerException thrown = assertThrows(BinanceServerException.class, () -> ResponseHandler.handleResponse(request, false));
+        assertTrue(thrown.getMessage().contains(mockErrorMsg));
     }
 }

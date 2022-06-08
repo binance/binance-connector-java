@@ -4,17 +4,13 @@ import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.RequestBuilder;
 import okhttp3.Request;
-import static org.junit.Assert.assertEquals;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
 
 public class TestRequestBuilder {
     private final String fullUrl = "http://www.test.com/url/path?key1=value1&key2=value2&key3=value3";
     private final String apiKey = "apiKey";
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testPublicPostMethod() {
@@ -46,19 +42,16 @@ public class TestRequestBuilder {
 
     @Test
     public void testPublicInvalidMethod() {
-        thrown.expect(BinanceConnectorException.class);
-        thrown.expectMessage("Invalid HTTP method: ");
-
-        RequestBuilder.buildPublicRequest(fullUrl, HttpMethod.INVALID);
+        BinanceConnectorException thrown = assertThrows(BinanceConnectorException.class, () -> RequestBuilder.buildPublicRequest(fullUrl, HttpMethod.INVALID));
+        assertTrue(thrown.getMessage().contains("Invalid HTTP method: "));
     }
 
     @Test
     public void testPublicInvalidUrl() {
         String invalidUrl = "invalid";
-        thrown.expect(BinanceConnectorException.class);
-        thrown.expectMessage("Invalid URL: ");
 
-        RequestBuilder.buildPublicRequest(invalidUrl, HttpMethod.POST);
+        BinanceConnectorException thrown = assertThrows(BinanceConnectorException.class, () -> RequestBuilder.buildPublicRequest(invalidUrl, HttpMethod.POST));
+        assertTrue(thrown.getMessage().contains("Invalid URL: "));
     }
 
     @Test
@@ -91,19 +84,16 @@ public class TestRequestBuilder {
 
     @Test
     public void testApiKeyInvalidMethod() {
-        thrown.expect(BinanceConnectorException.class);
-        thrown.expectMessage("Invalid HTTP method: ");
-
-        RequestBuilder.buildApiKeyRequest(fullUrl, HttpMethod.INVALID, apiKey);
+        BinanceConnectorException thrown = assertThrows(BinanceConnectorException.class, () -> RequestBuilder.buildApiKeyRequest(fullUrl, HttpMethod.INVALID, apiKey));
+        assertTrue(thrown.getMessage().contains("Invalid HTTP method: "));
     }
 
     @Test
     public void testApiKeyInvalidUrl() {
         String invalidUrl = "invalid";
-        thrown.expect(BinanceConnectorException.class);
-        thrown.expectMessage("Invalid URL: ");
 
-        RequestBuilder.buildApiKeyRequest(invalidUrl, HttpMethod.POST, apiKey);
+        BinanceConnectorException thrown = assertThrows(BinanceConnectorException.class, () -> RequestBuilder.buildApiKeyRequest(invalidUrl, HttpMethod.POST, apiKey));
+        assertTrue(thrown.getMessage().contains("Invalid URL: "));
     }
 
     @Test

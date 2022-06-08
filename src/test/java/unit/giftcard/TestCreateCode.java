@@ -6,14 +6,13 @@ import com.binance.connector.client.impl.SpotClientImpl;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestCreateCode {
     private MockWebServer mockWebServer;
@@ -29,9 +28,6 @@ public class TestCreateCode {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testCreateCodeWithoutParameters() {
         String path = "/sapi/v1/giftcard/createCode";
@@ -40,9 +36,8 @@ public class TestCreateCode {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createGiftCard().createCode(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createGiftCard().createCode(parameters));
     }
 
     @Test

@@ -137,14 +137,13 @@ public class Savings {
      * parameters LinkedHashedMap of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * asset -- mandatory/string <br>
+     * asset -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data</a>
      */
     public String flexibleProductPosition(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PRODUCT_POSTION, parameters, HttpMethod.GET, showLimitUsage);
     }
 
