@@ -5,9 +5,7 @@ import com.binance.connector.client.impl.SpotClientImpl;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
@@ -27,9 +25,6 @@ public class TestRateLimitOrder {
         this.mockWebServer = new MockWebServer();
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testRateLimitOrder() {

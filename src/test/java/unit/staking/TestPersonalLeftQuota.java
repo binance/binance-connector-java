@@ -6,14 +6,13 @@ import com.binance.connector.client.impl.SpotClientImpl;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestPersonalLeftQuota {
     private MockWebServer mockWebServer;
@@ -29,9 +28,6 @@ public class TestPersonalLeftQuota {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testPersonalLeftQuotaWithoutParameters() {
         String path = "/sapi/v1/staking/personalLeftQuota";
@@ -40,9 +36,8 @@ public class TestPersonalLeftQuota {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createStaking().personalLeftQuota(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createStaking().personalLeftQuota(parameters));
     }
 
     @Test

@@ -3,15 +3,16 @@ package unit.trade;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
+
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestGetOcoOrder {
     private MockWebServer mockWebServer;
@@ -27,9 +28,6 @@ public class TestGetOcoOrder {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testGetOcoOrderWithoutId() {
         String path = "/api/v3/orderList";
@@ -38,9 +36,8 @@ public class TestGetOcoOrder {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 400);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceClientException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createTrade().getOCOOrder(parameters);
+        assertThrows(BinanceClientException.class, () -> client.createTrade().getOCOOrder(parameters));
     }
 
     @Test

@@ -44,7 +44,7 @@ public final class ResponseHandler {
         }
     }
 
-    private static String getlimitUsage(Response response, String resposeBodyAsString) throws IOException {
+    private static String getlimitUsage(Response response, String resposeBodyAsString) {
         JSONObject json = new JSONObject();
         json.put("x-sapi-used-ip-weight-1m", response.header("X-SAPI-USED-IP-WEIGHT-1M"));
         json.put("x-mbx-used-weight", response.header("x-mbx-used-weight"));

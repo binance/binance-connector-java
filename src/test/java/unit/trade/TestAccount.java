@@ -2,15 +2,15 @@ package unit.trade;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.impl.SpotClientImpl;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
+
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestAccount {
     private MockWebServer mockWebServer;
@@ -25,9 +25,6 @@ public class TestAccount {
         this.mockWebServer = new MockWebServer();
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testAccount() {

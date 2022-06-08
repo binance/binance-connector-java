@@ -6,14 +6,13 @@ import com.binance.connector.client.impl.SpotClientImpl;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestAccountEarning {
     private MockWebServer mockWebServer;
@@ -29,9 +28,6 @@ public class TestAccountEarning {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testAccountEarningWithoutParameters() {
         String path = "/sapi/v1/mining/payment/uid";
@@ -40,9 +36,8 @@ public class TestAccountEarning {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createMining().accountEarning(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createMining().accountEarning(parameters));
     }
 
     @Test

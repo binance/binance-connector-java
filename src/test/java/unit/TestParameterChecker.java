@@ -5,6 +5,8 @@ import com.binance.connector.client.utils.ParameterChecker;
 import java.util.LinkedHashMap;
 import org.junit.Test;
 
+import static org.junit.Assert.assertThrows;
+
 public class TestParameterChecker {
 
     private final LinkedHashMap<String,Object> mockParameters = new LinkedHashMap<String,Object>() {{
@@ -20,24 +22,24 @@ public class TestParameterChecker {
         ParameterChecker.checkParameter(mockParameters, "key2", Integer.class);
     }
 
-    @Test(expected = BinanceConnectorException.class)
+    @Test
     public void testcheckParameterNoKey() {
-        ParameterChecker.checkRequiredParameter(mockParameters, "InvalidKey");
+        assertThrows(BinanceConnectorException.class, () -> ParameterChecker.checkRequiredParameter(mockParameters, "InvalidKey"));
     }
 
-    @Test(expected = BinanceConnectorException.class)
+    @Test
     public void testcheckParameterWrongType() {
-        ParameterChecker.checkParameterType(mockObject, Integer.class, "mockObject");
+        assertThrows(BinanceConnectorException.class, () -> ParameterChecker.checkParameterType(mockObject, Integer.class, "mockObject"));
     }
 
-    @Test(expected = BinanceConnectorException.class)
+    @Test
     public void testcheckEmptyString() {
-        ParameterChecker.checkParameterType(emptyString, String.class, "mockObject");
+        assertThrows(BinanceConnectorException.class, () -> ParameterChecker.checkParameterType(emptyString, String.class, "mockObject"));
     }
 
-    @Test(expected = BinanceConnectorException.class)
+    @Test
     public void testcheckNull() {
-        ParameterChecker.checkParameterType(null, String.class, "mockObject");
+        assertThrows(BinanceConnectorException.class, () -> ParameterChecker.checkParameterType(null, String.class, "mockObject"));
     }
 
 }

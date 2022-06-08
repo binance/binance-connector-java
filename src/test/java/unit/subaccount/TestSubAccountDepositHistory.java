@@ -4,15 +4,16 @@ import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
 import com.binance.connector.client.utils.UrlBuilder;
-import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import unit.MockWebServerDispatcher;
+
+import java.util.LinkedHashMap;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class TestSubAccountDepositHistory {
     private MockWebServer mockWebServer;
@@ -28,9 +29,6 @@ public class TestSubAccountDepositHistory {
         this.baseUrl = mockWebServer.url(prefix).toString();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testDepositHistWithoutParameters() {
         String path = "/sapi/v1/capital/deposit/subHisrec";
@@ -39,9 +37,8 @@ public class TestSubAccountDepositHistory {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
         mockWebServer.setDispatcher(dispatcher);
 
-        thrown.expect(BinanceConnectorException.class);
         SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
-        client.createSubAccount().depositHistory(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createSubAccount().depositHistory(parameters));
     }
 
     @Test
