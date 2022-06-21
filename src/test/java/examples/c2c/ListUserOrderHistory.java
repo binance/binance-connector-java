@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ListUserOrderHistory {
+public final class ListUserOrderHistory {
+    private ListUserOrderHistory() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(ListUserOrderHistory.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("tradeType", "BUY");
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.4 - TBC
+
+### Changed
+- Code Cleanup
+  - Applied lint checks on test and example files. Conditions are similar to the main source code.
+
 ## 1.6.3 - 2022-06-08
 
 ### Changed

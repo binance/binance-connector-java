@@ -6,13 +6,17 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UniversalTransfer {
+public final class UniversalTransfer {
+    private UniversalTransfer() {
+    }
+    private static final double amount = 0.001;
+
     private static final Logger logger = LoggerFactory.getLogger(UniversalTransfer.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("type", "MAIN_MARGIN");
         parameters.put("asset", "USDT");
-        parameters.put("amount", 0.001);
+        parameters.put("amount", amount);
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createWallet().universalTransfer(parameters);

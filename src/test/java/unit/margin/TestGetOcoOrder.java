@@ -8,35 +8,34 @@ import okhttp3.mockwebserver.MockWebServer;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import unit.MockData;
 import unit.MockWebServerDispatcher;
 
 public class TestGetOcoOrder {
     private MockWebServer mockWebServer;
     private String baseUrl;
-    private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
-    private final String apiKey = "apiKey";
-    private final String secretKey = "secretKey";
+
+    private final int orderListId = 12345679;
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
-        this.baseUrl = mockWebServer.url(prefix).toString();
+        this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
     }
 
 
     @Test
     public void testGetOcoOrder() {
         String path = "/sapi/v1/margin/orderList?symbol=BNBUSDT&orderListId=12345679";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("orderListId",12345679);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("orderListId", orderListId);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createMargin().getOcoOrder(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

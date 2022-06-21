@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DailyRedemptionQuota {
+public final class DailyRedemptionQuota {
+    private DailyRedemptionQuota() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(DailyRedemptionQuota.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("productId", "TKO001");
         parameters.put("type", "FAST");
 

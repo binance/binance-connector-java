@@ -9,21 +9,22 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class RateLimitOrder {
+public final class RateLimitOrder {
+    private RateLimitOrder() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(RateLimitOrder.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, PrivateConfig.TESTNET_SECRET_KEY, PrivateConfig.BASE_URL);
 
         try {
             String result = client.createTrade().rateLimitOrder(parameters);
             logger.info(result);
-        }
-        catch (BinanceConnectorException e) {
+        } catch (BinanceConnectorException e) {
             logger.error("fullErrMessage: {}", e.getMessage(), e);
-        }
-        catch (BinanceClientException e) {
+        } catch (BinanceClientException e) {
             logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
                     e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
         }

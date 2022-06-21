@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class ManagedSubAccountSnapshot {
+public final class ManagedSubAccountSnapshot {
+    private ManagedSubAccountSnapshot() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(ManagedSubAccountSnapshot.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "");
         parameters.put("type", "SPOT");
 

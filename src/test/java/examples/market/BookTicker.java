@@ -6,14 +6,17 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BookTicker {
+public final class BookTicker {
+    private BookTicker() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(BookTicker.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
 
-        parameters.put("symbol","BNBUSDT");
+        parameters.put("symbol", "BNBUSDT");
         String result = client.createMarket().bookTicker(parameters);
         logger.info(result);
     }

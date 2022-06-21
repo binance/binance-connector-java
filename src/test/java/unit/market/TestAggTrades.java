@@ -7,6 +7,7 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
+import unit.MockData;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
@@ -19,21 +20,23 @@ public class TestAggTrades {
     private String baseUrl;
     private final long startTime = System.currentTimeMillis();
     private final long endTime = startTime + 1000;
-    private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
+
+    private final int limit = 1000;
+    private final int fromId = 1000;
+
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
-        this.baseUrl = mockWebServer.url(prefix).toString();
+        this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
     }
 
     @Test
     public void testAggTradesWithoutSymbol() {
         String path = "/api/v3/aggTrades";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
@@ -43,61 +46,61 @@ public class TestAggTrades {
     @Test
     public void testAggTrades() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
         String result = client.createMarket().aggTrades(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 
     @Test
     public void testTradesWithLimit() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT&limit=1000";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("limit", 1000);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("limit", limit);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
         String result = client.createMarket().aggTrades(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 
     @Test
     public void testTradesWithFromId() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT&fromId=1000";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("fromId", 1000);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("fromId", fromId);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
         String result = client.createMarket().aggTrades(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 
     @Test
     public void testTradesWithTimestamp() {
-        String path = String.format("/api/v3/aggTrades?symbol=BNBUSDT&startTime=%s&endTime=%s",startTime, endTime);
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        String path = String.format("/api/v3/aggTrades?symbol=BNBUSDT&startTime=%s&endTime=%s", startTime, endTime);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        parameters.put("symbol","BNBUSDT");
+        parameters.put("symbol", "BNBUSDT");
         parameters.put("startTime", startTime);
         parameters.put("endTime", endTime);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
         String result = client.createMarket().aggTrades(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

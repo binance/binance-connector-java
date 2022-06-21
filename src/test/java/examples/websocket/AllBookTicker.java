@@ -1,11 +1,11 @@
 package examples.websocket;
 
 import com.binance.connector.client.impl.WebsocketClientImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AllBookTicker {
-    private static final Logger logger = LoggerFactory.getLogger(AllBookTicker.class);
+public final class AllBookTicker {
+    private AllBookTicker() {
+    }
+
     public static void main(String[] args) {
         WebsocketClientImpl client = new WebsocketClientImpl();
         client.allBookTickerStream(((event) -> {

@@ -9,10 +9,13 @@ import org.junit.Test;
 public class TestUrlBuilder {
     private final String baseUrl = "www.test.com";
     private final String urlPath = "/url/path";
-    private final LinkedHashMap<String,Object> mockParameters = new LinkedHashMap<String,Object>() {{
-        put("key1","value1");
-        put("key2",2);
-        put("key3",0.0006);
+    private final double key3 = 0.0006;
+    private final double key4 = 0.000000000000000000001;
+    private final int value2 = 2;
+    private final LinkedHashMap<String, Object> mockParameters = new LinkedHashMap<String, Object>() {{
+        put("key1", "value1");
+        put("key2", value2);
+        put("key3", key3);
     }};
     private final ArrayList<String> mockStreams = new ArrayList<String>() {{
         add("stream1");
@@ -40,7 +43,7 @@ public class TestUrlBuilder {
 
     @Test
     public void testJoinLargeQueryParameters() {
-        mockParameters.put("key4", 0.000000000000000000001);
+        mockParameters.put("key4", key4);
         String joinedQuery = "key1=value1&key2=2&key3=0.0006&key4=0.000000000000000000001";
         assertEquals(joinedQuery, UrlBuilder.joinQueryParameters(mockParameters));
     }

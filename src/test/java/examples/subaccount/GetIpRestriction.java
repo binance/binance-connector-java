@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class GetIpRestriction {
+public final class GetIpRestriction {
+    private GetIpRestriction() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(GetIpRestriction.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "");
         parameters.put("subAccountApiKey", "");
 

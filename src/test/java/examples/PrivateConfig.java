@@ -1,6 +1,8 @@
 package examples;
 
-public class PrivateConfig {
+public final class PrivateConfig {
+    private PrivateConfig() {
+    }
 
     public static final String API_KEY = "";
     public static final String SECRET_KEY = "";

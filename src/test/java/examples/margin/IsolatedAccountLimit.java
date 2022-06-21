@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IsolatedAccountLimit {
+public final class IsolatedAccountLimit {
+    private IsolatedAccountLimit() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(IsolatedAccountLimit.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createMargin().getIsolatedAccountLimit(parameters);

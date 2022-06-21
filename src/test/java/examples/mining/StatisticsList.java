@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class StatisticsList {
+public final class StatisticsList {
+    private StatisticsList() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(StatisticsList.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("algo", "sha256");
         parameters.put("userName", "");
 

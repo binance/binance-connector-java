@@ -5,7 +5,10 @@ import examples.PrivateConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Ping {
+public final class Ping {
+    private Ping() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(Ping.class);
     public static void main(String[] args) {
 
