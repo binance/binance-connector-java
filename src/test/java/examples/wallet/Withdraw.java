@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Withdraw {
+public final class Withdraw {
+    private Withdraw() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(Withdraw.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "BNBUSDT");
         parameters.put("address", "");
         parameters.put("amount", "0.001");

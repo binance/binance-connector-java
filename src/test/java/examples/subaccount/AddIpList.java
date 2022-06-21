@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class AddIpList {
+public final class AddIpList {
+    private AddIpList() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(AddIpList.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "");
         parameters.put("subAccountApiKey", "");
         parameters.put("ipAddress", "");

@@ -7,6 +7,7 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
+import unit.MockData;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
@@ -17,41 +18,39 @@ import static org.junit.Assert.assertThrows;
 public class TestPurchaseFlexibleProduct {
     private MockWebServer mockWebServer;
     private String baseUrl;
-    private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
-    private final String apiKey = "apiKey";
-    private final String secretKey = "secretKey";
+    
+    private final double amount = 0.01;
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
-        this.baseUrl = mockWebServer.url(prefix).toString();
+        this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
     }
 
     @Test
     public void testPurchaseFlexibleProductWithoutParameters() {
         String path = "/sapi/v1/lending/daily/purchase";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createSavings().purchaseFlexibleProduct(parameters));
     }
 
     @Test
     public void testPurchaseFlexibleProduct() {
         String path = "/sapi/v1/lending/daily/purchase?productId=123&amount=0.01";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("productId","123");
-        parameters.put("amount",0.01);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("productId", "123");
+        parameters.put("amount", amount);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createSavings().purchaseFlexibleProduct(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

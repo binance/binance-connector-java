@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class Redeem {
+public final class Redeem {
+    private Redeem() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(Redeem.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("product", "STAKING");
         parameters.put("productId", "Bnb*21*WL");
         parameters.put("positionId", "1234");

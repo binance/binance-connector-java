@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class StakingRecord {
+public final class StakingRecord {
+    private StakingRecord() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(StakingRecord.class);
     public static void main(String[] args) {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();

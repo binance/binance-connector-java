@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SubAccountStatus {
+public final class SubAccountStatus {
+    private SubAccountStatus() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(SubAccountStatus.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSubAccount().accountStatus(parameters);

@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class PersonalLeftQuota {
+public final class PersonalLeftQuota {
+    private PersonalLeftQuota() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(PersonalLeftQuota.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("product", "STAKING");
         parameters.put("productId", "Bnb*21*WL");
 

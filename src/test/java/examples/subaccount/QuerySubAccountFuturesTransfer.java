@@ -6,12 +6,16 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class QuerySubAccountFuturesTransfer {
+public final class QuerySubAccountFuturesTransfer {
+    private QuerySubAccountFuturesTransfer() {
+    }
+    private static final int futuresType = 1;
+
     private static final Logger logger = LoggerFactory.getLogger(QuerySubAccountFuturesTransfer.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "");
-        parameters.put("futuresType", 1);
+        parameters.put("futuresType", futuresType);
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSubAccount().getFuturesInternalTransfer(parameters);

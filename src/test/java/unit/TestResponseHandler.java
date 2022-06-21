@@ -9,7 +9,9 @@ import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 public class TestResponseHandler {
     private MockWebServer mockWebServer;
@@ -29,7 +31,7 @@ public class TestResponseHandler {
     public void testHandleResponse() {
         mockWebServer.enqueue(new MockResponse()
                 .addHeader("Content-Type", "application/json; charset=utf-8")
-                .setResponseCode(200)
+                .setResponseCode(MockData.HTTP_STATUS_OK)
                 .setBody(VALID_RESPONSE));
 
         String result = ResponseHandler.handleResponse(request, false);
@@ -41,7 +43,7 @@ public class TestResponseHandler {
         String mockErrorMsg = "{\"code\":-1000, \"msg\":\"error\"}";
         mockWebServer.enqueue(new MockResponse()
                 .addHeader("Content-Type", "application/json; charset=utf-8")
-                .setResponseCode(400)
+                .setResponseCode(MockData.HTTP_STATUS_CLIENT_ERROR)
                 .setBody(mockErrorMsg));
 
         BinanceClientException thrown = assertThrows(BinanceClientException.class, () -> ResponseHandler.handleResponse(request, false));
@@ -53,7 +55,7 @@ public class TestResponseHandler {
         String mockErrorMsg = "Error Message";
         mockWebServer.enqueue(new MockResponse()
                 .addHeader("Content-Type", "application/json; charset=utf-8")
-                .setResponseCode(400)
+                .setResponseCode(MockData.HTTP_STATUS_CLIENT_ERROR)
                 .setBody(mockErrorMsg));
 
         BinanceClientException thrown = assertThrows(BinanceClientException.class, () -> ResponseHandler.handleResponse(request, false));
@@ -65,7 +67,7 @@ public class TestResponseHandler {
         String mockErrorMsg = "Error Message";
         mockWebServer.enqueue(new MockResponse()
                 .addHeader("Content-Type", "application/json; charset=utf-8")
-                .setResponseCode(502)
+                .setResponseCode(MockData.HTTP_STATUS_SERVER_ERROR)
                 .setBody(mockErrorMsg));
 
         BinanceServerException thrown = assertThrows(BinanceServerException.class, () -> ResponseHandler.handleResponse(request, false));

@@ -7,10 +7,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DustTransfer {
+public final class DustTransfer {
+    private DustTransfer() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(DustTransfer.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         ArrayList<String> assets = new ArrayList<>();
         assets.add("CHR");
         assets.add("CTSI");

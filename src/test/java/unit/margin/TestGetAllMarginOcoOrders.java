@@ -8,37 +8,39 @@ import okhttp3.mockwebserver.MockWebServer;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import unit.MockData;
 import unit.MockWebServerDispatcher;
 
 public class TestGetAllMarginOcoOrders {
     private MockWebServer mockWebServer;
     private String baseUrl;
-    private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
-    private final String apiKey = "apiKey";
-    private final String secretKey = "secretKey";
+
+    private final int startTime = 12345678;
+    private final int endTime = 12345679;
+    private final int fromId = 1;
+
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
-        this.baseUrl = mockWebServer.url(prefix).toString();
+        this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
     }
 
 
     @Test
     public void testGetAllMarginOcoOrders() {
         String path = "/sapi/v1/margin/allOrderList?symbol=BNBUSDT&fromId=1&startTime=12345678&endTime=12345679";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("fromId",1);
-        parameters.put("startTime",12345678);
-        parameters.put("endTime",12345679);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("fromId", fromId);
+        parameters.put("startTime", startTime);
+        parameters.put("endTime", endTime);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.GET, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createMargin().getAllOcoOrders(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

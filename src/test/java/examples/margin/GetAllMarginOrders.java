@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetAllMarginOrders {
+public final class GetAllMarginOrders {
+    private GetAllMarginOrders() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(GetAllMarginOrders.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);

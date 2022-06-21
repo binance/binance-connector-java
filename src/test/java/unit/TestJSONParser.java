@@ -9,6 +9,7 @@ import static org.junit.Assert.assertThrows;
 
 public class TestJSONParser {
     private final String mockJson = "{\"key1\":\"value1\", \"key2\":2}";
+    private final int value2 = 2;
 
     @Test
     public void testGetJSONStringValue() {
@@ -17,7 +18,7 @@ public class TestJSONParser {
 
     @Test
     public void testGetJSONIntValue() {
-        assertEquals(2, JSONParser.getJSONIntValue(mockJson, "key2"));
+        assertEquals(value2, JSONParser.getJSONIntValue(mockJson, "key2"));
     }
 
     @Test

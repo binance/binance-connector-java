@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AllIsolatedSymbols {
+public final class AllIsolatedSymbols {
+    private AllIsolatedSymbols() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(AllIsolatedSymbols.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createMargin().getAllIsolatedSymbols(parameters);

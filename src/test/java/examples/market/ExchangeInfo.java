@@ -7,17 +7,20 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExchangeInfo {
+public final class ExchangeInfo {
+    private ExchangeInfo() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(ExchangeInfo.class);
     public static void main(String[] args) {
         SpotClientImpl client = new SpotClientImpl();
         Market market = client.createMarket();
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         String result = market.exchangeInfo(parameters);
         logger.info(result);
 
-        parameters.put("symbol","BTCUSDT");
+        parameters.put("symbol", "BTCUSDT");
         result = market.exchangeInfo(parameters);
         logger.info(result);
         parameters.clear();

@@ -6,10 +6,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CollateralRepayLimit {
+public final class CollateralRepayLimit {
+    private CollateralRepayLimit() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(CollateralRepayLimit.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "USDT");
         parameters.put("collateralCoin", "BUSD");
 

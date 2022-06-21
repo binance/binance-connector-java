@@ -7,10 +7,13 @@ import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BlvtInfo {
+public final class BlvtInfo {
+    private BlvtInfo() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(BlvtInfo.class);
     public static void main(String[] args) {
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createBlvt().blvtInfo(parameters);

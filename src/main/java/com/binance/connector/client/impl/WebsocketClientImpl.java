@@ -439,7 +439,6 @@ public class WebsocketClientImpl implements WebsocketClient {
      */
     @Override
     public int listenUserStream(String listenKey, WebSocketCallback callback) {
-        Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/%s", baseUrl, listenKey));
         return listenUserStream(listenKey, noopCallback, callback, noopCallback, noopCallback);
     }
 

@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 
-public class GetPosition {
+public final class GetPosition {
+    private GetPosition() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(GetPosition.class);
     public static void main(String[] args) {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();

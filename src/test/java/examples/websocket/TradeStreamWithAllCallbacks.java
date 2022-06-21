@@ -2,10 +2,11 @@ package examples.websocket;
 
 import com.binance.connector.client.impl.WebsocketClientImpl;
 import com.binance.connector.client.utils.WebSocketCallback;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class TradeStreamWithAllCallbacks {
+public final class TradeStreamWithAllCallbacks {
+    private TradeStreamWithAllCallbacks() {
+    }
+
     private static WebSocketCallback onOpenCallback;
     private static WebSocketCallback onMessageCallback;
     private static WebSocketCallback onClosingCallback;
@@ -29,10 +30,10 @@ public class TradeStreamWithAllCallbacks {
 
     private static void connectToTradeStream(
             WebsocketClientImpl client,
-            WebSocketCallback onOpenCallback,
-            WebSocketCallback onMessageCallback,
-            WebSocketCallback onClosingCallback,
-            WebSocketCallback onFailureCallback) {
-        client.tradeStream("btcusdt", onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
+            WebSocketCallback openCallback,
+            WebSocketCallback messageCallback,
+            WebSocketCallback closingCallback,
+            WebSocketCallback failureCallback) {
+        client.tradeStream("btcusdt", openCallback, messageCallback, closingCallback, failureCallback);
     }
 }

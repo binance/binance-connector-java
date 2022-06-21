@@ -7,6 +7,7 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
+import unit.MockData;
 import unit.MockWebServerDispatcher;
 
 import java.util.LinkedHashMap;
@@ -17,44 +18,44 @@ import static org.junit.Assert.assertThrows;
 public class TestNewMarginOcoOrder {
     private MockWebServer mockWebServer;
     private String baseUrl;
-    private final String prefix = "/";
-    private final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
-    private final String apiKey = "apiKey";
-    private final String secretKey = "secretKey";
+
+    private final double quantity = 0.1;
+    private final int price = 350;
+    private final int stopPrice = 400;
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
-        this.baseUrl = mockWebServer.url(prefix).toString();
+        this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
     }
 
     @Test
     public void testNewMarginOcoOrderWithoutParameters() {
         String path = "/sapi/v1/margin/order/oco";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMargin().ocoOrder(parameters));
     }
 
     @Test
     public void testNewMarginOcoOrder() {
         String path = "/sapi/v1/margin/order/oco?symbol=BNBUSDT&side=BUY&quantity=0.1&price=350&stopPrice=400";
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol","BNBUSDT");
-        parameters.put("side","BUY");
-        parameters.put("quantity",0.1);
-        parameters.put("price",350);
-        parameters.put("stopPrice",400);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("side", "BUY");
+        parameters.put("quantity", quantity);
+        parameters.put("price", price);
+        parameters.put("stopPrice", stopPrice);
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(prefix, path, MOCK_RESPONSE, HttpMethod.POST, 200);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(apiKey, secretKey, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createMargin().ocoOrder(parameters);
-        assertEquals(MOCK_RESPONSE, result);
+        assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }
