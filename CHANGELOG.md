@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.6.4 - TBC
+## 1.6.4 - 2022-06-21
 
 ### Changed
 - Code Cleanup
