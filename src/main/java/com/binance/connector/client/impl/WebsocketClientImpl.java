@@ -2,6 +2,7 @@ package com.binance.connector.client.impl;
 
 import com.binance.connector.client.WebsocketClient;
 import com.binance.connector.client.enums.DefaultUrls;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.HttpClientSingleton;
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.UrlBuilder;
@@ -283,6 +284,100 @@ public class WebsocketClientImpl implements WebsocketClient {
     @Override
     public int allTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/!ticker@arr", baseUrl));
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+    }
+
+    /**
+     * Rolling window ticker statistics for a single symbol, computed over multiple windows.
+     * <br><br>
+     * &lt;symbol&gt;@ticker_&lt;window_size&gt;
+     * <br><br>
+     * Update Speed: Real-time
+     *
+     * @param symbol Name of trading pair
+     * @param windowSize Window Sizes: 1h,4h
+     * @return int - Connection ID
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams">
+     * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams</a>
+     */
+    public int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback callback) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
+        ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
+            add("1h");
+            add("4h");
+        }};
+        if (!allowedWindowSize.contains(windowSize)) {
+            throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
+        }
+        return rollingWindowTicker(symbol.toLowerCase(), windowSize, noopCallback, callback, noopCallback, noopCallback);
+    }
+
+    /**
+     * Same as {@link #rollingWindowTicker(String, String, WebSocketCallback)} (String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     *
+     * @param symbol
+     * @param onOpenCallback
+     * @param onMessageCallback
+     * @param onClosingCallback
+     * @param onFailureCallback
+     * @return
+     */
+    @Override
+    public int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
+        ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
+            add("1h");
+            add("4h");
+        }};
+        if (!allowedWindowSize.contains(windowSize)) {
+            throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
+        }
+        Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/%s@ticker_%s", baseUrl, symbol.toLowerCase(), windowSize));
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+    }
+
+    /**
+     * Rolling window ticker statistics for all market symbols, computed over multiple windows.
+     * Note that only tickers that have changed will be present in the array.
+     * <br><br>
+     * !ticker_&lt;window-size&gt;@arr
+     * <br><br>
+     * Update Speed: Real-time
+     *
+     * @param windowSize Window Sizes: 1h,4h
+     * @return int - Connection ID
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-market-rolling-window-statistics-streams">
+     * https://binance-docs.github.io/apidocs/spot/en/#all-market-rolling-window-statistics-streams</a>
+     */
+    @Override
+    public int allRollingWindowTicker(String windowSize, WebSocketCallback callback) {
+        ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
+        ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
+            add("1h");
+            add("4h");
+        }};
+        if (!allowedWindowSize.contains(windowSize.toLowerCase())) {
+            throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize.toLowerCase()));
+        }
+        return allRollingWindowTicker(windowSize.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+    }
+
+    /**
+     * Same as {@link #allRollingWindowTicker(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     *
+     * @param windowSize
+     * @param onOpenCallback
+     * @param onMessageCallback
+     * @param onClosingCallback
+     * @param onFailureCallback
+     * @return
+     */
+    @Override
+    public int allRollingWindowTicker(String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+        ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
+        Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/!ticker_%s@arr", baseUrl, windowSize.toLowerCase()));
         return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
     }
 

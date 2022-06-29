@@ -160,6 +160,47 @@ public class Trade {
         return requestHandler.sendSignedRequest(baseUrl, ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String CANCEL_REPLACE = "/api/v3/order/cancelReplace";
+    /**
+     * Cancels an existing order and places a new order on the same symbol.<br>
+     * Filters are evaluated before the cancel order is placed.<br>
+     * If the new order placement is successfully sent to the engine, the order count will increase by 1.
+     * <br><br>
+     * POST /api/v3/order/cancelReplace
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string <br>
+     * side -- mandatory/enum <br>
+     * type -- mandatory/enum <br>
+     * cancelReplaceMode -- mandatory/enum -- The allowed values are: STOP_ON_FAILURE - If the cancel request fails, the new order placement will not be attempted. ALLOW_FAILURES - new order placement will be attempted even if cancel request fails. <br>
+     * timeInForce -- optional/enum <br>
+     * quantity -- optional/decimal <br>
+     * quoteOrderQty -- optional/decimal <br>
+     * price -- optional/decimal <br>
+     * cancelNewClientOrderId -- optional/string <br>
+     * cancelOrigClientOrderId -- optional/string -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
+     * cancelOrderId -- optional/long -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
+     * newClientOrderId -- optional/string -- Used to identify the new order. <br>
+     * stopPrice -- optional/decimal <br>
+     * icebergQty -- optional/deciaml <br>
+     * trailingDelta -- optional/long <br>
+     * newOrderRespType -- optional/enum <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-an-existing-order-and-send-a-new-order-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#cancel-an-existing-order-and-send-a-new-order-trade</a>
+     */
+    public String cancelReplace(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "side", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        ParameterChecker.checkParameter(parameters, "cancelReplaceMode", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, CANCEL_REPLACE, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
     /**
      * Get all open orders on a symbol. Careful when accessing this with no symbol.
      * <br><br>
