@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.7.0 - TBC
+## 1.7.0 - 2022-07-04
 
 ### Added
 - New endpoints for Spot:
@@ -11,6 +11,8 @@
     - <symbol>@ticker_<window-size>
   - All market ticker streams
     - !ticker_<window-size>@arr
+- New margin endpoint:
+  - GET /sapi/v1/margin/dribblet to query the historical information of user's margin account small-value asset conversion BNB.
 ### Changed
 - GET `/sapi/v1/pay/transactions`: Param names changed: startTimestamp -> startTime; endTimestamp -> endTime.
 
