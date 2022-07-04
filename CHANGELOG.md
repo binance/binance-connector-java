@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.7.0 - 2022-07-04
+
+### Added
+- New endpoints for Spot:
+  - GET `/api/v3/ticker`
+  - POST `/api/v3/order/cancelReplace`
+- New websocket streams:
+  - New symbol ticker streams with 1h and 4h windows: Individual symbol ticker streams
+    - <symbol>@ticker_<window-size>
+  - All market ticker streams
+    - !ticker_<window-size>@arr
+- New margin endpoint:
+  - GET /sapi/v1/margin/dribblet to query the historical information of user's margin account small-value asset conversion BNB.
+### Changed
+- GET `/sapi/v1/pay/transactions`: Param names changed: startTimestamp -> startTime; endTimestamp -> endTime.
+
 ## 1.6.4 - 2022-06-21
 
 ### Changed

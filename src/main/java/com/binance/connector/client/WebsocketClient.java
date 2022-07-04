@@ -18,6 +18,10 @@ public interface WebsocketClient {
     int symbolTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int allTickerStream(WebSocketCallback callback);
     int allTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
+    int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback callback);
+    int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
+    int allRollingWindowTicker(String windowSize, WebSocketCallback callback);
+    int allRollingWindowTicker(String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int bookTicker(String symbol, WebSocketCallback callback);
     int bookTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int allBookTickerStream(WebSocketCallback callback);

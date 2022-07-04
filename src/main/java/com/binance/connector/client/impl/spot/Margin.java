@@ -958,4 +958,25 @@ public class Margin {
     public String orderRateLimit(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    private final String DRIBBLET = "/sapi/v1/margin/dribblet";
+    /**
+     * Query the historical information of user's margin account small-value asset conversion BNB.
+     * <br><br>
+     * GET /sapi/v1/margin/dribblet
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long -- <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-dustlog-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#margin-dustlog-user_data</a>
+     */
+    public String dribblet(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, DRIBBLET, parameters, HttpMethod.GET, showLimitUsage);
+    }
 }

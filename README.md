@@ -130,7 +130,7 @@ calling `setShowLimitUsage` and setting it to `true`.
 SpotClientImpl client = new SpotClientImpl();
 client.setShowLimitUsage(true);
 String result = client.createMarket().time();
-logger.log(Level.INFO, result);
+logger.info(result);
 ```
 output:
 ```
@@ -157,16 +157,14 @@ There are 3 types of error which may be thrown by this library.
   - This is thrown when server returns `5XX`, it's an issue from server side.
 ```java
 try {
-    String result = client.createTrade().account(parameters);
-    logger.log(Level.INFO, result);
-}
-catch (BinanceConnectorException e) {
-    logger.log(Level.SEVERE, String.format("fullErrMessage: %s", e.getMessage()));
-}
-catch (BinanceClientException e) {
-    logger.log(Level.SEVERE, String.format("fullErrMessage: %s \nerrMessage: %s \nerrCode: %s \nHTTPStatusCode: %s",
-            e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode()));
-}
+      String result = client.createTrade().newOrder(parameters);
+      logger.info(result);
+    } catch (BinanceConnectorException e) {
+      logger.error("fullErrMessage: {}", e.getMessage(), e);
+    } catch (BinanceClientException e) {
+      logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
+      e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
+    }
 ```
 
 ### Websocket

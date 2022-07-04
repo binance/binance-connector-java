@@ -32,8 +32,8 @@ public class Pay {
      * parameters LinkedHashedMap of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * startTimestamp -- optional/long <br>
-     * endTimestamp -- optional/long <br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long <br>
      * limit -- optional/int -- default 100, max 100 <br>
      * recvWindow -- optional/long <br>
      * @return String
