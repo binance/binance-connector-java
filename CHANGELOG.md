@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.8.0 - TBC
+## 1.8.0 - 2022-07-26
 
 ### Added
 - New wallet endpoint:
