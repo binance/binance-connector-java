@@ -464,4 +464,25 @@ public class Wallet {
     public String apiPermission(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, API_PERMISSION, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    private final String USER_ASSET = "/sapi/v3/asset/getUserAsset";
+    /**
+     * Get user assets, just for positive data.
+     * <br><br>
+     * POST /sapi/v3/asset/getUserAsset
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * asset -- optional/string -- If asset is blank, then query all positive assets user have. <br>
+     * needBtcValuation -- optional/boolean -- 	Whether need btc valuation or not. <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#user-asset-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#user-asset-user_data</a>
+     */
+    public String getUserAsset(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, USER_ASSET, parameters, HttpMethod.POST, showLimitUsage);
+    }
 }
