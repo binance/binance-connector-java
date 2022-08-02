@@ -1,5 +1,6 @@
 package com.binance.connector.client.utils;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,8 +12,10 @@ import org.slf4j.LoggerFactory;
 
 public class WebSocketConnection extends WebSocketListener {
     private static final AtomicInteger connectionCounter = new AtomicInteger(0);
+    private static final int WEBSOCKET_PING_INTERVAL = 3;
     private static final int NORMAL_CLOSURE_STATUS = 1000;
-    private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
+    private static final OkHttpClient.Builder webSocketClientBuilder = HttpClientSingleton.getHttpClient()
+            .newBuilder();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketConnection.class);
 
     private final WebSocketCallback onOpenCallback;
@@ -49,7 +52,9 @@ public class WebSocketConnection extends WebSocketListener {
         synchronized (mutex) {
             if (null == webSocket) {
                 logger.info("[Connection {}] Connecting to {}", connectionId, streamName);
-                webSocket = client.newWebSocket(request, this);
+                webSocket = webSocketClientBuilder.pingInterval(WEBSOCKET_PING_INTERVAL, TimeUnit.MINUTES)
+                        .build()
+                        .newWebSocket(request, this);
             } else {
                 logger.info("[Connection {}] is already connected to {}", connectionId, streamName);
             }
