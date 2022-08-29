@@ -34,7 +34,7 @@ public class TestProjectPosition {
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createSavings().projectPostion(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createSavings().projectPosition(parameters));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TestProjectPosition {
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createSavings().projectPostion(parameters);
+        String result = client.createSavings().projectPosition(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

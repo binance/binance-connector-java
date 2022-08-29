@@ -16,7 +16,7 @@ public final class ProjectPosition {
         parameters.put("asset", "USDT");
 
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
-        String result = client.createSavings().projectPostion(parameters);
+        String result = client.createSavings().projectPosition(parameters);
         logger.info(result);
     }
 }

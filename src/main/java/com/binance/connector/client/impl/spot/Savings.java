@@ -201,7 +201,7 @@ public class Savings {
      * parameters LinkedHashedMap of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * asset -- mandatory/string <br>
+     * asset -- optional/string <br>
      * projectId -- optional/string <br>
      * status -- optional/enum -- "HOLDING", "REDEEMED" <br>
      * recvWindow -- optional/long <br>
@@ -209,8 +209,7 @@ public class Savings {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fixed-activity-project-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-fixed-activity-project-position-user_data</a>
      */
-    public String projectPostion(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
+    public String projectPosition(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, PROJECT_POSITION, parameters, HttpMethod.GET, showLimitUsage);
     }
 
