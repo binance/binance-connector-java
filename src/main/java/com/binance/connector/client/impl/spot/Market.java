@@ -197,6 +197,32 @@ public class Market {
         return requestHandler.sendPublicRequest(baseUrl, KLINES, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String UIKLINES = "/api/v3/uiKlines";
+    /**
+     * The request is similar to klines having the same parameters and response.
+     * uiKlines return modified kline data, optimized for presentation of candlestick charts.
+     * <br><br>
+     * GET /api/v3/uiKlines
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string <br>
+     * interval -- mandatory/string <br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long <br>
+     * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#uiklines">
+     *     https://binance-docs.github.io/apidocs/spot/en/#uiklines</a>
+     */
+    public String uiKlines(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "interval", String.class);
+        return requestHandler.sendPublicRequest(baseUrl, UIKLINES, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
     private final String AVG_PRICE = "/api/v3/avgPrice";
     /**
      * Current average price for a symbol.
@@ -228,11 +254,21 @@ public class Market {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string -- the trading pair <br>
+     * symbols -- optional/string <br>
+     * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics">
      *     https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics</a>
      */
     public String ticker24H(LinkedHashMap<String, Object> parameters) {
+        if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
+            throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
+        }
+        if (parameters.containsKey("symbols")) {
+            ParameterChecker.checkParameterType(parameters.get("symbols"), ArrayList.class, "symbols");
+            parameters.put("symbols", JSONParser.getJSONArray(
+                    (ArrayList<?>) parameters.get("symbols"), "symbols"));
+        }
         return requestHandler.sendPublicRequest(baseUrl, TICKER_24H, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -248,11 +284,20 @@ public class Market {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string -- the trading pair <br>
+     * symbols -- optional/string <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker">
      *     https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker</a>
      */
     public String tickerSymbol(LinkedHashMap<String, Object> parameters) {
+        if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
+            throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
+        }
+        if (parameters.containsKey("symbols")) {
+            ParameterChecker.checkParameterType(parameters.get("symbols"), ArrayList.class, "symbols");
+            parameters.put("symbols", JSONParser.getJSONArray(
+                    (ArrayList<?>) parameters.get("symbols"), "symbols"));
+        }
         return requestHandler.sendPublicRequest(baseUrl, TICKER_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -268,11 +313,20 @@ public class Market {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string -- the trading pair <br>
+     * symbols -- optional/string <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#symbol-order-book-ticker">
      *     https://binance-docs.github.io/apidocs/spot/en/#symbol-order-book-ticker</a>
      */
     public String bookTicker(LinkedHashMap<String, Object> parameters) {
+        if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
+            throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
+        }
+        if (parameters.containsKey("symbols")) {
+            ParameterChecker.checkParameterType(parameters.get("symbols"), ArrayList.class, "symbols");
+            parameters.put("symbols", JSONParser.getJSONArray(
+                    (ArrayList<?>) parameters.get("symbols"), "symbols"));
+        }
         return requestHandler.sendPublicRequest(baseUrl, BOOK_TICKER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -296,6 +350,7 @@ public class Market {
      * %5B%22BTCUSDT%22,%22BNBUSDT%22%5D <br>
      * symbols -- optional/string -- The maximum number of symbols allowed in a request is 100. <br>
      * windowSize -- optional/enum -- Defaults to 1d if no parameter provided <br>
+     * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#rolling-window-price-change-statistics">
      *     https://binance-docs.github.io/apidocs/spot/en/#rolling-window-price-change-statistics</a>

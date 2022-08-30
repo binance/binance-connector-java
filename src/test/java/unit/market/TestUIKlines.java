@@ -3,7 +3,6 @@ package unit.market;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.utils.UrlBuilder;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
@@ -11,15 +10,18 @@ import org.junit.Test;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class TestTicker {
+public class TestUIKlines {
     private MockWebServer mockWebServer;
     private String baseUrl;
+    private final long startTime = System.currentTimeMillis();
+    private final long endTime = startTime + 1000;
+
+    private final int limit = 1000;
 
     @Before
     public void init() {
@@ -28,78 +30,61 @@ public class TestTicker {
     }
 
     @Test
-    public void testTicker() {
-        String path = "/api/v3/ticker?symbol=BNBUSDT&type=MINI";
+    public void testUIKlinesWithoutSymbol() {
+        String path = "/api/v3/uiKlines?interval=1m";
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("interval", "1m");
+
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
+        mockWebServer.setDispatcher(dispatcher);
+
+        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        assertThrows(BinanceConnectorException.class, () -> client.createMarket().uiKlines(parameters));
+    }
+
+    @Test
+    public void testUIKlinesWithoutInterval() {
+        String path = "/api/v3/uiKlines?symbol=BNBUSDT";
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
-        parameters.put("type", "MINI");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
-        String result = client.createMarket().ticker(parameters);
+        assertThrows(BinanceConnectorException.class, () -> client.createMarket().uiKlines(parameters));
+    }
+
+    @Test
+    public void testUIKlines() {
+        String path = "/api/v3/uiKlines?symbol=BNBUSDT&interval=1m";
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("interval", "1m");
+
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
+        mockWebServer.setDispatcher(dispatcher);
+
+        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        String result = client.createMarket().uiKlines(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 
     @Test
-    public void testTickerWithMultipleSymbol() {
-        String path = String.format("/api/v3/ticker?symbols=%s",
-                UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
+    public void testUIKlinesWithParameters() {
+        String path = String.format("/api/v3/uiKlines?symbol=BNBUSDT&interval=1m&limit=1000&startTime=%s&endTime=%s", startTime, endTime);
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        ArrayList<String> symbols = new ArrayList<>();
-        symbols.add("BNBUSDT");
-        symbols.add("BTCUSDT");
-        parameters.put("symbols", symbols);
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("interval", "1m");
+        parameters.put("limit", limit);
+        parameters.put("startTime", startTime);
+        parameters.put("endTime", endTime);
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
-        String result = client.createMarket().ticker(parameters);
+        String result = client.createMarket().uiKlines(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
-    }
-
-    @Test
-    public void testTickerWithoutParameters() {
-        String path = "/api/v3/ticker";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
-        mockWebServer.setDispatcher(dispatcher);
-
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createMarket().ticker(parameters));
-    }
-
-    @Test
-    public void testTickerWithInvalidType() {
-        String path = String.format("/api/v3/ticker?symbols=%s",
-                UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        String[] symbols = {"BNBUSDT", "BTCUSDT"};
-        parameters.put("symbols", symbols);
-
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
-        mockWebServer.setDispatcher(dispatcher);
-
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createMarket().ticker(parameters));
-    }
-
-    @Test
-    public void testTickerWithDoubleParameter() {
-        String path = String.format("/api/v3/ticker?symbols=%s",
-                UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        String[] symbols = {"BNBUSDT", "BTCUSDT"};
-        parameters.put("symbols", symbols);
-        parameters.put("symbol", "ETHUSDT");
-
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
-        mockWebServer.setDispatcher(dispatcher);
-
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createMarket().ticker(parameters));
     }
 }

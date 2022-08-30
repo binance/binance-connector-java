@@ -19,6 +19,7 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
+          cache: 'maven'
       - name: Run checkstyle
         run: mvn checkstyle:check
       - name: Run unit tests

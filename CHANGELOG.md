@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.9.0 - 2022-08-30
+
+### Added
+- New market endpoint:
+  - `GET /api/v3/uiKlines`
+- New kline interval: `1s`
+- The following endpoints now support multi-symbol querying using the parameter symbols.
+  - `GET /api/v3/ticker/24hr`
+  - `GET /api/v3/ticker/price`
+  - `GET /api/v3/ticker/bookTicker`
+### Changed
+- Changes to `GET /api/v3/ticker` and `GET /api/v3/ticker/24hr`
+  - New optional parameter `type` added
+  - Supported values for parameter `type` are `FULL` and `MINI`
+    - `FULL` is the default value and the response that is currently being returned from the endpoint
+    - `MINI` omits the following fields from the response: `priceChangePercent`, `weightedAvgPrice`, `bidPrice`, `bidQty`, `askPrice`, `askQty`, and `lastQty`
+
 ## 1.8.0 - 2022-07-26
 
 ### Added
