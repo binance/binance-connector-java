@@ -1,7 +1,6 @@
 package unit.savings;
 
 import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
@@ -13,7 +12,6 @@ import unit.MockWebServerDispatcher;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class TestProjectPosition {
     private MockWebServer mockWebServer;
@@ -26,18 +24,6 @@ public class TestProjectPosition {
     }
 
     @Test
-    public void testProjectPositionWithoutParameters() {
-        String path = "/sapi/v1/lending/project/position/list";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
-        mockWebServer.setDispatcher(dispatcher);
-
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createSavings().projectPostion(parameters));
-    }
-
-    @Test
     public void testProjectPosition() {
         String path = "/sapi/v1/lending/project/position/list?asset=BNB";
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
@@ -47,7 +33,7 @@ public class TestProjectPosition {
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createSavings().projectPostion(parameters);
+        String result = client.createSavings().projectPosition(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

@@ -21,6 +21,7 @@ public final class Ticker {
         Market market = client.createMarket();
 
         parameters.put("symbol", "BNBUSDT");
+        parameters.put("type", "MINI");
         String result = market.ticker(parameters);
         logger.info(result);
         parameters.clear();

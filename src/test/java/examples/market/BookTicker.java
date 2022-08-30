@@ -2,6 +2,8 @@ package examples.market;
 
 import com.binance.connector.client.impl.SpotClientImpl;
 import examples.PrivateConfig;
+
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,14 @@ public final class BookTicker {
 
         parameters.put("symbol", "BNBUSDT");
         String result = client.createMarket().bookTicker(parameters);
+        logger.info(result);
+        parameters.clear();
+
+        ArrayList<String> symbols = new ArrayList<>();
+        symbols.add("BTCUSDT");
+        symbols.add("BNBUSDT");
+        parameters.put("symbols", symbols);
+        result = client.createMarket().bookTicker(parameters);
         logger.info(result);
     }
 }
