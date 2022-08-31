@@ -15,6 +15,7 @@ jobs:
         with: # running setup-java again overwrites the settings.xml
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '8'
+          cache: 'maven'
           server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: OSSRH_USERNAME # env variable for username in deploy
           server-password: OSSRH_TOKEN # env variable for token in deploy
