@@ -4,8 +4,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -115,7 +117,9 @@ public final class UrlBuilder {
 
     private static DecimalFormat getFormatter() {
         if (null == df) {
-            df = new DecimalFormat();
+            // Overrides the default Locale
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+            df = new DecimalFormat("#,##0.###", symbols);
             df.setMaximumFractionDigits(MAX_DECIMAL_DIGITS);
             df.setGroupingUsed(false);
         }
