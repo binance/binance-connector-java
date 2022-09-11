@@ -15,23 +15,23 @@ public class WebSocketConnection extends WebSocketListener {
     private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketConnection.class);
 
-    private final WebSocketCallback onOpenCallback;
-    private final WebSocketCallback onMessageCallback;
-    private final WebSocketCallback onClosingCallback;
-    private final WebSocketCallback onFailureCallback;
-    private final int connectionId;
-    private final Request request;
-    private final String streamName;
+	private final WebSocketOpenCallback    onOpenCallback;
+	private final WebSocketMessageCallback onMessageCallback;
+	private final WebSocketClosingCallback onClosingCallback;
+	private final WebSocketFailureCallback onFailureCallback;
+	private final int connectionId;
+	private final Request request;
+	private final String streamName;
 
     private WebSocket webSocket;
 
     private final Object mutex;
 
     public WebSocketConnection(
-            WebSocketCallback onOpenCallback,
-            WebSocketCallback onMessageCallback,
-            WebSocketCallback onClosingCallback,
-            WebSocketCallback onFailureCallback,
+			WebSocketOpenCallback onOpenCallback,
+			WebSocketMessageCallback onMessageCallback,
+			WebSocketClosingCallback onClosingCallback,
+			WebSocketFailureCallback onFailureCallback,
             Request request
     ) {
         this.onOpenCallback = onOpenCallback;
@@ -71,23 +71,23 @@ public class WebSocketConnection extends WebSocketListener {
     @Override
     public void onOpen(WebSocket ws, Response response) {
         logger.info("[Connection {}] Connected to Server", connectionId);
-        onOpenCallback.onReceive(null);
+        onOpenCallback.onOpen(response);
     }
 
     @Override
     public void onClosing(WebSocket ws, int code, String reason) {
         super.onClosing(ws, code, reason);
-        onClosingCallback.onReceive(reason);
+        onClosingCallback.onClosing(code, reason);
     }
 
     @Override
     public void onMessage(WebSocket ws, String text) {
-        onMessageCallback.onReceive(text);
+        onMessageCallback.onMessage(text);
     }
 
     @Override
     public void onFailure(WebSocket ws, Throwable t, Response response) {
         logger.error("[Connection {}] Failure", connectionId, t);
-        onFailureCallback.onReceive(null);
+        onFailureCallback.onFailure(t, response);
     }
 }
