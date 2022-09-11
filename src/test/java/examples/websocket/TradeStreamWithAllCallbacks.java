@@ -35,11 +35,11 @@ public final class TradeStreamWithAllCallbacks {
             System.out.println(message);
         };
 
-        onClosingCallback = (code,reason) -> {
+        onClosingCallback = (code, reason) -> {
             System.out.println("Connection Closing...");
         };
 
-        onFailureCallback = (throwable,response) -> {
+        onFailureCallback = (throwable, response) -> {
             System.out.println("Connection Failed...");
             System.out.println("Retrying Connection...");
             connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
