@@ -44,7 +44,7 @@ public class Trade {
      * price -- optional/decimal <br>
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -78,7 +78,7 @@ public class Trade {
      * price -- optional/decimal <br>
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -185,7 +185,7 @@ public class Trade {
      * cancelOrderId -- optional/long -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
      * newClientOrderId -- optional/string -- Used to identify the new order. <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -266,7 +266,7 @@ public class Trade {
      * stopClientOrderId -- optional/string <br>
      * stopPrice -- mandatory/decimal <br>
      * stopLimitPrice -- optional/decimal <br>
-     * stopIcebergQty -- optional/deciaml <br>
+     * stopIcebergQty -- optional/decimal <br>
      * stopLimitTimeInForce -- optional/enum <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>

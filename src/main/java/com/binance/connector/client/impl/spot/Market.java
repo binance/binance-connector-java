@@ -65,7 +65,8 @@ public class Market {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string <br>
-     * symbols -- optional/string
+     * symbols -- optional/ArrayList <br>
+     * permissions -- optional/ArrayList -- support single or multiple values (e.g. "SPOT", ["MARGIN","LEVERAGED"]) <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#exchange-information">
      *     https://binance-docs.github.io/apidocs/spot/en/#exchange-information</a>
@@ -74,10 +75,19 @@ public class Market {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
             throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
         }
+        if ((parameters.containsKey("symbol") && parameters.containsKey("permissions"))
+             || parameters.containsKey("symbols") && parameters.containsKey("permissions")) {
+            throw new BinanceConnectorException("permissions cannot be sent together with symbol or symbols.");
+        }
         if (parameters.containsKey("symbols")) {
             ParameterChecker.checkParameterType(parameters.get("symbols"), ArrayList.class, "symbols");
             parameters.put("symbols", JSONParser.getJSONArray(
                                     (ArrayList<?>) parameters.get("symbols"), "symbols"));
+        }
+        if (parameters.containsKey("permissions")) {
+            ParameterChecker.checkParameterType(parameters.get("permissions"), ArrayList.class, "permissions");
+            parameters.put("permissions", JSONParser.getJSONArray(
+                                    (ArrayList<?>) parameters.get("permissions"), "permissions"));
         }
         return requestHandler.sendPublicRequest(baseUrl, EXCHANGE_INFO, parameters, HttpMethod.GET, showLimitUsage);
     }

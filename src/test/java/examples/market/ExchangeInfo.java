@@ -31,6 +31,14 @@ public final class ExchangeInfo {
         parameters.put("symbols", symbols);
         result = market.exchangeInfo(parameters);
         logger.info(result);
+        parameters.clear();
+
+        ArrayList<String> permissions = new ArrayList<>();
+        permissions.add("SPOT");
+        permissions.add("MARGIN");
+        parameters.put("permissions", permissions);
+        result = market.exchangeInfo(parameters);
+        logger.info(result);
     }
 
 }

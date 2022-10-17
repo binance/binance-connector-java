@@ -12,28 +12,40 @@ public final class TradeStreamWithAllCallbacks {
     private static WebSocketCallback onClosingCallback;
     private static WebSocketCallback onFailureCallback;
 
+    private static void connectToTradeStream(
+        WebsocketClientImpl client,
+        WebSocketCallback openCallback,
+        WebSocketCallback messageCallback,
+        WebSocketCallback closingCallback,
+        WebSocketCallback failureCallback) {
+        client.tradeStream("btcusdt", openCallback, messageCallback, closingCallback, failureCallback);
+    }
+
     public static void main(String[] args) {
         WebsocketClientImpl client = new WebsocketClientImpl();
+        
         onOpenCallback = openEvent -> {
+            System.out.println("Connection Starting...");
         };
         onMessageCallback = (message) -> {
             System.out.println(message);
-            client.closeAllConnections();
         };
+
         onClosingCallback = closingEvent -> {
+            System.out.println("Connection Closing...");
         };
+
         onFailureCallback = failureEvent -> {
-            connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onClosingCallback);
+            System.out.println("Connection Failed...");
+            System.out.println("Retrying Connection...");
+            connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
         };
         connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
-    }
 
-    private static void connectToTradeStream(
-            WebsocketClientImpl client,
-            WebSocketCallback openCallback,
-            WebSocketCallback messageCallback,
-            WebSocketCallback closingCallback,
-            WebSocketCallback failureCallback) {
-        client.tradeStream("btcusdt", openCallback, messageCallback, closingCallback, failureCallback);
+        // Close connection for onClosingCallback example purpose
+        client.closeAllConnections();
+
+
     }
 }
+
