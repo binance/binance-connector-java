@@ -196,7 +196,7 @@ public class Margin {
      * price -- optional/decimal <br>
      * stopPrice -- optional/decimal -- Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. <br>
      * newClientOrderId -- optional/string -- A unique id among open orders. Automatically generated if not sent. <br>
-     * icebergQty -- optional/deciaml -- Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. <br>
+     * icebergQty -- optional/decimal -- Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. <br>
      * newOrderRespType -- optional/enum -- Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. <br>
      * sideEffectType -- optional/enum -- NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT. <br>
      * timeInForce -- optional/enum -- GTC,IOC,FOK <br>

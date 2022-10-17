@@ -304,9 +304,9 @@ public class WebsocketClientImpl implements WebsocketClient {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
@@ -328,9 +328,9 @@ public class WebsocketClientImpl implements WebsocketClient {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
@@ -355,9 +355,9 @@ public class WebsocketClientImpl implements WebsocketClient {
     public int allRollingWindowTicker(String windowSize, WebSocketCallback callback) {
         ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize.toLowerCase())) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize.toLowerCase()));
         }

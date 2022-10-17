@@ -389,7 +389,7 @@ public class SubAccount {
      * <br><br>
      * email -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * type -- mandatory/int -- 1: transfer from subaccount's spot account to its USDT-margined futures account
      *            2: transfer from subaccount's USDT-margined futures account to its spot account
      *            3: transfer from subaccount's spot account to its COIN-margined futures account
@@ -416,7 +416,7 @@ public class SubAccount {
      * <br><br>
      * email -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * type -- mandatory/int -- 1: transfer from subaccount's spot account to margin account
      *                          2: transfer from subaccount's margin account to its spot account <br>
      * @return String
@@ -441,7 +441,7 @@ public class SubAccount {
      * <br><br>
      * toEmail -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account">
@@ -463,7 +463,7 @@ public class SubAccount {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account">

@@ -170,7 +170,7 @@ try {
 ### Websocket
 
 ```java
-WebsocketClientImpl client = new WebsocketClientImpl(); // defaults to production envrionment unless stated,
+WebsocketClientImpl client = new WebsocketClientImpl(); // defaults to production environment unless stated,
 int streamID1 = client.aggTradeStream("btcusdt",((event) -> {
     System.out.println(event);
 }));
