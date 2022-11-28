@@ -24,8 +24,6 @@ public interface WebsocketClient {
     int allRollingWindowTicker(String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int bookTicker(String symbol, WebSocketCallback callback);
     int bookTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
-    int allBookTickerStream(WebSocketCallback callback);
-    int allBookTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int partialDepthStream(String symbol, int levels, int speed, WebSocketCallback callback);
     int partialDepthStream(String symbol, int levels, int speed, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int diffDepthStream(String symbol, int speed, WebSocketCallback callback);

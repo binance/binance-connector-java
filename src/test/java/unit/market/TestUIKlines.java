@@ -38,7 +38,7 @@ public class TestUIKlines {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().uiKlines(parameters));
     }
 
@@ -51,7 +51,7 @@ public class TestUIKlines {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().uiKlines(parameters));
     }
 
@@ -65,7 +65,7 @@ public class TestUIKlines {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         String result = client.createMarket().uiKlines(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
@@ -83,7 +83,7 @@ public class TestUIKlines {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         String result = client.createMarket().uiKlines(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }

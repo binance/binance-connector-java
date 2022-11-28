@@ -1,8 +1,9 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.RequestHandler;
-
+import com.binance.connector.client.utils.SignatureGenerator;
 import java.util.LinkedHashMap;
 
 public class PortfolioMargin {
@@ -20,7 +21,13 @@ public class PortfolioMargin {
 
     public PortfolioMargin(String baseUrl, String apiKey, String secretKey, boolean showLimitUsage) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey, secretKey);
+        this.requestHandler = new RequestHandler(apiKey, new HmacSignatureGenerator(secretKey));
+        this.showLimitUsage = showLimitUsage;
+    }
+
+    public PortfolioMargin(String baseUrl, String apiKey, SignatureGenerator signatureGenerator, boolean showLimitUsage) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiKey, signatureGenerator);
         this.showLimitUsage = showLimitUsage;
     }
 

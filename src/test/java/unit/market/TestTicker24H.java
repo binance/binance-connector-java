@@ -37,7 +37,7 @@ public class TestTicker24H {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         String result = client.createMarket().ticker24H(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
@@ -52,7 +52,7 @@ public class TestTicker24H {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         String result = client.createMarket().ticker24H(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
@@ -70,7 +70,7 @@ public class TestTicker24H {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         String result = client.createMarket().ticker24H(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
@@ -86,7 +86,7 @@ public class TestTicker24H {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().ticker24H(parameters));
     }
 
@@ -102,7 +102,7 @@ public class TestTicker24H {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().ticker24H(parameters));
     }
 }
