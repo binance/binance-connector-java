@@ -25,7 +25,7 @@ public final class UrlBuilder {
             sb.append(urlPath).append('?');
             joinQueryParameters(sb, parameters);
             if (null != signature) {
-                sb.append("&signature=").append(signature);
+                sb.append("&signature=").append(urlEncode(signature));
             }
             return sb.toString();
         } else {

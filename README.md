@@ -27,10 +27,12 @@ Run `mvn install` where `pom.xml` is located to install the dependency.
 [https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html](https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html)
 
 ### Run Example
-The examples are located under **src/test/java/examples**. Before running the examples,
-set up your **API_KEY** and **SECRET_KEY** in `PrivateConfig.java`. This configuration file is only used for examples,
-you should reconfigure the API_KEY and SECRET_KEY when using the library.
+The examples are located under **src/test/java/examples**.
 
+Before running any of it, `PrivateConfig.java` must be set up correctly with `API_KEY` and` SECRET_KEY` or `PRIVATE_KEY_PATH` (if using RSA Keys).
+
+Note that this `PrivateConfig.java` is only used for examples,
+you should have your own configuration file when using the library.
 ### RESTful APIs
 
 The endpoints are categorized according to the [Binance](https://binance-docs.github.io/apidocs/spot/en/#change-log) API document.

@@ -1,23 +1,24 @@
-package examples.trade;
+package examples.signature;
 
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-
+import com.binance.connector.client.utils.RsaSignatureGenerator;
 import examples.PrivateConfig;
 import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Account {
-    private Account() {
+public final class EncryptedRsa {
+    private EncryptedRsa() {
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(Account.class);
+    private static final Logger logger = LoggerFactory.getLogger(Hmac.class);
     public static void main(String[] args) {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, PrivateConfig.TESTNET_SECRET_KEY, PrivateConfig.BASE_URL);
+        RsaSignatureGenerator signGenerator =  new RsaSignatureGenerator(PrivateConfig.TESTNET_PRIVATE_KEY_PATH, "password");
+        SpotClientImpl client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, signGenerator, PrivateConfig.BASE_URL);
 
         try {
             String result = client.createTrade().account(parameters);

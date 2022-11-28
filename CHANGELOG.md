@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.0 - 2022-11-28
+
+### Added
+- Add support for use of RSA Key to generate signatures
+
+### Removed
+- The All Book Tickers stream (!bookTicker) is removed
+
 ## 1.10.0 - 2022-10-17
 
 ### Added

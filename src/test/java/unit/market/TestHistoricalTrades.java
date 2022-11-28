@@ -36,7 +36,7 @@ public class TestHistoricalTrades {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, "", baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().historicalTrades(parameters));
     }
 
@@ -48,7 +48,7 @@ public class TestHistoricalTrades {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(null, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createMarket().historicalTrades(parameters));
     }
 
@@ -61,7 +61,7 @@ public class TestHistoricalTrades {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, "", baseUrl);
         String result = client.createMarket().historicalTrades(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
@@ -77,7 +77,7 @@ public class TestHistoricalTrades {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, null, baseUrl);
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, "", baseUrl);
         String result = client.createMarket().historicalTrades(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
