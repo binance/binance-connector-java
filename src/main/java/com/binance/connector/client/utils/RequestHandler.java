@@ -10,17 +10,16 @@ import org.slf4j.LoggerFactory;
 
 public class RequestHandler {
     private final String apiKey;
-    private final String secretKey;
+    private final SignatureGenerator signatureGenerator;
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 
     public RequestHandler(String apiKey) {
-        this.apiKey = apiKey;
-        this.secretKey = null;
+        this(apiKey, null);
     }
 
-    public RequestHandler(String apiKey, String secretKey) {
+    public RequestHandler(String apiKey, SignatureGenerator signatureGenerator) {
         this.apiKey = apiKey;
-        this.secretKey = secretKey;
+        this.signatureGenerator = signatureGenerator;
     }
 
     /**
@@ -68,12 +67,16 @@ public class RequestHandler {
 
     public String sendSignedRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
                                     HttpMethod httpMethod, boolean showLimitUsage) {
-        if (null == secretKey || secretKey.isEmpty() || null == apiKey || apiKey.isEmpty()) {
+                                        
+        if (signatureGenerator.getClass() == HmacSignatureGenerator.class && null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] Secret key/API key cannot be null or empty!");
+        }
+        if (signatureGenerator.getClass() == RsaSignatureGenerator.class && null == apiKey || apiKey.isEmpty()) {
+            throw new BinanceConnectorException("[RequestHandler] Private key/API key cannot be null or empty!");
         }
         parameters.put("timestamp", UrlBuilder.buildTimestamp());
         String queryString = UrlBuilder.joinQueryParameters(parameters);
-        String signature = SignatureGenerator.getSignature(queryString, secretKey);
+        String signature = this.signatureGenerator.getSignature(queryString);
         return sendApiRequest(baseUrl, urlPath, signature, parameters, httpMethod, RequestType.SIGNED, showLimitUsage);
     }
 }
