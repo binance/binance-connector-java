@@ -956,7 +956,7 @@ public class Margin {
      * parameters LinkedHashedMap of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE"，default "FALSE" <br>
+     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE", default "FALSE" <br>
      * symbol -- optional/string -- isolated symbol, mandatory for isolated margin <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String

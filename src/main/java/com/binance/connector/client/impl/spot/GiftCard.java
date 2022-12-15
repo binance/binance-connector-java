@@ -38,7 +38,7 @@ public class GiftCard {
      *
      * You have a Binance account <br>
      * You have passed kyc <br>
-     * You have a sufﬁcient balance in your Binance funding wallet <br>
+     * You have a sufficient balance in your Binance funding wallet <br>
      * You need Enable Withdrawals for the API Key which requests this endpoint. <br>
      * <br><br>
      * POST /sapi/v1/giftcard/createCode

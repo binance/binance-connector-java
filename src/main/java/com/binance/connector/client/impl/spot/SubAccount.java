@@ -651,6 +651,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipRestrict -- mandatory/boolean -- true or false <br>
+     * thirdParty -- optional/boolean -- false by default <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-or-disable-ip-restriction-for-a-sub-account-api-key-for-master-account">
@@ -697,6 +698,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipAddress -- mandatory/string -- Can be added in batches, separated by commas <br>
+     * thirdPartyName -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-ip-list-for-a-sub-account-api-key-for-master-account">
@@ -719,6 +721,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipAddress -- mandatory/string -- Can be added in batches, separated by commas <br>
+     * thirdPartyName -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account">
