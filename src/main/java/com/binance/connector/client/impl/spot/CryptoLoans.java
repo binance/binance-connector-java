@@ -41,7 +41,7 @@ public class CryptoLoans {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- mandatory/string <br>
-     * type -- optional/string -- All types will be returned by default. Enum：borrowIn ,collateralSpent, repayAmount, collateralReturn(Collateral return after repayment), addCollateral, removeCollateral, collateralReturnAfterLiquidation <br>
+     * type -- optional/string -- All types will be returned by default. Enum: borrowIn, collateralSpent, repayAmount, collateralReturn(Collateral return after repayment), addCollateral, removeCollateral, collateralReturnAfterLiquidation <br>
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
      * limit -- optional/int -- default 20, max 100 <br>
@@ -217,5 +217,87 @@ public class CryptoLoans {
      */
     public String loanAdjustLTVHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_ADJUST_LTV_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String LOANABLE_ASSETS_DATA = "/sapi/v1/loan/loanable/data";
+    /**
+     * GET /sapi/v1/loan/loanable/data
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string <br>
+     * vipLevel -- optional/int -- Default: user's VIP level. In case there's specific configuration, send "-1"<br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data</a>
+     */
+    public String loanAssetsData(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, LOANABLE_ASSETS_DATA, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String COLLATERAL_ASSETS_DATA = "/sapi/v1/loan/collateral/data";
+    /**
+     * GET /sapi/v1/loan/collateral/data
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * collateralCoin -- optional/string <br>
+     * vipLevel -- optional/int -- Default: user's VIP level. In case there's specific configuration, send "-1"<br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-assets-data-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-collateral-assets-data-user_data</a>
+     */
+    public String collateralAssetsData(LinkedHashMap<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_ASSETS_DATA, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String COLLATERAL_REPAY_RATE = "/sapi/v1/loan/repay/collateral/rate";
+    /**
+     * GET /sapi/v1/loan/repay/collateral/rate
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- mandatory/string <br>
+     * collateralCoin -- mandatory/string <br>
+     * repayAmount -- mandatory/decimal -- repay amount of loanCoin<br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-rate-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-rate-user_data</a>
+     */
+    public String collateralRepayRate(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "repayAmount");
+        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY_RATE, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String CUSTOMIZE_MARGIN_CALL = "/sapi/v1/loan/customize/margin_call";
+    /**
+     * GET /sapi/v1/loan/customize/margin_call
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * orderId -- optional/long -- Mandatory when collateralCoin is empty. Send either orderId or collateralCoin, if both parameters are sent, take orderId only. <br>
+     * collateralCoin -- optional/string -- Mandatory when orderId is empty. Send either orderId or collateralCoin, if both parameters are sent, take orderId only.<br>
+     * marginCall -- mandatory/decimal<br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#crypto-loan-customize-margin-call-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#crypto-loan-customize-margin-call-trade</a>
+     */
+    public String customizeMarginCall(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkRequiredParameter(parameters, "marginCall");
+        return requestHandler.sendSignedRequest(baseUrl, CUSTOMIZE_MARGIN_CALL, parameters, HttpMethod.POST, showLimitUsage);
     }
 }

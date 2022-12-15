@@ -83,27 +83,6 @@ public class Futures {
         return requestHandler.sendSignedRequest(baseUrl, FUTURES_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
-    private final String BORROW = "/sapi/v1/futures/loan/borrow";
-    /**
-     * POST /sapi/v1/futures/loan/borrow
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * coin -- mandatory/string <br>
-     * amount -- mandatory/decimal -- when collateralAmount is empty <br>
-     * collateralCoin -- mandatory/string <br>
-     * collateralAmount -- mandatory/decimal -- when amount is empty <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-for-cross-collateral-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#borrow-for-cross-collateral-trade</a>
-     */
-    public String borrow(LinkedHashMap<String, Object> parameters) {
-        return requestHandler.sendSignedRequest(baseUrl, BORROW, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
     private final String BORROW_HISTORY = "/sapi/v1/futures/loan/borrow/history";
     /**
      * GET /sapi/v1/futures/loan/borrow/history
@@ -123,29 +102,6 @@ public class Futures {
      */
     public String borrowHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String REPAY = "/sapi/v1/futures/loan/repay";
-    /**
-     * POST /sapi/v1/futures/loan/repay
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * coin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * amount -- mandatory/decimal <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-for-cross-collateral-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#repay-for-cross-collateral-trade</a>
-     */
-    public String repay(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "coin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        return requestHandler.sendSignedRequest(baseUrl, REPAY, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String REPAY_HISTORY = "/sapi/v1/futures/loan/repay/history";
@@ -184,96 +140,6 @@ public class Futures {
      */
     public String loanWallet(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, WALLET, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String LOAN_CONFIGS = "/sapi/v2/futures/loan/configs";
-    /**
-     * GET /sapi/v2/futures/loan/configs
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * loanCoin -- optional/string <br>
-     * collateralCoin -- optional/long <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-information-v2-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#cross-collateral-information-v2-user_data</a>
-     */
-    public String loanConfigs(LinkedHashMap<String, Object> parameters) {
-        return requestHandler.sendSignedRequest(baseUrl, LOAN_CONFIGS, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String CALCU_ADJUST_LEVEL = "/sapi/v2/futures/loan/calcAdjustLevel";
-    /**
-     * GET /sapi/v2/futures/loan/calcAdjustLevel
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * loanCoin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * amount -- mandatory/decimal <br>
-     * direction -- mandatory/enum -- "ADDITIONAL", "REDUCED" <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data</a>
-     */
-    public String calcAdjustLevel(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        ParameterChecker.checkParameter(parameters, "direction", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, CALCU_ADJUST_LEVEL, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String CALCU_MAX_ADJUST_AMOUNT = "/sapi/v2/futures/loan/calcMaxAdjustAmount";
-    /**
-     * GET /sapi/v2/futures/loan/calcMaxAdjustAmount
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * loanCoin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-max-amount-for-adjust-cross-collateral-ltv-v2-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-max-amount-for-adjust-cross-collateral-ltv-v2-user_data</a>
-     */
-    public String calcMaxAdjustAmount(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, CALCU_MAX_ADJUST_AMOUNT, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String ADJUST_COLLATERAL = "/sapi/v2/futures/loan/adjustCollateral";
-    /**
-     * POST /sapi/v2/futures/loan/adjustCollateral
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * loanCoin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * amount -- mandatory/decimal <br>
-     * direction -- mandatory/enum -- "ADDITIONAL", "REDUCED" <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#calculate-rate-after-adjust-cross-collateral-ltv-v2-user_data</a>
-     */
-    public String adjustCollateral(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        ParameterChecker.checkParameter(parameters, "direction", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, ADJUST_COLLATERAL, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String ADJUST_COLLATERAL_HISTORY = "/sapi/v1/futures/loan/adjustCollateral/history";
@@ -318,95 +184,6 @@ public class Futures {
      */
     public String liquidationHistory(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LIQUIDATION_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String COLLATERAL_REPAY_LIMIT = "/sapi/v1/futures/loan/collateralRepayLimit";
-    /**
-     * Check the maximum and minimum limit when repay with collateral.
-     * <br><br>
-     * GET /sapi/v1/futures/loan/collateralRepayLimit
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * coin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-limit-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-limit-user_data</a>
-     */
-    public String collateralRepayLimit(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "coin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String COLLATERAL_REPAY = "/sapi/v1/futures/loan/collateralRepay";
-    /**
-     * Get quote before repay with collateral is mandatory, the quote will be valid within 25 seconds.
-     * <br><br>
-     * GET /sapi/v1/futures/loan/collateralRepay
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * coin -- mandatory/string <br>
-     * collateralCoin -- mandatory/string <br>
-     * amount -- mandatory/decimal -- repay amount <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-repay-quote-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-collateral-repay-quote-user_data</a>
-     */
-    public String collateralRepayQuote(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "coin", String.class);
-        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    /**
-     * Repay with collateral. Get quote before repay with collateral is mandatory, the quote will be valid within 25 seconds.
-     * <br><br>
-     * POST /sapi/v1/futures/loan/collateralRepay
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * quoteId -- mandatory/string <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-with-collateral-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#repay-with-collateral-user_data</a>
-     */
-    public String collateralRepay(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "quoteId", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
-    private final String COLLATERAL_REPAY_RESULT = "/sapi/v1/futures/loan/collateralRepayResult";
-    /**
-     * Check collateral repayment result.
-     * <br><br>
-     * GET /sapi/v1/futures/loan/collateralRepayResult
-     * <br>
-     * @param
-     * parameters LinkedHashedMap of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * quoteId -- mandatory/string <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#collateral-repayment-result-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#collateral-repayment-result-user_data</a>
-     */
-    public String collateralRepayResult(LinkedHashMap<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "quoteId", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_REPAY_RESULT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String INTEREST_HISTORY = "/sapi/v1/futures/loan/interestHistory";
