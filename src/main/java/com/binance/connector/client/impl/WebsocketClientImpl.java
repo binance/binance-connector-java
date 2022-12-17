@@ -304,9 +304,9 @@ public class WebsocketClientImpl implements WebsocketClient {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
@@ -328,9 +328,9 @@ public class WebsocketClientImpl implements WebsocketClient {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
@@ -355,9 +355,9 @@ public class WebsocketClientImpl implements WebsocketClient {
     public int allRollingWindowTicker(String windowSize, WebSocketCallback callback) {
         ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
-            add("1h");
-            add("4h");
-        }};
+                add("1h");
+                add("4h");
+            }};
         if (!allowedWindowSize.contains(windowSize.toLowerCase())) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize.toLowerCase()));
         }
@@ -413,37 +413,6 @@ public class WebsocketClientImpl implements WebsocketClient {
     public int bookTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/%s@bookTicker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
-    }
-
-    /**
-     * Pushes any update to the best bid or ask's price or quantity in real-time for all symbols.
-     * <br><br>
-     * !bookTicker
-     * <br><br>
-     * Update Speed: Real-time
-     *
-     * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream</a>
-     */
-    @Override
-    public int allBookTickerStream(WebSocketCallback callback) {
-        return allBookTickerStream(noopCallback, callback, noopCallback, noopCallback);
-    }
-
-    /**
-     * Same as {@link #allBookTickerStream(WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
-     *
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
-     */
-    @Override
-    public int allBookTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
-        Request request = RequestBuilder.buildWebsocketRequest(String.format("%s/ws/!bookTicker", baseUrl));
         return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
     }
 

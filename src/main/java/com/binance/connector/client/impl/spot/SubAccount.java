@@ -1,8 +1,10 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestHandler;
+import com.binance.connector.client.utils.SignatureGenerator;
 import java.util.LinkedHashMap;
 
 /**
@@ -20,7 +22,13 @@ public class SubAccount {
 
     public SubAccount(String baseUrl, String apiKey, String secretKey, boolean showLimitUsage) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey, secretKey);
+        this.requestHandler = new RequestHandler(apiKey, new HmacSignatureGenerator(secretKey));
+        this.showLimitUsage = showLimitUsage;
+    }
+    
+    public SubAccount(String baseUrl, String apiKey, SignatureGenerator signatureGenerator, boolean showLimitUsage) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiKey, signatureGenerator);
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -389,7 +397,7 @@ public class SubAccount {
      * <br><br>
      * email -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * type -- mandatory/int -- 1: transfer from subaccount's spot account to its USDT-margined futures account
      *            2: transfer from subaccount's USDT-margined futures account to its spot account
      *            3: transfer from subaccount's spot account to its COIN-margined futures account
@@ -416,7 +424,7 @@ public class SubAccount {
      * <br><br>
      * email -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * type -- mandatory/int -- 1: transfer from subaccount's spot account to margin account
      *                          2: transfer from subaccount's margin account to its spot account <br>
      * @return String
@@ -441,7 +449,7 @@ public class SubAccount {
      * <br><br>
      * toEmail -- mandatory/string -- Sub-Account email <br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account">
@@ -463,7 +471,7 @@ public class SubAccount {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- mandatory/string -- The asset being transferred, e.g., USDT <br>
-     * amount -- mandatory/deciaml -- The amount to be transferred <br>
+     * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account">
@@ -643,6 +651,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipRestrict -- mandatory/boolean -- true or false <br>
+     * thirdParty -- optional/boolean -- false by default <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-or-disable-ip-restriction-for-a-sub-account-api-key-for-master-account">
@@ -689,6 +698,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipAddress -- mandatory/string -- Can be added in batches, separated by commas <br>
+     * thirdPartyName -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-ip-list-for-a-sub-account-api-key-for-master-account">
@@ -711,6 +721,7 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
      * ipAddress -- mandatory/string -- Can be added in batches, separated by commas <br>
+     * thirdPartyName -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account">

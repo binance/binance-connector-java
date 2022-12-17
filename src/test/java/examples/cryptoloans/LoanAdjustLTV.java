@@ -1,25 +1,27 @@
-package examples.futures;
+package examples.cryptoloans;
 
 import com.binance.connector.client.impl.SpotClientImpl;
 import examples.PrivateConfig;
-import java.util.LinkedHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Borrow {
-    private Borrow() {
-    }
-    private static final double amount = 0.01;
+import java.util.LinkedHashMap;
 
-    private static final Logger logger = LoggerFactory.getLogger(Borrow.class);
+public final class LoanAdjustLTV {
+
+    private LoanAdjustLTV() {
+    }
+
+    private static final long orderId = 100000001;
+    private static final double amount = 0.01;
+    private static final Logger logger = LoggerFactory.getLogger(LoanAdjustLTV.class);
     public static void main(String[] args) {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("coin", "USDT");
+        parameters.put("orderId", orderId);
         parameters.put("amount", amount);
-        parameters.put("collateralCoin", "BUSD");
-
+        
         SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
-        String result = client.createFutures().borrow(parameters);
+        String result = client.createCryptoLoans().loanAdjustLTV(parameters);
         logger.info(result);
     }
 }

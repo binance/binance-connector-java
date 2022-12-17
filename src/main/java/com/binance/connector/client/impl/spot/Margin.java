@@ -1,8 +1,10 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestHandler;
+import com.binance.connector.client.utils.SignatureGenerator;
 import java.util.LinkedHashMap;
 
 /**
@@ -20,7 +22,13 @@ public class Margin {
 
     public Margin(String baseUrl, String apiKey, String secretKey, boolean showLimitUsage) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey, secretKey);
+        this.requestHandler = new RequestHandler(apiKey, new HmacSignatureGenerator(secretKey));
+        this.showLimitUsage = showLimitUsage;
+    }
+
+    public Margin(String baseUrl, String apiKey, SignatureGenerator signatureGenerator, boolean showLimitUsage) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiKey, signatureGenerator);
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -196,7 +204,7 @@ public class Margin {
      * price -- optional/decimal <br>
      * stopPrice -- optional/decimal -- Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. <br>
      * newClientOrderId -- optional/string -- A unique id among open orders. Automatically generated if not sent. <br>
-     * icebergQty -- optional/deciaml -- Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. <br>
+     * icebergQty -- optional/decimal -- Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. <br>
      * newOrderRespType -- optional/enum -- Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. <br>
      * sideEffectType -- optional/enum -- NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT. <br>
      * timeInForce -- optional/enum -- GTC,IOC,FOK <br>
@@ -948,7 +956,7 @@ public class Margin {
      * parameters LinkedHashedMap of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE"，default "FALSE" <br>
+     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE", default "FALSE" <br>
      * symbol -- optional/string -- isolated symbol, mandatory for isolated margin <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String

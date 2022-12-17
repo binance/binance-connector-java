@@ -1,9 +1,12 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestHandler;
+import com.binance.connector.client.utils.SignatureGenerator;
 import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 
 /**
@@ -21,7 +24,13 @@ public class Wallet {
 
     public Wallet(String baseUrl, String apiKey, String secretKey, boolean showLimitUsage) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey, secretKey);
+        this.requestHandler = new RequestHandler(apiKey, new HmacSignatureGenerator(secretKey));
+        this.showLimitUsage = showLimitUsage;
+    }
+
+    public Wallet(String baseUrl, String apiKey, SignatureGenerator signatureGenerator, boolean showLimitUsage) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiKey, signatureGenerator);
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -133,7 +142,7 @@ public class Wallet {
      * transactionFeeFlag -- optional/boolean -- When making internal transfer, true for returning the fee to the destination account;
      *            false for returning the fee back to the departure account. Default false. <br>
      * name -- optional/string -- Description of the address. Space in name should be encoded into %20. <br>
-     * walletType -- optional/int -- The wallet type for withdraw，0-spot wallet ，1-funding wallet.Default spot wallet <br>
+     * walletType -- optional/int -- The wallet type for withdraw, 0-spot wallet , 1-funding wallet.Default spot wallet <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#withdraw-user_data">
@@ -485,4 +494,65 @@ public class Wallet {
     public String getUserAsset(LinkedHashMap<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, USER_ASSET, parameters, HttpMethod.POST, showLimitUsage);
     }
+
+    private final String BUSD_CONVERT = "/sapi/v1/asset/convert-transfer";
+    /**
+     * Convert transfer, convert between BUSD and stablecoins.
+     * <br><br>
+     * POST /sapi/v1/asset/convert-transfer
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * clientTranId -- mandatory/string -- The unique user-defined transaction id, min length 20 <br>
+     * asset -- mandatory/string -- The current asset <br>
+     * amount -- mandatory/BigDecimal -- The amount must be positive number <br>
+     * targetAsset -- mandatory/string -- Target asset you want to convert <br>
+     * accountType -- optional/string -- Only MAIN and CARD, default MAIN <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#busd-convert-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#busd-convert-trade</a>
+     */
+    public String busdConvert(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "clientTranId", String.class);
+        ParameterChecker.checkParameter(parameters, "asset", String.class);
+        ParameterChecker.checkParameter(parameters, "amount", BigDecimal.class);
+        ParameterChecker.checkParameter(parameters, "targetAsset", String.class);
+
+        return requestHandler.sendSignedRequest(baseUrl, BUSD_CONVERT, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String BUSD_CONVERT_HISTORY = "/sapi/v1/asset/convert-transfer/queryByPage";
+    /**
+     * <br><br>
+     * GET /sapi/v1/asset/convert-transfer/queryByPage
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * 
+     * startTime -- mandatory/long -- inclusive, unit: ms <br>
+     * endTime -- mandatory/long -- exclusive, unit: ms <br>
+     * tranId -- optional/long -- The transaction id <br>
+     * clientTranId -- optional/string -- The unique user-defined transaction id <br>
+     * asset -- optional/string -- If not sent or null, deducted asset and target asset are returned. <br>
+     * accountType -- optional/string -- MAIN: main account. CARD: funding account. If not sent or null, spot and card wallet will be queried. <br>
+     * current -- optional/integer -- current page, default 1, the min value is 1 <br>
+     * size -- optional/integer -- page size, default 10, the max value is 100 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#busd-convert-history-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#busd-convert-history-user_data</a>
+     */
+    public String busdConvertHistory(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "startTime", Long.class);
+        ParameterChecker.checkParameter(parameters, "endTime", Long.class);
+
+        return requestHandler.sendSignedRequest(baseUrl, BUSD_CONVERT_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+
 }

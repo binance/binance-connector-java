@@ -1,8 +1,10 @@
 package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestHandler;
+import com.binance.connector.client.utils.SignatureGenerator;
 import java.util.LinkedHashMap;
 
 /**
@@ -20,7 +22,13 @@ public class Trade {
 
     public Trade(String baseUrl, String apiKey, String secretKey, boolean showLimitUsage) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey, secretKey);
+        this.requestHandler = new RequestHandler(apiKey, new HmacSignatureGenerator(secretKey));
+        this.showLimitUsage = showLimitUsage;
+    }
+    
+    public Trade(String baseUrl, String apiKey, SignatureGenerator signatureGenerator, boolean showLimitUsage) {
+        this.baseUrl = baseUrl;
+        this.requestHandler = new RequestHandler(apiKey, signatureGenerator);
         this.showLimitUsage = showLimitUsage;
     }
 
@@ -44,7 +52,7 @@ public class Trade {
      * price -- optional/decimal <br>
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -78,7 +86,7 @@ public class Trade {
      * price -- optional/decimal <br>
      * newClientOrderId -- optional/string <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -185,7 +193,7 @@ public class Trade {
      * cancelOrderId -- optional/long -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
      * newClientOrderId -- optional/string -- Used to identify the new order. <br>
      * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/deciaml <br>
+     * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>
@@ -266,7 +274,7 @@ public class Trade {
      * stopClientOrderId -- optional/string <br>
      * stopPrice -- mandatory/decimal <br>
      * stopLimitPrice -- optional/decimal <br>
-     * stopIcebergQty -- optional/deciaml <br>
+     * stopIcebergQty -- optional/decimal <br>
      * stopLimitTimeInForce -- optional/enum <br>
      * newOrderRespType -- optional/enum <br>
      * recvWindow -- optional/long <br>

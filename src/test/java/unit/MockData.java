@@ -12,9 +12,9 @@ public final class MockData {
     public static final String API_KEY = "apiKey";
     public static final String SECRET_KEY = "secretKey";
     public static final LinkedHashMap<String, Object> MOCK_PARAMETERS = new LinkedHashMap<String, Object>() {{
-        put("key1", "value1");
-        put("key2", intValue2);
-    }};
+            put("key1", "value1");
+            put("key2", intValue2);
+        }};
 
     private MockData() {
     }

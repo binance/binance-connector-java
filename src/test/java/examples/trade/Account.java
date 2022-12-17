@@ -3,6 +3,7 @@ package examples.trade;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
+
 import examples.PrivateConfig;
 import java.util.LinkedHashMap;
 import org.slf4j.Logger;

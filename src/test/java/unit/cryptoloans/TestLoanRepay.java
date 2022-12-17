@@ -1,4 +1,4 @@
-package unit.futures;
+package unit.cryptoloans;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
@@ -15,9 +15,12 @@ import java.util.LinkedHashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class TestCalcuMaxAdjustAmount {
+public class TestLoanRepay {
     private MockWebServer mockWebServer;
     private String baseUrl;
+
+    private static final long orderId = 100000001;
+    private static final double amount = 10.1;
 
     @Before
     public void init() {
@@ -26,29 +29,30 @@ public class TestCalcuMaxAdjustAmount {
     }
 
     @Test
-    public void testCalcuMaxAdjustAmountWithoutParameters() {
-        String path = "/sapi/v2/futures/loan/calcMaxAdjustAmount";
+    public void testLoanRepayWithoutParameters() {
+        String path = "/sapi/v1/loan/repay";
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createFutures().calcMaxAdjustAmount(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createCryptoLoans().loanRepay(parameters));
     }
 
     @Test
-    public void testCalcuMaxAdjustAmount() {
-        String path = "/sapi/v2/futures/loan/calcMaxAdjustAmount?loanCoin=USDT&collateralCoin=BUSD";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("loanCoin", "USDT");
-        parameters.put("collateralCoin", "BUSD");
+    public void testLoanRepay() {
+        String path = "/sapi/v1/loan/repay?orderId=100000001&amount=10.1";
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("orderId", orderId);
+        parameters.put("amount", amount);
+
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createFutures().calcMaxAdjustAmount(parameters);
+        String result = client.createCryptoLoans().loanRepay(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

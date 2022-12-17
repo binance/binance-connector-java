@@ -1,17 +1,18 @@
-package unit.futures;
+package unit.cryptoloans;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.impl.SpotClientImpl;
 import java.util.LinkedHashMap;
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 
-public class TestLoanConfigs {
+import static org.junit.Assert.assertEquals;
+
+public class TestCollateralAssetsData {
     private MockWebServer mockWebServer;
     private String baseUrl;
 
@@ -22,15 +23,29 @@ public class TestLoanConfigs {
     }
 
     @Test
-    public void testLoanConfigs() {
-        String path = "/sapi/v2/futures/loan/configs";
+    public void testCollateralAssetsDataWithoutParameters() {
+        String path = "/sapi/v1/loan/collateral/data";
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createFutures().loanConfigs(parameters);
+        String result = client.createCryptoLoans().collateralAssetsData(parameters);
+        assertEquals(MockData.MOCK_RESPONSE, result);
+    }
+
+    @Test
+    public void testCollateralAssetsData() {
+        String path = "/sapi/v1/loan/collateral/data";
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("collateralCoin", "BNB");
+
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
+        mockWebServer.setDispatcher(dispatcher);
+
+        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        String result = client.createCryptoLoans().collateralAssetsData(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

@@ -45,7 +45,7 @@ public final class RequestBuilder {
         } catch (IllegalArgumentException e) {
             throw new BinanceConnectorException("Invalid URL: " + e.getMessage());
         }
-     }
+    }
 
     public static Request buildApiKeyRequest(String fullUrl, HttpMethod httpMethod, String apiKey) {
         try {

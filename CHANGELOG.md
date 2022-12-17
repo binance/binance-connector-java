@@ -1,5 +1,61 @@
 # Changelog
 
+## 1.12.0 - 2022-12-15
+
+### Added
+- New endpoints for Wallet:
+  - `POST /sapi/v1/asset/convert-transfer` to convert between BUSD and stablecoins
+  - `GET /sapi/v1/asset/convert-transfer/queryByPage` to query BUSD convert history
+- New endpoints for Crypto Loan:
+  - `GET /sapi/v1/loan/loanable/data` to get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD value.
+  - `GET /sapi/v1/loan/collateral/data` to get LTV information and collateral limit of collateral assets. The collateral limit is shown in USD value.
+  - `GET /sapi/v1/loan/repay/collateral/rate` to get the the rate of collateral coin / loan coin when using collateral repay, the rate will be valid within 8 seconds.
+  - `POST /sapi/v1/loan/customize/margin_call` to customize margin call for ongoing orders only.
+
+
+### Removed
+- Delete endpoints for Futures Cross Collateral:
+  - `POST /sapi/v1/futures/loan/borrow`
+  - `POST /sapi/v1/futures/loan/repay`
+  - `GET /sapi/v2/futures/loan/configs`
+  - `GET /sapi/v2/futures/loan/calcAdjustLevel`
+  - `GET /sapi/v2/futures/loan/calcMaxAdjustAmount`
+  - `POST /sapi/v2/futures/loan/adjustCollateral`
+  - `GET /sapi/v1/futures/loan/collateralRepayLimit`
+  - `GET /sapi/v1/futures/loan/collateralRepay`
+  - `POST /sapi/v1/futures/loan/collateralRepay`
+  - `GET /sapi/v1/futures/loan/collateralRepayResult`
+
+## 1.11.0 - 2022-11-28
+
+### Added
+- Add support for use of RSA Key to generate signatures
+
+### Removed
+- The All Book Tickers stream (!bookTicker) is removed
+
+## 1.10.0 - 2022-10-17
+
+### Added
+- New endpoints for Crypto Loan:
+  - `POST /sapi/v1/loan/borrow` to borrow Crypto Loan 
+  - `GET /sapi/v1/loan/borrow/history` to get Loan Borrow History
+  - `GET/sapi/v1/loan/ongoing/orders` to get Loan Ongoing Orders
+  - `POST/sapi/v1/loan/repay` to repay Crypto Loan 
+  - `GET/sapi/v1/loan/repay/history` to get Loan Repayment History
+  - `POST/sapi/v1/loan/adjust/ltv` to adjust Crypto Loan LTV (Loan-To-Value)
+  - `GET/sapi/v1/loan/ltv/adjustment/history` to get Loan LTV (Loan-To-Value) Adjustment History
+
+### Changed
+- Changes to `GET /api/v3/exchangeInfo`:
+  - New optional parameter `permissions` added to display all symbols with the permissions matching the parameter provided. (eg.SPOT, MARGIN, LEVERAGED)
+  - If not provided, the default value will be `["SPOT","MARGIN","LEVERAGED"]`
+  - Cannot be combined with symbol or symbols
+- Updated `checkstyle.xml` to also include Indentation verification 
+
+### Fixed
+- `DecimalFormat` with `Locale.ENGLISH` for requests with `Double` to have `.` as decimal separator.
+
 ## 1.9.0 - 2022-08-30
 
 ### Added
@@ -126,11 +182,11 @@
   - `GET /sapi/v1/mining/payment/uid` to get Mining account earning.
 - New endpoint for BSwap:
 
-  - `GET /sapi/v1/bswap/unclaimedRewards `to get unclaimed rewards record.
+  - `GET /sapi/v1/bswap/unclaimedRewards` to get unclaimed rewards record.
   - `POST /sapi/v1/bswap/claimRewards` to claim swap rewards or liquidity rewards.
   - `GET /sapi/v1/bswap/claimedHistory` to get history of claimed rewards.
 
-- Update endpoint for Margin：
+- Update endpoint for Margin: 
 
   - Removed out limit from `GET /sapi/v1/margin/interestRateHistory`; The max interval between startTime and endTime is 30 days.
 

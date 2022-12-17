@@ -5,9 +5,9 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 
 public class MsEpochConverter extends ClassicConverter {
 
-  @Override
-  public String convert(ILoggingEvent e) {
-    return Long.toString(e.getTimeStamp());
-  }
+    @Override
+    public String convert(ILoggingEvent e) {
+        return Long.toString(e.getTimeStamp());
+    }
 }
 

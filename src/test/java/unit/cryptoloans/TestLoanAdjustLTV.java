@@ -1,4 +1,4 @@
-package unit.futures;
+package unit.cryptoloans;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
@@ -15,11 +15,13 @@ import java.util.LinkedHashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class TestRepay {
+
+public class TestLoanAdjustLTV {
     private MockWebServer mockWebServer;
     private String baseUrl;
 
-    private final double amount = 1;
+    private static final long orderId = 100000001;
+    private static final double amount = 10.1;
 
     @Before
     public void init() {
@@ -28,30 +30,30 @@ public class TestRepay {
     }
 
     @Test
-    public void testRepayWithoutParameters() {
-        String path = "/sapi/v1/futures/loan/repay";
+    public void testLoanAdjustLTVWithoutParameters() {
+        String path = "/sapi/v1/loan/adjust/ltv";
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createFutures().repay(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createCryptoLoans().loanAdjustLTV(parameters));
     }
 
     @Test
-    public void testRepay() {
-        String path = "/sapi/v1/futures/loan/repay?coin=USDT&collateralCoin=BUSD&amount=1";
+    public void testLoanAdjustLTV() {
+        String path = "/sapi/v1/loan/adjust/ltv?orderId=100000001&amount=10.1";
+
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("coin", "USDT");
-        parameters.put("collateralCoin", "BUSD");
+        parameters.put("orderId", orderId);
         parameters.put("amount", amount);
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createFutures().repay(parameters);
+        String result = client.createCryptoLoans().loanAdjustLTV(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }
