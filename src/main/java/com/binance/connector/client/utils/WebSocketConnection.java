@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class WebSocketConnection extends WebSocketListener {
     private static final AtomicInteger connectionCounter = new AtomicInteger(0);
     private static final int NORMAL_CLOSURE_STATUS = 1000;
-    private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
+    private static final OkHttpClient client = WebSocketHttpClientSingleton.getHttpClient();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketConnection.class);
 
 	private final WebSocketOpenCallback    onOpenCallback;

@@ -12,14 +12,16 @@ public class RequestHandler {
     private final String apiKey;
     private final SignatureGenerator signatureGenerator;
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
+    private final ProxyAuth proxy;
 
-    public RequestHandler(String apiKey) {
-        this(apiKey, null);
+    public RequestHandler(String apiKey, ProxyAuth proxy) {
+        this(apiKey, null, proxy);
     }
 
-    public RequestHandler(String apiKey, SignatureGenerator signatureGenerator) {
+    public RequestHandler(String apiKey, SignatureGenerator signatureGenerator, ProxyAuth proxy) {
         this.apiKey = apiKey;
         this.signatureGenerator = signatureGenerator;
+        this.proxy = proxy;
     }
 
     /**
@@ -49,7 +51,7 @@ public class RequestHandler {
             default:
                 throw new BinanceConnectorException("[RequestHandler] Invalid request type: " + requestType);
         }
-        return ResponseHandler.handleResponse(request, showLimitUsage);
+        return ResponseHandler.handleResponse(request, showLimitUsage, proxy);
     }
 
     public String sendPublicRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,

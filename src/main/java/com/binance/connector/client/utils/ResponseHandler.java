@@ -4,6 +4,8 @@ import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.exceptions.BinanceServerException;
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.UnknownHostException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -12,7 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public final class ResponseHandler {
-    private static final OkHttpClient client = HttpClientSingleton.getHttpClient();
+    private static OkHttpClient client;
     private static final int HTTP_STATUS_CODE_400 = 400;
     private static final int HTTP_STATUS_CODE_499 = 499;
     private static final int HTTP_STATUS_CODE_500 = 500;
@@ -20,7 +22,8 @@ public final class ResponseHandler {
     private ResponseHandler() {
     }
 
-    public static String handleResponse(Request request, boolean showLimitUsage) {
+    public static String handleResponse(Request request, boolean showLimitUsage, ProxyAuth proxy) {
+        client = HttpClientSingleton.getHttpClient(proxy);
         try (Response response = client.newCall(request).execute()) {
             if (null == response) {
                 throw new BinanceServerException("[ResponseHandler] No response from server");
@@ -40,7 +43,15 @@ public final class ResponseHandler {
                 return responseAsString;
             }
         } catch (IOException | IllegalStateException e) {
-            throw new BinanceConnectorException("[ResponseHandler] OKHTTP Error: " + e.getMessage());
+            String exceptionMsg = "OKHTTP Error: ";
+            if (proxy != null) {
+                if ((e.getClass().equals(ConnectException.class))) {
+                    exceptionMsg = "Proxy Connection Error: ";
+                } else if ((e.getClass().equals(UnknownHostException.class))) {
+                    exceptionMsg = "Proxy Unknown Host Error: ";
+                }
+            }
+            throw new BinanceConnectorException("[ResponseHandler] " + exceptionMsg + e.getMessage());
         }
     }
 
