@@ -4,6 +4,7 @@ import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
+import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.RequestHandler;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -21,9 +22,9 @@ public class Market {
     private final RequestHandler requestHandler;
     private final boolean showLimitUsage;
 
-    public Market(String baseUrl, String apiKey, boolean showLimitUsage) {
+    public Market(String baseUrl, String apiKey, boolean showLimitUsage, ProxyAuth proxy) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey);
+        this.requestHandler = new RequestHandler(apiKey, proxy);
         this.showLimitUsage = showLimitUsage;
     }
     private final String PING = "/api/v3/ping";

@@ -2,6 +2,7 @@ package com.binance.connector.client.impl.spot;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
+import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.RequestHandler;
 import java.util.LinkedHashMap;
 
@@ -18,9 +19,9 @@ public class UserData {
     private final RequestHandler requestHandler;
     private final boolean showLimitUsage;
 
-    public UserData(String baseUrl, String apiKey, boolean showLimitUsage) {
+    public UserData(String baseUrl, String apiKey, boolean showLimitUsage, ProxyAuth proxy) {
         this.baseUrl = baseUrl;
-        this.requestHandler = new RequestHandler(apiKey);
+        this.requestHandler = new RequestHandler(apiKey, proxy);
         this.showLimitUsage = showLimitUsage;
     }
 

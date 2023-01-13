@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0rc1 - 2023-01-13
+
+### Added
+- HTTP Proxy support
+
 ## 1.12.0 - 2022-12-15
 
 ### Added

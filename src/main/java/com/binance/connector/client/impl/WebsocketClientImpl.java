@@ -3,7 +3,7 @@ package com.binance.connector.client.impl;
 import com.binance.connector.client.WebsocketClient;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.utils.HttpClientSingleton;
+import com.binance.connector.client.utils.WebSocketHttpClientSingleton;
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.UrlBuilder;
 import com.binance.connector.client.utils.WebSocketCallback;
@@ -584,7 +584,7 @@ public class WebsocketClientImpl implements WebsocketClient {
         }
 
         if (connections.isEmpty()) {
-            HttpClientSingleton.getHttpClient().dispatcher().executorService().shutdown();
+            WebSocketHttpClientSingleton.getHttpClient().dispatcher().executorService().shutdown();
             logger.info("All connections are closed!");
         }
     }

@@ -24,14 +24,15 @@ import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
 import com.binance.connector.client.impl.spot.Wallet;
 import com.binance.connector.client.utils.HmacSignatureGenerator;
+import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.SignatureGenerator;
-
 
 public class SpotClientImpl implements SpotClient {
     private final String apiKey;
     private final SignatureGenerator signatureGenerator;
     private final String baseUrl;
     private boolean showLimitUsage = false;
+    private ProxyAuth proxy = null;
 
     public SpotClientImpl() {
         this(DefaultUrls.PROD_URL);
@@ -64,106 +65,115 @@ public class SpotClientImpl implements SpotClient {
         this.showLimitUsage = showLimitUsage;
     }
 
+    public void setProxy(ProxyAuth proxy) {
+        this.proxy = proxy;
+    }
+
+    public void unsetProxy() {
+        this.proxy = null;
+    }
+
     @Override
     public Blvt createBlvt() {
-        return new Blvt(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Blvt(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public BSwap createBswap() {
-        return new BSwap(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new BSwap(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public C2C createC2C() {
-        return new C2C(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new C2C(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Convert createConvert() {
-        return new Convert(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Convert(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public CryptoLoans createCryptoLoans() {
-        return new CryptoLoans(baseUrl, apiKey, signatureGenerator, showLimitUsage); }
+        return new CryptoLoans(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
+    }
 
     @Override
     public Fiat createFiat() {
-        return new Fiat(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Fiat(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Futures createFutures() {
-        return new Futures(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Futures(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public GiftCard createGiftCard() {
-        return new GiftCard(baseUrl, apiKey, signatureGenerator, showLimitUsage); }
+        return new GiftCard(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy); }
 
     @Override
     public Margin createMargin() {
-        return new Margin(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Margin(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Market createMarket() {
-        return new Market(baseUrl, apiKey, showLimitUsage);
+        return new Market(baseUrl, apiKey, showLimitUsage, proxy);
     }
 
     @Override
     public Mining createMining() {
-        return new Mining(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Mining(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public NFT createNFT() {
-        return new NFT(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new NFT(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Pay createPay() {
-        return new Pay(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Pay(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public PortfolioMargin createPortfolioMargin() {
-        return new PortfolioMargin(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new PortfolioMargin(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Rebate createRebate() {
-        return new Rebate(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Rebate(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Savings createSavings() {
-        return new Savings(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Savings(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Staking createStaking() {
-        return new Staking(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Staking(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public SubAccount createSubAccount() {
-        return new SubAccount(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new SubAccount(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public Trade createTrade() {
-        return new Trade(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Trade(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
     public UserData createUserData() {
-        return new UserData(baseUrl, apiKey, showLimitUsage);
+        return new UserData(baseUrl, apiKey, showLimitUsage, proxy);
     }
 
     @Override
     public Wallet createWallet() {
-        return new Wallet(baseUrl, apiKey, signatureGenerator, showLimitUsage);
+        return new Wallet(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 }

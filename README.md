@@ -138,6 +138,52 @@ output:
 ```
 INFO: {"data":"{"serverTime":1633434339494}","x-mbx-used-weight":"1","x-mbx-used-weight-1m":"1"}
 ```
+
+### Proxy
+HTTP Proxy is supported.
+
+To set it up, call `setProxy()` with `ProxyAuth` and before submitting requests to binance:
+
+```java
+SpotClientImpl client = new SpotClientImpl();
+Proxy proxyConn = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8080));
+ProxyAuth proxy = new ProxyAuth(proxyConn, null);
+
+client.setProxy(proxy);
+logger.info(client.createMarket().time());
+```
+
+For authenticated `Proxy`, define `ProxyAuth` with [`Authenticator` from `okhttp3`](https://square.github.io/okhttp/3.x/okhttp/index.html?okhttp3/Authenticator.html):
+
+```java
+SpotClientImpl client = new SpotClientImpl();
+Proxy proxyConn = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8080));
+Authenticator auth = new Authenticator() {
+    public Request authenticate(Route route, Response response) throws IOException {
+        if (response.request().header("Proxy-Authorization") != null) {
+            return null; // Give up, we've already failed to authenticate.
+          }
+      
+        String credential = Credentials.basic("username", "password");
+        return response.request().newBuilder().header("Proxy-Authorization", credential).build();
+        
+    }
+};
+ProxyAuth proxy = new ProxyAuth(proxyConn, auth);
+
+client.setProxy(proxy);
+logger.info(client.createMarket().time());
+```
+
+To undo `Proxy`, use `unsetProxy()` before submitting requests to binance:
+
+```java
+client.unsetProxy();
+logger.info(client.createMarket().time());
+```
+
+Complete examples are available at `test/examples/proxy` folder.
+
 ### Logging
 
 `ch.qos.logback` is used for logging in this connector. The configuration xml file can be found under
