@@ -63,6 +63,8 @@ public final class RsaSignatureGenerator implements SignatureGenerator {
             .replace("-----BEGIN PRIVATE KEY-----", "")
             .replace("-----END PRIVATE KEY-----", "");
         }
+        parsedPem = parsedPem.replace("\r", "");
+        parsedPem = parsedPem.replace("\n", "");
         byte[] encoded = Base64.getDecoder().decode(parsedPem); //illegal character
         PKCS8EncodedKeySpec encodedKeySpec;
         if (password != null) {

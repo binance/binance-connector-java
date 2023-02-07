@@ -44,6 +44,44 @@ public class TestRsaSignatureGenerator {
     }
 
     @Test
+    public void testUnprotectedSigningWithNewLine() {
+        String pem = "-----BEGIN PRIVATE KEY-----\r\n"
+                + "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDPrfWMr2yqxJgJ\n"
+                + "cIyA5TDFpZBlB9E3RMbbEcPZijmPDiciZjuRiD1Q6oQzi1MFGTZ523HwSXe9XG3R\n"
+                + "NQaLCjxi+VkLsvCoxzgurkWXoQr0VHJyEDxnyRaCzTyvvHQgt0LKCWfqalYNz0ue\n"
+                + "doxnYnde3DH/tFFXX0/rTkJyK6LpOyKOAqE0G7OhuQWkLvlUO8mqwtGNqdrtOgzv\n"
+                + "kTN5rhb5VeWB4JGWDcAYFb9CQI9wD7/JJU1XQGIOJEY3L/PjGLcjDEiROt57/RS3\n"
+                + "i6OVTiAgDcgA405tNLgS326hfbEchI5tKeOxqrFYVfvOK8+4o+rrUBnMhrBg0tJv\n"
+                + "1feQKeAnAgMBAAECggEAUdB8PZIWQyfzpTRbhaPElPhmbAaqWxWTKVZUS2zyw/KV\n"
+                + "ZC3WJb0AOtJIhm3KpOWL2nGi70BiFY1GDfbPvxKnO25zr/IscLEa5vjsnZFp2Vsz\n"
+                + "QtA2m8RSQ/FKiQi6zvCjNSiDcYu2nvYdGi4lnczirdIdOFj2+m6n81D/SC78nNhj\n"
+                + "P/JLbSPFw+XOfVqOVelXHw7XGtMH9dgFjWDdB317HcJjZyPDahpQQ7s6PcecDwuv\n"
+                + "Qucs+Hi4sAWiHOiwKusx3sT/NL5Og/jAvC5aMy1QswWFnPr90T3qFE4MN1GZszzX\n"
+                + "DmDkWaGaRwuwdpi/ocIZF3R9XX3m+WOVdEZRfzzcEQKBgQDt11achN666/j1kgQM\n"
+                + "xPdzo06eUUZb/JUtEXz8hU+AzRsN/eso/47pjaPq7nrXFYE4aEx7Je2I9S52Y+b/\n"
+                + "SLrctuza25VOxvqIpDynlvM/Iatg9WuTEIuOk7gkBFanDNjDjZDKFuDYSEfN+sX+\n"
+                + "UakFT7cm+xu12PWR8HlZmFZL5QKBgQDfiRrC8zADSIE74uFBJ5K88t6cwrktqdPH\n"
+                + "9QT69j+VpRXssyUoCfR4/zchKbEyTwSASvL1saJR14Opmvn6Le+0DKq+EV7Z1UM6\n"
+                + "svVIzd9pWWMhRh9G83CC5Krx9Ie+34QHNRxBf+rya5if/aBCDtBFedRGbR6Le8MB\n"
+                + "yvrpT5hzGwKBgQCU2+QPjnHA2BQ3zq3OODEQJTP9jqzUwd+0F2/8tIsv+C9osHXQ\n"
+                + "cTLHJqljTuN/XqxD27OSmAh1Yc80tg5L1P9vSOYxjKGEbrE7eF+mHKod5zrWMoSj\n"
+                + "xQUztWzYzgZWA4pfymjGs08Czypx1vS42e9JrbzaHuwXArWgI7wvwVKxqQKBgQCS\n"
+                + "ByIZav7Zljr+oUdf5fdBQjPVGowYXZJBVTpMrCN7od4BxEIotuAjTy53lqHwaJhb\n"
+                + "KxsvED0m0/BqExjsq6ek6oV8JyLckSobJZ+BUSR60O8mZIW4Nv4wNCvMZl9rfN7m\n"
+                + "SnbL/0G/3jRViD1yCfVa/ayD2XMT0eThvfVOBzZjMwKBgB5jasP9TcDAyaEKta+g\n"
+                + "6glTM0MKUWfhZzYRbvDXdnatjjMEdixWm9aXwc0Nw+aN0KkdLBwvnDiVMtX+Xl2n\n"
+                + "BU2Gxxe3H8qrvkoi8zmzh3VWpqzfB+L3sXAq+6VNNYLEFLBR6D2u4DD86FvY+DsU\n"
+                + "miJlY6JEKpSxvkrS04XrbvHk"
+                + "-----END PRIVATE KEY-----";
+        String payload = "symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559";
+        String expectedSignature = "uz2xmNkOf1EEsnZoWGraxR13F4jF9JYdC68uvWqYyjFyjwDgcoiMRm23UqsxWkmA208smu7TuGVxm1cWoZa/5fLQ2T/RcfLW9sokNWDzf1vM/xEpSmQEsSyIzd/c0pMWGsUkXsYpIarp3e/KSFzgwI73qZfbalBRkkK7u3dLWRVRk4kmEVf6dQUWMyXC44X8LB0M1XFrhkqcFYdcP9NcaCZCvb8nzG/nyUPtCJdBxVn8MMgXaVCM8DIbSrUBT0ZUxFQ3gTSd929LR1Tp6P2y4pHiWSElW5nJZYRRn2zUFt4xH7wvVKvuuEi8HH0Dusf6KBcWq8/3viAcRUh1Cj4fsQ==";
+
+        RsaSignatureGenerator rsaSignatureGenerator = new RsaSignatureGenerator(pem);
+        String actualSignature = rsaSignatureGenerator.getSignature(payload);
+        assertEquals(expectedSignature, actualSignature);
+    }
+
+    @Test
     public void testProtectedSigning() {
         String pem = "-----BEGIN ENCRYPTED PRIVATE KEY-----"
             + "MIIE6TAbBgkqhkiG9w0BBQMwDgQIeaAJMt/f5woCAggABIIEyI2jIbFTPo/YBmwH"
