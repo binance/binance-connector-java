@@ -53,7 +53,7 @@ public final class RsaSignatureGenerator implements SignatureGenerator {
 
     private RSAPrivateKey parsePrivateKey(String privateKeyPem, String password) throws Exception {
         // Private Key in PKCS#8 standard
-        String parsedPem = privateKeyPem.replace("\n", "").trim();
+        String parsedPem = privateKeyPem.replace("\r", "").replace("\n", "").trim();
         if (password != null) {
             parsedPem = parsedPem
             .replace("-----BEGIN ENCRYPTED PRIVATE KEY-----", "")
@@ -63,8 +63,6 @@ public final class RsaSignatureGenerator implements SignatureGenerator {
             .replace("-----BEGIN PRIVATE KEY-----", "")
             .replace("-----END PRIVATE KEY-----", "");
         }
-        parsedPem = parsedPem.replace("\r", "");
-        parsedPem = parsedPem.replace("\n", "");
         byte[] encoded = Base64.getDecoder().decode(parsedPem); //illegal character
         PKCS8EncodedKeySpec encodedKeySpec;
         if (password != null) {
