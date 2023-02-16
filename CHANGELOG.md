@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.0rc2 - 2023-02-16
+
+### Added
+- Spot Websocket API
+
+### Changed
+- Code Cleanup
+  - Renamed `WebsocketClientImpl` to `WebsocketStreamClientImpl`.
+  - Grouped Rest API examples and tests under `spot` folder.
+
+### Fixed
+- Removed `logback-classic` dependency and excluded `logback.xml` to let the end-user configure the logging environment.
+
 ## 2.0.0rc1 - 2023-01-13
 
 ### Added
