@@ -68,7 +68,7 @@ public class Staking {
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
      * productId -- mandatory/STRING <br>
      * amount -- mandatory/decimal <br>
-     * renewable -- optional/STRING -- true or false, default false. Active if product is "STAKING" or "L_DEFI" <br>
+     * renewable -- optional/string -- true or false, default false. Active if product is "STAKING" or "L_DEFI" <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#purchase-staking-product-user_data">
@@ -92,7 +92,7 @@ public class Staking {
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
-     * positionId -- optional/STRING -- "1234", Mandatory if product is "STAKING" or "L_DEFI" <br>
+     * positionId -- optional/string -- "1234", Mandatory if product is "STAKING" or "L_DEFI" <br>
      * productId -- mandatory/STRING <br>
      * amount -- optional/decimal -- Mandatory if product is "F_DEFI" <br>
      * recvWindow -- optional/long <br>

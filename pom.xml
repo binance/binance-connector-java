@@ -6,7 +6,7 @@
 
     <groupId>io.github.binance</groupId>
     <artifactId>binance-connector-java</artifactId>
-    <version>2.0.0rc1</version>
+    <version>2.0.0rc2</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>lightweight connector to API</description>
@@ -91,7 +91,7 @@
                 <version>2.9.1</version>
                 <configuration>
                     <excludePackageNames>
-                        com.binance.connector.client.utils:com.binance.connector.client.enums:com.binance.connector.client.exceptions:com.binance.connector.client.impl.SpotClientImpl:com.binance.connector.logging
+                        com.binance.connector.client.enums:com.binance.connector.client.exceptions:com.binance.connector.client.utils
                     </excludePackageNames>
                 </configuration>
                 <executions>
@@ -177,12 +177,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.32</version>
-        </dependency>
-        <!-- Replacing log4j2 due to: https://logging.apache.org/log4j/2.x/security.html -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>

@@ -1,6 +1,8 @@
 package com.binance.connector.client.utils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,4 +38,42 @@ public final class JSONParser {
             throw new JSONException(String.format("[JSONParser] Failed to convert \"%s\" to JSON array", key));
         }
     }
+
+    public static String buildJSONString(Object id, String method, JSONObject parameters) {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("id", id);
+            json.put("method", method);
+            json.put("params", parameters);
+            return json.toString();
+        } catch (JSONException e) {
+            throw new JSONException(String.format("[JSONParser] Failed to convert to JSON string"));
+        }
+    }
+
+    public static LinkedHashMap<String, Object> sortJSONObject(JSONObject parameters) {
+        LinkedList<String> keys = new LinkedList<>(parameters.keySet());
+        LinkedHashMap<String, Object> sortedParams = new LinkedHashMap<>();
+        keys.stream().sorted().forEach(key -> sortedParams.put(key, parameters.get(key)));
+
+        return sortedParams;
+    }
+
+    public static JSONObject addKeyValue(JSONObject parameters, String key, Object value) {
+        if (parameters == null) {
+            parameters = new JSONObject();
+        }
+
+        return parameters.put(key, value);
+    }
+
+    public static Object pullValue(JSONObject parameters, String key) {
+        if (parameters == null) {
+            return null;
+        }
+        Object value = parameters.opt(key);
+        parameters.remove(key);
+        return value;
+    }
+
 }
