@@ -24,6 +24,8 @@ public final class RsaSignatureGenerator implements SignatureGenerator {
     }
 
     public RsaSignatureGenerator(String privateKey, String password) {
+        ParameterChecker.checkParameterType(privateKey, String.class, "privateKey");
+        
         try {
             String privateKeyPem = privateKey;
             if (new File(privateKey).exists()) {

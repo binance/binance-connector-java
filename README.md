@@ -8,8 +8,10 @@ This is a lightweight library that works as a connector to the [Binance public A
 - Supported APIs:
   - `/api/*`
   - `/sapi/*`
-  - Spot Websocket Market Stream
+  - Spot WebSocket Market Stream
   - Spot User Data Stream
+  - Spot WebSocket API
+
 - Test cases and examples
 
 ## Installation
@@ -33,6 +35,7 @@ Before running any of it, `PrivateConfig.java` must be set up correctly with `AP
 
 Note that this `PrivateConfig.java` is only used for examples,
 you should have your own configuration file when using the library.
+
 ### RESTful APIs
 
 The endpoints are categorized according to the [Binance](https://binance-docs.github.io/apidocs/spot/en/#change-log) API document.
@@ -185,9 +188,18 @@ logger.info(client.createMarket().time());
 Complete examples are available at `test/examples/proxy` folder.
 
 ### Logging
+This connector uses [`SLF4J`](https://www.slf4j.org/) as an abstraction layer for diverse logging frameworks.
 
-`ch.qos.logback` is used for logging in this connector. The configuration xml file can be found under
-`src/main/resources`.
+It's end-user's responsibility to select the appropriate `SLF4J` binding to use as the logger (e.g, `slf4j-jdk14` or `logback-classic`).
+Otherwise, you might see the following informative output:
+
+```shell
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+If you prefer to not use a logger and suppress the `SLF4J` messages instead, you can refer to `slf4j-nop`.
 
 ### Error
 
@@ -215,36 +227,60 @@ try {
     }
 ```
 
-### Websocket
+### Websocket Stream
 
 ```java
-WebsocketClientImpl client = new WebsocketClientImpl(); // defaults to production environment unless stated,
-int streamID1 = client.aggTradeStream("btcusdt",((event) -> {
+WebsocketStreamClientImpl wsStreamClient = new WebsocketStreamClientImpl(); // defaults to live exchange unless stated.
+
+// Single stream
+int streamID1 = wsStreamClient.aggTradeStream("btcusdt",((event) -> {
     System.out.println(event);
 }));
 
-//Combining Streams
+// Combined streams
 ArrayList<String> streams = new ArrayList<>();
 streams.add("btcusdt@trade");
 streams.add("bnbusdt@trade");
 
-int streamID2 = client.combineStreams(streams, ((event) -> {
+int streamID2 = wsStreamClient.combineStreams(streams, ((event) -> {
     System.out.println(event);
 }));
 
-//Listening to User Data Stream
-int streamID3 = client.listenUserStream(listenKey, ((event) -> {
-  System.out.println(event);
+// Close single stream
+wsStreamClient.closeConnection(streamID1); //closes aggTradeStream-btcusdt
+        
+// Close all streams
+wsStreamClient.closeAllConnections();
+```
+
+More examples are available at `test/examples/websocketstream` folder
+
+### Websocket API
+
+```java
+RsaSignatureGenerator signatureGenerator =  new RsaSignatureGenerator("PRIVATE_KEY_PATH");
+WebsocketApiClientImpl wsApiClient = new WebsocketApiClientImpl("API_KEY", signatureGenerator); // defaults to live exchange unless stated.
+
+// Open connection with a callback as parameter
+wsApiClient.connect(((message) -> {
+    System.out.println(message);
 }));
 
-//Closing a single stream
-client.closeConnection(streamID1); //closes aggTradeStream-btcusdt
-        
-//Closing all streams
-client.closeAllConnections();
-```
-More websocket examples are available in the `test/examples` folder
+JSONObject optionalParams = new JSONObject();
+optionalParams.put("requestId", "request123");
+optionalParams.put("quantity", 1);
 
+wsApiClient.trade().testNewOrder("BTCUSDT", "BUY", "MARKET", optionalParams);
+
+Thread.sleep(3000);
+
+// Close connection
+wsApiClient.close();
+
+```
+If `requestId` is empty (`""`), `null` or not sent, this library will generate a `UUID` string for it. 
+
+More examples are available at `test/examples/websocketapi` folder
 
 ### Test
 `mvn clean test`

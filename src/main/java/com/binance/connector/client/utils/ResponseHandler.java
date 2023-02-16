@@ -3,6 +3,7 @@ package com.binance.connector.client.utils;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.exceptions.BinanceServerException;
+import com.binance.connector.client.utils.httpclient.HttpClientSingleton;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;

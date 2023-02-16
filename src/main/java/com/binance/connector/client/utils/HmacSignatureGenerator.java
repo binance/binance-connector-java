@@ -9,6 +9,7 @@ public final class HmacSignatureGenerator implements SignatureGenerator {
     private String apiSecret;
 
     public HmacSignatureGenerator(String apiSecret) {
+        ParameterChecker.checkParameterType(apiSecret, String.class, "apiSecret");
         this.apiSecret = apiSecret;
     }
 

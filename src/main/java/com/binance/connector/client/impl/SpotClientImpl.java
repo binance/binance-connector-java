@@ -39,7 +39,7 @@ public class SpotClientImpl implements SpotClient {
     }
 
     public SpotClientImpl(String baseUrl) {
-        this("", "", baseUrl);
+        this("", (SignatureGenerator) null, baseUrl);
     }
 
     public SpotClientImpl(String baseUrl, boolean showLimitUsage) {
