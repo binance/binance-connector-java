@@ -68,7 +68,7 @@ public class WebSocketConnection extends WebSocketListener {
 
     public void send(String message) {
         if (null == webSocket) {
-            throw new BinanceConnectorException("No Websocket connection. Please connect first!");
+            throw new BinanceConnectorException("No WebSocket connection. Please connect first!");
         } 
         webSocket.send(message);
     }

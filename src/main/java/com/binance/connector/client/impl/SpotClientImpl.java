@@ -5,8 +5,8 @@ import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.spot.BSwap;
 import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
-import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Convert;
+import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Fiat;
 import com.binance.connector.client.impl.spot.Futures;
 import com.binance.connector.client.impl.spot.GiftCard;
@@ -23,9 +23,9 @@ import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
 import com.binance.connector.client.impl.spot.Wallet;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ProxyAuth;
-import com.binance.connector.client.utils.SignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 
 public class SpotClientImpl implements SpotClient {
     private final String apiKey;

@@ -1,15 +1,16 @@
 package com.binance.connector.client.impl.websocketapi;
 
+import org.json.JSONObject;
+
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
-import org.json.JSONObject;
 
 /**
  * <h2>Account Requests</h2>
  * All requests under the
  * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#account-requests">Account requests</a>
- * section of the Websocket API documentation will be implemented in this class.
+ * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
  */

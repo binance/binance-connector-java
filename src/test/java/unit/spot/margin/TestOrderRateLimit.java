@@ -1,17 +1,19 @@
 package unit.spot.margin;
 
-import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.impl.SpotClientImpl;
-import okhttp3.mockwebserver.Dispatcher;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
-import org.junit.Test;
-import unit.MockData;
-import unit.MockWebServerDispatcher;
+import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import okhttp3.mockwebserver.Dispatcher;
+import okhttp3.mockwebserver.MockWebServer;
+import unit.MockData;
+import unit.MockWebServerDispatcher;
 
 public class TestOrderRateLimit {
     private MockWebServer mockWebServer;

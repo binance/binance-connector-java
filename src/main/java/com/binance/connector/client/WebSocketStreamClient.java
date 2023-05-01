@@ -7,7 +7,7 @@ import com.binance.connector.client.utils.WebSocketFailureCallback;
 import com.binance.connector.client.utils.WebSocketMessageCallback;
 import com.binance.connector.client.utils.WebSocketOpenCallback;
 
-public interface WebsocketStreamClient {
+public interface WebSocketStreamClient {
     int aggTradeStream(String symbol, WebSocketMessageCallback callback);
     int aggTradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback);
     int tradeStream(String symbol, WebSocketMessageCallback callback);

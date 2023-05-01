@@ -1,6 +1,6 @@
 package examples.websocketstream;
 
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public final class CombineStreams {
     }
 
     public static void main(String[] args) {
-        WebsocketStreamClientImpl client = new WebsocketStreamClientImpl();
+        WebSocketStreamClientImpl client = new WebSocketStreamClientImpl();
         ArrayList<String> streams = new ArrayList<>();
         streams.add("btcusdt@trade");
         streams.add("bnbusdt@trade");

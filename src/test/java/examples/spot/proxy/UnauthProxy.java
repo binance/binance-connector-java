@@ -1,10 +1,10 @@
 package examples.spot.proxy;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.utils.ProxyAuth;
-
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+import com.binance.connector.client.utils.ProxyAuth;
 
 public final class UnauthProxy {
     private UnauthProxy() {

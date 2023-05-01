@@ -1,6 +1,7 @@
 package examples.spot.bswap;
 
 import com.binance.connector.client.impl.SpotClientImpl;
+
 import examples.PrivateConfig;
 
 public final class SwapPools {

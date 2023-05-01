@@ -1,9 +1,10 @@
 package examples.spot.market;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import examples.PrivateConfig;
-
 import java.util.LinkedHashMap;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import examples.PrivateConfig;
 
 public final class UIKlines {
     private UIKlines() {

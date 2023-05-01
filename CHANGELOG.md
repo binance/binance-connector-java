@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0 - 2023-05-01
+
+### Changed
+- Improved naming consistency by renaming all areas containing `Websocket` to `WebSocket`.
+- Move signature generator classes under new utils subpath `utils/signaturegenerator`.
+
 ## 2.0.0rc2 - 2023-02-16
 
 ### Added

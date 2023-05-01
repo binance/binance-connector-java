@@ -1,14 +1,15 @@
 package com.binance.connector.client.impl.spot;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.RequestHandler;
-import com.binance.connector.client.utils.SignatureGenerator;
-import java.util.ArrayList;
-import java.math.BigDecimal;
-import java.util.LinkedHashMap;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 
 /**
  * <h2>Wallet Endpoints</h2>

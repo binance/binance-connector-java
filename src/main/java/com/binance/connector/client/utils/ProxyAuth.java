@@ -1,6 +1,7 @@
 package com.binance.connector.client.utils;
 
 import java.net.Proxy;
+
 import okhttp3.Authenticator;
 
 public final class ProxyAuth {

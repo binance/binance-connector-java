@@ -1,6 +1,7 @@
 package examples.spot.market;
 
 import com.binance.connector.client.impl.SpotClientImpl;
+
 import examples.PrivateConfig;
 
 public final class Ping {

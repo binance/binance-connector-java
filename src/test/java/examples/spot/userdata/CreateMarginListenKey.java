@@ -1,6 +1,7 @@
 package examples.spot.userdata;
 
 import com.binance.connector.client.impl.SpotClientImpl;
+
 import examples.PrivateConfig;
 
 public final class CreateMarginListenKey {

@@ -1,13 +1,13 @@
 package examples.websocketstream;
 
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 
 public final class AggTradeStream {
     private AggTradeStream() {
     }
 
     public static void main(String[] args) {
-        WebsocketStreamClientImpl client = new WebsocketStreamClientImpl();
+        WebSocketStreamClientImpl client = new WebSocketStreamClientImpl();
         int streamId1 = client.aggTradeStream("btcusdt", ((event) -> {
             System.out.println(event);
         }));

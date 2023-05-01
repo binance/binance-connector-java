@@ -1,8 +1,10 @@
-package com.binance.connector.client.utils;
+package com.binance.connector.client.utils.signaturegenerator;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
+
+import com.binance.connector.client.utils.ParameterChecker;
 
 public final class HmacSignatureGenerator implements SignatureGenerator {
     private static final String HMAC_SHA256 = "HmacSHA256";

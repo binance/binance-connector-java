@@ -2,6 +2,7 @@ package com.binance.connector.client.utils;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
+
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -87,7 +88,7 @@ public final class RequestBuilder {
         }
     }
 
-    public static Request buildWebsocketRequest(String fullUrl) {
+    public static Request buildWebSocketRequest(String fullUrl) {
         return new Request.Builder().url(fullUrl).build();
     }
 }

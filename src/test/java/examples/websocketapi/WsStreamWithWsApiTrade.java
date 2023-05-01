@@ -1,13 +1,14 @@
 package examples.websocketapi;
 
-import com.binance.connector.client.impl.WebsocketApiClientImpl;
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import org.json.JSONObject;
+
 import com.binance.connector.client.enums.DefaultUrls;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
+import com.binance.connector.client.impl.WebSocketApiClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 import com.binance.connector.client.utils.WebSocketCallback;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 
 import examples.PrivateConfig;
-import org.json.JSONObject;
 
 public final class WsStreamWithWsApiTrade {
     
@@ -20,7 +21,7 @@ public final class WsStreamWithWsApiTrade {
     public static void main(String[] args) throws InterruptedException {
 
         // ws stream call
-        WebsocketStreamClientImpl streamClient = new WebsocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
+        WebSocketStreamClientImpl streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
 
         WebSocketCallback streamOnMsgCallback = (event) -> {
             System.out.println(event);
@@ -32,7 +33,7 @@ public final class WsStreamWithWsApiTrade {
 
         // ws api call
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(PrivateConfig.TESTNET_SECRET_KEY);
-        WebsocketApiClientImpl apiClient = new WebsocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
+        WebSocketApiClientImpl apiClient = new WebSocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
         apiClient.connect(((event) -> {
             System.out.println(event);
         }));
