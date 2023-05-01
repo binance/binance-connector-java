@@ -1,20 +1,22 @@
 package unit.spot.subaccount;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+
+import java.util.LinkedHashMap;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
 import com.binance.connector.client.utils.UrlBuilder;
+
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
-import org.junit.Test;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
-
-import java.util.LinkedHashMap;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class TestEnableFuturesSubAccount {
     private MockWebServer mockWebServer;

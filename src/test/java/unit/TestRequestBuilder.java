@@ -1,14 +1,16 @@
 package unit;
 
-import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.utils.RequestBuilder;
-import okhttp3.Request;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.utils.RequestBuilder;
+
+import okhttp3.Request;
 
 public class TestRequestBuilder {
     private final String fullUrl = "http://www.test.com/url/path?key1=value1&key2=value2&key3=value3";
@@ -99,7 +101,7 @@ public class TestRequestBuilder {
 
     @Test
     public void testWebSocketUrl() {
-        Request request = RequestBuilder.buildWebsocketRequest(fullUrl);
+        Request request = RequestBuilder.buildWebSocketRequest(fullUrl);
         assertEquals(request.url().toString(), fullUrl);
     }
 }

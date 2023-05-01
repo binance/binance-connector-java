@@ -227,10 +227,10 @@ try {
     }
 ```
 
-### Websocket Stream
+### WebSocket Stream
 
 ```java
-WebsocketStreamClientImpl wsStreamClient = new WebsocketStreamClientImpl(); // defaults to live exchange unless stated.
+WebSocketStreamClientImpl wsStreamClient = new WebSocketStreamClientImpl(); // defaults to live exchange unless stated.
 
 // Single stream
 int streamID1 = wsStreamClient.aggTradeStream("btcusdt",((event) -> {
@@ -255,11 +255,11 @@ wsStreamClient.closeAllConnections();
 
 More examples are available at `test/examples/websocketstream` folder
 
-### Websocket API
+### WebSocket API
 
 ```java
 RsaSignatureGenerator signatureGenerator =  new RsaSignatureGenerator("PRIVATE_KEY_PATH");
-WebsocketApiClientImpl wsApiClient = new WebsocketApiClientImpl("API_KEY", signatureGenerator); // defaults to live exchange unless stated.
+WebSocketApiClientImpl wsApiClient = new WebSocketApiClientImpl("API_KEY", signatureGenerator); // defaults to live exchange unless stated.
 
 // Open connection with a callback as parameter
 wsApiClient.connect(((message) -> {

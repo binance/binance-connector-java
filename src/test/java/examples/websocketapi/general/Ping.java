@@ -1,7 +1,8 @@
 package examples.websocketapi.general;
 
-import com.binance.connector.client.impl.WebsocketApiClientImpl;
 import org.json.JSONObject;
+
+import com.binance.connector.client.impl.WebSocketApiClientImpl;
 
 public final class Ping {
     private Ping() {
@@ -10,7 +11,7 @@ public final class Ping {
     private static final int waitTime = 3000;
 
     public static void main(String[] args) throws InterruptedException {
-        WebsocketApiClientImpl client = new WebsocketApiClientImpl();
+        WebSocketApiClientImpl client = new WebSocketApiClientImpl();
         client.connect(((event) -> {
             System.out.println(event);
         }));

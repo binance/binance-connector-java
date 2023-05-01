@@ -1,9 +1,11 @@
 package examples.spot.blvt;
 
+import java.util.LinkedHashMap;
+
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
+
 import examples.PrivateConfig;
-import java.util.LinkedHashMap;
 
 public final class BlvtInfo {
     private BlvtInfo() {

@@ -1,12 +1,13 @@
 package examples.spot.signature;
 
+import java.util.LinkedHashMap;
+
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 
 import examples.PrivateConfig;
-import java.util.LinkedHashMap;
 
 public final class Hmac {
     private Hmac() {

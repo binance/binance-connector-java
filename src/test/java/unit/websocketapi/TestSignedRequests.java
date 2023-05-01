@@ -1,13 +1,15 @@
 package unit.websocketapi;
 
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.impl.WebsocketApiClientImpl;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
-import com.binance.connector.client.utils.RsaSignatureGenerator;
-import unit.MockData;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertThrows;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.impl.WebSocketApiClientImpl;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.RsaSignatureGenerator;
+
+import unit.MockData;
 
 public class TestSignedRequests {
 
@@ -27,13 +29,13 @@ public class TestSignedRequests {
     @Test
     public void testSignedRequestWithoutConnectingFirst() {
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(MockData.SECRET_KEY);
-        WebsocketApiClientImpl client = new WebsocketApiClientImpl(MockData.API_KEY, signatureGenerator, MockData.WS_BASE_URL);
+        WebSocketApiClientImpl client = new WebSocketApiClientImpl(MockData.API_KEY, signatureGenerator, MockData.WS_BASE_URL);
         assertThrows(BinanceConnectorException.class, () -> client.general().ping(null));
     }
     
     @Test
     public void testSignedRequestWithoutSignatureGenerator() {
-        WebsocketApiClientImpl client = new WebsocketApiClientImpl();
+        WebSocketApiClientImpl client = new WebSocketApiClientImpl();
         client.connect(((event) -> {
             System.out.println(event);
         }));
@@ -43,7 +45,7 @@ public class TestSignedRequests {
     @Test
     public void testSignedRequestWithoutApiKey() {
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(MockData.SECRET_KEY);
-        WebsocketApiClientImpl client = new WebsocketApiClientImpl("", signatureGenerator, MockData.WS_BASE_URL);
+        WebSocketApiClientImpl client = new WebSocketApiClientImpl("", signatureGenerator, MockData.WS_BASE_URL);
         client.connect(((event) -> {
             System.out.println(event);
         }));

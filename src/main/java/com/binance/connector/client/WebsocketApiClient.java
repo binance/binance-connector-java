@@ -7,7 +7,7 @@ import com.binance.connector.client.impl.websocketapi.WebSocketApiTrade;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiUserDataStream;
 import com.binance.connector.client.utils.WebSocketCallback;
 
-public interface WebsocketApiClient {
+public interface WebSocketApiClient {
     void connect(WebSocketCallback onMessageCallback);
     void connect(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     void close();

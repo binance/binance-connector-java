@@ -1,12 +1,12 @@
 package com.binance.connector.client.utils;
 
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
 import org.json.JSONObject;
+
+import com.binance.connector.client.exceptions.BinanceConnectorException;
 
 public final class ParameterChecker {
 

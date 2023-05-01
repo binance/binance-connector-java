@@ -1,8 +1,10 @@
 package unit;
 
-import com.binance.connector.client.utils.RsaSignatureGenerator;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import com.binance.connector.client.utils.signaturegenerator.RsaSignatureGenerator;
 
 public class TestRsaSignatureGenerator {
     @Test

@@ -1,6 +1,6 @@
 package examples.websocketstream;
 
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 
 public final class PartialDepthStream {
     private PartialDepthStream() {
@@ -9,7 +9,7 @@ public final class PartialDepthStream {
     private static final int levels = 5;
 
     public static void main(String[] args) {
-        WebsocketStreamClientImpl client = new WebsocketStreamClientImpl();
+        WebSocketStreamClientImpl client = new WebSocketStreamClientImpl();
         client.partialDepthStream("btcusdt", levels, speed, ((event) -> {
             System.out.println(event);
             client.closeAllConnections();

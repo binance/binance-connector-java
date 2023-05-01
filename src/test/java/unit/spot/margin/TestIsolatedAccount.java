@@ -1,14 +1,18 @@
 package unit.spot.margin;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.LinkedHashMap;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.impl.SpotClientImpl;
 import com.binance.connector.client.utils.UrlBuilder;
-import java.util.LinkedHashMap;
+
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 

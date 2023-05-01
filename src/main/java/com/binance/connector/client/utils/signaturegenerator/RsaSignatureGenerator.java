@@ -1,4 +1,4 @@
-package com.binance.connector.client.utils;
+package com.binance.connector.client.utils.signaturegenerator;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,8 @@ import java.util.Base64;
 import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
+import com.binance.connector.client.utils.ParameterChecker;
 
 public final class RsaSignatureGenerator implements SignatureGenerator {
 

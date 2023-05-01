@@ -1,11 +1,14 @@
 package unit;
 
-import com.binance.connector.client.utils.UrlBuilder;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import com.binance.connector.client.utils.UrlBuilder;
 
 public class TestUrlBuilder {
     private final String baseUrl = "www.test.com";

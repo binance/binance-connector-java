@@ -1,10 +1,12 @@
 package examples.spot.proxy;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.utils.ProxyAuth;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+import com.binance.connector.client.utils.ProxyAuth;
+
 import okhttp3.Authenticator;
 import okhttp3.Credentials;
 import okhttp3.Request;

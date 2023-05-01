@@ -1,11 +1,12 @@
 package examples.spot.market;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.impl.spot.Market;
-import examples.PrivateConfig;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+import com.binance.connector.client.impl.spot.Market;
+
+import examples.PrivateConfig;
 
 public final class Ticker {
     private Ticker() {
