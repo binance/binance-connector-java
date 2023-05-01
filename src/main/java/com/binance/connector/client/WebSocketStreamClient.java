@@ -1,9 +1,10 @@
 package com.binance.connector.client;
 
-import com.binance.connector.client.utils.WebSocketCallback;
 import java.util.ArrayList;
 
-public interface WebsocketStreamClient {
+import com.binance.connector.client.utils.WebSocketCallback;
+
+public interface WebSocketStreamClient {
     int aggTradeStream(String symbol, WebSocketCallback callback);
     int aggTradeStream(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback);
     int tradeStream(String symbol, WebSocketCallback callback);

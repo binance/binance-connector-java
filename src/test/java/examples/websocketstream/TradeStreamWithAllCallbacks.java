@@ -1,6 +1,6 @@
 package examples.websocketstream;
 
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 import com.binance.connector.client.utils.WebSocketCallback;
 
 public final class TradeStreamWithAllCallbacks {
@@ -13,7 +13,7 @@ public final class TradeStreamWithAllCallbacks {
     private static WebSocketCallback onFailureCallback;
 
     private static void connectToTradeStream(
-        WebsocketStreamClientImpl client,
+        WebSocketStreamClientImpl client,
         WebSocketCallback openCallback,
         WebSocketCallback messageCallback,
         WebSocketCallback closingCallback,
@@ -22,7 +22,7 @@ public final class TradeStreamWithAllCallbacks {
     }
 
     public static void main(String[] args) {
-        WebsocketStreamClientImpl client = new WebsocketStreamClientImpl();
+        WebSocketStreamClientImpl client = new WebSocketStreamClientImpl();
         
         onOpenCallback = openEvent -> {
             System.out.println("Connection Starting...");

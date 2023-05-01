@@ -6,7 +6,7 @@
 
     <groupId>io.github.binance</groupId>
     <artifactId>binance-connector-java</artifactId>
-    <version>2.0.0rc2</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>lightweight connector to API</description>
@@ -40,7 +40,7 @@
     <scm>
         <connection>scm:git:git://github.com/binance/binance-connector-java.git</connection>
         <developerConnection>scm:git:ssh://github.com:binance/binance-connector-java.git</developerConnection>
-        <url>https://github.com/biance/binance-connector-java</url>
+        <url>https://github.com/binance/binance-connector-java</url>
     </scm>
     <build>
         <plugins>

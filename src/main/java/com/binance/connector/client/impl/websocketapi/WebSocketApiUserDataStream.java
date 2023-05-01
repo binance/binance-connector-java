@@ -1,15 +1,16 @@
 package com.binance.connector.client.impl.websocketapi;
 
+import org.json.JSONObject;
+
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
-import org.json.JSONObject;
 
 /**
  * <h2>User Data Stream Requests</h2>
  * All requests under the
  * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#user-data-stream-requests">User Data Stream requests</a>
- * section of the Websocket API documentation will be implemented in this class.
+ * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
  */
@@ -24,7 +25,7 @@ public class WebSocketApiUserDataStream {
     /**
      * Start a new user data stream.<br>
      * 
-     * The response will output a listen key that can be subscribed through on the Websocket stream afterwards.<br>
+     * The response will output a listen key that can be subscribed through on the WebSocket stream afterwards.<br>
      * 
      * Note: the stream will close in 60 minutes unless userDataStream.ping requests are sent regularly.<br>
      * 

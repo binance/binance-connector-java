@@ -1,17 +1,19 @@
 package examples.websocketstream;
 
+import org.json.JSONObject;
+
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.impl.WebsocketStreamClientImpl;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
+
 import examples.PrivateConfig;
-import org.json.JSONObject;
 
 public final class UserStream {
     private UserStream() {
     }
 
     public static void main(String[] args) {
-        WebsocketStreamClientImpl wsClient = new WebsocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
+        WebSocketStreamClientImpl wsClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
         SpotClientImpl spotClient = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, PrivateConfig.TESTNET_SECRET_KEY, DefaultUrls.TESTNET_URL);
         JSONObject obj = new JSONObject(spotClient.createUserData().createListenKey());
         String listenKey = obj.getString("listenKey");

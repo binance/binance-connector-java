@@ -1,12 +1,18 @@
 package com.binance.connector.client.utils;
 
+import java.util.LinkedHashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.enums.RequestType;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
-import java.util.LinkedHashMap;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.RsaSignatureGenerator;
+import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
+
 import okhttp3.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class RequestHandler {
     private final String apiKey;

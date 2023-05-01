@@ -1,15 +1,16 @@
 package com.binance.connector.client.impl.websocketapi;
 
-import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
+import org.json.JSONObject;
+
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
-import org.json.JSONObject;
+import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
 
 /**
  * <h2>Trading Requests</h2>
  * All requests under the
  * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#trading-requests">Trading requests</a>
- * section of the Websocket API documentation will be implemented in this class.
+ * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
  */

@@ -1,8 +1,8 @@
 package examples.websocketapi.userdatastream;
 
 import com.binance.connector.client.enums.DefaultUrls;
-import com.binance.connector.client.impl.WebsocketApiClientImpl;
-import com.binance.connector.client.utils.HmacSignatureGenerator;
+import com.binance.connector.client.impl.WebSocketApiClientImpl;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 
 import examples.PrivateConfig;
 
@@ -15,7 +15,7 @@ public final class UserDataStreamStart {
 
     public static void main(String[] args) throws InterruptedException {
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(PrivateConfig.TESTNET_SECRET_KEY);
-        WebsocketApiClientImpl client = new WebsocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
+        WebSocketApiClientImpl client = new WebSocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
 
         client.connect(((event) -> {
             System.out.println(event);

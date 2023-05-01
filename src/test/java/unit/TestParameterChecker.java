@@ -1,10 +1,12 @@
 package unit;
 
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.utils.ParameterChecker;
+import static org.junit.Assert.assertThrows;
+
 import org.json.JSONObject;
 import org.junit.Test;
-import static org.junit.Assert.assertThrows;
+
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.utils.ParameterChecker;
 
 public class TestParameterChecker {
 

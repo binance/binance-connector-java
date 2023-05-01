@@ -1,18 +1,21 @@
 package com.binance.connector.client.utils;
 
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.UnknownHostException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.exceptions.BinanceServerException;
 import com.binance.connector.client.utils.httpclient.HttpClientSingleton;
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.UnknownHostException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public final class ResponseHandler {
     private static OkHttpClient client;

@@ -1,7 +1,8 @@
 package examples.spot.market;
 
-import com.binance.connector.client.impl.SpotClientImpl;
 import java.util.LinkedHashMap;
+
+import com.binance.connector.client.impl.SpotClientImpl;
 
 public final class AveragePrice {
     private AveragePrice() {

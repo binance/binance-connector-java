@@ -1,9 +1,10 @@
 package examples.spot.pay;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import examples.PrivateConfig;
-
 import java.util.LinkedHashMap;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import examples.PrivateConfig;
 
 public final class Transactions {
     private Transactions() {

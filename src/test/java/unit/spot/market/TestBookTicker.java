@@ -1,20 +1,21 @@
 package unit.spot.market;
 
-import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.impl.SpotClientImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import com.binance.connector.client.utils.UrlBuilder;
-import okhttp3.mockwebserver.Dispatcher;
-import okhttp3.mockwebserver.MockWebServer;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.impl.SpotClientImpl;
+import com.binance.connector.client.utils.UrlBuilder;
+
+import okhttp3.mockwebserver.Dispatcher;
+import okhttp3.mockwebserver.MockWebServer;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 

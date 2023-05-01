@@ -1,13 +1,14 @@
 package com.binance.connector.client.impl.spot;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.RequestHandler;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 /**
  * <h2>Market Endpoints</h2>

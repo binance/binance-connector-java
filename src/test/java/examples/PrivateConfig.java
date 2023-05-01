@@ -9,7 +9,7 @@ public final class PrivateConfig {
     public static final String SECRET_KEY = ""; // Unnecessary if PRIVATE_KEY_PATH is used
     public static final String PRIVATE_KEY_PATH = ""; // Key must be PKCS#8 standard
 
-    public static final String TESTNET_API_KEY = "";
+    public static final String TESTNET_API_KEY = "DpIaFhRlg0Zfh5iEkxL3b5QFmIB2xHHQJ51yjVulY3FitxhV2sY1gfqjPnoxJ1jc";
     public static final String TESTNET_SECRET_KEY = ""; // Unnecessary if TESTNET_PRIVATE_KEY_PATH is used
-    public static final String TESTNET_PRIVATE_KEY_PATH = ""; //Key must be PKCS#8 standard
+    public static final String TESTNET_PRIVATE_KEY_PATH = "/Users/paula/rsa/Private_key.txt"; //Key must be PKCS#8 standard
 }

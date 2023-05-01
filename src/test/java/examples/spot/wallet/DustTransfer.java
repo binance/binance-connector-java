@@ -1,9 +1,11 @@
 package examples.spot.wallet;
 
-import com.binance.connector.client.impl.SpotClientImpl;
-import examples.PrivateConfig;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import examples.PrivateConfig;
 
 public final class DustTransfer {
     private DustTransfer() {

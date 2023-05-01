@@ -4,9 +4,9 @@ import com.binance.connector.client.enums.RequestType;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
-import com.binance.connector.client.utils.SignatureGenerator;
 import com.binance.connector.client.utils.UrlBuilder;
 import com.binance.connector.client.utils.WebSocketConnection;
+import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 
 import org.json.JSONObject;
 

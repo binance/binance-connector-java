@@ -1,13 +1,15 @@
 package unit.websocketapi;
 
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
-import unit.MockData;
+import static org.junit.Assert.assertThrows;
+
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertThrows;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandler;
+
+import unit.MockData;
 
 public class TestWebSocketApiRequestHandler {
 

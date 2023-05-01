@@ -2,10 +2,10 @@ package unit;
 
 import java.util.LinkedHashMap;
 
-import com.binance.connector.client.utils.HmacSignatureGenerator;
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.WebSocketCallback;
 import com.binance.connector.client.utils.WebSocketConnection;
+import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 
 import okhttp3.Request;
 
@@ -25,7 +25,7 @@ public final class MockData {
     public static final HmacSignatureGenerator HMAC_SIGNATURE_GENERATOR = new HmacSignatureGenerator(SECRET_KEY);
     public static final WebSocketCallback noopCallback = msg -> { };
     public static final String WS_BASE_URL = "wss://base.url";
-    public static final Request WS_REQUEST = RequestBuilder.buildWebsocketRequest(WS_BASE_URL);
+    public static final Request WS_REQUEST = RequestBuilder.buildWebSocketRequest(WS_BASE_URL);
     public static final WebSocketConnection WS_CONNECTION = new WebSocketConnection(noopCallback, noopCallback, noopCallback, noopCallback, WS_REQUEST, null);
     public static final String WS_ID = "websocketId";
     private MockData() {
