@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 import com.binance.connector.client.utils.ProxyAuth;
 
@@ -23,7 +24,7 @@ public final class AuthProxy {
     private static final Integer proxyPort = 3128;
 
     public static void main(String[] args) throws IOException { 
-        SpotClientImpl client = new SpotClientImpl();
+        SpotClient client = new SpotClientImpl();
 
         Proxy proxyConn = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1",  proxyPort));
         Authenticator auth = new Authenticator() {

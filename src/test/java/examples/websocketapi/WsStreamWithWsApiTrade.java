@@ -2,6 +2,8 @@ package examples.websocketapi;
 
 import org.json.JSONObject;
 
+import com.binance.connector.client.WebSocketApiClient;
+import com.binance.connector.client.WebSocketStreamClient;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.WebSocketApiClientImpl;
 import com.binance.connector.client.impl.WebSocketStreamClientImpl;
@@ -21,7 +23,7 @@ public final class WsStreamWithWsApiTrade {
     public static void main(String[] args) throws InterruptedException {
 
         // ws stream call
-        WebSocketStreamClientImpl streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
+        WebSocketStreamClient streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
 
         WebSocketCallback streamOnMsgCallback = (event) -> {
             System.out.println(event);
@@ -33,7 +35,7 @@ public final class WsStreamWithWsApiTrade {
 
         // ws api call
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(PrivateConfig.TESTNET_SECRET_KEY);
-        WebSocketApiClientImpl apiClient = new WebSocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
+        WebSocketApiClient apiClient = new WebSocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
         apiClient.connect(((event) -> {
             System.out.println(event);
         }));

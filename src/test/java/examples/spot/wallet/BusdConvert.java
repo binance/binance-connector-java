@@ -3,6 +3,7 @@ package examples.spot.wallet;
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -21,7 +22,7 @@ public final class BusdConvert {
         parameters.put("targetAsset", "USDC");
         parameters.put("accountType", "MAIN");
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createWallet().busdConvert(parameters);
         System.out.println(result);
     }

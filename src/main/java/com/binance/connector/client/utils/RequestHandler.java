@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.enums.RequestType;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.utils.signaturegenerator.Ed25519SignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.RsaSignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
@@ -79,12 +80,11 @@ public class RequestHandler {
         if (signatureGenerator.getClass() == HmacSignatureGenerator.class && null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] Secret key/API key cannot be null or empty!");
         }
-        if (signatureGenerator.getClass() == RsaSignatureGenerator.class && null == apiKey || apiKey.isEmpty()) {
+        if ((signatureGenerator.getClass() == RsaSignatureGenerator.class || signatureGenerator.getClass() == Ed25519SignatureGenerator.class) && null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] Private key/API key cannot be null or empty!");
         }
         parameters.put("timestamp", UrlBuilder.buildTimestamp());
-        String queryString = UrlBuilder.joinQueryParameters(parameters);
-        String signature = this.signatureGenerator.getSignature(queryString);
+        String signature = this.signatureGenerator.getSignature(UrlBuilder.joinQueryParameters(parameters));
         return sendApiRequest(baseUrl, urlPath, signature, parameters, httpMethod, RequestType.SIGNED, showLimitUsage);
     }
 }

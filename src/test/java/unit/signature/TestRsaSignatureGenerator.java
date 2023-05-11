@@ -1,4 +1,4 @@
-package unit;
+package unit.signature;
 
 import static org.junit.Assert.assertEquals;
 

@@ -2,6 +2,7 @@ package examples.websocketapi.general;
 
 import org.json.JSONObject;
 
+import com.binance.connector.client.WebSocketApiClient;
 import com.binance.connector.client.impl.WebSocketApiClientImpl;
 
 public final class ExchangeInfo {
@@ -12,7 +13,7 @@ public final class ExchangeInfo {
     private static final int waitTime = 3000;
 
     public static void main(String[] args) throws InterruptedException {
-        WebSocketApiClientImpl client = new WebSocketApiClientImpl();
+        WebSocketApiClient client = new WebSocketApiClientImpl();
         client.connect(((event) -> {
             System.out.println(event + '\n');
         }));

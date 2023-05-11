@@ -2,6 +2,7 @@ package examples.spot.savings;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -17,7 +18,7 @@ public final class RedeemFlexibleProduct {
         parameters.put("amount", amount);
         parameters.put("type", "FAST");
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSavings().redeemFlexibleProduct(parameters);
         System.out.println(result);
     }

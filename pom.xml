@@ -6,7 +6,7 @@
 
     <groupId>io.github.binance</groupId>
     <artifactId>binance-connector-java</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0rc1</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>lightweight connector to API</description>
@@ -171,7 +171,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version>
+            <version>20230227</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -190,5 +190,10 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>1.73</version>
+        </dependency>
+    </dependencies> 
 </project>

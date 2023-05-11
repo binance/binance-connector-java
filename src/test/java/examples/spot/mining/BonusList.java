@@ -2,6 +2,7 @@ package examples.spot.mining;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -15,7 +16,7 @@ public final class BonusList {
         parameters.put("algo", "sha256");
         parameters.put("userName", "");
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createMining().bonusList(parameters);
         System.out.println(result);
     }

@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0rc1 - 2023-05-11
+
+### Added
+- Support for generating signatures using Ed25519 keys has been added.
+
+### Changed
+- Upgraded `org.json` dependency to version `20230227`.
+- If `x-sapi-used-uid-weight-1m` exists, the response will list it when `setShowLimitUsage(true)` is set.
+- Added `setShowLimitUsage`, `setProxy`, and `unsetProxy` methods to the `SpotClient` interface.
+
 ## 2.0.0 - 2023-05-01
 
 ### Changed

@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
@@ -36,7 +37,7 @@ public class TestCancelOpenOrders {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.DELETE, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createTrade().cancelOpenOrders(parameters));
     }
 
@@ -49,7 +50,7 @@ public class TestCancelOpenOrders {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.DELETE, MockData.HTTP_STATUS_CLIENT_ERROR);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         assertThrows(BinanceClientException.class, () -> client.createTrade().cancelOpenOrders(parameters));
     }
 
@@ -62,7 +63,7 @@ public class TestCancelOpenOrders {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.DELETE, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createTrade().cancelOpenOrders(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }

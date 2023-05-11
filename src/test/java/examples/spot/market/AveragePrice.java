@@ -2,6 +2,7 @@ package examples.spot.market;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 public final class AveragePrice {
@@ -11,7 +12,7 @@ public final class AveragePrice {
     public static void main(String[] args) {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
-        SpotClientImpl client = new SpotClientImpl();
+        SpotClient client = new SpotClientImpl();
 
         parameters.put("symbol", "BNBUSDT");
         String result = client.createMarket().averagePrice(parameters);

@@ -2,6 +2,7 @@ package examples.spot.cryptoloans;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -19,7 +20,7 @@ public final class LoanAdjustLTV {
         parameters.put("orderId", orderId);
         parameters.put("amount", amount);
         
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createCryptoLoans().loanAdjustLTV(parameters);
         System.out.println(result);
     }
