@@ -61,14 +61,17 @@ public class SpotClientImpl implements SpotClient {
         this.baseUrl = baseUrl;
     }
 
+    @Override
     public void setShowLimitUsage(boolean showLimitUsage) {
         this.showLimitUsage = showLimitUsage;
     }
 
+    @Override
     public void setProxy(ProxyAuth proxy) {
         this.proxy = proxy;
     }
-
+    
+    @Override
     public void unsetProxy() {
         this.proxy = null;
     }

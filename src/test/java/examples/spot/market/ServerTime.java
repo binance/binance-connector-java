@@ -1,5 +1,6 @@
 package examples.spot.market;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 public final class ServerTime {
@@ -8,7 +9,7 @@ public final class ServerTime {
 
     public static void main(String[] args) {
 
-        SpotClientImpl client = new SpotClientImpl();
+        SpotClient client = new SpotClientImpl();
         String result = client.createMarket().time();
         System.out.println(result);
     }

@@ -1,19 +1,22 @@
 package unit.spot.trade;
 
-import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.exceptions.BinanceConnectorException;
-import com.binance.connector.client.impl.SpotClientImpl;
-import okhttp3.mockwebserver.Dispatcher;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
-import org.junit.Test;
-import unit.MockData;
-import unit.MockWebServerDispatcher;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.binance.connector.client.SpotClient;
+import com.binance.connector.client.enums.HttpMethod;
+import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import okhttp3.mockwebserver.Dispatcher;
+import okhttp3.mockwebserver.MockWebServer;
+import unit.MockData;
+import unit.MockWebServerDispatcher;
 
 public class TestOcoOrder {
     private MockWebServer mockWebServer;
@@ -37,7 +40,7 @@ public class TestOcoOrder {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         assertThrows(BinanceConnectorException.class, () -> client.createTrade().ocoOrder(parameters));
     }
 
@@ -54,7 +57,7 @@ public class TestOcoOrder {
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
-        SpotClientImpl client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
+        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
         String result = client.createTrade().ocoOrder(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }

@@ -1,15 +1,16 @@
 package examples.websocketstream;
 
-import com.binance.connector.client.impl.WebSocketStreamClientImpl;
-
 import java.util.ArrayList;
+
+import com.binance.connector.client.WebSocketStreamClient;
+import com.binance.connector.client.impl.WebSocketStreamClientImpl;
 
 public final class CombineStreams {
     private CombineStreams() {
     }
 
     public static void main(String[] args) {
-        WebSocketStreamClientImpl client = new WebSocketStreamClientImpl();
+        WebSocketStreamClient client = new WebSocketStreamClientImpl();
         ArrayList<String> streams = new ArrayList<>();
         streams.add("btcusdt@trade");
         streams.add("bnbusdt@trade");

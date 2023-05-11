@@ -2,6 +2,7 @@ package examples.spot.blvt;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -16,7 +17,7 @@ public final class Redeem {
         parameters.put("tokenName", "BTCDOWN");
         parameters.put("amount", amount);
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createBlvt().redeem(parameters);
         System.out.println(result);
     }
