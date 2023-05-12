@@ -2,6 +2,7 @@ package examples.spot.wallet;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -22,7 +23,7 @@ public final class BusdConvertHistory {
         parameters.put("asset", "USDC");
         parameters.put("size", size);
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createWallet().busdConvertHistory(parameters);
         System.out.println(result);
     }

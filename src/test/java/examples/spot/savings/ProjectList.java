@@ -2,6 +2,7 @@ package examples.spot.savings;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -14,7 +15,7 @@ public final class ProjectList {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("type", "ACTIVITY");
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSavings().projectList(parameters);
         System.out.println(result);
     }

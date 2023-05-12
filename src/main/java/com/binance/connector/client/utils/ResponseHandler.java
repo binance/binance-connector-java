@@ -42,7 +42,7 @@ public final class ResponseHandler {
             }
 
             if (showLimitUsage) {
-                return getlimitUsage(response, responseAsString);
+                return getLimitUsage(response, responseAsString);
             } else {
                 return responseAsString;
             }
@@ -59,9 +59,10 @@ public final class ResponseHandler {
         }
     }
 
-    private static String getlimitUsage(Response response, String resposeBodyAsString) {
+    private static String getLimitUsage(Response response, String resposeBodyAsString) {
         JSONObject json = new JSONObject();
         json.put("x-sapi-used-ip-weight-1m", response.header("X-SAPI-USED-IP-WEIGHT-1M"));
+        json.put("x-sapi-used-uid-weight-1m", response.header("X-SAPI-USED-UID-WEIGHT-1M"));
         json.put("x-mbx-used-weight", response.header("x-mbx-used-weight"));
         json.put("x-mbx-used-weight-1m", response.header("x-mbx-used-weight-1m"));
         json.put("data", resposeBodyAsString);

@@ -21,9 +21,13 @@ import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
 import com.binance.connector.client.impl.spot.Wallet;
+import com.binance.connector.client.utils.ProxyAuth;
 
 
 public interface SpotClient {
+    void setShowLimitUsage(boolean showLimitUsage);
+    void setProxy(ProxyAuth proxy);
+    void unsetProxy();
     Blvt createBlvt();
     BSwap createBswap();
     C2C createC2C();

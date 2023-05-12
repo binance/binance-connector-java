@@ -2,6 +2,7 @@ package examples.spot.signature;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.exceptions.BinanceClientException;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -17,7 +18,7 @@ public final class Rsa {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
 
         RsaSignatureGenerator signGenerator =  new RsaSignatureGenerator(PrivateConfig.TESTNET_PRIVATE_KEY_PATH); // Private Key file path as input
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, signGenerator, PrivateConfig.BASE_URL);
+        SpotClient client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, signGenerator, PrivateConfig.BASE_URL);
 
         try {
             String result = client.createTrade().account(parameters);

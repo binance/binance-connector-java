@@ -2,6 +2,7 @@ package examples.spot.staking;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -17,7 +18,7 @@ public final class Purchase {
         parameters.put("productId", "Bnb*21*WL");
         parameters.put("amount", amount);
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createStaking().purchase(parameters);
         System.out.println(result);
     }

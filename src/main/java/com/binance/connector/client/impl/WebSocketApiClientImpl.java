@@ -77,6 +77,7 @@ public class WebSocketApiClientImpl implements WebSocketApiClient {
         connect(noopCallback, onMessageCallback, noopCallback, noopCallback);
     }
 
+    @Override
     public void connect(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(baseUrl);
 

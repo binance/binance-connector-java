@@ -2,6 +2,7 @@ package examples.spot.wallet;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -16,7 +17,7 @@ public final class Withdraw {
         parameters.put("address", "");
         parameters.put("amount", "0.001");
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createWallet().withdraw(parameters);
         System.out.println(result);
     }

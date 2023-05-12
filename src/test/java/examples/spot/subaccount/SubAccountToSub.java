@@ -2,6 +2,7 @@ package examples.spot.subaccount;
 
 import java.util.LinkedHashMap;
 
+import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
 
 import examples.PrivateConfig;
@@ -17,7 +18,7 @@ public final class SubAccountToSub {
         parameters.put("asset", "USDT");
         parameters.put("amount", amount);
 
-        SpotClientImpl client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
         String result = client.createSubAccount().subAccountToSubAccount(parameters);
         System.out.println(result);
     }
