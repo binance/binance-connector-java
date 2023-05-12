@@ -77,10 +77,10 @@ public class RequestHandler {
     public String sendSignedRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
                                     HttpMethod httpMethod, boolean showLimitUsage) {
                                         
-        if (signatureGenerator.getClass() == HmacSignatureGenerator.class && null == apiKey || apiKey.isEmpty()) {
+        if (signatureGenerator.getClass() == HmacSignatureGenerator.class && (null == apiKey || apiKey.isEmpty())) {
             throw new BinanceConnectorException("[RequestHandler] Secret key/API key cannot be null or empty!");
         }
-        if ((signatureGenerator.getClass() == RsaSignatureGenerator.class || signatureGenerator.getClass() == Ed25519SignatureGenerator.class) && null == apiKey || apiKey.isEmpty()) {
+        if ((signatureGenerator.getClass() == RsaSignatureGenerator.class || signatureGenerator.getClass() == Ed25519SignatureGenerator.class) && (null == apiKey || apiKey.isEmpty())) {
             throw new BinanceConnectorException("[RequestHandler] Private key/API key cannot be null or empty!");
         }
         parameters.put("timestamp", UrlBuilder.buildTimestamp());
