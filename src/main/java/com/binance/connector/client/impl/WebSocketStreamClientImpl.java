@@ -14,9 +14,13 @@ import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.UrlBuilder;
-import com.binance.connector.client.utils.WebSocketCallback;
 import com.binance.connector.client.utils.WebSocketConnection;
 import com.binance.connector.client.utils.httpclient.WebSocketStreamHttpClientSingleton;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosingCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketFailureCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketOpenCallback;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,8 +39,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     private static final OkHttpClient client = WebSocketStreamHttpClientSingleton.getHttpClient();
     private final String baseUrl;
     private final Map<Integer, WebSocketConnection> connections = new HashMap<>();
-    private final WebSocketCallback noopCallback = msg -> {
-    };
+    private final WebSocketOpenCallback noopOpenCallback = response -> { };
+    private final WebSocketClosingCallback noopClosingCallback = (code, reason) -> { };
+    private final WebSocketClosedCallback noopClosedCallback = (code, reason) -> { };
+    private final WebSocketFailureCallback noopFailureCallback = (throwable, response) -> { };
 
     public WebSocketStreamClientImpl() {
         this.baseUrl = DefaultUrls.WS_URL;
@@ -59,13 +65,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#aggregate-trade-streams</a>
      */
     @Override
-    public int aggTradeStream(String symbol, WebSocketCallback callback) {
+    public int aggTradeStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return aggTradeStream(symbol.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return aggTradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #aggTradeStream(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #aggTradeStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -75,10 +81,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int aggTradeStream(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int aggTradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@aggTrade", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -94,13 +100,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#trade-streams</a>
      */
     @Override
-    public int tradeStream(String symbol, WebSocketCallback callback) {
+    public int tradeStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return tradeStream(symbol.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return tradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #tradeStream(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #tradeStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -110,10 +116,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int tradeStream(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int tradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@trade", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -129,13 +135,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-streams</a>
      */
     @Override
-    public int klineStream(String symbol, String interval, WebSocketCallback callback) {
+    public int klineStream(String symbol, String interval, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return klineStream(symbol.toLowerCase(), interval, noopCallback, callback, noopCallback, noopCallback);
+        return klineStream(symbol.toLowerCase(), interval, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #klineStream(String, String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #klineStream(String, String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param interval
@@ -146,10 +152,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int klineStream(String symbol, String interval, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int klineStream(String symbol, String interval, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@kline_%s", baseUrl, symbol.toLowerCase(), interval));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -166,13 +172,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-mini-ticker-stream</a>
      */
     @Override
-    public int miniTickerStream(String symbol, WebSocketCallback callback) {
+    public int miniTickerStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return miniTickerStream(symbol.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return miniTickerStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #miniTickerStream(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #miniTickerStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -182,10 +188,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int miniTickerStream(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int miniTickerStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@miniTicker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -202,12 +208,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#all-market-mini-tickers-stream</a>
      */
     @Override
-    public int allMiniTickerStream(WebSocketCallback callback) {
-        return allMiniTickerStream(noopCallback, callback, noopCallback, noopCallback);
+    public int allMiniTickerStream(WebSocketMessageCallback callback) {
+        return allMiniTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #allMiniTickerStream(WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #allMiniTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param onOpenCallback
      * @param onMessageCallback
@@ -216,9 +222,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allMiniTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int allMiniTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!miniTicker@arr", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -235,13 +241,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-ticker-streams</a>
      */
     @Override
-    public int symbolTicker(String symbol, WebSocketCallback callback) {
+    public int symbolTicker(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return symbolTicker(symbol.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return symbolTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #symbolTicker(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #symbolTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -251,10 +257,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int symbolTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int symbolTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@ticker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -271,12 +277,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#all-market-tickers-stream</a>
      */
     @Override
-    public int allTickerStream(WebSocketCallback callback) {
-        return allTickerStream(noopCallback, callback, noopCallback, noopCallback);
+    public int allTickerStream(WebSocketMessageCallback callback) {
+        return allTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #allTickerStream(WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #allTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param onOpenCallback
      * @param onMessageCallback
@@ -285,9 +291,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allTickerStream(WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int allTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!ticker@arr", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -303,7 +309,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams</a>
      */
-    public int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback callback) {
+    public int rollingWindowTicker(String symbol, String windowSize, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
@@ -313,11 +319,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
-        return rollingWindowTicker(symbol.toLowerCase(), windowSize, noopCallback, callback, noopCallback, noopCallback);
+        return rollingWindowTicker(symbol.toLowerCase(), windowSize, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #rollingWindowTicker(String, String, WebSocketCallback)} (String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #rollingWindowTicker(String, String, WebSocketMessageCallback)} (String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -327,7 +333,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int rollingWindowTicker(String symbol, String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int rollingWindowTicker(String symbol, String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
@@ -338,7 +344,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@ticker_%s", baseUrl, symbol.toLowerCase(), windowSize));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -355,7 +361,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#all-market-rolling-window-statistics-streams</a>
      */
     @Override
-    public int allRollingWindowTicker(String windowSize, WebSocketCallback callback) {
+    public int allRollingWindowTicker(String windowSize, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
                 add("1h");
@@ -364,11 +370,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
         if (!allowedWindowSize.contains(windowSize.toLowerCase())) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize.toLowerCase()));
         }
-        return allRollingWindowTicker(windowSize.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return allRollingWindowTicker(windowSize.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #allRollingWindowTicker(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #allRollingWindowTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param windowSize
      * @param onOpenCallback
@@ -378,10 +384,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allRollingWindowTicker(String windowSize, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int allRollingWindowTicker(String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!ticker_%s@arr", baseUrl, windowSize.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -397,13 +403,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams</a>
      */
     @Override
-    public int bookTicker(String symbol, WebSocketCallback callback) {
+    public int bookTicker(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return bookTicker(symbol.toLowerCase(), noopCallback, callback, noopCallback, noopCallback);
+        return bookTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #bookTicker(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #bookTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param onOpenCallback
@@ -413,10 +419,41 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int bookTicker(String symbol, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int bookTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@bookTicker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
+    }
+
+    /**
+     * Pushes any update to the best bid or ask's price or quantity in real-time for all symbols.
+     * <br><br>
+     * !bookTicker
+     * <br><br>
+     * Update Speed: Real-time
+     *
+     * @return int - Connection ID
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream">
+     * https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream</a>
+     */
+    @Override
+    public int allBookTickerStream(WebSocketMessageCallback callback) {
+        return allBookTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
+    }
+
+    /**
+     * Same as {@link #allBookTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
+     *
+     * @param onOpenCallback
+     * @param onMessageCallback
+     * @param onClosingCallback
+     * @param onFailureCallback
+     * @return
+     */
+    @Override
+    public int allBookTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
+        Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!bookTicker", baseUrl));
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -434,13 +471,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#partial-book-depth-streams</a>
      */
     @Override
-    public int partialDepthStream(String symbol, int levels, int speed, WebSocketCallback callback) {
+    public int partialDepthStream(String symbol, int levels, int speed, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return partialDepthStream(symbol.toLowerCase(), levels, speed, noopCallback, callback, noopCallback, noopCallback);
+        return partialDepthStream(symbol.toLowerCase(), levels, speed, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #partialDepthStream(String, int, int, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #partialDepthStream(String, int, int, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param levels
@@ -452,10 +489,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int partialDepthStream(String symbol, int levels, int speed, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int partialDepthStream(String symbol, int levels, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@depth%s@%sms", baseUrl, symbol.toLowerCase(), levels, speed));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -472,13 +509,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#diff-depth-stream</a>
      */
     @Override
-    public int diffDepthStream(String symbol, int speed, WebSocketCallback callback) {
+    public int diffDepthStream(String symbol, int speed, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return diffDepthStream(symbol.toLowerCase(), speed, noopCallback, callback, noopCallback, noopCallback);
+        return diffDepthStream(symbol.toLowerCase(), speed, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #diffDepthStream(String, int, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #diffDepthStream(String, int, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param symbol
      * @param speed
@@ -489,10 +526,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int diffDepthStream(String symbol, int speed, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int diffDepthStream(String symbol, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@depth@%sms", baseUrl, symbol.toLowerCase(), speed));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -505,12 +542,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#user-data-streams</a>
      */
     @Override
-    public int listenUserStream(String listenKey, WebSocketCallback callback) {
-        return listenUserStream(listenKey, noopCallback, callback, noopCallback, noopCallback);
+    public int listenUserStream(String listenKey, WebSocketMessageCallback callback) {
+        return listenUserStream(listenKey, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #listenUserStream(String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #listenUserStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param listenKey
      * @param onOpenCallback
@@ -520,9 +557,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int listenUserStream(String listenKey, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int listenUserStream(String listenKey, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s", baseUrl, listenKey));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -534,12 +571,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams</a>
      */
     @Override
-    public int combineStreams(ArrayList<String> streams, WebSocketCallback callback) {
-        return combineStreams(streams, noopCallback, callback, noopCallback, noopCallback);
+    public int combineStreams(ArrayList<String> streams, WebSocketMessageCallback callback) {
+        return combineStreams(streams, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
-     * Same as {@link #combineStreams(ArrayList, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
+     * Same as {@link #combineStreams(ArrayList, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param streams
      * @param onOpenCallback
@@ -549,10 +586,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int combineStreams(ArrayList<String> streams, WebSocketCallback onOpenCallback, WebSocketCallback onMessageCallback, WebSocketCallback onClosingCallback, WebSocketCallback onFailureCallback) {
+    public int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         String url = UrlBuilder.buildStreamUrl(String.format("%s/stream", baseUrl), streams);
         Request request = RequestBuilder.buildWebSocketRequest(url);
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -593,13 +630,14 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     }
 
     private int createConnection(
-            WebSocketCallback onOpenCallback,
-            WebSocketCallback onMessageCallback,
-            WebSocketCallback onClosingCallback,
-            WebSocketCallback onFailureCallback,
+            WebSocketOpenCallback onOpenCallback,
+            WebSocketMessageCallback onMessageCallback,
+            WebSocketClosingCallback onClosingCallback,
+            WebSocketClosedCallback onClosedCallback,
+            WebSocketFailureCallback onFailureCallback,
             Request request
     ) {
-        WebSocketConnection connection = new WebSocketConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request, client);
+        WebSocketConnection connection = new WebSocketConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request, client);
         connection.connect();
         int connectionId = connection.getConnectionId();
         connections.put(connectionId, connection);

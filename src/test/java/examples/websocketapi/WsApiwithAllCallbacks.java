@@ -1,15 +1,18 @@
-package examples.websocketstream;
+package examples.websocketapi;
 
-import com.binance.connector.client.WebSocketStreamClient;
-import com.binance.connector.client.impl.WebSocketStreamClientImpl;
+import org.json.JSONObject;
+
+import com.binance.connector.client.WebSocketApiClient;
+import com.binance.connector.client.impl.WebSocketApiClientImpl;
 import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
 import com.binance.connector.client.utils.websocketcallback.WebSocketClosingCallback;
 import com.binance.connector.client.utils.websocketcallback.WebSocketFailureCallback;
 import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
 import com.binance.connector.client.utils.websocketcallback.WebSocketOpenCallback;
 
-public final class TradeStreamWithAllCallbacks {
-    private TradeStreamWithAllCallbacks() {
+
+public final class WsApiwithAllCallbacks {
+    private WsApiwithAllCallbacks() {
     }
 
     private static WebSocketOpenCallback onOpenCallback;
@@ -18,16 +21,16 @@ public final class TradeStreamWithAllCallbacks {
     private static WebSocketClosedCallback onClosedCallback;
     private static WebSocketFailureCallback onFailureCallback;
 
+    private static final int waitTime = 3000;
+
     public static void main(String[] args) throws InterruptedException {
-        WebSocketStreamClient client = new WebSocketStreamClientImpl();
-        final long sleepTime = 1000;
-        
+
         onOpenCallback = openEvent -> {
             System.out.println("Open Connection: " + openEvent.toString());
         };
 
         onMessageCallback = (message) -> {
-            System.out.println("Connection Message: " +  message);
+            System.out.println("Connection Message:" + message);
         };
 
         onClosingCallback = (code, reason) -> {
@@ -42,13 +45,14 @@ public final class TradeStreamWithAllCallbacks {
             System.out.println("Connection Failed: throwable=" + throwable.getMessage());
         };
 
-        client.tradeStream("btcusdt", onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback);
+        WebSocketApiClient client = new WebSocketApiClientImpl();
+        client.connect(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback);
+        
+        JSONObject params = new JSONObject();
+        params.put("requestId", "randomId");
+        client.general().ping(params);
 
-        Thread.sleep(sleepTime);
-
-        // Close connection for onClosingCallback example purpos∏e
-        client.closeAllConnections();
-
+        Thread.sleep(waitTime);
+        client.close();
     }
 }
-
