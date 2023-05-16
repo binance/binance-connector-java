@@ -14,12 +14,13 @@ import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.UrlBuilder;
-import com.binance.connector.client.utils.WebSocketClosingCallback;
 import com.binance.connector.client.utils.WebSocketConnection;
-import com.binance.connector.client.utils.WebSocketFailureCallback;
-import com.binance.connector.client.utils.WebSocketMessageCallback;
-import com.binance.connector.client.utils.WebSocketOpenCallback;
 import com.binance.connector.client.utils.httpclient.WebSocketStreamHttpClientSingleton;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosingCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketFailureCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketOpenCallback;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -38,12 +39,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     private static final OkHttpClient client = WebSocketStreamHttpClientSingleton.getHttpClient();
     private final String baseUrl;
     private final Map<Integer, WebSocketConnection> connections = new HashMap<>();
-	private final WebSocketOpenCallback noopOpenCallback = msg -> {
-	};
-	private final WebSocketClosingCallback noopClosingCallback = (one, two) -> {
-	};
-	private final WebSocketFailureCallback noopFailureCallback = (one, two) -> {
-	};
+    private final WebSocketOpenCallback noopOpenCallback = response -> { };
+    private final WebSocketClosingCallback noopClosingCallback = (code, reason) -> { };
+    private final WebSocketClosedCallback noopClosedCallback = (code, reason) -> { };
+    private final WebSocketFailureCallback noopFailureCallback = (throwable, response) -> { };
 
     public WebSocketStreamClientImpl() {
         this.baseUrl = DefaultUrls.WS_URL;
@@ -68,7 +67,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int aggTradeStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return aggTradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return aggTradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -82,10 +81,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int aggTradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int aggTradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@aggTrade", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -103,7 +102,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int tradeStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return tradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return tradeStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -117,10 +116,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int tradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int tradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@trade", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -138,7 +137,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int klineStream(String symbol, String interval, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return klineStream(symbol.toLowerCase(), interval, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return klineStream(symbol.toLowerCase(), interval, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -153,10 +152,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int klineStream(String symbol, String interval, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int klineStream(String symbol, String interval, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@kline_%s", baseUrl, symbol.toLowerCase(), interval));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -175,7 +174,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int miniTickerStream(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return miniTickerStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return miniTickerStream(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -189,10 +188,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int miniTickerStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int miniTickerStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@miniTicker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -210,7 +209,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      */
     @Override
     public int allMiniTickerStream(WebSocketMessageCallback callback) {
-        return allMiniTickerStream(noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return allMiniTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -223,9 +222,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allMiniTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int allMiniTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!miniTicker@arr", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -244,7 +243,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int symbolTicker(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return symbolTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return symbolTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -258,10 +257,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int symbolTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int symbolTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@ticker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -279,7 +278,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      */
     @Override
     public int allTickerStream(WebSocketMessageCallback callback) {
-        return allTickerStream(noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return allTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -292,9 +291,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int allTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!ticker@arr", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -320,7 +319,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
         if (!allowedWindowSize.contains(windowSize)) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
-        return rollingWindowTicker(symbol.toLowerCase(), windowSize, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return rollingWindowTicker(symbol.toLowerCase(), windowSize, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -334,7 +333,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int rollingWindowTicker(String symbol, String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int rollingWindowTicker(String symbol, String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         ParameterChecker.checkParameterType(symbol, String.class, "windowSize");
         ArrayList<String> allowedWindowSize = new ArrayList<String>() {{
@@ -345,7 +344,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize));
         }
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@ticker_%s", baseUrl, symbol.toLowerCase(), windowSize));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -371,7 +370,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
         if (!allowedWindowSize.contains(windowSize.toLowerCase())) {
             throw new BinanceConnectorException(String.format("\"%s\" is not a valid window size.", windowSize.toLowerCase()));
         }
-        return allRollingWindowTicker(windowSize.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return allRollingWindowTicker(windowSize.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -385,10 +384,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allRollingWindowTicker(String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int allRollingWindowTicker(String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(windowSize, String.class, "windowSize");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!ticker_%s@arr", baseUrl, windowSize.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -406,7 +405,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int bookTicker(String symbol, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return bookTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return bookTicker(symbol.toLowerCase(), noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -420,10 +419,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int bookTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int bookTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@bookTicker", baseUrl, symbol.toLowerCase()));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -439,7 +438,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      */
     @Override
     public int allBookTickerStream(WebSocketMessageCallback callback) {
-        return allBookTickerStream(noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return allBookTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -452,9 +451,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int allBookTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int allBookTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!bookTicker", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -474,7 +473,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int partialDepthStream(String symbol, int levels, int speed, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return partialDepthStream(symbol.toLowerCase(), levels, speed, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return partialDepthStream(symbol.toLowerCase(), levels, speed, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -490,10 +489,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int partialDepthStream(String symbol, int levels, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int partialDepthStream(String symbol, int levels, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@depth%s@%sms", baseUrl, symbol.toLowerCase(), levels, speed));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -512,7 +511,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     @Override
     public int diffDepthStream(String symbol, int speed, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
-        return diffDepthStream(symbol.toLowerCase(), speed, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return diffDepthStream(symbol.toLowerCase(), speed, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -527,10 +526,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int diffDepthStream(String symbol, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int diffDepthStream(String symbol, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s@depth@%sms", baseUrl, symbol.toLowerCase(), speed));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -544,7 +543,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      */
     @Override
     public int listenUserStream(String listenKey, WebSocketMessageCallback callback) {
-        return listenUserStream(listenKey, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return listenUserStream(listenKey, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -558,9 +557,9 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int listenUserStream(String listenKey, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int listenUserStream(String listenKey, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/%s", baseUrl, listenKey));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -573,7 +572,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      */
     @Override
     public int combineStreams(ArrayList<String> streams, WebSocketMessageCallback callback) {
-        return combineStreams(streams, noopOpenCallback, callback, noopClosingCallback, noopFailureCallback);
+        return combineStreams(streams, noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
     }
 
     /**
@@ -587,10 +586,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @return
      */
     @Override
-    public int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketFailureCallback onFailureCallback) {
+    public int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
         String url = UrlBuilder.buildStreamUrl(String.format("%s/stream", baseUrl), streams);
         Request request = RequestBuilder.buildWebSocketRequest(url);
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request);
+        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
@@ -634,10 +633,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
             WebSocketOpenCallback onOpenCallback,
             WebSocketMessageCallback onMessageCallback,
             WebSocketClosingCallback onClosingCallback,
+            WebSocketClosedCallback onClosedCallback,
             WebSocketFailureCallback onFailureCallback,
             Request request
     ) {
-        WebSocketConnection connection = new WebSocketConnection(onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback, request, client);
+        WebSocketConnection connection = new WebSocketConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request, client);
         connection.connect();
         int connectionId = connection.getConnectionId();
         connections.put(connectionId, connection);

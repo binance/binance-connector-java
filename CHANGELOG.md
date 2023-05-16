@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0rc1 - Undefined
+
+### Added
+- Added WebSocket callbacks to `utils` directory with the aim of facilitating the transmission of various types of data from WebSocket connections (in addition to `onMessage`):  `WebSocketClosedCallback`, `WebSocketClosingCallback`, `WebSocketFailureCallback` and `WebSocketOpenCallback`.
+
+### Changed
+- Renamed `WebSocketCallback` to `WebSocketMessageCallback` and moved it to the `utils` directory.
+
 ## 3.0.0rc1 - 2023-05-12
 
 ### Added

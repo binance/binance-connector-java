@@ -40,7 +40,6 @@ public class TestWebSocketApiRequestHandler {
         assertThrows(BinanceConnectorException.class, () -> handlerWithoutApiKey.apiRequest("trades.historical", params));
     }
 
-
     @Test
     public void testSignedRequestWithoutMandatoryParams() {
         WebSocketApiRequestHandler handler = new WebSocketApiRequestHandler(MockData.WS_CONNECTION, MockData.API_KEY, MockData.HMAC_SIGNATURE_GENERATOR);
@@ -52,7 +51,6 @@ public class TestWebSocketApiRequestHandler {
         WebSocketApiRequestHandler handlerWithoutsignGenerator = new WebSocketApiRequestHandler(MockData.WS_CONNECTION, MockData.API_KEY, null);
         assertThrows(BinanceConnectorException.class, () -> handlerWithoutsignGenerator.signedRequest("order.test", params));
     }
-
 
     @Test
     public void testRequestWithInvalidRequestId() {

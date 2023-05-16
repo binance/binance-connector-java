@@ -6,6 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosingCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketFailureCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketOpenCallback;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,22 +24,24 @@ public class WebSocketConnection extends WebSocketListener {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketConnection.class);
     private static OkHttpClient client;
 
-	private final int connectionId;
+    private final int connectionId;
     private final Object mutex;
-	private final Request request;
-	private final String streamName;
+    private final Request request;
+    private final String streamName;
 
-	private final WebSocketOpenCallback onOpenCallback;
-	private final WebSocketMessageCallback onMessageCallback;
-	private final WebSocketClosingCallback onClosingCallback;
+    private final WebSocketOpenCallback onOpenCallback;
+    private final WebSocketMessageCallback onMessageCallback;
+    private final WebSocketClosingCallback onClosingCallback;
+    private final WebSocketClosedCallback onClosedCallback;
     private final WebSocketFailureCallback onFailureCallback;
-    
+
     private WebSocket webSocket;
 
     public WebSocketConnection(
 			WebSocketOpenCallback onOpenCallback,
 			WebSocketMessageCallback onMessageCallback,
 			WebSocketClosingCallback onClosingCallback,
+            WebSocketClosedCallback onClosedCallback,
 			WebSocketFailureCallback onFailureCallback,
             Request request,
             OkHttpClient client
@@ -42,6 +49,7 @@ public class WebSocketConnection extends WebSocketListener {
         this.onOpenCallback = onOpenCallback;
         this.onMessageCallback = onMessageCallback;
         this.onClosingCallback = onClosingCallback;
+        this.onClosedCallback = onClosedCallback;
         this.onFailureCallback = onFailureCallback;
         this.connectionId = WebSocketConnection.connectionCounter.incrementAndGet();
         this.request = request;
@@ -90,6 +98,12 @@ public class WebSocketConnection extends WebSocketListener {
     public void onClosing(WebSocket ws, int code, String reason) {
         super.onClosing(ws, code, reason);
         onClosingCallback.onClosing(code, reason);
+    }
+
+    @Override
+    public void onClosed(WebSocket ws, int code, String reason) {
+        super.onClosed(ws, code, reason);
+        onClosedCallback.onClosed(code, reason);
     }
 
     @Override

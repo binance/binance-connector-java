@@ -1,4 +1,4 @@
-package com.binance.connector.client.utils;
+package com.binance.connector.client.utils.websocketcallback;
 
 @FunctionalInterface
 public interface WebSocketMessageCallback {
