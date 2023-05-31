@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -17,12 +18,12 @@ public class TestUrlBuilder {
     private final double extensiveDecimalsDouble = 1.123456789101112;  
     private final double highDouble = 10000.1;
     private final int intValue = 2;
-    private final LinkedHashMap<String, Object> mockParameters = new LinkedHashMap<String, Object>() {{
+    private final Map<String, Object> mockParameters = new LinkedHashMap<String, Object>() {{
             put("key1", "value1");
             put("key2", intValue);
             put("key3", doubleValue);
         }};
-    private final LinkedHashMap<String, Object> mockDoubleParameters = new LinkedHashMap<String, Object>() {{
+    private final Map<String, Object> mockDoubleParameters = new LinkedHashMap<String, Object>() {{
             put("key1", extensiveDecimalsDouble);
             put("key2", highDouble);
 
@@ -36,12 +37,12 @@ public class TestUrlBuilder {
     @Test
     public void testBuildFullUrl() {
         String fullUrl = "www.test.com/url/path?key1=value1&key2=2&key3=0.0006";
-        assertEquals(fullUrl, UrlBuilder.buildFullUrl(baseUrl, urlPath, mockParameters, null));
+        assertEquals(fullUrl, UrlBuilder.buildFullUrl(baseUrl, urlPath, mockParameters));
     }
 
     @Test
     public void testBuildFullUrlWithoutParams() {
-        assertEquals(baseUrl + urlPath, UrlBuilder.buildFullUrl(baseUrl, urlPath, null, null));
+        assertEquals(baseUrl + urlPath, UrlBuilder.buildFullUrl(baseUrl, urlPath, null));
     }
 
     @Test
@@ -63,9 +64,15 @@ public class TestUrlBuilder {
         assertEquals("", UrlBuilder.joinQueryParameters(null));
     }
 
+    @Test
+    public void testJoinQueryParametersWithEmptyParams() {
+        String joinedQuery = ""; 
+        assertEquals(joinedQuery, UrlBuilder.joinQueryParameters(new LinkedHashMap<String, Object>()));
+    }
+
     /**
-     * Tests the JoinQueryParameters with Locale.IT to see if the originated Double continues with "." instead of being changed to a ","
-     * Also tests if there's no drop of 0s, add of group separator "," and limitation on decimals number.
+     * Tests joinQueryParameters method's behaviour when it's Locale.IT by checking if the Double value is not changed to "." to ",".
+     * Also tests if there's no drop of 0s, addition of group separator "," and limitation on decimals number.
      */
     @Test
     public void testJoinQueryParametersWithLocaleIT() {
@@ -79,7 +86,19 @@ public class TestUrlBuilder {
 
     @Test
     public void testBuildStreamUrl() {
-        String streamUrl = "www.test.com?streams=stream1/stream2/stream3";
+        String streamUrl = "www.test.com/stream?streams=stream1/stream2/stream3";
         assertEquals(streamUrl, UrlBuilder.buildStreamUrl(baseUrl, mockStreams));
+    }
+
+    @Test
+    public void testBuildStreamUrlWitoutParams() {
+        String streamUrl = "www.test.com/stream";
+        assertEquals(streamUrl, UrlBuilder.buildStreamUrl(baseUrl, null));
+    }
+
+    @Test
+    public void testBuildStreamUrlWithEmptyParams() {
+        String streamUrl = "www.test.com/stream";
+        assertEquals(streamUrl, UrlBuilder.buildStreamUrl(baseUrl, new ArrayList<String>()));
     }
 }

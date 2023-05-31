@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -39,7 +39,7 @@ public class C2C {
      * GET /sapi/v1/c2c/orderMatch/listUserOrderHistory
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * tradeType -- mandatory/string -- BUY, SELL <br>
@@ -52,7 +52,7 @@ public class C2C {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data</a>
      */
-    public String listUserOrderHistory(LinkedHashMap<String, Object> parameters) {
+    public String listUserOrderHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "tradeType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LIST_ORDER_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }

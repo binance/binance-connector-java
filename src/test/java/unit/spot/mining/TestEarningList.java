@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class TestEarningList {
     @Test
     public void testEarningListWithoutParameters() {
         String path = "/sapi/v1/mining/payment/list";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -43,7 +44,7 @@ public class TestEarningList {
     @Test
     public void testEarningList() {
         String path = "/sapi/v1/mining/payment/list?algo=sha256&userName=test";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("algo", "sha256");
         parameters.put("userName", "test");
 

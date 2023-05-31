@@ -1,6 +1,7 @@
 package examples.spot.mining;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -15,7 +16,7 @@ public final class HashrateResaleRequest {
     private static final long hashRate = 100000000L;
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("userName", "test");
         parameters.put("algo", "sha256");
         parameters.put("endDate", endDate);

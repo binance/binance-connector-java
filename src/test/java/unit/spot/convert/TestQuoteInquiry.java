@@ -1,9 +1,10 @@
-package unit.spot.subaccount;
+package unit.spot.convert;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,16 +13,18 @@ import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.utils.UrlBuilder;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 
-public class TestAddIpList {
+public class TestQuoteInquiry {
     private MockWebServer mockWebServer;
     private String baseUrl;
+
+    private final double amount = 0.001;
+    private final long recvWindow = 5000L;
 
     @Before
     public void init() {
@@ -30,31 +33,32 @@ public class TestAddIpList {
     }
 
     @Test
-    public void testAddIpListWithoutParameters() {
-        String path = "/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+    public void testQuoteInquiryWithoutParameters() {
+        String path = "/sapi/v1/convert/getQuote";
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createSubAccount().addIpList(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createConvert().quoteInquiry(parameters));
     }
 
     @Test
-    public void  testAddIpList() {
-        String path = String.format("/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList?email=%s&subAccountApiKey=abc&ipAddress=1.1.1.1",
-                UrlBuilder.urlEncode("alice@test.com"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("email", "alice@test.com");
-        parameters.put("subAccountApiKey", "abc");
-        parameters.put("ipAddress", "1.1.1.1");
+    public void testQuoteInquiryWithParametes() {
+        String path = "/sapi/v1/convert/getQuote";
+        Map<String, Object> parameters = new LinkedHashMap<>();
+        parameters.put("fromAsset", "BTC");
+        parameters.put("toAsset", "USDT");
+        parameters.put("fromAmount", amount);
+        parameters.put("recvWindow", recvWindow);
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createSubAccount().addIpList(parameters);
+        String result = client.createConvert().quoteInquiry(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
+
 }

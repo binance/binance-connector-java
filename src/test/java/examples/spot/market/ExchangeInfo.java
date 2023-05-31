@@ -2,6 +2,7 @@ package examples.spot.market;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -14,7 +15,7 @@ public final class ExchangeInfo {
     public static void main(String[] args) {
         SpotClient client = new SpotClientImpl();
         Market market = client.createMarket();
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         String result = market.exchangeInfo(parameters);
         System.out.println(result);

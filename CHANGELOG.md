@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.0.0rc2 - 2023-05-31
+
+### Added
+- Added WebSocket callbacks to `utils` directory with the aim of facilitating the transmission of various types of data from WebSocket connections (in addition to `onMessage`):  `WebSocketClosedCallback`, `WebSocketClosingCallback`, `WebSocketFailureCallback` and `WebSocketOpenCallback`.
+- New endpoints for Convert:
+  - `GET /sapi/v1/convert/exchangeInfo` to query for all convertible token pairs and its limits information.
+  - `GET /sapi/v1/convert/assetInfo` to query supported assets quantity precision information.
+  - `POST /sapi/v1/convert/getQuote` to request a quote for the provided token pairs.
+  - `POST /sapi/v1/convert/acceptQuote` to accept the offered quote by quote ID.
+  - `GET /sapi/v1/convert/orderStatus` to query order status by order ID.
+- New endpoint for Wallet:
+  - `GET /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage` to query Cloud-Mining payment and refund history.
+- New endpoint for Sub-account:
+  - `POST /sapi/v2/sub-account/subAccountApi/ipRestriction` to support master account to update IP Restriction for a sub-account API key.
+- Added Enums `DefaultUrls.MARKET_URL` and `DefaultUrls.MARKET_WS_URL` to be optionally used to retrieve market data.
+
+### Removed
+- The following endpoints was discontinued on January 13, 2023 6:00 AM UTC:
+  - `POST /sapi/v1/sub-account/subAccountApi/ipRestriction` to support master account enable and disable IP restriction for a sub-account API Key.
+  - `POST /sapi/v1/sub-account/subAccountApi/ipRestriction/ipList` to support master account add IP list for a sub-account API Key.
+
+### Changed
+- Renamed `WebSocketCallback` to `WebSocketMessageCallback` and moved it to the `utils` directory.
+- Updated parameter type from `LinkedHashMap<String, Object>` to `Map<String, Object>` in certain methods to support various data structures implementing the Map interface.
+- Renamed Enum `DefaultUrls.TESTNET_WSS_URL` to `DefaultUrls.TESTNET_WS_URL`.
+- Improved `utils.UrlBuilder` and `utils.RequestHandler` code readability.
+
 ## 3.0.0rc1 - 2023-05-12
 
 ### Added

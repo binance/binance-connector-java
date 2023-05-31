@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -45,7 +45,7 @@ public class BSwap {
      *     https://binance-docs.github.io/apidocs/spot/en/#list-all-swap-pools-market_data</a>
      */
     public String swapPools() {
-        return requestHandler.sendWithApiKeyRequest(baseUrl, SWAP_POOLS, null, HttpMethod.GET, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, SWAP_POOLS, null, HttpMethod.GET, showLimitUsage);
     }
 
     private final String LIQUIDITY = "/sapi/v1/bswap/liquidity";
@@ -55,7 +55,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/liquidity
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- optional/long <br>
@@ -64,7 +64,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#subscribe-blvt-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#subscribe-blvt-user_data</a>
      */
-    public String liquidity(LinkedHashMap<String, Object> parameters) {
+    public String liquidity(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LIQUIDITY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -75,7 +75,7 @@ public class BSwap {
      * POST /sapi/v1/bswap/liquidityAdd
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- mandatory/long <br>
@@ -87,7 +87,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-liquidity-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#add-liquidity-trade</a>
      */
-    public String liquidityAdd(LinkedHashMap<String, Object> parameters) {
+    public String liquidityAdd(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "poolId", Long.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "quantity");
@@ -101,7 +101,7 @@ public class BSwap {
      * POST /sapi/v1/bswap/liquidityRemove
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- mandatory/long <br>
@@ -113,7 +113,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#remove-liquidity-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#remove-liquidity-trade</a>
      */
-    public String liquidityRemove(LinkedHashMap<String, Object> parameters) {
+    public String liquidityRemove(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "poolId", Long.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "shareAmount");
@@ -127,7 +127,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/liquidityOps
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * operationId -- optional/long <br>
@@ -141,7 +141,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-liquidity-operation-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-liquidity-operation-record-user_data</a>
      */
-    public String liquidityOps(LinkedHashMap<String, Object> parameters) {
+    public String liquidityOps(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LIQUIDITY_OPS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -154,7 +154,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/quote
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * quoteAsset -- mandatory/string <br>
@@ -165,7 +165,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-liquidity-operation-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-liquidity-operation-record-user_data</a>
      */
-    public String quote(LinkedHashMap<String, Object> parameters) {
+    public String quote(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "quoteAsset", String.class);
         ParameterChecker.checkParameter(parameters, "baseAsset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "quoteQty");
@@ -179,7 +179,7 @@ public class BSwap {
      * POST /sapi/v1/bswap/swap
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * quoteAsset -- mandatory/string <br>
@@ -190,7 +190,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#swap-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#swap-trade</a>
      */
-    public String swap(LinkedHashMap<String, Object> parameters) {
+    public String swap(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "quoteAsset", String.class);
         ParameterChecker.checkParameter(parameters, "baseAsset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "quoteQty");
@@ -203,7 +203,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/swap
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * swapId -- optional/long <br>
@@ -218,7 +218,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-swap-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-swap-history-user_data</a>
      */
-    public String swapHistory(LinkedHashMap<String, Object> parameters) {
+    public String swapHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SWAP, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -227,7 +227,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/poolConfigure
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- optional/long <br>
@@ -236,7 +236,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-pool-configure-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-pool-configure-user_data</a>
      */
-    public String poolConfigure(LinkedHashMap<String, Object> parameters) {
+    public String poolConfigure(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, POOL_CONFIGURE, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -247,7 +247,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/addLiquidityPreview
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- mandatory/long <br>
@@ -259,7 +259,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-liquidity-preview-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#add-liquidity-preview-user_data</a>
      */
-    public String addLiquidityPreview(LinkedHashMap<String, Object> parameters) {
+    public String addLiquidityPreview(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "poolId", Long.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
         ParameterChecker.checkParameter(parameters, "quoteAsset", String.class);
@@ -274,7 +274,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/removeLiquidityPreview
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- mandatory/long <br>
@@ -286,7 +286,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#remove-liquidity-preview-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#remove-liquidity-preview-user_data</a>
      */
-    public String removeLiquidityPreview(LinkedHashMap<String, Object> parameters) {
+    public String removeLiquidityPreview(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "poolId", Long.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
         ParameterChecker.checkParameter(parameters, "quoteAsset", String.class);
@@ -301,7 +301,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/unclaimedRewards
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * type -- optional/int -- 0: Swap rewards,1:Liquidity rewards, default to 0 <br>
@@ -310,7 +310,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-unclaimed-rewards-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-unclaimed-rewards-record-user_data</a>
      */
-    public String unclaimedRewards(LinkedHashMap<String, Object> parameters) {
+    public String unclaimedRewards(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, UNCLAIMED_REWARDS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -321,7 +321,7 @@ public class BSwap {
      * POST /sapi/v1/bswap/claimRewards
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * type -- optional/int -- 0: Swap rewards,1:Liquidity rewards, default to 0 <br>
@@ -330,7 +330,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#claim-rewards-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#claim-rewards-trade</a>
      */
-    public String claimRewards(LinkedHashMap<String, Object> parameters) {
+    public String claimRewards(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CLAIM_REWARDS, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -341,7 +341,7 @@ public class BSwap {
      * GET /sapi/v1/bswap/claimedHistory
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * poolId -- optional/long <br>
@@ -355,7 +355,7 @@ public class BSwap {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-claimed-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-claimed-history-user_data</a>
      */
-    public String claimedHistory(LinkedHashMap<String, Object> parameters) {
+    public String claimedHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CLAIM_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 

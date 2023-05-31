@@ -7,8 +7,8 @@ import com.binance.connector.client.WebSocketStreamClient;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.WebSocketApiClientImpl;
 import com.binance.connector.client.impl.WebSocketStreamClientImpl;
-import com.binance.connector.client.utils.WebSocketCallback;
 import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
+import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
 
 import examples.PrivateConfig;
 
@@ -23,9 +23,9 @@ public final class WsStreamWithWsApiTrade {
     public static void main(String[] args) throws InterruptedException {
 
         // ws stream call
-        WebSocketStreamClient streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
+        WebSocketStreamClient streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WS_URL);
 
-        WebSocketCallback streamOnMsgCallback = (event) -> {
+        WebSocketMessageCallback streamOnMsgCallback = (event) -> {
             System.out.println(event);
         };
         

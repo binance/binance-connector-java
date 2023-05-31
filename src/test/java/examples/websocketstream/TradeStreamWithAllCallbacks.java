@@ -2,50 +2,52 @@ package examples.websocketstream;
 
 import com.binance.connector.client.WebSocketStreamClient;
 import com.binance.connector.client.impl.WebSocketStreamClientImpl;
-import com.binance.connector.client.utils.WebSocketCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketClosingCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketFailureCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketMessageCallback;
+import com.binance.connector.client.utils.websocketcallback.WebSocketOpenCallback;
 
 public final class TradeStreamWithAllCallbacks {
     private TradeStreamWithAllCallbacks() {
     }
 
-    private static WebSocketCallback onOpenCallback;
-    private static WebSocketCallback onMessageCallback;
-    private static WebSocketCallback onClosingCallback;
-    private static WebSocketCallback onFailureCallback;
+    private static WebSocketOpenCallback onOpenCallback;
+    private static WebSocketMessageCallback onMessageCallback;
+    private static WebSocketClosingCallback onClosingCallback;
+    private static WebSocketClosedCallback onClosedCallback;
+    private static WebSocketFailureCallback onFailureCallback;
 
-    private static void connectToTradeStream(
-        WebSocketStreamClient client,
-        WebSocketCallback openCallback,
-        WebSocketCallback messageCallback,
-        WebSocketCallback closingCallback,
-        WebSocketCallback failureCallback) {
-        client.tradeStream("btcusdt", openCallback, messageCallback, closingCallback, failureCallback);
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebSocketStreamClient client = new WebSocketStreamClientImpl();
+        final long sleepTime = 1000;
         
         onOpenCallback = openEvent -> {
-            System.out.println("Connection Starting...");
+            System.out.println("Open Connection: " + openEvent.toString());
         };
+
         onMessageCallback = (message) -> {
-            System.out.println(message);
+            System.out.println("Connection Message: " +  message);
         };
 
-        onClosingCallback = closingEvent -> {
-            System.out.println("Connection Closing...");
+        onClosingCallback = (code, reason) -> {
+            System.out.println("Closing Connection: code=" + code + ", reason=" + reason);
         };
 
-        onFailureCallback = failureEvent -> {
-            System.out.println("Connection Failed...");
-            System.out.println("Retrying Connection...");
-            connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
+        onClosedCallback = (code, reason) -> {
+            System.out.println("Closed Connection: code=" + code + ", reason=" + reason);
         };
-        connectToTradeStream(client, onOpenCallback, onMessageCallback, onClosingCallback, onFailureCallback);
 
-        // Close connection for onClosingCallback example purpose
+        onFailureCallback = (throwable, response) -> {
+            System.out.println("Connection Failed: throwable=" + throwable.getMessage());
+        };
+
+        client.tradeStream("btcusdt", onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback);
+
+        Thread.sleep(sleepTime);
+
+        // Close connection for onClosingCallback and onClosedCallback examples purpose
         client.closeAllConnections();
-
 
     }
 }

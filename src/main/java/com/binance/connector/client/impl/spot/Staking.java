@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -41,7 +41,7 @@ public class Staking {
      * GET /sapi/v1/staking/productList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -53,7 +53,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-list-user_data</a>
      */
-    public String productList(LinkedHashMap<String, Object> parameters) {
+    public String productList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         return requestHandler.sendSignedRequest(baseUrl, PRODUCT_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -63,7 +63,7 @@ public class Staking {
      * POST /sapi/v1/staking/purchase
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -75,7 +75,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#purchase-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#purchase-staking-product-user_data</a>
      */
-    public String purchase(LinkedHashMap<String, Object> parameters) {
+    public String purchase(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         ParameterChecker.checkParameter(parameters, "amount", Double.class);
@@ -89,7 +89,7 @@ public class Staking {
      * POST /sapi/v1/staking/redeem
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -101,7 +101,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-staking-product-user_data</a>
      */
-    public String redeem(LinkedHashMap<String, Object> parameters) {
+    public String redeem(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEEM, parameters, HttpMethod.POST, showLimitUsage);
@@ -112,7 +112,7 @@ public class Staking {
      * GET /sapi/v1/staking/position
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -125,7 +125,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-position-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-product-position-user_data</a>
      */
-    public String getPosition(LinkedHashMap<String, Object> parameters) {
+    public String getPosition(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         return requestHandler.sendSignedRequest(baseUrl, POSITION, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -135,7 +135,7 @@ public class Staking {
      * GET /sapi/v1/staking/stakingRecord
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -150,7 +150,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-staking-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-staking-history-user_data</a>
      */
-    public String stakingRecord(LinkedHashMap<String, Object> parameters) {
+    public String stakingRecord(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "txnType", String.class);
         return requestHandler.sendSignedRequest(baseUrl, STAKING_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -163,7 +163,7 @@ public class Staking {
      * POST /sapi/v1/staking/setAutoStaking
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -174,7 +174,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#set-auto-staking-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#set-auto-staking-user_data</a>
      */
-    public String setAutoStaking(LinkedHashMap<String, Object> parameters) {
+    public String setAutoStaking(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "positionId", String.class);
         ParameterChecker.checkParameter(parameters, "renewable", String.class);
@@ -186,7 +186,7 @@ public class Staking {
      * GET /sapi/v1/staking/personalLeftQuota
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * product -- mandatory/enum -- "STAKING" for Locked Staking, "F_DEFI" for flexible DeFi Staking, "L_DEFI" for locked DeFi Staking <br>
@@ -196,7 +196,7 @@ public class Staking {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-personal-left-quota-of-staking-product-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-personal-left-quota-of-staking-product-user_data</a>
      */
-    public String personalLeftQuota(LinkedHashMap<String, Object> parameters) {
+    public String personalLeftQuota(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "product", String.class);
         ParameterChecker.checkParameter(parameters, "productId", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LEFT_QUOTA, parameters, HttpMethod.GET, showLimitUsage);

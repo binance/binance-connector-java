@@ -1,7 +1,7 @@
 package com.binance.connector.client.utils;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.json.JSONObject;
@@ -16,12 +16,12 @@ public final class ParameterChecker {
     private static final int countStart = 0;
     private static final int countFinal = 1;
 
-    public static void checkParameter(LinkedHashMap<String, Object> parameters, String parameter, Class<?> t) {
+    public static void checkParameter(Map<String, Object> parameters, String parameter, Class<?> t) {
         checkRequiredParameter(parameters, parameter);
         checkParameterType(parameters.get(parameter), t, parameter);
     }
 
-    public static void checkRequiredParameter(LinkedHashMap<String, Object> parameters, String parameter) {
+    public static void checkRequiredParameter(Map<String, Object> parameters, String parameter) {
         if (!parameters.containsKey(parameter)) {
             throw new BinanceConnectorException(String.format("\"%s\" is a mandatory parameter!", parameter));
         }

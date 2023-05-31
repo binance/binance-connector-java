@@ -1,6 +1,7 @@
 package examples.spot.margin;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -14,7 +15,7 @@ public final class CrossMarginTransfer {
     private static final int type = 2;
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("asset", "USDT");
         parameters.put("amount", amount);
         parameters.put("type", type);

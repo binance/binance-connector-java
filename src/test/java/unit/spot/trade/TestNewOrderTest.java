@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestNewOrderTest {
     @Test
     public void testNewOrderWithoutParameters() {
         String path = "/api/v3/order/test";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -45,7 +46,7 @@ public class TestNewOrderTest {
     @Test
     public void testNewOrderTest() {
         String path = "/api/v3/order/test?symbol=BNBUSDT&side=BUY&type=MARKET&quantity=0.01";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("side", "BUY");
         parameters.put("type", "MARKET");

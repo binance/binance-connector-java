@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class TestCrossMarginTransfer {
     @Test
     public void testCrossMarginTransferWithoutParameters() {
         String path = "/sapi/v1/margin/transfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -46,7 +47,7 @@ public class TestCrossMarginTransfer {
     @Test
     public void testCrossMarginTransfer() {
         String path = "/sapi/v1/margin/transfer?asset=BNB&amount=0.01&type=1";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("asset", "BNB");
         parameters.put("amount", amount);
         parameters.put("type", type);

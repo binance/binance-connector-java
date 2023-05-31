@@ -1,0 +1,26 @@
+package examples.spot.convert;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import com.binance.connector.client.SpotClient;
+import com.binance.connector.client.impl.SpotClientImpl;
+
+import examples.PrivateConfig;
+
+public final class AcceptQuote {
+    
+    private AcceptQuote() {
+    }
+
+    public static void main(String[] args) {
+
+        Map<String, Object> parameters = new LinkedHashMap<>();
+
+        parameters.put("quoteId", "12415572564");
+
+        SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
+        String result = client.createConvert().acceptQuote(parameters);
+        System.out.println(result);
+    }
+}

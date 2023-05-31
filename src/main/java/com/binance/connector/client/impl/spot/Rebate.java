@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ProxyAuth;
@@ -38,7 +38,7 @@ public class Rebate {
      * GET /sapi/v1/rebate/taxQuery
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * startTime -- optional/long <br>
@@ -49,7 +49,7 @@ public class Rebate {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data</a>
      */
-    public String taxQuery(LinkedHashMap<String, Object> parameters) {
+    public String taxQuery(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TAX_QUERY, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

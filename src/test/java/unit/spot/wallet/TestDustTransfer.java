@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.SpotClientImpl;
+import com.binance.connector.client.utils.UrlBuilder;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockWebServer;
@@ -32,7 +34,7 @@ public class TestDustTransfer {
     @Test
     public void testDustTransferWithoutCoin() {
         String path = "/sapi/v1/asset/dust";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -43,13 +45,14 @@ public class TestDustTransfer {
 
     @Test
     public void testDustTransfer() {
-        String path = "/sapi/v1/asset/dust?asset=BTC&asset=BNB";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
-        ArrayList<String> assets = new ArrayList<>();
-        assets.add("BTC");
-        assets.add("BNB");
-        parameters.put("asset", assets);
+        String path = String.format("/sapi/v1/asset/dust?asset=%s", UrlBuilder.urlEncode("[CHR, CTSI]"));
 
+        Map<String, Object> parameters = new LinkedHashMap<>();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add("CHR");
+        assets.add("CTSI");
+        parameters.put("asset", assets);
+        
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 

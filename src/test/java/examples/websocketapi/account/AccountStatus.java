@@ -24,7 +24,7 @@ public final class AccountStatus {
         WebSocketApiClient client = new WebSocketApiClientImpl(PrivateConfig.TESTNET_API_KEY, signatureGenerator, DefaultUrls.TESTNET_WS_API_URL);
 
         client.connect(((event) -> {
-            System.out.println(event + '\n');
+            System.out.println(event + "\n");
         }));
         
         JSONObject params = new JSONObject();

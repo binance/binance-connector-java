@@ -3,6 +3,7 @@ package unit.spot.margin;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class TestCrossMarginData {
     @Test
     public void testCrossMarginData() {
         String path = "/sapi/v1/margin/crossMarginData?coin=BNB";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "BNB");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);

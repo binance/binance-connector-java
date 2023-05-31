@@ -3,6 +3,7 @@ package unit.spot.margin;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class TestGetAllMarginOcoOrders {
     @Test
     public void testGetAllMarginOcoOrders() {
         String path = "/sapi/v1/margin/allOrderList?symbol=BNBUSDT&fromId=1&startTime=12345678&endTime=12345679";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("fromId", fromId);
         parameters.put("startTime", startTime);

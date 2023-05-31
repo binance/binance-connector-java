@@ -1,19 +1,16 @@
 package com.binance.connector.client.utils;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.binance.connector.client.enums.HttpMethod;
-import com.binance.connector.client.enums.RequestType;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.utils.signaturegenerator.Ed25519SignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.RsaSignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
-
-import okhttp3.Request;
 
 public class RequestHandler {
     private final String apiKey;
@@ -31,52 +28,25 @@ public class RequestHandler {
         this.proxy = proxy;
     }
 
-    /**
-     * Build request based on request type and send the requests to server.
-     * @param baseUrl
-     * @param urlPath
-     * @param signature
-     * @param parameters
-     * @param httpMethod
-     * @param requestType
-     * @return String - response from server
-     */
-
-    private String sendApiRequest(String baseUrl, String urlPath, String signature, LinkedHashMap<String, Object> parameters,
-                                  HttpMethod httpMethod, RequestType requestType, boolean showLimitUsage) {
-        String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters, signature);
+    public String sendPublicRequest(String baseUrl, String urlPath, Map<String, Object> parameters, HttpMethod httpMethod, boolean showLimitUsage) {
+        String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters);
         logger.info("{} {}", httpMethod, fullUrl);
-        Request request;
-        switch (requestType) {
-            case PUBLIC:
-                request = RequestBuilder.buildPublicRequest(fullUrl, httpMethod);
-                break;
-            case WITH_API_KEY:
-            case SIGNED:
-                request = RequestBuilder.buildApiKeyRequest(fullUrl, httpMethod, apiKey);
-                break;
-            default:
-                throw new BinanceConnectorException("[RequestHandler] Invalid request type: " + requestType);
-        }
-        return ResponseHandler.handleResponse(request, showLimitUsage, proxy);
+
+        return ResponseHandler.handleResponse(RequestBuilder.buildPublicRequest(fullUrl, httpMethod), showLimitUsage, proxy);
     }
 
-    public String sendPublicRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
-                                    HttpMethod httpMethod, boolean showLimitUsage) {
-        return sendApiRequest(baseUrl, urlPath, null, parameters, httpMethod, RequestType.PUBLIC, showLimitUsage);
-    }
-
-    public String sendWithApiKeyRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
-                                        HttpMethod httpMethod, boolean showLimitUsage) {
+    public String sendApiRequest(String baseUrl, String urlPath, Map<String, Object> parameters, HttpMethod httpMethod, boolean showLimitUsage) {
         if (null == apiKey || apiKey.isEmpty()) {
             throw new BinanceConnectorException("[RequestHandler] API key cannot be null or empty!");
         }
-        return sendApiRequest(baseUrl, urlPath, null, parameters, httpMethod, RequestType.WITH_API_KEY, showLimitUsage);
+
+        String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters);
+        logger.info("{} {}", httpMethod, fullUrl);
+
+        return ResponseHandler.handleResponse(RequestBuilder.buildApiKeyRequest(fullUrl, httpMethod, apiKey), showLimitUsage, proxy);
     }
 
-    public String sendSignedRequest(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters,
-                                    HttpMethod httpMethod, boolean showLimitUsage) {
-                                        
+    public String sendSignedRequest(String baseUrl, String urlPath, Map<String, Object> parameters, HttpMethod httpMethod, boolean showLimitUsage) {                          
         if (signatureGenerator.getClass() == HmacSignatureGenerator.class && (null == apiKey || apiKey.isEmpty())) {
             throw new BinanceConnectorException("[RequestHandler] Secret key/API key cannot be null or empty!");
         }
@@ -84,7 +54,11 @@ public class RequestHandler {
             throw new BinanceConnectorException("[RequestHandler] Private key/API key cannot be null or empty!");
         }
         parameters.put("timestamp", UrlBuilder.buildTimestamp());
-        String signature = this.signatureGenerator.getSignature(UrlBuilder.joinQueryParameters(parameters));
-        return sendApiRequest(baseUrl, urlPath, signature, parameters, httpMethod, RequestType.SIGNED, showLimitUsage);
+        parameters.put("signature", this.signatureGenerator.getSignature(UrlBuilder.joinQueryParameters(parameters)));
+
+        String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters);
+        logger.info("{} {}", httpMethod, fullUrl);
+
+        return ResponseHandler.handleResponse(RequestBuilder.buildApiKeyRequest(fullUrl, httpMethod, apiKey), showLimitUsage, proxy);
     }
 }

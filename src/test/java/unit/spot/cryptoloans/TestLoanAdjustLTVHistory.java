@@ -3,6 +3,7 @@ package unit.spot.cryptoloans;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class TestLoanAdjustLTVHistory {
     @Test
     public void testLoanAdjustLTVHistoryWithoutParameters() {
         String path = "/sapi/v1/loan/ltv/adjustment/history";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -45,7 +46,7 @@ public class TestLoanAdjustLTVHistory {
     public void testLoanAdjustLTVHistory() {
         String path = "/sapi/v1/loan/ltv/adjustment/history?orderId=100000001&loanCoin=BUSD";
 
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("orderId", orderId);
         parameters.put("loanCoin", "BUSD");
 

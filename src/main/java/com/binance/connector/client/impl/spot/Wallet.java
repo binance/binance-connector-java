@@ -2,7 +2,7 @@ package com.binance.connector.client.impl.spot;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -57,7 +57,7 @@ public class Wallet {
      * GET /sapi/v1/capital/config/getall
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -65,7 +65,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-coins-39-information-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#all-coins-39-information-user_data</a>
      */
-    public String coinInfo(LinkedHashMap<String, Object> parameters) {
+    public String coinInfo(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COIN_INFO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -74,7 +74,7 @@ public class Wallet {
      * GET /sapi/v1/accountSnapshot
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * type -- mandatory/string -- "SPOT", "MARGIN", "FUTURES" <br>
@@ -86,7 +86,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data</a>
      */
-    public String accountSnapshot(LinkedHashMap<String, Object> parameters) {
+    public String accountSnapshot(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACC_SNAP, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -96,7 +96,7 @@ public class Wallet {
      * POST /sapi/v1/account/disableFastWithdrawSwitch
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -104,7 +104,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#disable-fast-withdraw-switch-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#disable-fast-withdraw-switch-user_data</a>
      */
-    public String disableFastWithdraw(LinkedHashMap<String, Object> parameters) {
+    public String disableFastWithdraw(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, DISABLE_FAST, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -113,7 +113,7 @@ public class Wallet {
      * POST /sapi/v1/account/enableFastWithdrawSwitch
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -121,7 +121,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-fast-withdraw-switch-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#enable-fast-withdraw-switch-user_data</a>
      */
-    public String enableFastWithdraw(LinkedHashMap<String, Object> parameters) {
+    public String enableFastWithdraw(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ENABLE_FAST, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -132,7 +132,7 @@ public class Wallet {
      * POST /sapi/v1/capital/withdraw/apply
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * coin -- mandatory/string <br>
@@ -150,7 +150,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#withdraw-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#withdraw-user_data</a>
      */
-    public String withdraw(LinkedHashMap<String, Object> parameters) {
+    public String withdraw(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         ParameterChecker.checkParameter(parameters, "address", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -164,7 +164,7 @@ public class Wallet {
      * GET /sapi/v1/capital/deposit/hisrec
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * coin -- optional/string <br>
@@ -178,7 +178,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#deposit-history-supporting-network-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#deposit-history-supporting-network-user_data</a>
      */
-    public String depositHistory(LinkedHashMap<String, Object> parameters) {
+    public String depositHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, DEPOSIT_HIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -189,7 +189,7 @@ public class Wallet {
      * GET /sapi/v1/capital/withdraw/history
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * coin -- optional/string <br>
@@ -203,7 +203,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#withdraw-history-supporting-network-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#withdraw-history-supporting-network-user_data</a>
      */
-    public String withdrawHistory(LinkedHashMap<String, Object> parameters) {
+    public String withdrawHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, WITHDRAW_HIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -214,7 +214,7 @@ public class Wallet {
      * GET /sapi/v1/capital/withdraw/history
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * coin -- mandatory/string <br>
@@ -224,7 +224,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#deposit-address-supporting-network-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#deposit-address-supporting-network-user_data</a>
      */
-    public String depositAddress(LinkedHashMap<String, Object> parameters) {
+    public String depositAddress(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "coin", String.class);
         return requestHandler.sendSignedRequest(baseUrl, DEPOSIT_ADD, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -236,7 +236,7 @@ public class Wallet {
      * GET /sapi/v1/account/status
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -244,7 +244,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data</a>
      */
-    public String accountStatus(LinkedHashMap<String, Object> parameters) {
+    public String accountStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACC_STATUS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -255,7 +255,7 @@ public class Wallet {
      * GET /sapi/v1/account/apiTradingStatus
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -263,7 +263,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data</a>
      */
-    public String apiTradingStatus(LinkedHashMap<String, Object> parameters) {
+    public String apiTradingStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, API_TRADE_STATUS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -274,7 +274,7 @@ public class Wallet {
      * GET /sapi/v1/account/apiTradingStatus
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * startTime -- optional/long <br>
@@ -284,7 +284,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#dustlog-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#dustlog-user_data</a>
      */
-    public String dustLog(LinkedHashMap<String, Object> parameters) {
+    public String dustLog(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, DUST_LOG, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -293,7 +293,7 @@ public class Wallet {
      * POST /sapi/v1/asset/dust-btc
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -301,7 +301,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data</a>
      */
-    public String bnbConvertableAssets(LinkedHashMap<String, Object> parameters) {
+    public String bnbConvertableAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BNB_CONVERTABLE_ASSETS, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -312,7 +312,7 @@ public class Wallet {
      * POST /sapi/v1/asset/dust
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- mandatory/array -- The asset being converted. For example: asset=BTC&amp;asset=USDT <br>
@@ -321,7 +321,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-user_data</a>
      */
-    public String dustTransfer(LinkedHashMap<String, Object> parameters) {
+    public String dustTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", ArrayList.class);
         return requestHandler.sendSignedRequest(baseUrl, DUST_TRANSFER, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -333,7 +333,7 @@ public class Wallet {
      * GET /sapi/v1/asset/assetDividend
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- optional/string <br>
@@ -345,7 +345,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#asset-dividend-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#asset-dividend-record-user_data</a>
      */
-    public String assetDividend(LinkedHashMap<String, Object> parameters) {
+    public String assetDividend(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ASSET_DIVIDEND, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -356,7 +356,7 @@ public class Wallet {
      * GET /sapi/v1/asset/assetDetail
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- optional/string <br>
@@ -365,7 +365,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#asset-detail-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#asset-detail-user_data</a>
      */
-    public String assetDetail(LinkedHashMap<String, Object> parameters) {
+    public String assetDetail(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ASSET_DETAIL, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -376,7 +376,7 @@ public class Wallet {
      * GET /sapi/v1/asset/tradeFee
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string <br>
@@ -385,7 +385,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#trade-fee-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#trade-fee-user_data</a>
      */
-    public String tradeFee(LinkedHashMap<String, Object> parameters) {
+    public String tradeFee(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRADE_FEE, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -396,7 +396,7 @@ public class Wallet {
      * POST /sapi/v1/asset/transfer
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * type -- mandatory/enum <br>
@@ -409,7 +409,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#user-universal-transfer-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#user-universal-transfer-user_data</a>
      */
-    public String universalTransfer(LinkedHashMap<String, Object> parameters) {
+    public String universalTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
@@ -420,7 +420,7 @@ public class Wallet {
      * GET /sapi/v1/asset/transfer
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * type -- mandatory/enum <br>
@@ -435,7 +435,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-user-universal-transfer-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-user-universal-transfer-history-user_data</a>
      */
-    public String queryUniversalTransfer(LinkedHashMap<String, Object> parameters) {
+    public String queryUniversalTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
         return requestHandler.sendSignedRequest(baseUrl, UNIVERSAL_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -445,7 +445,7 @@ public class Wallet {
      * POST /sapi/v1/asset/get-funding-asset
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- optional/string <br>
@@ -455,7 +455,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#funding-wallet-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#funding-wallet-user_data</a>
      */
-    public String fundingWallet(LinkedHashMap<String, Object> parameters) {
+    public String fundingWallet(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FUNDING_WALLET, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -464,7 +464,7 @@ public class Wallet {
      * GET /sapi/v1/account/apiRestrictions
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -472,7 +472,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-api-key-permission-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-api-key-permission-user_data</a>
      */
-    public String apiPermission(LinkedHashMap<String, Object> parameters) {
+    public String apiPermission(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, API_PERMISSION, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -483,7 +483,7 @@ public class Wallet {
      * POST /sapi/v3/asset/getUserAsset
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- optional/string -- If asset is blank, then query all positive assets user have. <br>
@@ -493,7 +493,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#user-asset-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#user-asset-user_data</a>
      */
-    public String getUserAsset(LinkedHashMap<String, Object> parameters) {
+    public String getUserAsset(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, USER_ASSET, parameters, HttpMethod.POST, showLimitUsage);
     }
 
@@ -504,7 +504,7 @@ public class Wallet {
      * POST /sapi/v1/asset/convert-transfer
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * clientTranId -- mandatory/string -- The unique user-defined transaction id, min length 20 <br>
@@ -517,7 +517,7 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#busd-convert-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#busd-convert-trade</a>
      */
-    public String busdConvert(LinkedHashMap<String, Object> parameters) {
+    public String busdConvert(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "clientTranId", String.class);
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkParameter(parameters, "amount", BigDecimal.class);
@@ -532,7 +532,7 @@ public class Wallet {
      * GET /sapi/v1/asset/convert-transfer/queryByPage
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * 
@@ -549,12 +549,41 @@ public class Wallet {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#busd-convert-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#busd-convert-history-user_data</a>
      */
-    public String busdConvertHistory(LinkedHashMap<String, Object> parameters) {
+    public String busdConvertHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "startTime", Long.class);
         ParameterChecker.checkParameter(parameters, "endTime", Long.class);
 
         return requestHandler.sendSignedRequest(baseUrl, BUSD_CONVERT_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+
+    private final String CLOUD_MINING_HISTORY = "/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage";
+    /**
+     * <br><br>
+     * GET /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * 
+     * startTime -- mandatory/long -- inclusive, unit: ms <br>
+     * endTime -- mandatory/long -- exclusive, unit: ms <br>
+     * tranId -- optional/long -- The transaction id <br>
+     * clientTranId -- optional/string -- The unique flag <br>
+     * asset -- optional/string -- If not sent, we will query all assets. <br>
+     * current -- optional/integer -- current page, default 1, the min value is 1 <br>
+     * size -- optional/integer -- page size, default 10, the max value is 100 <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-cloud-mining-payment-and-refund-history-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-cloud-mining-payment-and-refund-history-user_data</a>
+     */
+    public String cloudMiningHistory(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "startTime", Long.class);
+        ParameterChecker.checkParameter(parameters, "endTime", Long.class);
+
+        return requestHandler.sendSignedRequest(baseUrl, CLOUD_MINING_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
 
 }

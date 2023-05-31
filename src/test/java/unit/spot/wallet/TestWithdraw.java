@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestWithdraw {
     @Test
     public void testWithdrawWithoutCoin() {
         String path = "/sapi/v1/capital/withdraw/apply?amount=0.01&address=add";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("amount", amount);
         parameters.put("address", "add");
 
@@ -47,7 +48,7 @@ public class TestWithdraw {
     @Test
     public void testWithdrawWithoutAmount() {
         String path = "/sapi/v1/capital/withdraw/apply?coin=BNB&address=add";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "BNB");
         parameters.put("address", "add");
 
@@ -61,7 +62,7 @@ public class TestWithdraw {
     @Test
     public void testWithdrawWithoutAddress() {
         String path = "/sapi/v1/capital/withdraw/apply?coin=BNB&amount=0.01";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "BNB");
         parameters.put("amount", amount);
 
@@ -75,7 +76,7 @@ public class TestWithdraw {
     @Test
     public void testWithdraw() {
         String path = "/sapi/v1/capital/withdraw/apply?coin=BNB&amount=0.01&address=add";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("coin", "BNB");
         parameters.put("amount", amount);
         parameters.put("address", "add");

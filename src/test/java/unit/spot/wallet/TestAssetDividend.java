@@ -3,6 +3,7 @@ package unit.spot.wallet;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class TestAssetDividend {
     @Test
     public void testAssetDividend() {
         String path = "/sapi/v1/asset/assetDividend?asset=BNB&startTime=1591063000087&endTime=1591063000087&limit=10";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("asset", "BNB");
         parameters.put("startTime", "1591063000087");
         parameters.put("endTime", "1591063000087");

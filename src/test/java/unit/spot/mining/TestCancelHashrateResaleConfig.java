@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestCancelHashrateResaleConfig {
     @Test
     public void testCancelHashrateResaleConfigWithoutParameters() {
         String path = "/sapi/v1/mining/hash-transfer/config/cancel";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -45,7 +46,7 @@ public class TestCancelHashrateResaleConfig {
     @Test
     public void testCancelHashrateResaleConfig() {
         String path = "/sapi/v1/mining/hash-transfer/config/cancel?configId=123&userName=test";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("configId", configId);
         parameters.put("userName", "test");
 

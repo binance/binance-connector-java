@@ -3,6 +3,7 @@ package unit.spot.savings;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class TestFlexibleProducts {
     @Test
     public void testFlexibleProducts() {
         String path = "/sapi/v1/lending/daily/product/list?status=ALL&featured=ALL";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("status", "ALL");
         parameters.put("featured", "ALL");
 

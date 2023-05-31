@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -39,7 +39,7 @@ public class Mining {
      * GET /sapi/v1/mining/pub/algoList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -47,7 +47,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#acquiring-algorithm-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#acquiring-algorithm-user_data</a>
      */
-    public String algorithm(LinkedHashMap<String, Object> parameters) {
+    public String algorithm(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALGO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -56,7 +56,7 @@ public class Mining {
      * GET /sapi/v1/mining/pub/coinList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -64,7 +64,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#acquiring-coinname-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#acquiring-coinname-user_data</a>
      */
-    public String coinName(LinkedHashMap<String, Object> parameters) {
+    public String coinName(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COIN_NAME, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -73,7 +73,7 @@ public class Mining {
      * GET /sapi/v1/mining/worker/detail
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- sha256 <br>
@@ -84,7 +84,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#request-for-detail-miner-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#request-for-detail-miner-list-user_data</a>
      */
-    public String detailMinerList(LinkedHashMap<String, Object> parameters) {
+    public String detailMinerList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         ParameterChecker.checkParameter(parameters, "workerName", String.class);
@@ -96,7 +96,7 @@ public class Mining {
      * GET /sapi/v1/mining/worker/list
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- sha256 <br>
@@ -115,7 +115,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#request-for-miner-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#request-for-miner-list-user_data</a>
      */
-    public String minerList(LinkedHashMap<String, Object> parameters) {
+    public String minerList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, MINER_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -126,7 +126,7 @@ public class Mining {
      * GET /sapi/v1/mining/payment/list
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- sha256 <br>
@@ -141,7 +141,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#earnings-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#earnings-list-user_data</a>
      */
-    public String earningList(LinkedHashMap<String, Object> parameters) {
+    public String earningList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, EARNING_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -152,7 +152,7 @@ public class Mining {
      * GET /sapi/v1/mining/payment/other
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- sha256 <br>
@@ -167,7 +167,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#extra-bonus-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#extra-bonus-list-user_data</a>
      */
-    public String bonusList(LinkedHashMap<String, Object> parameters) {
+    public String bonusList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, BONUS_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -178,7 +178,7 @@ public class Mining {
      * GET /sapi/v1/mining/hash-transfer/config/details/list
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * pageIndex -- optional/int -- Page number, empty default first page, starting from 1 <br>
@@ -188,7 +188,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-list-user_data</a>
      */
-    public String hashrateResaleList(LinkedHashMap<String, Object> parameters) {
+    public String hashrateResaleList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, HASHRATE_RESALE_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -197,7 +197,7 @@ public class Mining {
      * GET /sapi/v1/mining/hash-transfer/profit/details
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * configId -- mandatory/int -- Mining ID <br>
@@ -209,7 +209,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-detail-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-detail-user_data</a>
      */
-    public String hashrateResaleDetail(LinkedHashMap<String, Object> parameters) {
+    public String hashrateResaleDetail(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "configId", Integer.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, HASHRATE_RESALE_DETAIL, parameters, HttpMethod.GET, showLimitUsage);
@@ -220,7 +220,7 @@ public class Mining {
      * GET /sapi/v1/mining/hash-transfer/config
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * userName -- mandatory/string -- Mining Account <br>
@@ -234,7 +234,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-request-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-request-user_data</a>
      */
-    public String hashrateResaleRequest(LinkedHashMap<String, Object> parameters) {
+    public String hashrateResaleRequest(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "endDate", Long.class);
@@ -249,7 +249,7 @@ public class Mining {
      * GET /sapi/v1/mining/hash-transfer/config/cancel
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * configId -- mandatory/int -- Mining ID <br>
@@ -259,7 +259,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-hashrate-resale-configuration-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#cancel-hashrate-resale-configuration-user_data</a>
      */
-    public String cancelHashrateResaleConfig(LinkedHashMap<String, Object> parameters) {
+    public String cancelHashrateResaleConfig(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "configId", Integer.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, CANCEL_HASHRATE_RESALE_CONFIG, parameters, HttpMethod.POST, showLimitUsage);
@@ -270,7 +270,7 @@ public class Mining {
      * GET /sapi/v1/mining/statistics/user/status
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- Algorithm(sha256) <br>
@@ -280,7 +280,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#statistic-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#statistic-list-user_data</a>
      */
-    public String statsticsList(LinkedHashMap<String, Object> parameters) {
+    public String statsticsList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, STATSTICS_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -291,7 +291,7 @@ public class Mining {
      * GET /sapi/v1/mining/statistics/user/list
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- Algorithm(sha256) <br>
@@ -301,7 +301,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#account-list-user_data</a>
      */
-    public String accountList(LinkedHashMap<String, Object> parameters) {
+    public String accountList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         ParameterChecker.checkParameter(parameters, "userName", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -312,7 +312,7 @@ public class Mining {
      * GET /sapi/v1/mining/payment/uid
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * algo -- mandatory/string -- Algorithm(sha256) <br>
@@ -325,7 +325,7 @@ public class Mining {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data</a>
      */
-    public String accountEarning(LinkedHashMap<String, Object> parameters) {
+    public String accountEarning(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_EARNING, parameters, HttpMethod.GET, showLimitUsage);
     }

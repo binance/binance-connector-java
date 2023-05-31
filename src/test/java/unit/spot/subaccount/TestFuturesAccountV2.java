@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class TestFuturesAccountV2 {
     @Test
     public void testFuturesAccountWithoutParameters() {
         String path = "/sapi/v2/sub-account/futures/account";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -47,7 +48,7 @@ public class TestFuturesAccountV2 {
     public void testFuturesAccount() {
         String path = String.format("/sapi/v2/sub-account/futures/account?email=%s&futuresType=1",
                 UrlBuilder.urlEncode("alice@test.com"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "alice@test.com");
         parameters.put("futuresType", futuresType);
 

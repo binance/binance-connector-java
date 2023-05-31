@@ -9,8 +9,10 @@ public final class CombineStreams {
     private CombineStreams() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        final long sleepTime = 3000;
         WebSocketStreamClient client = new WebSocketStreamClientImpl();
+
         ArrayList<String> streams = new ArrayList<>();
         streams.add("btcusdt@trade");
         streams.add("bnbusdt@trade");
@@ -19,6 +21,7 @@ public final class CombineStreams {
             System.out.println(event);
         }));
 
+        Thread.sleep(sleepTime);
         client.closeAllConnections();
     }
 }

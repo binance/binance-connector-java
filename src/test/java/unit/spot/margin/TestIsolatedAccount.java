@@ -3,6 +3,7 @@ package unit.spot.margin;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class TestIsolatedAccount {
     public void testIsolatedAccount() {
         String path = String.format("/sapi/v1/margin/isolated/account?symbols=%s",
                 UrlBuilder.urlEncode("BNBUSDT,BTCUSDT"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbols", "BNBUSDT,BTCUSDT");
         parameters.put("endTime", endTime);
 

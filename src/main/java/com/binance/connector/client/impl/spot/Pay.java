@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ProxyAuth;
@@ -38,7 +38,7 @@ public class Pay {
      * GET /sapi/v1/pay/transactions
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * startTime -- optional/long <br>
@@ -49,7 +49,7 @@ public class Pay {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-pay-trade-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-pay-trade-history-user_data</a>
      */
-    public String transactions(LinkedHashMap<String, Object> parameters) {
+    public String transactions(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRANSACTIONS, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

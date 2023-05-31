@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class TestUIKlines {
     @Test
     public void testUIKlinesWithoutSymbol() {
         String path = "/api/v3/uiKlines?interval=1m";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("interval", "1m");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
@@ -48,7 +49,7 @@ public class TestUIKlines {
     @Test
     public void testUIKlinesWithoutInterval() {
         String path = "/api/v3/uiKlines?symbol=BNBUSDT";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
@@ -61,7 +62,7 @@ public class TestUIKlines {
     @Test
     public void testUIKlines() {
         String path = "/api/v3/uiKlines?symbol=BNBUSDT&interval=1m";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("interval", "1m");
 
@@ -76,7 +77,7 @@ public class TestUIKlines {
     @Test
     public void testUIKlinesWithParameters() {
         String path = String.format("/api/v3/uiKlines?symbol=BNBUSDT&interval=1m&limit=1000&startTime=%s&endTime=%s", startTime, endTime);
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("interval", "1m");
         parameters.put("limit", limit);

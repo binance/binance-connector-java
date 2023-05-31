@@ -3,6 +3,7 @@ package unit.spot.mining;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class TestHashrateResaleList {
     @Test
     public void testHashrateResaleList() {
         String path = "/sapi/v1/mining/hash-transfer/config/details/list?pageIndex=1&pageSize=1";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("pageIndex", pageIndex);
         parameters.put("pageSize", pageSize);
 
