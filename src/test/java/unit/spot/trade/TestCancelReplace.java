@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestCancelReplace {
     @Test
     public void testCancelReplaceWithoutParameters() {
         String path = "/api/v3/order/cancelReplace";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -45,7 +46,7 @@ public class TestCancelReplace {
     @Test
     public void testCancelReplace() {
         String path = "/api/v3/order/cancelReplace?symbol=BNBUSDT&side=BUY&type=MARKET&cancelReplaceMode=STOP_ON_FAILURE&quantity=0.01";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("side", "BUY");
         parameters.put("type", "MARKET");

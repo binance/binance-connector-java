@@ -3,6 +3,7 @@ package unit.spot.trade;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class TestGetOcoOrders {
     @Test
     public void testGetOcoOrdersWithoutParams() {
         String path = "/api/v3/allOrderList";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -48,7 +49,7 @@ public class TestGetOcoOrders {
     @Test
     public void testGetOcoOrdersWithParams() {
         String path = String.format("/api/v3/allOrderList?fromId=123&startTime=%s&endTime=%s&limit=10", startTime, endTime);
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("fromId", fromId);
         parameters.put("startTime", startTime);
         parameters.put("endTime", endTime);

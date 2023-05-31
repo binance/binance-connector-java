@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class TestSetAutoStaking {
     @Test
     public void testSetAutoStakingWithoutParameters() {
         String path = "/sapi/v1/staking/setAutoStaking";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -43,7 +44,7 @@ public class TestSetAutoStaking {
     @Test
     public void testSetAutoStaking() {
         String path = "/sapi/v1/staking/setAutoStaking?product=STAKING&positionId=1234&renewable=false";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("product", "STAKING");
         parameters.put("positionId", "1234");
         parameters.put("renewable", "false");

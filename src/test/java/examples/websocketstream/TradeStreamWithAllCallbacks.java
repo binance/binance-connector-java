@@ -46,7 +46,7 @@ public final class TradeStreamWithAllCallbacks {
 
         Thread.sleep(sleepTime);
 
-        // Close connection for onClosingCallback example purpos∏e
+        // Close connection for onClosingCallback and onClosedCallback examples purpose
         client.closeAllConnections();
 
     }

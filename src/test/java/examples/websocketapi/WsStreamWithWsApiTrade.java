@@ -23,7 +23,7 @@ public final class WsStreamWithWsApiTrade {
     public static void main(String[] args) throws InterruptedException {
 
         // ws stream call
-        WebSocketStreamClient streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WSS_URL);
+        WebSocketStreamClient streamClient = new WebSocketStreamClientImpl(DefaultUrls.TESTNET_WS_URL);
 
         WebSocketMessageCallback streamOnMsgCallback = (event) -> {
             System.out.println(event);

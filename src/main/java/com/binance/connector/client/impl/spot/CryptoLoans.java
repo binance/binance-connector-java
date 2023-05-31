@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -39,7 +39,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/income
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * asset -- mandatory/string <br>
@@ -52,7 +52,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-crypto-loans-income-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-crypto-loans-income-history-user_data</a>
      */
-    public String loanIncome(LinkedHashMap<String, Object> parameters) {
+    public String loanIncome(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         return requestHandler.sendSignedRequest(baseUrl, LOAN_INCOME, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -62,7 +62,7 @@ public class CryptoLoans {
      * POST /sapi/v1/loan/borrow
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * loanCoin -- mandatory/string <br>
@@ -75,7 +75,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-crypto-loan-borrow-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#borrow-crypto-loan-borrow-trade</a>
      */
-    public String loanBorrow(LinkedHashMap<String, Object> parameters) {
+    public String loanBorrow(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkParameter(parameters, "loanTerm", Integer.class);
@@ -87,7 +87,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/borrow/history
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- optional/long -- orderId in POST /sapi/v1/loan/borrow <br>
@@ -102,7 +102,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-borrow-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-borrow-history-user_data</a>
      */
-    public String loanBorrowHistory(LinkedHashMap<String, Object> parameters) {
+    public String loanBorrowHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -111,7 +111,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/ongoing/orders
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- optional/long -- orderId in POST /sapi/v1/loan/borrow <br>
@@ -124,7 +124,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-ongoing-orders-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-ongoing-orders-user_data</a>
      */
-    public String loanOngoingOrders(LinkedHashMap<String, Object> parameters) {
+    public String loanOngoingOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_ONGOING_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -133,7 +133,7 @@ public class CryptoLoans {
      * POST /sapi/v1/loan/repay
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- mandatory/long <br>
@@ -145,7 +145,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-crypto-loan-repay-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#repay-crypto-loan-repay-trade</a>
      */
-    public String loanRepay(LinkedHashMap<String, Object> parameters) {
+    public String loanRepay(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderId", Long.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, LOAN_REPAY, parameters, HttpMethod.POST, showLimitUsage);
@@ -156,7 +156,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/repay/history
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- optional/long <br>
@@ -171,7 +171,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-get-loan-repayment-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#repay-get-loan-repayment-history-user_data</a>
      */
-    public String loanRepayHistory(LinkedHashMap<String, Object> parameters) {
+    public String loanRepayHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_REPAY_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -180,7 +180,7 @@ public class CryptoLoans {
      * POST /sapi/v1/loan/adjust/ltv
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- mandatory/long <br>
@@ -191,7 +191,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-crypto-loan-adjust-ltv-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-crypto-loan-adjust-ltv-trade</a>
      */
-    public String loanAdjustLTV(LinkedHashMap<String, Object> parameters) {
+    public String loanAdjustLTV(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderId", Long.class);
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, LOAN_ADJUST_LTV, parameters, HttpMethod.POST, showLimitUsage);
@@ -202,7 +202,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/ltv/adjustment/history
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- optional/long <br>
@@ -217,7 +217,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-loan-ltv-adjustment-history-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-crypto-loan-adjust-ltv-trade</a>
      */
-    public String loanAdjustLTVHistory(LinkedHashMap<String, Object> parameters) {
+    public String loanAdjustLTVHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOAN_ADJUST_LTV_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -226,7 +226,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/loanable/data
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * loanCoin -- optional/string <br>
@@ -236,7 +236,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data</a>
      */
-    public String loanAssetsData(LinkedHashMap<String, Object> parameters) {
+    public String loanAssetsData(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOANABLE_ASSETS_DATA, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -245,7 +245,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/collateral/data
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * collateralCoin -- optional/string <br>
@@ -255,7 +255,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-assets-data-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-collateral-assets-data-user_data</a>
      */
-    public String collateralAssetsData(LinkedHashMap<String, Object> parameters) {
+    public String collateralAssetsData(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_ASSETS_DATA, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -264,7 +264,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/repay/collateral/rate
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * loanCoin -- mandatory/string <br>
@@ -275,7 +275,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-rate-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#check-collateral-repay-rate-user_data</a>
      */
-    public String collateralRepayRate(LinkedHashMap<String, Object> parameters) {
+    public String collateralRepayRate(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "repayAmount");
@@ -287,7 +287,7 @@ public class CryptoLoans {
      * GET /sapi/v1/loan/customize/margin_call
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderId -- optional/long -- Mandatory when collateralCoin is empty. Send either orderId or collateralCoin, if both parameters are sent, take orderId only. <br>
@@ -298,7 +298,7 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#crypto-loan-customize-margin-call-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#crypto-loan-customize-margin-call-trade</a>
      */
-    public String customizeMarginCall(LinkedHashMap<String, Object> parameters) {
+    public String customizeMarginCall(Map<String, Object> parameters) {
         ParameterChecker.checkRequiredParameter(parameters, "marginCall");
         return requestHandler.sendSignedRequest(baseUrl, CUSTOMIZE_MARGIN_CALL, parameters, HttpMethod.POST, showLimitUsage);
     }

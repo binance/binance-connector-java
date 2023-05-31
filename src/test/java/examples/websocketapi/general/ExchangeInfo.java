@@ -15,7 +15,7 @@ public final class ExchangeInfo {
     public static void main(String[] args) throws InterruptedException {
         WebSocketApiClient client = new WebSocketApiClientImpl();
         client.connect(((event) -> {
-            System.out.println(event + '\n');
+            System.out.println(event + "\n");
         }));
 
         // empty params

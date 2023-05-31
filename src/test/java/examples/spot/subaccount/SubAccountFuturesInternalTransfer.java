@@ -1,6 +1,7 @@
 package examples.spot.subaccount;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -14,7 +15,7 @@ public final class SubAccountFuturesInternalTransfer {
     private static final int futuresType = 1;
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("fromEmail", "");
         parameters.put("toEmail", "");
         parameters.put("futuresType", futuresType);

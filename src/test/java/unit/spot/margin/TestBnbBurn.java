@@ -3,6 +3,7 @@ package unit.spot.margin;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class TestBnbBurn {
     @Test
     public void testBnbBurn() {
         String path = "/sapi/v1/bnbBurn?spotBNBBurn=true&interestBNBBurn=true";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("spotBNBBurn", "true");
         parameters.put("interestBNBBurn", "true");
 

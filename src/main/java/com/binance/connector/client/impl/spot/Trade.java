@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -42,7 +42,7 @@ public class Trade {
      * POST /api/v3/order/test
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -62,7 +62,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#test-new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#test-new-order-trade</a>
      */
-    public String testNewOrder(LinkedHashMap<String, Object> parameters) {
+    public String testNewOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -76,7 +76,7 @@ public class Trade {
      * POST /api/v3/order
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -96,7 +96,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#new-order-trade</a>
      */
-    public String newOrder(LinkedHashMap<String, Object> parameters) {
+    public String newOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -109,7 +109,7 @@ public class Trade {
      * DELETE /api/v3/order
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -121,7 +121,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#cancel-order-trade</a>
      */
-    public String cancelOrder(LinkedHashMap<String, Object> parameters) {
+    public String cancelOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDER, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -134,7 +134,7 @@ public class Trade {
      * DELETE /api/v3/openOrders
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -143,7 +143,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#cancel-order-trade</a>
      */
-    public String cancelOpenOrders(LinkedHashMap<String, Object> parameters) {
+    public String cancelOpenOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ALL_OPEN_ORDERS, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -154,7 +154,7 @@ public class Trade {
      * GET /api/v3/order
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -165,7 +165,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-order-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-order-user_data</a>
      */
-    public String getOrder(LinkedHashMap<String, Object> parameters) {
+    public String getOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -179,7 +179,7 @@ public class Trade {
      * POST /api/v3/order/cancelReplace
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -203,7 +203,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-an-existing-order-and-send-a-new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#cancel-an-existing-order-and-send-a-new-order-trade</a>
      */
-    public String cancelReplace(LinkedHashMap<String, Object> parameters) {
+    public String cancelReplace(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -217,7 +217,7 @@ public class Trade {
      * GET /api/v3/openOrders
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- optional/string <br>
@@ -226,7 +226,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#current-open-orders-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#current-open-orders-user_data</a>
      */
-    public String getOpenOrders(LinkedHashMap<String, Object> parameters) {
+    public String getOpenOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OPEN_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -237,7 +237,7 @@ public class Trade {
      * GET /api/v3/allOrders
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -250,7 +250,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-orders-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#all-orders-user_data</a>
      */
-    public String getOrders(LinkedHashMap<String, Object> parameters) {
+    public String getOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ALL_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -262,7 +262,7 @@ public class Trade {
      * POST /api/v3/order/oco
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -284,7 +284,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#new-order-trade</a>
      */
-    public String ocoOrder(LinkedHashMap<String, Object> parameters) {
+    public String ocoOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "side", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "quantity");
@@ -300,7 +300,7 @@ public class Trade {
      * DELETE /api/v3/orderList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -312,7 +312,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-oco-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#cancel-oco-trade</a>
      */
-    public String cancelOCO(LinkedHashMap<String, Object> parameters) {
+    public String cancelOCO(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, OCO_LIST, parameters, HttpMethod.DELETE, showLimitUsage);
     }
@@ -323,7 +323,7 @@ public class Trade {
      * GET /api/v3/orderList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * orderListId -- optional/string <br>
@@ -333,7 +333,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-oco-user_data</a>
      */
-    public String getOCOOrder(LinkedHashMap<String, Object> parameters) {
+    public String getOCOOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -344,7 +344,7 @@ public class Trade {
      * GET /api/v3/allOrderList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * fromId -- optional/long <br>
@@ -356,7 +356,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-oco-user_data</a>
      */
-    public String getOCOOrders(LinkedHashMap<String, Object> parameters) {
+    public String getOCOOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -365,7 +365,7 @@ public class Trade {
      * GET /api/v3/openOrderList
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -373,7 +373,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-open-oco-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-open-oco-user_data</a>
      */
-    public String getOpenOCOOrders(LinkedHashMap<String, Object> parameters) {
+    public String getOpenOCOOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OPEN_OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -384,7 +384,7 @@ public class Trade {
      * GET /api/v3/account
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -392,7 +392,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-information-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#account-information-user_data</a>
      */
-    public String account(LinkedHashMap<String, Object> parameters) {
+    public String account(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_INFO, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -403,7 +403,7 @@ public class Trade {
      * GET /api/v3/myTrades
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -417,7 +417,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-trade-list-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#account-trade-list-user_data</a>
      */
-    public String myTrades(LinkedHashMap<String, Object> parameters) {
+    public String myTrades(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_TRADES, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -429,7 +429,7 @@ public class Trade {
      * GET /api/v3/rateLimit/order
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -437,7 +437,7 @@ public class Trade {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-current-order-count-usage-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-current-order-count-usage-trade</a>
      */
-    public String rateLimitOrder(LinkedHashMap<String, Object> parameters) {
+    public String rateLimitOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

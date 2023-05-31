@@ -77,7 +77,7 @@ String result = client.createMarket().exchangeInfo();
 
 #### Trade Endpoint: Testing a new order
 ```java
-LinkedHashMap<String,Object> parameters = new LinkedHashMap<String,Object>();
+Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 
 SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
 
@@ -117,7 +117,9 @@ wsStreamClient.closeConnection(streamID1); //closes aggTradeStream-btcusdt
 wsStreamClient.closeAllConnections();
 ```
 
-More examples are available at `test/examples/websocketstream` folder
+Different types of WebSocket callbacks are available. Please refer to the `src/test/java/examples/websocketstream/TradeStreamWithAllCallbacks.java` example file to explore their usage.
+
+More examples are available at `src/test/java/examples/websocketstream` folder.
 
 ### WebSocket API
 
@@ -144,7 +146,9 @@ wsApiClient.close();
 
 If `requestId` is empty (`""`), `null` or not sent, this library will generate a `UUID` string for it. 
 
-More examples are available at `test/examples/websocketapi` folder
+Different types of WebSocket callbacks are available. Please refer to the `src/test/java/examples/websocketapi/WsApiwithAllCallbacks.java` example file to explore their usage.
+
+More examples are available at `src/test/java/examples/websocketapi` folder.
 
 ### Testnet
 
@@ -152,7 +156,7 @@ While `/sapi/*` endpoints don't have testnet environment yet, `/api/*` endpoints
 [Spot Testnet](https://testnet.binance.vision/). You can use it by changing the base URL:
 
 ```java
-LinkedHashMap<String,Object> parameters = new LinkedHashMap<>();
+Map<String,Object> parameters = new LinkedHashMap<>();
 
 SpotClient client = new SpotClientImpl(PrivateConfig.TESTNET_API_KEY, PrivateConfig.TESTNET_SECRET_KEY, PrivateConfig.TESTNET_URL);
 String result = client.createMarket().time();
@@ -161,18 +165,17 @@ String result = client.createMarket().time();
 ### Base URL
 
 If `baseUrl` is not provided, it defaults to `api.binance.com`.<br/>
-It's recommended to pass in the `baseUrl` parameter, even in production as Binance provides alternative URLs
-in case of performance issues:
+It's recommended to pass in the `baseUrl` parameter, even in production as Binance provides alternative URLs:
 - `https://api1.binance.com`
 - `https://api2.binance.com`
 - `https://api3.binance.com`
+- `https://api4.binance.com`
 
 ### Optional parameters
 
-All parameters are read from a `LinkedHashMap<String,Object>` object where `String` is the
-name of the parameter and `Object` is the value of the parameter. The parameters should follow their exact naming as in the API documentation.<br>
+All parameters are read from a `Map<String, Object>` implemented data structure where `String` is the name of the parameter and `Object` is the value of the parameter. The parameters should follow their exact naming as in the API documentation.<br>
 ```java
-LinkedHashMap<String,Object> parameters = new LinkedHashMap<String,Object>();
+Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 
 parameters.put("symbol","BTCUSDT");
 parameters.put("side", "SELL");
@@ -240,7 +243,7 @@ client.unsetProxy();
 logger.info(client.createMarket().time());
 ```
 
-Complete examples are available at `test/examples/proxy` folder.
+Complete examples are available at `src/test/java/examples/spot/proxy` folder.
 
 ### Logging
 This connector uses [`SLF4J`](https://www.slf4j.org/) as an abstraction layer for diverse logging frameworks.

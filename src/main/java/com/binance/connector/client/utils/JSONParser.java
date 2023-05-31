@@ -3,6 +3,7 @@ package com.binance.connector.client.utils;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,9 +53,9 @@ public final class JSONParser {
         }
     }
 
-    public static LinkedHashMap<String, Object> sortJSONObject(JSONObject parameters) {
+    public static Map<String, Object> sortJSONObject(JSONObject parameters) {
         LinkedList<String> keys = new LinkedList<>(parameters.keySet());
-        LinkedHashMap<String, Object> sortedParams = new LinkedHashMap<>();
+        Map<String, Object> sortedParams = new LinkedHashMap<>();
         keys.stream().sorted().forEach(key -> sortedParams.put(key, parameters.get(key)));
 
         return sortedParams;

@@ -3,6 +3,7 @@ package unit.spot.subaccount;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class TestQuerySubAccountList {
     public void testSubAccountList() {
         String path = String.format("/sapi/v1/sub-account/list?email=%s&isFreeze=true&page=1&limit=1",
                 UrlBuilder.urlEncode("alice@test.com"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "alice@test.com");
         parameters.put("isFreeze", true);
         parameters.put("page", page);

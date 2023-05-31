@@ -3,6 +3,7 @@ package unit.spot.subaccount;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class TestQuerySubAccountSpotTransfer {
     public void testSpotSummary() {
         String path = String.format("/sapi/v1/sub-account/sub/transfer/history?fromEmail=%s&toEmail=%s&startTime=100001&endTime=100002&page=1&limit=1",
                 UrlBuilder.urlEncode("alice@test.com"), UrlBuilder.urlEncode("bob@test.com"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("fromEmail", "alice@test.com");
         parameters.put("toEmail", "bob@test.com");
         parameters.put("startTime", startTime);

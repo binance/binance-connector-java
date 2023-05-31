@@ -6,113 +6,112 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
 
 public final class UrlBuilder {
+    private static final int DIFF_TILL_POSITION_INDEX = 1;
     private static final int MAX_DECIMAL_DIGITS = 30;
     private static DecimalFormat df;
-
 
     private UrlBuilder() {
     }
 
-    public static String buildFullUrl(String baseUrl, String urlPath, LinkedHashMap<String, Object> parameters, String signature) {
+    public static String buildFullUrl(String baseUrl, String urlPath, Map<String, Object> parameters) {
+        StringBuilder sb = new StringBuilder(baseUrl).append(urlPath);
         if (parameters != null && !parameters.isEmpty()) {
-            StringBuilder sb = new StringBuilder(baseUrl);
-            sb.append(urlPath).append('?');
-            joinQueryParameters(sb, parameters);
-            if (null != signature) {
-                sb.append("&signature=").append(urlEncode(signature));
-            }
-            return sb.toString();
-        } else {
-            return baseUrl + urlPath;
+            sb.append("?");
+            sb.append(joinQueryParameters(parameters));
         }
+        return sb.toString();
     }
 
     public static String buildStreamUrl(String baseUrl, ArrayList<String> streams) {
-        StringBuilder sb = new StringBuilder(baseUrl);
-        sb.append("?streams=");
-        return joinStreamUrls(sb, streams);
-    }
-
-    //concatenate query parameters
-    public static String joinQueryParameters(LinkedHashMap<String, Object> parameters) {
-        return joinQueryParameters(new StringBuilder(), parameters).toString();
-    }
-
-    public static StringBuilder joinQueryParameters(StringBuilder urlPath, LinkedHashMap<String, Object> parameters) {
-        if (parameters == null || parameters.isEmpty()) {
-            return urlPath;
+        StringBuilder sb = new StringBuilder(baseUrl).append("/stream");
+        if (streams != null && !streams.isEmpty()) {
+            sb.append("?streams=");
+            sb.append(joinStreamUrls(streams));
         }
+        return sb.toString();
+    }
 
-        boolean isFirst = true;
-        for (Map.Entry<String, Object> mapElement : parameters.entrySet()) {
+    /**
+     * Joins query parameters from a Map into a String representation.
+     * @param params The Map containing the query parameters.
+     * @return The String representation of the joined query parameters.
+    */
+    public static String joinQueryParameters(Map<String, Object> params) {
+        return joinQueryParameters(new StringBuilder(), params).toString();
+    }
 
-            if (mapElement.getValue() instanceof Double) {
-                parameters.replace(mapElement.getKey(), getFormatter().format(mapElement.getValue()));
-            } else if (mapElement.getValue() instanceof ArrayList) {
-                if (((ArrayList<?>) mapElement.getValue()).isEmpty()) {
-                    continue;
+    /**
+     * Joins query parameters from a Map into a StringBuilder representation.
+     * @param sb The StringBuilder to append the query parameters to.
+     * @param params The Map containing the query parameters.
+     * @return The StringBuilder representation of the joined query parameters.
+    */
+    public static StringBuilder joinQueryParameters(StringBuilder sb, Map<String, Object> params) {
+        if (params != null && !params.isEmpty()) {
+            Iterator<String> keys = params.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                sb.append(key);
+                sb.append("=");
+
+                String value;
+                if (params.get(key) instanceof Double) {
+                    value = getFormatter().format(params.get(key));
+                } else {
+                    value = params.get(key).toString();
                 }
-                String key = mapElement.getKey();
-                joinArrayListParameters(key, urlPath, (ArrayList<?>) mapElement.getValue(), isFirst);
-                isFirst = false;
-                continue;
-            }
+                sb.append(urlEncode(value));
 
-            if (isFirst) {
-                isFirst = false;
-            } else {
-                urlPath.append('&');
+                sb.append("&");
             }
-
-            urlPath.append(mapElement.getKey())
-                .append('=')
-                .append(urlEncode(mapElement.getValue().toString()));
+            sb.deleteCharAt(sb.length() - DIFF_TILL_POSITION_INDEX);
         }
-        return urlPath;
+        return sb;
     }
 
-    private static void joinArrayListParameters(String key, StringBuilder urlPath, ArrayList<?> values, boolean isFirst) {
-        for (Object value: values) {
-            if (isFirst) {
-                isFirst = false;
-            } else {
-                urlPath.append('&');
-            }
-
-            urlPath.append(key)
-                    .append('=')
-                    .append(urlEncode(value.toString()));
-        }
+    /**
+     * Joins streams from an ArrayList into a String representation.
+     * @param params The ArrayList containing the streams.
+     * @return The String representation of the joined streams.
+    */
+    public static String joinStreamUrls(ArrayList<String> streams) {
+        return joinStreamUrls(new StringBuilder(), streams).toString();
     }
 
-    private static String joinStreamUrls(StringBuilder urlPath, ArrayList<String> streams) {
-        boolean isFirst = true;
-        for (String stream: streams) {
-            if (isFirst) {
-                isFirst = false;
-            } else {
-                urlPath.append('/');
-            }
-            urlPath.append(stream);
-        }
-        return urlPath.toString();
-    }
+    /**
+     * Joins streams from an ArrayList into a StringBuilder representation.
+     * @param sb The StringBuilder to append the streams to.
+     * @param params The ArrayList containing the streams.
+     * @return The StringBuilder representation of the joined streams.
+    */
+    public static StringBuilder joinStreamUrls(StringBuilder sb, ArrayList<String> streams) {
 
+        if (streams != null && !streams.isEmpty()) {
+            for (String stream: streams) {
+                sb.append(stream);
+                sb.append("/");
+            }
+            sb.deleteCharAt(sb.length() - DIFF_TILL_POSITION_INDEX);
+        }
+        return sb;
+    }
 
     public static String urlEncode(String s) {
         try {
             return URLEncoder.encode(s, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
-            // UTF-8 being unsuppored is unlikely
-            // Replace with a unchecked exception to tidy up exception handling
             throw new RuntimeException(StandardCharsets.UTF_8.name() + " is unsupported", e);
         }
+    }
+
+    public static String buildTimestamp() {
+        return String.valueOf(System.currentTimeMillis());
     }
 
     private static DecimalFormat getFormatter() {
@@ -126,7 +125,4 @@ public final class UrlBuilder {
         return df;
     }
 
-    public static String buildTimestamp() {
-        return String.valueOf(System.currentTimeMillis());
-    }
 }

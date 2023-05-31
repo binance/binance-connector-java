@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestTicker {
     @Test
     public void testTicker() {
         String path = "/api/v3/ticker?symbol=BNBUSDT&type=MINI";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("type", "MINI");
 
@@ -49,7 +50,7 @@ public class TestTicker {
     public void testTickerWithMultipleSymbol() {
         String path = String.format("/api/v3/ticker?symbols=%s",
                 UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         ArrayList<String> symbols = new ArrayList<>();
         symbols.add("BNBUSDT");
         symbols.add("BTCUSDT");
@@ -66,7 +67,7 @@ public class TestTicker {
     @Test
     public void testTickerWithoutParameters() {
         String path = "/api/v3/ticker";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -79,7 +80,7 @@ public class TestTicker {
     public void testTickerWithInvalidType() {
         String path = String.format("/api/v3/ticker?symbols=%s",
                 UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         String[] symbols = {"BNBUSDT", "BTCUSDT"};
         parameters.put("symbols", symbols);
 
@@ -94,7 +95,7 @@ public class TestTicker {
     public void testTickerWithDoubleParameter() {
         String path = String.format("/api/v3/ticker?symbols=%s",
                 UrlBuilder.urlEncode("[\"BNBUSDT\",\"BTCUSDT\"]"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         String[] symbols = {"BNBUSDT", "BTCUSDT"};
         parameters.put("symbols", symbols);
         parameters.put("symbol", "ETHUSDT");

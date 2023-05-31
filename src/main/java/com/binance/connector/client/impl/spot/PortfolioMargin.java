@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ProxyAuth;
@@ -38,7 +38,7 @@ public class PortfolioMargin {
      * GET /sapi/v1/portfolio/account
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -46,7 +46,7 @@ public class PortfolioMargin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-account-info-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-account-info-user_data</a>
      */
-    public String getAccount(LinkedHashMap<String, Object> parameters) {
+    public String getAccount(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -57,7 +57,7 @@ public class PortfolioMargin {
      * GET /sapi/v1/portfolio/collateralRate
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -65,7 +65,7 @@ public class PortfolioMargin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#portfolio-margin-collateral-rate-market_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#portfolio-margin-collateral-rate-market_data</a>
      */
-    public String collateralRate(LinkedHashMap<String, Object> parameters) {
+    public String collateralRate(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_RATE, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -76,7 +76,7 @@ public class PortfolioMargin {
      * GET /sapi/v1/portfolio/pmLoan
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -84,7 +84,7 @@ public class PortfolioMargin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-portfolio-margin-bankruptcy-loan-record-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#query-portfolio-margin-bankruptcy-loan-record-user_data</a>
      */
-    public String bankruptcyLoanRecord(LinkedHashMap<String, Object> parameters) {
+    public String bankruptcyLoanRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, PM_LOAN, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -95,7 +95,7 @@ public class PortfolioMargin {
      * POST /sapi/v1/portfolio/repay
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -103,7 +103,7 @@ public class PortfolioMargin {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#portfolio-margin-bankruptcy-loan-repay">
      *     https://binance-docs.github.io/apidocs/spot/en/#portfolio-margin-bankruptcy-loan-repay</a>
      */
-    public String repay(LinkedHashMap<String, Object> parameters) {
+    public String repay(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REPAY, parameters, HttpMethod.POST, showLimitUsage);
     }
 }

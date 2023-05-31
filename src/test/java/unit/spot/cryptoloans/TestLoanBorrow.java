@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class TestLoanBorrow {
     @Test
     public void testLoanBorrowWithoutParameters() {
         String path = "/sapi/v1/loan/borrow";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -47,7 +48,7 @@ public class TestLoanBorrow {
     public void testLoanBorrow() {
         String path = "/sapi/v1/loan/borrow?loanCoin=BUSD&collateralCoin=BNB&loanAmount=100.5&loanTerm=7&";
 
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("loanCoin", "BUSD");
         parameters.put("collateralCoin", "BNB");
         parameters.put("loanAmount", loanAmount);

@@ -1,6 +1,7 @@
 package unit;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.utils.RequestBuilder;
 import com.binance.connector.client.utils.WebSocketConnection;
@@ -22,7 +23,7 @@ public final class MockData {
     public static final String MOCK_RESPONSE = "{\"key_1\": \"value_1\", \"key_2\": \"value_2\"}";
     public static final String API_KEY = "apiKey";
     public static final String SECRET_KEY = "secretKey";
-    public static final LinkedHashMap<String, Object> MOCK_PARAMETERS = new LinkedHashMap<String, Object>() {{
+    public static final Map<String, Object> MOCK_PARAMETERS = new LinkedHashMap<String, Object>() {{
             put("key1", "value1");
             put("key2", intValue2);
         }};

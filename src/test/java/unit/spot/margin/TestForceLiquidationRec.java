@@ -3,6 +3,7 @@ package unit.spot.margin;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestForceLiquidationRec {
     @Test
     public void testForceLiquidationRec() {
         String path = "/sapi/v1/margin/forceLiquidationRec?startTime=12345678&endTime=12345679";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("startTime", startTime);
         parameters.put("endTime", endTime);
 

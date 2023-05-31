@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class TestBusdConvert {
     @Test
     public void testBusdConverWithWrongParamType() {
         String path = "/sapi/v1/asset/convert-transfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("clientTranId", "118263407119");
         parameters.put("asset", "BUSD");
         parameters.put("amount", wrongAmountType);
@@ -52,7 +53,7 @@ public class TestBusdConvert {
     @Test
     public void testBusdConverWithoutMandatoryParam() {
         String path = "/sapi/v1/asset/convert-transfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("clientTranId", "118263407119");
         parameters.put("amount", amount);
         parameters.put("targetAsset", "USDC");
@@ -68,7 +69,7 @@ public class TestBusdConvert {
     @Test
     public void testBusdConvert() {
         String path = "/sapi/v1/asset/convert-transfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("clientTranId", "118263407119");
         parameters.put("asset", "BUSD");
         parameters.put("amount", amount);

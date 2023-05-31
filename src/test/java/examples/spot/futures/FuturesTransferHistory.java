@@ -1,6 +1,7 @@
 package examples.spot.futures;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -13,7 +14,7 @@ public final class FuturesTransferHistory {
     private static final long startTime = 0L;
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("asset", "USDT");
         parameters.put("startTime", startTime);
 

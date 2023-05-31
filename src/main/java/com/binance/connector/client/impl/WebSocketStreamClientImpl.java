@@ -59,7 +59,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#aggregate-trade-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#aggregate-trade-streams</a>
@@ -73,12 +73,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #aggTradeStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int aggTradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -94,7 +94,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#trade-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#trade-streams</a>
@@ -108,12 +108,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #tradeStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int tradeStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -129,7 +129,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
+     * @param interval Time interval for kline/candlestick
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-streams</a>
@@ -143,13 +144,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #klineStream(String, String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param interval
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param interval Time interval for kline/candlestick
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int klineStream(String symbol, String interval, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -166,7 +167,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-mini-ticker-stream">
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-mini-ticker-stream</a>
@@ -180,12 +181,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #miniTickerStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int miniTickerStream(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -215,11 +216,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #allMiniTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int allMiniTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -235,7 +236,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-ticker-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-ticker-streams</a>
@@ -249,12 +250,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #symbolTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int symbolTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -284,11 +285,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #allTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int allTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -303,7 +304,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @param windowSize Window Sizes: 1h,4h
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams">
@@ -325,12 +326,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #rollingWindowTicker(String, String, WebSocketMessageCallback)} (String, WebSocketCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int rollingWindowTicker(String symbol, String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -376,12 +377,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #allRollingWindowTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param windowSize
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param windowSize Window Sizes: 1h,4h
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int allRollingWindowTicker(String windowSize, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -397,7 +398,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: Real-time
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams</a>
@@ -411,12 +412,12 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #bookTicker(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int bookTicker(String symbol, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -444,11 +445,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #allBookTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int allBookTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -463,7 +464,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: 1000ms or 100ms
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @param levels Valid are 5, 10, or 20
      * @param speed  1000ms or 100ms
      * @return int - Connection ID
@@ -479,14 +480,14 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #partialDepthStream(String, int, int, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param levels
-     * @param speed
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param levels Valid are 5, 10, or 20
+     * @param speed  1000ms or 100ms
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int partialDepthStream(String symbol, int levels, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -502,7 +503,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * <br><br>
      * Update Speed: 1000ms or 100ms
      *
-     * @param symbol Name of trading pair
+     * @param symbol Name of the trading pair
      * @param speed  1000ms or 100ms
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#diff-depth-stream">
@@ -517,13 +518,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #diffDepthStream(String, int, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param symbol
-     * @param speed
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param symbol Name of the trading pair
+     * @param speed  1000ms or 100ms
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int diffDepthStream(String symbol, int speed, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -549,12 +550,13 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #listenUserStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param listenKey
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param listenKey listen key obtained from this
+     *                  <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">endpoint</a>
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int listenUserStream(String listenKey, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
@@ -565,7 +567,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Combined streams are accessed at /stream?streams=&lt;streamName1&gt;/&lt;streamName2&gt;/&lt;streamName3&gt;
      *
-     * @param streams A list of stream names to be combined <br>
+     * @param streams ArrayList of stream names to be combined <br>
      * @return int - Connection ID
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams">
      * https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams</a>
@@ -578,24 +580,24 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     /**
      * Same as {@link #combineStreams(ArrayList, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
-     * @param streams
-     * @param onOpenCallback
-     * @param onMessageCallback
-     * @param onClosingCallback
-     * @param onFailureCallback
-     * @return
+     * @param streams ArrayList of stream names to be combined <br>
+     * @param onOpenCallback Callback for when the websocket connection is opened
+     * @param onMessageCallback Callback for when a message is received
+     * @param onClosingCallback Callback for when the websocket connection is closing
+     * @param onFailureCallback Callback for when an error occurs
+     * @return int - Connection ID
      */
     @Override
     public int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
-        String url = UrlBuilder.buildStreamUrl(String.format("%s/stream", baseUrl), streams);
+        String url = UrlBuilder.buildStreamUrl(baseUrl, streams);
         Request request = RequestBuilder.buildWebSocketRequest(url);
         return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
     }
 
     /**
-     * Closes a specific stream based on stream Id.
+     * Closes a specific stream based on stream ID.
      *
-     * @param connectionId
+     * @param connectionId The connection ID to close.
      */
     @Override
     public void closeConnection(int connectionId) {

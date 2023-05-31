@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class TestAggTrades {
     @Test
     public void testAggTradesWithoutSymbol() {
         String path = "/api/v3/aggTrades";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -49,7 +50,7 @@ public class TestAggTrades {
     @Test
     public void testAggTrades() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
@@ -63,7 +64,7 @@ public class TestAggTrades {
     @Test
     public void testTradesWithLimit() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT&limit=1000";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("limit", limit);
 
@@ -78,7 +79,7 @@ public class TestAggTrades {
     @Test
     public void testTradesWithFromId() {
         String path = "/api/v3/aggTrades?symbol=BNBUSDT&fromId=1000";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("symbol", "BNBUSDT");
         parameters.put("fromId", fromId);
 
@@ -93,7 +94,7 @@ public class TestAggTrades {
     @Test
     public void testTradesWithTimestamp() {
         String path = String.format("/api/v3/aggTrades?symbol=BNBUSDT&startTime=%s&endTime=%s", startTime, endTime);
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         parameters.put("symbol", "BNBUSDT");
         parameters.put("startTime", startTime);

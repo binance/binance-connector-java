@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestIsolatedTransfer {
     @Test
     public void testIsolatedTransferWithoutParameters() {
         String path = "/sapi/v1/margin/isolated/transfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -45,7 +46,7 @@ public class TestIsolatedTransfer {
     @Test
     public void testIsolatedTransfer() {
         String path = "/sapi/v1/margin/isolated/transfer?asset=BNB&symbol=BNBUSDT&transFrom=SPOT&transTo=ISOLATED_MARGIN&amount=0.1";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("asset", "BNB");
         parameters.put("symbol", "BNBUSDT");
         parameters.put("transFrom", "SPOT");

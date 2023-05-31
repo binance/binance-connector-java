@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -46,7 +46,7 @@ public class GiftCard {
      * POST /sapi/v1/giftcard/createCode
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * token -- mandatory/string -- The coin type contained in the Binance Code <br>
@@ -56,7 +56,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#create-a-binance-code-user_data</a>
      */
-    public String createCode(LinkedHashMap<String, Object> parameters) {
+    public String createCode(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "token", String.class);
         ParameterChecker.checkParameter(parameters, "amount", Double.class);
         return requestHandler.sendSignedRequest(baseUrl, CREATE_CODE, parameters, HttpMethod.POST, showLimitUsage);
@@ -71,7 +71,7 @@ public class GiftCard {
      * POST /sapi/v1/giftcard/redeemCode
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * code -- mandatory/string -- Binance code <br>
@@ -85,7 +85,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#redeem-a-binance-code-user_data</a>
      */
-    public String redeemCode(LinkedHashMap<String, Object> parameters) {
+    public String redeemCode(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "code", String.class);
         return requestHandler.sendSignedRequest(baseUrl, REDEEM_CODE, parameters, HttpMethod.POST, showLimitUsage);
     }
@@ -99,7 +99,7 @@ public class GiftCard {
      * GET /sapi/v1/giftcard/verify
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * referenceNo -- mandatory/string -- reference number <br>
@@ -108,7 +108,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#verify-a-binance-code-user_data</a>
      */
-    public String verify(LinkedHashMap<String, Object> parameters) {
+    public String verify(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "referenceNo", String.class);
         return requestHandler.sendSignedRequest(baseUrl, VERIFY, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -120,7 +120,7 @@ public class GiftCard {
      * GET /sapi/v1/giftcard/cryptography/rsa-public-key
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * recvWindow -- optional/long <br>
@@ -128,7 +128,7 @@ public class GiftCard {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data">
      *     https://binance-docs.github.io/apidocs/spot/en/#fetch-rsa-public-key-user_data</a>
      */
-    public String rsaPublicKey(LinkedHashMap<String, Object> parameters) {
+    public String rsaPublicKey(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, RSA_PUB, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

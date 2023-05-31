@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +39,7 @@ public class TestQuerySubAccountFuturesTransfer {
     @Test
     public void testFuturesInternalTransferWithoutParameters() {
         String path = "/sapi/v1/sub-account/futures/internalTransfer";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -51,7 +52,7 @@ public class TestQuerySubAccountFuturesTransfer {
     public void testFuturesInternalTransfer() {
         String path = String.format("/sapi/v1/sub-account/futures/internalTransfer?email=%s&futuresType=1&startTime=100001&endTime=100002&page=1&limit=1",
                 UrlBuilder.urlEncode("alice@test.com"));
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "alice@test.com");
         parameters.put("futuresType", futuresType);
         parameters.put("startTime", startTime);

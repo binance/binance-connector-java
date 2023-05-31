@@ -1,6 +1,6 @@
 package com.binance.connector.client.impl.spot;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.utils.ParameterChecker;
@@ -38,7 +38,7 @@ public class UserData {
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
      */
     public String createListenKey() {
-        return requestHandler.sendWithApiKeyRequest(baseUrl, SPOT_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, SPOT_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
     }
 
     /**
@@ -48,7 +48,7 @@ public class UserData {
      * PUT /api/v3/userDataStream
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * listenKey -- mandatory/string <br>
@@ -56,9 +56,9 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
      */
-    public String extendListenKey(LinkedHashMap<String, Object> parameters) {
+    public String extendListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, SPOT_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, SPOT_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
     }
 
     /**
@@ -67,7 +67,7 @@ public class UserData {
      * DELETE /api/v3/userDataStream
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * listenKey -- mandatory/string <br>
@@ -75,9 +75,9 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
      */
-    public String closeListenKey(LinkedHashMap<String, Object> parameters) {
+    public String closeListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, SPOT_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, SPOT_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 
     private final String MARGIN_LISTEN_KEY = "/sapi/v1/userDataStream";
@@ -89,14 +89,14 @@ public class UserData {
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
      */
     public String createMarginListenKey() {
-        return requestHandler.sendWithApiKeyRequest(baseUrl, MARGIN_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, MARGIN_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
     }
 
     /**
      * PUT /sapi/v1/userDataStream
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * listenKey -- mandatory/string <br>
@@ -104,16 +104,16 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
      */
-    public String extendMarginListenKey(LinkedHashMap<String, Object> parameters) {
+    public String extendMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, MARGIN_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, MARGIN_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
     }
 
     /**
      * DELETE /sapi/v1/userDataStream
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * listenKey -- mandatory/string <br>
@@ -121,9 +121,9 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
      */
-    public String closeMarginListenKey(LinkedHashMap<String, Object> parameters) {
+    public String closeMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, MARGIN_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, MARGIN_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 
     private final String ISOLATED_LISTEN_KEY = "/sapi/v1/userDataStream/isolated";
@@ -131,7 +131,7 @@ public class UserData {
      * POST /sapi/v1/userDataStream/isolated
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -139,16 +139,16 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String createIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
+    public String createIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.POST, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     /**
      * PUT /sapi/v1/userDataStream/isolated
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -157,17 +157,17 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String extendIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
+    public String extendIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.PUT, showLimitUsage);
     }
 
     /**
      * DELETE /sapi/v1/userDataStream/isolated
      * <br>
      * @param
-     * parameters LinkedHashedMap of String,Object pair
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
      * symbol -- mandatory/string <br>
@@ -176,9 +176,9 @@ public class UserData {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
      *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
      */
-    public String closeIsolatedMarginListenKey(LinkedHashMap<String, Object> parameters) {
+    public String closeIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
-        return requestHandler.sendWithApiKeyRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
+        return requestHandler.sendApiRequest(baseUrl, ISOLATED_LISTEN_KEY, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 }

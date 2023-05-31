@@ -1,6 +1,7 @@
 package examples.spot.mining;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.impl.SpotClientImpl;
@@ -12,7 +13,7 @@ public final class DetailMinerList {
     }
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("algo", "sha256");
         parameters.put("userName", "");
         parameters.put("workerName", "");

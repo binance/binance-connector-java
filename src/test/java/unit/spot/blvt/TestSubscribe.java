@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class TestSubscribe {
     @Test
     public void testSubscribeWithoutParameters() {
         String path = "/sapi/v1/blvt/subscribe";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
@@ -44,7 +45,7 @@ public class TestSubscribe {
     @Test
     public void testSubscribe() {
         String path = "/sapi/v1/blvt/subscribe?tokenName=USDT&cost=1";
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("tokenName", "USDT");
         parameters.put("cost", cost);
 
