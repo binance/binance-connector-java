@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.0rc3 - 2023-06-27
+
+### Added
+- Added User-Agent header
+
 ## 3.0.0rc2 - 2023-05-31
 
 ### Added

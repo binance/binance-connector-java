@@ -9,40 +9,26 @@ import okhttp3.RequestBody;
 
 public final class RequestBuilder {
     private static final MediaType JSON_TYPE = MediaType.parse("application/json; charset=utf-8");
+    private static final String USER_AGENT = "binance-connector-java/3.0.0rc3";
+    private static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
 
     private RequestBuilder() {
     }
     public static Request buildPublicRequest(String fullUrl, HttpMethod httpMethod) {
         try {
-            final Request request;
+            final Request.Builder requestBuilder = new Request.Builder().addHeader("User-Agent", USER_AGENT).addHeader("Content-Type", CONTENT_TYPE).url(fullUrl);
             switch (httpMethod) {
                 case POST:
-                    request = new Request.Builder().url(fullUrl)
-                            .post(RequestBody.create("", JSON_TYPE))
-                            .build();
-                    break;
+                    return requestBuilder.post(RequestBody.create("", JSON_TYPE)).build();
                 case GET:
-                    request = new Request.Builder().url(fullUrl)
-                            .get()
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .build();
-                    break;
+                    return requestBuilder.get().build();
                 case PUT:
-                    request = new Request.Builder().url(fullUrl)
-                            .put(RequestBody.create("", JSON_TYPE))
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .build();
-                    break;
+                    return requestBuilder.put(RequestBody.create("", JSON_TYPE)).build();
                 case DELETE:
-                    request = new Request.Builder().url(fullUrl)
-                            .delete()
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .build();
-                    break;
+                    return requestBuilder.delete().build();
                 default:
                     throw new BinanceConnectorException("Invalid HTTP method: " + httpMethod);
             }
-            return request;
         } catch (IllegalArgumentException e) {
             throw new BinanceConnectorException("Invalid URL: " + e.getMessage());
         }
@@ -50,39 +36,19 @@ public final class RequestBuilder {
 
     public static Request buildApiKeyRequest(String fullUrl, HttpMethod httpMethod, String apiKey) {
         try {
-            final Request request;
+            final Request.Builder requestBuilder = new Request.Builder().addHeader("User-Agent", USER_AGENT).addHeader("Content-Type", CONTENT_TYPE).addHeader("X-MBX-APIKEY", apiKey).url(fullUrl);
             switch (httpMethod) {
                 case POST:
-                    request = new Request.Builder().url(fullUrl)
-                            .post(RequestBody.create("", JSON_TYPE))
-                            .addHeader("X-MBX-APIKEY", apiKey)
-                            .build();
-                    break;
+                    return requestBuilder.post(RequestBody.create("", JSON_TYPE)).build();
                 case GET:
-                    request = new Request.Builder().url(fullUrl)
-                            .get()
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .addHeader("X-MBX-APIKEY", apiKey)
-                            .build();
-                    break;
+                    return requestBuilder.get().build();
                 case PUT:
-                    request = new Request.Builder().url(fullUrl)
-                            .put(RequestBody.create("", JSON_TYPE))
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .addHeader("X-MBX-APIKEY", apiKey)
-                            .build();
-                    break;
+                    return requestBuilder.put(RequestBody.create("", JSON_TYPE)).build();
                 case DELETE:
-                    request = new Request.Builder().url(fullUrl)
-                            .delete()
-                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                            .addHeader("X-MBX-APIKEY", apiKey)
-                            .build();
-                    break;
+                    return requestBuilder.delete().build();
                 default:
                     throw new BinanceConnectorException("Invalid HTTP method: " + httpMethod);
             }
-            return request;
         } catch (IllegalArgumentException e) {
             throw new BinanceConnectorException("Invalid URL: " + e.getMessage());
         }
