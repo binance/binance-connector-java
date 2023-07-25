@@ -2,8 +2,17 @@ package com.binance.connector.client.utils.httpclient;
 
 import okhttp3.OkHttpClient;
 
-import java.time.Duration;
+public final class OkHttpClientBuilder {
+    private static OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-public class OkHttpClientBuilder {
-    public static OkHttpClient.Builder builder = new OkHttpClient.Builder().pingInterval(Duration.ofSeconds(10));
+    private OkHttpClientBuilder() {
+    }
+
+    public static void setBuilder(OkHttpClient.Builder builder) {
+        OkHttpClientBuilder.builder = builder;
+    }
+
+    public static OkHttpClient.Builder getBuilder() {
+        return builder;
+    }
 }
