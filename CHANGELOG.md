@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0 - 2023-09-28
+
+### Changed
+- Upgraded `org.bouncycastle:bcprov-jdk18on` dependency to version `1.74`.
+
+
 ## 3.0.0rc3 - 2023-06-27
 
 ### Added
