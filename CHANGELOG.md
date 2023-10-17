@@ -1,10 +1,40 @@
 # Changelog
 
+## 3.1.0 - 2023-10-17
+
+### Added
+- Allow custom timestamp when sending a signed request for both REST API and WebSocket API.
+
+### Removed
+- Deleted some deprecated Lending endpoints (within Savings):
+  - `GET /sapi/v1/lending/daily/product/list`
+  - `GET /sapi/v1/lending/daily/userLeftQuota`
+  - `POST /sapi/v1/lending/daily/purchase`
+  - `GET /sapi/v1/lending/daily/userRedemptionQuota`
+  - `POST /sapi/v1/lending/daily/redeem`
+  - `GET /sapi/v1/lending/daily/token/position`
+  - `GET /sapi/v1/lending/union/account`
+  - `GET /sapi/v1/lending/union/purchaseRecord`
+  - `GET /sapi/v1/lending/union/redemptionRecord`
+  - `GET /sapi/v1/lending/union/interestHistory`
+
+- Deleted deprecated Futures cross collateral endpoints:
+  - `GET /sapi/v1/futures/loan/borrow/history`
+  - `GET /sapi/v1/futures/loan/repay/history`
+  - `GET /sapi/v2/futures/loan/wallet`
+  - `GET /sapi/v1/futures/loan/adjustCollateral/history`
+  - `GET /sapi/v1/futures/loan/liquidationHistory`
+  - `GET /sapi/v1/futures/loan/interestHistory`
+
+- Deleted WebSocketStreamClient's `allBookTickerStream` (`!bookTicker`).
+
+### Changed
+- Upgraded `org.json` dependency to version `20231013`.
+
 ## 3.0.0 - 2023-09-28
 
 ### Changed
 - Upgraded `org.bouncycastle:bcprov-jdk18on` dependency to version `1.74`.
-
 
 ## 3.0.0rc3 - 2023-06-27
 
