@@ -427,37 +427,6 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     }
 
     /**
-     * Pushes any update to the best bid or ask's price or quantity in real-time for all symbols.
-     * <br><br>
-     * !bookTicker
-     * <br><br>
-     * Update Speed: Real-time
-     *
-     * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#all-book-tickers-stream</a>
-     */
-    @Override
-    public int allBookTickerStream(WebSocketMessageCallback callback) {
-        return allBookTickerStream(noopOpenCallback, callback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
-    }
-
-    /**
-     * Same as {@link #allBookTickerStream(WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
-     *
-     * @param onOpenCallback Callback for when the websocket connection is opened
-     * @param onMessageCallback Callback for when a message is received
-     * @param onClosingCallback Callback for when the websocket connection is closing
-     * @param onFailureCallback Callback for when an error occurs
-     * @return int - Connection ID
-     */
-    @Override
-    public int allBookTickerStream(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback) {
-        Request request = RequestBuilder.buildWebSocketRequest(String.format("%s/ws/!bookTicker", baseUrl));
-        return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
-    }
-
-    /**
      * Top bids and asks, Valid are 5, 10, or 20.
      * <br><br>
      * &lt;symbol&gt;@depth&lt;levels&gt;@&lt;speed&gt;ms

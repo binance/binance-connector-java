@@ -53,7 +53,7 @@ public class RequestHandler {
         if ((signatureGenerator.getClass() == RsaSignatureGenerator.class || signatureGenerator.getClass() == Ed25519SignatureGenerator.class) && (null == apiKey || apiKey.isEmpty())) {
             throw new BinanceConnectorException("[RequestHandler] Private key/API key cannot be null or empty!");
         }
-        parameters.put("timestamp", UrlBuilder.buildTimestamp());
+        parameters.putIfAbsent("timestamp", UrlBuilder.buildTimestamp());
         parameters.put("signature", this.signatureGenerator.getSignature(UrlBuilder.joinQueryParameters(parameters)));
 
         String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters);
