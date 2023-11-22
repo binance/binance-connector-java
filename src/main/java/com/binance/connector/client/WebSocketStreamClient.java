@@ -37,6 +37,8 @@ public interface WebSocketStreamClient {
     int listenUserStream(String listenKey, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback);
     int combineStreams(ArrayList<String> streams, WebSocketMessageCallback callback);
     int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback);
+    void subscribeCombineStreams(ArrayList<String> streams, int connectionId);
+    void unsubscribeCombineStreams(ArrayList<String> streams, int connectionId);
     void closeConnection(int streamId);
     void closeAllConnections();
 }
