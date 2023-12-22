@@ -14,7 +14,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
  * <br>
  * Response will be returned as callback.
  */
-public class WebSocketApiMarket {
+public class WebSocketApiMarket implements WebSocketApiModule {
     private WebSocketApiRequestHandler handler;
 
     public WebSocketApiMarket(WebSocketApiRequestHandler handler) {
@@ -76,13 +76,13 @@ public class WebSocketApiMarket {
      * limit -- optional/int -- Default 500; max 1000. <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades-market_data">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades-market_data</a>
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades</a>
      */
     public void historicalTrades(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
         parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
-        this.handler.apiRequest("trades.historical", parameters);
+        this.handler.publicRequest("trades.historical", parameters);
     }
 
     /**
@@ -122,6 +122,7 @@ public class WebSocketApiMarket {
      * startTime -- optional/int <br>
      * endTime -- optional/int <br>
      * limit -- optional/int -- Default 500; max 1000. <br>
+     * timeZone -- optional/String --  Default: 0 (UTC) <br>
      * requestId -- optional/String or int <br>
      * 
      * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#klines">
@@ -149,6 +150,7 @@ public class WebSocketApiMarket {
      * startTime -- optional/int <br>
      * endTime -- optional/int <br>
      * limit -- optional/int -- Default 500; max 1000. <br>
+     * timeZone -- optional/String --  Default: 0 (UTC) <br>
      * requestId -- optional/String or int <br>
      * 
      * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#ui-klines">
@@ -259,4 +261,27 @@ public class WebSocketApiMarket {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
         this.handler.publicRequest("ticker.book", parameters);
     }
+
+    /**
+     * Get the current best price and quantity on the order book.<br>
+     * 
+     * Note: Either symbol or symbols must be specified.<br>
+     * 
+     * @param parameters JSONObject composed by key-value pairs:
+     * <br><br>
+     * symbol -- optional/String -- Query ticker for a single symbol<br>
+     * symbols -- optional/Array of String -- Query ticker for multiple symbols<br>
+     * timeZone -- optional/String -- Default: 0 (UTC) <br>
+     * type -- optional/String -- Ticker type: FULL (default) or MINI<br>
+     * requestId -- optional/String or int <br>
+     * 
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#trading-day-ticker">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#trading-day-ticker</a>
+     */
+    public void tickerTradingDay(JSONObject parameters) {
+        ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
+        ParameterChecker.checkOneOfParametersRequired(parameters, "symbol", "symbols");
+        this.handler.publicRequest("ticker.tradingDay", parameters);
+    }
+
 }

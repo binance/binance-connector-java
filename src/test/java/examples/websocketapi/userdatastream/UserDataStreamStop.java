@@ -12,7 +12,7 @@ public final class UserDataStreamStop {
     private UserDataStreamStop() {
     }
 
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException {
         HmacSignatureGenerator signatureGenerator = new HmacSignatureGenerator(PrivateConfig.TESTNET_SECRET_KEY);

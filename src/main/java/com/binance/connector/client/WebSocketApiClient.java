@@ -1,6 +1,7 @@
 package com.binance.connector.client;
 
 import com.binance.connector.client.impl.websocketapi.WebSocketApiAccount;
+import com.binance.connector.client.impl.websocketapi.WebSocketApiAuth;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiGeneral;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiMarket;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiTrade;
@@ -15,9 +16,10 @@ public interface WebSocketApiClient {
     void connect(WebSocketMessageCallback onMessageCallback);
     void connect(WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback);
     void close();
+    WebSocketApiAccount account();
+    WebSocketApiAuth auth();
     WebSocketApiGeneral general();
     WebSocketApiMarket market();
     WebSocketApiTrade trade();
-    WebSocketApiAccount account();
     WebSocketApiUserDataStream userDataStream();
 }

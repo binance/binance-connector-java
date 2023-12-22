@@ -69,7 +69,7 @@ public class Futures {
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * asset -- mandatory/string -- The asset being transferred, e.g. USDT <br>
+     * asset -- optional/string -- The asset being transferred, e.g. USDT <br>
      * startTime -- mandatory/long <br>
      * endTime -- optional/long <br>
      * current -- optional/long -- Currently querying page. Start from 1. Default:1 <br>
@@ -83,5 +83,34 @@ public class Futures {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
         ParameterChecker.checkParameter(parameters, "startTime", Long.class);
         return requestHandler.sendSignedRequest(baseUrl, FUTURES_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String HISTORICAL_DATA = "/sapi/v1/futures/histDataLink";
+    /**
+     * GET /sapi/v1/futures/histDataLink
+     * 
+     * - The span between startTime and endTime can't be more than 7 days
+     * - The downloand link will be valid for 1 day
+     * - Only VIP user can query this endpoint
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string -- symbol name, e.g. BTCUSDT or BTCUSD_PERP <br>
+     * dataType -- mandatory/enum -- "T_DEPTH" for ticklevel orderbook data, "S_DEPTH" for orderbook snapshot data <br>
+     * startTime -- mandatory/long <br>
+     * endTime -- mandatory/long <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-future-ticklevel-orderbook-historical-data-download-link-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#get-future-ticklevel-orderbook-historical-data-download-link-user_data</a>
+     */
+    public String futuresOrderBookHistory(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "dataType", String.class);
+        ParameterChecker.checkParameter(parameters, "startTime", Long.class);
+        ParameterChecker.checkParameter(parameters, "endTime", Long.class);
+        return requestHandler.sendSignedRequest(baseUrl, HISTORICAL_DATA, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

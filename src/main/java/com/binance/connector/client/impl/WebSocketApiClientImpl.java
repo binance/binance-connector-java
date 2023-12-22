@@ -1,9 +1,11 @@
 package com.binance.connector.client.impl;
 
 import com.binance.connector.client.WebSocketApiClient;
+import com.binance.connector.client.enums.Category;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiAccount;
+import com.binance.connector.client.impl.websocketapi.WebSocketApiAuth;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiGeneral;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiMarket;
 import com.binance.connector.client.impl.websocketapi.WebSocketApiTrade;
@@ -33,11 +35,6 @@ public class WebSocketApiClientImpl implements WebSocketApiClient {
     private final WebSocketFailureCallback noopFailureCallback = (throwable, response) -> { };
     private WebSocketConnection connection; 
     private WebSocketApiRequestHandler requestHandler;
-    private WebSocketApiGeneral wsApiGeneral;
-    private WebSocketApiMarket wsApiMarket;
-    private WebSocketApiTrade wsApiTrade;
-    private WebSocketApiAccount wsApiAccount;
-    private WebSocketApiUserDataStream wsApiUserDataStream;
 
     public WebSocketApiClientImpl() {
         this("", null);
@@ -63,22 +60,6 @@ public class WebSocketApiClientImpl implements WebSocketApiClient {
         }
     }
 
-    private void checkCategoryInstance(Object categoryInstance, Class<?> categoryClass) {
-        if (categoryInstance == null) {
-            if (categoryClass == WebSocketApiGeneral.class) {
-                this.wsApiGeneral = new WebSocketApiGeneral(this.requestHandler);
-            } else if (categoryClass == WebSocketApiMarket.class) {
-                this.wsApiMarket = new WebSocketApiMarket(this.requestHandler);
-            } else if (categoryClass == WebSocketApiTrade.class) {
-                this.wsApiTrade = new WebSocketApiTrade(this.requestHandler);
-            } else if (categoryClass == WebSocketApiAccount.class) {
-                this.wsApiAccount = new WebSocketApiAccount(this.requestHandler);
-            } else if (categoryClass == WebSocketApiUserDataStream.class) {
-                this.wsApiUserDataStream = new WebSocketApiUserDataStream(this.requestHandler);
-            }
-        }
-    }
-
     @Override
     public void connect(WebSocketMessageCallback onMessageCallback) {
         connect(noopOpenCallback, onMessageCallback, noopClosingCallback, noopClosedCallback, noopFailureCallback);
@@ -100,38 +81,39 @@ public class WebSocketApiClientImpl implements WebSocketApiClient {
     }
 
     @Override
+    public WebSocketApiAccount account() {
+        checkRequestHandler();
+        return (WebSocketApiAccount) WebSocketApiModuleFactory.build(Category.ACCOUNT, this.requestHandler);
+    }
+
+    @Override
+    public WebSocketApiAuth auth() {
+        checkRequestHandler();
+        return (WebSocketApiAuth) WebSocketApiModuleFactory.build(Category.AUTH, this.requestHandler);
+    }
+
+    @Override
     public WebSocketApiGeneral general() {
         checkRequestHandler();
-        checkCategoryInstance(this.wsApiGeneral, WebSocketApiGeneral.class);
-        return this.wsApiGeneral;
+        return (WebSocketApiGeneral) WebSocketApiModuleFactory.build(Category.GENERAL, this.requestHandler);
     }
 
     @Override
     public WebSocketApiMarket market() {
         checkRequestHandler();
-        checkCategoryInstance(this.wsApiMarket, WebSocketApiMarket.class);
-        return this.wsApiMarket;
+        return (WebSocketApiMarket) WebSocketApiModuleFactory.build(Category.MARKET, this.requestHandler);
     }
 
     @Override
     public WebSocketApiTrade trade() {
         checkRequestHandler();
-        checkCategoryInstance(this.wsApiTrade, WebSocketApiTrade.class);
-        return this.wsApiTrade;
-    }
-
-    @Override
-    public WebSocketApiAccount account() {
-        checkRequestHandler();
-        checkCategoryInstance(this.wsApiAccount, WebSocketApiAccount.class);
-        return this.wsApiAccount;
+        return (WebSocketApiTrade) WebSocketApiModuleFactory.build(Category.TRADE, this.requestHandler);
     }
 
     @Override
     public WebSocketApiUserDataStream userDataStream() {
         checkRequestHandler();
-        checkCategoryInstance(this.wsApiUserDataStream, WebSocketApiUserDataStream.class);
-        return this.wsApiUserDataStream;
+        return (WebSocketApiUserDataStream) WebSocketApiModuleFactory.build(Category.USER_DATA_STREAM, this.requestHandler);
     }
 
 }

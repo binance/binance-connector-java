@@ -3,19 +3,22 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style](https://img.shields.io/badge/code%20style-checkstyle-yellow)](https://checkstyle.org/checks.html)
 
-This is a lightweight library that works as a connector to the [Binance public API](https://github.com/binance/binance-spot-api-docs)
+This is a lightweight library that works as a connector to the [Binance public API](https://github.com/binance/binance-spot-api-docs).
 
-- Supported APIs:
-  - `/api/*`
-  - `/sapi/*`
-  - Spot WebSocket Market Stream
-  - Spot User Data Stream
-  - Spot WebSocket API
+It supports the following APIs:
+  - `/api/*` endpoints;
+  - `/sapi/*` endpoints;
+  - Spot WebSocket Market Stream;
+  - Spot User Data Stream;
+  - Spot WebSocket API;
 
-- Test cases and examples
+Additionally, it includes test cases and examples.
 
-## Installation
-Replace `LATEST_VERSION` with the latest version number and paste the snippet below in `pom.xml`
+## Documentation
+[https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html](https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html)
+
+## Getting Started
+Copy and paste the following dependency snippet into your `pom.xml` file, replacing `LATEST_VERSION`` with the most [recent version](https://mvnrepository.com/artifact/io.github.binance/binance-connector-java) available:
 ```
 <dependency>
     <groupId>io.github.binance</groupId>
@@ -23,64 +26,27 @@ Replace `LATEST_VERSION` with the latest version number and paste the snippet be
     <version>LATEST_VERSION</version>
 </dependency>
 ```
-Run `mvn install` where `pom.xml` is located to install the dependency.
+Next, install the dependency by executing `mvn install` in the directory where your `pom.xml` is located.
 
-## Documentation
-[https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html](https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html)
+## Examples
+The examples are located under **src/test/java/examples**. Before running any of it, `PrivateConfig.java` must be set up correctly with `API_KEY` and` SECRET_KEY` or `PRIVATE_KEY_PATH` (if using RSA Keys).
 
-### Run Example
-The examples are located under **src/test/java/examples**.
+Note that this `PrivateConfig.java` is only used for examples, you should have your own configuration file when using the library.
 
-Before running any of it, `PrivateConfig.java` must be set up correctly with `API_KEY` and` SECRET_KEY` or `PRIVATE_KEY_PATH` (if using RSA Keys).
-
-Note that this `PrivateConfig.java` is only used for examples,
-you should have your own configuration file when using the library.
-
-### RESTful APIs
-
-The endpoints are categorized according to the [Binance](https://binance-docs.github.io/apidocs/spot/en/#change-log) API document.
-Each object corresponds to its category which will be used 
-to call its respective endpoints.
-
-
-| Category        |     Object       |         
-| --------------- | ---------------- |
-| Binance Code    | createGiftCard   | 
-| BLVT            | createBlvt       | 
-| BSwap           | createBswap      | 
-| C2C             | createC2C        | 
-| Convert         | createConvert    | 
-| CryptoLoans     | createCrytoLoans | 
-| Fiat            | createFiat       | 
-| Futures         | createFutures    |
-| Margin          | createMargin     | 
-| Market          | createMarket     | 
-| Mining          | createMining     | 
-| NFT             | createNFT        | 
-| Pay             | createPay        | 
-| Portfolio Margin| createPortfolioMargin | 
-| Rebate          | createRebate     |
-| Savings         | createSavings    | 
-| Staking         | createStaking    | 
-| Sub Account     | createsubAccount | 
-| Trade           | createTrade      | 
-| UserData        | createUserData   | 
-| Wallet          | createWallet     |
-
-<br>
+### REST APIs
 
 #### Market Endpoint: Exchange Information
 ```java
 SpotClient client = new SpotClientImpl();
-String result = client.createMarket().exchangeInfo();
+Map<String, Object> parameters = new LinkedHashMap<>();
+String result = client.createMarket().exchangeInfo(parameters);
 ```
 
 #### Trade Endpoint: Testing a new order
 ```java
-Map<String,Object> parameters = new LinkedHashMap<String,Object>();
-
 SpotClient client = new SpotClientImpl(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY);
 
+Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 parameters.put("symbol","BTCUSDT");
 parameters.put("side", "SELL");
 parameters.put("type", "LIMIT");
@@ -92,7 +58,6 @@ String result = client.createTrade().testNewOrder(parameters);
 ```
 
 ### WebSocket Stream
-
 ```java
 WebSocketStreamClient wsStreamClient = new WebSocketStreamClientImpl(); // defaults to live exchange unless stated.
 
@@ -119,17 +84,14 @@ wsStreamClient.closeAllConnections();
 
 Different types of WebSocket callbacks are available. Please refer to the `src/test/java/examples/websocketstream/TradeStreamWithAllCallbacks.java` example file to explore their usage.
 
-More examples are available at `src/test/java/examples/websocketstream` folder.
-
 ### WebSocket API
-
 ```java
 RsaSignatureGenerator signatureGenerator =  new RsaSignatureGenerator("PRIVATE_KEY_PATH");
-WebSocketApiClient wsApiClient = new WebSocketApiClientImpl("API_KEY", signatureGenerator); // defaults to live exchange unless stated.
+WebSocketApiClient wsApiClient = new WebSocketApiClientImpl("API_KEY", signatureGenerator); // defaults to live exchange unless stated
 
 // Open connection with a callback as parameter
 wsApiClient.connect(((message) -> {
-    System.out.println(message);
+System.out.println(message);
 }));
 
 JSONObject optionalParams = new JSONObject();
@@ -138,7 +100,7 @@ optionalParams.put("quantity", 1);
 
 wsApiClient.trade().testNewOrder("BTCUSDT", "BUY", "MARKET", optionalParams);
 
-Thread.sleep(3000);
+Thread.sleep(60000);
 
 // Close connection
 wsApiClient.close();
@@ -148,12 +110,10 @@ If `requestId` is empty (`""`), `null` or not sent, this library will generate a
 
 Different types of WebSocket callbacks are available. Please refer to the `src/test/java/examples/websocketapi/WsApiwithAllCallbacks.java` example file to explore their usage.
 
-More examples are available at `src/test/java/examples/websocketapi` folder.
-
+## Features
 ### Testnet
-
-While `/sapi/*` endpoints don't have testnet environment yet, `/api/*` endpoints can be tested in
-[Spot Testnet](https://testnet.binance.vision/). You can use it by changing the base URL:
+While `/sapi/*` endpoints do not yet have a testnet environment, `/api/*` endpoints can be tested on the [Spot Testnet](https://testnet.binance.vision/).
+You can use it by changing the base URL:
 
 ```java
 Map<String,Object> parameters = new LinkedHashMap<>();
@@ -163,8 +123,8 @@ String result = client.createMarket().time();
 ```
 
 ### Base URL
+If `baseUrl` is not provided, it defaults to `api.binance.com`.
 
-If `baseUrl` is not provided, it defaults to `api.binance.com`.<br/>
 It's recommended to pass in the `baseUrl` parameter, even in production as Binance provides alternative URLs:
 - `https://api1.binance.com`
 - `https://api2.binance.com`
@@ -172,8 +132,8 @@ It's recommended to pass in the `baseUrl` parameter, even in production as Binan
 - `https://api4.binance.com`
 
 ### Optional parameters
+Parameters can be set in any implementation of `Map<String, Object>` interface, where `String` represents the parameter name and `Object` the parameter value. These parameters should have the same naming as in the API doc."
 
-All parameters are read from a `Map<String, Object>` implemented data structure where `String` is the name of the parameter and `Object` is the value of the parameter. The parameters should follow their exact naming as in the API documentation.<br>
 ```java
 Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 
@@ -186,24 +146,20 @@ parameters.put("price", 9500);
 ```
 
 ### Response MetaData
-
-The Binance API server provides weight usages in the headers of each response. This value can be return by 
-calling `setShowLimitUsage` and setting it to `true`.
+The Binance API server provides weight usages in the headers of each response, which can be returned if you set `setShowLimitUsage(true)`.
 ```java
 SpotClient client = new SpotClientImpl();
 client.setShowLimitUsage(true);
 String result = client.createMarket().time();
 logger.info(result);
 ```
-output:
+Output:
 ```
 INFO: {"data":"{"serverTime":1633434339494}","x-mbx-used-weight":"1","x-mbx-used-weight-1m":"1"}
 ```
 
 ### Proxy
-HTTP Proxy is supported.
-
-To set it up, call `setProxy()` with `ProxyAuth` and before submitting requests to binance:
+To set HTTP Proxy, call `setProxy()` with `ProxyAuth` and before submitting requests:
 
 ```java
 SpotClient client = new SpotClientImpl();
@@ -236,8 +192,7 @@ client.setProxy(proxy);
 logger.info(client.createMarket().time());
 ```
 
-To undo `Proxy`, use `unsetProxy()` before submitting requests to binance:
-
+To undo `Proxy`, use `unsetProxy()` before submitting requests:
 ```java
 client.unsetProxy();
 logger.info(client.createMarket().time());
@@ -284,7 +239,7 @@ When creating `SpotClient`, `WebSocketStreamClient` or `WebSocketApiClient`, you
   SpotClient client = new SpotClientImpl("ApiKey", signGenerator);
 ```
 
-### Error
+## Errors
 
 There are 3 types of error which may be thrown by this library.
 
@@ -310,11 +265,12 @@ try {
     }
 ```
 
-### Test
+## Test Cases
 `mvn clean test`
 
-## Contributing
+## Contribution
+Contributions are welcome!
 
-Contributions are welcome.<br/>
-If you've found a bug within this project, please open an issue to discuss what you would like to change.<br/>
-If it's an issue with the API, please open a topic at [Binance Developer Community](https://dev.binance.vision)
+If you've found a bug within this project, please open an issue to discuss what you would like to change.
+
+If it's an issue with the API itself, you can submit on the [Binance Developer Community](https://dev.binance.vision)

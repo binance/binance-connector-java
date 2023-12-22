@@ -14,7 +14,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
  * <br>
  * Response will be returned as callback.
  */
-public class WebSocketApiTrade {
+public class WebSocketApiTrade implements WebSocketApiModule {
     private WebSocketApiRequestHandler handler;
 
     public WebSocketApiTrade(WebSocketApiRequestHandler handler) {  
@@ -85,6 +85,7 @@ public class WebSocketApiTrade {
      * strategyId -- optional/int -- Arbitrary numeric value identifying the order within an order strategy.<br>
      * strategyType -- optional/int -- Arbitrary numeric value identifying the order strategy. Values smaller than 1000000 are reserved and cannot be used.<br>
      * selfTradePreventionMode -- optional/String -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
+     * computeCommissionRates -- optional/boolean -- Default: false.<br>
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
@@ -139,6 +140,7 @@ public class WebSocketApiTrade {
      * orderId -- optional/int -- Cancel order by orderId<br>
      * origClientOrderId -- optional/String -- Cancel order by clientOrderId<br>
      * newClientOrderId -- optional/String -- New ID for the canceled order. Automatically generated if not sent<br>
+     * cancelRestrictions -- optional/enum -- Supported values: ONLY_NEW - Cancel will succeed if the order status is NEW. ONLY_PARTIALLY_FILLED - Cancel will succeed if order status is PARTIALLY_FILLED.<br>
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
@@ -180,6 +182,7 @@ public class WebSocketApiTrade {
      * strategyId -- optional/int -- Arbitrary numeric value identifying the order within an order strategy.<br>
      * strategyType -- optional/int -- Arbitrary numeric value identifying the order strategy. Values smaller than 1000000 are reserved and cannot be used.<br>
      * selfTradePreventionMode -- optional/String -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
+     * cancelRestrictions -- optional/enum -- Supported values: ONLY_NEW - Cancel will succeed if the order status is NEW. ONLY_PARTIALLY_FILLED - Cancel will succeed if order status is PARTIALLY_FILLED.<br>
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
@@ -346,4 +349,82 @@ public class WebSocketApiTrade {
     public void getOpenOcoOrders(JSONObject parameters) {
         this.handler.signedRequest("openOrderLists.status", parameters);
     }
+
+    /**
+     * Places an order using smart order routing (SOR).
+     * 
+     * @param symbol String
+     * @param side String -- BUY or SELL
+     * @param type String
+     * @param quantity double
+     * @param parameters JSONObject composed by key-value pairs:
+     * <br><br>
+     * timeInForce -- optional/String -- Applicable only to LIMIT order type.<br>
+     * price -- optional/double -- Applicable only to LIMIT order type.<br>
+     * newClientOrderId -- optional/String -- Arbitrary unique ID among open orders. Automatically generated if not sent<br>
+     * newOrderRespType -- optional/String -- Select response format: ACK, RESULT, FULL. MARKET and LIMIT orders use FULL by default, other order types default to ACK.<br>
+     * stopPrice -- optional/double <br>
+     * icebergQty -- optional/double <br>
+     * strategyId -- optional/int -- Arbitrary numeric value identifying the order within an order strategy.<br>
+     * strategyType -- optional/int -- Arbitrary numeric value identifying the order strategy. Values smaller than 1000000 are reserved and cannot be used.<br>
+     * selfTradePreventionMode -- optional/String -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
+     * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
+     * requestId -- optional/String or int <br>
+     * 
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-using-sor-trade">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-using-sor-trade</a>
+     */
+    public void newSorOrder(String symbol, String side, String type, double quantity, JSONObject parameters) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        ParameterChecker.checkParameterType(side, String.class, "side");
+        ParameterChecker.checkParameterType(type, String.class, "type");
+        ParameterChecker.checkParameterType(quantity, Double.class, "quantity");
+
+        parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
+        parameters = JSONParser.addKeyValue(parameters, "side", side);
+        parameters = JSONParser.addKeyValue(parameters, "type", type);
+        parameters = JSONParser.addKeyValue(parameters, "quantity", quantity);
+        
+        this.handler.signedRequest("sor.order.place", parameters);
+    }
+
+    /**
+     * Test new order creation and signature/recvWindow using smart order routing (SOR). Creates and validates a new order but does not send it into the matching engine.
+     * 
+     * @param symbol String
+     * @param side String -- BUY or SELL
+     * @param type String
+     * @param quantity double
+     * @param parameters JSONObject composed by key-value pairs:
+     * <br><br>
+     * timeInForce -- optional/String -- Applicable only to LIMIT order type.<br>
+     * price -- optional/double -- Applicable only to LIMIT order type.<br>
+     * newClientOrderId -- optional/String -- Arbitrary unique ID among open orders. Automatically generated if not sent<br>
+     * newOrderRespType -- optional/String -- Select response format: ACK, RESULT, FULL. MARKET and LIMIT orders use FULL by default, other order types default to ACK.<br>
+     * stopPrice -- optional/double <br>
+     * icebergQty -- optional/double <br>
+     * strategyId -- optional/int -- Arbitrary numeric value identifying the order within an order strategy.<br>
+     * strategyType -- optional/int -- Arbitrary numeric value identifying the order strategy. Values smaller than 1000000 are reserved and cannot be used.<br>
+     * selfTradePreventionMode -- optional/String -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
+     * computeCommissionRates -- optional/boolean -- Default: false.<br>
+     * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
+     * requestId -- optional/String or int <br>
+     * 
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-using-sor-trade">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-using-sor-trade</a>
+     */
+    public void testNewSorOrder(String symbol, String side, String type, double quantity, JSONObject parameters) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        ParameterChecker.checkParameterType(side, String.class, "side");
+        ParameterChecker.checkParameterType(type, String.class, "type");
+        ParameterChecker.checkParameterType(quantity, Double.class, "quantity");
+
+        parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
+        parameters = JSONParser.addKeyValue(parameters, "side", side);
+        parameters = JSONParser.addKeyValue(parameters, "type", type);
+        parameters = JSONParser.addKeyValue(parameters, "quantity", quantity);
+        
+        this.handler.signedRequest("sor.order.test", parameters);
+    }
+
 }

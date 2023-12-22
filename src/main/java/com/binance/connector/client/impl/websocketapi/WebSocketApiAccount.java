@@ -14,7 +14,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
  * <br>
  * Response will be returned as callback.
  */
-public class WebSocketApiAccount {
+public class WebSocketApiAccount implements WebSocketApiModule {
     
     private WebSocketApiRequestHandler handler;
 
@@ -145,5 +145,47 @@ public class WebSocketApiAccount {
         parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
 
         this.handler.signedRequest("myPreventedMatches", parameters);
+    }
+
+    /**
+     * Retrieves allocations resulting from SOR order placement.<br>
+     * 
+     * @param symbol String
+     * @param parameters JSONObject composed by key-value pairs:
+     * <br><br>
+     * startTime -- optional/long -- Timestamp in ms <br>
+     * endTime -- optional/long -- Timestamp in ms <br>
+     * fromAllocationId -- optional/int <br>
+     * limit -- optional/int -- Default 500; max 1000. <br>
+     * orderId -- optional/long <br>
+     * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
+     * requestId -- optional/String or int <br>
+     * 
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#account-allocations-user_data">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#account-allocations-user_data</a>
+     */
+    public void accountAllocations(String symbol, JSONObject parameters) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
+
+        this.handler.signedRequest("myAllocations", parameters);
+    }
+
+    /**
+     * Get current account commission rates. <br>
+     * 
+     * @param symbol String
+     * @param parameters JSONObject composed by key-value pairs:
+     * <br><br>
+     * requestId -- optional/String or int <br>
+     * 
+     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#account-commission-rates-user_data">
+     *     https://binance-docs.github.io/apidocs/websocket_api/en/#account-commission-rates-user_data</a>
+     */
+    public void accountCommissionRates(String symbol, JSONObject parameters) {
+        ParameterChecker.checkParameterType(symbol, String.class, "symbol");
+        parameters = JSONParser.addKeyValue(parameters, "symbol", symbol);
+
+        this.handler.signedRequest("account.commission", parameters);
     }
 }

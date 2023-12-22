@@ -14,7 +14,7 @@ public final class TestNewOrder {
     private TestNewOrder() {
     }
     private static final double quantity = 0.01;
-    private static final double price = 95000;
+    private static final int price = 95000;
 
     public static void main(String[] args) {
         Map<String, Object> parameters = new LinkedHashMap<>();

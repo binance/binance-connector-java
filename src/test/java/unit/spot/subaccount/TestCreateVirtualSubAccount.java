@@ -30,7 +30,7 @@ public class TestCreateVirtualSubAccount {
     }
 
     @Test
-    public void testCreateSubAccountWithoutString() {
+    public void testCreateVirtualSubAccountWithoutString() {
         String path = "/sapi/v1/sub-account/virtualSubAccount";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
@@ -42,7 +42,7 @@ public class TestCreateVirtualSubAccount {
     }
 
     @Test
-    public void testCreateSubAccount() {
+    public void testCreateVirtualSubAccount() {
         String path = "/sapi/v1/sub-account/virtualSubAccount?subAccountString=sub.account";
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("subAccountString", "sub.account");

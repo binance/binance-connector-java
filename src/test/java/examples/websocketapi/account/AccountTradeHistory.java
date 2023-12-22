@@ -12,7 +12,7 @@ public final class AccountTradeHistory {
     private AccountTradeHistory() {
     }
 
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException {
         

@@ -198,6 +198,7 @@ public class Market {
      * interval -- mandatory/string <br>
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
+     * timeZone -- optional/string -- Default:0 (UTC) <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-data">
@@ -224,6 +225,7 @@ public class Market {
      * interval -- mandatory/string <br>
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
+     * timeZone -- optional/string -- Default:0 (UTC) <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#uiklines">
@@ -290,7 +292,6 @@ public class Market {
      * <br><br>
      * GET /api/v3/ticker/price
      * <br>
-     * https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics
      * @param
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
@@ -319,7 +320,6 @@ public class Market {
      * <br><br>
      * GET /api/v3/ticker/bookTicker
      * <br>
-     * https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics
      * @param
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
@@ -350,17 +350,12 @@ public class Market {
      * <br><br>
      * GET /api/v3/ticker
      * <br>
-     * https://binance-docs.github.io/apidocs/spot/en/#rolling-window-price-change-statistics
      * @param
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * symbol -- mandatory/string -- Either symbol or symbols must be provided
-     * Examples of accepted format for the symbols parameter:
-     * ["BTCUSDT","BNBUSDT"]
-     * or
-     * %5B%22BTCUSDT%22,%22BNBUSDT%22%5D <br>
-     * symbols -- optional/string -- The maximum number of symbols allowed in a request is 100. <br>
+     * symbol -- mandatory/string -- Either symbol or symbols must be provided.
+     * symbols -- optional/string -- Example: ["BTCUSDT","BNBUSDT"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of symbols allowed in a request is 100. <br>
      * windowSize -- optional/enum -- Defaults to 1d if no parameter provided <br>
      * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
@@ -379,5 +374,38 @@ public class Market {
             ParameterChecker.checkParameter(parameters, "symbol", String.class);
         }
         return requestHandler.sendPublicRequest(baseUrl, TICKER, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String TRADING_DAY = "/api/v3/ticker/tradingDay";
+    /**
+     * Price change statistics for a trading day.
+     * <br><br>
+     * GET /api/v3/ticker/tradingDay
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string -- Either symbol or symbols must be provided.
+     * symbols -- optional/string -- Example: ["BTCUSDT","BNBUSDT"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of symbols allowed in a request is 100. <br>
+     * windowSize -- optional/string -- Defaults to 1d if no parameter provided <br>
+     * timeZone -- optional/enum -- Default: 0 (UTC) <br>
+     * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#trading-day-ticker">
+     *     https://binance-docs.github.io/apidocs/spot/en/#trading-day-ticker</a>
+     */
+    public String tradingDayTicker(Map<String, Object> parameters) {
+        if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
+            throw new BinanceConnectorException("symbol and symbols cannot be sent together.");
+        }
+        if (parameters.containsKey("symbols")) {
+            ParameterChecker.checkParameterType(parameters.get("symbols"), ArrayList.class, "symbols");
+            parameters.put("symbols", JSONParser.getJSONArray(
+                    (ArrayList<?>) parameters.get("symbols"), "symbols"));
+        } else {
+            ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        }
+        return requestHandler.sendPublicRequest(baseUrl, TRADING_DAY, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

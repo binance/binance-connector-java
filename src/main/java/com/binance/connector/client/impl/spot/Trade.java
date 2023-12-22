@@ -45,19 +45,8 @@ public class Trade {
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
-     * symbol -- mandatory/string <br>
-     * side -- mandatory/enum <br>
-     * type -- mandatory/enum <br>
-     * timeInForce -- optional/enum <br>
-     * quantity -- optional/decimal <br>
-     * quoteOrderQty -- optional/decimal <br>
-     * price -- optional/decimal <br>
-     * newClientOrderId -- optional/string <br>
-     * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/decimal <br>
-     * trailingDelta -- optional/long <br>
-     * newOrderRespType -- optional/enum <br>
-     * recvWindow -- optional/long <br>
+     * In addition to all parameters accepted by POST /api/v3/order, the following optional parameters are also accepted: <br>
+     * computeCommissionRates -- optional/boolean -- Default: false <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#test-new-order-trade">
      *     https://binance-docs.github.io/apidocs/spot/en/#test-new-order-trade</a>
@@ -86,11 +75,14 @@ public class Trade {
      * quantity -- optional/decimal <br>
      * quoteOrderQty -- optional/decimal <br>
      * price -- optional/decimal <br>
-     * newClientOrderId -- optional/string <br>
-     * stopPrice -- optional/decimal <br>
-     * icebergQty -- optional/decimal <br>
-     * trailingDelta -- optional/long <br>
-     * newOrderRespType -- optional/enum <br>
+     * newClientOrderId -- optional/string -- A unique id among open orders. Automatically generated if not sent.<br>
+     * strategyId -- optional/int <br>
+     * strategyType -- optional/int -- The value cannot be less than 1000000.<br>
+     * stopPrice -- optional/decimal -- Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.<br>
+     * trailingDelta -- optional/long -- Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.<br>
+     * icebergQty -- optional/decimal -- Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.<br>
+     * newOrderRespType -- optional/enum -- Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.<br>
+     * selfTradePrevention -- optional/enum -- 	The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>s
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-order-trade">
@@ -194,10 +186,14 @@ public class Trade {
      * cancelOrigClientOrderId -- optional/string -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
      * cancelOrderId -- optional/long -- Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. <br>
      * newClientOrderId -- optional/string -- Used to identify the new order. <br>
+     * stopStrategyId -- optional/int <br>
+     * stopStrategyType -- optional/int -- The value cannot be less than 1000000.<br>
      * stopPrice -- optional/decimal <br>
      * icebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
-     * newOrderRespType -- optional/enum <br>
+     * newOrderRespType -- optional/enum -- Allowed values: ACK, RESULT, FULL. MARKET and LIMIT orders types default to FULL; all other orders default to ACK<br>
+     * selfTradePreventionMode -- optional/enum -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
+     * cancelRestrictions -- optional/enum -- Supported values: ONLY_NEW - Cancel will succeed if the order status is NEW. ONLY_PARTIALLY_FILLED - Cancel will succeed if order status is PARTIALLY_FILLED.<br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-an-existing-order-and-send-a-new-order-trade">
@@ -270,19 +266,24 @@ public class Trade {
      * side -- mandatory/enum <br>
      * quantity -- mandatory/decimal <br>
      * limitClientOrderId -- optional/string <br>
+     * limitStrategyId -- optional/int <br>
+     * limitStrategyType -- optional/int <br>
      * price -- mandatory/decimal <br>
      * limitIcebergQty -- optional/decimal <br>
      * trailingDelta -- optional/long <br>
      * stopClientOrderId -- optional/string <br>
      * stopPrice -- mandatory/decimal <br>
-     * stopLimitPrice -- optional/decimal <br>
+     * stopStrategyId -- optional/int <br>
+     * stopStrategyType -- optional/int -- The value cannot be less than 1000000.<br>
+     * stopLimitPrice -- optional/decimal -- If provided, stopLimitTimeInForce is required.<br>
      * stopIcebergQty -- optional/decimal <br>
      * stopLimitTimeInForce -- optional/enum <br>
      * newOrderRespType -- optional/enum <br>
+     * selfTradePreventionMode -- optional/enum -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-order-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#new-order-trade</a>
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-oco-trade">
+     *     https://binance-docs.github.io/apidocs/spot/en/#new-oco-trade</a>
      */
     public String ocoOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -439,5 +440,158 @@ public class Trade {
      */
     public String rateLimitOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String PREVENTED_MATCHES = "/api/v3/myPreventedMatches";
+    /**
+     * Displays the list of orders that were expired because of STP.
+     * 
+     * These are the combinations supported:
+     * 
+     * * symbol + preventedMatchId
+     * * symbol + orderId
+     * * symbol + orderId + fromPreventedMatchId (limit will default to 500)
+     * * symbol + orderId + fromPreventedMatchId + limit
+     * 
+     * <br><br>
+     * GET /api/v3/myPreventedMatches
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string <br>
+     * preventedMatchId -- optional/long <br>
+     * orderId -- optional/long -- Order id <br>
+     * fromPreventedMatchId -- optional/long <br>
+     * limit -- optional/int -- Default 500; max 1000. <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-prevented-matches-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#query-prevented-matches-user_data</a>
+     */
+    public String preventedMatches(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, PREVENTED_MATCHES, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String SOR_ALLOCATIONS = "/api/v3/myAllocations";
+    /**
+     * Retrieves allocations resulting from SOR order placement.
+     * 
+     * 
+     * Supported parameter combinations:
+     * Parameters 	                          Response
+     * symbol 	                              allocations from oldest to newest
+     * symbol + startTime 	                  oldest allocations since startTime
+     * symbol + endTime 	                    newest allocations until endTime
+     * symbol + startTime + endTime 	        allocations within the time range
+     * symbol + fromAllocationId 	          allocations by allocation ID
+     * symbol + orderId 	                    allocations related to an order starting with oldest
+     * symbol + orderId + fromAllocationId 	allocations related to an order by allocation ID
+     * 
+     * Note: The time between startTime and endTime can't be longer than 24 hours.
+     * <br><br>
+     * GET /api/v3/myAllocations
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string -- Trading symbol, e.g. BNBUSDT <br>
+     * startTime -- optional/long -- UTC timestamp in ms <br>
+     * endTime -- optional/long -- UTC timestamp in ms <br>
+     * fromAllocationId -- optional/int <br>
+     * limit -- optional/int -- Default 500; max 1000. <br>
+     * orderId -- optional/long -- Order id <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-allocations-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#query-allocations-user_data</a>
+     */
+    public String sorAllocations(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, SOR_ALLOCATIONS, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String COMMISSION = "/api/v3/account/commission";
+    /**
+     * Get current account commission rates.
+     * <br><br>
+     * GET /api/v3/account/commission
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-commission-rates-user_data">
+     *     https://binance-docs.github.io/apidocs/spot/en/#query-commission-rates-user_data</a>
+     */
+    public String commission(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, COMMISSION, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String SOR_ORDER = "/api/v3/sor/order";
+    /**
+     * Places an order using smart order routing (SOR).
+     * 
+     * <br><br>
+     * POST /api/v3/sor/order
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string -- Trading symbol, e.g. BNBUSDT <br>
+     * side -- mandatory/enum <br>
+     * type -- mandatory/enum -- only supports LIMIT and MARKET orders <br>
+     * timeInForce -- optional/enum -- Order time in force <br>
+     * quantity -- mandatory/decimal <br>
+     * price -- optional/decimal <br>
+     * newClientOrderId -- optional/string -- Used to uniquely identify this cancel. Automatically generated by default <br>
+     * strategyId -- optional/int <br>
+     * strategyType -- optional/int -- The value cannot be less than 1000000. <br>
+     * icebergQty -- optional/decimal -- Used with LIMIT to create an iceberg order. <br>
+     * newOrderRespType -- optional/enum -- Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. <br>
+     * selfTradePreventionMode -- optional/enum -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#new-order-using-sor-trade">
+     *      https://binance-docs.github.io/apidocs/spot/en/#new-order-using-sor-trade</a>
+     */
+    public String sorOrder(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "side", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "quantity");
+        return requestHandler.sendSignedRequest(baseUrl, SOR_ORDER, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String TEST_SOR_ORDER = "/api/v3/sor/order/test";
+    /**
+     * Test new order creation and signature/recvWindow using smart order routing (SOR).
+     * Creates and validates a new order but does not send it into the matching engine.
+     * <br><br>
+     * POST /api/v3/sor/order/test
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * In addition to all parameters accepted by POST /api/v3/sor/order, the following optional parameters are also accepted: <br>
+     * computeCommissionRates -- optional/boolean -- Default: false <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#test-new-order-using-sor-trade">
+     *      https://binance-docs.github.io/apidocs/spot/en/#test-new-order-using-sor-trade</a>
+     */
+    public String testSorOrder(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "side", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "quantity");
+        return requestHandler.sendSignedRequest(baseUrl, TEST_SOR_ORDER, parameters, HttpMethod.POST, showLimitUsage);
     }
 }

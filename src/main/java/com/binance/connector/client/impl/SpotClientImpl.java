@@ -2,6 +2,7 @@ package com.binance.connector.client.impl;
 
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.DefaultUrls;
+import com.binance.connector.client.impl.spot.AutoInvest;
 import com.binance.connector.client.impl.spot.BSwap;
 import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
@@ -17,11 +18,13 @@ import com.binance.connector.client.impl.spot.NFT;
 import com.binance.connector.client.impl.spot.Pay;
 import com.binance.connector.client.impl.spot.PortfolioMargin;
 import com.binance.connector.client.impl.spot.Rebate;
-import com.binance.connector.client.impl.spot.Savings;
+import com.binance.connector.client.impl.spot.SimpleEarn;
+import com.binance.connector.client.impl.spot.SpotAlgo;
 import com.binance.connector.client.impl.spot.Staking;
 import com.binance.connector.client.impl.spot.SubAccount;
 import com.binance.connector.client.impl.spot.Trade;
 import com.binance.connector.client.impl.spot.UserData;
+import com.binance.connector.client.impl.spot.VIPLoans;
 import com.binance.connector.client.impl.spot.Wallet;
 import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
@@ -74,6 +77,11 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public void unsetProxy() {
         this.proxy = null;
+    }
+
+    @Override
+    public AutoInvest createAutoInvest() {
+        return new AutoInvest(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
@@ -151,8 +159,13 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public Savings createSavings() {
-        return new Savings(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
+    public SimpleEarn createSimpleEarn() {
+        return new SimpleEarn(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
+    }
+
+    @Override
+    public SpotAlgo createSpotAlgo() {
+        return new SpotAlgo(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override
@@ -173,6 +186,11 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public UserData createUserData() {
         return new UserData(baseUrl, apiKey, showLimitUsage, proxy);
+    }
+
+    @Override
+    public VIPLoans createVIPLoans() {
+        return new VIPLoans(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override

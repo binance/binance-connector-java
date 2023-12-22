@@ -14,7 +14,7 @@ public final class Ed25519 {
     private Ed25519() {
     }
 
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
         Ed25519SignatureGenerator signatureGenerator =  new Ed25519SignatureGenerator(PrivateConfig.TESTNET_PRIVATE_KEY_PATH);

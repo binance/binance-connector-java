@@ -13,7 +13,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
  * <br>
  * Response will be returned as callback.
  */
-public class WebSocketApiGeneral {
+public class WebSocketApiGeneral implements WebSocketApiModule {
     private WebSocketApiRequestHandler handler;
 
     public WebSocketApiGeneral(WebSocketApiRequestHandler handler) {
