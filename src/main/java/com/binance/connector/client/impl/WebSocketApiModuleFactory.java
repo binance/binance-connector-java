@@ -39,8 +39,8 @@ public final class WebSocketApiModuleFactory {
      * Build WebSocketApiModule for the given WebSocket API category if it does not exist yet.
      * Otherwise, return the existing one.
      * 
-     * @param category
-     * @param requestHandler
+     * @param category WebSocket API Category
+     * @param requestHandler WebSocketApiRequestHandler
      * @return WebSocketApiModule
      */
     public static WebSocketApiModule build(Category category, WebSocketApiRequestHandler requestHandler) {

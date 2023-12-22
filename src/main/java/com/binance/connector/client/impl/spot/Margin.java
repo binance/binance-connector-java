@@ -1066,7 +1066,7 @@ public class Margin {
      * type -- optional/string -- MARGIN, ISOLATED <br>
      * startTime -- optional/long -- Only supports querying the data of the last 90 days <br>
      * endTime -- optional/long -- UTC timestamp in ms <br>
-     * fromId -- optional/long -- If fromId is set, the data with "id" > "fromId" will be returned. Otherwise the latest data will be returned <br>
+     * fromId -- optional/long -- If fromId is set, the data with "id" above "fromId" will be returned. Otherwise the latest data will be returned <br>
      * limit -- optional/long -- The number of data items returned each time is limited. Default 500; Max 1000. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
