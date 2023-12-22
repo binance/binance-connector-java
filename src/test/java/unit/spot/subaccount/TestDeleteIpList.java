@@ -44,12 +44,11 @@ public class TestDeleteIpList {
 
     @Test
     public void  testDeleteIpList() {
-        String path = String.format("/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList?email=%s&subAccountApiKey=abc&ipAddress=1.1.1.1",
+        String path = String.format("/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList?email=%s&subAccountApiKey=abc",
                 UrlBuilder.urlEncode("alice@test.com"));
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("email", "alice@test.com");
         parameters.put("subAccountApiKey", "abc");
-        parameters.put("ipAddress", "1.1.1.1");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.DELETE, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);

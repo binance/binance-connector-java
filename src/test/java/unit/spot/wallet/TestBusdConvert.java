@@ -25,29 +25,11 @@ public class TestBusdConvert {
     private String baseUrl;
 
     private final BigDecimal amount = new BigDecimal(1);
-    private final double wrongAmountType = 0.01;
 
     @Before
     public void init() {
         this.mockWebServer = new MockWebServer();
         this.baseUrl = mockWebServer.url(MockData.PREFIX).toString();
-    }
-
-    @Test
-    public void testBusdConverWithWrongParamType() {
-        String path = "/sapi/v1/asset/convert-transfer";
-        Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("clientTranId", "118263407119");
-        parameters.put("asset", "BUSD");
-        parameters.put("amount", wrongAmountType);
-        parameters.put("targetAsset", "USDC");
-        parameters.put("accountType", "MAIN");
-
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
-        mockWebServer.setDispatcher(dispatcher);
-
-        SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createWallet().busdConvert(parameters));
     }
 
     @Test

@@ -18,7 +18,7 @@ public final class NewOcoOrder {
     private static final double stopPrice = 0.07050;
     private static final double stopLimitPrice = 0.07040;
     private static final double quantity = 0.01;
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException {
 

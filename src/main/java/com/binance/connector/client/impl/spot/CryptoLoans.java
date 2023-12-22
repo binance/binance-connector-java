@@ -96,7 +96,7 @@ public class CryptoLoans {
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
      * current	-- optional/long -- Current querying page. Start from 1; default: 1; max: 1000 <br>
-     * limit -- optional/long -- Default: 10; max: 100 <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-borrow-history-user_data">
@@ -118,7 +118,7 @@ public class CryptoLoans {
      * loanCoin -- optional/string <br>
      * collateralCoin -- optional/string <br>
      * current	-- optional/long -- Current querying page. Start from 1; default: 1; max: 1000 <br>
-     * limit -- optional/long -- Default: 10; max: 100 <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-ongoing-orders-user_data">
@@ -165,7 +165,7 @@ public class CryptoLoans {
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
      * current	-- optional/long -- Current querying page. Start from 1; default: 1; max: 1000 <br>
-     * limit -- optional/long -- Default: 10; max: 100 <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-get-loan-repayment-history-user_data">
@@ -211,7 +211,7 @@ public class CryptoLoans {
      * startTime -- optional/long <br>
      * endTime -- optional/long <br>
      * current	-- optional/long -- Current querying page. Start from 1; default: 1; max: 1000 <br>
-     * limit -- optional/long -- Default: 10; max: 100 <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-loan-ltv-adjustment-history-user_data">
@@ -301,5 +301,210 @@ public class CryptoLoans {
     public String customizeMarginCall(Map<String, Object> parameters) {
         ParameterChecker.checkRequiredParameter(parameters, "marginCall");
         return requestHandler.sendSignedRequest(baseUrl, CUSTOMIZE_MARGIN_CALL, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_BORROW = "/sapi/v1/loan/flexible/borrow";
+    /**
+     * POST /sapi/v1/loan/flexible/borrow
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- mandatory/string -- Coin loaned. <br>
+     * loanAmount -- optional/decimal -- Loan amount. Mandatory when collateralAmount is empty. <br>
+     * collateralCoin -- mandatory/string -- Coin used as collateral. <br>
+     * collateralAmount -- optional/decimal -- Mandatory when loanAmount is empty. <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-flexible-loan-borrow-trade">
+     *      https://binance-docs.github.io/apidocs/spot/en/#borrow-flexible-loan-borrow-trade</a>
+     */
+    public String flexibleLoanBorrow(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_ONGOING_ORDERS = "/sapi/v1/loan/flexible/ongoing/orders";
+    /**
+     * GET /sapi/v1/loan/flexible/ongoing/orders
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string -- Coin loaned. <br>
+     * collateralCoin -- optional/string -- Coin used as collateral <br>
+     * current -- optional/long -- Current querying page. Start from 1; default: 1; max: 1000; <br>
+     * limit -- optional/long -- Default: 10; max: 100 <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-ongoing-orders-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-ongoing-orders-user_data</a>
+     */
+    public String flexibleLoanOngoingOrders(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ONGOING_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_BORROW_HISTORY = "/sapi/v1/loan/flexible/borrow/history";
+    /**
+     * GET /sapi/v1/loan/flexible/borrow/history
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string -- Coin loaned <br>
+     * collateralCoin -- optional/string -- Coin used as collateral <br>
+     * startTime -- optional/long -- UTC timestamp in ms <br>
+     * endTime -- optional/long -- UTC timestamp in ms <br>
+     * current -- optional/long -- Current querying page. Start from 1; default: 1; max: 1000; <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-borrow-history-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-borrow-history-user_data</a>
+     */
+    public String flexibleLoanBorrowHistory(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_REPAY = "/sapi/v1/loan/flexible/repay";
+    /**
+     * POST /sapi/v1/loan/flexible/repay
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- mandatory/string -- Coin loaned <br>
+     * collateralCoin -- mandatory/string -- Coin used as collateral <br>
+     * repayAmount -- mandatory/decimal -- repay amount of loanCoin <br>
+     * collateralReturn -- optional/boolean -- Default: TRUE. TRUE: Return extra collateral to earn account; FALSE: Keep extra collateral in the order, and lower LTV.<br>
+     * fullRepayment -- optional/boolean -- Default: FALSE. TRUE: Full repayment; FALSE: Partial repayment, based on loanAmount. <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-flexible-loan-repay-trade">
+     *      https://binance-docs.github.io/apidocs/spot/en/#repay-flexible-loan-repay-trade</a>
+     */
+    public String flexibleLoanRepay(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "repayAmount");
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_REPAY_HISTORY = "/sapi/v1/loan/flexible/repay/history";
+    /**
+     * GET /sapi/v1/loan/flexible/repay/history
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string -- Coin loaned <br>
+     * collateralCoin -- optional/string -- Coin used as collateral <br>
+     * startTime -- optional/long -- UTC timestamp in ms <br>
+     * endTime -- optional/long -- UTC timestamp in ms <br>
+     * current -- optional/long -- Current querying page. Start from 1; default: 1; max: 1000; <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-get-flexible-loan-repayment-history-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#repay-get-flexible-loan-repayment-history-user_data</a>
+     */
+    public String flexibleLoanRepayHistory(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_ADJUST_LTV = "/sapi/v1/loan/flexible/adjust/ltv";
+    /**
+     * POST /sapi/v1/loan/flexible/adjust/ltv
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- mandatory/string -- Coin loaned <br>
+     * collateralCoin -- mandatory/string -- Coin used as collateral <br>
+     * adjustmentAmount -- mandatory/decimal <br>
+     * direction -- mandatory/enum -- "ADDITIONAL", "REDUCED"<br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-flexible-loan-adjust-ltv-trade">
+     *      https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-flexible-loan-adjust-ltv-trade</a>
+     */
+    public String flexibleLoanAdjustLtv(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "adjustmentAmount");
+        ParameterChecker.checkParameter(parameters, "direction", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ADJUST_LTV, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_LTV_ADJUST_HISTORY = "/sapi/v1/loan/flexible/ltv/adjustment/history";
+    /**
+     * GET /sapi/v1/loan/flexible/ltv/adjustment/history
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string -- Coin loaned <br>
+     * collateralCoin -- optional/string -- Coin used as collateral <br>
+     * startTime -- optional/long -- UTC timestamp in ms <br>
+     * endTime -- optional/long -- UTC timestamp in ms <br>
+     * current -- optional/long -- Current querying page. Start from 1. Default:1 Max:1000 <br>
+     * limit -- optional/long -- Default: 10; max: 100; <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-flexible-loan-ltv-adjustment-history-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-flexible-loan-ltv-adjustment-history-user_data</a>
+     */
+    public String flexibleLoanLtvAdjustHistory(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_LTV_ADJUST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_ASSETS = "/sapi/v1/loan/flexible/loanable/data";
+    /**
+     * Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown in USD value.
+     * 
+     * <br><br>
+     * GET /sapi/v1/loan/flexible/loanable/data
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * loanCoin -- optional/string -- Coin loaned <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-assets-data-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-assets-data-user_data</a>
+     */
+    public String flexibleLoanAssets(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_COLLATERAL_ASSETS = "/sapi/v1/loan/flexible/collateral/data";
+    /**
+     * Get LTV information and collateral limit of flexible loan's collateral assets. The collateral limit is shown in USD value.
+     * 
+     * <br><br>
+     * GET /sapi/v1/loan/flexible/collateral/data
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * collateralCoin -- optional/string -- Coin used as collateral <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-collateral-assets-data-user_data">
+     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-collateral-assets-data-user_data</a>
+     */
+    public String flexibleLoanCollateralAssets(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_COLLATERAL_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
     }
 }

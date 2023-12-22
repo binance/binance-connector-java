@@ -21,7 +21,7 @@ public final class WsApiwithAllCallbacks {
     private static WebSocketClosedCallback onClosedCallback;
     private static WebSocketFailureCallback onFailureCallback;
 
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException {
 

@@ -16,7 +16,7 @@ public final class AccountStatus {
 
     private static final int recvWindow = 6000;
     private static final int requestId = 1234;
-    private static final int waitTime = 3000;
+    private static final int waitTime = 60000;
 
     public static void main(String[] args) throws InterruptedException {
         

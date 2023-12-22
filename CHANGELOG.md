@@ -1,5 +1,171 @@
 # Changelog
 
+## 3.2.0 - 2023-12-22
+
+### Added
+- New VIP Loans Endpoints:
+  - `GET /sapi/v1/loan/vip/ongoing/orders`
+  - `POST /sapi/v1/loan/vip/repay`
+  - `GET /sapi/v1/loan/vip/repay/history`
+  - `POST /sapi/v1/loan/vip/renew`
+  - `GET /sapi/v1/loan/vip/collateral/account`
+  - `POST /sapi/v1/loan/vip/borrow`
+  - `GET /sapi/v1/loan/vip/loanable/data`
+  - `GET /sapi/v1/loan/vip/collateral/data`
+  - `GET /sapi/v1/loan/vip/request/data`
+  - `GET /sapi/v1/loan/vip/request/interestRate`
+
+- New Margin endpoints:
+  - `GET /sapi/v1/margin/available-inventory`
+  - `GET /sapi/v1/margin/capital-flow`
+  - `POST /sapi/v1/margin/max-leverage`
+  - `GET /sapi/v1/margin/dust`
+  - `POST /sapi/v1/margin/dust`
+  - `GET /sapi/v1/margin/delist-schedule`
+  - `GET /sapi/v1/margin/next-hourly-interest-rate`
+  - `GET /sapi/v1/margin/exchange-small-liability`
+  - `POST /sapi/v1/margin/exchange-small-liability`
+  - `GET /sapi/v1/margin/exchange-small-liability-history`
+  - `GET /sapi/v1/margin/crossMarginCollateralRatio`
+  - `GET /sapi/v1/margin/leverageBracket`
+  - `GET /sapi/v1/margin/tradeCoeff`
+
+- New Wallet endpoints:
+  - `GET /sapi/v1/capital/contract/convertible-coins`
+  - `POST /sapi/v1/capital/contract/convertible-coins`
+  - `POST /sapi/v1/capital/deposit/credit-apply`
+  - `GET /sapi/v1/asset/wallet/balance`
+  - `GET /sapi/v1/asset/custody/transfer-history`
+  - `GET /sapi/v1/capital/deposit/address/list`
+
+- New Futures endpoint:
+  - `GET /sapi/v1/futures/histDataLink`
+ 
+- New Classic Porfolio Margin endpoints:
+  - `GET /sapi/v1/portfolio/margin-asset-leverage`
+  - `POST /sapi/v1/portfolio/asset-collection`
+  - `POST /sapi/v1/portfolio/repay-futures-switch`
+  - `GET /sapi/v1/portfolio/repay-futures-switch`
+  - `POST /sapi/v1/portfolio/repay-futures-negative-balance`
+  - `POST /sapi/v1/portfolio/auto-collection`
+  - `POST /sapi/v1/portfolio/bnb-transfer`
+  - `GET /sapi/v1/portfolio/asset-index-price`
+  - `GET /sapi/v1/portfolio/interest-history`
+
+- New Trade endpoints:
+  - `GET /api/v3/myPreventedMatches`
+  - `GET /api/v3/myAllocations`
+  - `GET /api/v3/account/commission`
+  - `POST /api/v3/sor/order`
+  - `POST /api/v3/sor/order/test`
+
+- New Market endpoint:
+  - `GET /api/v3/ticker/tradingDay`
+
+- New Gift Code endpoints:
+  - `POST /sapi/v1/giftcard/buyCode`
+  - `GET /sapi/v1/giftcard/buyCode/token-limit`
+
+- New Crypto Loans endpoints:
+  - `POST /sapi/v1/loan/flexible/borrow`
+  - `GET /sapi/v1/loan/flexible/ongoing/orders`
+  - `GET /sapi/v1/loan/flexible/borrow/history`
+  - `POST /sapi/v1/loan/flexible/repay`
+  - `POST /sapi/v1/loan/flexible/repay/history`
+  - `POST /sapi/v1/loan/flexible/adjust/ltv`
+  - `GET /sapi/v1/loan/flexible/ltv/adjustment/history`
+  - `GET /sapi/v1/loan/flexible/loanable/data`
+  - `GET /sapi/v1/loan/flexible/collateral/data`
+
+- New Simple Earn endpoints:
+  - `GET /sapi/v1/simple-earn/flexible/list`
+  - `GET /sapi/v1/simple-earn/locked/list`
+  - `POST /sapi/v1/simple-earn/flexible/subscribe`
+  - `POST /sapi/v1/simple-earn/locked/subscribe`
+  - `POST /sapi/v1/simple-earn/flexible/redeem`
+  - `POST /sapi/v1/simple-earn/locked/redeem`
+  - `GET /sapi/v1/simple-earn/flexible/position`
+  - `GET /sapi/v1/simple-earn/locked/position`
+  - `GET /sapi/v1/simple-earn/account`
+  - `GET /sapi/v1/simple-earn/flexible/history/subscriptionRecord`
+  - `GET /sapi/v1/simple-earn/locked/history/subscriptionRecord`
+  - `GET /sapi/v1/simple-earn/flexible/history/redemptionRecord`
+  - `GET /sapi/v1/simple-earn/locked/history/redemptionRecord`
+  - `GET /sapi/v1/simple-earn/flexible/history/rewardsRecord`
+  - `GET /sapi/v1/simple-earn/locked/history/rewardsRecord`
+  - `POST /sapi/v1/simple-earn/flexible/setAutoSubscribe`
+  - `POST /sapi/v1/simple-earn/locked/setAutoSubscribe`
+  - `GET /sapi/v1/simple-earn/flexible/personalLeftQuota`
+  - `GET /sapi/v1/simple-earn/locked/personalLeftQuota`
+  - `GET /sapi/v1/simple-earn/flexible/subscriptionPreview`
+  - `GET /sapi/v1/simple-earn/locked/subscriptionPreview`
+  - `GET /sapi/v1/simple-earn/flexible/history/rateHistory`
+  - `GET /sapi/v1/simple-earn/flexible/history/collateralRecord`
+
+- New Auto-Invest endpoints:
+  - `GET /sapi/v1/lending/auto-invest/target-asset/list`
+  - `GET /sapi/v1/lending/auto-invest/target-asset/roi/list`
+  - `GET /sapi/v1/lending/auto-invest/all/asset`
+  - `GET /sapi/v1/lending/auto-invest/source-asset/list`
+  - `POST /sapi/v1/lending/auto-invest/plan/edit-status`
+  - `GET /sapi/v1/lending/auto-invest/plan/list`
+  - `GET /sapi/v1/lending/auto-invest/plan/id`
+  - `GET /sapi/v1/lending/auto-invest/history/list`
+  - `GET /sapi/v1/lending/auto-invest/index/info`
+  - `GET /sapi/v1/lending/auto-invest/index/user-summary`
+  - `POST /sapi/v1/lending/auto-invest/one-off`
+  - `GET /sapi/v1/lending/auto-invest/one-off/status`
+  - `POST /sapi/v1/lending/auto-invest/redeem`
+  - `GET /sapi/v1/lending/auto-invest/redeem/history`
+  - `GET /sapi/v1/lending/auto-invest/rebalance/history`
+
+- New Spot Algo endpoints:
+  - `POST /sapi/v1/algo/spot/newOrderTwap`
+  - `DELETE /sapi/v1/algo/spot/order`
+  - `GET /sapi/v1/algo/spot/openOrders`
+  - `GET /sapi/v1/algo/spot/historicalOrders`
+  - `GET /sapi/v1/algo/spot/subOrders`
+
+- New Staking endpoints:
+  - `POST /sapi/v2/eth-staking/eth/stake`
+  - `POST /sapi/v1/eth-staking/eth/redeem`
+  - `GET /sapi/v1/eth-staking/eth/history/stakingHistory`
+  - `GET /sapi/v1/eth-staking/eth/history/redemptionHistory`
+  - `GET /sapi/v1/eth-staking/eth/history/rewardsHistory`
+  - `GET /sapi/v1/eth-staking/eth/quota`
+  - `GET /sapi/v1/eth-staking/eth/history/rateHistory`
+  - `GET /sapi/v2/eth-staking/account`
+  - `POST /sapi/v1/eth-staking/wbeth/wrap`
+  - `GET /sapi/v1/eth-staking/wbeth/history/wrapHistory`
+  - `GET /sapi/v1/eth-staking/wbeth/history/unwrapHistory`
+  - `GET /sapi/v1/eth-staking/eth/history/wbethRewardsHistory`
+
+- WebSocket API - New Trade requests:
+  - `sor.order.place`
+  - `sor.order.test`
+
+- WebSocket API - New Account requests:
+  - `myAllocations`
+  - `account.commission`
+
+- WebSocket API - New Authentication requests:
+  - `session.logon`
+  - `session.status`
+  - `session.logout`
+
+- WebSocket API - New Market request:
+  - `ticker.tradingDay`
+
+### Removed
+- Deleted deprecated Savings endpoints, namely:
+  - `GET /sapi/v1/lending/project/list`
+  - `POST /sapi/v1/lending/customizedFixed/purchase`
+  - `GET /sapi/v1/lending/project/position/list`
+  - `POST /sapi/v1/lending/positionChanged`
+
+### Changed
+- Renamed Sub-Account examples and tests to be similar to their respective method names.
+
 ## 3.1.0 - 2023-10-17
 
 ### Added

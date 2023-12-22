@@ -14,7 +14,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
  * <br>
  * Response will be returned as callback.
  */
-public class WebSocketApiUserDataStream {
+public class WebSocketApiUserDataStream implements WebSocketApiModule {
     
     private WebSocketApiRequestHandler handler;
 

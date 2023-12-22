@@ -161,8 +161,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account</a>
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-assets-for-master-account">
+     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-assets-for-master-account</a>
      */
     public String assets(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -673,8 +673,7 @@ public class SubAccount {
      * <br><br>
      * email -- mandatory/string -- Sub-account email <br>
      * subAccountApiKey -- mandatory/string <br>
-     * ipAddress -- mandatory/string -- Can be added in batches, separated by commas <br>
-     * thirdPartyName -- optional/string <br>
+     * ipAddress -- optional/string -- Can be added in batches, separated by commas <br>
      * recvWindow -- optional/long <br>
      * @return String
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account">
@@ -683,7 +682,6 @@ public class SubAccount {
     public String deleteIpList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
         ParameterChecker.checkParameter(parameters, "subAccountApiKey", String.class);
-        ParameterChecker.checkParameter(parameters, "ipAddress", String.class);
         return requestHandler.sendSignedRequest(baseUrl, IP_LIST, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 
