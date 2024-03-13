@@ -81,7 +81,7 @@ public class CryptoLoans {
         ParameterChecker.checkParameter(parameters, "loanTerm", Integer.class);
         return requestHandler.sendSignedRequest(baseUrl, LOAN_BORROW, parameters, HttpMethod.POST, showLimitUsage);
     }
-    
+
     private final String LOAN_BORROW_HISTORY = "/sapi/v1/loan/borrow/history";
     /**
      * GET /sapi/v1/loan/borrow/history
@@ -196,7 +196,7 @@ public class CryptoLoans {
         ParameterChecker.checkRequiredParameter(parameters, "amount");
         return requestHandler.sendSignedRequest(baseUrl, LOAN_ADJUST_LTV, parameters, HttpMethod.POST, showLimitUsage);
     }
-    
+
     private final String LOAN_ADJUST_LTV_HISTORY = "/sapi/v1/loan/ltv/adjustment/history";
     /**
      * GET /sapi/v1/loan/ltv/adjustment/history
@@ -320,10 +320,18 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-flexible-loan-borrow-trade">
      *      https://binance-docs.github.io/apidocs/spot/en/#borrow-flexible-loan-borrow-trade</a>
      */
+    @Deprecated
     public String flexibleLoanBorrow(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_BORROW_V2 = "/sapi/v2/loan/flexible/borrow";
+    public String flexibleLoanBorrowV2(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_V2, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String FLEXIBLE_LOAN_ONGOING_ORDERS = "/sapi/v1/loan/flexible/ongoing/orders";
@@ -343,8 +351,14 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-ongoing-orders-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-ongoing-orders-user_data</a>
      */
+    @Deprecated
     public String flexibleLoanOngoingOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ONGOING_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_ONGOING_ORDERS_V2 = "/sapi/v2/loan/flexible/ongoing/orders";
+    public String flexibleLoanOngoingOrdersV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ONGOING_ORDERS_V2, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String FLEXIBLE_LOAN_BORROW_HISTORY = "/sapi/v1/loan/flexible/borrow/history";
@@ -370,6 +384,11 @@ public class CryptoLoans {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String FLEXIBLE_LOAN_BORROW_HISTORY_V2 = "/sapi/v2/loan/flexible/borrow/history";
+    public String flexibleLoanBorrowHistoryV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_HISTORY_V2, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
     private final String FLEXIBLE_LOAN_REPAY = "/sapi/v1/loan/flexible/repay";
     /**
      * POST /sapi/v1/loan/flexible/repay
@@ -388,11 +407,21 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-flexible-loan-repay-trade">
      *      https://binance-docs.github.io/apidocs/spot/en/#repay-flexible-loan-repay-trade</a>
      */
+    @Deprecated
     public String flexibleLoanRepay(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "repayAmount");
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    private final String FLEXIBLE_LOAN_REPAY_V2 = "/sapi/v2/loan/flexible/repay";
+
+    public String flexibleLoanRepayV2(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "repayAmount");
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY_V2, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String FLEXIBLE_LOAN_REPAY_HISTORY = "/sapi/v1/loan/flexible/repay/history";
@@ -418,6 +447,11 @@ public class CryptoLoans {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String FLEXIBLE_LOAN_REPAY_HISTORY_V2 = "/sapi/v2/loan/flexible/repay/history";
+    public String flexibleLoanRepayHistoryV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY_HISTORY_V2, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
     private final String FLEXIBLE_LOAN_ADJUST_LTV = "/sapi/v1/loan/flexible/adjust/ltv";
     /**
      * POST /sapi/v1/loan/flexible/adjust/ltv
@@ -435,12 +469,22 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-flexible-loan-adjust-ltv-trade">
      *      https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-flexible-loan-adjust-ltv-trade</a>
      */
+    @Deprecated
     public String flexibleLoanAdjustLtv(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
         ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
         ParameterChecker.checkRequiredParameter(parameters, "adjustmentAmount");
         ParameterChecker.checkParameter(parameters, "direction", String.class);
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ADJUST_LTV, parameters, HttpMethod.POST, showLimitUsage);
+    }
+    private final String FLEXIBLE_LOAN_ADJUST_LTV_V2 = "/sapi/v2/loan/flexible/adjust/ltv";
+
+    public String flexibleLoanAdjustLtvV2(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "loanCoin", String.class);
+        ParameterChecker.checkParameter(parameters, "collateralCoin", String.class);
+        ParameterChecker.checkRequiredParameter(parameters, "adjustmentAmount");
+        ParameterChecker.checkParameter(parameters, "direction", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ADJUST_LTV_V2, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String FLEXIBLE_LOAN_LTV_ADJUST_HISTORY = "/sapi/v1/loan/flexible/ltv/adjustment/history";
@@ -466,10 +510,14 @@ public class CryptoLoans {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_LTV_ADJUST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    private final String FLEXIBLE_LOAN_LTV_ADJUST_HISTORY_V2 = "/sapi/v2/loan/flexible/ltv/adjustment/history";
+    public String flexibleLoanLtvAdjustHistoryV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_LTV_ADJUST_HISTORY_V2, parameters, HttpMethod.GET, showLimitUsage);
+    }
     private final String FLEXIBLE_LOAN_ASSETS = "/sapi/v1/loan/flexible/loanable/data";
     /**
      * Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown in USD value.
-     * 
+     *
      * <br><br>
      * GET /sapi/v1/loan/flexible/loanable/data
      * <br>
@@ -483,14 +531,20 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-assets-data-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-assets-data-user_data</a>
      */
+    @Deprecated
     public String flexibleLoanAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
     }
+    private final String FLEXIBLE_LOAN_ASSETS_V2 = "/sapi/v2/loan/flexible/loanable/data";
+    public String flexibleLoanAssetsV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_ASSETS_V2, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
 
     private final String FLEXIBLE_LOAN_COLLATERAL_ASSETS = "/sapi/v1/loan/flexible/collateral/data";
     /**
      * Get LTV information and collateral limit of flexible loan's collateral assets. The collateral limit is shown in USD value.
-     * 
+     *
      * <br><br>
      * GET /sapi/v1/loan/flexible/collateral/data
      * <br>
@@ -504,7 +558,14 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-collateral-assets-data-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-loan-collateral-assets-data-user_data</a>
      */
+    @Deprecated
     public String flexibleLoanCollateralAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_COLLATERAL_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    private final String FLEXIBLE_LOAN_COLLATERAL_ASSETS_V2 = "/sapi/v2/loan/flexible/collateral/data";
+    public String flexibleLoanCollateralAssetsV2(Map<String, Object> parameters) {
+        return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_COLLATERAL_ASSETS_V2, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
 }
