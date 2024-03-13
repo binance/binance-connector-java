@@ -380,10 +380,10 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-borrow-history-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#borrow-get-flexible-loan-borrow-history-user_data</a>
      */
-    @Deprecated
     public String flexibleLoanBorrowHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
+
     private final String FLEXIBLE_LOAN_BORROW_HISTORY_V2 = "/sapi/v2/loan/flexible/borrow/history";
     public String flexibleLoanBorrowHistoryV2(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_BORROW_HISTORY_V2, parameters, HttpMethod.GET, showLimitUsage);
@@ -443,7 +443,6 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-get-flexible-loan-repayment-history-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#repay-get-flexible-loan-repayment-history-user_data</a>
      */
-    @Deprecated
     public String flexibleLoanRepayHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_REPAY_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
@@ -507,7 +506,6 @@ public class CryptoLoans {
      * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-flexible-loan-ltv-adjustment-history-user_data">
      *      https://binance-docs.github.io/apidocs/spot/en/#adjust-ltv-get-flexible-loan-ltv-adjustment-history-user_data</a>
      */
-    @Deprecated
     public String flexibleLoanLtvAdjustHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_LOAN_LTV_ADJUST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
     }
