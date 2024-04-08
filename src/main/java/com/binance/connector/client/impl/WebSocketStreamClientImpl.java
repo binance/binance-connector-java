@@ -1,5 +1,6 @@
 package com.binance.connector.client.impl;
 
+import com.binance.connector.client.utils.ProxyAuth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,7 +37,7 @@ import okhttp3.Request;
  */
 public class WebSocketStreamClientImpl implements WebSocketStreamClient {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketStreamClientImpl.class);
-    private static final OkHttpClient client = WebSocketStreamHttpClientSingleton.getHttpClient();
+    private static OkHttpClient client = WebSocketStreamHttpClientSingleton.getHttpClient();
     private final String baseUrl;
     private final Map<Integer, WebSocketConnection> connections = new HashMap<>();
     private final WebSocketOpenCallback noopOpenCallback = response -> { };
@@ -598,6 +599,11 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
             client.dispatcher().executorService().shutdown();
             logger.info("All connections are closed!");
         }
+    }
+
+    @Override
+    public void setProxy(ProxyAuth proxy) {
+        client = WebSocketStreamHttpClientSingleton.getHttpClientWithProxy(proxy);
     }
 
     private int createConnection(
