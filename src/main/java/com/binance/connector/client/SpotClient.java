@@ -1,7 +1,6 @@
 package com.binance.connector.client;
 
 import com.binance.connector.client.impl.spot.AutoInvest;
-import com.binance.connector.client.impl.spot.BSwap;
 import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
 import com.binance.connector.client.impl.spot.Convert;
@@ -33,7 +32,6 @@ public interface SpotClient {
     void unsetProxy();
     AutoInvest createAutoInvest();
     Blvt createBlvt();
-    BSwap createBswap();
     C2C createC2C();
     Convert createConvert();
     CryptoLoans createCryptoLoans();

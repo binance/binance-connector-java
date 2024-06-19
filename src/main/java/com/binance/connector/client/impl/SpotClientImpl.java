@@ -3,7 +3,6 @@ package com.binance.connector.client.impl;
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.spot.AutoInvest;
-import com.binance.connector.client.impl.spot.BSwap;
 import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
 import com.binance.connector.client.impl.spot.Convert;
@@ -87,11 +86,6 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public Blvt createBlvt() {
         return new Blvt(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
-    }
-
-    @Override
-    public BSwap createBswap() {
-        return new BSwap(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override

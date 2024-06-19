@@ -34,117 +34,6 @@ public class Margin {
         this.showLimitUsage = showLimitUsage;
     }
 
-    private final String CROSS_MARGIN_TRANSFER = "/sapi/v1/margin/transfer";
-    /**
-     * Execute transfer between spot account and cross margin account.
-     * <br><br>
-     * POST /sapi/v1/margin/transfer
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string -- The asset being transferred, e.g., BTC <br>
-     * amount -- mandatory/decimal -- The amount to be transferred <br>
-     * type -- mandatory/int -- 1: transfer from main account to cross margin account 2: transfer from cross margin account to main account <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-margin-account-transfer-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#cross-margin-account-transfer-margin</a>
-     */
-    public String crossMarginTransfer(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        ParameterChecker.checkParameter(parameters, "type", Integer.class);
-        return requestHandler.sendSignedRequest(baseUrl, CROSS_MARGIN_TRANSFER, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
-    private final String BORROW = "/sapi/v1/margin/loan";
-    /**
-     * Apply for a loan.
-     * <br><br>
-     * POST /sapi/v1/margin/loan
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string <br>
-     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE",default "FALSE" <br>
-     * symbol -- optional/string -- isolated symbol <br>
-     * amount -- mandatory/decimal <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-borrow-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-borrow-margin</a>
-     */
-    public String borrow(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        return requestHandler.sendSignedRequest(baseUrl, BORROW, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
-    private final String REPAY = "/sapi/v1/margin/repay";
-    /**
-     * Repay loan for margin account.
-     * <br><br>
-     * POST /sapi/v1/margin/repay
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string <br>
-     * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE",default "FALSE" <br>
-     * symbol -- optional/string -- isolated symbol <br>
-     * amount -- mandatory/decimal <br>
-     * recvWindow -- optional/long <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-repay-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-repay-margin</a>
-     */
-    public String repay(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        return requestHandler.sendSignedRequest(baseUrl, REPAY, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
-    private final String ASSET = "/sapi/v1/margin/asset";
-    /**
-     * GET /sapi/v1/margin/asset
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-asset-market_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-asset-market_data</a>
-     */
-    public String asset(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        return requestHandler.sendApiRequest(baseUrl, ASSET, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String PAIR = "/sapi/v1/margin/pair";
-    /**
-     * GET /sapi/v1/margin/pair
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * symbol -- mandatory/string
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-pair-market_data">
-     *    https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-pair-market_data</a>
-     */
-    public String pair(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        return requestHandler.sendApiRequest(baseUrl, PAIR, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
     private final String ALL_ASSETS = "/sapi/v1/margin/allAssets";
     /**
      * GET /sapi/v1/margin/allAssets
@@ -293,32 +182,6 @@ public class Margin {
      */
     public String transferHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRANSFER_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String LOAN_RECORD = "/sapi/v1/margin/loan";
-    /**
-     * GET /sapi/v1/margin/loan
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string <br>
-     * isolatedSymbol -- optional/string <br>
-     * txId -- optional/long -- the tranId in POST /sapi/v1/margin/loan <br>
-     * startTime -- optional/long <br>
-     * endTime -- optional/long <br>
-     * current -- optional/long -- Currently querying page. Start from 1. Default:1 <br>
-     * size -- optional/long -- Default:10 Max:100 <br>
-     * archived -- optional/string -- Default: false. Set to true for archived data from 6 months ago <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-loan-record-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-loan-record-user_data</a>
-     */
-    public String loanRecord(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, LOAN_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String REPAY_RECORD = "/sapi/v1/margin/repay";
@@ -668,57 +531,6 @@ public class Margin {
         return requestHandler.sendSignedRequest(baseUrl, MAX_TRANSFERABLE, parameters, HttpMethod.GET, showLimitUsage);
     }
 
-    private final String ISOLATED_TRANSFER = "/sapi/v1/margin/isolated/transfer";
-    /**
-     * POST /sapi/v1/margin/isolated/transfer
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string -- asset,such as BTC <br>
-     * symbol -- mandatory/string <br>
-     * transFrom -- mandatory/string -- "SPOT", "ISOLATED_MARGIN" <br>
-     * transTo -- mandatory/string -- "SPOT", "ISOLATED_MARGIN" <br>
-     * amount -- mandatory/decimal <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#isolated-margin-account-transfer-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#isolated-margin-account-transfer-margin</a>
-     */
-    public String isolatedTransfer(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        ParameterChecker.checkParameter(parameters, "transFrom", String.class);
-        ParameterChecker.checkParameter(parameters, "transTo", String.class);
-        ParameterChecker.checkRequiredParameter(parameters, "amount");
-        return requestHandler.sendSignedRequest(baseUrl, ISOLATED_TRANSFER, parameters, HttpMethod.POST, showLimitUsage);
-    }
-
-    /**
-     * GET /sapi/v1/margin/isolated/transfer
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- optional/string -- asset,such as BTC <br>
-     * symbol -- mandatory/string <br>
-     * type -- optional/string -- "ROLL_IN", "ROLL_OUT" <br>
-     * startTime -- optional/long <br>
-     * endTime -- optional/long <br>
-     * current -- optional/long -- Current page, default 1 <br>
-     * size -- optional/decimal <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-isolated-margin-transfer-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-isolated-margin-transfer-history-user_data</a>
-     */
-    public String getIsolatedTransfer(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, ISOLATED_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
     private final String ISOLATED_ACCOUNT = "/sapi/v1/margin/isolated/account";
     /**
      * GET /sapi/v1/margin/isolated/account
@@ -792,25 +604,6 @@ public class Margin {
      */
     public String getIsolatedAccountLimit(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String ISOLATED_SYMBOL = "/sapi/v1/margin/isolated/pair";
-    /**
-     * GET /sapi/v1/margin/isolated/pair
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * symbol -- mandatory/string <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-symbol-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-symbol-user_data</a>
-     */
-    public String getIsolatedSymbol(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, ISOLATED_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String ALL_ISOLATED_SYMBOL = "/sapi/v1/margin/isolated/allPairs";
@@ -1008,27 +801,6 @@ public class Margin {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
     }
 
-    private final String DRIBBLET = "/sapi/v1/margin/dribblet";
-    /**
-     * Query the historical information of user's margin account small-value asset conversion BNB.
-     * <br><br>
-     * GET /sapi/v1/margin/dribblet
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * startTime -- optional/long <br>
-     * endTime -- optional/long -- <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-dustlog-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-dustlog-user_data</a>
-     */
-    public String dribblet(Map<String, Object> parameters) {
-        return requestHandler.sendSignedRequest(baseUrl, DRIBBLET, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
     private final String AVAILABLE_INVENTORY = "/sapi/v1/margin/available-inventory";
     /**
      * Get the available margin inventory
@@ -1075,49 +847,6 @@ public class Margin {
      */
     public String capitalFlow(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CAPITAL_FLOW, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-
-    private final String BNB_CONVERTABLE_ASSETS = "/sapi/v1/margin/dust";
-    /**
-     * Get assets that can be converted into BNB.
-     * 
-     * <br><br>
-     * GET /sapi/v1/margin/dust
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data-2">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-assets-that-can-be-converted-into-bnb-user_data-2</a>
-     */
-    public String bnbConvertibleAssets(Map<String, Object> parameters) {
-        return requestHandler.sendSignedRequest(baseUrl, BNB_CONVERTABLE_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String DUST_TRANSFER = "/sapi/v1/margin/dust";
-    /**
-     * Convert dust assets to BNB
-     * 
-     * <br><br>
-     * POST /sapi/v1/margin/dust
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/array -- The assets to be converted. For example: asset=BTC,USDT<br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-trade</a>
-     */
-    public String convertToBnB(Map<String, Object> parameters) {
-        ParameterChecker.checkRequiredParameter(parameters, "asset");
-        return requestHandler.sendSignedRequest(baseUrl, DUST_TRANSFER, parameters, HttpMethod.POST, showLimitUsage);
     }
 
     private final String DELIST_SCHEDULE = "/sapi/v1/margin/delist-schedule";

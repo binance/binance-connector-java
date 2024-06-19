@@ -1,5 +1,53 @@
 # Changelog
 
+## 3.3.0 - 2024-06-19
+### Changed
+- Upgraded dependencies
+- Updated default testnet Websocket API URL to `wss://ws-api.testnet.binance.vision`
+- Updated default testnet Websocket Stream URL to `wss://stream.testnet.binance.vision`
+
+### Removed
+- Deleted deprecated Bswap, Margin and Staking endpoints, namely:
+  - Bswap
+    - `GET /sapi/v1/bswap/pools`
+    - `GET /sapi/v1/bswap/liquidity`
+    - `POST /sapi/v1/bswap/liquidityAdd`
+    - `POST /sapi/v1/bswap/liquidityRemove`
+    - `GET /sapi/v1/bswap/liquidityOps`
+    - `GET /sapi/v1/bswap/quote`
+    - `POST /sapi/v1/bswap/swap`
+    - `GET /sapi/v1/bswap/swap`
+    - `GET /sapi/v1/bswap/poolConfigure`
+    - `GET /sapi/v1/bswap/addLiquidityPreview`
+    - `GET /sapi/v1/bswap/removeLiquidityPreview`
+    - `GET /sapi/v1/bswap/unclaimedRewards`
+    - `POST /sapi/v1/bswap/claimRewards`
+    - `GET /sapi/v1/bswap/claimedHistory`
+
+  - Margin
+    - `POST /sapi/v1/margin/transfer`
+    - `POST /sapi/v1/margin/isolated/transfer`
+    - `POST /sapi/v1/margin/loan`
+    - `POST /sapi/v1/margin/repay`
+    - `GET /sapi/v1/margin/isolated/transfer`
+    - `GET /sapi/v1/margin/asset`
+    - `GET /sapi/v1/margin/pair`
+    - `GET /sapi/v1/margin/isolated/pair`
+    - `GET /sapi/v1/margin/loan`
+    - `GET /sapi/v1/margin/repay`
+    - `GET /sapi/v1/margin/dribblet`
+    - `GET /sapi/v1/margin/dust`
+    - `POST /sapi/v1/margin/dust`
+
+  - Staking
+    - `GET /sapi/v1/staking/productList`
+    - `POST /sapi/v1/staking/purchase`
+    - `POST /sapi/v1/staking/redeem`
+    - `GET /sapi/v1/staking/position`
+    - `GET /sapi/v1/staking/stakingRecord`
+    - `POST /sapi/v1/staking/setAutoStaking`
+    - `GET /sapi/v1/staking/personalLeftQuota`
+
 ## 3.2.0 - 2023-12-22
 
 ### Added
