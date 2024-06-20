@@ -18,6 +18,7 @@ Additionally, it includes test cases and examples.
 [https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html](https://www.javadoc.io/doc/io.github.binance/binance-connector-java/latest/index.html)
 
 ## Getting Started
+### Maven
 Copy and paste the following dependency snippet into your `pom.xml` file, replacing `LATEST_VERSION`` with the most [recent version](https://mvnrepository.com/artifact/io.github.binance/binance-connector-java) available:
 ```
 <dependency>
@@ -28,6 +29,12 @@ Copy and paste the following dependency snippet into your `pom.xml` file, replac
 ```
 Next, install the dependency by executing `mvn install` in the directory where your `pom.xml` is located.
 
+### Gradle
+Copy and paste the following dependency snippet into your `build.gradle` file, replacing `LATEST_VERSION`` with the most [recent version](https://mvnrepository.com/artifact/io.github.binance/binance-connector-java) available:
+```
+implementation 'io.github.binance:binance-connector-java:LATEST_VERSION'
+```
+Next, install the dependency by executing `gradle dependencies` in the directory where your `build.gradle` is located.
 ## Examples
 The examples are located under **src/test/java/examples**. Before running any of it, `PrivateConfig.java` must be set up correctly with `API_KEY` and` SECRET_KEY` or `PRIVATE_KEY_PATH` (if using RSA Keys).
 
