@@ -12,12 +12,12 @@ public final class HttpClientSingleton {
 
     private static void createHttpClient(ProxyAuth proxy) {
         if (proxy == null) {
-            httpClient = new OkHttpClient();
+            httpClient = new OkHttpClient(OkHttpClientBuilder.getBuilder());
         } else {
             if (proxy.getAuth() == null) {
-                httpClient = new OkHttpClient.Builder().proxy(proxy.getProxy()).build();
+                httpClient = OkHttpClientBuilder.getBuilder().proxy(proxy.getProxy()).build();
             } else {
-                httpClient = new OkHttpClient.Builder().proxy(proxy.getProxy()).proxyAuthenticator(proxy.getAuth()).build();
+                httpClient = OkHttpClientBuilder.getBuilder().proxy(proxy.getProxy()).proxyAuthenticator(proxy.getAuth()).build();
             }
         }
     }
