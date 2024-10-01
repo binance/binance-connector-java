@@ -67,7 +67,7 @@ public final class UrlBuilder {
                     value = getFormatter().format(params.get(key));
                 } else if (params.get(key) instanceof List) {
                     List list = (List) params.get(key);
-                    value = list.stream().map(Object::toString).collect(Collectors.joining(","));
+                    value = (String) list.stream().map(Object::toString).collect(Collectors.joining(","));
                 } else {
                     value = params.get(key).toString();
                 }

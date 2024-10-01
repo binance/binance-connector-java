@@ -6,7 +6,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>Authentication requests</h2>
  * All requests under the
- * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#authentication-request">Authentication requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#authentication-requests">Authentication requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -29,8 +29,8 @@ public class WebSocketApiAuth implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#log-in-with-api-key-signed">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#log-in-with-api-key-signed</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#log-in-with-api-key-signed">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#log-in-with-api-key-signed</a>
      */
     public void logon(JSONObject parameters) {
         this.handler.signedRequest("session.logon", parameters);
@@ -44,8 +44,8 @@ public class WebSocketApiAuth implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#query-session-status">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#query-session-status</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#query-session-status">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#query-session-status</a>
      */
     public void status(JSONObject parameters) {
         this.handler.publicRequest("session.status", parameters);
@@ -62,8 +62,8 @@ public class WebSocketApiAuth implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#log-out-of-the-session">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#log-out-of-the-session</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#log-out-of-the-session">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#log-out-of-the-session</a>
      */
     public void logout(JSONObject parameters) {
         this.handler.publicRequest("session.logout", parameters);

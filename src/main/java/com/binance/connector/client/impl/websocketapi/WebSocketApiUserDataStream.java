@@ -9,7 +9,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>User Data Stream Requests</h2>
  * All requests under the
- * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#user-data-stream-requests">User Data Stream requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#user-data-stream-requests">User Data Stream requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -33,8 +33,8 @@ public class WebSocketApiUserDataStream implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#start-user-data-stream-user_stream">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#start-user-data-stream-user_stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#start-user-data-stream-user_stream">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#start-user-data-stream-user_stream</a>
      */
     public void userDataStreamStart(JSONObject parameters) {
         this.handler.apiRequest("userDataStream.start", parameters);
@@ -54,8 +54,8 @@ public class WebSocketApiUserDataStream implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#ping-user-data-stream-user_stream">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#ping-user-data-stream-user_stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#ping-user-data-stream-user_stream">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#ping-user-data-stream-user_stream</a>
      */
     public void userDataStreamPing(String listenKey, JSONObject parameters) {
         ParameterChecker.checkParameterType(listenKey, String.class, "listenKey");
@@ -71,8 +71,8 @@ public class WebSocketApiUserDataStream implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#stop-user-data-stream-user_stream">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#stop-user-data-stream-user_stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#stop-user-data-stream-user_stream">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#stop-user-data-stream-user_stream</a>
      */
     public void userDataStreamStop(String listenKey, JSONObject parameters) {
         ParameterChecker.checkParameterType(listenKey, String.class, "listenKey");

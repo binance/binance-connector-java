@@ -32,7 +32,7 @@ public class TestFlexibleLoanAdjustLtv {
 
     @Test
     public void testFlexibleLoanAdjustLtvWithoutParameters() {
-        String path = "/sapi/v1/loan/flexible/adjust/ltv";
+        String path = "/sapi/v2/loan/flexible/adjust/ltv";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
@@ -44,7 +44,7 @@ public class TestFlexibleLoanAdjustLtv {
     
     @Test
     public void testFlexibleLoanAdjustLtv() {
-        String path = "/sapi/v1/loan/flexible/adjust/ltv?loanCoin=BUSD&collateralCoin=BNB&adjustmentAmount=5.235&direction=ADDITIONAL";
+        String path = "/sapi/v2/loan/flexible/adjust/ltv?loanCoin=BUSD&collateralCoin=BNB&adjustmentAmount=5.235&direction=ADDITIONAL";
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("loanCoin", "BUSD");
         parameters.put("collateralCoin", "BNB");

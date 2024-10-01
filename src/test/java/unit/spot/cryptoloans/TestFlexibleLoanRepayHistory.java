@@ -29,7 +29,7 @@ public class TestFlexibleLoanRepayHistory {
 
     @Test
     public void testRepayGetFlexibleLoanRepaymentHistory() {
-        String path = "/sapi/v1/loan/flexible/repay/history";
+        String path = "/sapi/v2/loan/flexible/repay/history";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);

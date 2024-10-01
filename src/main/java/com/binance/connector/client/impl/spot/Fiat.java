@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Fiat Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#fiat-endpoints">Fiat Endpoint</a>
+ * <a href="https://developers.binance.com/docs/fiat/Introduction">Fiat Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -49,8 +49,8 @@ public class Fiat {
      * rows -- optional/int -- default 100, max 500 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fiat-deposit-withdraw-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-fiat-deposit-withdraw-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Deposit-Withdraw-History">
+     *     https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Deposit-Withdraw-History</a>
      */
     public String orders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transactionType", String.class);
@@ -72,8 +72,8 @@ public class Fiat {
      * rows -- optional/int -- default 100, max 500 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-fiat-payments-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-fiat-payments-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Payments-History">
+     *     https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Payments-History</a>
      */
     public String payments(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transactionType", String.class);

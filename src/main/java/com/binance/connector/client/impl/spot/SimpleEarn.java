@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Simple Earn Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#simple-earn-endpoints">Simple Earn Endpoints</a>
+ * <a href="https://developers.binance.com/docs/simple_earn/Introduction">Simple Earn Endpoints</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -49,8 +49,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-simple-earn-flexible-product-list-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-simple-earn-flexible-product-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Simple-Earn-Flexible-Product-List">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Simple-Earn-Flexible-Product-List</a>
      */
     public String flexibleProductList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_PRODUCT_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -69,8 +69,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-simple-earn-locked-product-list-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-simple-earn-locked-product-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Simple-Earn-Locked-Product-List">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Simple-Earn-Locked-Product-List</a>
      */
     public String lockedProductList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOCKED_PRODUCT_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -90,8 +90,8 @@ public class SimpleEarn {
      * sourceAccount -- optional/enum -- SPOT,FUND,ALL, default SPOT <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#subscribe-flexible-product-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#subscribe-flexible-product-trade</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Subscribe-Flexible-Product">
+     *      https://developers.binance.com/docs/simple_earn/earn/Subscribe-Flexible-Product</a>
      */
     public String subscribeFlexibleProduct(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -113,8 +113,8 @@ public class SimpleEarn {
      * sourceAccount -- optional/enum -- SPOT,FUND,ALL, default SPOT <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#subscribe-locked-product-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#subscribe-locked-product-trade</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Subscribe-Locked-Product">
+     *      https://developers.binance.com/docs/simple_earn/earn/Subscribe-Locked-Product</a>
      */
     public String subscribeLockedProduct(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "projectId", String.class);
@@ -136,8 +136,8 @@ public class SimpleEarn {
      * destAccount -- optional/enum -- SPOT,FUND,ALL, default SPOT <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-flexible-product-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#redeem-flexible-product-trade</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Redeem-Flexible-Product">
+     *      https://developers.binance.com/docs/simple_earn/earn/Redeem-Flexible-Product</a>
      */
     public String redeemFlexibleProduct(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -155,8 +155,8 @@ public class SimpleEarn {
      * positionId -- mandatory/string -- 1234 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#redeem-locked-product-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#redeem-locked-product-trade</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Redeem-Locked-Product">
+     *      https://developers.binance.com/docs/simple_earn/earn/Redeem-Locked-Product</a>
      */
     public String redeemLockedProduct(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "positionId", String.class);
@@ -177,8 +177,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-product-position-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Flexible-Product-Position">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Flexible-Product-Position</a>
      */
     public String flexibleProductPosition(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_PRODUCT_POSITION, parameters, HttpMethod.GET, showLimitUsage);
@@ -199,8 +199,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-product-position-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-locked-product-position-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Locked-Product-Position">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Locked-Product-Position</a>
      */
     public String lockedProductPosition(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOCKED_PRODUCT_POSITION, parameters, HttpMethod.GET, showLimitUsage);
@@ -216,8 +216,8 @@ public class SimpleEarn {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#simple-account-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#simple-account-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Simple-Account">
+     *      https://developers.binance.com/docs/simple_earn/account/Simple-Account</a>
      */
     public String simpleAccount(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SIMPLE_ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -240,8 +240,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-subscription-record-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-subscription-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Subscription-Record">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Subscription-Record</a>
      */
     public String flexibleSubscriptionRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_SUBSCRIPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -263,8 +263,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-subscription-record-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-locked-subscription-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Locked-Subscription-Record">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Locked-Subscription-Record</a>
      */
     public String lockedSubscriptionRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOCKED_SUBSCRIPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -286,8 +286,8 @@ public class SimpleEarn {
      * current -- optional/long -- Current querying page. Start from 1. Default:1 <br>
      * size -- optional/long -- Default:10 Max:100 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-redemption-record-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-redemption-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Redemption-Record">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Redemption-Record</a>
      */
     public String flexibleRedemptionRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FLEXIBLE_REDEMPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -310,8 +310,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-redemption-record-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-locked-redemption-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Locked-Redemption-Record">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Locked-Redemption-Record</a>
      */
     public String lockedRedemptionRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOCKED_REDEMPTION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -333,8 +333,8 @@ public class SimpleEarn {
      * current -- optional/long -- Start from 1. Default:1 <br>
      * size -- optional/long -- Default:10 Max:100 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-rewards-history-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-rewards-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Rewards-History">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Flexible-Rewards-History</a>
      */
     public String flexibleRewardsHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -357,8 +357,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-rewards-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-locked-rewards-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Locked-Rewards-History">
+     *     https://developers.binance.com/docs/simple_earn/history/Get-Locked-Rewards-History</a>
      */
     public String lockedRewardsHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOCKED_REWARDS_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
@@ -376,8 +376,8 @@ public class SimpleEarn {
      * autoSubscribe -- mandatory/boolean -- true or false <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#set-flexible-auto-subscribe-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#set-flexible-auto-subscribe-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Set-Flexible-Auto-Subscribe">
+     *      https://developers.binance.com/docs/simple_earn/earn/Set-Flexible-Auto-Subscribe</a>
      */
     public String setFlexibleAutoSubscribe(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -397,8 +397,8 @@ public class SimpleEarn {
      * autoSubscribe -- mandatory/boolean -- true or false <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#set-locked-auto-subscribe-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#set-locked-auto-subscribe-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Set-Locked-Auto-Subscribe">
+     *      https://developers.binance.com/docs/simple_earn/earn/Set-Locked-Auto-Subscribe</a>
      */
     public String setLockedAutoSubscribe(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "positionId", String.class);
@@ -417,8 +417,8 @@ public class SimpleEarn {
      * productId -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-personal-left-quota-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-personal-left-quota-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Flexible-Personal-Left-Quota">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Flexible-Personal-Left-Quota</a>
      */
     public String flexiblePersonalLeftQuota(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -436,8 +436,8 @@ public class SimpleEarn {
      * projectId -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-personal-left-quota-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-locked-personal-left-quota-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/account/Get-Locked-Personal-Left-Quota">
+     *      https://developers.binance.com/docs/simple_earn/account/Get-Locked-Personal-Left-Quota</a>
      */
     public String lockedPersonalLeftQuota(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "projectId", String.class);
@@ -456,8 +456,8 @@ public class SimpleEarn {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-flexible-subscription-preview-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-flexible-subscription-preview-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Get-Flexible-Subscription-Preview">
+     *      https://developers.binance.com/docs/simple_earn/earn/Get-Flexible-Subscription-Preview</a>
      */
     public String flexibleSubscriptionPreview(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -478,8 +478,8 @@ public class SimpleEarn {
      * autoSubscribe -- optional/boolean -- true or false, default true. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-locked-subscription-preview-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-locked-subscription-preview-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/earn/Get-Locked-Subscription-Preview">
+     *      https://developers.binance.com/docs/simple_earn/earn/Get-Locked-Subscription-Preview</a>
      */
     public String lockedSubscriptionPreview(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "projectId", String.class);
@@ -502,8 +502,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-rate-history-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-rate-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Rate-History">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Rate-History</a>
      */
     public String rateHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "productId", String.class);
@@ -525,8 +525,8 @@ public class SimpleEarn {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-record-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-collateral-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/history/Get-Collateral-Record">
+     *      https://developers.binance.com/docs/simple_earn/history/Get-Collateral-Record</a>
      */
     public String collateralRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_RECORD, parameters, HttpMethod.GET, showLimitUsage);

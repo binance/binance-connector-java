@@ -8,7 +8,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>General Requests</h2>
  * All requests under the
- * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#general-info">General requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">General requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -30,8 +30,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#test-connectivity">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#test-connectivity</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-connectivity">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-connectivity</a>
      */
     public void ping(JSONObject parameters) {
         this.handler.publicRequest("ping", parameters);
@@ -44,8 +44,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#check-server-time">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#check-server-time</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#check-server-time">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#check-server-time</a>
      */
     public void serverTime(JSONObject parameters) {
         this.handler.publicRequest("time", parameters);
@@ -57,7 +57,7 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * Notes:<br>
      * Without parameters, exchangeInfo displays all symbols with ["SPOT, "MARGIN", "LEVERAGED"] permissions.<br>
      * In order to list all active symbols on the exchange, you need to explicitly request all permissions.<br>
-     * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#enum-definitions">Available Permissions</a>
+     * <a href="https://developers.binance.com/docs/binance-spot-api-docs/enums">Available Permissions</a>
      * 
      * @param parameters JSONObject composed by key-value pairs:
      * <br><br>
@@ -66,8 +66,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * permissions -- optional/Array of String  <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#exchange-information">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#exchange-information</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#exchange-information">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#exchange-information</a>
      */
     public void exchangeInfo(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols", "permissions");

@@ -30,7 +30,7 @@ public class TestFlexibleLoanLtvAdjustHistory {
     
     @Test
     public void testFlexibleLoanLtvAdjustHistory() {
-        String path = "/sapi/v1/loan/flexible/ltv/adjustment/history";
+        String path = "/sapi/v2/loan/flexible/ltv/adjustment/history";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);

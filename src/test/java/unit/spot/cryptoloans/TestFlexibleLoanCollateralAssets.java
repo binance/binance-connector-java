@@ -29,7 +29,7 @@ public class TestFlexibleLoanCollateralAssets {
     
     @Test
     public void testGetFlexibleLoanCollateralAssetsData() {
-        String path = "/sapi/v1/loan/flexible/collateral/data";
+        String path = "/sapi/v2/loan/flexible/collateral/data";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);

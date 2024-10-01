@@ -3,12 +3,10 @@ package com.binance.connector.client.impl;
 import com.binance.connector.client.SpotClient;
 import com.binance.connector.client.enums.DefaultUrls;
 import com.binance.connector.client.impl.spot.AutoInvest;
-import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
 import com.binance.connector.client.impl.spot.Convert;
 import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Fiat;
-import com.binance.connector.client.impl.spot.Futures;
 import com.binance.connector.client.impl.spot.GiftCard;
 import com.binance.connector.client.impl.spot.Margin;
 import com.binance.connector.client.impl.spot.Market;
@@ -84,11 +82,6 @@ public class SpotClientImpl implements SpotClient {
     }
 
     @Override
-    public Blvt createBlvt() {
-        return new Blvt(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
-    }
-
-    @Override
     public C2C createC2C() {
         return new C2C(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
@@ -106,11 +99,6 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public Fiat createFiat() {
         return new Fiat(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
-    }
-
-    @Override
-    public Futures createFutures() {
-        return new Futures(baseUrl, apiKey, signatureGenerator, showLimitUsage, proxy);
     }
 
     @Override

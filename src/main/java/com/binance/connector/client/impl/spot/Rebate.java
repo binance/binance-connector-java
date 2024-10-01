@@ -11,7 +11,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Rebate Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#rebate-endpoints">Rebate Endpoint</a>
+ * <a href="https://developers.binance.com/docs/rebate/Introduction">Rebate Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -46,8 +46,8 @@ public class Rebate {
      * page -- optional/int -- 	Default 1 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-spot-rebate-history-records-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/rebate/rest-api/Get-Spot-Rebate-History-Records">
+     *     https://developers.binance.com/docs/rebate/rest-api/Get-Spot-Rebate-History-Records</a>
      */
     public String taxQuery(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TAX_QUERY, parameters, HttpMethod.GET, showLimitUsage);

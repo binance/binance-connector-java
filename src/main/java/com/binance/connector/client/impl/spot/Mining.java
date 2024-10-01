@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Mining Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#mining-endpoints">Mining Endpoint</a>
+ * <a href="https://developers.binance.com/docs/mining/Introduction">Mining Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -44,8 +44,8 @@ public class Mining {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#acquiring-algorithm-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#acquiring-algorithm-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Acquiring-Algorithm">
+     *     https://developers.binance.com/docs/mining/rest-api/Acquiring-Algorithm</a>
      */
     public String algorithm(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALGO, parameters, HttpMethod.GET, showLimitUsage);
@@ -61,8 +61,8 @@ public class Mining {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#acquiring-coinname-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#acquiring-coinname-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Acquiring-CoinName">
+     *     https://developers.binance.com/docs/mining/rest-api/Acquiring-CoinName</a>
      */
     public String coinName(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COIN_NAME, parameters, HttpMethod.GET, showLimitUsage);
@@ -81,8 +81,8 @@ public class Mining {
      * workerName -- mandatory/string -- Miner's name(required) <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#request-for-detail-miner-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#request-for-detail-miner-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Request-for-Detail-Miner-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Request-for-Detail-Miner-List</a>
      */
     public String detailMinerList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -112,8 +112,8 @@ public class Mining {
      * workerStatus -- optional/int -- miners status(default=0)0 all,1 valid,2 invalid,3 failure <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#request-for-miner-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#request-for-miner-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Request-for-Miner-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Request-for-Miner-List</a>
      */
     public String minerList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -138,8 +138,8 @@ public class Mining {
      * pageSize -- optional/int -- 	Number of pages, minimum 10, maximum 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#earnings-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#earnings-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Earnings-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Earnings-List</a>
      */
     public String earningList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -164,8 +164,8 @@ public class Mining {
      * pageSize -- optional/int -- 	Number of pages, minimum 10, maximum 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#extra-bonus-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#extra-bonus-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Extra-Bonus-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Extra-Bonus-List</a>
      */
     public String bonusList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -185,8 +185,8 @@ public class Mining {
      * pageSize -- optional/int -- 	Number of pages, minimum 10, maximum 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-List</a>
      */
     public String hashrateResaleList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, HASHRATE_RESALE_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -206,8 +206,8 @@ public class Mining {
      * pageSize -- optional/int -- 	Number of pages, minimum 10, maximum 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-detail-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-detail-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Detail">
+     *     https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Detail</a>
      */
     public String hashrateResaleDetail(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "configId", Integer.class);
@@ -231,8 +231,8 @@ public class Mining {
      * hashRate -- mandatory/long -- Resale hashrate h/s must be transferred (BTC is greater than 500000000000 ETH is greater than 500000) <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-request-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#hashrate-resale-request-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Request">
+     *     https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Request</a>
      */
     public String hashrateResaleRequest(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "userName", String.class);
@@ -256,8 +256,8 @@ public class Mining {
      * userName -- mandatory/string -- Mining Account <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-hashrate-resale-configuration-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#cancel-hashrate-resale-configuration-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Cancel-hashrate-resale-configuration">
+     *     https://developers.binance.com/docs/mining/rest-api/Cancel-hashrate-resale-configuration</a>
      */
     public String cancelHashrateResaleConfig(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "configId", Integer.class);
@@ -277,8 +277,8 @@ public class Mining {
      * userName -- mandatory/string -- Mining Account <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#statistic-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#statistic-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Statistic-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Statistic-List</a>
      */
     public String statsticsList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -298,8 +298,8 @@ public class Mining {
      * userName -- mandatory/string -- Mining Account <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#account-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#account-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Account-List">
+     *     https://developers.binance.com/docs/mining/rest-api/Account-List</a>
      */
     public String accountList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);
@@ -322,8 +322,8 @@ public class Mining {
      * pageSize -- optional/int -- 	Min 10,Max 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#mining-account-earning-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Mining-Account-Earning">
+     *     https://developers.binance.com/docs/mining/rest-api/Mining-Account-Earning</a>
      */
     public String accountEarning(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algo", String.class);

@@ -9,7 +9,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>Trading Requests</h2>
  * All requests under the
- * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#trading-requests">Trading requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#trading-requests">Trading requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -46,8 +46,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#place-new-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#place-new-order-trade</a>
      */
     public void newOrder(String symbol, String side, String type, JSONObject parameters) {
 
@@ -89,8 +89,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-new-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-new-order-trade</a>
      */
     public void testNewOrder(String symbol, String side, String type, JSONObject parameters) {
 
@@ -118,8 +118,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#query-order-user_data">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#query-order-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#query-order-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#query-order-user_data</a>
      */
     public void getOrder(String symbol, JSONObject parameters) {
         ParameterChecker.checkOneOfParametersRequired(parameters, "orderId", "origClientOrderId");
@@ -144,8 +144,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-order-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-order-trade</a>
      */
     public void cancelOrder(String symbol, JSONObject parameters) {
         ParameterChecker.checkOneOfParametersRequired(parameters, "orderId", "origClientOrderId");
@@ -186,8 +186,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-and-replace-order-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-and-replace-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-and-replace-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-and-replace-order-trade</a>
      */
     public void cancelReplaceOrder(String symbol, String cancelReplaceMode, String side, String type, JSONObject parameters) {
 
@@ -214,8 +214,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#current-open-orders-user_data">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#current-open-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#current-open-orders-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#current-open-orders-user_data</a>
      */
     public void getOpenOrders(JSONObject parameters) {
         this.handler.signedRequest("openOrders.status", parameters);
@@ -231,8 +231,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-open-orders-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-open-orders-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-open-orders-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#cancel-open-orders-trade</a>
      */
     public void cancelAllOpenOrders(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -268,8 +268,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-oco-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-oco-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api</a>
      */
     public void newOcoOrder(String symbol, String side, double price, double quantity, JSONObject parameters) {
         ParameterChecker.checkOneOfParametersRequired(parameters, "stopPrice", "trailingDelta");
@@ -298,8 +298,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#query-oco-user_data">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#query-oco-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api</a>
      */
     public void getOcoOrder(JSONObject parameters) {
         ParameterChecker.checkOneOfParametersRequired(parameters, "origClientOrderId", "orderListId");
@@ -321,8 +321,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-oco-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#cancel-oco-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api</a>
      */
     public void cancelOcoOrder(String symbol, JSONObject parameters) {
         ParameterChecker.checkOneOfParametersRequired(parameters, "listClientOrderId", "orderListId");
@@ -343,8 +343,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#current-open-ocos-user_data">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#current-open-ocos-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api</a>
      */
     public void getOpenOcoOrders(JSONObject parameters) {
         this.handler.signedRequest("openOrderLists.status", parameters);
@@ -371,8 +371,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-using-sor-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#place-new-order-using-sor-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#place-new-order-using-sor-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#place-new-order-using-sor-trade</a>
      */
     public void newSorOrder(String symbol, String side, String type, double quantity, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -410,8 +410,8 @@ public class WebSocketApiTrade implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-using-sor-trade">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#test-new-order-using-sor-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-new-order-using-sor-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-new-order-using-sor-trade</a>
      */
     public void testNewSorOrder(String symbol, String side, String type, double quantity, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");

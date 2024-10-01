@@ -2,6 +2,9 @@ package unit.spot.margin;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,12 +30,13 @@ public class TestAllAssets {
     @Test
     public void testAllAssets() {
         String path = "/sapi/v1/margin/allAssets";
+        Map<String, Object> parameters = new LinkedHashMap<>();
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createMargin().allAssets();
+        String result = client.createMargin().allAssets(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

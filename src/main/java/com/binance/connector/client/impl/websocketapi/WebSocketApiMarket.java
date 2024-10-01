@@ -9,7 +9,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>Market Requests</h2>
  * All requests under the
- * <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#market-data-requests">Market requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#market-data-requests">Market requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -36,8 +36,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * limit -- optional/int -- Default 100; max 5000. <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#order-book">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#order-book</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#order-book">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#order-book</a>
      */
     public void depth(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -54,8 +54,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * limit -- optional/int -- Default 100; max 1000. <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#recent-trades">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#recent-trades</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#recent-trades">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#recent-trades</a>
      */
     public void recentTrades(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -76,8 +76,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * limit -- optional/int -- Default 500; max 1000. <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#historical-trades</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#historical-trades">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#historical-trades</a>
      */
     public void historicalTrades(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -100,8 +100,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * endTime -- optional/int <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#aggregate-trades">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#aggregate-trades</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#aggregate-trades">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#aggregate-trades</a>
      */
     public void aggTrades(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -125,8 +125,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * timeZone -- optional/String --  Default: 0 (UTC) <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#klines">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#klines</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#klines">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#klines</a>
      */
     public void klines(String symbol, String interval, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -153,8 +153,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * timeZone -- optional/String --  Default: 0 (UTC) <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#ui-klines">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#ui-klines</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#ui-klines">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#ui-klines</a>
      */
     public void uiKlines(String symbol, String interval, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -174,8 +174,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#current-average-price">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#current-average-price</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#current-average-price">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#current-average-price</a>
      */
     public void avgPrice(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -193,8 +193,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * type -- optional/String -- Ticker type: FULL (default) or MINI<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#24hr-ticker-price-change-statistics">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#24hr-ticker-price-change-statistics</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#24hr-ticker-price-change-statistics">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#24hr-ticker-price-change-statistics</a>
      */
     public void ticker24H(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
@@ -219,8 +219,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * windowSize -- optional/int -- Default "1d"<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#rolling-window-price-change-statistics">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#rolling-window-price-change-statistics</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#rolling-window-price-change-statistics">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#rolling-window-price-change-statistics</a>
      */
     public void ticker(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
@@ -237,8 +237,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * symbols -- optional/Array of String -- Query ticker for multiple symbols<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#symbol-price-ticker">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#symbol-price-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#symbol-price-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#symbol-price-ticker</a>
      */
     public void tickerPrice(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
@@ -254,8 +254,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * symbols -- optional/Array of String -- Query ticker for multiple symbols<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#symbol-order-book-ticker">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#symbol-order-book-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#symbol-order-book-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#symbol-order-book-ticker</a>
      */
     public void tickerBook(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");
@@ -275,8 +275,8 @@ public class WebSocketApiMarket implements WebSocketApiModule {
      * type -- optional/String -- Ticker type: FULL (default) or MINI<br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://binance-docs.github.io/apidocs/websocket_api/en/#trading-day-ticker">
-     *     https://binance-docs.github.io/apidocs/websocket_api/en/#trading-day-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#trading-day-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#trading-day-ticker</a>
      */
     public void tickerTradingDay(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols");

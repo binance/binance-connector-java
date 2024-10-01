@@ -1,5 +1,48 @@
 # Changelog
 
+## 3.4.0 - 2024-10-01
+### Added
+- New Margin endpoints:
+  - `POST /sapi/v1/margin/borrow-repay`
+  - `GET /sapi/v1/margin/borrow-repay`
+
+### Changed
+- Updated `CryptoLoans` v1 to v2:
+  - `POST /sapi/v1/loan/flexible/borrow` to `POST /sapi/v2/loan/flexible/borrow`
+  - `GET /sapi/v1/loan/flexible/ongoing/orders` to `GET /sapi/v2/loan/flexible/ongoing/orders`
+  - `GET /sapi/v1/loan/flexible/borrow/history` to `GET /sapi/v2/loan/flexible/borrow/history`
+  - `POST /sapi/v1/loan/flexible/repay` to `POST /sapi/v2/loan/flexible/repay`
+  - `GET /sapi/v1/loan/flexible/repay/history` to `GET /sapi/v2/loan/flexible/repay/history`
+  - `POST /sapi/v1/loan/flexible/adjust/ltv` to `POST /sapi/v2/loan/flexible/adjust/ltv`
+  - `GET /sapi/v1/loan/flexible/ltv/adjustment/history` to `GET /sapi/v2/loan/flexible/ltv/adjustment/history`
+  - `GET /sapi/v1/loan/flexible/loanable/data` to `GET /sapi/v2/loan/flexible/loanable/data`
+  - `GET /sapi/v1/loan/flexible/collateral/data` to `GET /sapi/v2/loan/flexible/collateral/data`
+- Added parameter `isolatedSymbol` to endpoint `GET /sapi/v1/margin/transfer`
+- Added parameter `asset` to endpoint `GET /sapi/v1/margin/allAssets`
+- Added parameter `symbol` to endpoints `GET /sapi/v1/margin/allPairs` and `GET /sapi/v1/margin/isolated/allPairs`
+
+### Removed
+- Deprecated Futures endpoints:
+  - `POST /sapi/v1/futures/transfer`
+  - `GET /sapi/v1/futures/transfer`
+  - `GET /sapi/v1/futures/histDataLink`
+
+- BLVT endpoints:
+  - `GET /sapi/v1/blvt/tokenInfo`
+  - `POST /sapi/v1/blvt/subscribe`
+  - `GET /sapi/v1/blvt/subscribe/record`
+  - `POST /sapi/v1/blvt/redeem`
+  - `GET /sapi/v1/blvt/redeem/record`
+  - `GET /sapi/v1/blvt/userLimit`
+
+- Deprecated Trade endpoint: `POST /api/v3/order/oco`
+
+- Wallet endpoints:
+  - `POST /sapi/v1/asset/convert-transfer`
+  - `GET /sapi/v1/asset/convert-transfer/queryByPage`
+  - `GET /sapi/v1/capital/contract/convertible-coins`
+  - `POST /sapi/v1/capital/contract/convertible-coins`
+
 ## 3.3.0 - 2024-06-19
 ### Changed
 - Upgraded dependencies

@@ -1,12 +1,10 @@
 package com.binance.connector.client;
 
 import com.binance.connector.client.impl.spot.AutoInvest;
-import com.binance.connector.client.impl.spot.Blvt;
 import com.binance.connector.client.impl.spot.C2C;
 import com.binance.connector.client.impl.spot.Convert;
 import com.binance.connector.client.impl.spot.CryptoLoans;
 import com.binance.connector.client.impl.spot.Fiat;
-import com.binance.connector.client.impl.spot.Futures;
 import com.binance.connector.client.impl.spot.GiftCard;
 import com.binance.connector.client.impl.spot.Margin;
 import com.binance.connector.client.impl.spot.Market;
@@ -31,12 +29,10 @@ public interface SpotClient {
     void setProxy(ProxyAuth proxy);
     void unsetProxy();
     AutoInvest createAutoInvest();
-    Blvt createBlvt();
     C2C createC2C();
     Convert createConvert();
     CryptoLoans createCryptoLoans();
     Fiat createFiat();
-    Futures createFutures();
     GiftCard createGiftCard();
     Market createMarket();
     Margin createMargin();

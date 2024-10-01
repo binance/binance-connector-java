@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Portfolio Margin Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#portfolio-margin-endpoints">Portfolio Margin Endpoints</a>
+ * <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/general-info">Portfolio Margin Endpoints</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -44,8 +44,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-classic-portfolio-margin-account-info-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-classic-portfolio-margin-account-info-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info">
+     *     https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info</a>
      */
     public String getAccount(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -63,8 +63,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#classic-portfolio-margin-collateral-rate-market_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#classic-portfolio-margin-collateral-rate-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate">
+     *     https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate</a>
      */
     public String collateralRate(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_RATE, parameters, HttpMethod.GET, showLimitUsage);
@@ -82,8 +82,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-classic-portfolio-margin-bankruptcy-loan-amount-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-classic-portfolio-margin-bankruptcy-loan-amount-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Bankruptcy-Loan-Amount">
+     *     https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Bankruptcy-Loan-Amount</a>
      */
     public String bankruptcyLoanRecord(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, PM_LOAN, parameters, HttpMethod.GET, showLimitUsage);
@@ -102,8 +102,8 @@ public class PortfolioMargin {
      * from -- optional/string -- SPOT or MARGIN，default SPOT<br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#classic-portfolio-margin-bankruptcy-loan-repay">
-     *     https://binance-docs.github.io/apidocs/spot/en/#classic-portfolio-margin-bankruptcy-loan-repay</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Classic-Portfolio-Margin-Bankruptcy-Loan-Repay">
+     *     https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Classic-Portfolio-Margin-Bankruptcy-Loan-Repay</a>
      */
     public String repay(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REPAY, parameters, HttpMethod.POST, showLimitUsage);
@@ -126,8 +126,8 @@ public class PortfolioMargin {
      * size -- optional/integer -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-classic-portfolio-margin-negative-balance-interest-history-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-classic-portfolio-margin-negative-balance-interest-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History</a>
      */
     public String interestHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
@@ -146,8 +146,8 @@ public class PortfolioMargin {
      * <br><br>
      * asset -- optional/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-portfolio-margin-asset-index-price-market_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-portfolio-margin-asset-index-price-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price</a>
      */
     public String assetIndexPrice(Map<String, Object> parameters) {
         return requestHandler.sendApiRequest(baseUrl, ASSET_INDEX_PRICE, parameters, HttpMethod.GET, showLimitUsage);
@@ -168,8 +168,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#fund-auto-collection-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#fund-auto-collection-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Auto-collection">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Auto-collection</a>
      */
     public String autoCollection(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, AUTO_COLLECTION, parameters, HttpMethod.POST, showLimitUsage);
@@ -190,8 +190,8 @@ public class PortfolioMargin {
      * asset -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#fund-collection-by-asset-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#fund-collection-by-asset-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Collection-by-Asset">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Collection-by-Asset</a>
      */
     public String assetCollection(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -213,8 +213,8 @@ public class PortfolioMargin {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#bnb-transfer-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#bnb-transfer-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/BNB-transfer">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/BNB-transfer</a>
      */
     public String bnbTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transferSide", String.class);
@@ -236,8 +236,8 @@ public class PortfolioMargin {
      * autoRepay -- mandatory/boolean <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#change-auto-repay-futures-status-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#change-auto-repay-futures-status-trade</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Change-Auto-repay-futures-Status">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Change-Auto-repay-futures-Status</a>
      */
     public String switchAutoRepayFutures(Map<String, Object> parameters) {
         ParameterChecker.checkRequiredParameter(parameters, "autoRepay");
@@ -257,8 +257,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-auto-repay-futures-status-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-auto-repay-futures-status-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Auto-repay-futures-Status#http-request">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Auto-repay-futures-Status#http-request</a>
      */
     public String autoRepayFuturesStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, AUTO_REPAY_FUTURES_STATUS, parameters, HttpMethod.GET, showLimitUsage);
@@ -277,8 +277,8 @@ public class PortfolioMargin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#repay-futures-negative-balance-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#repay-futures-negative-balance-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance</a>
      */
     public String repayFutures(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REPAY_FUTURES, parameters, HttpMethod.POST, showLimitUsage);
@@ -289,8 +289,8 @@ public class PortfolioMargin {
      * GET /sapi/v1/portfolio/margin-asset-leverage
      * <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-asset-leverage-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-asset-leverage-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage">
+     *      https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage</a>
      */
     public String assetLeverage() {
         return requestHandler.sendSignedRequest(baseUrl, ASSET_LEVERAGE, null, HttpMethod.GET, showLimitUsage);

@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>C2C Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#c2c-endpoints">C2C Endpoint</a>
+ * <a href="https://developers.binance.com/docs/c2c/introduction">C2C Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -49,8 +49,8 @@ public class C2C {
      * rows -- optional/int -- default 100, max 500 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-c2c-trade-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/c2c/rest-api/Get-C2C-Trade-History">
+     *     https://developers.binance.com/docs/c2c/rest-api/Get-C2C-Trade-History</a>
      */
     public String listUserOrderHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "tradeType", String.class);

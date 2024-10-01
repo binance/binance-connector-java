@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>NFT Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#nft-endpoints">NFT Endpoint</a>
+ * <a href="https://developers.binance.com/docs/nft/Introduction">NFT Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -50,8 +50,8 @@ public class NFT {
      * page -- optional/int -- Default 1 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-transaction-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-transaction-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/nft/rest-api/Get-NFT-Transaction-History">
+     *     https://developers.binance.com/docs/nft/rest-api/Get-NFT-Transaction-History</a>
      */
     public String transactionsHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderType", Integer.class);
@@ -72,8 +72,8 @@ public class NFT {
      * page -- optional/int -- Default 1 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-deposit-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-deposit-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/nft/rest-api/Get-NFT-Deposit-History">
+     *     https://developers.binance.com/docs/nft/rest-api/Get-NFT-Deposit-History</a>
      */
     public String depositHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, DEPOSIT, parameters, HttpMethod.GET, showLimitUsage);
@@ -93,8 +93,8 @@ public class NFT {
      * page -- optional/int -- Default 1 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-withdraw-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-withdraw-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/nft/rest-api/Get-NFT-Withdraw-History">
+     *     https://developers.binance.com/docs/nft/rest-api/Get-NFT-Withdraw-History</a>
      */
     public String withdrawHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, WITHDRAW, parameters, HttpMethod.GET, showLimitUsage);
@@ -112,8 +112,8 @@ public class NFT {
      * page -- optional/int -- Default 1 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-nft-asset-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-nft-asset-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/nft/rest-api/Get-NFT-Asset">
+     *     https://developers.binance.com/docs/nft/rest-api/Get-NFT-Asset</a>
      */
     public String getAsset(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_ASSET, parameters, HttpMethod.GET, showLimitUsage);
