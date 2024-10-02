@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Margin Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-trade">Margin Account/Trade Endpoint</a>
+ * <a href="https://developers.binance.com/docs/margin_trading/Introduction">Margin Account/Trade Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -34,28 +34,86 @@ public class Margin {
         this.showLimitUsage = showLimitUsage;
     }
 
+    private final String BORROW_REPAY = "/sapi/v1/margin/borrow-repay";
+    /**
+     * POST /sapi/v1/margin/borrow-repay
+     * <br>
+     * @param Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the param
+     * <br><br>
+     * asset -- mandatory/string <br>
+     * isIsolated -- mandatory/string - TRUE for Isolated Margin, FALSE for Cross Margin, Default FALSE <br>
+     * symbol -- mandatory/string - Only for Isolated margin <br>
+     * amount -- mandatory/string <br>
+     * type -- mandatory/string - BORROW or REPAY <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Margin-Account-Borrow-Repay">
+     *     https://developers.binance.com/docs/margin_trading/borrow-and-repay/Margin-Account-Borrow-Repay</a>
+     */
+    public String borrowRepay(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "asset", String.class);
+        ParameterChecker.checkParameter(parameters, "isIsolated", String.class);
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "amount", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, BORROW_REPAY, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
+    /**
+     * GET /sapi/v1/margin/borrow-repay
+     * <br>
+     * @param Map of String,Object pair
+     *           where String is the name of the parameter and Object is the value of the param
+     * <br><br>
+     * type -- mandatory/string - BORROW or REPAY <br>
+     * asset -- optional/string <br>
+     * isolatedSymbol -- optional/string - Symbol in Isolated Margin <br>
+     * txId -- optional/long - tranId in POST /sapi/v1/margin/loan <br>
+     * startTime -- optional/long <br>
+     * endTime -- optional/long <br>
+     * current -- optional/long - Current querying page. Start from 1. Default:1 <br>
+     * size -- optional/long - Default:10 Max:100 <br>
+     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
+     * @return String
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow-Repay">
+     * https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow-Repay</a>
+     */
+    public String getBorrowRepay(Map<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        return requestHandler.sendSignedRequest(baseUrl, BORROW_REPAY, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
     private final String ALL_ASSETS = "/sapi/v1/margin/allAssets";
     /**
      * GET /sapi/v1/margin/allAssets
      * <br>
+     * @param Map of String,Object pair
+     *           where String is the name of the parameter and Object is the value of the param
+     * <br><br>
+     * asset -- optional/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-all-margin-assets-market_data">
-     *    https://binance-docs.github.io/apidocs/spot/en/#get-all-margin-assets-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Margin-Assets">
+     *    https://developers.binance.com/docs/margin_trading/market-data/Get-All-Margin-Assets</a>
      */
-    public String allAssets() {
-        return requestHandler.sendApiRequest(baseUrl, ALL_ASSETS, null, HttpMethod.GET, showLimitUsage);
+    public String allAssets(Map<String, Object> parameters) {
+        return requestHandler.sendApiRequest(baseUrl, ALL_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String ALL_PAIRS = "/sapi/v1/margin/allPairs";
     /**
      * GET /sapi/v1/margin/allPairs
      * <br>
+     * @param Map of String,Object pair
+     *           where String is the name of the parameter and Object is the value of the param
+     * <br><br>
+     * symbol -- optional/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-all-cross-margin-pairs-market_data">
-     *    https://binance-docs.github.io/apidocs/spot/en/#get-all-cross-margin-pairs-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Cross-Margin-Pairs">
+     *    https://developers.binance.com/docs/margin_trading/market-data/Get-All-Cross-Margin-Pairs</a>
      */
-    public String allPairs() {
-        return requestHandler.sendApiRequest(baseUrl, ALL_PAIRS, null, HttpMethod.GET, showLimitUsage);
+    public String allPairs(Map<String, Object> parameters) {
+        return requestHandler.sendApiRequest(baseUrl, ALL_PAIRS, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String PRICE_INDEX = "/sapi/v1/margin/priceIndex";
@@ -68,8 +126,8 @@ public class Margin {
      * <br><br>
      * symbol -- mandatory/string
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-priceindex-market_data">
-     *    https://binance-docs.github.io/apidocs/spot/en/#query-margin-priceindex-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Query-Margin-PriceIndex">
+     *    https://developers.binance.com/docs/margin_trading/market-data/Query-Margin-PriceIndex</a>
      */
     public String priceIndex(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -103,8 +161,8 @@ public class Margin {
      * autoRepayAtCancel -- optional/boolean -- Only for when it's a MARGIN_BUY or AUTO_BORROW_REPAY. Default: true (debt generated by the order needs to be repaid after cancellation.) <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-order-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-Order">
+     *     https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-Order</a>
      */
     public String newOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -129,8 +187,8 @@ public class Margin {
      * newClientOrderId -- optional/string -- Used to uniquely identify this cancel. Automatically generated by default. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-order-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-Order">
+     *     https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-Order</a>
      */
     public String cancelOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -152,8 +210,8 @@ public class Margin {
      * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE, default "FALSE" <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-all-open-orders-on-a-symbol-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-all-open-orders-on-a-symbol-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-All-Open-Orders">
+     *     https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-All-Open-Orders</a>
      */
     public String cancelOpenOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -174,40 +232,15 @@ public class Margin {
      * endTime -- optional/long <br>
      * current -- optional/long -- Currently querying page. Start from 1. Default:1 <br>
      * size -- optional/long -- Default:10 Max:100 <br>
+     * isolatedSymbol -- optional/string -- Symbol in Isolated Margin <br>
      * archived -- optional/string -- Default: false. Set to true for archived data from 6 months ago <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-cross-margin-transfer-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-cross-margin-transfer-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Transfer-History">
+     *     https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Transfer-History</a>
      */
     public String transferHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TRANSFER_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
-    }
-
-    private final String REPAY_RECORD = "/sapi/v1/margin/repay";
-    /**
-     * GET /sapi/v1/margin/repay
-     * <br>
-     * @param
-     * parameters Map of String,Object pair
-     *            where String is the name of the parameter and Object is the value of the parameter
-     * <br><br>
-     * asset -- mandatory/string <br>
-     * isolatedSymbol -- optional/string <br>
-     * txId -- optional/long -- the tranId in POST /sapi/v1/margin/loan <br>
-     * startTime -- optional/long <br>
-     * endTime -- optional/long <br>
-     * current -- optional/long -- Currently querying page. Start from 1. Default:1 <br>
-     * size -- optional/long -- Default:10 Max:100 <br>
-     * archived -- optional/string -- Default: false. Set to true for archived data from 6 months ago <br>
-     * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
-     * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-repay-record-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-repay-record-user_data</a>
-     */
-    public String repayRecord(Map<String, Object> parameters) {
-        ParameterChecker.checkParameter(parameters, "asset", String.class);
-        return requestHandler.sendSignedRequest(baseUrl, REPAY_RECORD, parameters, HttpMethod.GET, showLimitUsage);
     }
 
     private final String INTEREST_HISTORY = "/sapi/v1/margin/interestHistory";
@@ -227,8 +260,8 @@ public class Margin {
      * archived -- optional/string -- Default: false. Set to true for archived data from 6 months ago <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-interest-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest-History">
+     *     https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest-History</a>
      */
     public String interestHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, INTEREST_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
@@ -249,8 +282,8 @@ public class Margin {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-force-liquidation-record-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-force-liquidation-record-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record">
+     *     https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record</a>
      */
     public String forceLiquidationRec(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, FORCE_LIQUIDATION_RECORD, parameters, HttpMethod.GET, showLimitUsage);
@@ -266,8 +299,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-account-details-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-account-details-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Account-Details">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Account-Details</a>
      */
     public String account(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -286,8 +319,8 @@ public class Margin {
      * origClientOrderId -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-order-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-order-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order</a>
      */
     public String getOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -304,8 +337,8 @@ public class Margin {
      * symbol -- optional/string <br>
      * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE",default "FALSE" <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-orders-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-Orders">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-Orders</a>
      */
     public String getOpenOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, OPEN_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
@@ -327,8 +360,8 @@ public class Margin {
      * limit -- optional/int -- Default 500; max 500. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-orders-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-Orders">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-Orders</a>
      */
     public String getAllOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -364,8 +397,8 @@ public class Margin {
      * autoRepayAtCancel -- optional/boolean -- Only for when it's a MARGIN_BUY or AUTO_BORROW_REPAY. Default: true (debt generated by the order needs to be repaid after cancellation.) <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-oco-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-new-oco-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO">
+     *     https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO</a>
      */
     public String ocoOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -393,8 +426,8 @@ public class Margin {
      * newClientOrderId -- optional/string -- Used to uniquely identify this cancel. Automatically generated by default <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-oco-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-account-cancel-oco-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-OCO">
+     *     https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-OCO</a>
      */
     public String cancelOcoOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -416,8 +449,8 @@ public class Margin {
      * listClientOrderId -- optional/string -- Either orderListId or listClientOrderId must be provided<br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-oco-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-oco-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-OCO">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-OCO</a>
      */
     public String getOcoOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -441,8 +474,8 @@ public class Margin {
      * limit -- optional/int -- Default Value: 500; Max Value: 1000 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-oco-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-all-oco-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-OCO">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-OCO</a>
      */
     public String getAllOcoOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_ALL_OCO, parameters, HttpMethod.GET, showLimitUsage);
@@ -460,8 +493,8 @@ public class Margin {
      * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE", default "FALSE" <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-oco-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-open-oco-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-OCO">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-OCO</a>
      */
     public String getOcoOpenOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, GET_OPEN_OCO, parameters, HttpMethod.GET, showLimitUsage);
@@ -483,8 +516,8 @@ public class Margin {
      * limit -- optional/int -- Default Value: 500; Max Value: 1000 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-trade-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-account-39-s-trade-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List</a>
      */
     public String trades(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -503,8 +536,8 @@ public class Margin {
      * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE,default "FALSE" <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-max-borrow-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-max-borrow-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Max-Borrow">
+     *     https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Max-Borrow</a>
      */
     public String maxBorrow(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -523,8 +556,8 @@ public class Margin {
      * isIsolated -- optional/string -- for isolated margin or not, "TRUE", "FALSE,default "FALSE" <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-max-transfer-out-amount-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-max-transfer-out-amount-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/transfer/Query-Max-Transfer-Out-Amount">
+     *     https://developers.binance.com/docs/margin_trading/transfer/Query-Max-Transfer-Out-Amount</a>
      */
     public String maxTransferable(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -542,8 +575,8 @@ public class Margin {
      * symbols -- optional/string -- Max 5 symbols can be sent; separated by ",". e.g. "BTCUSDT,BNBUSDT,ADAUSDT" <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-account-info-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-account-info-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Account-Info">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Account-Info</a>
      */
     public String isolatedAccount(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -559,8 +592,8 @@ public class Margin {
      * symbol -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#disable-isolated-margin-account-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#disable-isolated-margin-account-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Disable-Isolated-Margin-Account">
+     *     https://developers.binance.com/docs/margin_trading/account/Disable-Isolated-Margin-Account</a>
      */
     public String disableIsolatedAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -579,8 +612,8 @@ public class Margin {
      * symbol -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-isolated-margin-account-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#enable-isolated-margin-account-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Enable-Isolated-Margin-Account">
+     *     https://developers.binance.com/docs/margin_trading/account/Enable-Isolated-Margin-Account</a>
      */
     public String enableIsolatedAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -599,8 +632,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-enabled-isolated-margin-account-limit-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-enabled-isolated-margin-account-limit-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Enabled-Isolated-Margin-Account-Limit">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Enabled-Isolated-Margin-Account-Limit</a>
      */
     public String getIsolatedAccountLimit(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_ACCOUNT_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
@@ -614,10 +647,11 @@ public class Margin {
      * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the parameter
      * <br><br>
+     * symbol -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-all-isolated-margin-symbol-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-all-isolated-margin-symbol-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Isolated-Margin-Symbol">
+     *     https://developers.binance.com/docs/margin_trading/market-data/Get-All-Isolated-Margin-Symbol</a>
      */
     public String getAllIsolatedSymbols(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_ISOLATED_SYMBOL, parameters, HttpMethod.GET, showLimitUsage);
@@ -635,8 +669,8 @@ public class Margin {
      * interestBNBBurn -- optional/string -- "true" or "false"; Determines whether to use BNB to pay for margin loan's interest  <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#toggle-bnb-burn-on-spot-trade-and-margin-interest-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#toggle-bnb-burn-on-spot-trade-and-margin-interest-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest">
+     *     https://developers.binance.com/docs/margin_trading/account/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest</a>
      */
     public String bnbBurn(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BNB_BURN, parameters, HttpMethod.POST, showLimitUsage);
@@ -651,8 +685,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-bnb-burn-status-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-bnb-burn-status-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Get-BNB-Burn-Status">
+     *     https://developers.binance.com/docs/margin_trading/account/Get-BNB-Burn-Status</a>
      */
     public String getBnbBurn(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, BNB_BURN, parameters, HttpMethod.GET, showLimitUsage);
@@ -672,8 +706,8 @@ public class Margin {
      * endTime -- optional/long -- Default: present. Maximum range: 3 months. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-interest-rate-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-interest-rate-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin-Interest-Rate-History">
+     *     https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin-Interest-Rate-History</a>
      */
     public String interestRateHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -694,8 +728,8 @@ public class Margin {
      * coin -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-fee-data-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-cross-margin-fee-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Fee-Data">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Fee-Data</a>
      */
     public String crossMarginData(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CROSS_MARGIN_DATA, parameters, HttpMethod.GET, showLimitUsage);
@@ -709,8 +743,8 @@ public class Margin {
      * GET /sapi/v1/margin/crossMarginCollateralRatio
      * <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cross-margin-collateral-ratio-market_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#cross-margin-collateral-ratio-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Cross-margin-collateral-ratio">
+     *     https://developers.binance.com/docs/margin_trading/market-data/Cross-margin-collateral-ratio</a>
      */
     public String crossMarginCollateralRatio() {
         return requestHandler.sendApiRequest(baseUrl, CROSS_MARGIN_COLLATERAL_RATIO, null, HttpMethod.GET, showLimitUsage);
@@ -729,8 +763,8 @@ public class Margin {
      * <br><br>
      * maxLeverage -- mandatory/integer -- Can only adjust to 3, 5 or 10. Example: maxLeverage=10 for Cross Margin Pro, maxLeverage = 5 or 3 for Cross Margin Classic <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#adjust-cross-margin-max-leverage-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#adjust-cross-margin-max-leverage-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Adjust-Cross-Margin-Max-Leverage">
+     *     https://developers.binance.com/docs/margin_trading/account/Adjust-Cross-Margin-Max-Leverage</a>
      */
     public String adjustCrossMarginMaxLeverage(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "maxLeverage", Integer.class);
@@ -751,8 +785,8 @@ public class Margin {
      * symbol -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-fee-data-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-fee-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Fee-Data">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Fee-Data</a>
      */
     public String isolatedMarginData(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ISOLATED_MARGIN_DATA, parameters, HttpMethod.GET, showLimitUsage);
@@ -772,8 +806,8 @@ public class Margin {
      * tier -- optional/string -- All margin tier data will be returned if tier is omitted <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-tier-data-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-isolated-margin-tier-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data">
+     *     https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data</a>
      */
     public String isolatedMarginTier(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -794,8 +828,8 @@ public class Margin {
      * symbol -- optional/string -- isolated symbol, mandatory for isolated margin <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-current-margin-order-count-usage-trade</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Query-Current-Margin-Order-Count-Usage">
+     *     https://developers.binance.com/docs/margin_trading/trade/Query-Current-Margin-Order-Count-Usage</a>
      */
     public String orderRateLimit(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
@@ -814,8 +848,8 @@ public class Margin {
      * type -- mandatory/string -- MARGIN, ISOLATED<br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-margin-available-inventory-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-margin-available-inventory-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Query-margin-avaliable-inventory">
+     *     https://developers.binance.com/docs/margin_trading/market-data/Query-margin-avaliable-inventory</a>
      */
     public String availableInventory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "type", String.class);
@@ -842,8 +876,8 @@ public class Margin {
      * limit -- optional/long -- The number of data items returned each time is limited. Default 500; Max 1000. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-cross-or-isolated-margin-capital-flow-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-cross-or-isolated-margin-capital-flow-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-Margin-Capital-Flow">
+     *     https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-Margin-Capital-Flow</a>
      */
     public String capitalFlow(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, CAPITAL_FLOW, parameters, HttpMethod.GET, showLimitUsage);
@@ -862,8 +896,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-tokens-or-symbols-delist-schedule-for-cross-margin-and-isolated-margin-market_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-tokens-or-symbols-delist-schedule-for-cross-margin-and-isolated-margin-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Get-Delist-Schedule">
+     *     https://developers.binance.com/docs/margin_trading/market-data/Get-Delist-Schedule</a>
      */
     public String delistSchedule(Map<String, Object> parameters) {
         return requestHandler.sendApiRequest(baseUrl, DELIST_SCHEDULE, parameters, HttpMethod.GET, showLimitUsage);
@@ -883,8 +917,8 @@ public class Margin {
      * assets -- mandatory/string -- List of assets, separated by commas, up to 20 <br>
      * isIsolated -- mandatory/boolean -- Whether it's for isolated margin or not: "TRUE", "FALSE" <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-a-future-hourly-interest-rate-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-a-future-hourly-interest-rate-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-a-future-hourly-interest-rate">
+     *     https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-a-future-hourly-interest-rate</a>
      */
     public String nextHourlyInterestRate(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "assets", String.class);
@@ -905,8 +939,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-small-liability-exchange-coin-list-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-small-liability-exchange-coin-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-Coin-List">
+     *     https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-Coin-List</a>
      */
     public String smallLiabilityAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SMALL_LIABILITY_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
@@ -926,8 +960,8 @@ public class Margin {
      * assetNames - mandatory/array -- List of asset names. Example: assetNames = BTC,ETH <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#small-liability-exchange-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#small-liability-exchange-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange">
+     *     https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange</a>
      */
     public String exchangeSmallLiability(Map<String, Object> parameters) {
         ParameterChecker.checkRequiredParameter(parameters, "assetNames");
@@ -951,8 +985,8 @@ public class Margin {
      * endTime -- optional/long -- Default: present timestamp <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-small-liability-exchange-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-small-liability-exchange-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-History">
+     *     https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-History</a>
      */
     public String smallLiabilityExchangeHistory(Map<String, Object> parameters) {
         ParameterChecker.checkRequiredParameter(parameters, "current");
@@ -968,8 +1002,8 @@ public class Margin {
      * GET /sapi/v1/margin/leverageBracket
      * <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-liability-coin-leverage-bracket-in-cross-margin-pro-mode-market_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-liability-coin-leverage-bracket-in-cross-margin-pro-mode-market_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/market-data/Query-Liability-Coin-Leverage-Bracket-in-Cross-Margin-Pro-Mode">
+     *      https://developers.binance.com/docs/margin_trading/market-data/Query-Liability-Coin-Leverage-Bracket-in-Cross-Margin-Pro-Mode</a>
      */
     public String leverageBracket() {
         return requestHandler.sendApiRequest(baseUrl, LEVERAGE_BRACKET, null, HttpMethod.GET, showLimitUsage);
@@ -989,8 +1023,8 @@ public class Margin {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-margin-account-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-margin-account-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/account/Get-Summary-Of-Margin-Account">
+     *      https://developers.binance.com/docs/margin_trading/account/Get-Summary-Of-Margin-Account</a>
      */
     public String tradeCoeff(Map<String, Object> parameters) {
         return requestHandler.sendApiRequest(baseUrl, TRADE_COEFF, parameters, HttpMethod.GET, showLimitUsage);

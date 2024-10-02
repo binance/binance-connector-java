@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Spot Algo Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#spot-algo-endpoints">Spot Algo Endpoints</a>
+ * <a href="https://developers.binance.com/docs/algo/change-log">Spot Algo Endpoints</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -54,8 +54,8 @@ public class SpotAlgo {
      * stpMode -- optional/enum -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#time-weighted-average-price-twap-new-order-trade-2">
-     *      https://binance-docs.github.io/apidocs/spot/en/#time-weighted-average-price-twap-new-order-trade-2</a>
+     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Time-Weighted-Average-Price-New-Order">
+     *      https://developers.binance.com/docs/algo/spot-algo/Time-Weighted-Average-Price-New-Order</a>
      */
     public String twapOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -79,8 +79,8 @@ public class SpotAlgo {
      * algoId -- mandatory/long <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#cancel-algo-order-trade-2">
-     *      https://binance-docs.github.io/apidocs/spot/en/#cancel-algo-order-trade-2</a>
+     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Cancel-Algo-Order">
+     *      https://developers.binance.com/docs/algo/spot-algo/Cancel-Algo-Order</a>
      */
     public String cancelOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algoId", Long.class);
@@ -100,8 +100,8 @@ public class SpotAlgo {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-current-algo-open-orders-user_data-2">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-current-algo-open-orders-user_data-2</a>
+     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Query-Current-Algo-Open-Orders">
+     *      https://developers.binance.com/docs/algo/spot-algo/Query-Current-Algo-Open-Orders</a>
      */
     public String getOpenOrders(Map<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, OPEN_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
@@ -126,8 +126,8 @@ public class SpotAlgo {
      * pageSize -- optional/int -- MIN 1, MAX 100; Default 100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-historical-algo-orders-user_data-2">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-historical-algo-orders-user_data-2</a>
+     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Query-Historical-Algo-Orders">
+     *      https://developers.binance.com/docs/algo/spot-algo/Query-Historical-Algo-Orders</a>
      */
     public String getHistoricalOrders(Map<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, HISTORICAL_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
@@ -149,8 +149,8 @@ public class SpotAlgo {
      * pageSize -- optional/int -- MIN 1, MAX 100; Default 100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-orders-user_data-2">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-sub-orders-user_data-2</a>
+     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Query-Sub-Orders">
+     *      https://developers.binance.com/docs/algo/spot-algo/Query-Sub-Orders</a>
      */
     public String getSubOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "algoId", Long.class);

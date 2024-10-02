@@ -1,4 +1,4 @@
-package unit.spot.trade;
+package unit.spot.margin;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -19,13 +19,9 @@ import okhttp3.mockwebserver.MockWebServer;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 
-public class TestOcoOrder {
+public class TestGetBorrowRepay {
     private MockWebServer mockWebServer;
     private String baseUrl;
-
-    private final int price = 9500;
-    private final double quantity = 0.01;
-    private final int stopPrice = 7500;
 
     @Before
     public void init() {
@@ -34,32 +30,28 @@ public class TestOcoOrder {
     }
 
     @Test
-    public void testOcoOrderWithoutParameters() {
-        String path = "/api/v3/order/oco";
+    public void testAdjustCrossMarginMaxLeverageWithoutParameters() {
+        String path = "/sapi/v1/margin/borrow-repay";
         Map<String, Object> parameters = new LinkedHashMap<>();
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createTrade().ocoOrder(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createMargin().getBorrowRepay(parameters));
     }
 
     @Test
-    public void testOcoOrder() {
-        String path = "/api/v3/order/oco?symbol=BNBUSDT&side=SELL&price=9500&quantity=0.01&stopPrice=7500";
+    public void testAllAssets() {
+        String path = "/sapi/v1/margin/borrow-repay";
         Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("symbol", "BNBUSDT");
-        parameters.put("side", "SELL");
-        parameters.put("price", price);
-        parameters.put("quantity", quantity);
-        parameters.put("stopPrice", stopPrice);
+        parameters.put("type", "BORROW");
 
-        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
+        Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.GET, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createTrade().ocoOrder(parameters);
+        String result = client.createMargin().getBorrowRepay(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }

@@ -45,7 +45,7 @@ public class TestDustTransfer {
 
     @Test
     public void testDustTransfer() {
-        String path = String.format("/sapi/v1/asset/dust?asset=%s", UrlBuilder.urlEncode("[CHR, CTSI]"));
+        String path = String.format("/sapi/v1/asset/dust?asset=%s", UrlBuilder.urlEncode("CHR,CTSI"));
 
         Map<String, Object> parameters = new LinkedHashMap<>();
         ArrayList<String> assets = new ArrayList<>();

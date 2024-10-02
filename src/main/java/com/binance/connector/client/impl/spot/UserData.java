@@ -9,9 +9,6 @@ import com.binance.connector.client.utils.RequestHandler;
 
 /**
  * <h2>User Data Streams Endpoints</h2>
- * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#user-data-streams">User Data Streams</a>
- * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
  */
@@ -34,8 +31,8 @@ public class UserData {
      * POST /api/v3/userDataStream
      * <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#create-a-listenkey-user_stream">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#create-a-listenkey-user_stream</a>
      */
     public String createListenKey() {
         return requestHandler.sendApiRequest(baseUrl, SPOT_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
@@ -53,8 +50,8 @@ public class UserData {
      * <br><br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#pingkeep-alive-a-listenkey-user_streamt">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#pingkeep-alive-a-listenkey-user_stream</a>
      */
     public String extendListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
@@ -72,8 +69,8 @@ public class UserData {
      * <br><br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#close-a-listenkey-user_stream">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#close-a-listenkey-user_stream</a>
      */
     public String closeListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
@@ -85,8 +82,8 @@ public class UserData {
      * POST /sapi/v1/userDataStream
      * <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream</a>
      */
     public String createMarginListenKey() {
         return requestHandler.sendApiRequest(baseUrl, MARGIN_LISTEN_KEY, null, HttpMethod.POST, showLimitUsage);
@@ -101,8 +98,8 @@ public class UserData {
      * <br><br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream</a>
      */
     public String extendMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
@@ -118,8 +115,8 @@ public class UserData {
      * <br><br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream#http-request">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream#http-request</a>
      */
     public String closeMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "listenKey", String.class);
@@ -136,8 +133,8 @@ public class UserData {
      * <br><br>
      * symbol -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream</a>
      */
     public String createIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -154,8 +151,8 @@ public class UserData {
      * symbol -- mandatory/string <br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream</a>
      */
     public String extendIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -173,8 +170,8 @@ public class UserData {
      * symbol -- mandatory/string <br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin">
-     *     https://binance-docs.github.io/apidocs/spot/en/#listen-key-isolated-margin</a>
+     * @see <a href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream#http-request">
+     *     https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream#http-request</a>
      */
     public String closeIsolatedMarginListenKey(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);

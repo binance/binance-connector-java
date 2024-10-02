@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Convert Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#convert-endpoints">Convert Endpoint</a>
+ * <a href="https://developers.binance.com/docs/convert/Introduction">Convert Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -47,8 +47,8 @@ public class Convert {
      * limit -- optional/int -- Default 100, Max 1000 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-convert-trade-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-convert-trade-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/convert/trade/Get-Convert-Trade-History">
+     *     https://developers.binance.com/docs/convert/trade/Get-Convert-Trade-History</a>
      */
     public String tradeFlow(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "startTime", Long.class);
@@ -67,8 +67,8 @@ public class Convert {
      * fromAsset -- optional/string <br>
      * toAsset -- optional/string <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#list-all-convert-pairs">
-     *     https://binance-docs.github.io/apidocs/spot/en/#list-all-convert-pairs</a>
+     * @see <a href="https://developers.binance.com/docs/convert/market-data/List-all-convert-pairs">
+     *     https://developers.binance.com/docs/convert/market-data/List-all-convert-pairs</a>
      */
     public String exchangeInfo(Map<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, EXCHANGE_INFO, parameters, HttpMethod.GET, showLimitUsage);
@@ -84,8 +84,8 @@ public class Convert {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-order-quantity-precision-per-asset-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-order-quantity-precision-per-asset-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset">
+     *     https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset</a>
      */
     public String assetQuantityPrecision(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ASSET_QUANTITY_PRECISION, parameters, HttpMethod.GET, showLimitUsage);
@@ -107,8 +107,8 @@ public class Convert {
      * validTime -- optional/string -- 10s, 30s, 1m, 2m, default 10s <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#send-quote-request-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#send-quote-request-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/convert/trade/Send-quote-request">
+     *     https://developers.binance.com/docs/convert/trade/Send-quote-request</a>
      */
     public String quoteInquiry(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromAsset", String.class);
@@ -127,8 +127,8 @@ public class Convert {
      * quoteId -- mandatory/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#accept-quote-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#accept-quote-trade</a>
+     * @see <a href="https://developers.binance.com/docs/convert/trade/Accept-Quote">
+     *     https://developers.binance.com/docs/convert/trade/Accept-Quote</a>
      */
     public String acceptQuote(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "quoteId", String.class);
@@ -147,8 +147,8 @@ public class Convert {
      * quoteId -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#order-status-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#order-status-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/convert/trade/Order-Status">
+     *     https://developers.binance.com/docs/convert/trade/Order-Status</a>
      */
     public String orderStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_STATUS, parameters, HttpMethod.GET, showLimitUsage);

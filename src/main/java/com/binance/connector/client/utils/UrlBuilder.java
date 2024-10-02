@@ -7,8 +7,10 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public final class UrlBuilder {
@@ -63,6 +65,9 @@ public final class UrlBuilder {
                 String value;
                 if (params.get(key) instanceof Double) {
                     value = getFormatter().format(params.get(key));
+                } else if (params.get(key) instanceof List) {
+                    List list = (List) params.get(key);
+                    value = (String) list.stream().map(Object::toString).collect(Collectors.joining(","));
                 } else {
                     value = params.get(key).toString();
                 }

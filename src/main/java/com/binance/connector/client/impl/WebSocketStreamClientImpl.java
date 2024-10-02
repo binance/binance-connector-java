@@ -28,8 +28,8 @@ import okhttp3.Request;
 /**
  * <h2>WebSocket Streams</h2>
  * All stream endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams">WebSocket Market Streams</a> and
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#user-data-streams">User Data Streams</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams">WebSocket Market Streams</a> and
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream">User Data Streams</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -61,8 +61,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param symbol Name of the trading pair
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#aggregate-trade-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#aggregate-trade-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#aggregate-trade-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#aggregate-trade-streams</a>
      */
     @Override
     public int aggTradeStream(String symbol, WebSocketMessageCallback callback) {
@@ -96,8 +96,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param symbol Name of the trading pair
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#trade-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#trade-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#trade-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#trade-streams</a>
      */
     @Override
     public int tradeStream(String symbol, WebSocketMessageCallback callback) {
@@ -132,8 +132,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @param symbol Name of the trading pair
      * @param interval Time interval for kline/candlestick
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#klinecandlestick-streams-for-utc">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#klinecandlestick-streams-for-utc</a>
      */
     @Override
     public int klineStream(String symbol, String interval, WebSocketMessageCallback callback) {
@@ -169,8 +169,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param symbol Name of the trading pair
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-mini-ticker-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-mini-ticker-stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-mini-ticker-stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-mini-ticker-stream</a>
      */
     @Override
     public int miniTickerStream(String symbol, WebSocketMessageCallback callback) {
@@ -205,8 +205,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * Update Speed: Real-time
      *
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-market-mini-tickers-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#all-market-mini-tickers-stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-mini-tickers-stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-mini-tickers-stream</a>
      */
     @Override
     public int allMiniTickerStream(WebSocketMessageCallback callback) {
@@ -238,8 +238,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param symbol Name of the trading pair
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-ticker-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-ticker-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-ticker-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-ticker-streams</a>
      */
     @Override
     public int symbolTicker(String symbol, WebSocketMessageCallback callback) {
@@ -274,8 +274,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * Update Speed: Real-time
      *
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-market-tickers-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#all-market-tickers-stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-tickers-stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-tickers-stream</a>
      */
     @Override
     public int allTickerStream(WebSocketMessageCallback callback) {
@@ -307,8 +307,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @param symbol Name of the trading pair
      * @param windowSize Window Sizes: 1h,4h
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-rolling-window-statistics-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-rolling-window-statistics-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-rolling-window-statistics-streams</a>
      */
     public int rollingWindowTicker(String symbol, String windowSize, WebSocketMessageCallback callback) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -358,8 +358,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param windowSize Window Sizes: 1h,4h
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#all-market-rolling-window-statistics-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#all-market-rolling-window-statistics-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-rolling-window-statistics-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-rolling-window-statistics-streams</a>
      */
     @Override
     public int allRollingWindowTicker(String windowSize, WebSocketMessageCallback callback) {
@@ -400,8 +400,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param symbol Name of the trading pair
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-book-ticker-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-book-ticker-streams</a>
      */
     @Override
     public int bookTicker(String symbol, WebSocketMessageCallback callback) {
@@ -437,8 +437,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @param levels Valid are 5, 10, or 20
      * @param speed  1000ms or 100ms
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#partial-book-depth-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#partial-book-depth-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#partial-book-depth-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#partial-book-depth-streams</a>
      */
     @Override
     public int partialDepthStream(String symbol, int levels, int speed, WebSocketMessageCallback callback) {
@@ -475,8 +475,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * @param symbol Name of the trading pair
      * @param speed  1000ms or 100ms
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#diff-depth-stream">
-     * https://binance-docs.github.io/apidocs/spot/en/#diff-depth-stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#diff-depth-stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#diff-depth-stream</a>
      */
     @Override
     public int diffDepthStream(String symbol, int speed, WebSocketMessageCallback callback) {
@@ -506,10 +506,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * User Data Streams are accessed at /ws/&lt;listenKey&gt;
      *
      * @param listenKey listen key obtained from this
-     *                  <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">endpoint</a>
+     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#user-data-stream-endpoints">endpoint</a>
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#user-data-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#user-data-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#start-user-data-stream-user_stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/rest-api#start-user-data-stream-user_stream</a>
      */
     @Override
     public int listenUserStream(String listenKey, WebSocketMessageCallback callback) {
@@ -520,7 +520,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * Same as {@link #listenUserStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param listenKey listen key obtained from this
-     *                  <a href="https://binance-docs.github.io/apidocs/spot/en/#listen-key-spot">endpoint</a>
+     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#user-data-stream-endpoints">endpoint</a>
      * @param onOpenCallback Callback for when the websocket connection is opened
      * @param onMessageCallback Callback for when a message is received
      * @param onClosingCallback Callback for when the websocket connection is closing
@@ -538,8 +538,8 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      *
      * @param streams ArrayList of stream names to be combined <br>
      * @return int - Connection ID
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams">
-     * https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams">
+     * https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams</a>
      */
     @Override
     public int combineStreams(ArrayList<String> streams, WebSocketMessageCallback callback) {

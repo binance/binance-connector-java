@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Auto-Invest Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#auto-invest-endpoints">Auto-Invest Endpoints</a>
+ * <a href="https://developers.binance.com/docs/auto_invest/Introduction">Auto-Invest Endpoints</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -47,8 +47,8 @@ public class AutoInvest {
      * current -- optional/long -- Current querying page. Start from 1. Default:1 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-target-asset-list-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-target-asset-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Get-target-asset-list">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Get-target-asset-list</a>
      */
     public String targetAssetList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, TARGET_ASSET_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -69,8 +69,8 @@ public class AutoInvest {
      * hisRoiType -- mandatory/enum -- FIVE_YEAR,THREE_YEAR,ONE_YEAR,SIX_MONTH,THREE_MONTH,SEVEN_DAY <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-target-asset-roi-data-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-target-asset-roi-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Get-target-asset-ROI-data">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Get-target-asset-ROI-data</a>
      */
     public String targetAssetRoiList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "targetAsset", String.class);
@@ -91,8 +91,8 @@ public class AutoInvest {
      * <br><br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-all-source-asset-and-target-asset-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-all-source-asset-and-target-asset-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Query-all-source-asset-and-target-asset">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Query-all-source-asset-and-target-asset</a>
      */
     public String allSourceAndTargetAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_SOURCE_AND_TARGET_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
@@ -116,8 +116,8 @@ public class AutoInvest {
      * sourceType -- optional/enum -- MAIN_SITE for Binance user,TR for Binance Turkey user <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-source-asset-list-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-source-asset-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Query-source-asset-list">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Query-source-asset-list</a>
      */
     public String sourceAssetList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "usageType", String.class);
@@ -138,8 +138,8 @@ public class AutoInvest {
      * status -- mandatory/enum -- "ONGOING","PAUSED","REMOVED"<br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#change-plan-status-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#change-plan-status-trade</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Change-Plan-Status">
+     *      https://developers.binance.com/docs/auto_invest/trade/Change-Plan-Status</a>
      */
     public String changePlanStatus(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "planId", Long.class);
@@ -160,8 +160,8 @@ public class AutoInvest {
      * planType -- mandatory/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-list-of-plans-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#get-list-of-plans-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Get-list-of-plans">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Get-list-of-plans</a>
      */
     public String plansList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "planType", String.class);
@@ -183,8 +183,8 @@ public class AutoInvest {
      * requestId -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-holding-details-of-the-plan-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-holding-details-of-the-plan-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Query-holding-details-of-the-plan">
+     *      https://developers.binance.com/docs/auto_invest/trade/Query-holding-details-of-the-plan</a>
      */
     public String holdingPlan(Map<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, HOLDING_PLAN, parameters, HttpMethod.GET, showLimitUsage);
@@ -210,8 +210,8 @@ public class AutoInvest {
      * current -- optional/long -- Current querying page. Start from 1. Default:1 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-subscription-transaction-history-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-subscription-transaction-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Query-subscription-transaction-history">
+     *      https://developers.binance.com/docs/auto_invest/trade/Query-subscription-transaction-history</a>
      */
     public String planSubsHistory(Map<String, Object> parameters) {
         return requestHandler.sendPublicRequest(baseUrl, PLAN_SUBSCRIPTIONS_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
@@ -231,8 +231,8 @@ public class AutoInvest {
      * indexId -- mandatory/long <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-index-details-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-index-details-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/market-data/Query-Index-Details">
+     *      https://developers.binance.com/docs/auto_invest/market-data/Query-Index-Details</a>
      */
     public String indexInfo(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "indexId", Long.class);
@@ -253,8 +253,8 @@ public class AutoInvest {
      * indexId -- mandatory/long <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-index-linked-plan-position-details-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-index-linked-plan-position-details-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Query-Index-Linked-Plan-Position-Details">
+     *      https://developers.binance.com/docs/auto_invest/trade/Query-Index-Linked-Plan-Position-Details</a>
      */
     public String userIndexPlans(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "indexId", Long.class);
@@ -286,8 +286,8 @@ public class AutoInvest {
      *                                      details[1].targetAsset=ETH, details[1].percentage=40 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#one-time-transaction-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#one-time-transaction-trade</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/One-Time-Transaction">
+     *      https://developers.binance.com/docs/auto_invest/trade/One-Time-Transaction</a>
      */
     public String submitOneTimeTransaction(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "sourceType", String.class);
@@ -311,8 +311,8 @@ public class AutoInvest {
      * requestId -- optional/string -- transactionId and requestId cannot be empty at the same time <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-one-time-transaction-status-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#query-one-time-transaction-status-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Query-One-Time-Transaction-Status">
+     *      https://developers.binance.com/docs/auto_invest/trade/Query-One-Time-Transaction-Status</a>
      */
     public String oneTimeTransactionStatus(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "transactionId", Long.class);
@@ -335,8 +335,8 @@ public class AutoInvest {
      * redemptionPercentage -- mandatory/long -- user redeem percentage,10/20/100. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-redemption-trade">
-     *      https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-redemption-trade</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Index-Linked-Plan-Redemption">
+     *      https://developers.binance.com/docs/auto_invest/trade/Index-Linked-Plan-Redemption</a>
      */
     public String redeemIndexPlan(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "indexId", Long.class);
@@ -366,8 +366,8 @@ public class AutoInvest {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-redemption-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-redemption-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Query-Index-Linked-Plan-Redemption">
+     *      https://developers.binance.com/docs/auto_invest/trade/Query-Index-Linked-Plan-Redemption</a>
      */
     public String indexPlanRedeemHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "requestId", Long.class);
@@ -388,8 +388,8 @@ public class AutoInvest {
      * size -- optional/long -- Default:10 Max:100 <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-rebalance-details-user_data">
-     *      https://binance-docs.github.io/apidocs/spot/en/#index-linked-plan-rebalance-details-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/auto_invest/trade/Index-Linked-Plan-Rebalance-Details">
+     *      https://developers.binance.com/docs/auto_invest/trade/Index-Linked-Plan-Rebalance-Details</a>
      */
     public String indexPlanRebalanceInfo(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, INDEX_LINKED_PLAN_REBALANCE_DETAILS, parameters, HttpMethod.GET, showLimitUsage);

@@ -29,7 +29,7 @@ public class TestFlexibleLoanOngoingOrders {
     
     @Test
     public void testFlexibleLoanOngoingOrders() {
-        String path = "/sapi/v1/loan/flexible/ongoing/orders?loanCoin=BUSD";
+        String path = "/sapi/v2/loan/flexible/ongoing/orders?loanCoin=BUSD";
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("loanCoin", "BUSD");
 

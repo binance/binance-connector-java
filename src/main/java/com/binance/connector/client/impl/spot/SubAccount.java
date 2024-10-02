@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Sub-Account Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-endpoints">Sub-Account Endpoint</a>
+ * <a href="https://developers.binance.com/docs/sub_account/Introduction">Sub-Account Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -45,8 +45,8 @@ public class SubAccount {
      * subAccountString -- mandatory/string -- Please input a string. We will create a virtual email using that string for you to register <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#create-a-virtual-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#create-a-virtual-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account</a>
      */
     public String createVirtualSubAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "subAccountString", String.class);
@@ -67,8 +67,8 @@ public class SubAccount {
      * limit -- optional/int -- Default value: 1, Max value: 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-list-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-list-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List">
+     *     https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List</a>
      */
     public String subAccountList(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, QUERY_SUB_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -90,8 +90,8 @@ public class SubAccount {
      * limit -- optional/int -- Default value: 1, Max value: 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-asset-transfer-history-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-asset-transfer-history-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Asset-Transfer-History">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Asset-Transfer-History</a>
      */
     public String spotTransferHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, QUERY_SPOT_TRANSFER_HIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -113,8 +113,8 @@ public class SubAccount {
      * limit -- optional/int -- Default value: 1, Max value: 200 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-futures-asset-transfer-history-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-futures-asset-transfer-history-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Futures-Asset-Transfer-History">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Futures-Asset-Transfer-History</a>
      */
     public String getFuturesInternalTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -136,8 +136,8 @@ public class SubAccount {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-futures-asset-transfer-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Futures-Asset-Transfer">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Futures-Asset-Transfer</a>
      */
     public String futuresInternalTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromEmail", String.class);
@@ -161,8 +161,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-assets-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-assets-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V3">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V3</a>
      */
     public String assets(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -184,8 +184,8 @@ public class SubAccount {
      * size -- optional/long -- default 10, max 20 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-assets-summary-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-sub-account-spot-assets-summary-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Assets-Summary">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Assets-Summary</a>
      */
     public String spotAccountSummary(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SPOT_ASSET_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
@@ -206,8 +206,8 @@ public class SubAccount {
      * network -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-address-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-address-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-Address">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-Address</a>
      */
     public String depositAddress(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -234,8 +234,8 @@ public class SubAccount {
      * offset -- optional/int -- default:0 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-history-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-deposit-history-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-History">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-History</a>
      */
     public String depositHistory(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -253,8 +253,8 @@ public class SubAccount {
      * email -- optional/string -- Sub account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-39-s-status-on-margin-futures-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-sub-account-39-s-status-on-margin-futures-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures">
+     *     https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures</a>
      */
     public String accountStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_STATUS, parameters, HttpMethod.GET, showLimitUsage);
@@ -271,8 +271,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-margin-for-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#enable-margin-for-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account</a>
      */
     public String enableMargin(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -290,8 +290,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-margin-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-margin-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Margin-Account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Margin-Account</a>
      */
     public String marginAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -308,8 +308,8 @@ public class SubAccount {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-margin-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-margin-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Margin-Account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Margin-Account</a>
      */
     public String marginAccountSummary(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_MARGIN_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
@@ -326,8 +326,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-futures-for-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#enable-futures-for-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account</a>
      */
     public String enableFutures(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -345,8 +345,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account</a>
      */
     public String futuresAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -363,8 +363,8 @@ public class SubAccount {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account</a>
      */
     public String futuresAccountSummary(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_ACC_FUTURES_SUMMARY, parameters, HttpMethod.GET, showLimitUsage);
@@ -381,8 +381,8 @@ public class SubAccount {
      * email -- mandatory/string -- Sub-Account email <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account</a>
      */
     public String futuresPositionRisk(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -405,8 +405,8 @@ public class SubAccount {
      *            3: transfer from subaccount's spot account to its COIN-margined futures account
      *            4:transfer from subaccount's COIN-margined futures account to its spot account <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#futures-transfer-for-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#futures-transfer-for-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Futures-Transfer-for-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Futures-Transfer-for-Sub-account</a>
      */
     public String futuresTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -430,8 +430,8 @@ public class SubAccount {
      * type -- mandatory/int -- 1: transfer from subaccount's spot account to margin account
      *                          2: transfer from subaccount's margin account to its spot account <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#margin-transfer-for-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#margin-transfer-for-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Margin-Transfer-for-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Margin-Transfer-for-Sub-account</a>
      */
     public String marginTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -454,8 +454,8 @@ public class SubAccount {
      * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#transfer-to-sub-account-of-same-master-for-sub-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master</a>
      */
     public String subAccountToSubAccount(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "toEmail", String.class);
@@ -476,8 +476,8 @@ public class SubAccount {
      * amount -- mandatory/decimal -- The amount to be transferred <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#transfer-to-master-for-sub-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Master">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Master</a>
      */
     public String subAccountToMaster(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "asset", String.class);
@@ -500,8 +500,8 @@ public class SubAccount {
      * limit -- optional/int -- Default 500 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#sub-account-transfer-history-for-sub-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#sub-account-transfer-history-for-sub-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Transfer-History">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Transfer-History</a>
      */
     public String transferHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_TRANSFER_HIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -524,8 +524,8 @@ public class SubAccount {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#universal-transfer-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#universal-transfer-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer</a>
      */
     public String universalTransfer(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromAccountType", String.class);
@@ -551,8 +551,8 @@ public class SubAccount {
      * limit -- optional/int -- Default 500, Max 500 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-universal-transfer-history-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-universal-transfer-history-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Query-Universal-Transfer-History">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Query-Universal-Transfer-History</a>
      */
     public String queryUniversalTransfer(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, SUB_UNIVERSAL_TRANSFER, parameters, HttpMethod.GET, showLimitUsage);
@@ -570,8 +570,8 @@ public class SubAccount {
      * futuresType -- mandatory/int -- 1:USDT Margined Futures, 2:COIN Margined Futures <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-v2-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-detail-on-sub-account-39-s-futures-account-v2-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account-V2">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account-V2</a>
      */
     public String futuresAccountV2(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -592,8 +592,8 @@ public class SubAccount {
      * limit -- optional/int -- default:10, max:20 <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-v2-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-summary-of-sub-account-39-s-futures-account-v2-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account-V2">
+     *     https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account-V2</a>
      */
     public String futuresAccountSummaryV2(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "futuresType", Integer.class);
@@ -612,8 +612,8 @@ public class SubAccount {
      * futuresType -- mandatory/int -- 1:USDT Margined Futures, 2:COIN Margined Futures <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-v2-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-futures-position-risk-of-sub-account-v2-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2">
+     *     https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2</a>
      */
     public String futuresPositionRiskV2(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -633,8 +633,8 @@ public class SubAccount {
      * enableBlvt -- mandatory/boolean -- Only true for now <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#enable-leverage-token-for-sub-account-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#enable-leverage-token-for-sub-account-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account</a>
      */
     public String enableLeverageToken(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -654,8 +654,8 @@ public class SubAccount {
      * subAccountApiKey -- mandatory/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-ip-restriction-for-a-sub-account-api-key-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-ip-restriction-for-a-sub-account-api-key-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/api-management/Get-IP-Restriction-for-a-Sub-account-API-Key">
+     *     https://developers.binance.com/docs/sub_account/api-management/Get-IP-Restriction-for-a-Sub-account-API-Key</a>
      */
     public String getIpRestriction(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -676,8 +676,8 @@ public class SubAccount {
      * ipAddress -- optional/string -- Can be added in batches, separated by commas <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#delete-ip-list-for-a-sub-account-api-key-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/api-management/Delete-IP-List-For-a-Sub-account-API-Key">
+     *     https://developers.binance.com/docs/sub_account/api-management/Delete-IP-List-For-a-Sub-account-API-Key</a>
      */
     public String deleteIpList(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -698,8 +698,8 @@ public class SubAccount {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#deposit-assets-into-the-managed-sub-account-for-investor-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#deposit-assets-into-the-managed-sub-account-for-investor-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/managed-sub-account/Deposit-Assets-Into-The-Managed-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/managed-sub-account/Deposit-Assets-Into-The-Managed-Sub-account</a>
      */
     public String managedSubDeposit(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "toEmail", String.class);
@@ -719,8 +719,8 @@ public class SubAccount {
      * email -- mandatory/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-asset-details-for-investor-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-asset-details-for-investor-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Asset-Details">
+     *     https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Asset-Details</a>
      */
     public String managedSubDetails(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -742,8 +742,8 @@ public class SubAccount {
      *                                     If a date is not selected, the withdrawal occurs right now <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#withdrawl-assets-from-the-managed-sub-account-for-investor-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#withdrawl-assets-from-the-managed-sub-account-for-investor-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/managed-sub-account/Withdrawl-Assets-From-The-Managed-Sub-account">
+     *     https://developers.binance.com/docs/sub_account/managed-sub-account/Withdrawl-Assets-From-The-Managed-Sub-account</a>
      */
     public String managedSubWithdraw(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "fromEmail", String.class);
@@ -767,8 +767,8 @@ public class SubAccount {
      * limit -- int/long <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-managed-sub-account-snapshot-for-investor-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Snapshot">
+     *     https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Snapshot</a>
      */
     public String managedSubAccountSnapshot(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);
@@ -790,8 +790,8 @@ public class SubAccount {
      * ipAddress -- optional/string -- Insert static IP in batch, separated by commas. <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#add-ip-restriction-for-sub-account-api-key-for-master-account">
-     *     https://binance-docs.github.io/apidocs/spot/en/#add-ip-restriction-for-sub-account-api-key-for-master-account</a>
+     * @see <a href="https://developers.binance.com/docs/sub_account/api-management/Add-IP-Restriction-for-Sub-Account-API-key">
+     *     https://developers.binance.com/docs/sub_account/api-management/Add-IP-Restriction-for-Sub-Account-API-key</a>
      */
     public String updateIpRestriction(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "email", String.class);

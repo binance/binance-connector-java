@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>VIPLoans Endpoints</h2>
  * All endpoints under the
- * <a href="https://binance-docs.github.io/apidocs/spot/en/#vip-loans-endpoints">VIP Loans Endpoints</a>
+ * <a href="https://developers.binance.com/docs/vip_loan/Introduction">VIP Loans Endpoints</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -53,8 +53,8 @@ public class VIPLoans {
      * limit -- optional/long -- Default 10; max 100. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-vip-loan-ongoing-orders-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-vip-loan-ongoing-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders">
+     *     https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders</a>
      */
     public String ongoingOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ONGOING_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
@@ -75,8 +75,8 @@ public class VIPLoans {
      * amount -- mandatory/decimal <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#vip-loan-repay-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#vip-loan-repay-trade</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Repay">
+     *     https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Repay</a>
      */
     public String repay(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderId", Long.class);
@@ -103,8 +103,8 @@ public class VIPLoans {
      * limit -- optional/long -- Default 10; max 100. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-vip-loan-repayment-history-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-vip-loan-repayment-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Repayment-History">
+     *     https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Repayment-History</a>
      */
     public String repaymentHistory(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, REPAYMENT_HISTORY, parameters, HttpMethod.GET, showLimitUsage);
@@ -125,8 +125,8 @@ public class VIPLoans {
      * loanTerm -- optional/int -- 30/60 days <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#vip-loan-renew-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#vip-loan-renew-trade</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Renew">
+     *     https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Renew</a>
      */
     public String renew(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "orderId", Long.class);
@@ -148,8 +148,8 @@ public class VIPLoans {
      * collateralAccountId -- optional/long <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#check-locked-value-of-vip-collateral-account-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#check-locked-value-of-vip-collateral-account-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account">
+     *     https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account</a>
      */
     public String collateralAccount(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_ACCOUNT, parameters, HttpMethod.GET, showLimitUsage);
@@ -175,8 +175,8 @@ public class VIPLoans {
      * loanTerm -- optional/integer -- Mandatory for fixed rate. Optional for fixed interest rate. Eg: 30/60 days <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#vip-loan-borrow-trade">
-     *     https://binance-docs.github.io/apidocs/spot/en/#vip-loan-borrow-trade</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow">
+     *     https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow</a>
      */
     public String borrow(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanAccountId", Long.class);
@@ -203,8 +203,8 @@ public class VIPLoans {
      * vipLevel -- optional/integer -- Defaults to user's vip level <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-loanable-assets-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/market-data/Get-Loanable-Assets-Data">
+     *     https://developers.binance.com/docs/vip_loan/market-data/Get-Loanable-Assets-Data</a>
      */
     public String loanableAssets(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, LOANABLE_ASSETS, parameters, HttpMethod.GET, showLimitUsage);
@@ -224,8 +224,8 @@ public class VIPLoans {
      * collateralCoin -- optional/string <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-collateral-asset-data-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-collateral-asset-data-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/market-data/Get-Collateral-Asset-Data">
+     *     https://developers.binance.com/docs/vip_loan/market-data/Get-Collateral-Asset-Data</a>
      */
     public String collateralAsset(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, COLLATERAL_ASSET_DATA, parameters, HttpMethod.GET, showLimitUsage);
@@ -246,8 +246,8 @@ public class VIPLoans {
      * limit -- optional/long -- Default 10; max 100. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#query-application-status-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#query-application-status-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status">
+     *     https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status</a>
      */
     public String orderStatus(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ORDER_STATUS, parameters, HttpMethod.GET, showLimitUsage);
@@ -267,8 +267,8 @@ public class VIPLoans {
      * loanCoin -- mandatory/string -- Max 10 assets, Multiple split by "," <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#get-borrow-interest-rate-user_data">
-     *     https://binance-docs.github.io/apidocs/spot/en/#get-borrow-interest-rate-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/vip_loan/market-data/Get-Borrow-Interest-Rate">
+     *     https://developers.binance.com/docs/vip_loan/market-data/Get-Borrow-Interest-Rate</a>
      */
     public String borrowInterestRate(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "loanCoin", String.class);

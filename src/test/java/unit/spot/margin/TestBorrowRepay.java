@@ -1,9 +1,8 @@
-package unit.spot.wallet;
+package unit.spot.margin;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,11 +19,9 @@ import okhttp3.mockwebserver.MockWebServer;
 import unit.MockData;
 import unit.MockWebServerDispatcher;
 
-public class TestBusdConvert {
+public class TestBorrowRepay {
     private MockWebServer mockWebServer;
     private String baseUrl;
-
-    private final BigDecimal amount = new BigDecimal(1);
 
     @Before
     public void init() {
@@ -33,36 +30,32 @@ public class TestBusdConvert {
     }
 
     @Test
-    public void testBusdConverWithoutMandatoryParam() {
-        String path = "/sapi/v1/asset/convert-transfer";
+    public void testAdjustCrossMarginMaxLeverageWithoutParameters() {
+        String path = "/sapi/v1/margin/borrow-repay";
         Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("clientTranId", "118263407119");
-        parameters.put("amount", amount);
-        parameters.put("targetAsset", "USDC");
-        parameters.put("accountType", "MAIN");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        assertThrows(BinanceConnectorException.class, () -> client.createWallet().busdConvert(parameters));
+        assertThrows(BinanceConnectorException.class, () -> client.createMargin().borrowRepay(parameters));
     }
 
     @Test
-    public void testBusdConvert() {
-        String path = "/sapi/v1/asset/convert-transfer";
+    public void testAllAssets() {
+        String path = "/sapi/v1/margin/borrow-repay";
         Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put("clientTranId", "118263407119");
-        parameters.put("asset", "BUSD");
-        parameters.put("amount", amount);
-        parameters.put("targetAsset", "USDC");
-        parameters.put("accountType", "MAIN");
+        parameters.put("asset", "BNB");
+        parameters.put("isIsolated", "FALSE");
+        parameters.put("symbol", "BNBUSDT");
+        parameters.put("amount", "1");
+        parameters.put("type", "BORROW");
 
         Dispatcher dispatcher = MockWebServerDispatcher.getDispatcher(MockData.PREFIX, path, MockData.MOCK_RESPONSE, HttpMethod.POST, MockData.HTTP_STATUS_OK);
         mockWebServer.setDispatcher(dispatcher);
 
         SpotClient client = new SpotClientImpl(MockData.API_KEY, MockData.SECRET_KEY, baseUrl);
-        String result = client.createWallet().busdConvert(parameters);
+        String result = client.createMargin().borrowRepay(parameters);
         assertEquals(MockData.MOCK_RESPONSE, result);
     }
 }
