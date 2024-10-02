@@ -38,7 +38,8 @@ public class Margin {
     /**
      * POST /sapi/v1/margin/borrow-repay
      * <br>
-     * @param Map of String,Object pair
+     * @param 
+     * parameters Map of String,Object pair
      *            where String is the name of the parameter and Object is the value of the param
      * <br><br>
      * asset -- mandatory/string <br>
@@ -63,7 +64,8 @@ public class Margin {
     /**
      * GET /sapi/v1/margin/borrow-repay
      * <br>
-     * @param Map of String,Object pair
+     * @param 
+     * parameters Map of String,Object pair
      *           where String is the name of the parameter and Object is the value of the param
      * <br><br>
      * type -- mandatory/string - BORROW or REPAY <br>
@@ -88,7 +90,8 @@ public class Margin {
     /**
      * GET /sapi/v1/margin/allAssets
      * <br>
-     * @param Map of String,Object pair
+     * @param 
+     * parameters Map of String,Object pair
      *           where String is the name of the parameter and Object is the value of the param
      * <br><br>
      * asset -- optional/string <br>
@@ -104,7 +107,8 @@ public class Margin {
     /**
      * GET /sapi/v1/margin/allPairs
      * <br>
-     * @param Map of String,Object pair
+     * @param 
+     * parameters Map of String,Object pair
      *           where String is the name of the parameter and Object is the value of the param
      * <br><br>
      * symbol -- optional/string <br>
