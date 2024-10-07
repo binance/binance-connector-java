@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -561,6 +562,58 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
         String url = UrlBuilder.buildStreamUrl(baseUrl, streams);
         Request request = RequestBuilder.buildWebSocketRequest(url);
         return createConnection(onOpenCallback, onMessageCallback, onClosingCallback, onClosedCallback, onFailureCallback, request);
+    }
+
+    /**
+     * Subscribe stream names using combine stream connection that already initiated
+     *
+     * @param streams ArrayList of stream names to be subscribed <br>
+     * @param connectionId Id of initiated combined stream connection that will be used for sending subscribe request
+     *
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#live-subscribing-unsubscribing-to-streams">
+     * https://binance-docs.github.io/apidocs/spot/en/#live-subscribing-unsubscribing-to-streams</a>
+     */
+    @Override
+    public void subscribeCombineStreams(ArrayList<String> streams, int connectionId) {
+        if (connections.containsKey(connectionId)) {
+            WebSocketConnection connection = connections.get(connectionId);
+
+            JSONObject params = new JSONObject();
+            params.put("method", "SUBSCRIBE");
+            params.put("params", streams);
+            params.put("id", System.currentTimeMillis());
+
+            logger.info("Sending subscribe request to connection id {} with stream {}", connectionId, streams);
+            connection.send(params.toString());
+        } else {
+            logger.info("Connection ID {} does not exist!", connectionId);
+        }
+    }
+
+    /**
+     * Unsubscribe stream names using combine stream connection that already initiated
+     *
+     * @param streams ArrayList of stream names to be unsubscribed <br>
+     * @param connectionId Id of initiated combined stream connection that will be used for sending unsubscribe request
+     *
+     * @see <a href="https://binance-docs.github.io/apidocs/spot/en/#live-subscribing-unsubscribing-to-streams">
+     * https://binance-docs.github.io/apidocs/spot/en/#live-subscribing-unsubscribing-to-streams</a>
+     */
+    @Override
+    public void unsubscribeCombineStreams(ArrayList<String> streams, int connectionId) {
+        if (connections.containsKey(connectionId)) {
+            WebSocketConnection connection = connections.get(connectionId);
+
+            JSONObject params = new JSONObject();
+            params.put("method", "UNSUBSCRIBE");
+            params.put("params", streams);
+            params.put("id", System.currentTimeMillis());
+
+            logger.info("Sending unsubscribe request to connection id {} with stream {}", connectionId, streams);
+            connection.send(params.toString());
+        } else {
+            logger.info("Connection ID {} does not exist!", connectionId);
+        }
     }
 
     /**
