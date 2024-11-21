@@ -2,13 +2,17 @@ package com.binance.connector.client.impl.spot;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 
 import com.binance.connector.client.enums.HttpMethod;
 import com.binance.connector.client.exceptions.BinanceConnectorException;
+import com.binance.connector.client.impl.spot.data.SymbolResponse;
 import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.ProxyAuth;
 import com.binance.connector.client.utils.RequestHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 /**
  * <h2>Market Endpoints</h2>
@@ -92,6 +96,37 @@ public class Market {
                                     (ArrayList<?>) parameters.get("permissions"), "permissions"));
         }
         return requestHandler.sendPublicRequest(baseUrl, EXCHANGE_INFO, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
+    /**
+     * Symbol information as a set of POJOs
+     * <br><br>
+     * GET /api/v3/exchangeinfo
+     * <br>
+     * @param
+     * parameters Map of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- optional/string <br>
+     * symbols -- optional/ArrayList <br>
+     * permissions -- optional/ArrayList -- support single or multiple values (e.g. "SPOT", ["MARGIN","LEVERAGED"]) <br>
+     * @return A {@link Set} of {@link SymbolResponse} objects representing the parsed symbols data.
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#exchange-information">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#exchange-information</a>
+     */
+    public Set<SymbolResponse> getSymbols(Map<String, Object> parameters) {
+        String exchangeInfoResponse = exchangeInfo(parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Map<String, Object> map = mapper.readValue(exchangeInfoResponse, Map.class);
+            Set<SymbolResponse> symbols = mapper.convertValue(
+                    map.get("symbols"),
+                    TypeFactory.defaultInstance().constructCollectionType(Set.class, SymbolResponse.class)
+            );
+            return symbols;
+        } catch (Exception e) {
+            throw new RuntimeException("Error parsing JSON", e);
+        }
     }
 
     private final String DEPTH = "/api/v3/depth";
