@@ -56,7 +56,7 @@ public class RequestHandler {
         }
 
         parameters = (parameters == null) ? new HashMap<String, Object>() : parameters;
-        parameters.putIfAbsent("timestamp", UrlBuilder.buildTimestamp());
+        parameters.putIfAbsent("timestamp", TimeSupplier.INSTANCE.buildTimestamp());
         parameters.put("signature", this.signatureGenerator.getSignature(UrlBuilder.joinQueryParameters(parameters)));
 
         String fullUrl = UrlBuilder.buildFullUrl(baseUrl, urlPath, parameters);
