@@ -12,7 +12,7 @@ import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 /**
  * <h2>Trade Endpoints</h2>
  * All endpoints under the
- * <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#trading-endpoints">Spot Account/Trade Endpoint</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints">Spot Account/Trade Endpoint</a>
  * section of the API documentation will be implemented in this class.
  * <br>
  * Response will be returned in <i>String format</i>.
@@ -48,8 +48,8 @@ public class Trade {
      * In addition to all parameters accepted by POST /api/v3/order, the following optional parameters are also accepted: <br>
      * computeCommissionRates -- optional/boolean -- Default: false <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#test-new-order-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#test-new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade</a>
      */
     public String testNewOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -85,8 +85,8 @@ public class Trade {
      * selfTradePrevention -- optional/enum -- 	The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.<br>s
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#new-order-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade</a>
      */
     public String newOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -110,8 +110,8 @@ public class Trade {
      * newClientOrderId -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade</a>
      */
     public String cancelOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -132,8 +132,8 @@ public class Trade {
      * symbol -- mandatory/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade</a>
      */
     public String cancelOpenOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -154,8 +154,8 @@ public class Trade {
      * origClientOrderId -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-order-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-order-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data</a>
      */
     public String getOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -196,8 +196,8 @@ public class Trade {
      * cancelRestrictions -- optional/enum -- Supported values: ONLY_NEW - Cancel will succeed if the order status is NEW. ONLY_PARTIALLY_FILLED - Cancel will succeed if order status is PARTIALLY_FILLED.<br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-an-existing-order-and-send-a-new-order-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-an-existing-order-and-send-a-new-order-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade</a>
      */
     public String cancelReplace(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -219,8 +219,8 @@ public class Trade {
      * symbol -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#current-open-orders-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#current-open-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data</a>
      */
     public String getOpenOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OPEN_ORDERS, parameters, HttpMethod.GET, showLimitUsage);
@@ -243,8 +243,8 @@ public class Trade {
      * limit -- optional/int <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#all-orders-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#all-orders-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data</a>
      */
     public String getOrders(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -267,8 +267,8 @@ public class Trade {
      * newClientOrderId -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-list-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#cancel-order-list-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade</a>
      */
     public String cancelOCO(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -288,8 +288,8 @@ public class Trade {
      * origClientOrderId -- optional/string <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-order-lists-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-order-lists-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data</a>
      */
     public String getOCOOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -311,8 +311,8 @@ public class Trade {
      * limit -- optional/int <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-all-order-lists-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-all-order-lists-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data</a>
      */
     public String getOCOOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -328,8 +328,8 @@ public class Trade {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-open-order-lists-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-open-order-lists-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data</a>
      */
     public String getOpenOCOOrders(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ALL_OPEN_OCO_LIST, parameters, HttpMethod.GET, showLimitUsage);
@@ -347,8 +347,8 @@ public class Trade {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#account-information-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#account-information-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data</a>
      */
     public String account(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, ACCOUNT_INFO, parameters, HttpMethod.GET, showLimitUsage);
@@ -372,8 +372,8 @@ public class Trade {
      * limit -- optional/int <br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#account-trade-list-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#account-trade-list-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-trade-list-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-trade-list-user_data</a>
      */
     public String myTrades(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -392,8 +392,8 @@ public class Trade {
      * <br><br>
      * recvWindow -- optional/long <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-current-order-count-usage-trade">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-current-order-count-usage-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data</a>
      */
     public String rateLimitOrder(Map<String, Object> parameters) {
         return requestHandler.sendSignedRequest(baseUrl, RATE_LIMIT, parameters, HttpMethod.GET, showLimitUsage);
@@ -424,8 +424,8 @@ public class Trade {
      * limit -- optional/int -- Default 500; max 1000. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-prevented-matches-user_data">
-     *      https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-prevented-matches-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-prevented-matches-user_data">
+     *      https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-prevented-matches-user_data</a>
      */
     public String preventedMatches(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -463,8 +463,8 @@ public class Trade {
      * orderId -- optional/long -- Order id <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-allocations-user_data">
-     *      https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-allocations-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-allocations-user_data">
+     *      https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-allocations-user_data</a>
      */
     public String sorAllocations(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -483,8 +483,8 @@ public class Trade {
      * <br><br>
      * symbol -- mandatory/string <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-commission-rates-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#query-commission-rates-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-commission-rates-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-commission-rates-user_data</a>
      */
     public String commission(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -516,8 +516,8 @@ public class Trade {
      * selfTradePreventionMode -- optional/enum -- The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. <br>
      * recvWindow -- optional/long -- The value cannot be greater than 60000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api#new-order-using-sor-trade">
-     *      https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api#new-order-using-sor-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api/trading-endpoints#new-order-using-sor-trade">
+     *      https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api/trading-endpoints#new-order-using-sor-trade</a>
      */
     public String sorOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -541,8 +541,8 @@ public class Trade {
      * In addition to all parameters accepted by POST /api/v3/sor/order, the following optional parameters are also accepted: <br>
      * computeCommissionRates -- optional/boolean -- Default: false <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api#test-new-order-using-sor-trade">
-     *      https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api#test-new-order-using-sor-trade</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api/trading-endpoints#test-new-order-using-sor-trade">
+     *      https://developers.binance.com/docs/binance-spot-api-docs/testnet/rest-api/trading-endpoints#test-new-order-using-sor-trade</a>
      */
     public String testSorOrder(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);

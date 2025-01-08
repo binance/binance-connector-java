@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.1 - 2025-01-08
+### Changed
+- Updated documentation links.
+
 ## 3.4.0 - 2024-10-02
 ### Added
 - New Margin endpoints:

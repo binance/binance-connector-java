@@ -35,8 +35,8 @@ public class Market {
      * GET /api/v3/ping
      * <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#test-connectivity">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#test-connectivity</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#test-connectivity">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#test-connectivity</a>
      */
     public String ping() {
         return requestHandler.sendPublicRequest(baseUrl, PING, null, HttpMethod.GET, showLimitUsage);
@@ -49,8 +49,8 @@ public class Market {
      * GET /api/v3/time
      * <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#test-connectivity">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#check-server-time</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#check-server-time">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#check-server-time</a>
      */
     public String time() {
         return requestHandler.sendPublicRequest(baseUrl, TIME, null, HttpMethod.GET, showLimitUsage);
@@ -70,8 +70,8 @@ public class Market {
      * symbols -- optional/ArrayList <br>
      * permissions -- optional/ArrayList -- support single or multiple values (e.g. "SPOT", ["MARGIN","LEVERAGED"]) <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#exchange-information">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#exchange-information</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#exchange-information">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#exchange-information</a>
      */
     public String exchangeInfo(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
@@ -106,8 +106,8 @@ public class Market {
      * limit -- optional/integer -- limit the results
      *            Default 100; max 5000. Valid limits:[5, 10, 20, 50, 100, 500, 1000, 5000] <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#order-book">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#order-book</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book</a>
      */
     public String depth(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -127,8 +127,8 @@ public class Market {
      * symbol -- mandatory/string <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#recent-trades-list">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#recent-trades-list</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#recent-trades-list">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#recent-trades-list</a>
      */
     public String trades(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -149,8 +149,8 @@ public class Market {
      * limit -- optional/integer -- limit the result Default 500; max 1000 <br>
      * fromId -- optional/long -- trade id to fetch from. Default gets most recent trades <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#old-trade-lookup">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#old-trade-lookup</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#old-trade-lookup">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#old-trade-lookup</a>
      *
      */
     public String historicalTrades(Map<String, Object> parameters) {
@@ -175,8 +175,8 @@ public class Market {
      * endTime -- optional/long -- Timestamp in ms to get aggregate trades until INCLUSIVE <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#compressedaggregate-trades-list">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#compressedaggregate-trades-list</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#compressedaggregate-trades-list">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#compressedaggregate-trades-list</a>
      */
     public String aggTrades(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -201,8 +201,8 @@ public class Market {
      * timeZone -- optional/string -- Default:0 (UTC) <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#klinecandlestick-data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#klinecandlestick-data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#klinecandlestick-data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#klinecandlestick-data</a>
      */
     public String klines(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -228,8 +228,8 @@ public class Market {
      * timeZone -- optional/string -- Default:0 (UTC) <br>
      * limit -- optional/integer -- limit the results Default 500; max 1000 <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#uiklines">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#uiklines</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#uiklines">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#uiklines</a>
      */
     public String uiKlines(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -249,8 +249,8 @@ public class Market {
      * <br><br>
      * symbol -- mandatory/string -- the trading pair <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#current-average-price">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#current-average-price</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#current-average-price">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#current-average-price</a>
      */
     public String averagePrice(Map<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
@@ -271,8 +271,8 @@ public class Market {
      * symbols -- optional/string <br>
      * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#24hr-ticker-price-change-statistics">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#24hr-ticker-price-change-statistics</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics</a>
      */
     public String ticker24H(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
@@ -299,8 +299,8 @@ public class Market {
      * symbol -- optional/string -- the trading pair <br>
      * symbols -- optional/string <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#symbol-price-ticker">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#symbol-price-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker</a>
      */
     public String tickerSymbol(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
@@ -327,8 +327,8 @@ public class Market {
      * symbol -- optional/string -- the trading pair <br>
      * symbols -- optional/string <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#symbol-order-book-ticker">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#symbol-order-book-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker</a>
      */
     public String bookTicker(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
@@ -359,8 +359,8 @@ public class Market {
      * windowSize -- optional/enum -- Defaults to 1d if no parameter provided <br>
      * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#rolling-window-price-change-statistics">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#rolling-window-price-change-statistics</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics</a>
      */
     public String ticker(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {
@@ -392,8 +392,8 @@ public class Market {
      * timeZone -- optional/enum -- Default: 0 (UTC) <br>
      * type -- optional/enum -- Supported values: FULL or MINI. If none provided, the default is FULL <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#trading-day-ticker">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api#trading-day-ticker</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#trading-day-ticker">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#trading-day-ticker</a>
      */
     public String tradingDayTicker(Map<String, Object> parameters) {
         if (parameters.containsKey("symbol") && parameters.containsKey("symbols")) {

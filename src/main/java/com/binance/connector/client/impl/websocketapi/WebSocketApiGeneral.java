@@ -8,7 +8,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>General Requests</h2>
  * All requests under the
- * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">General requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests">General requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -30,8 +30,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-connectivity">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#test-connectivity</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#test-connectivity">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#test-connectivity</a>
      */
     public void ping(JSONObject parameters) {
         this.handler.publicRequest("ping", parameters);
@@ -44,8 +44,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#check-server-time">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#check-server-time</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#check-server-time">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#check-server-time</a>
      */
     public void serverTime(JSONObject parameters) {
         this.handler.publicRequest("time", parameters);
@@ -66,8 +66,8 @@ public class WebSocketApiGeneral implements WebSocketApiModule {
      * permissions -- optional/Array of String  <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#exchange-information">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#exchange-information</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#exchange-information">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-requests#exchange-information</a>
      */
     public void exchangeInfo(JSONObject parameters) {
         ParameterChecker.checkOnlyOneOfParameters(parameters, "symbol", "symbols", "permissions");

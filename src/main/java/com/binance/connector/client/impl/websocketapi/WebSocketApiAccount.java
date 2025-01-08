@@ -9,7 +9,7 @@ import com.binance.connector.client.utils.websocketapi.WebSocketApiRequestHandle
 /**
  * <h2>Account Requests</h2>
  * All requests under the
- * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-requests">Account requests</a>
+ * <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests">Account requests</a>
  * section of the WebSocket API documentation will be implemented in this class.
  * <br>
  * Response will be returned as callback.
@@ -30,8 +30,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-information-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-information-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-information-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-information-user_data</a>
      */
     public void accountStatus(JSONObject parameters) {
         this.handler.signedRequest("account.status", parameters);
@@ -45,8 +45,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-order-rate-limits-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-order-rate-limits-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#unfilled-order-count-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#unfilled-order-count-user_data</a>
      */
     public void accountRateLimitsOrders(JSONObject parameters) {
         this.handler.signedRequest("account.rateLimits.orders", parameters);
@@ -67,8 +67,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-order-history-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-order-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-order-history-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-order-history-user_data</a>
      */
     public void accountAllOrders(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -91,8 +91,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-order-list-history-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-order-list-history-user_data</a>
      */
     public void accountAllOcoOrders(JSONObject parameters) {
         this.handler.signedRequest("allOrderLists", parameters);
@@ -112,8 +112,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-trade-history-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-trade-history-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-trade-history-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-trade-history-user_data</a>
      */
     public void accountTradeHistory(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -135,8 +135,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-prevented-matches-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-prevented-matches-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-prevented-matches-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-prevented-matches-user_data</a>
      */
     public void accountPreventedMatches(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -161,8 +161,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * recvWindow -- optional/int -- The value cannot be greater than 60000 <br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-allocations-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-allocations-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-allocations-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-allocations-user_data</a>
      */
     public void accountAllocations(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
@@ -179,8 +179,8 @@ public class WebSocketApiAccount implements WebSocketApiModule {
      * <br><br>
      * requestId -- optional/String or int <br>
      * 
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-commission-rates-user_data">
-     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api#account-commission-rates-user_data</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-commission-rates-user_data">
+     *     https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/account-requests#account-commission-rates-user_data</a>
      */
     public void accountCommissionRates(String symbol, JSONObject parameters) {
         ParameterChecker.checkParameterType(symbol, String.class, "symbol");
