@@ -506,10 +506,10 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * User Data Streams are accessed at /ws/&lt;listenKey&gt;
      *
      * @param listenKey listen key obtained from this
-     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#user-data-stream-endpoints">endpoint</a>
+     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream">endpoint</a>
      * @return int - Connection ID
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#start-user-data-stream-user_stream">
-     * https://developers.binance.com/docs/binance-spot-api-docs/rest-api#start-user-data-stream-user_stream</a>
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream">
+     * https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream</a>
      */
     @Override
     public int listenUserStream(String listenKey, WebSocketMessageCallback callback) {
@@ -520,7 +520,7 @@ public class WebSocketStreamClientImpl implements WebSocketStreamClient {
      * Same as {@link #listenUserStream(String, WebSocketMessageCallback)} plus accepts callbacks for all major websocket connection events.
      *
      * @param listenKey listen key obtained from this
-     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api#user-data-stream-endpoints">endpoint</a>
+     *                  <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream">endpoint</a>
      * @param onOpenCallback Callback for when the websocket connection is opened
      * @param onMessageCallback Callback for when a message is received
      * @param onClosingCallback Callback for when the websocket connection is closing
