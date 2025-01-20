@@ -23,11 +23,13 @@ import com.binance.connector.client.impl.spot.VIPLoans;
 import com.binance.connector.client.impl.spot.Wallet;
 import com.binance.connector.client.utils.ProxyAuth;
 
+import java.util.function.Supplier;
 
 public interface SpotClient {
     void setShowLimitUsage(boolean showLimitUsage);
     void setProxy(ProxyAuth proxy);
     void unsetProxy();
+    void setTimeSupplier(Supplier<Long> timeSupplier);
     AutoInvest createAutoInvest();
     C2C createC2C();
     Convert createConvert();

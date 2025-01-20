@@ -24,8 +24,11 @@ import com.binance.connector.client.impl.spot.UserData;
 import com.binance.connector.client.impl.spot.VIPLoans;
 import com.binance.connector.client.impl.spot.Wallet;
 import com.binance.connector.client.utils.ProxyAuth;
+import com.binance.connector.client.utils.TimeSupplier;
 import com.binance.connector.client.utils.signaturegenerator.HmacSignatureGenerator;
 import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
+
+import java.util.function.Supplier;
 
 public class SpotClientImpl implements SpotClient {
     private final String apiKey;
@@ -69,6 +72,11 @@ public class SpotClientImpl implements SpotClient {
     @Override
     public void setProxy(ProxyAuth proxy) {
         this.proxy = proxy;
+    }
+
+    @Override
+    public void setTimeSupplier(Supplier<Long> timeSupplier) {
+        TimeSupplier.INSTANCE.setTimeProvider(timeSupplier);
     }
     
     @Override

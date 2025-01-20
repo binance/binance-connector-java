@@ -6,6 +6,7 @@ import com.binance.connector.client.utils.JSONParser;
 import com.binance.connector.client.utils.ParameterChecker;
 import com.binance.connector.client.utils.UrlBuilder;
 import com.binance.connector.client.utils.WebSocketConnection;
+import com.binance.connector.client.utils.TimeSupplier;
 import com.binance.connector.client.utils.signaturegenerator.SignatureGenerator;
 
 import org.json.JSONObject;
@@ -60,7 +61,7 @@ public class WebSocketApiRequestHandler {
                 ParameterChecker.checkParameterType(this.apiKey, String.class, "apiKey");
                 parameters = JSONParser.addKeyValue(parameters, "apiKey", this.apiKey);
                 if (!parameters.has("timestamp")) {
-                    parameters.put("timestamp", UrlBuilder.buildTimestamp());
+                    parameters.put("timestamp", TimeSupplier.INSTANCE.buildTimestamp());
                 }
 
                 // signature
