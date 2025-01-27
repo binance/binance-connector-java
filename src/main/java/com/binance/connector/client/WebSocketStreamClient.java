@@ -1,5 +1,6 @@
 package com.binance.connector.client;
 
+import com.binance.connector.client.utils.ProxyAuth;
 import java.util.ArrayList;
 
 import com.binance.connector.client.utils.websocketcallback.WebSocketClosedCallback;
@@ -39,4 +40,5 @@ public interface WebSocketStreamClient {
     int combineStreams(ArrayList<String> streams, WebSocketOpenCallback onOpenCallback, WebSocketMessageCallback onMessageCallback, WebSocketClosingCallback onClosingCallback, WebSocketClosedCallback onClosedCallback, WebSocketFailureCallback onFailureCallback);
     void closeConnection(int streamId);
     void closeAllConnections();
+    void setProxy(ProxyAuth proxy);
 }
