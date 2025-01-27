@@ -6,6 +6,7 @@ public class BinanceClientException extends RuntimeException {
     private final int httpStatusCode;
     private final int errorCode;
     private String errMsg;
+    private int retryAfter;
 
     public BinanceClientException(String fullErrMsg, int httpStatusCode) {
         super(fullErrMsg);
@@ -19,6 +20,11 @@ public class BinanceClientException extends RuntimeException {
         this.errorCode = errorCode;
         this.errMsg =  errMsg;
     }
+    
+    public BinanceClientException(String fullErrMsg, String errMsg, int httpStatusCode, int errorCode, int retryAfter) {
+        this(fullErrMsg, errMsg, httpStatusCode, errorCode);
+        this.retryAfter = retryAfter;
+    }
 
     public int getErrorCode() {
         return errorCode;
@@ -30,5 +36,9 @@ public class BinanceClientException extends RuntimeException {
 
     public String getErrMsg() {
         return errMsg;
+    }
+    
+    public int getRetryAfter() {
+    	return retryAfter;
     }
 }

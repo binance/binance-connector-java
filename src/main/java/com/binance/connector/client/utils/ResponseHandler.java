@@ -12,6 +12,7 @@ import com.binance.connector.client.exceptions.BinanceConnectorException;
 import com.binance.connector.client.exceptions.BinanceServerException;
 import com.binance.connector.client.utils.httpclient.HttpClientSingleton;
 
+import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -36,7 +37,7 @@ public final class ResponseHandler {
             String responseAsString = getResponseBodyAsString(response.body());
 
             if (response.code() >= HTTP_STATUS_CODE_400 && response.code() <= HTTP_STATUS_CODE_499) {
-                throw handleErrorResponse(responseAsString, response.code());
+                throw handleErrorResponse(responseAsString, response.code(), response.headers());
             } else if (response.code() >= HTTP_STATUS_CODE_500) {
                 throw new BinanceServerException(responseAsString, response.code());
             }
@@ -70,13 +71,25 @@ public final class ResponseHandler {
         return json.toString();
     }
 
-    private static BinanceClientException handleErrorResponse(String responseBody, int responseCode) {
+    private static BinanceClientException handleErrorResponse(String responseBody, int responseCode, Headers headers) {
         try {
             String errorMsg = JSONParser.getJSONStringValue(responseBody, "msg");
             int errorCode = JSONParser.getJSONIntValue(responseBody, "code");
+            if(responseCode == 429 || responseCode == 418) {
+        		return handleLimitErrorResponse(responseBody, errorMsg, responseCode, errorCode, headers);
+        	}
             return new BinanceClientException(responseBody, errorMsg, responseCode, errorCode);
         } catch (JSONException e) {
             throw new BinanceClientException(responseBody, responseCode);
+        }
+    }
+    
+    private static BinanceClientException handleLimitErrorResponse(String responseBody, String errorMsg, int responseCode, int errorCode, Headers headers) {
+        try {
+        	int retryAfter = Integer.parseInt(headers.get("retry-after"));
+        	return new BinanceClientException(responseBody, errorMsg, responseCode, errorCode, retryAfter);
+        } catch (Exception e) {
+        	return new BinanceClientException(responseBody, errorMsg, responseCode, errorCode);
         }
     }
 
