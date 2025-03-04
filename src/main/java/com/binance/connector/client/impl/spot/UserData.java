@@ -50,7 +50,7 @@ public class UserData {
      * <br><br>
      * listenKey -- mandatory/string <br>
      * @return String
-     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#pingkeep-alive-a-listenkey-user_streamt">
+     * @see <a href="https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#pingkeep-alive-a-listenkey-user_stream">
      *     https://developers.binance.com/docs/binance-spot-api-docs/user-data-stream#pingkeep-alive-a-listenkey-user_stream</a>
      */
     public String extendListenKey(Map<String, Object> parameters) {
