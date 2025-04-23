@@ -1,0 +1,12 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "",
+    "side": "BUY",
+    "type": "",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "hAtArjKFsgTF0Ldk/c0Y55C0RiNBcBWYJJ0+57jh+3EfqBh7c4ckex/Czj1w+LwWyK7vIsDR665WvqnNbhAzCA=="
+  },
+  "method": "order.place"
+}

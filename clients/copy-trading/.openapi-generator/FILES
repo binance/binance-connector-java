@@ -1,0 +1,17 @@
+docs/FutureCopyTradingApi.md
+docs/GetFuturesLeadTraderStatusResponse.md
+docs/GetFuturesLeadTraderStatusResponseData.md
+docs/GetFuturesLeadTradingSymbolWhitelistResponse.md
+docs/GetFuturesLeadTradingSymbolWhitelistResponseDataInner.md
+example_rest.md
+pom.xml
+pom_example.xml
+src/main/java/com/binance/connector/client/copy_trading/rest/CopyTradingRestApiUtil.java
+src/main/java/com/binance/connector/client/copy_trading/rest/JSON.java
+src/main/java/com/binance/connector/client/copy_trading/rest/api/CopyTradingRestApi.java
+src/main/java/com/binance/connector/client/copy_trading/rest/api/FutureCopyTradingApi.java
+src/main/java/com/binance/connector/client/copy_trading/rest/example/FutureCopyTradingApiExample.java
+src/main/java/com/binance/connector/client/copy_trading/rest/model/GetFuturesLeadTraderStatusResponse.java
+src/main/java/com/binance/connector/client/copy_trading/rest/model/GetFuturesLeadTraderStatusResponseData.java
+src/main/java/com/binance/connector/client/copy_trading/rest/model/GetFuturesLeadTradingSymbolWhitelistResponse.java
+src/main/java/com/binance/connector/client/copy_trading/rest/model/GetFuturesLeadTradingSymbolWhitelistResponseDataInner.java
