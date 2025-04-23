@@ -1,0 +1,13 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "BTCUSDT",
+    "side": "BUY",
+    "price": "0",
+    "quantity": "0",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "/8TmawWHjAA1Hh/2WM013nT6XYVZgNMHhIxhV0H0uOjx579pm3hGlv00/LgT4t8Gxw7FQrIyBjXmGIyWwcyzDw=="
+  },
+  "method": "orderList.place"
+}
