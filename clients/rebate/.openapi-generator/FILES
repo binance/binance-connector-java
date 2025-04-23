@@ -1,0 +1,15 @@
+docs/GetSpotRebateHistoryRecordsResponse.md
+docs/GetSpotRebateHistoryRecordsResponseData.md
+docs/GetSpotRebateHistoryRecordsResponseDataDataInner.md
+docs/RebateApi.md
+example_rest.md
+pom.xml
+pom_example.xml
+src/main/java/com/binance/connector/client/rebate/rest/JSON.java
+src/main/java/com/binance/connector/client/rebate/rest/RebateRestApiUtil.java
+src/main/java/com/binance/connector/client/rebate/rest/api/RebateApi.java
+src/main/java/com/binance/connector/client/rebate/rest/api/RebateRestApi.java
+src/main/java/com/binance/connector/client/rebate/rest/example/RebateApiExample.java
+src/main/java/com/binance/connector/client/rebate/rest/model/GetSpotRebateHistoryRecordsResponse.java
+src/main/java/com/binance/connector/client/rebate/rest/model/GetSpotRebateHistoryRecordsResponseData.java
+src/main/java/com/binance/connector/client/rebate/rest/model/GetSpotRebateHistoryRecordsResponseDataDataInner.java

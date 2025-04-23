@@ -1,0 +1,16 @@
+
+
+# QueryUserRateLimitResponseInner
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**rateLimitType** | **String** |  |  [optional] |
+|**interval** | **String** |  |  [optional] |
+|**intervalNum** | **Long** |  |  [optional] |
+|**limit** | **Long** |  |  [optional] |
+
+
+

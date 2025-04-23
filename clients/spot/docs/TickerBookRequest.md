@@ -1,0 +1,14 @@
+
+
+# TickerBookRequest
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**symbol** | **String** |  |  [optional] |
+|**symbols** | **Symbols** |  |  [optional] |
+
+
+

@@ -1,0 +1,17 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "BTCUSDT",
+    "workingType": "LIMIT",
+    "workingSide": "BUY",
+    "workingPrice": "0",
+    "workingQuantity": "0",
+    "pendingType": "MARKET",
+    "pendingSide": "BUY",
+    "pendingQuantity": "0",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "t2Yc2nqxS8V20xSPFuKj154D5TPclZJoLJqgS4gF5TiFftmEilIxz9B9P09RhwvAFLib/bUWxA7vcoCvEm09CQ=="
+  },
+  "method": "orderList.place.oto"
+}

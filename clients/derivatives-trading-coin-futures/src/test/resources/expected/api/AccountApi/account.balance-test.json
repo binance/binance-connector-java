@@ -1,0 +1,9 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "w5VdScCUjVCBg8gmima0WOwDjnL0BaNQ0Boi0A4rSSa8oszi1Ul+MWr5JH3JJ2zEduiEV781IxQg61lz3c+9BA=="
+  },
+  "method": "account.balance"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": [
+    "!ticker@arr"
+  ],
+  "method": "SUBSCRIBE"
+}

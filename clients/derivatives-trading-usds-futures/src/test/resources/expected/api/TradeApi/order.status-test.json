@@ -1,0 +1,10 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "KLDHZVZtH/VN+LaiCEaT/eXb2LRTpFf9MpZqFOCS9m3SaB4c+FKCZhNRyscXmdDBBmJ1nh1ga4BlnYUjtLF3CQ=="
+  },
+  "method": "order.status"
+}
