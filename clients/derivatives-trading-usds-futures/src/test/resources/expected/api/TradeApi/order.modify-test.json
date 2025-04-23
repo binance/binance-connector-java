@@ -1,0 +1,13 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "",
+    "side": "BUY",
+    "quantity": "1",
+    "price": "1",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "yuXrkIgZJ81Q1soaHPKVtlpH1ghddXaAatf3YrEh4dZu5KRfhmQf096gU59M2qS3TV+CPeyut97SrpRLPGU6Bg=="
+  },
+  "method": "order.modify"
+}

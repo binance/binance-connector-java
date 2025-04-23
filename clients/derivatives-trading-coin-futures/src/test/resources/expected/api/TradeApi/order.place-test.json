@@ -1,0 +1,12 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "",
+    "side": "BUY",
+    "type": "LIMIT",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "pO+rE7jfSv5PQ0Rq1PMSEoAPPv0b4uxRz6UTrsWmqjGJCZfndNMKpcDwkaQWj0q1YBaXJpWptDUYK5eVMwc9AQ=="
+  },
+  "method": "order.place"
+}
