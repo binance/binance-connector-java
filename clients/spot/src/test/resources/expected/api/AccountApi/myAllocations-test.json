@@ -1,0 +1,10 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "BTCUSDT",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "kZ0llBO2AgpBpQGRjKoAonsZxZLnIZvfnyGNG2xSF4kMIuwWGjsYdBP+mVg9fYaNqKq8o6z1CmdfRH2JeNInDg\u003d\u003d"
+  },
+  "method": "myAllocations"
+}

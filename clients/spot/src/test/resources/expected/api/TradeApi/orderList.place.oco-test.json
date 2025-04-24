@@ -1,0 +1,15 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "BTCUSDT",
+    "side": "BUY",
+    "quantity": "0",
+    "aboveType": "STOP_LOSS",
+    "belowType": "TAKE_PROFIT",
+    "belowPrice": "0",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "iuJFRKcXvmoF1c0bxhSrNrCbq314Th86woSILSx0hABEx80SIZfh76HmcYPPl/s1N+W4VKgEKiofqWvN4QnrDQ=="
+  },
+  "method": "orderList.place.oco"
+}
