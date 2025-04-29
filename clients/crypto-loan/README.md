@@ -2,7 +2,7 @@
 
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-java)](https://github.com/binance/binance-connector-java/issues)
 [![Code Style: Spotless](https://img.shields.io/badge/code%20style-spotless-ff69b4)](https://github.com/diffplug/spotless)
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.binance/binance-crypto-loan)
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.binance/binance-crypto-loan)](https://central.sonatype.com/artifact/io.github.binance/binance-crypto-loan)
 ![Java Version](https://img.shields.io/badge/Java-%3E=11-brightgreen)
 [![Known Vulnerabilities](https://snyk.io/test/github/binance/binance-connector-java/badge.svg)](https://snyk.io/test/github/binance/binance-connector-java)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -137,7 +137,7 @@ If `basePath` is not provided, it defaults to `https://api.binance.com`.
 To run the tests:
 
 ```bash
-mvn -f clients/pom.xml -pl crypto-loan
+mvn -f clients/pom.xml -pl crypto-loan test
 ```
 
 The tests cover:
