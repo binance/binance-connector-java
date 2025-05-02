@@ -1,6 +1,8 @@
 package com.binance.connector.client.common.auth;
 
 import com.binance.connector.client.common.Pair;
+
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public abstract class BinanceBaseAuthentication implements Authentication {
      * @return The String representation of the joined query parameters.
      */
     public String joinQueryParameters(List<Pair> params) {
-        return asciiEncode(joinQueryParameters(new StringBuilder(), params).toString());
+        return joinQueryParameters(new StringBuilder(), params).toString();
     }
 
     /**
@@ -32,17 +34,13 @@ public abstract class BinanceBaseAuthentication implements Authentication {
                 String value = param.getValue();
                 sb.append(key);
                 sb.append("=");
-                sb.append(value);
+                sb.append(URLEncoder.encode(value, StandardCharsets.UTF_8));
                 sb.append("&");
             }
             sb.deleteCharAt(sb.length() - DIFF_TILL_POSITION_INDEX);
         }
 
         return sb;
-    }
-
-    public String asciiEncode(String s) {
-        return new String(s.getBytes(), StandardCharsets.US_ASCII);
     }
 
     public String buildTimestamp() {

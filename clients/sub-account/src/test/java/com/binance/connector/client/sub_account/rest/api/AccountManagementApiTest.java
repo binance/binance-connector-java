@@ -112,10 +112,16 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("17957384d6df5c7c6e52eefb50fa8aab7e6c71cb463c5010af594789262b22f5", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000subAccountString=", signInputCaptor.getValue());
+        assertEquals(
+                "17957384d6df5c7c6e52eefb50fa8aab7e6c71cb463c5010af594789262b22f5",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/virtualSubAccount", actualRequest.url().encodedPath());
     }
 
@@ -140,10 +146,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "timestamp=1736393892000email=sub-account-email%40email.com",
+                signInputCaptor.getValue());
+        assertEquals(
+                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/futures/enable", actualRequest.url().encodedPath());
     }
 
@@ -169,10 +183,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("5637c5d98dd70674f12e4b6ae5f4f7f3a6c15655aff997d057d7e9b4ceadf77c", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "timestamp=1736393892000enableBlvt=true&email=sub-account-email%40email.com",
+                signInputCaptor.getValue());
+        assertEquals(
+                "5637c5d98dd70674f12e4b6ae5f4f7f3a6c15655aff997d057d7e9b4ceadf77c",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/blvt/enable", actualRequest.url().encodedPath());
     }
 
@@ -197,10 +219,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "timestamp=1736393892000email=sub-account-email%40email.com",
+                signInputCaptor.getValue());
+        assertEquals(
+                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/margin/enable", actualRequest.url().encodedPath());
     }
 
@@ -258,10 +288,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("3627893cb3382cf179e0cfae2f3930dac37e198f7481c0d1f4be6bc7a77e805e", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/positionRisk", actualRequest.url().encodedPath());
     }
@@ -285,10 +323,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("f83d909c67d7b9183d31693172d49339f470b3a9cab79782ff7c368c5001676c", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&futuresType=0&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "cc664677d48539d81fe257dafb4f793b0036ed86f73c1bca867f692c34b6b490",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v2/sub-account/futures/positionRisk", actualRequest.url().encodedPath());
     }
@@ -312,10 +358,16 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("ca098fe86ad4ca7fbb1763dbb32c5c8f0611c1ee3dd0334fa79e767a306b3ab9", actualRequest.url().queryParameter("signature"));
+        assertEquals("email=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "ca098fe86ad4ca7fbb1763dbb32c5c8f0611c1ee3dd0334fa79e767a306b3ab9",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/status", actualRequest.url().encodedPath());
     }
 
@@ -340,10 +392,18 @@ public class AccountManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("563b2264a7851ddf9f32d76d6be3966d159a697f45e7ebbafe60f7d561e426c6", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=&isFreeze=&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "563b2264a7851ddf9f32d76d6be3966d159a697f45e7ebbafe60f7d561e426c6",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/list", actualRequest.url().encodedPath());
     }
 
@@ -372,10 +432,10 @@ public class AccountManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&recvWindow=5000&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "3627893cb3382cf179e0cfae2f3930dac37e198f7481c0d1f4be6bc7a77e805e",
+                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/transaction-statistics", actualRequest.url().encodedPath());

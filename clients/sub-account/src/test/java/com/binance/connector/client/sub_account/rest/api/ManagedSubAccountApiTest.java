@@ -112,10 +112,16 @@ public class ManagedSubAccountApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("227adce1b6fa8cd89964bd4feedcc86fc42fea35068da084d94698405ba251b8", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000amount=1&asset=&toEmail=", signInputCaptor.getValue());
+        assertEquals(
+                "227adce1b6fa8cd89964bd4feedcc86fc42fea35068da084d94698405ba251b8",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/managed-subaccount/deposit", actualRequest.url().encodedPath());
     }
 
@@ -149,10 +155,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&coin=&network=&amount=1&recvWindow=5000&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&coin=&network=&amount=1&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "ca9c0923706db405ae043d4d09ef460e450c167afc9cc001b5c0fe68c77cc25e",
+                "8775619e5f1bf1f99041b1f456c76870f8582b64031236aeb73211e3ad0476e0",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/deposit/address", actualRequest.url().encodedPath());
@@ -176,10 +182,18 @@ public class ManagedSubAccountApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("3627893cb3382cf179e0cfae2f3930dac37e198f7481c0d1f4be6bc7a77e805e", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/managed-subaccount/asset", actualRequest.url().encodedPath());
     }
 
@@ -209,10 +223,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&accountType=&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&accountType=&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "0208bccf2f4b4fb842f35dc832da2bef38e044b3d228f51a86e94d8068fd938e",
+                "f304bae266239f54bc793653d4cd4e29a0c6e08889fc9beae2fcea3db9520660",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/fetch-future-asset",
@@ -280,10 +294,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&accountType=&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&accountType=&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "0208bccf2f4b4fb842f35dc832da2bef38e044b3d228f51a86e94d8068fd938e",
+                "f304bae266239f54bc793653d4cd4e29a0c6e08889fc9beae2fcea3db9520660",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/managed-subaccount/marginAsset", actualRequest.url().encodedPath());
     }
@@ -313,10 +327,18 @@ public class ManagedSubAccountApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("e875df2f6e86c33227335d6eeadf4dd847576121211de6da4380b5f3e0557564", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&type=&startTime=1623319461670&endTime=1641782889000&limit=1&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "798f63c636a19b23eafed70bc3b49d260b1a3c84da75aa5a05168e2c182eea14",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/accountSnapshot", actualRequest.url().encodedPath());
     }
@@ -364,10 +386,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "4e69c82be6c07576b57e82a69a9c4a09bf8e7b5579d19295955d57078d3641c5",
+                "c599759baae54f1cbc6819afc54293b31bd6d2b9bfb9d63ef31317dc02d576e9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/queryTransLogForInvestor",
@@ -417,10 +439,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email@email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
+                "email=sub-account-email%40email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "4e69c82be6c07576b57e82a69a9c4a09bf8e7b5579d19295955d57078d3641c5",
+                "c599759baae54f1cbc6819afc54293b31bd6d2b9bfb9d63ef31317dc02d576e9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/queryTransLogForTradeParent",
@@ -500,10 +522,17 @@ public class ManagedSubAccountApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("2a0783094485dc7627ebacda95b82dab6b57ddc19fa05930073f93f5f157ae46", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "timestamp=1736393892000amount=1&asset=&fromEmail=", signInputCaptor.getValue());
+        assertEquals(
+                "2a0783094485dc7627ebacda95b82dab6b57ddc19fa05930073f93f5f157ae46",
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/managed-subaccount/withdraw", actualRequest.url().encodedPath());
     }
 }

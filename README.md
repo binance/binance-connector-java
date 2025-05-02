@@ -1,7 +1,8 @@
 # Binance Java Connectors
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/binance/binance-connector-java/java.yml)](https://github.com/binance/binance-connector-java/actions)
-[![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-java)](https://github.com/binance/binance-connector-java/issues)[![Code Style: Spotless](https://img.shields.io/badge/code%20style-spotless-ff69b4)](https://github.com/diffplug/spotless)
+[![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-java)](https://github.com/binance/binance-connector-java/issues)
+[![Code Style: Spotless](https://img.shields.io/badge/code%20style-spotless-ff69b4)](https://github.com/diffplug/spotless)
 ![Java Version](https://img.shields.io/badge/Java-%3E=11-brightgreen)
 [![Known Vulnerabilities](https://snyk.io/test/github/binance/binance-connector-java/badge.svg)](https://snyk.io/test/github/binance/binance-connector-java)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,7 +17,7 @@ Before using the connectors, ensure you have:
 
 ## Available Connectors
 - [binance-algo](clients/algo) - Algo Trading connector
-- [binance-auto-invest](clients/auto-invest) - Auto Invest connector
+- **Deprecated**: ~~[binance-auto-invest](clients/auto-invest) - Auto Invest connector~~
 - [binance-c2c](clients/c2c) - C2C connector
 - [binance-convert](clients/convert) - Convert connector
 - [binance-copy-trading](clients/copy-trading) - Copy Trading connector
@@ -50,11 +51,11 @@ For detailed information, refer to the [Binance API Documentation](https://devel
 Each connector is published as a separate maven dependency. For example:
 
 ```xml
-    <dependency>
-        <groupId>io.github.binance</groupId>
-        <artifactId>binance-spot</artifactId>
-        <version>1.0.0</version>
-    </dependency>
+<dependency>
+  <groupId>io.github.binance</groupId>
+  <artifactId>binance-spot</artifactId>
+  <version>1.1.0</version>
+</dependency>
 ```
 
 ## Contributing
@@ -178,8 +179,6 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 
 ## Examples
 **Algo**: [Rest API](clients/algo/example_rest.md)
-
-**Auto Invest**: [Rest API](clients/auto-invest/example_rest.md)
 
 **C2c**: [Rest API](clients/c2c/example_rest.md)
 

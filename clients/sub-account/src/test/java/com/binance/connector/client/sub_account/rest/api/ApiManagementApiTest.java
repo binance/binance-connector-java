@@ -102,10 +102,18 @@ public class ApiManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("d353219f3c6ee7a2df7814796f98e89d858731d4dd62d05bc95115557ac07395", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "timestamp=1736393892000subAccountApiKey=&email=sub-account-email%40email.com&status=0",
+                signInputCaptor.getValue());
+        assertEquals(
+                "d353219f3c6ee7a2df7814796f98e89d858731d4dd62d05bc95115557ac07395",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v2/sub-account/subAccountApi/ipRestriction",
                 actualRequest.url().encodedPath());
@@ -133,10 +141,18 @@ public class ApiManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("b4c71176a6744c102a895d5cd348ba0215fe776d6acdadb0bb58bc2f273bc1ae", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&subAccountApiKey=&ipAddress=&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "dbfd7714cbc071ac272d2f9402317af166eb5054a8365e3e2960cf219547989f",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList",
                 actualRequest.url().encodedPath());
@@ -161,10 +177,18 @@ public class ApiManagementApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("c0e8e1659d43bb7209a5bbf189ecf4c71ff5da1884fe83c6f9d6ca77cc25df12", actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "email=sub-account-email%40email.com&subAccountApiKey=&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "0ed08ff7787abeae64a40e4a8ddebfefa8063a9c5015b702faa20ffa367a3a3e",
+                actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/subAccountApi/ipRestriction",
                 actualRequest.url().encodedPath());
