@@ -5,7 +5,7 @@
     <artifactId>binance-connector-java-clients</artifactId>
     <packaging>pom</packaging>
     <name>binance-connector-java-clients</name>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <url>https://github.com/binance/binance-connector-java</url>
     <description>Java connector to Binance APIs</description>
 
@@ -348,6 +348,11 @@
             <version>${jackson-databind-nullable-version}</version>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind-version}</version>
+        </dependency>
+        <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
             <version>${jakarta.ws.rs-api-version}</version>
@@ -402,6 +407,7 @@
         <gson-version>2.12.1</gson-version>
         <commons-lang3-version>3.17.0</commons-lang3-version>
         <jackson-databind-nullable-version>0.2.6</jackson-databind-nullable-version>
+        <jackson-databind-version>2.19.0</jackson-databind-version>
         <jakarta-annotation-version>3.0.0</jakarta-annotation-version>
         <beanvalidation-version>3.1.1</beanvalidation-version>
         <junit-version>5.10.3</junit-version>

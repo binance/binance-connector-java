@@ -2,6 +2,8 @@ package com.binance.connector.client.common.configuration;
 
 import com.binance.connector.client.common.dtos.TimeUnit;
 import java.net.Proxy;
+
+import okhttp3.Authenticator;
 import okhttp3.CertificatePinner;
 
 public class ClientConfiguration {
@@ -18,6 +20,9 @@ public class ClientConfiguration {
 
     /** Proxy configuration */
     protected Proxy proxy;
+
+    /** Proxy Auth configuration */
+    protected Authenticator proxyAuthenticator;
 
     /** Certificate Pinner configuration */
     protected CertificatePinner certificatePinner;
@@ -57,6 +62,14 @@ public class ClientConfiguration {
 
     public void setProxy(Proxy proxy) {
         this.proxy = proxy;
+    }
+
+    public Authenticator getProxyAuthenticator() {
+        return proxyAuthenticator;
+    }
+
+    public void setProxyAuthenticator(Authenticator proxyAuthenticator) {
+        this.proxyAuthenticator = proxyAuthenticator;
     }
 
     public CertificatePinner getCertificatePinner() {

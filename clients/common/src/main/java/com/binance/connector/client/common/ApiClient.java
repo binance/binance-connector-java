@@ -175,6 +175,9 @@ public class ApiClient {
 
         if (configuration.getProxy() != null) {
             builder.proxy(configuration.getProxy());
+            if (configuration.getProxyAuthenticator() != null) {
+                builder.proxyAuthenticator(configuration.getProxyAuthenticator());
+            }
         }
 
         // Compression is enabled by default, so add interceptor to remove gzip only if config is

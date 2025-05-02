@@ -1,8 +1,8 @@
-# Binance Java SimpleEarn Connector
+# Binance Java Simple Earn Connector
 
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-java)](https://github.com/binance/binance-connector-java/issues)
 [![Code Style: Spotless](https://img.shields.io/badge/code%20style-spotless-ff69b4)](https://github.com/diffplug/spotless)
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.binance/binance-simple-earn)
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.binance/binance-simple-earn)](https://central.sonatype.com/artifact/io.github.binance/binance-simple-earn)
 ![Java Version](https://img.shields.io/badge/Java-%3E=11-brightgreen)
 [![Known Vulnerabilities](https://snyk.io/test/github/binance/binance-connector-java/badge.svg)](https://snyk.io/test/github/binance/binance-connector-java)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -30,7 +30,7 @@ This is a client library for the Binance Simple Earn API, enabling developers to
 
 ## Installation
 
-To use this library, ensure your environment is running Java version **17** or newer.
+To use this library, ensure your environment is running Java version **11** or newer.
 
 Then add dependency to pom.xml:
 
@@ -38,17 +38,17 @@ Then add dependency to pom.xml:
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-simple-earn</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
 ## Documentation
 
-For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/docs/%{productName%}).
+For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/docs/simple_earn).
 
 ### REST APIs
 
-All REST API endpoints are available through the [`rest-api`](./src/main/java/com/binance/connector/client/%{productName%}/rest) module. Note that some endpoints require authentication using your Binance API credentials.
+All REST API endpoints are available through the [`rest`](./src/main/java/com/binance/connector/client/simple-earn/rest) module. Note that some endpoints require authentication using your Binance API credentials.
 
 ```java
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
@@ -68,7 +68,7 @@ public static void main(String[] args) {
 }
 ```
 
-More examples can be found in the [`examples/rest-api`](./examples/simple-earn/src/main/java/com/binance/connector/client/simple-earn/rest) folder.
+More examples can be found in the [`examples/rest`](./../../examples/simple-earn/src/main/java/com/binance/connector/client/simple_earn/rest) folder.
 
 #### Configuration Options
 
@@ -107,10 +107,6 @@ Enable or disable response compression. See the [Compression example](./docs/res
 
 Configure the number of retry attempts and delay in milliseconds between retries for failed requests. See the [Retries example](./docs/rest-api/retries.md) for detailed usage.
 
-##### HTTPS Agent
-
-Customize the HTTPS agent for advanced TLS configurations. See the [HTTPS Agent example](./docs/rest-api/httpsAgent.md) for detailed usage.
-
 ##### Key Pair Based Authentication
 
 The REST API supports key pair-based authentication for secure communication. You can use `RSA` or `ED25519` keys for signing requests. See the [Key Pair Based Authentication example](./docs/rest-api/key-pair-authentication.md) for detailed usage.
@@ -134,7 +130,7 @@ If `basePath` is not provided, it defaults to `https://api.binance.com`.
 To run the tests:
 
 ```bash
-mvn -f clients/pom.xml -pl simple-earn
+mvn -f clients/pom.xml -pl simple-earn test
 ```
 
 The tests cover:
