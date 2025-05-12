@@ -147,7 +147,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@aggTrade-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@aggTrade-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -330,7 +330,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<pair>_<contractType>@continuousKline_<interval>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/pair_contractType@continuousKline_interval-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -399,7 +399,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@depth<updateSpeed>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@depthupdateSpeed-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -436,7 +436,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<pair>@indexPriceKline_<interval>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/pair@indexPriceKline_interval-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -471,7 +471,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<pair>@indexPrice<updateSpeed>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/pair@indexPriceupdateSpeed-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -508,7 +508,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@bookTicker-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@bookTicker-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -546,7 +546,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@miniTicker-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@miniTicker-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -583,7 +583,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@ticker-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@ticker-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -620,7 +620,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@kline_<interval>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@kline_interval-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -658,7 +658,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@forceOrder-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@forceOrder-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -695,7 +695,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@markPriceKline_<interval>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@markPriceKline_interval-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -732,7 +732,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<pair>@markPrice<updateSpeed>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/pair@markPriceupdateSpeed-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -767,7 +767,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@markPrice<updateSpeed>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@markPriceupdateSpeed-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
@@ -805,7 +805,7 @@ public class WebsocketMarketStreamsApiTest {
 
         URL resource =
                 WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/<symbol>@depth<levels><updateSpeed>-test.json");
+                        "/expected/stream/WebsocketMarketStreamsApi/symbol@depthlevelsupdateSpeed-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
