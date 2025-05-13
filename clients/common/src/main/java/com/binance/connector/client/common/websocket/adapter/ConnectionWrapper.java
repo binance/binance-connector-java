@@ -113,6 +113,9 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
 
             if (configuration.getWebSocketProxy() != null) {
                 httpClient.getProxyConfiguration().addProxy(configuration.getWebSocketProxy());
+                if (configuration.getWebSocketProxyAuthentication() != null) {
+                    httpClient.getAuthenticationStore().addAuthentication(configuration.getWebSocketProxyAuthentication());
+                }
             }
             webSocketClient = new WebSocketClient(httpClient);
         }

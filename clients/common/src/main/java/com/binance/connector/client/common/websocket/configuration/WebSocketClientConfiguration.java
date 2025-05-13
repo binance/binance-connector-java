@@ -2,13 +2,17 @@ package com.binance.connector.client.common.websocket.configuration;
 
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import org.eclipse.jetty.client.ProxyConfiguration;
+import org.eclipse.jetty.client.api.Authentication;
 
 public class WebSocketClientConfiguration extends ClientConfiguration {
     /** Base URL */
     protected String url = "wss://ws-api.binance.com:443/ws-api/v3";
 
     /** Proxy configuration */
-    protected ProxyConfiguration.Proxy proxy;
+    protected ProxyConfiguration.Proxy webSocketProxy;
+
+    /** Proxy Auth configuration */
+    protected Authentication webSocketProxyAuthentication;
 
     /** Auto LOGON or generate and send signature for each request. */
     private Boolean autoLogon = false;
@@ -36,11 +40,19 @@ public class WebSocketClientConfiguration extends ClientConfiguration {
     }
 
     public ProxyConfiguration.Proxy getWebSocketProxy() {
-        return proxy;
+        return webSocketProxy;
     }
 
-    public void setProxy(ProxyConfiguration.Proxy proxy) {
-        this.proxy = proxy;
+    public void setWebSocketProxy(ProxyConfiguration.Proxy webSocketProxy) {
+        this.webSocketProxy = webSocketProxy;
+    }
+
+    public Authentication getWebSocketProxyAuthentication() {
+        return webSocketProxyAuthentication;
+    }
+
+    public void setWebSocketProxyAuthentication(Authentication webSocketProxyAuthentication) {
+        this.webSocketProxyAuthentication = webSocketProxyAuthentication;
     }
 
     public Boolean getAutoLogon() {
