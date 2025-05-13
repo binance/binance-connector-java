@@ -54,7 +54,7 @@ Each connector is published as a separate maven dependency. For example:
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-spot</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -148,6 +148,17 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
     Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("host", 123));
     // Add the proxy to the configuration
     clientConfiguration.setProxy(proxy);
+    // Create the Proxy Authenticator
+    Authenticator proxyAuthenticator = new Authenticator() {
+        @Override public Request authenticate(Route route, Response response) throws IOException {
+            String credential = Credentials.basic("username", "password");
+            return response.request().newBuilder()
+                    .header("Proxy-Authorization", credential)
+                    .build();
+        }
+    };
+    // Add the proxy authenticator to the configuration
+    clientConfiguration.setProxyAuthenticator(proxyAuthenticator);
     // Use with API
     SpotRestApi spotRestApi = new SpotRestApi(clientConfiguration);
 ```
@@ -159,7 +170,16 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
     // Create the HTTP proxy
     HttpProxy proxy = new HttpProxy("host", 123);
     // Add the proxy to the configuration
-    clientConfiguration.setProxy(proxy);
+    clientConfiguration.setWebSocketProxy(proxy);
+    // Create the Proxy Authentication
+    BasicAuthentication basicAuthentication = new BasicAuthentication(
+            URI.create("http://host:123"),
+            Authentication.ANY_REALM,
+            "username",
+            "password"
+    );
+    // Add the Proxy Authentication to the configuration
+    clientConfiguration.setWebSocketProxyAuthentication(basicAuthentication);
     // Use with API
     SpotWebSocketApi spotWebSocketApi = new SpotWebSocketApi(clientConfiguration);
 ```
@@ -171,9 +191,18 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
     // Create the HTTP proxy
     HttpProxy proxy = new HttpProxy("host", 123);
     // Add the proxy to the configuration
-    clientConfiguration.setProxy(proxy);
+    clientConfiguration.setWebSocketProxy(proxy);
+    // Create the Proxy Authentication
+    BasicAuthentication basicAuthentication = new BasicAuthentication(
+            URI.create("http://host:123"),
+            Authentication.ANY_REALM,
+            "username",
+            "password"
+    );
+    // Add the Proxy Authentication to the configuration
+    clientConfiguration.setWebSocketProxyAuthentication(basicAuthentication);
     // Use with API
-    SpotWebSocketStreams spotWebSocketApi = new SpotWebSocketStreams(clientConfiguration);
+    SpotWebSocketApi spotWebSocketApi = new SpotWebSocketApi(clientConfiguration);
 ```
 
 

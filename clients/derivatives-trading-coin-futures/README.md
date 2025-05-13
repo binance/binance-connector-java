@@ -42,7 +42,7 @@ Then add dependency to pom.xml:
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-derivatives-trading-coin-futures</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 

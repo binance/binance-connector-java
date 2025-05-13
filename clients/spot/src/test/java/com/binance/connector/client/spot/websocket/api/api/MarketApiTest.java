@@ -15,7 +15,7 @@ package com.binance.connector.client.spot.websocket.api.api;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
-import com.binance.connector.client.common.websocket.configuration.SessionMode;
+
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceRequest;
