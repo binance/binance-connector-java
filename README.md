@@ -202,7 +202,7 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
     // Add the Proxy Authentication to the configuration
     clientConfiguration.setWebSocketProxyAuthentication(basicAuthentication);
     // Use with API
-    SpotWebSocketApi spotWebSocketApi = new SpotWebSocketApi(clientConfiguration);
+    SpotWebSocketStreams spotWebSocketApi = new SpotWebSocketStreams(clientConfiguration);
 ```
 
 
