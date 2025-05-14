@@ -7,10 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**orderListId** | **Long** |  |  [optional] |
+|**contingencyType** | **String** |  |  [optional] |
+|**listStatusType** | **String** |  |  [optional] |
+|**listOrderStatus** | **String** |  |  [optional] |
+|**listClientOrderId** | **String** |  |  [optional] |
+|**transactionTime** | **Long** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
+|**orders** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrdersInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrdersInner.md) |  |  [optional] |
+|**orderReports** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrderReportsInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrderReportsInner.md) |  |  [optional] |
 |**origClientOrderId** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
-|**orderListId** | **Long** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |

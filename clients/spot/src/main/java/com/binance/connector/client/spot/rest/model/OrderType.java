@@ -36,7 +36,9 @@ public enum OrderType {
 
     TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT"),
 
-    LIMIT_MAKER("LIMIT_MAKER");
+    LIMIT_MAKER("LIMIT_MAKER"),
+
+    NON_REPRESENTABLE("NON_REPRESENTABLE");
 
     private String value;
 

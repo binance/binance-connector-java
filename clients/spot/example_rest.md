@@ -66,11 +66,11 @@
 
 [GET /api/v3/orderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data) - getOrderList - [GetOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/GetOrderListExample.java#L46)
 
-[POST /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade) - newOrder - [NewOrderExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/NewOrderExample.java#L49)
+[POST /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade) - newOrder - [NewOrderExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/NewOrderExample.java#L50)
 
 [GET /api/v3/openOrderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data) - openOrderList - [OpenOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OpenOrderListExample.java#L46)
 
-[PUT /api/v3/order/amend/keepPriority](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderAmendKeepPriorityExample.java#L48)
+[PUT /api/v3/order/amend/keepPriority](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderAmendKeepPriorityExample.java#L49)
 
 [POST /api/v3/order/cancelReplace](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade) - orderCancelReplace - [OrderCancelReplaceExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderCancelReplaceExample.java#L53)
 
@@ -84,7 +84,7 @@
 
 [POST /api/v3/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade) - orderTest - [OrderTestExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderTestExample.java#L50)
 
-[POST /api/v3/sor/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade) - sorOrder - [SorOrderExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderExample.java#L50)
+[POST /api/v3/sor/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade) - sorOrder - [SorOrderExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderExample.java#L51)
 
 [POST /api/v3/sor/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderTestExample.java#L50)
 

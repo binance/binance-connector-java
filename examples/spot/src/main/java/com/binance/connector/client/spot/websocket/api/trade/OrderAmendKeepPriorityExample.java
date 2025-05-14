@@ -41,8 +41,9 @@ public class OrderAmendKeepPriorityExample {
     /**
      * WebSocket Order Amend Keep Priority
      *
-     * <p>Reduce the quantity of an existing open order. Read [Order Amend Keep Priority
-     * FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 1
+     * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
+     * Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
      */
     public void orderAmendKeepPriorityExampleAsync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
@@ -64,8 +65,9 @@ public class OrderAmendKeepPriorityExample {
     /**
      * WebSocket Order Amend Keep Priority
      *
-     * <p>Reduce the quantity of an existing open order. Read [Order Amend Keep Priority
-     * FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 1
+     * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
+     * Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
      */
     public void orderAmendKeepPriorityExampleSync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =

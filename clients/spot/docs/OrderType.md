@@ -19,5 +19,7 @@
 
 * `LIMIT_MAKER` (value: `"LIMIT_MAKER"`)
 
+* `NON_REPRESENTABLE` (value: `"NON_REPRESENTABLE"`)
+
 
 

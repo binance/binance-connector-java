@@ -44,9 +44,9 @@ public class OrderOcoExample {
      * <p>Send in a new OCO. * Price Restrictions: * &#x60;SELL&#x60;: Limit Price &gt; Last Price
      * &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price * Quantity
      * Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60; quantities
-     * however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the unfilled order
-     * count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter.
-     * Weight: 1
+     * however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      *
      * @throws ApiException if the Api call fails
      */

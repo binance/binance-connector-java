@@ -215,7 +215,7 @@ No authorization required
 
 WebSocket Order Amend Keep Priority
 
-Reduce the quantity of an existing open order.  Read [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 1
+Reduce the quantity of an existing open order.  This adds 0 orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter.  Read [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
 
 ### Example
 ```java
@@ -339,7 +339,7 @@ No authorization required
 
 WebSocket Cancel and replace order
 
-Cancel an existing order and immediately place a new order instead of the canceled one. Weight: 1
+Cancel an existing order and immediately place a new order instead of the canceled one.  A new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by 1. Weight: 1
 
 ### Example
 ```java
@@ -463,7 +463,7 @@ No authorization required
 
 WebSocket Place new OCO - Deprecated
 
-Send in a new one-cancels-the-other (OCO) pair: &#x60;LIMIT_MAKER&#x60; + &#x60;STOP_LOSS&#x60;/&#x60;STOP_LOSS_LIMIT&#x60; orders (called *legs*), where activation of one order immediately cancels the other. Weight: 1
+Send in a new one-cancels-the-other (OCO) pair: &#x60;LIMIT_MAKER&#x60; + &#x60;STOP_LOSS&#x60;/&#x60;STOP_LOSS_LIMIT&#x60; orders (called *legs*), where activation of one order immediately cancels the other.  This adds 1 order to &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter Weight: 1  Unfilled Order Count: 1
 
 ### Example
 ```java
@@ -525,7 +525,7 @@ No authorization required
 
 WebSocket Place new Order list - OCO
 
-Send in an one-cancels the other (OCO) pair, where activation of one order immediately cancels the other.  * An OCO has 2 orders called the **above order** and **below order**. * One of the orders must be a &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price restrictions:   * If the OCO is on the &#x60;SELL&#x60; side:     * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60; &#x60;price&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60;     * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60;   * If the OCO is on the &#x60;BUY&#x60; side:     * &#x60;LIMIT_MAKER&#x60; &#x60;price&#x60; &lt; Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60;     * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the unfilled order count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter.   Weight: 1
+Send in an one-cancels the other (OCO) pair, where activation of one order immediately cancels the other.  * An OCO has 2 orders called the **above order** and **below order**. * One of the orders must be a &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price restrictions:   * If the OCO is on the &#x60;SELL&#x60; side:     * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60; &#x60;price&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60;     * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60;   * If the OCO is on the &#x60;BUY&#x60; side:     * &#x60;LIMIT_MAKER&#x60; &#x60;price&#x60; &lt; Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60;     * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1  Unfilled Order Count: 2
 
 ### Example
 ```java
@@ -587,7 +587,7 @@ No authorization required
 
 WebSocket Place new Order list - OTO
 
-Places an OTO.  * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The second order is called the **pending order**. It can be any order type except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is only placed on the order book when the working order gets **fully filled**. * If either the working order or the pending order is cancelled individually, the other order in the order list will also be canceled or expired. * OTOs add **2 orders** to the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+Places an OTO.  * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The second order is called the **pending order**. It can be any order type except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is only placed on the order book when the working order gets **fully filled**. * If either the working order or the pending order is cancelled individually, the other order in the order list will also be canceled or expired. * OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1  Unfilled Order Count: 2
 
 ### Example
 ```java
@@ -649,7 +649,7 @@ No authorization required
 
 WebSocket Place new Order list - OTOCO
 
-Place an OTOCO.  * An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book.   * The behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The pending orders are only placed on the order book when the working order gets **fully filled**. * OTOCOs add **3 orders** to the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+Place an OTOCO.  * An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book.   * The behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The pending orders are only placed on the order book when the working order gets **fully filled**. * OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1  Unfilled Order Count: 3
 
 ### Example
 ```java
@@ -773,7 +773,7 @@ No authorization required
 
 WebSocket Place new order
 
-Send in a new order. Weight: 1
+Send in a new order.  This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
 
 ### Example
 ```java
@@ -959,7 +959,7 @@ No authorization required
 
 WebSocket Place new order using SOR
 
-Places an order using smart order routing (SOR). Weight: 1
+Places an order using smart order routing (SOR).  This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1  Unfilled Order Count: 1
 
 ### Example
 ```java

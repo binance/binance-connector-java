@@ -1,6 +1,6 @@
 
 
-# ExchangeInfoResponseRateLimitsInner
+# AccountCommissionResponseRateLimitsInner
 
 
 ## Properties
@@ -11,6 +11,7 @@
 |**interval** | **String** |  |  [optional] |
 |**intervalNum** | **Long** |  |  [optional] |
 |**limit** | **Long** |  |  [optional] |
+|**count** | **Long** |  |  [optional] |
 
 
 

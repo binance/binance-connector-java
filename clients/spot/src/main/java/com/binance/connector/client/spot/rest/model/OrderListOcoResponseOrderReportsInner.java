@@ -122,23 +122,11 @@ public class OrderListOcoResponseOrderReportsInner {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
-
-    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
-    @jakarta.annotation.Nullable
-    private String stopPrice;
-
     public static final String SERIALIZED_NAME_WORKING_TIME = "workingTime";
 
     @SerializedName(SERIALIZED_NAME_WORKING_TIME)
     @jakarta.annotation.Nullable
     private Long workingTime;
-
-    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
-
-    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
-    @jakarta.annotation.Nullable
-    private String icebergQty;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
@@ -146,6 +134,18 @@ public class OrderListOcoResponseOrderReportsInner {
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private String stopPrice;
+
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
+
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
+    @jakarta.annotation.Nullable
+    private String icebergQty;
 
     public OrderListOcoResponseOrderReportsInner() {}
 
@@ -426,26 +426,6 @@ public class OrderListOcoResponseOrderReportsInner {
         this.side = side;
     }
 
-    public OrderListOcoResponseOrderReportsInner stopPrice(
-            @jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
     public OrderListOcoResponseOrderReportsInner workingTime(
             @jakarta.annotation.Nullable Long workingTime) {
         this.workingTime = workingTime;
@@ -464,26 +444,6 @@ public class OrderListOcoResponseOrderReportsInner {
 
     public void setWorkingTime(@jakarta.annotation.Nullable Long workingTime) {
         this.workingTime = workingTime;
-    }
-
-    public OrderListOcoResponseOrderReportsInner icebergQty(
-            @jakarta.annotation.Nullable String icebergQty) {
-        this.icebergQty = icebergQty;
-        return this;
-    }
-
-    /**
-     * Get icebergQty
-     *
-     * @return icebergQty
-     */
-    @jakarta.annotation.Nullable
-    public String getIcebergQty() {
-        return icebergQty;
-    }
-
-    public void setIcebergQty(@jakarta.annotation.Nullable String icebergQty) {
-        this.icebergQty = icebergQty;
     }
 
     public OrderListOcoResponseOrderReportsInner selfTradePreventionMode(
@@ -505,6 +465,46 @@ public class OrderListOcoResponseOrderReportsInner {
     public void setSelfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public OrderListOcoResponseOrderReportsInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
+    public OrderListOcoResponseOrderReportsInner icebergQty(
+            @jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+        return this;
+    }
+
+    /**
+     * Get icebergQty
+     *
+     * @return icebergQty
+     */
+    @jakarta.annotation.Nullable
+    public String getIcebergQty() {
+        return icebergQty;
+    }
+
+    public void setIcebergQty(@jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
     }
 
     @Override
@@ -540,13 +540,14 @@ public class OrderListOcoResponseOrderReportsInner {
                         this.timeInForce, orderListOcoResponseOrderReportsInner.timeInForce)
                 && Objects.equals(this.type, orderListOcoResponseOrderReportsInner.type)
                 && Objects.equals(this.side, orderListOcoResponseOrderReportsInner.side)
-                && Objects.equals(this.stopPrice, orderListOcoResponseOrderReportsInner.stopPrice)
                 && Objects.equals(
                         this.workingTime, orderListOcoResponseOrderReportsInner.workingTime)
-                && Objects.equals(this.icebergQty, orderListOcoResponseOrderReportsInner.icebergQty)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        orderListOcoResponseOrderReportsInner.selfTradePreventionMode);
+                        orderListOcoResponseOrderReportsInner.selfTradePreventionMode)
+                && Objects.equals(this.stopPrice, orderListOcoResponseOrderReportsInner.stopPrice)
+                && Objects.equals(
+                        this.icebergQty, orderListOcoResponseOrderReportsInner.icebergQty);
     }
 
     @Override
@@ -566,10 +567,10 @@ public class OrderListOcoResponseOrderReportsInner {
                 timeInForce,
                 type,
                 side,
-                stopPrice,
                 workingTime,
-                icebergQty,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                stopPrice,
+                icebergQty);
     }
 
     @Override
@@ -592,12 +593,12 @@ public class OrderListOcoResponseOrderReportsInner {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		workingTime: ").append(toIndentedString(workingTime)).append("\n");
-        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -665,24 +666,24 @@ public class OrderListOcoResponseOrderReportsInner {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
-        Object stopPriceValue = getStopPrice();
-        String stopPriceValueAsString = "";
-        stopPriceValueAsString = stopPriceValue.toString();
-        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
         Object workingTimeValue = getWorkingTime();
         String workingTimeValueAsString = "";
         workingTimeValueAsString = workingTimeValue.toString();
         sb.append("workingTime=").append(urlEncode(workingTimeValueAsString)).append("");
-        Object icebergQtyValue = getIcebergQty();
-        String icebergQtyValueAsString = "";
-        icebergQtyValueAsString = icebergQtyValue.toString();
-        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         String selfTradePreventionModeValueAsString = "";
         selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object stopPriceValue = getStopPrice();
+        String stopPriceValueAsString = "";
+        stopPriceValueAsString = stopPriceValue.toString();
+        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
         return sb.toString();
     }
 
@@ -725,10 +726,10 @@ public class OrderListOcoResponseOrderReportsInner {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
-        openapiFields.add("stopPrice");
         openapiFields.add("workingTime");
-        openapiFields.add("icebergQty");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("stopPrice");
+        openapiFields.add("icebergQty");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -857,6 +858,15 @@ public class OrderListOcoResponseOrderReportsInner {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
+        }
         if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
                 && !jsonObj.get("stopPrice").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -872,15 +882,6 @@ public class OrderListOcoResponseOrderReportsInner {
                             "Expected the field `icebergQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("icebergQty").toString()));
-        }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
         }
     }
 

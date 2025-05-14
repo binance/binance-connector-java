@@ -506,7 +506,7 @@ public class SpotRestApi {
      * their open time. Weight: 2
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -696,7 +696,7 @@ public class SpotRestApi {
      * charts. Weight: 2
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -973,7 +973,8 @@ public class SpotRestApi {
     }
 
     /**
-     * New order Send in a new order. Weight: 1
+     * New order Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60;
+     * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
      *
      * @param newOrderRequest (required)
      * @return ApiResponse&lt;NewOrderResponse&gt;
@@ -1018,8 +1019,9 @@ public class SpotRestApi {
     }
 
     /**
-     * Order Amend Keep Priority Reduce the quantity of an existing open order. Read [Order Amend
-     * Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 1
+     * Order Amend Keep Priority Reduce the quantity of an existing open order. This adds 0 orders
+     * to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read
+     * [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return ApiResponse&lt;OrderAmendKeepPriorityResponse&gt;
@@ -1045,8 +1047,8 @@ public class SpotRestApi {
      * Cancel an Existing Order and Send a New Order Cancels an existing order and places a new
      * order on the same symbol. Filters and Order Count are evaluated before the processing of the
      * cancellation and order placement occurs. A new order that was not attempted (i.e. when
-     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60; ), will still increase the order count by 1.
-     * Weight: 1
+     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
+     * 1. Weight: 1
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;
@@ -1080,9 +1082,9 @@ public class SpotRestApi {
      * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * If the OCO is on the &#x60;BUY&#x60; side:
      * * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60; &lt; Last Traded Price &lt;
      * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &lt; Last Traded Price &lt;
-     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the unfilled order
-     * count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter, and the &#x60;MAX_NUM_ORDERS&#x60; filter.
-     * Weight: 1
+     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      *
      * @param orderListOcoRequest (required)
      * @return ApiResponse&lt;OrderListOcoResponse&gt;
@@ -1116,8 +1118,8 @@ public class SpotRestApi {
      * working order gets **immediately fully filled**, the placement response will show the working
      * order as &#x60;FILLED&#x60; but the pending order will still appear as
      * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
-     * updated status. * OTOs add **2 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * updated status. * OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
      *
      * @param orderListOtoRequest (required)
      * @return ApiResponse&lt;OrderListOtoResponse&gt;
@@ -1148,8 +1150,8 @@ public class SpotRestApi {
      * below), forming an OCO pair. The pending orders are only placed on the order book when the
      * working order gets **fully filled**. * The rules of the pending above and pending below
      * follow the same rules as the [Order list OCO](#new-order-list---oco-trade). * OTOCOs add **3
-     * orders** against the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight: 1 Unfilled Order Count: 3
      *
      * @param orderListOtocoRequest (required)
      * @return ApiResponse&lt;OrderListOtocoResponse&gt;
@@ -1176,8 +1178,8 @@ public class SpotRestApi {
      * &gt; Last Price &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop
      * Price * Quantity Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60;
      * quantities however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the
-     * unfilled order count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      *
      * @param orderOcoRequest (required)
      * @return ApiResponse&lt;OrderOcoResponse&gt;
@@ -1226,8 +1228,9 @@ public class SpotRestApi {
     }
 
     /**
-     * New order using SOR Places an order using smart order routing (SOR). Read [SOR
-     * FAQ](faqs/sor_faq.md) to learn more. Weight: 1
+     * New order using SOR Places an order using smart order routing (SOR). This adds 1 order to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [SOR
+     * FAQ](faqs/sor_faq.md) to learn more. Weight: 1 Unfilled Order Count: 1
      *
      * @param sorOrderRequest (required)
      * @return ApiResponse&lt;SorOrderResponse&gt;

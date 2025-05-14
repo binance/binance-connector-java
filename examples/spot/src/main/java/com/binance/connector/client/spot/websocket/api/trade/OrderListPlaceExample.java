@@ -44,7 +44,8 @@ public class OrderListPlaceExample {
      *
      * <p>Send in a new one-cancels-the-other (OCO) pair: &#x60;LIMIT_MAKER&#x60; +
      * &#x60;STOP_LOSS&#x60;/&#x60;STOP_LOSS_LIMIT&#x60; orders (called *legs*), where activation of
-     * one order immediately cancels the other. Weight: 1
+     * one order immediately cancels the other. This adds 1 order to &#x60;EXCHANGE_MAX_ORDERS&#x60;
+     * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter Weight: 1 Unfilled Order Count: 1
      */
     public void orderListPlaceExampleAsync() {
         OrderListPlaceRequest orderListPlaceRequest = new OrderListPlaceRequest();
@@ -69,7 +70,8 @@ public class OrderListPlaceExample {
      *
      * <p>Send in a new one-cancels-the-other (OCO) pair: &#x60;LIMIT_MAKER&#x60; +
      * &#x60;STOP_LOSS&#x60;/&#x60;STOP_LOSS_LIMIT&#x60; orders (called *legs*), where activation of
-     * one order immediately cancels the other. Weight: 1
+     * one order immediately cancels the other. This adds 1 order to &#x60;EXCHANGE_MAX_ORDERS&#x60;
+     * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter Weight: 1 Unfilled Order Count: 1
      */
     public void orderListPlaceExampleSync() {
         OrderListPlaceRequest orderListPlaceRequest = new OrderListPlaceRequest();

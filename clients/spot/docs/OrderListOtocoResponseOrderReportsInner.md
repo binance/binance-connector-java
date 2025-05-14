@@ -23,6 +23,7 @@
 |**side** | **String** |  |  [optional] |
 |**workingTime** | **Long** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
+|**stopPrice** | **String** |  |  [optional] |
 
 
 

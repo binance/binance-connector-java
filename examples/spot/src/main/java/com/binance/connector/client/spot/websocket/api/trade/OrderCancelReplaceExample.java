@@ -44,8 +44,9 @@ public class OrderCancelReplaceExample {
     /**
      * WebSocket Cancel and replace order
      *
-     * <p>Cancel an existing order and immediately place a new order instead of the canceled one.
-     * Weight: 1
+     * <p>Cancel an existing order and immediately place a new order instead of the canceled one. A
+     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will
+     * still increase the unfilled order count by 1. Weight: 1
      */
     public void orderCancelReplaceExampleAsync() {
         OrderCancelReplaceRequest orderCancelReplaceRequest = new OrderCancelReplaceRequest();
@@ -68,8 +69,9 @@ public class OrderCancelReplaceExample {
     /**
      * WebSocket Cancel and replace order
      *
-     * <p>Cancel an existing order and immediately place a new order instead of the canceled one.
-     * Weight: 1
+     * <p>Cancel an existing order and immediately place a new order instead of the canceled one. A
+     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will
+     * still increase the unfilled order count by 1. Weight: 1
      */
     public void orderCancelReplaceExampleSync() {
         OrderCancelReplaceRequest orderCancelReplaceRequest = new OrderCancelReplaceRequest();

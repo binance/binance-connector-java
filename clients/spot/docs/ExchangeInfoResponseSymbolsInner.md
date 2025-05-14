@@ -26,7 +26,7 @@
 |**allowAmend** | **Boolean** |  |  [optional] |
 |**isSpotTradingAllowed** | **Boolean** |  |  [optional] |
 |**isMarginTradingAllowed** | **Boolean** |  |  [optional] |
-|**filters** | [**List&lt;ExchangeInfoResponseSymbolsInnerFiltersInner&gt;**](ExchangeInfoResponseSymbolsInnerFiltersInner.md) |  |  [optional] |
+|**filters** | [**List&lt;ExchangeInfoResponseExchangeFiltersInner&gt;**](ExchangeInfoResponseExchangeFiltersInner.md) |  |  [optional] |
 |**permissions** | **List&lt;String&gt;** |  |  [optional] |
 |**permissionSets** | **List&lt;List&lt;String&gt;&gt;** |  |  [optional] |
 |**defaultSelfTradePreventionMode** | **String** |  |  [optional] |

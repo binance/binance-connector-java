@@ -58,7 +58,7 @@ public class MarketApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/1.2.0 (Java/%s; %s; %s)",
+                    "binance-spot/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -824,7 +824,7 @@ public class MarketApi {
      * Build call for klines
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -979,7 +979,7 @@ public class MarketApi {
      * their open time. Weight: 2
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -1000,7 +1000,7 @@ public class MarketApi {
      */
     public ApiResponse<KlinesResponse> klines(
             @NotNull String symbol,
-            Interval interval,
+            @NotNull Interval interval,
             Long startTime,
             Long endTime,
             String timeZone,
@@ -1797,7 +1797,7 @@ public class MarketApi {
      * Build call for uiKlines
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -1953,7 +1953,7 @@ public class MarketApi {
      * charts. Weight: 2
      *
      * @param symbol (required)
-     * @param interval (optional)
+     * @param interval (required)
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param timeZone Default: 0 (UTC) (optional)
@@ -1974,7 +1974,7 @@ public class MarketApi {
      */
     public ApiResponse<UiKlinesResponse> uiKlines(
             @NotNull String symbol,
-            Interval interval,
+            @NotNull Interval interval,
             Long startTime,
             Long endTime,
             String timeZone,

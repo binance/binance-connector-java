@@ -43,7 +43,8 @@ public class OrderPlaceExample {
     /**
      * WebSocket Place new order
      *
-     * <p>Send in a new order. Weight: 1
+     * <p>Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
+     * the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
      */
     public void orderPlaceExampleAsync() {
         OrderPlaceRequest orderPlaceRequest = new OrderPlaceRequest();
@@ -64,7 +65,8 @@ public class OrderPlaceExample {
     /**
      * WebSocket Place new order
      *
-     * <p>Send in a new order. Weight: 1
+     * <p>Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
+     * the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
      */
     public void orderPlaceExampleSync() {
         OrderPlaceRequest orderPlaceRequest = new OrderPlaceRequest();

@@ -92,7 +92,7 @@ public class GeneralApiTest {
         Symbols symbols = null;
         Permissions permissions = null;
         Boolean showPermissionSets = true;
-        SymbolStatus symbolStatus = SymbolStatus.PRE_TRADING;
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<ExchangeInfoResponse> response =
                 api.exchangeInfo(symbol, symbols, permissions, showPermissionSets, symbolStatus);
 

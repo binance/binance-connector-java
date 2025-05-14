@@ -135,6 +135,12 @@ public class OrderListOtocoResponseOrderReportsInner {
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private String stopPrice;
+
     public OrderListOtocoResponseOrderReportsInner() {}
 
     public OrderListOtocoResponseOrderReportsInner symbol(
@@ -456,6 +462,26 @@ public class OrderListOtocoResponseOrderReportsInner {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
+    public OrderListOtocoResponseOrderReportsInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -493,7 +519,9 @@ public class OrderListOtocoResponseOrderReportsInner {
                         this.workingTime, orderListOtocoResponseOrderReportsInner.workingTime)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        orderListOtocoResponseOrderReportsInner.selfTradePreventionMode);
+                        orderListOtocoResponseOrderReportsInner.selfTradePreventionMode)
+                && Objects.equals(
+                        this.stopPrice, orderListOtocoResponseOrderReportsInner.stopPrice);
     }
 
     @Override
@@ -514,7 +542,8 @@ public class OrderListOtocoResponseOrderReportsInner {
                 type,
                 side,
                 workingTime,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                stopPrice);
     }
 
     @Override
@@ -541,6 +570,7 @@ public class OrderListOtocoResponseOrderReportsInner {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -618,6 +648,10 @@ public class OrderListOtocoResponseOrderReportsInner {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object stopPriceValue = getStopPrice();
+        String stopPriceValueAsString = "";
+        stopPriceValueAsString = stopPriceValue.toString();
+        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
         return sb.toString();
     }
 
@@ -662,6 +696,7 @@ public class OrderListOtocoResponseOrderReportsInner {
         openapiFields.add("side");
         openapiFields.add("workingTime");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("stopPrice");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -799,6 +834,14 @@ public class OrderListOtocoResponseOrderReportsInner {
                             "Expected the field `selfTradePreventionMode` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
+                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `stopPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("stopPrice").toString()));
         }
     }
 

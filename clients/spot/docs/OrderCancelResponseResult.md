@@ -33,7 +33,7 @@
 |**listOrderStatus** | **String** |  |  [optional] |
 |**listClientOrderId** | **String** |  |  [optional] |
 |**transactionTime** | **Long** |  |  [optional] |
-|**orders** | [**List&lt;OrderCancelResponseResultOrdersInner&gt;**](OrderCancelResponseResultOrdersInner.md) |  |  [optional] |
+|**orders** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrdersInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrdersInner.md) |  |  [optional] |
 |**orderReports** | [**List&lt;OrderCancelResponseResultOrderReportsInner&gt;**](OrderCancelResponseResultOrderReportsInner.md) |  |  [optional] |
 
 

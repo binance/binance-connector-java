@@ -165,7 +165,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseSymbolsInnerFiltersInner> filters;
+    private List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -587,13 +587,13 @@ public class ExchangeInfoResponseSymbolsInner {
 
     public ExchangeInfoResponseSymbolsInner filters(
             @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseSymbolsInnerFiltersInner> filters) {
+                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
         this.filters = filters;
         return this;
     }
 
     public ExchangeInfoResponseSymbolsInner addFiltersItem(
-            ExchangeInfoResponseSymbolsInnerFiltersInner filtersItem) {
+            ExchangeInfoResponseExchangeFiltersInner filtersItem) {
         if (this.filters == null) {
             this.filters = new ArrayList<>();
         }
@@ -608,13 +608,13 @@ public class ExchangeInfoResponseSymbolsInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseSymbolsInnerFiltersInner> getFilters() {
+    public List<@Valid ExchangeInfoResponseExchangeFiltersInner> getFilters() {
         return filters;
     }
 
     public void setFilters(
             @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseSymbolsInnerFiltersInner> filters) {
+                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
         this.filters = filters;
     }
 
@@ -1148,7 +1148,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
                 // validate the optional field `filters` (array)
                 for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    ExchangeInfoResponseSymbolsInnerFiltersInner.validateJsonElement(
+                    ExchangeInfoResponseExchangeFiltersInner.validateJsonElement(
                             jsonArrayfilters.get(i));
                 }
                 ;

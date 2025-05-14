@@ -164,7 +164,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseResultSymbolsInnerFiltersInner> filters;
+    private List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -588,13 +588,13 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
 
     public ExchangeInfoResponseResultSymbolsInner filters(
             @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseResultSymbolsInnerFiltersInner> filters) {
+                    List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters) {
         this.filters = filters;
         return this;
     }
 
     public ExchangeInfoResponseResultSymbolsInner addFiltersItem(
-            ExchangeInfoResponseResultSymbolsInnerFiltersInner filtersItem) {
+            ExchangeInfoResponseResultExchangeFiltersInner filtersItem) {
         if (this.filters == null) {
             this.filters = new ArrayList<>();
         }
@@ -609,13 +609,13 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseResultSymbolsInnerFiltersInner> getFilters() {
+    public List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> getFilters() {
         return filters;
     }
 
     public void setFilters(
             @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseResultSymbolsInnerFiltersInner> filters) {
+                    List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters) {
         this.filters = filters;
     }
 
@@ -976,7 +976,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
             String isMarginTradingAllowedValueAsString = isMarginTradingAllowedValue.toString();
             valMap.put("isMarginTradingAllowed", isMarginTradingAllowedValueAsString);
         }
-        List<@Valid ExchangeInfoResponseResultSymbolsInnerFiltersInner> filtersValue = getFilters();
+        List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filtersValue = getFilters();
         if (filtersValue != null) {
             String filtersValueAsString = JSON.getGson().toJson(filtersValue);
             valMap.put("filters", filtersValueAsString);
@@ -1257,7 +1257,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
 
                 // validate the optional field `filters` (array)
                 for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    ExchangeInfoResponseResultSymbolsInnerFiltersInner.validateJsonElement(
+                    ExchangeInfoResponseResultExchangeFiltersInner.validateJsonElement(
                             jsonArrayfilters.get(i));
                 }
                 ;

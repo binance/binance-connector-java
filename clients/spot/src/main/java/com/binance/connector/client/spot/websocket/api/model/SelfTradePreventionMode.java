@@ -30,7 +30,11 @@ public enum SelfTradePreventionMode {
 
     EXPIRE_MAKER("EXPIRE_MAKER"),
 
-    EXPIRE_BOTH("EXPIRE_BOTH");
+    EXPIRE_BOTH("EXPIRE_BOTH"),
+
+    DECREMENT("DECREMENT"),
+
+    NON_REPRESENTABLE("NON_REPRESENTABLE");
 
     private String value;
 

@@ -55,8 +55,8 @@ public class OrderListOtoExample {
      * gets **immediately fully filled**, the placement response will show the working order as
      * &#x60;FILLED&#x60; but the pending order will still appear as &#x60;PENDING_NEW&#x60;. You
      * need to query the status of the pending order again to see its updated status. * OTOs add **2
-     * orders** to the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight: 1 Unfilled Order Count: 2
      *
      * @throws ApiException if the Api call fails
      */

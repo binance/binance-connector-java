@@ -1,6 +1,6 @@
 
 
-# OrderListPlaceOcoResponseResultOrderReportsInner
+# OpenOrdersCancelAllResponseResultInnerOrderReportsInner
 
 
 ## Properties
@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
+|**origClientOrderId** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
 |**orderListId** | **Long** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
@@ -21,7 +22,6 @@
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
-|**workingTime** | **Long** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
 |**stopPrice** | **String** |  |  [optional] |
 

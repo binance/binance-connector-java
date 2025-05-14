@@ -54,8 +54,8 @@ public class OrderListOcoExample {
      * If the OCO is on the &#x60;BUY&#x60; side: * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60;
      * &lt; Last Traded Price &lt; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &lt;
      * Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2
-     * orders** to the unfilled order count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter, and the
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight: 1 Unfilled Order Count: 2
      *
      * @throws ApiException if the Api call fails
      */
