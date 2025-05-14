@@ -13,5 +13,9 @@
 
 * `EXPIRE_BOTH` (value: `"EXPIRE_BOTH"`)
 
+* `DECREMENT` (value: `"DECREMENT"`)
+
+* `NON_REPRESENTABLE` (value: `"NON_REPRESENTABLE"`)
+
 
 

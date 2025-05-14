@@ -263,8 +263,10 @@ public class TradeApi {
     }
 
     /**
-     * WebSocket Order Amend Keep Priority Reduce the quantity of an existing open order. Read
-     * [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 1
+     * WebSocket Order Amend Keep Priority Reduce the quantity of an existing open order. This adds
+     * 0 orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Read [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn
+     * more. Weight: 4
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return OrderAmendKeepPriorityResponse
@@ -388,7 +390,9 @@ public class TradeApi {
 
     /**
      * WebSocket Cancel and replace order Cancel an existing order and immediately place a new order
-     * instead of the canceled one. Weight: 1
+     * instead of the canceled one. A new order that was not attempted (i.e. when
+     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
+     * 1. Weight: 1
      *
      * @param orderCancelReplaceRequest (required)
      * @return OrderCancelReplaceResponse
@@ -513,7 +517,9 @@ public class TradeApi {
     /**
      * WebSocket Place new OCO - Deprecated Send in a new one-cancels-the-other (OCO) pair:
      * &#x60;LIMIT_MAKER&#x60; + &#x60;STOP_LOSS&#x60;/&#x60;STOP_LOSS_LIMIT&#x60; orders (called
-     * *legs*), where activation of one order immediately cancels the other. Weight: 1
+     * *legs*), where activation of one order immediately cancels the other. This adds 1 order to
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter Weight: 1
+     * Unfilled Order Count: 1
      *
      * @param orderListPlaceRequest (required)
      * @return OrderListPlaceResponse
@@ -586,8 +592,8 @@ public class TradeApi {
      * * &#x60;LIMIT_MAKER&#x60; &#x60;price&#x60; &lt; Last Traded Price &lt;
      * &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT
      * stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; *
-     * OCOs add **2 orders** to the unfilled order count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter,
-     * and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * OCOs add **2 orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
      *
      * @param orderListPlaceOcoRequest (required)
      * @return OrderListPlaceOcoResponse
@@ -656,9 +662,9 @@ public class TradeApi {
      * except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending
      * order is only placed on the order book when the working order gets **fully filled**. * If
      * either the working order or the pending order is cancelled individually, the other order in
-     * the order list will also be canceled or expired. * OTOs add **2 orders** to the unfilled
-     * order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1
+     * the order list will also be canceled or expired. * OTOs add **2 orders** to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      *
      * @param orderListPlaceOtoRequest (required)
      * @return OrderListPlaceOtoResponse
@@ -727,8 +733,8 @@ public class TradeApi {
      * behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). *
      * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The
      * pending orders are only placed on the order book when the working order gets **fully
-     * filled**. * OTOCOs add **3 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * filled**. * OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 3
      *
      * @param orderListPlaceOtocoRequest (required)
      * @return OrderListPlaceOtocoResponse
@@ -852,7 +858,8 @@ public class TradeApi {
     }
 
     /**
-     * WebSocket Place new order Send in a new order. Weight: 1
+     * WebSocket Place new order Send in a new order. This adds 1 order to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
      *
      * @param orderPlaceRequest (required)
      * @return OrderPlaceResponse
@@ -1038,8 +1045,9 @@ public class TradeApi {
     }
 
     /**
-     * WebSocket Place new order using SOR Places an order using smart order routing (SOR). Weight:
-     * 1
+     * WebSocket Place new order using SOR Places an order using smart order routing (SOR). This
+     * adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight: 1 Unfilled Order Count: 1
      *
      * @param sorOrderPlaceRequest (required)
      * @return SorOrderPlaceResponse

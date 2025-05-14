@@ -93,12 +93,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String executedQty;
 
-    public static final String SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY = "origQuoteOrderQty";
-
-    @SerializedName(SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY)
-    @jakarta.annotation.Nullable
-    private String origQuoteOrderQty;
-
     public static final String SERIALIZED_NAME_CUMMULATIVE_QUOTE_QTY = "cummulativeQuoteQty";
 
     @SerializedName(SERIALIZED_NAME_CUMMULATIVE_QUOTE_QTY)
@@ -129,18 +123,24 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
-
-    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
-    @jakarta.annotation.Nullable
-    private String stopPrice;
-
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY = "origQuoteOrderQty";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY)
+    @jakarta.annotation.Nullable
+    private String origQuoteOrderQty;
+
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private String stopPrice;
 
     public OrderCancelResponseResultOrderReportsInner() {}
 
@@ -324,26 +324,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         this.executedQty = executedQty;
     }
 
-    public OrderCancelResponseResultOrderReportsInner origQuoteOrderQty(
-            @jakarta.annotation.Nullable String origQuoteOrderQty) {
-        this.origQuoteOrderQty = origQuoteOrderQty;
-        return this;
-    }
-
-    /**
-     * Get origQuoteOrderQty
-     *
-     * @return origQuoteOrderQty
-     */
-    @jakarta.annotation.Nullable
-    public String getOrigQuoteOrderQty() {
-        return origQuoteOrderQty;
-    }
-
-    public void setOrigQuoteOrderQty(@jakarta.annotation.Nullable String origQuoteOrderQty) {
-        this.origQuoteOrderQty = origQuoteOrderQty;
-    }
-
     public OrderCancelResponseResultOrderReportsInner cummulativeQuoteQty(
             @jakarta.annotation.Nullable String cummulativeQuoteQty) {
         this.cummulativeQuoteQty = cummulativeQuoteQty;
@@ -444,26 +424,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         this.side = side;
     }
 
-    public OrderCancelResponseResultOrderReportsInner stopPrice(
-            @jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
     public OrderCancelResponseResultOrderReportsInner selfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
@@ -483,6 +443,46 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
     public void setSelfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public OrderCancelResponseResultOrderReportsInner origQuoteOrderQty(
+            @jakarta.annotation.Nullable String origQuoteOrderQty) {
+        this.origQuoteOrderQty = origQuoteOrderQty;
+        return this;
+    }
+
+    /**
+     * Get origQuoteOrderQty
+     *
+     * @return origQuoteOrderQty
+     */
+    @jakarta.annotation.Nullable
+    public String getOrigQuoteOrderQty() {
+        return origQuoteOrderQty;
+    }
+
+    public void setOrigQuoteOrderQty(@jakarta.annotation.Nullable String origQuoteOrderQty) {
+        this.origQuoteOrderQty = origQuoteOrderQty;
+    }
+
+    public OrderCancelResponseResultOrderReportsInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
     }
 
     @Override
@@ -512,9 +512,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                 && Objects.equals(
                         this.executedQty, orderCancelResponseResultOrderReportsInner.executedQty)
                 && Objects.equals(
-                        this.origQuoteOrderQty,
-                        orderCancelResponseResultOrderReportsInner.origQuoteOrderQty)
-                && Objects.equals(
                         this.cummulativeQuoteQty,
                         orderCancelResponseResultOrderReportsInner.cummulativeQuoteQty)
                 && Objects.equals(this.status, orderCancelResponseResultOrderReportsInner.status)
@@ -523,10 +520,13 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                 && Objects.equals(this.type, orderCancelResponseResultOrderReportsInner.type)
                 && Objects.equals(this.side, orderCancelResponseResultOrderReportsInner.side)
                 && Objects.equals(
-                        this.stopPrice, orderCancelResponseResultOrderReportsInner.stopPrice)
-                && Objects.equals(
                         this.selfTradePreventionMode,
-                        orderCancelResponseResultOrderReportsInner.selfTradePreventionMode);
+                        orderCancelResponseResultOrderReportsInner.selfTradePreventionMode)
+                && Objects.equals(
+                        this.origQuoteOrderQty,
+                        orderCancelResponseResultOrderReportsInner.origQuoteOrderQty)
+                && Objects.equals(
+                        this.stopPrice, orderCancelResponseResultOrderReportsInner.stopPrice);
     }
 
     @Override
@@ -541,14 +541,14 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                 price,
                 origQty,
                 executedQty,
-                origQuoteOrderQty,
                 cummulativeQuoteQty,
                 status,
                 timeInForce,
                 type,
                 side,
-                stopPrice,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                origQuoteOrderQty,
+                stopPrice);
     }
 
     @Override
@@ -564,7 +564,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		origQuoteOrderQty: ").append(toIndentedString(origQuoteOrderQty)).append("\n");
         sb.append("		cummulativeQuoteQty: ")
                 .append(toIndentedString(cummulativeQuoteQty))
                 .append("\n");
@@ -572,10 +571,11 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		origQuoteOrderQty: ").append(toIndentedString(origQuoteOrderQty)).append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -629,11 +629,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
             String executedQtyValueAsString = executedQtyValue.toString();
             valMap.put("executedQty", executedQtyValueAsString);
         }
-        String origQuoteOrderQtyValue = getOrigQuoteOrderQty();
-        if (origQuoteOrderQtyValue != null) {
-            String origQuoteOrderQtyValueAsString = origQuoteOrderQtyValue.toString();
-            valMap.put("origQuoteOrderQty", origQuoteOrderQtyValueAsString);
-        }
         String cummulativeQuoteQtyValue = getCummulativeQuoteQty();
         if (cummulativeQuoteQtyValue != null) {
             String cummulativeQuoteQtyValueAsString = cummulativeQuoteQtyValue.toString();
@@ -659,15 +654,20 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
             String sideValueAsString = sideValue.toString();
             valMap.put("side", sideValueAsString);
         }
-        String stopPriceValue = getStopPrice();
-        if (stopPriceValue != null) {
-            String stopPriceValueAsString = stopPriceValue.toString();
-            valMap.put("stopPrice", stopPriceValueAsString);
-        }
         String selfTradePreventionModeValue = getSelfTradePreventionMode();
         if (selfTradePreventionModeValue != null) {
             String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValueAsString);
+        }
+        String origQuoteOrderQtyValue = getOrigQuoteOrderQty();
+        if (origQuoteOrderQtyValue != null) {
+            String origQuoteOrderQtyValueAsString = origQuoteOrderQtyValue.toString();
+            valMap.put("origQuoteOrderQty", origQuoteOrderQtyValueAsString);
+        }
+        String stopPriceValue = getStopPrice();
+        if (stopPriceValue != null) {
+            String stopPriceValueAsString = stopPriceValue.toString();
+            valMap.put("stopPrice", stopPriceValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -716,10 +716,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         if (executedQtyValue != null) {
             valMap.put("executedQty", executedQtyValue);
         }
-        Object origQuoteOrderQtyValue = getOrigQuoteOrderQty();
-        if (origQuoteOrderQtyValue != null) {
-            valMap.put("origQuoteOrderQty", origQuoteOrderQtyValue);
-        }
         Object cummulativeQuoteQtyValue = getCummulativeQuoteQty();
         if (cummulativeQuoteQtyValue != null) {
             valMap.put("cummulativeQuoteQty", cummulativeQuoteQtyValue);
@@ -740,13 +736,17 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         if (sideValue != null) {
             valMap.put("side", sideValue);
         }
-        Object stopPriceValue = getStopPrice();
-        if (stopPriceValue != null) {
-            valMap.put("stopPrice", stopPriceValue);
-        }
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         if (selfTradePreventionModeValue != null) {
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValue);
+        }
+        Object origQuoteOrderQtyValue = getOrigQuoteOrderQty();
+        if (origQuoteOrderQtyValue != null) {
+            valMap.put("origQuoteOrderQty", origQuoteOrderQtyValue);
+        }
+        Object stopPriceValue = getStopPrice();
+        if (stopPriceValue != null) {
+            valMap.put("stopPrice", stopPriceValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -783,14 +783,14 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
         openapiFields.add("price");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
-        openapiFields.add("origQuoteOrderQty");
         openapiFields.add("cummulativeQuoteQty");
         openapiFields.add("status");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
-        openapiFields.add("stopPrice");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("origQuoteOrderQty");
+        openapiFields.add("stopPrice");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -880,15 +880,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
         }
-        if ((jsonObj.get("origQuoteOrderQty") != null
-                        && !jsonObj.get("origQuoteOrderQty").isJsonNull())
-                && !jsonObj.get("origQuoteOrderQty").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `origQuoteOrderQty` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("origQuoteOrderQty").toString()));
-        }
         if ((jsonObj.get("cummulativeQuoteQty") != null
                         && !jsonObj.get("cummulativeQuoteQty").isJsonNull())
                 && !jsonObj.get("cummulativeQuoteQty").isJsonPrimitive()) {
@@ -930,14 +921,6 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
-        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
-                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `stopPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("stopPrice").toString()));
-        }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())
                 && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
@@ -946,6 +929,23 @@ public class OrderCancelResponseResultOrderReportsInner extends BaseDTO {
                             "Expected the field `selfTradePreventionMode` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        if ((jsonObj.get("origQuoteOrderQty") != null
+                        && !jsonObj.get("origQuoteOrderQty").isJsonNull())
+                && !jsonObj.get("origQuoteOrderQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origQuoteOrderQty` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("origQuoteOrderQty").toString()));
+        }
+        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
+                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `stopPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("stopPrice").toString()));
         }
     }
 

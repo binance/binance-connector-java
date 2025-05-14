@@ -34,16 +34,22 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** OrderListPlaceOcoResponseResultOrderReportsInner */
+/** OpenOrdersCancelAllResponseResultInnerOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
+public class OpenOrdersCancelAllResponseResultInnerOrderReportsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID = "origClientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String origClientOrderId;
 
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -123,12 +129,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_WORKING_TIME = "workingTime";
-
-    @SerializedName(SERIALIZED_NAME_WORKING_TIME)
-    @jakarta.annotation.Nullable
-    private Long workingTime;
-
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
@@ -142,9 +142,9 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String stopPrice;
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner() {}
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner() {}
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner symbol(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner symbol(
             @jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
@@ -164,7 +164,27 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.symbol = symbol;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner orderId(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner origClientOrderId(
+            @jakarta.annotation.Nullable String origClientOrderId) {
+        this.origClientOrderId = origClientOrderId;
+        return this;
+    }
+
+    /**
+     * Get origClientOrderId
+     *
+     * @return origClientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getOrigClientOrderId() {
+        return origClientOrderId;
+    }
+
+    public void setOrigClientOrderId(@jakarta.annotation.Nullable String origClientOrderId) {
+        this.origClientOrderId = origClientOrderId;
+    }
+
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner orderId(
             @jakarta.annotation.Nullable Long orderId) {
         this.orderId = orderId;
         return this;
@@ -184,7 +204,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.orderId = orderId;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner orderListId(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner orderListId(
             @jakarta.annotation.Nullable Long orderListId) {
         this.orderListId = orderListId;
         return this;
@@ -204,7 +224,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.orderListId = orderListId;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner clientOrderId(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner clientOrderId(
             @jakarta.annotation.Nullable String clientOrderId) {
         this.clientOrderId = clientOrderId;
         return this;
@@ -224,7 +244,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.clientOrderId = clientOrderId;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner transactTime(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner transactTime(
             @jakarta.annotation.Nullable Long transactTime) {
         this.transactTime = transactTime;
         return this;
@@ -244,7 +264,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.transactTime = transactTime;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner price(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner price(
             @jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
@@ -264,7 +284,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.price = price;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner origQty(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner origQty(
             @jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
@@ -284,7 +304,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.origQty = origQty;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner executedQty(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner executedQty(
             @jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
@@ -304,7 +324,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.executedQty = executedQty;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner origQuoteOrderQty(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner origQuoteOrderQty(
             @jakarta.annotation.Nullable String origQuoteOrderQty) {
         this.origQuoteOrderQty = origQuoteOrderQty;
         return this;
@@ -324,7 +344,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.origQuoteOrderQty = origQuoteOrderQty;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner cummulativeQuoteQty(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner cummulativeQuoteQty(
             @jakarta.annotation.Nullable String cummulativeQuoteQty) {
         this.cummulativeQuoteQty = cummulativeQuoteQty;
         return this;
@@ -344,7 +364,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.cummulativeQuoteQty = cummulativeQuoteQty;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner status(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner status(
             @jakarta.annotation.Nullable String status) {
         this.status = status;
         return this;
@@ -364,7 +384,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.status = status;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner timeInForce(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner timeInForce(
             @jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
         return this;
@@ -384,7 +404,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.timeInForce = timeInForce;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner type(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner type(
             @jakarta.annotation.Nullable String type) {
         this.type = type;
         return this;
@@ -404,7 +424,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.type = type;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner side(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner side(
             @jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
@@ -424,27 +444,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.side = side;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner workingTime(
-            @jakarta.annotation.Nullable Long workingTime) {
-        this.workingTime = workingTime;
-        return this;
-    }
-
-    /**
-     * Get workingTime
-     *
-     * @return workingTime
-     */
-    @jakarta.annotation.Nullable
-    public Long getWorkingTime() {
-        return workingTime;
-    }
-
-    public void setWorkingTime(@jakarta.annotation.Nullable Long workingTime) {
-        this.workingTime = workingTime;
-    }
-
-    public OrderListPlaceOcoResponseResultOrderReportsInner selfTradePreventionMode(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner selfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
         return this;
@@ -465,7 +465,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderListPlaceOcoResponseResultOrderReportsInner stopPrice(
+    public OpenOrdersCancelAllResponseResultInnerOrderReportsInner stopPrice(
             @jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
         return this;
@@ -493,55 +493,63 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        OrderListPlaceOcoResponseResultOrderReportsInner
-                orderListPlaceOcoResponseResultOrderReportsInner =
-                        (OrderListPlaceOcoResponseResultOrderReportsInner) o;
-        return Objects.equals(this.symbol, orderListPlaceOcoResponseResultOrderReportsInner.symbol)
+        OpenOrdersCancelAllResponseResultInnerOrderReportsInner
+                openOrdersCancelAllResponseResultInnerOrderReportsInner =
+                        (OpenOrdersCancelAllResponseResultInnerOrderReportsInner) o;
+        return Objects.equals(
+                        this.symbol, openOrdersCancelAllResponseResultInnerOrderReportsInner.symbol)
                 && Objects.equals(
-                        this.orderId, orderListPlaceOcoResponseResultOrderReportsInner.orderId)
+                        this.origClientOrderId,
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.origClientOrderId)
+                && Objects.equals(
+                        this.orderId,
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.orderId)
                 && Objects.equals(
                         this.orderListId,
-                        orderListPlaceOcoResponseResultOrderReportsInner.orderListId)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.orderListId)
                 && Objects.equals(
                         this.clientOrderId,
-                        orderListPlaceOcoResponseResultOrderReportsInner.clientOrderId)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.clientOrderId)
                 && Objects.equals(
                         this.transactTime,
-                        orderListPlaceOcoResponseResultOrderReportsInner.transactTime)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.transactTime)
                 && Objects.equals(
-                        this.price, orderListPlaceOcoResponseResultOrderReportsInner.price)
+                        this.price, openOrdersCancelAllResponseResultInnerOrderReportsInner.price)
                 && Objects.equals(
-                        this.origQty, orderListPlaceOcoResponseResultOrderReportsInner.origQty)
+                        this.origQty,
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.origQty)
                 && Objects.equals(
                         this.executedQty,
-                        orderListPlaceOcoResponseResultOrderReportsInner.executedQty)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.executedQty)
                 && Objects.equals(
                         this.origQuoteOrderQty,
-                        orderListPlaceOcoResponseResultOrderReportsInner.origQuoteOrderQty)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.origQuoteOrderQty)
                 && Objects.equals(
                         this.cummulativeQuoteQty,
-                        orderListPlaceOcoResponseResultOrderReportsInner.cummulativeQuoteQty)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.cummulativeQuoteQty)
                 && Objects.equals(
-                        this.status, orderListPlaceOcoResponseResultOrderReportsInner.status)
+                        this.status, openOrdersCancelAllResponseResultInnerOrderReportsInner.status)
                 && Objects.equals(
                         this.timeInForce,
-                        orderListPlaceOcoResponseResultOrderReportsInner.timeInForce)
-                && Objects.equals(this.type, orderListPlaceOcoResponseResultOrderReportsInner.type)
-                && Objects.equals(this.side, orderListPlaceOcoResponseResultOrderReportsInner.side)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.timeInForce)
                 && Objects.equals(
-                        this.workingTime,
-                        orderListPlaceOcoResponseResultOrderReportsInner.workingTime)
+                        this.type, openOrdersCancelAllResponseResultInnerOrderReportsInner.type)
+                && Objects.equals(
+                        this.side, openOrdersCancelAllResponseResultInnerOrderReportsInner.side)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        orderListPlaceOcoResponseResultOrderReportsInner.selfTradePreventionMode)
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner
+                                .selfTradePreventionMode)
                 && Objects.equals(
-                        this.stopPrice, orderListPlaceOcoResponseResultOrderReportsInner.stopPrice);
+                        this.stopPrice,
+                        openOrdersCancelAllResponseResultInnerOrderReportsInner.stopPrice);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
                 symbol,
+                origClientOrderId,
                 orderId,
                 orderListId,
                 clientOrderId,
@@ -555,7 +563,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
                 timeInForce,
                 type,
                 side,
-                workingTime,
                 selfTradePreventionMode,
                 stopPrice);
     }
@@ -563,8 +570,9 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class OrderListPlaceOcoResponseResultOrderReportsInner {\n");
+        sb.append("class OpenOrdersCancelAllResponseResultInnerOrderReportsInner {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		origClientOrderId: ").append(toIndentedString(origClientOrderId)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		orderListId: ").append(toIndentedString(orderListId)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
@@ -580,7 +588,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		workingTime: ").append(toIndentedString(workingTime)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
@@ -597,6 +604,11 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
+        }
+        String origClientOrderIdValue = getOrigClientOrderId();
+        if (origClientOrderIdValue != null) {
+            String origClientOrderIdValueAsString = origClientOrderIdValue.toString();
+            valMap.put("origClientOrderId", origClientOrderIdValueAsString);
         }
         Long orderIdValue = getOrderId();
         if (orderIdValue != null) {
@@ -663,11 +675,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
             String sideValueAsString = sideValue.toString();
             valMap.put("side", sideValueAsString);
         }
-        Long workingTimeValue = getWorkingTime();
-        if (workingTimeValue != null) {
-            String workingTimeValueAsString = workingTimeValue.toString();
-            valMap.put("workingTime", workingTimeValueAsString);
-        }
         String selfTradePreventionModeValue = getSelfTradePreventionMode();
         if (selfTradePreventionModeValue != null) {
             String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
@@ -692,6 +699,10 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
+        }
+        Object origClientOrderIdValue = getOrigClientOrderId();
+        if (origClientOrderIdValue != null) {
+            valMap.put("origClientOrderId", origClientOrderIdValue);
         }
         Object orderIdValue = getOrderId();
         if (orderIdValue != null) {
@@ -745,10 +756,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         if (sideValue != null) {
             valMap.put("side", sideValue);
         }
-        Object workingTimeValue = getWorkingTime();
-        if (workingTimeValue != null) {
-            valMap.put("workingTime", workingTimeValue);
-        }
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         if (selfTradePreventionModeValue != null) {
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValue);
@@ -784,6 +791,7 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
+        openapiFields.add("origClientOrderId");
         openapiFields.add("orderId");
         openapiFields.add("orderListId");
         openapiFields.add("clientOrderId");
@@ -797,7 +805,6 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
-        openapiFields.add("workingTime");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("stopPrice");
 
@@ -810,18 +817,18 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     OrderListPlaceOcoResponseResultOrderReportsInner
+     *     OpenOrdersCancelAllResponseResultInnerOrderReportsInner
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!OrderListPlaceOcoResponseResultOrderReportsInner.openapiRequiredFields
+            if (!OpenOrdersCancelAllResponseResultInnerOrderReportsInner.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
                                 "The required field(s) %s in"
-                                        + " OrderListPlaceOcoResponseResultOrderReportsInner is not"
-                                        + " found in the empty JSON string",
-                                OrderListPlaceOcoResponseResultOrderReportsInner
+                                    + " OpenOrdersCancelAllResponseResultInnerOrderReportsInner is"
+                                    + " not found in the empty JSON string",
+                                OpenOrdersCancelAllResponseResultInnerOrderReportsInner
                                         .openapiRequiredFields
                                         .toString()));
             }
@@ -830,13 +837,13 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
         // check to see if the JSON string contains additional fields
         for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderListPlaceOcoResponseResultOrderReportsInner.openapiFields.contains(
+            if (!OpenOrdersCancelAllResponseResultInnerOrderReportsInner.openapiFields.contains(
                     entry.getKey())) {
                 throw new IllegalArgumentException(
                         String.format(
                                 "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderListPlaceOcoResponseResultOrderReportsInner`"
-                                        + " properties. JSON: %s",
+                                    + " `OpenOrdersCancelAllResponseResultInnerOrderReportsInner`"
+                                    + " properties. JSON: %s",
                                 entry.getKey(), jsonElement.toString()));
             }
         }
@@ -848,6 +855,15 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("origClientOrderId") != null
+                        && !jsonObj.get("origClientOrderId").isJsonNull())
+                && !jsonObj.get("origClientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origClientOrderId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("origClientOrderId").toString()));
         }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
@@ -954,31 +970,33 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!OrderListPlaceOcoResponseResultOrderReportsInner.class.isAssignableFrom(
+            if (!OpenOrdersCancelAllResponseResultInnerOrderReportsInner.class.isAssignableFrom(
                     type.getRawType())) {
                 return null; // this class only serializes
-                // 'OrderListPlaceOcoResponseResultOrderReportsInner' and its subtypes
+                // 'OpenOrdersCancelAllResponseResultInnerOrderReportsInner' and its
+                // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<OrderListPlaceOcoResponseResultOrderReportsInner> thisAdapter =
+            final TypeAdapter<OpenOrdersCancelAllResponseResultInnerOrderReportsInner> thisAdapter =
                     gson.getDelegateAdapter(
                             this,
-                            TypeToken.get(OrderListPlaceOcoResponseResultOrderReportsInner.class));
+                            TypeToken.get(
+                                    OpenOrdersCancelAllResponseResultInnerOrderReportsInner.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<OrderListPlaceOcoResponseResultOrderReportsInner>() {
+                    new TypeAdapter<OpenOrdersCancelAllResponseResultInnerOrderReportsInner>() {
                         @Override
                         public void write(
                                 JsonWriter out,
-                                OrderListPlaceOcoResponseResultOrderReportsInner value)
+                                OpenOrdersCancelAllResponseResultInnerOrderReportsInner value)
                                 throws IOException {
                             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public OrderListPlaceOcoResponseResultOrderReportsInner read(JsonReader in)
-                                throws IOException {
+                        public OpenOrdersCancelAllResponseResultInnerOrderReportsInner read(
+                                JsonReader in) throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
                             return thisAdapter.fromJsonTree(jsonElement);
@@ -988,21 +1006,24 @@ public class OrderListPlaceOcoResponseResultOrderReportsInner extends BaseDTO {
     }
 
     /**
-     * Create an instance of OrderListPlaceOcoResponseResultOrderReportsInner given an JSON string
+     * Create an instance of OpenOrdersCancelAllResponseResultInnerOrderReportsInner given an JSON
+     * string
      *
      * @param jsonString JSON string
-     * @return An instance of OrderListPlaceOcoResponseResultOrderReportsInner
+     * @return An instance of OpenOrdersCancelAllResponseResultInnerOrderReportsInner
      * @throws IOException if the JSON string is invalid with respect to
-     *     OrderListPlaceOcoResponseResultOrderReportsInner
+     *     OpenOrdersCancelAllResponseResultInnerOrderReportsInner
      */
-    public static OrderListPlaceOcoResponseResultOrderReportsInner fromJson(String jsonString)
-            throws IOException {
+    public static OpenOrdersCancelAllResponseResultInnerOrderReportsInner fromJson(
+            String jsonString) throws IOException {
         return JSON.getGson()
-                .fromJson(jsonString, OrderListPlaceOcoResponseResultOrderReportsInner.class);
+                .fromJson(
+                        jsonString, OpenOrdersCancelAllResponseResultInnerOrderReportsInner.class);
     }
 
     /**
-     * Convert an instance of OrderListPlaceOcoResponseResultOrderReportsInner to an JSON string
+     * Convert an instance of OpenOrdersCancelAllResponseResultInnerOrderReportsInner to an JSON
+     * string
      *
      * @return JSON string
      */

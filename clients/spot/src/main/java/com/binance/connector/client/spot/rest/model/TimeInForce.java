@@ -28,7 +28,9 @@ public enum TimeInForce {
 
     IOC("IOC"),
 
-    FOK("FOK");
+    FOK("FOK"),
+
+    NON_REPRESENTABLE("NON_REPRESENTABLE");
 
     private String value;
 

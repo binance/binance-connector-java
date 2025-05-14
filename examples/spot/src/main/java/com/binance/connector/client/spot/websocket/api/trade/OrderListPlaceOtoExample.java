@@ -52,8 +52,9 @@ public class OrderListPlaceOtoExample {
      * &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is
      * only placed on the order book when the working order gets **fully filled**. * If either the
      * working order or the pending order is cancelled individually, the other order in the order
-     * list will also be canceled or expired. * OTOs add **2 orders** to the unfilled order count,
+     * list will also be canceled or expired. * OTOs add **2 orders** to the
      * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      */
     public void orderListPlaceOtoExampleAsync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();
@@ -87,8 +88,9 @@ public class OrderListPlaceOtoExample {
      * &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is
      * only placed on the order book when the working order gets **fully filled**. * If either the
      * working order or the pending order is cancelled individually, the other order in the order
-     * list will also be canceled or expired. * OTOs add **2 orders** to the unfilled order count,
+     * list will also be canceled or expired. * OTOs add **2 orders** to the
      * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 2
      */
     public void orderListPlaceOtoExampleSync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();

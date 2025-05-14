@@ -45,8 +45,8 @@ public class OrderCancelReplaceExample {
      *
      * <p>Cancels an existing order and places a new order on the same symbol. Filters and Order
      * Count are evaluated before the processing of the cancellation and order placement occurs. A
-     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60; ), will
-     * still increase the order count by 1. Weight: 1
+     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will
+     * still increase the unfilled order count by 1. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

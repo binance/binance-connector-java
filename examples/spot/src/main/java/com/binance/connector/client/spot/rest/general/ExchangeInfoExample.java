@@ -51,7 +51,7 @@ public class ExchangeInfoExample {
         Symbols symbols = null;
         Permissions permissions = null;
         Boolean showPermissionSets = true;
-        SymbolStatus symbolStatus = SymbolStatus.PRE_TRADING;
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<ExchangeInfoResponse> response =
                 getApi().exchangeInfo(
                                 symbol, symbols, permissions, showPermissionSets, symbolStatus);

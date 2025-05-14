@@ -245,7 +245,6 @@ public class UserDataStreamApi {
                         .params(new BaseRequestDTO())
                         .responseType(UserDataStreamSubscribeResponse.class)
                         .signed(false)
-                        .apiKeyOnly(true)
                         .build();
 
         try {
@@ -289,7 +288,6 @@ public class UserDataStreamApi {
                         .params(new BaseRequestDTO())
                         .responseType(UserDataStreamUnsubscribeResponse.class)
                         .signed(false)
-                        .apiKeyOnly(true)
                         .build();
 
         try {

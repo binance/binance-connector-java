@@ -169,14 +169,14 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .ExchangeInfoResponseExchangeFiltersInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseRateLimitsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseSymbolsInner
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model
-                        .ExchangeInfoResponseSymbolsInnerFiltersInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.GetAccountResponse
                         .CustomTypeAdapterFactory());

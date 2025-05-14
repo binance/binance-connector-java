@@ -21,9 +21,9 @@
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
-|**stopPrice** | **String** |  |  [optional] |
 |**workingTime** | **Long** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
+|**stopPrice** | **String** |  |  [optional] |
 
 
 

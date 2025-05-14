@@ -24,19 +24,15 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets symbolStatus */
 @JsonAdapter(SymbolStatus.Adapter.class)
 public enum SymbolStatus {
-    PRE_TRADING("PRE_TRADING"),
-
     TRADING("TRADING"),
-
-    POST_TRADING("POST_TRADING"),
 
     END_OF_DAY("END_OF_DAY"),
 
     HALT("HALT"),
 
-    AUCTION_MATCH("AUCTION_MATCH"),
+    BREAK("BREAK"),
 
-    BREAK("BREAK");
+    NON_REPRESENTABLE("NON_REPRESENTABLE");
 
     private String value;
 

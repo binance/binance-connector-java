@@ -51,8 +51,8 @@ public class OrderListPlaceOtocoExample {
      * behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). *
      * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The
      * pending orders are only placed on the order book when the working order gets **fully
-     * filled**. * OTOCOs add **3 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * filled**. * OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 3
      */
     public void orderListPlaceOtocoExampleAsync() {
         OrderListPlaceOtocoRequest orderListPlaceOtocoRequest = new OrderListPlaceOtocoRequest();
@@ -85,8 +85,8 @@ public class OrderListPlaceOtocoExample {
      * behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). *
      * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The
      * pending orders are only placed on the order book when the working order gets **fully
-     * filled**. * OTOCOs add **3 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * filled**. * OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 3
      */
     public void orderListPlaceOtocoExampleSync() {
         OrderListPlaceOtocoRequest orderListPlaceOtocoRequest = new OrderListPlaceOtocoRequest();

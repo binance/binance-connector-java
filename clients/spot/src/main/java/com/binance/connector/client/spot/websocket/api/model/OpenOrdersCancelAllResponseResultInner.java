@@ -15,6 +15,7 @@ package com.binance.connector.client.spot.websocket.api.model;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -23,10 +24,13 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -39,11 +43,59 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
+    public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_LIST_ID)
+    @jakarta.annotation.Nullable
+    private Long orderListId;
+
+    public static final String SERIALIZED_NAME_CONTINGENCY_TYPE = "contingencyType";
+
+    @SerializedName(SERIALIZED_NAME_CONTINGENCY_TYPE)
+    @jakarta.annotation.Nullable
+    private String contingencyType;
+
+    public static final String SERIALIZED_NAME_LIST_STATUS_TYPE = "listStatusType";
+
+    @SerializedName(SERIALIZED_NAME_LIST_STATUS_TYPE)
+    @jakarta.annotation.Nullable
+    private String listStatusType;
+
+    public static final String SERIALIZED_NAME_LIST_ORDER_STATUS = "listOrderStatus";
+
+    @SerializedName(SERIALIZED_NAME_LIST_ORDER_STATUS)
+    @jakarta.annotation.Nullable
+    private String listOrderStatus;
+
+    public static final String SERIALIZED_NAME_LIST_CLIENT_ORDER_ID = "listClientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_LIST_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String listClientOrderId;
+
+    public static final String SERIALIZED_NAME_TRANSACTION_TIME = "transactionTime";
+
+    @SerializedName(SERIALIZED_NAME_TRANSACTION_TIME)
+    @jakarta.annotation.Nullable
+    private Long transactionTime;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_ORDERS = "orders";
+
+    @SerializedName(SERIALIZED_NAME_ORDERS)
+    @jakarta.annotation.Nullable
+    private List<@Valid OpenOrdersCancelAllResponseResultInnerOrdersInner> orders;
+
+    public static final String SERIALIZED_NAME_ORDER_REPORTS = "orderReports";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_REPORTS)
+    @jakarta.annotation.Nullable
+    private List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> orderReports;
 
     public static final String SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID = "origClientOrderId";
 
@@ -56,12 +108,6 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
     private Long orderId;
-
-    public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
-
-    @SerializedName(SERIALIZED_NAME_ORDER_LIST_ID)
-    @jakarta.annotation.Nullable
-    private Long orderListId;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -174,6 +220,126 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
 
     public OpenOrdersCancelAllResponseResultInner() {}
 
+    public OpenOrdersCancelAllResponseResultInner orderListId(
+            @jakarta.annotation.Nullable Long orderListId) {
+        this.orderListId = orderListId;
+        return this;
+    }
+
+    /**
+     * Get orderListId
+     *
+     * @return orderListId
+     */
+    @jakarta.annotation.Nullable
+    public Long getOrderListId() {
+        return orderListId;
+    }
+
+    public void setOrderListId(@jakarta.annotation.Nullable Long orderListId) {
+        this.orderListId = orderListId;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner contingencyType(
+            @jakarta.annotation.Nullable String contingencyType) {
+        this.contingencyType = contingencyType;
+        return this;
+    }
+
+    /**
+     * Get contingencyType
+     *
+     * @return contingencyType
+     */
+    @jakarta.annotation.Nullable
+    public String getContingencyType() {
+        return contingencyType;
+    }
+
+    public void setContingencyType(@jakarta.annotation.Nullable String contingencyType) {
+        this.contingencyType = contingencyType;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner listStatusType(
+            @jakarta.annotation.Nullable String listStatusType) {
+        this.listStatusType = listStatusType;
+        return this;
+    }
+
+    /**
+     * Get listStatusType
+     *
+     * @return listStatusType
+     */
+    @jakarta.annotation.Nullable
+    public String getListStatusType() {
+        return listStatusType;
+    }
+
+    public void setListStatusType(@jakarta.annotation.Nullable String listStatusType) {
+        this.listStatusType = listStatusType;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner listOrderStatus(
+            @jakarta.annotation.Nullable String listOrderStatus) {
+        this.listOrderStatus = listOrderStatus;
+        return this;
+    }
+
+    /**
+     * Get listOrderStatus
+     *
+     * @return listOrderStatus
+     */
+    @jakarta.annotation.Nullable
+    public String getListOrderStatus() {
+        return listOrderStatus;
+    }
+
+    public void setListOrderStatus(@jakarta.annotation.Nullable String listOrderStatus) {
+        this.listOrderStatus = listOrderStatus;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner listClientOrderId(
+            @jakarta.annotation.Nullable String listClientOrderId) {
+        this.listClientOrderId = listClientOrderId;
+        return this;
+    }
+
+    /**
+     * Get listClientOrderId
+     *
+     * @return listClientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getListClientOrderId() {
+        return listClientOrderId;
+    }
+
+    public void setListClientOrderId(@jakarta.annotation.Nullable String listClientOrderId) {
+        this.listClientOrderId = listClientOrderId;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner transactionTime(
+            @jakarta.annotation.Nullable Long transactionTime) {
+        this.transactionTime = transactionTime;
+        return this;
+    }
+
+    /**
+     * Get transactionTime
+     *
+     * @return transactionTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getTransactionTime() {
+        return transactionTime;
+    }
+
+    public void setTransactionTime(@jakarta.annotation.Nullable Long transactionTime) {
+        this.transactionTime = transactionTime;
+    }
+
     public OpenOrdersCancelAllResponseResultInner symbol(
             @jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
@@ -192,6 +358,74 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
 
     public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner orders(
+            @jakarta.annotation.Nullable
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrdersInner> orders) {
+        this.orders = orders;
+        return this;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner addOrdersItem(
+            OpenOrdersCancelAllResponseResultInnerOrdersInner ordersItem) {
+        if (this.orders == null) {
+            this.orders = new ArrayList<>();
+        }
+        this.orders.add(ordersItem);
+        return this;
+    }
+
+    /**
+     * Get orders
+     *
+     * @return orders
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid OpenOrdersCancelAllResponseResultInnerOrdersInner> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(
+            @jakarta.annotation.Nullable
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrdersInner> orders) {
+        this.orders = orders;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner orderReports(
+            @jakarta.annotation.Nullable
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner>
+                            orderReports) {
+        this.orderReports = orderReports;
+        return this;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner addOrderReportsItem(
+            OpenOrdersCancelAllResponseResultInnerOrderReportsInner orderReportsItem) {
+        if (this.orderReports == null) {
+            this.orderReports = new ArrayList<>();
+        }
+        this.orderReports.add(orderReportsItem);
+        return this;
+    }
+
+    /**
+     * Get orderReports
+     *
+     * @return orderReports
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> getOrderReports() {
+        return orderReports;
+    }
+
+    public void setOrderReports(
+            @jakarta.annotation.Nullable
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner>
+                            orderReports) {
+        this.orderReports = orderReports;
     }
 
     public OpenOrdersCancelAllResponseResultInner origClientOrderId(
@@ -232,26 +466,6 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
 
     public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
         this.orderId = orderId;
-    }
-
-    public OpenOrdersCancelAllResponseResultInner orderListId(
-            @jakarta.annotation.Nullable Long orderListId) {
-        this.orderListId = orderListId;
-        return this;
-    }
-
-    /**
-     * Get orderListId
-     *
-     * @return orderListId
-     */
-    @jakarta.annotation.Nullable
-    public Long getOrderListId() {
-        return orderListId;
-    }
-
-    public void setOrderListId(@jakarta.annotation.Nullable Long orderListId) {
-        this.orderListId = orderListId;
     }
 
     public OpenOrdersCancelAllResponseResultInner clientOrderId(
@@ -622,13 +836,29 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         }
         OpenOrdersCancelAllResponseResultInner openOrdersCancelAllResponseResultInner =
                 (OpenOrdersCancelAllResponseResultInner) o;
-        return Objects.equals(this.symbol, openOrdersCancelAllResponseResultInner.symbol)
+        return Objects.equals(this.orderListId, openOrdersCancelAllResponseResultInner.orderListId)
+                && Objects.equals(
+                        this.contingencyType,
+                        openOrdersCancelAllResponseResultInner.contingencyType)
+                && Objects.equals(
+                        this.listStatusType, openOrdersCancelAllResponseResultInner.listStatusType)
+                && Objects.equals(
+                        this.listOrderStatus,
+                        openOrdersCancelAllResponseResultInner.listOrderStatus)
+                && Objects.equals(
+                        this.listClientOrderId,
+                        openOrdersCancelAllResponseResultInner.listClientOrderId)
+                && Objects.equals(
+                        this.transactionTime,
+                        openOrdersCancelAllResponseResultInner.transactionTime)
+                && Objects.equals(this.symbol, openOrdersCancelAllResponseResultInner.symbol)
+                && Objects.equals(this.orders, openOrdersCancelAllResponseResultInner.orders)
+                && Objects.equals(
+                        this.orderReports, openOrdersCancelAllResponseResultInner.orderReports)
                 && Objects.equals(
                         this.origClientOrderId,
                         openOrdersCancelAllResponseResultInner.origClientOrderId)
                 && Objects.equals(this.orderId, openOrdersCancelAllResponseResultInner.orderId)
-                && Objects.equals(
-                        this.orderListId, openOrdersCancelAllResponseResultInner.orderListId)
                 && Objects.equals(
                         this.clientOrderId, openOrdersCancelAllResponseResultInner.clientOrderId)
                 && Objects.equals(
@@ -667,10 +897,17 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     @Override
     public int hashCode() {
         return Objects.hash(
+                orderListId,
+                contingencyType,
+                listStatusType,
+                listOrderStatus,
+                listClientOrderId,
+                transactionTime,
                 symbol,
+                orders,
+                orderReports,
                 origClientOrderId,
                 orderId,
-                orderListId,
                 clientOrderId,
                 transactTime,
                 price,
@@ -695,10 +932,17 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OpenOrdersCancelAllResponseResultInner {\n");
+        sb.append("		orderListId: ").append(toIndentedString(orderListId)).append("\n");
+        sb.append("		contingencyType: ").append(toIndentedString(contingencyType)).append("\n");
+        sb.append("		listStatusType: ").append(toIndentedString(listStatusType)).append("\n");
+        sb.append("		listOrderStatus: ").append(toIndentedString(listOrderStatus)).append("\n");
+        sb.append("		listClientOrderId: ").append(toIndentedString(listClientOrderId)).append("\n");
+        sb.append("		transactionTime: ").append(toIndentedString(transactionTime)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		orders: ").append(toIndentedString(orders)).append("\n");
+        sb.append("		orderReports: ").append(toIndentedString(orderReports)).append("\n");
         sb.append("		origClientOrderId: ").append(toIndentedString(origClientOrderId)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
-        sb.append("		orderListId: ").append(toIndentedString(orderListId)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		transactTime: ").append(toIndentedString(transactTime)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
@@ -729,10 +973,51 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        Long orderListIdValue = getOrderListId();
+        if (orderListIdValue != null) {
+            String orderListIdValueAsString = orderListIdValue.toString();
+            valMap.put("orderListId", orderListIdValueAsString);
+        }
+        String contingencyTypeValue = getContingencyType();
+        if (contingencyTypeValue != null) {
+            String contingencyTypeValueAsString = contingencyTypeValue.toString();
+            valMap.put("contingencyType", contingencyTypeValueAsString);
+        }
+        String listStatusTypeValue = getListStatusType();
+        if (listStatusTypeValue != null) {
+            String listStatusTypeValueAsString = listStatusTypeValue.toString();
+            valMap.put("listStatusType", listStatusTypeValueAsString);
+        }
+        String listOrderStatusValue = getListOrderStatus();
+        if (listOrderStatusValue != null) {
+            String listOrderStatusValueAsString = listOrderStatusValue.toString();
+            valMap.put("listOrderStatus", listOrderStatusValueAsString);
+        }
+        String listClientOrderIdValue = getListClientOrderId();
+        if (listClientOrderIdValue != null) {
+            String listClientOrderIdValueAsString = listClientOrderIdValue.toString();
+            valMap.put("listClientOrderId", listClientOrderIdValueAsString);
+        }
+        Long transactionTimeValue = getTransactionTime();
+        if (transactionTimeValue != null) {
+            String transactionTimeValueAsString = transactionTimeValue.toString();
+            valMap.put("transactionTime", transactionTimeValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
+        }
+        List<@Valid OpenOrdersCancelAllResponseResultInnerOrdersInner> ordersValue = getOrders();
+        if (ordersValue != null) {
+            String ordersValueAsString = JSON.getGson().toJson(ordersValue);
+            valMap.put("orders", ordersValueAsString);
+        }
+        List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> orderReportsValue =
+                getOrderReports();
+        if (orderReportsValue != null) {
+            String orderReportsValueAsString = JSON.getGson().toJson(orderReportsValue);
+            valMap.put("orderReports", orderReportsValueAsString);
         }
         String origClientOrderIdValue = getOrigClientOrderId();
         if (origClientOrderIdValue != null) {
@@ -743,11 +1028,6 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         if (orderIdValue != null) {
             String orderIdValueAsString = orderIdValue.toString();
             valMap.put("orderId", orderIdValueAsString);
-        }
-        Long orderListIdValue = getOrderListId();
-        if (orderListIdValue != null) {
-            String orderListIdValueAsString = orderListIdValue.toString();
-            valMap.put("orderListId", orderListIdValueAsString);
         }
         String clientOrderIdValue = getClientOrderId();
         if (clientOrderIdValue != null) {
@@ -850,9 +1130,41 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object orderListIdValue = getOrderListId();
+        if (orderListIdValue != null) {
+            valMap.put("orderListId", orderListIdValue);
+        }
+        Object contingencyTypeValue = getContingencyType();
+        if (contingencyTypeValue != null) {
+            valMap.put("contingencyType", contingencyTypeValue);
+        }
+        Object listStatusTypeValue = getListStatusType();
+        if (listStatusTypeValue != null) {
+            valMap.put("listStatusType", listStatusTypeValue);
+        }
+        Object listOrderStatusValue = getListOrderStatus();
+        if (listOrderStatusValue != null) {
+            valMap.put("listOrderStatus", listOrderStatusValue);
+        }
+        Object listClientOrderIdValue = getListClientOrderId();
+        if (listClientOrderIdValue != null) {
+            valMap.put("listClientOrderId", listClientOrderIdValue);
+        }
+        Object transactionTimeValue = getTransactionTime();
+        if (transactionTimeValue != null) {
+            valMap.put("transactionTime", transactionTimeValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
+        }
+        Object ordersValue = getOrders();
+        if (ordersValue != null) {
+            valMap.put("orders", ordersValue);
+        }
+        Object orderReportsValue = getOrderReports();
+        if (orderReportsValue != null) {
+            valMap.put("orderReports", orderReportsValue);
         }
         Object origClientOrderIdValue = getOrigClientOrderId();
         if (origClientOrderIdValue != null) {
@@ -861,10 +1173,6 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         Object orderIdValue = getOrderId();
         if (orderIdValue != null) {
             valMap.put("orderId", orderIdValue);
-        }
-        Object orderListIdValue = getOrderListId();
-        if (orderListIdValue != null) {
-            valMap.put("orderListId", orderListIdValue);
         }
         Object clientOrderIdValue = getClientOrderId();
         if (clientOrderIdValue != null) {
@@ -964,10 +1272,17 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("orderListId");
+        openapiFields.add("contingencyType");
+        openapiFields.add("listStatusType");
+        openapiFields.add("listOrderStatus");
+        openapiFields.add("listClientOrderId");
+        openapiFields.add("transactionTime");
         openapiFields.add("symbol");
+        openapiFields.add("orders");
+        openapiFields.add("orderReports");
         openapiFields.add("origClientOrderId");
         openapiFields.add("orderId");
-        openapiFields.add("orderListId");
         openapiFields.add("clientOrderId");
         openapiFields.add("transactTime");
         openapiFields.add("price");
@@ -1024,6 +1339,39 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("contingencyType") != null && !jsonObj.get("contingencyType").isJsonNull())
+                && !jsonObj.get("contingencyType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `contingencyType` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("contingencyType").toString()));
+        }
+        if ((jsonObj.get("listStatusType") != null && !jsonObj.get("listStatusType").isJsonNull())
+                && !jsonObj.get("listStatusType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `listStatusType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("listStatusType").toString()));
+        }
+        if ((jsonObj.get("listOrderStatus") != null && !jsonObj.get("listOrderStatus").isJsonNull())
+                && !jsonObj.get("listOrderStatus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `listOrderStatus` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("listOrderStatus").toString()));
+        }
+        if ((jsonObj.get("listClientOrderId") != null
+                        && !jsonObj.get("listClientOrderId").isJsonNull())
+                && !jsonObj.get("listClientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `listClientOrderId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("listClientOrderId").toString()));
+        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1031,6 +1379,46 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if (jsonObj.get("orders") != null && !jsonObj.get("orders").isJsonNull()) {
+            JsonArray jsonArrayorders = jsonObj.getAsJsonArray("orders");
+            if (jsonArrayorders != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("orders").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `orders` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("orders").toString()));
+                }
+
+                // validate the optional field `orders` (array)
+                for (int i = 0; i < jsonArrayorders.size(); i++) {
+                    OpenOrdersCancelAllResponseResultInnerOrdersInner.validateJsonElement(
+                            jsonArrayorders.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("orderReports") != null && !jsonObj.get("orderReports").isJsonNull()) {
+            JsonArray jsonArrayorderReports = jsonObj.getAsJsonArray("orderReports");
+            if (jsonArrayorderReports != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("orderReports").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `orderReports` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("orderReports").toString()));
+                }
+
+                // validate the optional field `orderReports` (array)
+                for (int i = 0; i < jsonArrayorderReports.size(); i++) {
+                    OpenOrdersCancelAllResponseResultInnerOrderReportsInner.validateJsonElement(
+                            jsonArrayorderReports.get(i));
+                }
+                ;
+            }
         }
         if ((jsonObj.get("origClientOrderId") != null
                         && !jsonObj.get("origClientOrderId").isJsonNull())

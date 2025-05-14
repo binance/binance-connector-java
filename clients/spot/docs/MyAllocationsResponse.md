@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**List&lt;MyAllocationsResponseResultInner&gt;**](MyAllocationsResponseResultInner.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;ExchangeInfoResponseRateLimitsInner&gt;**](ExchangeInfoResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

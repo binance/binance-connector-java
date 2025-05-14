@@ -123,12 +123,6 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
-
-    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
-    @jakarta.annotation.Nullable
-    private String stopPrice;
-
     public static final String SERIALIZED_NAME_WORKING_TIME = "workingTime";
 
     @SerializedName(SERIALIZED_NAME_WORKING_TIME)
@@ -141,6 +135,12 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private String stopPrice;
 
     public OrderListPlaceResponseResultOrderReportsInner() {}
 
@@ -424,26 +424,6 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         this.side = side;
     }
 
-    public OrderListPlaceResponseResultOrderReportsInner stopPrice(
-            @jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
     public OrderListPlaceResponseResultOrderReportsInner workingTime(
             @jakarta.annotation.Nullable Long workingTime) {
         this.workingTime = workingTime;
@@ -485,6 +465,26 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
+    public OrderListPlaceResponseResultOrderReportsInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -524,12 +524,12 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
                 && Objects.equals(this.type, orderListPlaceResponseResultOrderReportsInner.type)
                 && Objects.equals(this.side, orderListPlaceResponseResultOrderReportsInner.side)
                 && Objects.equals(
-                        this.stopPrice, orderListPlaceResponseResultOrderReportsInner.stopPrice)
-                && Objects.equals(
                         this.workingTime, orderListPlaceResponseResultOrderReportsInner.workingTime)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        orderListPlaceResponseResultOrderReportsInner.selfTradePreventionMode);
+                        orderListPlaceResponseResultOrderReportsInner.selfTradePreventionMode)
+                && Objects.equals(
+                        this.stopPrice, orderListPlaceResponseResultOrderReportsInner.stopPrice);
     }
 
     @Override
@@ -549,9 +549,9 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
                 timeInForce,
                 type,
                 side,
-                stopPrice,
                 workingTime,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                stopPrice);
     }
 
     @Override
@@ -574,11 +574,11 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		workingTime: ").append(toIndentedString(workingTime)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -657,11 +657,6 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
             String sideValueAsString = sideValue.toString();
             valMap.put("side", sideValueAsString);
         }
-        String stopPriceValue = getStopPrice();
-        if (stopPriceValue != null) {
-            String stopPriceValueAsString = stopPriceValue.toString();
-            valMap.put("stopPrice", stopPriceValueAsString);
-        }
         Long workingTimeValue = getWorkingTime();
         if (workingTimeValue != null) {
             String workingTimeValueAsString = workingTimeValue.toString();
@@ -671,6 +666,11 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         if (selfTradePreventionModeValue != null) {
             String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValueAsString);
+        }
+        String stopPriceValue = getStopPrice();
+        if (stopPriceValue != null) {
+            String stopPriceValueAsString = stopPriceValue.toString();
+            valMap.put("stopPrice", stopPriceValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -739,10 +739,6 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         if (sideValue != null) {
             valMap.put("side", sideValue);
         }
-        Object stopPriceValue = getStopPrice();
-        if (stopPriceValue != null) {
-            valMap.put("stopPrice", stopPriceValue);
-        }
         Object workingTimeValue = getWorkingTime();
         if (workingTimeValue != null) {
             valMap.put("workingTime", workingTimeValue);
@@ -750,6 +746,10 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         if (selfTradePreventionModeValue != null) {
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValue);
+        }
+        Object stopPriceValue = getStopPrice();
+        if (stopPriceValue != null) {
+            valMap.put("stopPrice", stopPriceValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -791,9 +791,9 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
-        openapiFields.add("stopPrice");
         openapiFields.add("workingTime");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("stopPrice");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -924,14 +924,6 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
-        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
-                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `stopPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("stopPrice").toString()));
-        }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())
                 && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
@@ -940,6 +932,14 @@ public class OrderListPlaceResponseResultOrderReportsInner extends BaseDTO {
                             "Expected the field `selfTradePreventionMode` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
+                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `stopPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("stopPrice").toString()));
         }
     }
 
