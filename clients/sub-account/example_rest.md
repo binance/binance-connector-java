@@ -74,7 +74,7 @@
 
 [POST /sapi/v1/sub-account/transfer/subToSub](https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master) - transferToSubAccountOfSameMaster - [TransferToSubAccountOfSameMasterExample.java:49](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/TransferToSubAccountOfSameMasterExample.java#L49)
 
-[POST /sapi/v1/sub-account/universalTransfer](https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer) - universalTransfer - [UniversalTransferExample.java:59](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/UniversalTransferExample.java#L59)
+[POST /sapi/v1/sub-account/universalTransfer](https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer) - universalTransfer - [UniversalTransferExample.java:60](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/UniversalTransferExample.java#L60)
 
 ## ManagedSubAccount
 

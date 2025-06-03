@@ -89,13 +89,17 @@ public class ApiClient {
 
     private static final int DIFF_TILL_POSITION_INDEX = 1;
 
-    private static final Pattern PATTERN_USED_WEIGHT =
-            Pattern.compile("x-mbx-used-weight-([0-9]+)([shmd])");
-    private static final Pattern PATTERN_ORDER_COUNT =
-            Pattern.compile("x-mbx-order-count-([0-9]+)([smhd])");
+    private static final Map<RateLimitType, Pattern> RATE_LIMIT_PATTERN_MAP =
+            Map.of(
+                    RateLimitType.REQUEST_WEIGHT,
+                            Pattern.compile("x-mbx-used-weight-([0-9]+)([shmd])"),
+                    RateLimitType.ORDERS, Pattern.compile("x-mbx-order-count-([0-9]+)([smhd])"));
 
     private static final String HEADER_TIMEUNIT = "X-MBX-TIME-UNIT";
     private static final String HEADER_API_KEY = "X-MBX-APIKEY";
+
+    private static final String BINANCE_SIGNATURE = "binanceSignature";
+    private static final String BINANCE_API_KEY_ONLY = "binanceApiKeyOnly";
 
     private String basePath = "https://api.binance.com";
     protected List<ServerConfiguration> servers =
@@ -202,14 +206,14 @@ public class ApiClient {
             Authentication authentication =
                     binanceAuthenticationFactory.getAuthentication(signatureConfiguration);
             if (authentication != null) {
-                authentications.put("binanceSignature", authentication);
+                authentications.put(BINANCE_SIGNATURE, authentication);
             }
 
             Authentication binanceApiKeyOnly =
                     (queryParams, headerParams, cookieParams, payload, method, uri) -> {
                         headerParams.put(HEADER_API_KEY, signatureConfiguration.getApiKey());
                     };
-            authentications.put("binanceApiKeyOnly", binanceApiKeyOnly);
+            authentications.put(BINANCE_API_KEY_ONLY, binanceApiKeyOnly);
         }
     }
 
@@ -1531,6 +1535,11 @@ public class ApiClient {
         for (String authName : authNames) {
             Authentication auth = authentications.get(authName);
             if (auth == null) {
+                if (BINANCE_SIGNATURE.equals(authName)) {
+                    throw new RuntimeException(
+                            "Request is signed, please add signatureConfiguration to"
+                                    + " clientConfiguration");
+                }
                 throw new RuntimeException("Authentication undefined: " + authName);
             }
             try {
@@ -1778,20 +1787,23 @@ public class ApiClient {
         HashMap<RateLimitType, RateLimit> rateLimitMap = new HashMap<>();
         Integer retryAfter = null;
         if (Arrays.asList(HTTP_TEA_POT, HTTP_TOO_MANY_REQS).contains(responseCode)) {
-            retryAfter = Integer.valueOf(headers.get("retry-after"));
+            String retryAfterHeaderVal = headers.get("retry-after");
+            if (retryAfterHeaderVal != null) {
+                retryAfter = Integer.valueOf(retryAfterHeaderVal);
+            }
         }
         for (String name : headers.names()) {
             if (name.startsWith("x-mbx-used-weight-")) {
                 RateLimit usedWeightRateLimit =
                         getRateLimitFromHeader(
-                                name, headers.get(name), PATTERN_USED_WEIGHT, retryAfter);
+                                name, headers.get(name), RateLimitType.REQUEST_WEIGHT, retryAfter);
                 rateLimitMap.put(RateLimitType.REQUEST_WEIGHT, usedWeightRateLimit);
             }
 
             if (name.startsWith("x-mbx-order-count-")) {
                 RateLimit orderCountRateLimit =
                         getRateLimitFromHeader(
-                                name, headers.get(name), PATTERN_ORDER_COUNT, retryAfter);
+                                name, headers.get(name), RateLimitType.ORDERS, retryAfter);
                 rateLimitMap.put(RateLimitType.ORDERS, orderCountRateLimit);
             }
         }
@@ -1799,11 +1811,11 @@ public class ApiClient {
     }
 
     private RateLimit getRateLimitFromHeader(
-            String headerName, String value, Pattern pattern, Integer retryAfter) {
+            String headerName, String value, RateLimitType rateLimitType, Integer retryAfter) {
         RateLimit rateLimit = new RateLimit();
-        rateLimit.setRateLimitType(RateLimitType.REQUEST_WEIGHT);
+        rateLimit.setRateLimitType(rateLimitType);
 
-        Matcher usedWeightMatcher = pattern.matcher(headerName);
+        Matcher usedWeightMatcher = RATE_LIMIT_PATTERN_MAP.get(rateLimitType).matcher(headerName);
         if (usedWeightMatcher.find()) {
             String intervalCount = usedWeightMatcher.group(1);
             String intervalType = usedWeightMatcher.group(2);

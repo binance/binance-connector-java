@@ -101,7 +101,7 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("a24c80386b012637d68f2551fc77091cc04ed85361110636f1c4234d58735200", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/dci/product/list", actualRequest.url().encodedPath());
     }
 }

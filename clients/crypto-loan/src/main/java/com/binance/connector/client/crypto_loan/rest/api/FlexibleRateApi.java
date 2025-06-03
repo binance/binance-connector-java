@@ -25,8 +25,6 @@ import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtv
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvResponse;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowResponse;
-import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanCollateralRepaymentRequest;
-import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanCollateralRepaymentResponse;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanAssetsDataResponse;
@@ -59,7 +57,7 @@ public class FlexibleRateApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-crypto-loan/1.1.0 (Java/%s; %s; %s)",
+                    "binance-crypto-loan/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -569,177 +567,6 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Build call for flexibleLoanCollateralRepayment
-     *
-     * @param flexibleLoanCollateralRepaymentRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Flexible Loan Collateral Repayment </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Collateral-Repay">Flexible
-     *     Loan Collateral Repayment (TRADE) Documentation</a>
-     */
-    private okhttp3.Call flexibleLoanCollateralRepaymentCall(
-            FlexibleLoanCollateralRepaymentRequest flexibleLoanCollateralRepaymentRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v2/loan/flexible/repay/collateral";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (flexibleLoanCollateralRepaymentRequest.getLoanCoin() != null) {
-            localVarFormParams.put(
-                    "loanCoin", flexibleLoanCollateralRepaymentRequest.getLoanCoin());
-        }
-
-        if (flexibleLoanCollateralRepaymentRequest.getCollateralCoin() != null) {
-            localVarFormParams.put(
-                    "collateralCoin", flexibleLoanCollateralRepaymentRequest.getCollateralCoin());
-        }
-
-        if (flexibleLoanCollateralRepaymentRequest.getRepayAmount() != null) {
-            localVarFormParams.put(
-                    "repayAmount",
-                    DecimalFormatter.getFormatter()
-                            .format(flexibleLoanCollateralRepaymentRequest.getRepayAmount()));
-        }
-
-        if (flexibleLoanCollateralRepaymentRequest.getFullRepayment() != null) {
-            localVarFormParams.put(
-                    "fullRepayment", flexibleLoanCollateralRepaymentRequest.getFullRepayment());
-        }
-
-        if (flexibleLoanCollateralRepaymentRequest.getRecvWindow() != null) {
-            localVarFormParams.put(
-                    "recvWindow", flexibleLoanCollateralRepaymentRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call flexibleLoanCollateralRepaymentValidateBeforeCall(
-            FlexibleLoanCollateralRepaymentRequest flexibleLoanCollateralRepaymentRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {flexibleLoanCollateralRepaymentRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "flexibleLoanCollateralRepayment",
-                                    FlexibleLoanCollateralRepaymentRequest.class);
-            Set<ConstraintViolation<FlexibleRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return flexibleLoanCollateralRepaymentCall(flexibleLoanCollateralRepaymentRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Flexible Loan Collateral Repayment (TRADE) Weight: 6000
-     *
-     * @param flexibleLoanCollateralRepaymentRequest (required)
-     * @return ApiResponse&lt;FlexibleLoanCollateralRepaymentResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Flexible Loan Collateral Repayment </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Collateral-Repay">Flexible
-     *     Loan Collateral Repayment (TRADE) Documentation</a>
-     */
-    public ApiResponse<FlexibleLoanCollateralRepaymentResponse> flexibleLoanCollateralRepayment(
-            @Valid @NotNull
-                    FlexibleLoanCollateralRepaymentRequest flexibleLoanCollateralRepaymentRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                flexibleLoanCollateralRepaymentValidateBeforeCall(
-                        flexibleLoanCollateralRepaymentRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<FlexibleLoanCollateralRepaymentResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for flexibleLoanRepay
      *
      * @param flexibleLoanRepayRequest (required)
@@ -804,6 +631,10 @@ public class FlexibleRateApi {
 
         if (flexibleLoanRepayRequest.getFullRepayment() != null) {
             localVarFormParams.put("fullRepayment", flexibleLoanRepayRequest.getFullRepayment());
+        }
+
+        if (flexibleLoanRepayRequest.getRepaymentType() != null) {
+            localVarFormParams.put("repaymentType", flexibleLoanRepayRequest.getRepaymentType());
         }
 
         if (flexibleLoanRepayRequest.getRecvWindow() != null) {

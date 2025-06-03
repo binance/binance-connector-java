@@ -50,6 +50,18 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PRICE = "price";
+
+    @SerializedName(SERIALIZED_NAME_PRICE)
+    @jakarta.annotation.Nullable
+    private String price;
+
+    public static final String SERIALIZED_NAME_WEIGHT = "weight";
+
+    @SerializedName(SERIALIZED_NAME_WEIGHT)
+    @jakarta.annotation.Nullable
+    private String weight;
+
     public QueryIndexPriceConstituentsResponseConstituentsInner() {}
 
     public QueryIndexPriceConstituentsResponseConstituentsInner exchange(
@@ -92,6 +104,46 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         this.symbol = symbol;
     }
 
+    public QueryIndexPriceConstituentsResponseConstituentsInner price(
+            @jakarta.annotation.Nullable String price) {
+        this.price = price;
+        return this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return price
+     */
+    @jakarta.annotation.Nullable
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(@jakarta.annotation.Nullable String price) {
+        this.price = price;
+    }
+
+    public QueryIndexPriceConstituentsResponseConstituentsInner weight(
+            @jakarta.annotation.Nullable String weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return weight
+     */
+    @jakarta.annotation.Nullable
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(@jakarta.annotation.Nullable String weight) {
+        this.weight = weight;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,12 +159,16 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                         this.exchange,
                         queryIndexPriceConstituentsResponseConstituentsInner.exchange)
                 && Objects.equals(
-                        this.symbol, queryIndexPriceConstituentsResponseConstituentsInner.symbol);
+                        this.symbol, queryIndexPriceConstituentsResponseConstituentsInner.symbol)
+                && Objects.equals(
+                        this.price, queryIndexPriceConstituentsResponseConstituentsInner.price)
+                && Objects.equals(
+                        this.weight, queryIndexPriceConstituentsResponseConstituentsInner.weight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exchange, symbol);
+        return Objects.hash(exchange, symbol, price, weight);
     }
 
     @Override
@@ -121,6 +177,8 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         sb.append("class QueryIndexPriceConstituentsResponseConstituentsInner {\n");
         sb.append("		exchange: ").append(toIndentedString(exchange)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		price: ").append(toIndentedString(price)).append("\n");
+        sb.append("		weight: ").append(toIndentedString(weight)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -136,6 +194,14 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object priceValue = getPrice();
+        String priceValueAsString = "";
+        priceValueAsString = priceValue.toString();
+        sb.append("price=").append(urlEncode(priceValueAsString)).append("");
+        Object weightValue = getWeight();
+        String weightValueAsString = "";
+        weightValueAsString = weightValue.toString();
+        sb.append("weight=").append(urlEncode(weightValueAsString)).append("");
         return sb.toString();
     }
 
@@ -166,6 +232,8 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("exchange");
         openapiFields.add("symbol");
+        openapiFields.add("price");
+        openapiFields.add("weight");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -222,6 +290,22 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
+        }
+        if ((jsonObj.get("weight") != null && !jsonObj.get("weight").isJsonNull())
+                && !jsonObj.get("weight").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `weight` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("weight").toString()));
         }
     }
 

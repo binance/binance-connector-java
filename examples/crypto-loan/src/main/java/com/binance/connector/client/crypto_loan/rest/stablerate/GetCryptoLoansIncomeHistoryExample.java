@@ -48,7 +48,7 @@ public class GetCryptoLoansIncomeHistoryExample {
      */
     public void getCryptoLoansIncomeHistoryExample() throws ApiException {
         String asset = "";
-        Long type = 1L;
+        String type = "0";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 10L;

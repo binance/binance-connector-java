@@ -2,7 +2,6 @@ package com.binance.connector.client.common.configuration;
 
 import com.binance.connector.client.common.dtos.TimeUnit;
 import java.net.Proxy;
-
 import okhttp3.Authenticator;
 import okhttp3.CertificatePinner;
 

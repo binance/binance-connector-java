@@ -211,6 +211,9 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.KlinesItem
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.KlinesItemInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.KlinesResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

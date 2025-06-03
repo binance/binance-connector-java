@@ -96,7 +96,7 @@ public class Example {
     ApiManagementApi apiInstance = new ApiManagementApi(defaultClient);
     String email = "email_example"; // String | [Sub-account email](#email-address)
     String subAccountApiKey = "subAccountApiKey_example"; // String | 
-    String ipAddress = "ipAddress_example"; // String | Can be added in batches, separated by commas
+    String ipAddress = "ipAddress_example"; // String | IPs to be deleted. Can be added in batches, separated by commas
     Long recvWindow = 56L; // Long | 
     try {
       DeleteIpListForASubAccountApiKeyResponse result = apiInstance.deleteIpListForASubAccountApiKey(email, subAccountApiKey, ipAddress, recvWindow);
@@ -118,7 +118,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**| [Sub-account email](#email-address) | |
 | **subAccountApiKey** | **String**|  | |
-| **ipAddress** | **String**| Can be added in batches, separated by commas | [optional] |
+| **ipAddress** | **String**| IPs to be deleted. Can be added in batches, separated by commas | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

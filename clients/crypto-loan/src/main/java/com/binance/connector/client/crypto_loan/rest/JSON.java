@@ -115,33 +115,6 @@ public class JSON {
                 new com.binance.connector.client.crypto_loan.rest.model
                         .CheckCollateralRepayRateStableRateResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvRequest
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowRequest
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .CryptoLoanCustomizeMarginCallRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .CryptoLoanCustomizeMarginCallResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .CryptoLoanCustomizeMarginCallResponseRowsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayRequest
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -154,23 +127,11 @@ public class JSON {
                 new com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .FlexibleLoanCollateralRepaymentRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .FlexibleLoanCollateralRepaymentResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .GetCollateralAssetsDataResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .GetCollateralAssetsDataResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model
                         .GetCryptoLoansIncomeHistoryResponse.CustomTypeAdapterFactory());
@@ -236,23 +197,11 @@ public class JSON {
                 new com.binance.connector.client.crypto_loan.rest.model
                         .GetLoanLtvAdjustmentHistoryResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model.GetLoanOngoingOrdersResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .GetLoanOngoingOrdersResponseRowsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model
                         .GetLoanRepaymentHistoryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model
                         .GetLoanRepaymentHistoryResponseRowsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .GetLoanableAssetsDataResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.crypto_loan.rest.model
-                        .GetLoanableAssetsDataResponseRowsInner.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

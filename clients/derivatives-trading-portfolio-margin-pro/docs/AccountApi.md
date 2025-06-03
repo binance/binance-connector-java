@@ -1,6 +1,6 @@
 # AccountApi
 
-All URIs are relative to *https://fapi.binance.com*
+All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -16,7 +16,7 @@ All URIs are relative to *https://fapi.binance.com*
 | [**mintBfusdForPortfolioMargin**](AccountApi.md#mintBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/mint | Mint BFUSD for Portfolio Margin(TRADE) |
 | [**portfolioMarginProBankruptcyLoanRepay**](AccountApi.md#portfolioMarginProBankruptcyLoanRepay) | **POST** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay |
 | [**queryPortfolioMarginProBankruptcyLoanAmount**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanAmount) | **GET** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA) |
-| [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmLoan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
+| [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
 | [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) |
 | [**redeemBfusdForPortfolioMargin**](AccountApi.md#redeemBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/redeem | Redeem BFUSD for Portfolio Margin(TRADE) |
 | [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
@@ -43,7 +43,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     BnbTransferRequest bnbTransferRequest = new BnbTransferRequest(); // BnbTransferRequest | 
@@ -105,7 +105,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest = new ChangeAutoRepayFuturesStatusRequest(); // ChangeAutoRepayFuturesStatusRequest | 
@@ -167,7 +167,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     FundAutoCollectionRequest fundAutoCollectionRequest = new FundAutoCollectionRequest(); // FundAutoCollectionRequest | 
@@ -229,7 +229,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     FundCollectionByAssetRequest fundCollectionByAssetRequest = new FundCollectionByAssetRequest(); // FundCollectionByAssetRequest | 
@@ -291,7 +291,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     Long recvWindow = 56L; // Long | 
@@ -353,7 +353,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     String asset = "asset_example"; // String | 
@@ -417,7 +417,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     Long recvWindow = 56L; // Long | 
@@ -479,7 +479,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     Long recvWindow = 56L; // Long | 
@@ -541,7 +541,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     String asset = "asset_example"; // String | `LDUSDT` only
@@ -607,7 +607,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest = new MintBfusdForPortfolioMarginRequest(); // MintBfusdForPortfolioMarginRequest | 
@@ -669,7 +669,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     PortfolioMarginProBankruptcyLoanRepayRequest portfolioMarginProBankruptcyLoanRepayRequest = new PortfolioMarginProBankruptcyLoanRepayRequest(); // PortfolioMarginProBankruptcyLoanRepayRequest | 
@@ -731,7 +731,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     Long recvWindow = 56L; // Long | 
@@ -793,7 +793,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     Long startTime = 56L; // Long | 
@@ -863,7 +863,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     String asset = "asset_example"; // String | 
@@ -933,7 +933,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest = new RedeemBfusdForPortfolioMarginRequest(); // RedeemBfusdForPortfolioMarginRequest | 
@@ -995,7 +995,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest = new RepayFuturesNegativeBalanceRequest(); // RepayFuturesNegativeBalanceRequest | 
@@ -1057,7 +1057,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest = new TransferLdusdtForPortfolioMarginRequest(); // TransferLdusdtForPortfolioMarginRequest | 

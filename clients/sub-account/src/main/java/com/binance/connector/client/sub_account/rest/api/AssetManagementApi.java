@@ -74,7 +74,7 @@ public class AssetManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/1.1.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -4161,7 +4161,8 @@ public class AssetManagementApi {
      * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account
      * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account
      * &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account
-     * &#x60;MARGIN(Cross)&#x60; Weight: 360
+     * &#x60;MARGIN(Cross)&#x60; * &#x60;ALPHA&#x60; to &#x60;ALPHA&#x60; (regardless of master or
+     * sub) Weight: 360
      *
      * @param universalTransferRequest (required)
      * @return ApiResponse&lt;UniversalTransferResponse&gt;

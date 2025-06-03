@@ -58,9 +58,17 @@ public class GetFlexibleRedemptionRecordExample {
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
+        Long recvWindow = 5000L;
         ApiResponse<GetFlexibleRedemptionRecordResponse> response =
                 getApi().getFlexibleRedemptionRecord(
-                                productId, redeemId, asset, startTime, endTime, current, size);
+                                productId,
+                                redeemId,
+                                asset,
+                                startTime,
+                                endTime,
+                                current,
+                                size,
+                                recvWindow);
         System.out.println(response.getData());
     }
 }

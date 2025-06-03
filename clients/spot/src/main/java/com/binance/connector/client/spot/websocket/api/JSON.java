@@ -218,6 +218,9 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model.KlinesItem
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.KlinesItemInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.KlinesRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

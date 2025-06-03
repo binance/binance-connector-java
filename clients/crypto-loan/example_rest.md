@@ -6,8 +6,6 @@
 
 [POST /sapi/v2/loan/flexible/borrow](https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Borrow) - flexibleLoanBorrow - [FlexibleLoanBorrowExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/FlexibleLoanBorrowExample.java#L49)
 
-[POST /sapi/v2/loan/flexible/repay/collateral](https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Collateral-Repay) - flexibleLoanCollateralRepayment - [FlexibleLoanCollateralRepaymentExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/FlexibleLoanCollateralRepaymentExample.java#L48)
-
 [POST /sapi/v2/loan/flexible/repay](https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Repay) - flexibleLoanRepay - [FlexibleLoanRepayExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/FlexibleLoanRepayExample.java#L49)
 
 [GET /sapi/v2/loan/flexible/loanable/data](https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Assets-Data) - getFlexibleLoanAssetsData - [GetFlexibleLoanAssetsDataExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/GetFlexibleLoanAssetsDataExample.java#L48)
@@ -28,25 +26,11 @@
 
 [GET /sapi/v1/loan/repay/collateral/rate](https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Check-Collateral-Repay-Rate) - checkCollateralRepayRateStableRate - [CheckCollateralRepayRateStableRateExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/CheckCollateralRepayRateStableRateExample.java#L48)
 
-[POST /sapi/v1/loan/adjust/ltv](https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Adjust-LTV) - cryptoLoanAdjustLtv - [CryptoLoanAdjustLtvExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/CryptoLoanAdjustLtvExample.java#L48)
-
-[POST /sapi/v1/loan/borrow](https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Borrow) - cryptoLoanBorrow - [CryptoLoanBorrowExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/CryptoLoanBorrowExample.java#L48)
-
-[POST /sapi/v1/loan/customize/margin_call](https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Customize-Margin-Call) - cryptoLoanCustomizeMarginCall - [CryptoLoanCustomizeMarginCallExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/CryptoLoanCustomizeMarginCallExample.java#L48)
-
-[POST /sapi/v1/loan/repay](https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Repay) - cryptoLoanRepay - [CryptoLoanRepayExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/CryptoLoanRepayExample.java#L48)
-
-[GET /sapi/v1/loan/collateral/data](https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Collateral-Assets-Data) - getCollateralAssetsData - [GetCollateralAssetsDataExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetCollateralAssetsDataExample.java#L48)
-
 [GET /sapi/v1/loan/income](https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Crypto-Loans-Income-History) - getCryptoLoansIncomeHistory - [GetCryptoLoansIncomeHistoryExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetCryptoLoansIncomeHistoryExample.java#L49)
 
 [GET /sapi/v1/loan/borrow/history](https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Borrow-History) - getLoanBorrowHistory - [GetLoanBorrowHistoryExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetLoanBorrowHistoryExample.java#L48)
 
 [GET /sapi/v1/loan/ltv/adjustment/history](https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-LTV-Adjustment-History) - getLoanLtvAdjustmentHistory - [GetLoanLtvAdjustmentHistoryExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetLoanLtvAdjustmentHistoryExample.java#L49)
 
-[GET /sapi/v1/loan/ongoing/orders](https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Ongoing-Orders) - getLoanOngoingOrders - [GetLoanOngoingOrdersExample.java:47](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetLoanOngoingOrdersExample.java#L47)
-
 [GET /sapi/v1/loan/repay/history](https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Repayment-History) - getLoanRepaymentHistory - [GetLoanRepaymentHistoryExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetLoanRepaymentHistoryExample.java#L48)
-
-[GET /sapi/v1/loan/loanable/data](https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Loanable-Assets-Data) - getLoanableAssetsData - [GetLoanableAssetsDataExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/stablerate/GetLoanableAssetsDataExample.java#L48)
 

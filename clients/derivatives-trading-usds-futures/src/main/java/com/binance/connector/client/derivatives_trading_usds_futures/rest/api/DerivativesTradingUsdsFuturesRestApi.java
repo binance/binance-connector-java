@@ -52,7 +52,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetIncomeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.HistoricalBlvtNavKlineCandlestickResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.IndexPriceKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Interval;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.KeepaliveUserDataStreamResponse;
@@ -1015,36 +1014,6 @@ public class DerivativesTradingUsdsFuturesRestApi {
      */
     public ApiResponse<GetFundingRateInfoResponse> getFundingRateInfo() throws ApiException {
         return marketDataApi.getFundingRateInfo();
-    }
-
-    /**
-     * Historical BLVT NAV Kline/Candlestick The BLVT NAV system is based on Binance Futures, so the
-     * endpoint is based on fapi Weight: 1
-     *
-     * @param symbol (required)
-     * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
-     * @return ApiResponse&lt;HistoricalBlvtNavKlineCandlestickResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Historical BLVT NAV Kline/Candlestick </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Historical-BLVT-NAV-Kline-Candlestick">Historical
-     *     BLVT NAV Kline/Candlestick Documentation</a>
-     */
-    public ApiResponse<HistoricalBlvtNavKlineCandlestickResponse> historicalBlvtNavKlineCandlestick(
-            String symbol, Interval interval, Long startTime, Long endTime, Long limit)
-            throws ApiException {
-        return marketDataApi.historicalBlvtNavKlineCandlestick(
-                symbol, interval, startTime, endTime, limit);
     }
 
     /**
@@ -2163,8 +2132,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * the amendment in the following situations: * when the order is in partially filled status and
      * the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is
      * &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can
-     * only be modfied for less than 10000 times * Modify order will set
-     * &#x60;selfTradePreventionMode&#x60; to &#x60;NONE&#x60; Weight: 1 on 10s order rate
+     * only be modfied for less than 10000 times Weight: 1 on 10s order rate
      * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 1 on IP rate
      * limit(x-mbx-used-weight-1m)
      *

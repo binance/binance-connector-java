@@ -32,7 +32,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetFundingRateHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetFundingRateInfoResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.HistoricalBlvtNavKlineCandlestickResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.IndexPriceKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Interval;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.KlineCandlestickDataResponse;
@@ -329,35 +328,6 @@ public class MarketDataApiTest {
 
         assertEquals(null, actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/fundingInfo", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Historical BLVT NAV Kline/Candlestick
-     *
-     * <p>The BLVT NAV system is based on Binance Futures, so the endpoint is based on fapi Weight:
-     * 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void historicalBlvtNavKlineCandlestickTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Interval interval = Interval.INTERVAL_1m;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
-        Long limit = 100L;
-        ApiResponse<HistoricalBlvtNavKlineCandlestickResponse> response =
-                api.historicalBlvtNavKlineCandlestick(symbol, interval, startTime, endTime, limit);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/lvtKlines", actualRequest.url().encodedPath());
     }
 
     /**
