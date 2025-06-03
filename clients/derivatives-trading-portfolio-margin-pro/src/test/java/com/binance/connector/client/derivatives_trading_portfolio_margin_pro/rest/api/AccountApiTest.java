@@ -416,7 +416,7 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/repay", actualRequest.url().encodedPath());
     }
 
@@ -492,7 +492,7 @@ public class AccountApiTest {
         assertEquals(
                 "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/pmLoan-history", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/portfolio/pmloan-history", actualRequest.url().encodedPath());
     }
 
     /**

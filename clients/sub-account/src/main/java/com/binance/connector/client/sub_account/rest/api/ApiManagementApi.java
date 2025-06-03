@@ -46,7 +46,7 @@ public class ApiManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/1.1.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -262,7 +262,7 @@ public class ApiManagementApi {
      *
      * @param email [Sub-account email](#email-address) (required)
      * @param subAccountApiKey (required)
-     * @param ipAddress Can be added in batches, separated by commas (optional)
+     * @param ipAddress IPs to be deleted. Can be added in batches, separated by commas (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -402,7 +402,7 @@ public class ApiManagementApi {
      *
      * @param email [Sub-account email](#email-address) (required)
      * @param subAccountApiKey (required)
-     * @param ipAddress Can be added in batches, separated by commas (optional)
+     * @param ipAddress IPs to be deleted. Can be added in batches, separated by commas (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;DeleteIpListForASubAccountApiKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -421,7 +421,7 @@ public class ApiManagementApi {
     public ApiResponse<DeleteIpListForASubAccountApiKeyResponse> deleteIpListForASubAccountApiKey(
             @NotNull String email,
             @NotNull String subAccountApiKey,
-            String ipAddress,
+            @NotNull String ipAddress,
             Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =

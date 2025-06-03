@@ -52,7 +52,8 @@ public class UniversalTransferExample {
      * sub-account &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account
      * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account
      * &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account
-     * &#x60;MARGIN(Cross)&#x60; Weight: 360
+     * &#x60;MARGIN(Cross)&#x60; * &#x60;ALPHA&#x60; to &#x60;ALPHA&#x60; (regardless of master or
+     * sub) Weight: 360
      *
      * @throws ApiException if the Api call fails
      */

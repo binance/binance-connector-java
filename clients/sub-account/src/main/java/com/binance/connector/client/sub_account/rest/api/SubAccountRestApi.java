@@ -383,7 +383,7 @@ public class SubAccountRestApi {
      *
      * @param email [Sub-account email](#email-address) (required)
      * @param subAccountApiKey (required)
-     * @param ipAddress Can be added in batches, separated by commas (optional)
+     * @param ipAddress IPs to be deleted. Can be added in batches, separated by commas (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;DeleteIpListForASubAccountApiKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1127,7 +1127,8 @@ public class SubAccountRestApi {
      * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account
      * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account
      * &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account
-     * &#x60;MARGIN(Cross)&#x60; Weight: 360
+     * &#x60;MARGIN(Cross)&#x60; * &#x60;ALPHA&#x60; to &#x60;ALPHA&#x60; (regardless of master or
+     * sub) Weight: 360
      *
      * @param universalTransferRequest (required)
      * @return ApiResponse&lt;UniversalTransferResponse&gt;

@@ -210,7 +210,7 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("3fa625e0c98e6f4e9f1ec21a44584f64734fa62a263ad96d4bea3583baa409d7", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/simple-earn/locked/position", actualRequest.url().encodedPath());
     }
 

@@ -7,7 +7,6 @@ All URIs are relative to *https://api.binance.com*
 | [**checkCollateralRepayRate**](FlexibleRateApi.md#checkCollateralRepayRate) | **GET** /sapi/v2/loan/flexible/repay/rate | Check Collateral Repay Rate (USER_DATA) |
 | [**flexibleLoanAdjustLtv**](FlexibleRateApi.md#flexibleLoanAdjustLtv) | **POST** /sapi/v2/loan/flexible/adjust/ltv | Flexible Loan Adjust LTV(TRADE) |
 | [**flexibleLoanBorrow**](FlexibleRateApi.md#flexibleLoanBorrow) | **POST** /sapi/v2/loan/flexible/borrow | Flexible Loan Borrow(TRADE) |
-| [**flexibleLoanCollateralRepayment**](FlexibleRateApi.md#flexibleLoanCollateralRepayment) | **POST** /sapi/v2/loan/flexible/repay/collateral | Flexible Loan Collateral Repayment (TRADE) |
 | [**flexibleLoanRepay**](FlexibleRateApi.md#flexibleLoanRepay) | **POST** /sapi/v2/loan/flexible/repay | Flexible Loan Repay(TRADE) |
 | [**getFlexibleLoanAssetsData**](FlexibleRateApi.md#getFlexibleLoanAssetsData) | **GET** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data(USER_DATA) |
 | [**getFlexibleLoanBorrowHistory**](FlexibleRateApi.md#getFlexibleLoanBorrowHistory) | **GET** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History(USER_DATA) |
@@ -207,68 +206,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flexible Loan Borrow |  -  |
-
-<a id="flexibleLoanCollateralRepayment"></a>
-# **flexibleLoanCollateralRepayment**
-> FlexibleLoanCollateralRepaymentResponse flexibleLoanCollateralRepayment(flexibleLoanCollateralRepaymentRequest)
-
-Flexible Loan Collateral Repayment (TRADE)
-
- Weight: 6000
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.crypto_loan.ApiClient;
-import com.binance.connector.client.crypto_loan.ApiException;
-import com.binance.connector.client.crypto_loan.Configuration;
-import com.binance.connector.client.crypto_loan.models.*;
-import com.binance.connector.client.crypto_loan.rest.api.FlexibleRateApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    FlexibleLoanCollateralRepaymentRequest flexibleLoanCollateralRepaymentRequest = new FlexibleLoanCollateralRepaymentRequest(); // FlexibleLoanCollateralRepaymentRequest | 
-    try {
-      FlexibleLoanCollateralRepaymentResponse result = apiInstance.flexibleLoanCollateralRepayment(flexibleLoanCollateralRepaymentRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling FlexibleRateApi#flexibleLoanCollateralRepayment");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **flexibleLoanCollateralRepaymentRequest** | [**FlexibleLoanCollateralRepaymentRequest**](FlexibleLoanCollateralRepaymentRequest.md)|  | |
-
-### Return type
-
-[**FlexibleLoanCollateralRepaymentResponse**](FlexibleLoanCollateralRepaymentResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Flexible Loan Collateral Repayment |  -  |
 
 <a id="flexibleLoanRepay"></a>
 # **flexibleLoanRepay**

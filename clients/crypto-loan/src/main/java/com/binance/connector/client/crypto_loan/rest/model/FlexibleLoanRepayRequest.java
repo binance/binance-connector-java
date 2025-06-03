@@ -69,6 +69,12 @@ public class FlexibleLoanRepayRequest {
     @jakarta.annotation.Nullable
     private Boolean fullRepayment;
 
+    public static final String SERIALIZED_NAME_REPAYMENT_TYPE = "repaymentType";
+
+    @SerializedName(SERIALIZED_NAME_REPAYMENT_TYPE)
+    @jakarta.annotation.Nullable
+    private Long repaymentType;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -179,6 +185,25 @@ public class FlexibleLoanRepayRequest {
         this.fullRepayment = fullRepayment;
     }
 
+    public FlexibleLoanRepayRequest repaymentType(@jakarta.annotation.Nullable Long repaymentType) {
+        this.repaymentType = repaymentType;
+        return this;
+    }
+
+    /**
+     * Get repaymentType
+     *
+     * @return repaymentType
+     */
+    @jakarta.annotation.Nullable
+    public Long getRepaymentType() {
+        return repaymentType;
+    }
+
+    public void setRepaymentType(@jakarta.annotation.Nullable Long repaymentType) {
+        this.repaymentType = repaymentType;
+    }
+
     public FlexibleLoanRepayRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -212,13 +237,20 @@ public class FlexibleLoanRepayRequest {
                 && Objects.equals(this.repayAmount, flexibleLoanRepayRequest.repayAmount)
                 && Objects.equals(this.collateralReturn, flexibleLoanRepayRequest.collateralReturn)
                 && Objects.equals(this.fullRepayment, flexibleLoanRepayRequest.fullRepayment)
+                && Objects.equals(this.repaymentType, flexibleLoanRepayRequest.repaymentType)
                 && Objects.equals(this.recvWindow, flexibleLoanRepayRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                loanCoin, collateralCoin, repayAmount, collateralReturn, fullRepayment, recvWindow);
+                loanCoin,
+                collateralCoin,
+                repayAmount,
+                collateralReturn,
+                fullRepayment,
+                repaymentType,
+                recvWindow);
     }
 
     @Override
@@ -230,6 +262,7 @@ public class FlexibleLoanRepayRequest {
         sb.append("		repayAmount: ").append(toIndentedString(repayAmount)).append("\n");
         sb.append("		collateralReturn: ").append(toIndentedString(collateralReturn)).append("\n");
         sb.append("		fullRepayment: ").append(toIndentedString(fullRepayment)).append("\n");
+        sb.append("		repaymentType: ").append(toIndentedString(repaymentType)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -258,6 +291,10 @@ public class FlexibleLoanRepayRequest {
         String fullRepaymentValueAsString = "";
         fullRepaymentValueAsString = fullRepaymentValue.toString();
         sb.append("fullRepayment=").append(urlEncode(fullRepaymentValueAsString)).append("");
+        Object repaymentTypeValue = getRepaymentType();
+        String repaymentTypeValueAsString = "";
+        repaymentTypeValueAsString = repaymentTypeValue.toString();
+        sb.append("repaymentType=").append(urlEncode(repaymentTypeValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -295,6 +332,7 @@ public class FlexibleLoanRepayRequest {
         openapiFields.add("repayAmount");
         openapiFields.add("collateralReturn");
         openapiFields.add("fullRepayment");
+        openapiFields.add("repaymentType");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

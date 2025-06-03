@@ -149,9 +149,10 @@ public class HistoryApiTest {
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
+        Long recvWindow = 5000L;
         ApiResponse<GetFlexibleRedemptionRecordResponse> response =
                 api.getFlexibleRedemptionRecord(
-                        productId, redeemId, asset, startTime, endTime, current, size);
+                        productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -164,10 +165,10 @@ public class HistoryApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "productId=1&redeemId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&timestamp=1736393892000",
+                "productId=1&redeemId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "43dfdd492c8d655c2c53ca9b371f7a4b5dc484bc6ff05c18006c8c807ed024b6",
+                "d1703f8758c55672f9a39da68d446692dde9bf216f7ebef51b7093b2a9d37bd1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/simple-earn/flexible/history/redemptionRecord",

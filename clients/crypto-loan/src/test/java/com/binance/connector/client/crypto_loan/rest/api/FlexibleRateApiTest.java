@@ -28,8 +28,6 @@ import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtv
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvResponse;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowResponse;
-import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanCollateralRepaymentRequest;
-import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanCollateralRepaymentResponse;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanAssetsDataResponse;
@@ -198,44 +196,6 @@ public class FlexibleRateApiTest {
                 "4ce6b14df8387f7fad89b74f1f6fc807a3864ed56315be51e7e2b637e342a67d",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/borrow", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Flexible Loan Collateral Repayment (TRADE)
-     *
-     * <p>Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void flexibleLoanCollateralRepaymentTest() throws ApiException, CryptoException {
-        FlexibleLoanCollateralRepaymentRequest flexibleLoanCollateralRepaymentRequest =
-                new FlexibleLoanCollateralRepaymentRequest();
-
-        flexibleLoanCollateralRepaymentRequest.loanCoin("");
-        flexibleLoanCollateralRepaymentRequest.collateralCoin("");
-        flexibleLoanCollateralRepaymentRequest.repayAmount(1d);
-
-        ApiResponse<FlexibleLoanCollateralRepaymentResponse> response =
-                api.flexibleLoanCollateralRepayment(flexibleLoanCollateralRepaymentRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000collateralCoin=&loanCoin=&repayAmount=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "4901a7e5ee97147bb48abeb186304109d2e7b3a0533db9f895624d8b331d6ea4",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v2/loan/flexible/repay/collateral", actualRequest.url().encodedPath());
     }
 
     /**
