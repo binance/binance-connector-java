@@ -118,7 +118,7 @@ public class PayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("23689f3330f331d9db9c46c9dc87d2217486442f1746adfdda02c10e3dbde13e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/pay/transactions", actualRequest.url().encodedPath());
     }
 }

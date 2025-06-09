@@ -341,7 +341,7 @@ public class MiningApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("d8ae1288fcf5d755677e6a954f8f825df9c16fb2c2072ecced72f4c1be96abc5", actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/mining/hash-transfer/config/details/list",
                 actualRequest.url().encodedPath());

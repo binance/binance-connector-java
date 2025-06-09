@@ -516,6 +516,7 @@ public class SimpleEarnRestApi {
      * @param endTime (optional)
      * @param current Currently querying the page. Start from 1. Default:1 (optional)
      * @param size Default:10, Max:100 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -537,10 +538,11 @@ public class SimpleEarnRestApi {
             Long startTime,
             Long endTime,
             Long current,
-            Long size)
+            Long size,
+            Long recvWindow)
             throws ApiException {
         return historyApi.getFlexibleRedemptionRecord(
-                productId, redeemId, asset, startTime, endTime, current, size);
+                productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
     }
 
     /**

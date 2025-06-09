@@ -1,6 +1,6 @@
 # MarketDataApi
 
-All URIs are relative to *https://fapi.binance.com*
+All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -30,7 +30,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     try {
@@ -88,7 +88,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     try {
@@ -146,7 +146,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     Long recvWindow = 56L; // Long | 
@@ -208,7 +208,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String asset = "asset_example"; // String | 

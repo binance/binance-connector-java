@@ -49,7 +49,7 @@ public class HistoryApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/1.1.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -300,6 +300,7 @@ public class HistoryApi {
      * @param endTime (optional)
      * @param current Currently querying the page. Start from 1. Default:1 (optional)
      * @param size Default:10, Max:100 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -320,7 +321,8 @@ public class HistoryApi {
             Long startTime,
             Long endTime,
             Long current,
-            Long size)
+            Long size,
+            Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -374,6 +376,10 @@ public class HistoryApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
         }
 
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -416,7 +422,8 @@ public class HistoryApi {
             Long startTime,
             Long endTime,
             Long current,
-            Long size)
+            Long size,
+            Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -428,7 +435,7 @@ public class HistoryApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {
-                productId, redeemId, asset, startTime, endTime, current, size
+                productId, redeemId, asset, startTime, endTime, current, size, recvWindow
             };
             Method method =
                     this.getClass()
@@ -440,13 +447,14 @@ public class HistoryApi {
                                     Long.class,
                                     Long.class,
                                     Long.class,
+                                    Long.class,
                                     Long.class);
             Set<ConstraintViolation<HistoryApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
                 return getFlexibleRedemptionRecordCall(
-                        productId, redeemId, asset, startTime, endTime, current, size);
+                        productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -475,6 +483,7 @@ public class HistoryApi {
      * @param endTime (optional)
      * @param current Currently querying the page. Start from 1. Default:1 (optional)
      * @param size Default:10, Max:100 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -496,11 +505,12 @@ public class HistoryApi {
             Long startTime,
             Long endTime,
             Long current,
-            Long size)
+            Long size,
+            Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleRedemptionRecordValidateBeforeCall(
-                        productId, redeemId, asset, startTime, endTime, current, size);
+                        productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetFlexibleRedemptionRecordResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

@@ -48,7 +48,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/1.1.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -645,7 +645,11 @@ public class AccountApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(Arrays.asList(new String[] {}));
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }

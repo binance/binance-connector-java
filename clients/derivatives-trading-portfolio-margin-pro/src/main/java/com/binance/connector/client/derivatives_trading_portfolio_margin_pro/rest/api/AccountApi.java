@@ -69,7 +69,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin-pro/1.1.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin-pro/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1659,7 +1659,11 @@ public class AccountApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(Arrays.asList(new String[] {}));
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1930,7 +1934,7 @@ public class AccountApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/portfolio/pmLoan-history";
+        String localVarPath = "/sapi/v1/portfolio/pmloan-history";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

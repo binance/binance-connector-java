@@ -88,7 +88,7 @@ No authorization required
 
 <a id="getFlexibleRedemptionRecord"></a>
 # **getFlexibleRedemptionRecord**
-> GetFlexibleRedemptionRecordResponse getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size)
+> GetFlexibleRedemptionRecordResponse getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size, recvWindow)
 
 Get Flexible Redemption Record(USER_DATA)
 
@@ -116,8 +116,9 @@ public class Example {
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10, Max:100
+    Long recvWindow = 56L; // Long | 
     try {
-      GetFlexibleRedemptionRecordResponse result = apiInstance.getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size);
+      GetFlexibleRedemptionRecordResponse result = apiInstance.getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling HistoryApi#getFlexibleRedemptionRecord");
@@ -141,6 +142,7 @@ public class Example {
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
 | **size** | **Long**| Default:10, Max:100 | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 

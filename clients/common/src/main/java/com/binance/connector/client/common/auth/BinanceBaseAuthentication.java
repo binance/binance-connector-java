@@ -1,7 +1,6 @@
 package com.binance.connector.client.common.auth;
 
 import com.binance.connector.client.common.Pair;
-
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;

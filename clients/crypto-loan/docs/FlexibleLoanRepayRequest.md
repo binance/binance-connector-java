@@ -12,6 +12,7 @@
 |**repayAmount** | **Double** |  |  |
 |**collateralReturn** | **Boolean** |  |  [optional] |
 |**fullRepayment** | **Boolean** |  |  [optional] |
+|**repaymentType** | **Long** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

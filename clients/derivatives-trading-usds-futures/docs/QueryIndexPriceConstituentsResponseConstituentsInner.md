@@ -9,6 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**exchange** | **String** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
+|**price** | **String** |  |  [optional] |
+|**weight** | **String** |  |  [optional] |
 
 
 
