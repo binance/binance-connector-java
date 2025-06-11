@@ -23,6 +23,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationListResponse;
 import com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
@@ -55,7 +56,7 @@ public class TravelRuleApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/1.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -575,6 +576,136 @@ public class TravelRuleApi {
     }
 
     /**
+     * Build call for fetchAddressVerificationList
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Fetch address verification list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
+     *     address verification list (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call fetchAddressVerificationListCall() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/addressVerify/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call fetchAddressVerificationListValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("fetchAddressVerificationList");
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return fetchAddressVerificationListCall();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Fetch address verification list (USER_DATA) Fetch address verification list Weight: 10
+     *
+     * @return ApiResponse&lt;FetchAddressVerificationListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Fetch address verification list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
+     *     address verification list (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList()
+            throws ApiException {
+        okhttp3.Call localVarCall = fetchAddressVerificationListValidateBeforeCall();
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<FetchAddressVerificationListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for onboardedVaspList
      *
      * @return Call to execute
@@ -1076,7 +1207,8 @@ public class TravelRuleApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
@@ -1309,7 +1441,8 @@ public class TravelRuleApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
@@ -1369,7 +1502,8 @@ public class TravelRuleApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
@@ -1608,7 +1742,8 @@ public class TravelRuleApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)

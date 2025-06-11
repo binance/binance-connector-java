@@ -78,6 +78,8 @@
 
 [GET /sapi/v1/localentity/deposit/history](https://developers.binance.com/docs/wallet/travel-rule/Deposit-History) - depositHistoryTravelRule - [DepositHistoryTravelRuleExample.java:51](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/DepositHistoryTravelRuleExample.java#L51)
 
+[GET /sapi/v1/addressVerify/list](https://developers.binance.com/docs/wallet/travel-rule/address-verification-list) - fetchAddressVerificationList - [FetchAddressVerificationListExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/FetchAddressVerificationListExample.java#L46)
+
 [GET /sapi/v1/localentity/vasp](https://developers.binance.com/docs/wallet/travel-rule/Onboarded-VASP-list) - onboardedVaspList - [OnboardedVaspListExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/OnboardedVaspListExample.java#L52)
 
 [PUT /sapi/v1/localentity/broker/deposit/provide-info](https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info) - submitDepositQuestionnaire - [SubmitDepositQuestionnaireExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireExample.java#L52)

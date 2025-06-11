@@ -49,7 +49,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/1.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

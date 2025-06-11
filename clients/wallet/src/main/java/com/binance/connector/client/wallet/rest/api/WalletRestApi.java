@@ -22,6 +22,7 @@ import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
 import com.binance.connector.client.wallet.rest.model.EnableFastWithdrawSwitchRequest;
+import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationListResponse;
 import com.binance.connector.client.wallet.rest.model.FetchDepositAddressListWithNetworkResponse;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawAddressListResponse;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawQuotaResponse;
@@ -924,7 +925,8 @@ public class WalletRestApi {
      * 10 requests per second
      *
      * @param coin (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
@@ -1104,6 +1106,28 @@ public class WalletRestApi {
     }
 
     /**
+     * Fetch address verification list (USER_DATA) Fetch address verification list Weight: 10
+     *
+     * @return ApiResponse&lt;FetchAddressVerificationListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Fetch address verification list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
+     *     address verification list (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList()
+            throws ApiException {
+        return travelRuleApi.fetchAddressVerificationList();
+    }
+
+    /**
      * Onboarded VASP list (for local entities that require travel rule) (supporting network)
      * (USER_DATA) Fetch the onboarded VASP list for local entities that required travel rule. *
      * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP
@@ -1208,7 +1232,8 @@ public class WalletRestApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
@@ -1279,7 +1304,8 @@ public class WalletRestApi {
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
