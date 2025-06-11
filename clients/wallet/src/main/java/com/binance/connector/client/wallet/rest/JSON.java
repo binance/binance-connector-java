@@ -227,6 +227,16 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model
+                        .FetchAddressVerificationListResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .FetchAddressVerificationListResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .FetchAddressVerificationListResponseInnerAddressQuestionnaire
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
                         .FetchDepositAddressListWithNetworkResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model

@@ -22,7 +22,7 @@ With the transition to a modularized structure, the Binance Connector has been s
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-wallet</artifactId>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -91,7 +91,7 @@ by:
  <dependency>
      <groupId>io.github.binance</groupId>
      <artifactId>binance-wallet</artifactId>
-     <version>1.1.0</version>
+     <version>2.0.0</version>
  </dependency>
 ```
 
