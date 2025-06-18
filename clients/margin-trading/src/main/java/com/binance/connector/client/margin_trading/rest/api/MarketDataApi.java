@@ -24,6 +24,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetAllCrossMarginP
 import com.binance.connector.client.margin_trading.rest.model.GetAllIsolatedMarginSymbolResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetAllMarginAssetsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
@@ -50,7 +51,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/1.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -751,6 +752,139 @@ public class MarketDataApi {
         okhttp3.Call localVarCall = getDelistScheduleValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetDelistScheduleResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getListSchedule
+     *
+     * @param recvWindow No more than 60000 (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get list Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule">Get
+     *     list Schedule (MARKET_DATA) Documentation</a>
+     */
+    private okhttp3.Call getListScheduleCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/list-schedule";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(Arrays.asList(new String[] {}));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getListScheduleValidateBeforeCall(Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("getListSchedule", Long.class);
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getListScheduleCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get list Schedule (MARKET_DATA) Get the upcoming tokens or symbols listing schedule for Cross
+     * Margin and Isolated Margin. Weight: 100
+     *
+     * @param recvWindow No more than 60000 (optional)
+     * @return ApiResponse&lt;GetListScheduleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get list Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule">Get
+     *     list Schedule (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetListScheduleResponse> getListSchedule(Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall = getListScheduleValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetListScheduleResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
