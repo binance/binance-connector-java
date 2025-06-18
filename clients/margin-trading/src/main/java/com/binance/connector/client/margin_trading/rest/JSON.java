@@ -197,6 +197,12 @@ public class JSON {
                 new com.binance.connector.client.margin_trading.rest.model
                         .GetInterestHistoryResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .GetListScheduleResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .GetSmallLiabilityExchangeCoinListResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
