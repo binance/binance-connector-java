@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package com.binance.connector.client.margin_trading.rest.trade;
+package com.binance.connector.client.margin_trading.rest.marketdata;
 
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -18,12 +18,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
-import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOcoRequest;
-import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOcoResponse;
-import com.binance.connector.client.margin_trading.rest.model.Side;
+import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 
-/** API examples for TradeApi */
-public class MarginAccountNewOcoExample {
+/** API examples for MarketDataApi */
+public class GetListScheduleExample {
     private MarginTradingRestApi api;
 
     public MarginTradingRestApi getApi() {
@@ -40,23 +38,16 @@ public class MarginAccountNewOcoExample {
     }
 
     /**
-     * Margin Account New OCO (TRADE)
+     * Get list Schedule (MARKET_DATA)
      *
-     * <p>Send in a new OCO for a margin account * autoRepayAtCancel is suggested to set as “FALSE”
-     * to keep liability unrepaid under high frequent new order/cancel order execution Weight:
-     * 6(UID)
+     * <p>Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.
+     * Weight: 100
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountNewOcoExample() throws ApiException {
-        MarginAccountNewOcoRequest marginAccountNewOcoRequest = new MarginAccountNewOcoRequest();
-        marginAccountNewOcoRequest.symbol("");
-        marginAccountNewOcoRequest.side(Side.BUY);
-        marginAccountNewOcoRequest.quantity(1.0d);
-        marginAccountNewOcoRequest.price(1.0d);
-        marginAccountNewOcoRequest.stopPrice(1.0d);
-        ApiResponse<MarginAccountNewOcoResponse> response =
-                getApi().marginAccountNewOco(marginAccountNewOcoRequest);
+    public void getListScheduleExample() throws ApiException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetListScheduleResponse> response = getApi().getListSchedule(recvWindow);
         System.out.println(response.getData());
     }
 }

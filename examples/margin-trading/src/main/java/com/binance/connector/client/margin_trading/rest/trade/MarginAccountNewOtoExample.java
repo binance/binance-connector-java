@@ -65,12 +65,12 @@ public class MarginAccountNewOtoExample {
         marginAccountNewOtoRequest.symbol("");
         marginAccountNewOtoRequest.workingType("");
         marginAccountNewOtoRequest.workingSide("");
-        marginAccountNewOtoRequest.workingPrice(1d);
-        marginAccountNewOtoRequest.workingQuantity(1d);
-        marginAccountNewOtoRequest.workingIcebergQty(1d);
+        marginAccountNewOtoRequest.workingPrice(1.0d);
+        marginAccountNewOtoRequest.workingQuantity(1.0d);
+        marginAccountNewOtoRequest.workingIcebergQty(1.0d);
         marginAccountNewOtoRequest.pendingType("Order Types");
         marginAccountNewOtoRequest.pendingSide("");
-        marginAccountNewOtoRequest.pendingQuantity(1d);
+        marginAccountNewOtoRequest.pendingQuantity(1.0d);
         ApiResponse<MarginAccountNewOtoResponse> response =
                 getApi().marginAccountNewOto(marginAccountNewOtoRequest);
         System.out.println(response.getData());
