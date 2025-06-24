@@ -23,6 +23,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleR
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
@@ -714,6 +715,30 @@ public class MarginTradingRestApi {
     public ApiResponse<GetDelistScheduleResponse> getDelistSchedule(Long recvWindow)
             throws ApiException {
         return marketDataApi.getDelistSchedule(recvWindow);
+    }
+
+    /**
+     * Get list Schedule (MARKET_DATA) Get the upcoming tokens or symbols listing schedule for Cross
+     * Margin and Isolated Margin. Weight: 100
+     *
+     * @param recvWindow No more than 60000 (optional)
+     * @return ApiResponse&lt;GetListScheduleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get list Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule">Get
+     *     list Schedule (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetListScheduleResponse> getListSchedule(Long recvWindow)
+            throws ApiException {
+        return marketDataApi.getListSchedule(recvWindow);
     }
 
     /**
