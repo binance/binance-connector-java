@@ -116,9 +116,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
-                        .AccountCommissionResponseRateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
                         .AccountCommissionResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
@@ -136,9 +133,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .AccountRateLimitsOrdersResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .AccountRateLimitsOrdersResponseRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .AccountRateLimitsOrdersResponseResultInner.CustomTypeAdapterFactory());
@@ -164,6 +158,9 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model.AllOrderListsResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
+                        .AllOrderListsResponseResultInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.AllOrdersRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -179,9 +176,6 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model.AvgPriceResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .AvgPriceResponseRateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.AvgPriceResponseResult
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -194,6 +188,12 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model.DepthResponseResult
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.ExchangeFilters
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.ExchangeFiltersInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -202,12 +202,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponseResult
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .ExchangeInfoResponseResultExchangeFiltersInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .ExchangeInfoResponseResultRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .ExchangeInfoResponseResultSorsInner.CustomTypeAdapterFactory());
@@ -259,9 +253,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .OpenOrderListsStatusResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .OpenOrderListsStatusResponseRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .OpenOrderListsStatusResponseResultInner.CustomTypeAdapterFactory());
@@ -332,9 +323,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
-                        .OrderCancelReplaceResponseRateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
                         .OrderCancelReplaceResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
@@ -352,9 +340,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.OrderCancelResponseResult
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .OrderCancelResponseResultOrderReportsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.OrderListCancelRequest
                         .CustomTypeAdapterFactory());
@@ -394,9 +379,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
-                        .OrderListPlaceOtoResponseRateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
                         .OrderListPlaceOtoResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
@@ -411,9 +393,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .OrderListPlaceOtocoResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .OrderListPlaceOtocoResponseRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .OrderListPlaceOtocoResponseResult.CustomTypeAdapterFactory());
@@ -432,9 +411,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
-                        .OrderListPlaceResponseRateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
                         .OrderListPlaceResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
@@ -445,9 +421,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.OrderListStatusResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .OrderListStatusResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.OrderPlaceRequest
                         .CustomTypeAdapterFactory());
@@ -487,6 +460,15 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.Permissions
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.PingResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.RateLimits
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.RateLimitsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.SessionLogonRequest
@@ -591,17 +573,11 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model.TickerResponse1
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .TickerResponse1RateLimitsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TickerResponse1Result
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TickerResponse2
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .TickerResponse2RateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TickerResponse2ResultInner
                         .CustomTypeAdapterFactory());
@@ -617,9 +593,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TimeResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .TimeResponseRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TimeResponseResult
                         .CustomTypeAdapterFactory());
@@ -638,9 +611,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.TradesHistoricalResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.websocket.api.model
-                        .TradesHistoricalResponseRateLimitsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .TradesHistoricalResponseResultInner.CustomTypeAdapterFactory());

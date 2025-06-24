@@ -63,6 +63,7 @@ import com.binance.connector.client.spot.websocket.api.model.OrderStatusRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestResponse;
+import com.binance.connector.client.spot.websocket.api.model.PingResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonRequest;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogoutResponse;
@@ -102,7 +103,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/2.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -173,9 +174,29 @@ public class SpotWebSocketApi {
         return accountApi.myTrades(myTradesRequest);
     }
 
+    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
+            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
+        return accountApi.openOrderListsStatus(openOrderListsStatusRequest);
+    }
+
+    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
+            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
+        return accountApi.openOrdersStatus(openOrdersStatusRequest);
+    }
+
     public CompletableFuture<OrderAmendmentsResponse> orderAmendments(
             OrderAmendmentsRequest orderAmendmentsRequest) throws ApiException {
         return accountApi.orderAmendments(orderAmendmentsRequest);
+    }
+
+    public CompletableFuture<OrderListStatusResponse> orderListStatus(
+            OrderListStatusRequest orderListStatusRequest) throws ApiException {
+        return accountApi.orderListStatus(orderListStatusRequest);
+    }
+
+    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
+            throws ApiException {
+        return accountApi.orderStatus(orderStatusRequest);
     }
 
     public CompletableFuture<SessionLogonResponse> sessionLogon(
@@ -196,8 +217,8 @@ public class SpotWebSocketApi {
         return generalApi.exchangeInfo(exchangeInfoRequest);
     }
 
-    public void ping() throws ApiException {
-        generalApi.ping();
+    public CompletableFuture<PingResponse> ping() throws ApiException {
+        return generalApi.ping();
     }
 
     public CompletableFuture<TimeResponse> time() throws ApiException {
@@ -263,19 +284,9 @@ public class SpotWebSocketApi {
         return marketApi.uiKlines(uiKlinesRequest);
     }
 
-    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
-            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
-        return tradeApi.openOrderListsStatus(openOrderListsStatusRequest);
-    }
-
     public CompletableFuture<OpenOrdersCancelAllResponse> openOrdersCancelAll(
             OpenOrdersCancelAllRequest openOrdersCancelAllRequest) throws ApiException {
         return tradeApi.openOrdersCancelAll(openOrdersCancelAllRequest);
-    }
-
-    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
-            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
-        return tradeApi.openOrdersStatus(openOrdersStatusRequest);
     }
 
     public CompletableFuture<OrderAmendKeepPriorityResponse> orderAmendKeepPriority(
@@ -318,19 +329,9 @@ public class SpotWebSocketApi {
         return tradeApi.orderListPlaceOtoco(orderListPlaceOtocoRequest);
     }
 
-    public CompletableFuture<OrderListStatusResponse> orderListStatus(
-            OrderListStatusRequest orderListStatusRequest) throws ApiException {
-        return tradeApi.orderListStatus(orderListStatusRequest);
-    }
-
     public CompletableFuture<OrderPlaceResponse> orderPlace(OrderPlaceRequest orderPlaceRequest)
             throws ApiException {
         return tradeApi.orderPlace(orderPlaceRequest);
-    }
-
-    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
-            throws ApiException {
-        return tradeApi.orderStatus(orderStatusRequest);
     }
 
     public CompletableFuture<OrderTestResponse> orderTest(OrderTestRequest orderTestRequest)

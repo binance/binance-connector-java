@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** DeleteOrderResponse */
@@ -91,6 +89,12 @@ public class DeleteOrderResponse {
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
     @jakarta.annotation.Nullable
     private String executedQty;
+
+    public static final String SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY = "origQuoteOrderQty";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_QUOTE_ORDER_QTY)
+    @jakarta.annotation.Nullable
+    private String origQuoteOrderQty;
 
     public static final String SERIALIZED_NAME_CUMMULATIVE_QUOTE_QTY = "cummulativeQuoteQty";
 
@@ -303,6 +307,26 @@ public class DeleteOrderResponse {
         this.executedQty = executedQty;
     }
 
+    public DeleteOrderResponse origQuoteOrderQty(
+            @jakarta.annotation.Nullable String origQuoteOrderQty) {
+        this.origQuoteOrderQty = origQuoteOrderQty;
+        return this;
+    }
+
+    /**
+     * Get origQuoteOrderQty
+     *
+     * @return origQuoteOrderQty
+     */
+    @jakarta.annotation.Nullable
+    public String getOrigQuoteOrderQty() {
+        return origQuoteOrderQty;
+    }
+
+    public void setOrigQuoteOrderQty(@jakarta.annotation.Nullable String origQuoteOrderQty) {
+        this.origQuoteOrderQty = origQuoteOrderQty;
+    }
+
     public DeleteOrderResponse cummulativeQuoteQty(
             @jakarta.annotation.Nullable String cummulativeQuoteQty) {
         this.cummulativeQuoteQty = cummulativeQuoteQty;
@@ -438,6 +462,7 @@ public class DeleteOrderResponse {
                 && Objects.equals(this.price, deleteOrderResponse.price)
                 && Objects.equals(this.origQty, deleteOrderResponse.origQty)
                 && Objects.equals(this.executedQty, deleteOrderResponse.executedQty)
+                && Objects.equals(this.origQuoteOrderQty, deleteOrderResponse.origQuoteOrderQty)
                 && Objects.equals(this.cummulativeQuoteQty, deleteOrderResponse.cummulativeQuoteQty)
                 && Objects.equals(this.status, deleteOrderResponse.status)
                 && Objects.equals(this.timeInForce, deleteOrderResponse.timeInForce)
@@ -459,6 +484,7 @@ public class DeleteOrderResponse {
                 price,
                 origQty,
                 executedQty,
+                origQuoteOrderQty,
                 cummulativeQuoteQty,
                 status,
                 timeInForce,
@@ -480,6 +506,7 @@ public class DeleteOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
+        sb.append("		origQuoteOrderQty: ").append(toIndentedString(origQuoteOrderQty)).append("\n");
         sb.append("		cummulativeQuoteQty: ")
                 .append(toIndentedString(cummulativeQuoteQty))
                 .append("\n");
@@ -535,6 +562,12 @@ public class DeleteOrderResponse {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
+        Object origQuoteOrderQtyValue = getOrigQuoteOrderQty();
+        String origQuoteOrderQtyValueAsString = "";
+        origQuoteOrderQtyValueAsString = origQuoteOrderQtyValue.toString();
+        sb.append("origQuoteOrderQty=")
+                .append(urlEncode(origQuoteOrderQtyValueAsString))
+                .append("");
         Object cummulativeQuoteQtyValue = getCummulativeQuoteQty();
         String cummulativeQuoteQtyValueAsString = "";
         cummulativeQuoteQtyValueAsString = cummulativeQuoteQtyValue.toString();
@@ -600,6 +633,7 @@ public class DeleteOrderResponse {
         openapiFields.add("price");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
+        openapiFields.add("origQuoteOrderQty");
         openapiFields.add("cummulativeQuoteQty");
         openapiFields.add("status");
         openapiFields.add("timeInForce");
@@ -626,18 +660,6 @@ public class DeleteOrderResponse {
                                 "The required field(s) %s in DeleteOrderResponse is not found in"
                                         + " the empty JSON string",
                                 DeleteOrderResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DeleteOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `DeleteOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -689,6 +711,15 @@ public class DeleteOrderResponse {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
+        }
+        if ((jsonObj.get("origQuoteOrderQty") != null
+                        && !jsonObj.get("origQuoteOrderQty").isJsonNull())
+                && !jsonObj.get("origQuoteOrderQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origQuoteOrderQty` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("origQuoteOrderQty").toString()));
         }
         if ((jsonObj.get("cummulativeQuoteQty") != null
                         && !jsonObj.get("cummulativeQuoteQty").isJsonNull())

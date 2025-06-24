@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponseSymbolsInnerFiltersInner */
@@ -108,7 +106,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
 
     @SerializedName(SERIALIZED_NAME_MULTIPLIER_DECIMAL)
     @jakarta.annotation.Nullable
-    private Long multiplierDecimal;
+    private String multiplierDecimal;
 
     public ExchangeInformationResponseSymbolsInnerFiltersInner() {}
 
@@ -333,7 +331,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     public ExchangeInformationResponseSymbolsInnerFiltersInner multiplierDecimal(
-            @jakarta.annotation.Nullable Long multiplierDecimal) {
+            @jakarta.annotation.Nullable String multiplierDecimal) {
         this.multiplierDecimal = multiplierDecimal;
         return this;
     }
@@ -344,11 +342,11 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
      * @return multiplierDecimal
      */
     @jakarta.annotation.Nullable
-    public Long getMultiplierDecimal() {
+    public String getMultiplierDecimal() {
         return multiplierDecimal;
     }
 
-    public void setMultiplierDecimal(@jakarta.annotation.Nullable Long multiplierDecimal) {
+    public void setMultiplierDecimal(@jakarta.annotation.Nullable String multiplierDecimal) {
         this.multiplierDecimal = multiplierDecimal;
     }
 
@@ -549,20 +547,6 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponseSymbolsInnerFiltersInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ExchangeInformationResponseSymbolsInnerFiltersInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("filterType") != null && !jsonObj.get("filterType").isJsonNull())
                 && !jsonObj.get("filterType").isJsonPrimitive()) {
@@ -643,6 +627,15 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
                             "Expected the field `multiplierDown` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("multiplierDown").toString()));
+        }
+        if ((jsonObj.get("multiplierDecimal") != null
+                        && !jsonObj.get("multiplierDecimal").isJsonNull())
+                && !jsonObj.get("multiplierDecimal").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `multiplierDecimal` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("multiplierDecimal").toString()));
         }
     }
 

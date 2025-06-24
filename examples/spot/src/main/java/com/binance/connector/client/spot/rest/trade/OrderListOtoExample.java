@@ -44,7 +44,7 @@ public class OrderListOtoExample {
     /**
      * New Order list - OTO
      *
-     * <p>Places an OTO. * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. *
+     * <p>Place an OTO. * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. *
      * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or
      * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
      * second order is called the **pending order**. It can be any order type except for

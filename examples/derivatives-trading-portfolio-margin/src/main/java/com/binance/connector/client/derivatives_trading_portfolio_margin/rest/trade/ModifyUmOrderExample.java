@@ -57,8 +57,8 @@ public class ModifyUmOrderExample {
         ModifyUmOrderRequest modifyUmOrderRequest = new ModifyUmOrderRequest();
         modifyUmOrderRequest.symbol("");
         modifyUmOrderRequest.side(Side.BUY);
-        modifyUmOrderRequest.quantity(1d);
-        modifyUmOrderRequest.price(1d);
+        modifyUmOrderRequest.quantity(1.0d);
+        modifyUmOrderRequest.price(1.0d);
         ApiResponse<ModifyUmOrderResponse> response = getApi().modifyUmOrder(modifyUmOrderRequest);
         System.out.println(response.getData());
     }

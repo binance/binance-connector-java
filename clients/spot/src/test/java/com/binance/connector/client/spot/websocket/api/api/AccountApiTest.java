@@ -42,6 +42,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 
+import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
@@ -337,6 +343,102 @@ public class AccountApiTest {
         URL resource =
                 AccountApiTest.class.getResource("/expected/api/AccountApi/myTrades-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
+        JSONAssert.assertEquals(expectedJson, sentPayload, true);
+    }
+
+    /**
+     * WebSocket Current open orders
+     *
+     * <p>Query execution status of all open orders. If you need to continuously monitor order
+     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
+     * request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the
+     * number of requested symbols: | Parameter | Weight | | --------- | ------ | |
+     * &#x60;symbol&#x60; | 6 | | none | 80 |
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void openOrdersStatusTest() throws ApiException, URISyntaxException, IOException {
+        OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();
+        CompletableFuture<OpenOrdersStatusResponse> response =
+                api.openOrdersStatus(openOrdersStatusRequest);
+        ArgumentCaptor<RequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse>>
+                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
+        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
+        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
+        RemoteEndpoint remote = sessionMock.getRemote();
+        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
+        RequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse> requestWrapperDTO =
+                callArgumentCaptor.getValue();
+        OpenOrdersStatusRequest params = requestWrapperDTO.getParams();
+        String sentPayload = sendArgumentCaptor.getValue();
+
+        URL resource =
+                TradeApiTest.class.getResource(
+                        "/expected/api/TradeApi/openOrders.status-test.json");
+        String expectedJson = Files.readString(Paths.get(resource.toURI()));
+
+        JSONAssert.assertEquals(expectedJson, sentPayload, true);
+    }
+
+    /**
+     * WebSocket Query Order list
+     *
+     * <p>Check execution status of an Order list. For execution status of individual orders, use
+     * &#x60;order.status&#x60;. Weight: 4
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void orderListStatusTest() throws ApiException, URISyntaxException, IOException {
+        OrderListStatusRequest orderListStatusRequest = new OrderListStatusRequest();
+        CompletableFuture<OrderListStatusResponse> response =
+                api.orderListStatus(orderListStatusRequest);
+        ArgumentCaptor<RequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse>>
+                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
+        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
+        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
+        RemoteEndpoint remote = sessionMock.getRemote();
+        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
+        RequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse> requestWrapperDTO =
+                callArgumentCaptor.getValue();
+        OrderListStatusRequest params = requestWrapperDTO.getParams();
+        String sentPayload = sendArgumentCaptor.getValue();
+
+        URL resource =
+                TradeApiTest.class.getResource("/expected/api/TradeApi/orderList.status-test.json");
+        String expectedJson = Files.readString(Paths.get(resource.toURI()));
+
+        JSONAssert.assertEquals(expectedJson, sentPayload, true);
+    }
+
+    /**
+     * WebSocket Query order
+     *
+     * <p>Check execution status of an order. Weight: 4
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void orderStatusTest() throws ApiException, URISyntaxException, IOException {
+        OrderStatusRequest orderStatusRequest = new OrderStatusRequest();
+        orderStatusRequest.setSymbol("BTCUSDT");
+        CompletableFuture<OrderStatusResponse> response = api.orderStatus(orderStatusRequest);
+        ArgumentCaptor<RequestWrapperDTO<OrderStatusRequest, OrderStatusResponse>>
+                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
+        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
+        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
+        RemoteEndpoint remote = sessionMock.getRemote();
+        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
+        RequestWrapperDTO<OrderStatusRequest, OrderStatusResponse> requestWrapperDTO =
+                callArgumentCaptor.getValue();
+        OrderStatusRequest params = requestWrapperDTO.getParams();
+        String sentPayload = sendArgumentCaptor.getValue();
+
+        URL resource =
+                TradeApiTest.class.getResource("/expected/api/TradeApi/order.status-test.json");
+        String expectedJson = Files.readString(Paths.get(resource.toURI()));
+
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
 }

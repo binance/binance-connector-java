@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 - 2025-06-24
+
+### Changed (1)
+
+- Fixed cases where the response can be an object or an array
+
 ## 1.2.0 - 2025-05-13
 
 - Add proxy authentication for websocket

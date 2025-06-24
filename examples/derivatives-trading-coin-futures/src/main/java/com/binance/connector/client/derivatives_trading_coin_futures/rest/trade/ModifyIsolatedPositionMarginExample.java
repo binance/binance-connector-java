@@ -50,7 +50,7 @@ public class ModifyIsolatedPositionMarginExample {
         ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest =
                 new ModifyIsolatedPositionMarginRequest();
         modifyIsolatedPositionMarginRequest.symbol("");
-        modifyIsolatedPositionMarginRequest.amount(1d);
+        modifyIsolatedPositionMarginRequest.amount(1.0d);
         modifyIsolatedPositionMarginRequest.type(Type.LIMIT);
         ApiResponse<ModifyIsolatedPositionMarginResponse> response =
                 getApi().modifyIsolatedPositionMargin(modifyIsolatedPositionMarginRequest);

@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**OrderListCancelResponseResult**](OrderListCancelResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;TimeResponseRateLimitsInner&gt;**](TimeResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

@@ -39,7 +39,7 @@ public class AllOrderListsExample {
     }
 
     /**
-     * WebSocket Account Order list history
+     * WebSocket Account order list history
      *
      * <p>Query information about all your order lists, filtered by time range. Weight: 20
      */
@@ -58,7 +58,7 @@ public class AllOrderListsExample {
     }
 
     /**
-     * WebSocket Account Order list history
+     * WebSocket Account order list history
      *
      * <p>Query information about all your order lists, filtered by time range. Weight: 20
      */

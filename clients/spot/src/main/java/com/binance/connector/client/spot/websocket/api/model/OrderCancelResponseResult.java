@@ -210,7 +210,7 @@ public class OrderCancelResponseResult extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_ORDER_REPORTS)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderCancelResponseResultOrderReportsInner> orderReports;
+    private List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> orderReports;
 
     public OrderCancelResponseResult() {}
 
@@ -755,13 +755,14 @@ public class OrderCancelResponseResult extends BaseDTO {
 
     public OrderCancelResponseResult orderReports(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderCancelResponseResultOrderReportsInner> orderReports) {
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner>
+                            orderReports) {
         this.orderReports = orderReports;
         return this;
     }
 
     public OrderCancelResponseResult addOrderReportsItem(
-            OrderCancelResponseResultOrderReportsInner orderReportsItem) {
+            OpenOrdersCancelAllResponseResultInnerOrderReportsInner orderReportsItem) {
         if (this.orderReports == null) {
             this.orderReports = new ArrayList<>();
         }
@@ -776,13 +777,14 @@ public class OrderCancelResponseResult extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderCancelResponseResultOrderReportsInner> getOrderReports() {
+    public List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> getOrderReports() {
         return orderReports;
     }
 
     public void setOrderReports(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderCancelResponseResultOrderReportsInner> orderReports) {
+                    List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner>
+                            orderReports) {
         this.orderReports = orderReports;
     }
 
@@ -1043,7 +1045,7 @@ public class OrderCancelResponseResult extends BaseDTO {
             String ordersValueAsString = JSON.getGson().toJson(ordersValue);
             valMap.put("orders", ordersValueAsString);
         }
-        List<@Valid OrderCancelResponseResultOrderReportsInner> orderReportsValue =
+        List<@Valid OpenOrdersCancelAllResponseResultInnerOrderReportsInner> orderReportsValue =
                 getOrderReports();
         if (orderReportsValue != null) {
             String orderReportsValueAsString = JSON.getGson().toJson(orderReportsValue);
@@ -1452,7 +1454,7 @@ public class OrderCancelResponseResult extends BaseDTO {
 
                 // validate the optional field `orderReports` (array)
                 for (int i = 0; i < jsonArrayorderReports.size(); i++) {
-                    OrderCancelResponseResultOrderReportsInner.validateJsonElement(
+                    OpenOrdersCancelAllResponseResultInnerOrderReportsInner.validateJsonElement(
                             jsonArrayorderReports.get(i));
                 }
                 ;

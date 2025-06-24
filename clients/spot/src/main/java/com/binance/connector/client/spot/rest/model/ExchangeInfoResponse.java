@@ -33,9 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
@@ -60,13 +58,13 @@ public class ExchangeInfoResponse {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseRateLimitsInner> rateLimits;
+    private RateLimits rateLimits;
 
     public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
 
     @SerializedName(SERIALIZED_NAME_EXCHANGE_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseExchangeFiltersInner> exchangeFilters;
+    private ExchangeFilters exchangeFilters;
 
     public static final String SERIALIZED_NAME_SYMBOLS = "symbols";
 
@@ -114,19 +112,8 @@ public class ExchangeInfoResponse {
         this.serverTime = serverTime;
     }
 
-    public ExchangeInfoResponse rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseRateLimitsInner> rateLimits) {
+    public ExchangeInfoResponse rateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public ExchangeInfoResponse addRateLimitsItem(
-            ExchangeInfoResponseRateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -137,29 +124,17 @@ public class ExchangeInfoResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseRateLimitsInner> getRateLimits() {
+    public RateLimits getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseRateLimitsInner> rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
     }
 
     public ExchangeInfoResponse exchangeFilters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> exchangeFilters) {
+            @jakarta.annotation.Nullable ExchangeFilters exchangeFilters) {
         this.exchangeFilters = exchangeFilters;
-        return this;
-    }
-
-    public ExchangeInfoResponse addExchangeFiltersItem(
-            ExchangeInfoResponseExchangeFiltersInner exchangeFiltersItem) {
-        if (this.exchangeFilters == null) {
-            this.exchangeFilters = new ArrayList<>();
-        }
-        this.exchangeFilters.add(exchangeFiltersItem);
         return this;
     }
 
@@ -170,13 +145,11 @@ public class ExchangeInfoResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseExchangeFiltersInner> getExchangeFilters() {
+    public ExchangeFilters getExchangeFilters() {
         return exchangeFilters;
     }
 
-    public void setExchangeFilters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> exchangeFilters) {
+    public void setExchangeFilters(@jakarta.annotation.Nullable ExchangeFilters exchangeFilters) {
         this.exchangeFilters = exchangeFilters;
     }
 
@@ -257,17 +230,11 @@ public class ExchangeInfoResponse {
         sb.append("serverTime=").append(urlEncode(serverTimeValueAsString)).append("");
         Object rateLimitsValue = getRateLimits();
         String rateLimitsValueAsString = "";
-        rateLimitsValueAsString =
-                (String)
-                        ((Collection) rateLimitsValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        rateLimitsValueAsString = rateLimitsValue.toString();
         sb.append("rateLimits=").append(urlEncode(rateLimitsValueAsString)).append("");
         Object exchangeFiltersValue = getExchangeFilters();
         String exchangeFiltersValueAsString = "";
-        exchangeFiltersValueAsString =
-                (String)
-                        ((Collection) exchangeFiltersValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        exchangeFiltersValueAsString = exchangeFiltersValue.toString();
         sb.append("exchangeFilters=").append(urlEncode(exchangeFiltersValueAsString)).append("");
         Object symbolsValue = getSymbols();
         String symbolsValueAsString = "";
@@ -331,18 +298,6 @@ public class ExchangeInfoResponse {
                                 ExchangeInfoResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInfoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ExchangeInfoResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("timezone") != null && !jsonObj.get("timezone").isJsonNull())
                 && !jsonObj.get("timezone").isJsonPrimitive()) {
@@ -351,47 +306,6 @@ public class ExchangeInfoResponse {
                             "Expected the field `timezone` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("timezone").toString()));
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    ExchangeInfoResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("exchangeFilters") != null
-                && !jsonObj.get("exchangeFilters").isJsonNull()) {
-            JsonArray jsonArrayexchangeFilters = jsonObj.getAsJsonArray("exchangeFilters");
-            if (jsonArrayexchangeFilters != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("exchangeFilters").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `exchangeFilters` to be an array in the"
-                                            + " JSON string but got `%s`",
-                                    jsonObj.get("exchangeFilters").toString()));
-                }
-
-                // validate the optional field `exchangeFilters` (array)
-                for (int i = 0; i < jsonArrayexchangeFilters.size(); i++) {
-                    ExchangeInfoResponseExchangeFiltersInner.validateJsonElement(
-                            jsonArrayexchangeFilters.get(i));
-                }
-                ;
-            }
         }
         if (jsonObj.get("symbols") != null && !jsonObj.get("symbols").isJsonNull()) {
             JsonArray jsonArraysymbols = jsonObj.getAsJsonArray("symbols");

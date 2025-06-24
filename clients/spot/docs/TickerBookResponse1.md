@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**TickerBookResponse1Result**](TickerBookResponse1Result.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AvgPriceResponseRateLimitsInner&gt;**](AvgPriceResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

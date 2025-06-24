@@ -14,6 +14,7 @@ package com.binance.connector.client.derivatives_trading_portfolio_margin.rest.m
 
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -28,9 +29,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetUmIncomeHistoryResponse */
@@ -108,6 +107,18 @@ public class GetUmIncomeHistoryResponse extends ArrayList<GetUmIncomeHistoryResp
      * @throws IOException if the JSON Element is invalid with respect to GetUmIncomeHistoryResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            GetUmIncomeHistoryResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!GetUmIncomeHistoryResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -116,18 +127,6 @@ public class GetUmIncomeHistoryResponse extends ArrayList<GetUmIncomeHistoryResp
                                 "The required field(s) %s in GetUmIncomeHistoryResponse is not"
                                         + " found in the empty JSON string",
                                 GetUmIncomeHistoryResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetUmIncomeHistoryResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetUmIncomeHistoryResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }

@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderTestResponseStandardCommissionForOrder */
@@ -185,20 +183,6 @@ public class OrderTestResponseStandardCommissionForOrder {
                                     + " the empty JSON string",
                                 OrderTestResponseStandardCommissionForOrder.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderTestResponseStandardCommissionForOrder.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `OrderTestResponseStandardCommissionForOrder` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();

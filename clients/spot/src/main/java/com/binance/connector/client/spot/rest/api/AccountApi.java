@@ -20,10 +20,16 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.spot.rest.model.AccountCommissionResponse;
+import com.binance.connector.client.spot.rest.model.AllOrderListResponse;
+import com.binance.connector.client.spot.rest.model.AllOrdersResponse;
 import com.binance.connector.client.spot.rest.model.GetAccountResponse;
+import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
+import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
+import com.binance.connector.client.spot.rest.model.GetOrderResponse;
 import com.binance.connector.client.spot.rest.model.MyAllocationsResponse;
 import com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.rest.model.MyTradesResponse;
+import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
 import com.binance.connector.client.spot.rest.model.OrderAmendmentsResponse;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +54,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/2.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -222,6 +228,377 @@ public class AccountApi {
     }
 
     /**
+     * Build call for allOrderList
+     *
+     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-all-order-lists-user_data">Query
+     *     all Order lists Documentation</a>
+     */
+    private okhttp3.Call allOrderListCall(
+            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/allOrderList";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fromId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fromId", fromId));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call allOrderListValidateBeforeCall(
+            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {fromId, startTime, endTime, limit, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "allOrderList",
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Integer.class,
+                                    Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return allOrderListCall(fromId, startTime, endTime, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query all Order lists Retrieves all order lists based on provided optional parameters. Note
+     * that the time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than
+     * 24 hours. Weight: 20
+     *
+     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;AllOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-all-order-lists-user_data">Query
+     *     all Order lists Documentation</a>
+     */
+    public ApiResponse<AllOrderListResponse> allOrderList(
+            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                allOrderListValidateBeforeCall(fromId, startTime, endTime, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<AllOrderListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for allOrders
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#all-orders-user_data">All
+     *     orders Documentation</a>
+     */
+    private okhttp3.Call allOrdersCall(
+            String symbol,
+            Long orderId,
+            Long startTime,
+            Long endTime,
+            Integer limit,
+            Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/allOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call allOrdersValidateBeforeCall(
+            String symbol,
+            Long orderId,
+            Long startTime,
+            Long endTime,
+            Integer limit,
+            Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, orderId, startTime, endTime, limit, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "allOrders",
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Integer.class,
+                                    Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return allOrdersCall(symbol, orderId, startTime, endTime, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * All orders Get all account orders; active, canceled, or filled. Weight: 20
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;AllOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#all-orders-user_data">All
+     *     orders Documentation</a>
+     */
+    public ApiResponse<AllOrdersResponse> allOrders(
+            @NotNull String symbol,
+            Long orderId,
+            Long startTime,
+            Long endTime,
+            Integer limit,
+            Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                allOrdersValidateBeforeCall(symbol, orderId, startTime, endTime, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<AllOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for getAccount
      *
      * @param omitZeroBalances When set to &#x60;true&#x60;, emits only the non-zero balances of an
@@ -365,6 +742,470 @@ public class AccountApi {
         okhttp3.Call localVarCall = getAccountValidateBeforeCall(omitZeroBalances, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetAccountResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getOpenOrders
+     *
+     * @param symbol Symbol to query (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
+     *     open orders Documentation</a>
+     */
+    private okhttp3.Call getOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/openOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, recvWindow};
+            Method method = this.getClass().getMethod("getOpenOrders", String.class, Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getOpenOrdersCall(symbol, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Current open orders Get all open orders on a symbol. **Careful** when accessing this with no
+     * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
+     *
+     * @param symbol Symbol to query (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
+     *     open orders Documentation</a>
+     */
+    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall = getOpenOrdersValidateBeforeCall(symbol, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getOrder
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-user_data">Query
+     *     order Documentation</a>
+     */
+    private okhttp3.Call getOrderCall(
+            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/order";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (origClientOrderId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("origClientOrderId", origClientOrderId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getOrderValidateBeforeCall(
+            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, orderId, origClientOrderId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "getOrder", String.class, Long.class, String.class, Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getOrderCall(symbol, orderId, origClientOrderId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query order Check an order&#39;s status. Weight: 4
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-user_data">Query
+     *     order Documentation</a>
+     */
+    public ApiResponse<GetOrderResponse> getOrder(
+            @NotNull String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                getOrderValidateBeforeCall(symbol, orderId, origClientOrderId, recvWindow);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<GetOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getOrderList
+     *
+     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
+     *     provided (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-list-user_data">Query
+     *     Order list Documentation</a>
+     */
+    private okhttp3.Call getOrderListCall(
+            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/orderList";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderListId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("orderListId", orderListId));
+        }
+
+        if (origClientOrderId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("origClientOrderId", origClientOrderId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getOrderListValidateBeforeCall(
+            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderListId, origClientOrderId, recvWindow};
+            Method method =
+                    this.getClass().getMethod("getOrderList", Long.class, String.class, Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getOrderListCall(orderListId, origClientOrderId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Order list Retrieves a specific order list based on provided optional parameters.
+     * Weight: 4
+     *
+     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
+     *     provided (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-list-user_data">Query
+     *     Order list Documentation</a>
+     */
+    public ApiResponse<GetOrderListResponse> getOrderList(
+            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                getOrderListValidateBeforeCall(orderListId, origClientOrderId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetOrderListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -994,6 +1835,141 @@ public class AccountApi {
                 myTradesValidateBeforeCall(
                         symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType = new TypeToken<MyTradesResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for openOrderList
+     *
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
+     *     Open Order lists Documentation</a>
+     */
+    private okhttp3.Call openOrderListCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/openOrderList";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        List<String> localVarAuthNames = new ArrayList<>();
+        localVarAuthNames.addAll(
+                Arrays.asList(
+                        new String[] {
+                            "binanceSignature",
+                        }));
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames.toArray(new String[0]));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call openOrderListValidateBeforeCall(Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("openOrderList", Long.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return openOrderListCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Open Order lists Weight: 6
+     *
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;OpenOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
+     *     Open Order lists Documentation</a>
+     */
+    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = openOrderListValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<OpenOrderListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

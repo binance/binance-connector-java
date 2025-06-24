@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponseAssetsInner */
@@ -54,7 +52,7 @@ public class ExchangeInformationResponseAssetsInner {
 
     @SerializedName(SERIALIZED_NAME_AUTO_ASSET_EXCHANGE)
     @jakarta.annotation.Nullable
-    private Long autoAssetExchange;
+    private String autoAssetExchange;
 
     public ExchangeInformationResponseAssetsInner() {}
 
@@ -98,7 +96,7 @@ public class ExchangeInformationResponseAssetsInner {
     }
 
     public ExchangeInformationResponseAssetsInner autoAssetExchange(
-            @jakarta.annotation.Nullable Long autoAssetExchange) {
+            @jakarta.annotation.Nullable String autoAssetExchange) {
         this.autoAssetExchange = autoAssetExchange;
         return this;
     }
@@ -109,11 +107,11 @@ public class ExchangeInformationResponseAssetsInner {
      * @return autoAssetExchange
      */
     @jakarta.annotation.Nullable
-    public Long getAutoAssetExchange() {
+    public String getAutoAssetExchange() {
         return autoAssetExchange;
     }
 
-    public void setAutoAssetExchange(@jakarta.annotation.Nullable Long autoAssetExchange) {
+    public void setAutoAssetExchange(@jakarta.annotation.Nullable String autoAssetExchange) {
         this.autoAssetExchange = autoAssetExchange;
     }
 
@@ -224,19 +222,6 @@ public class ExchangeInformationResponseAssetsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponseAssetsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInformationResponseAssetsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -245,6 +230,15 @@ public class ExchangeInformationResponseAssetsInner {
                             "Expected the field `asset` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
+        }
+        if ((jsonObj.get("autoAssetExchange") != null
+                        && !jsonObj.get("autoAssetExchange").isJsonNull())
+                && !jsonObj.get("autoAssetExchange").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `autoAssetExchange` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("autoAssetExchange").toString()));
         }
     }
 

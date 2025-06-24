@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**ExchangeInfoResponseResult**](ExchangeInfoResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;ExchangeInfoResponseResultRateLimitsInner&gt;**](ExchangeInfoResponseResultRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

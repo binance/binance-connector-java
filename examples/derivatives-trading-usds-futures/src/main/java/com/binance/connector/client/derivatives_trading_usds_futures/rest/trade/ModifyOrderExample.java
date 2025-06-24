@@ -61,8 +61,8 @@ public class ModifyOrderExample {
         ModifyOrderRequest modifyOrderRequest = new ModifyOrderRequest();
         modifyOrderRequest.symbol("");
         modifyOrderRequest.side(Side.BUY);
-        modifyOrderRequest.quantity(1d);
-        modifyOrderRequest.price(1d);
+        modifyOrderRequest.quantity(1.0d);
+        modifyOrderRequest.price(1.0d);
         ApiResponse<ModifyOrderResponse> response = getApi().modifyOrder(modifyOrderRequest);
         System.out.println(response.getData());
     }

@@ -166,13 +166,13 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.DepthResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.ExchangeInfoResponse
+                new com.binance.connector.client.spot.rest.model.ExchangeFilters
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model
-                        .ExchangeInfoResponseExchangeFiltersInner.CustomTypeAdapterFactory());
+                new com.binance.connector.client.spot.rest.model.ExchangeFiltersInner
+                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseRateLimitsInner
+                new com.binance.connector.client.spot.rest.model.ExchangeInfoResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseSymbolsInner
@@ -363,6 +363,12 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.RateLimitOrderResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.RateLimits
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.RateLimitsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.SorOrderRequest

@@ -59,13 +59,13 @@ public class AllOrderListsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderListStatusResponseResult> result;
+    private List<@Valid AllOrderListsResponseResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private RateLimits rateLimits;
 
     public AllOrderListsResponse() {}
 
@@ -108,12 +108,12 @@ public class AllOrderListsResponse extends BaseDTO {
     }
 
     public AllOrderListsResponse result(
-            @jakarta.annotation.Nullable List<@Valid OrderListStatusResponseResult> result) {
+            @jakarta.annotation.Nullable List<@Valid AllOrderListsResponseResultInner> result) {
         this.result = result;
         return this;
     }
 
-    public AllOrderListsResponse addResultItem(OrderListStatusResponseResult resultItem) {
+    public AllOrderListsResponse addResultItem(AllOrderListsResponseResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -128,28 +128,17 @@ public class AllOrderListsResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderListStatusResponseResult> getResult() {
+    public List<@Valid AllOrderListsResponseResultInner> getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable List<@Valid OrderListStatusResponseResult> result) {
+            @jakarta.annotation.Nullable List<@Valid AllOrderListsResponseResultInner> result) {
         this.result = result;
     }
 
-    public AllOrderListsResponse rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+    public AllOrderListsResponse rateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public AllOrderListsResponse addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -160,13 +149,11 @@ public class AllOrderListsResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public RateLimits getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -216,12 +203,12 @@ public class AllOrderListsResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid OrderListStatusResponseResult> resultValue = getResult();
+        List<@Valid AllOrderListsResponseResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        RateLimits rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -340,27 +327,7 @@ public class AllOrderListsResponse extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    OrderListStatusResponseResult.validateJsonElement(jsonArrayresult.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
+                    AllOrderListsResponseResultInner.validateJsonElement(jsonArrayresult.get(i));
                 }
                 ;
             }

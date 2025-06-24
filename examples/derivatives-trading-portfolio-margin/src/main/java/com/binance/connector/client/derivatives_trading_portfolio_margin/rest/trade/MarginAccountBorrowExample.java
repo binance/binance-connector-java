@@ -48,7 +48,7 @@ public class MarginAccountBorrowExample {
     public void marginAccountBorrowExample() throws ApiException {
         MarginAccountBorrowRequest marginAccountBorrowRequest = new MarginAccountBorrowRequest();
         marginAccountBorrowRequest.asset("");
-        marginAccountBorrowRequest.amount(1d);
+        marginAccountBorrowRequest.amount(1.0d);
         ApiResponse<MarginAccountBorrowResponse> response =
                 getApi().marginAccountBorrow(marginAccountBorrowRequest);
         System.out.println(response.getData());

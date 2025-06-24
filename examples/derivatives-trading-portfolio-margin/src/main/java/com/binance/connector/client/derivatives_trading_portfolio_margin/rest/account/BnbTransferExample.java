@@ -48,7 +48,7 @@ public class BnbTransferExample {
      */
     public void bnbTransferExample() throws ApiException {
         BnbTransferRequest bnbTransferRequest = new BnbTransferRequest();
-        bnbTransferRequest.amount(1d);
+        bnbTransferRequest.amount(1.0d);
         bnbTransferRequest.transferSide("");
         ApiResponse<BnbTransferResponse> response = getApi().bnbTransfer(bnbTransferRequest);
         System.out.println(response.getData());

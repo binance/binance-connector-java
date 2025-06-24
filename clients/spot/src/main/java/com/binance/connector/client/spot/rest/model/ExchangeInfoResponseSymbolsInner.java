@@ -14,7 +14,6 @@ package com.binance.connector.client.spot.rest.model;
 
 import com.binance.connector.client.spot.rest.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -33,9 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
@@ -143,11 +140,11 @@ public class ExchangeInfoResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private Boolean cancelReplaceAllowed;
 
-    public static final String SERIALIZED_NAME_ALLOW_AMEND = "allowAmend";
+    public static final String SERIALIZED_NAME_AMEND_ALLOWED = "amendAllowed";
 
-    @SerializedName(SERIALIZED_NAME_ALLOW_AMEND)
+    @SerializedName(SERIALIZED_NAME_AMEND_ALLOWED)
     @jakarta.annotation.Nullable
-    private Boolean allowAmend;
+    private Boolean amendAllowed;
 
     public static final String SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED = "isSpotTradingAllowed";
 
@@ -165,7 +162,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters;
+    private ExchangeFilters filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -524,24 +521,24 @@ public class ExchangeInfoResponseSymbolsInner {
         this.cancelReplaceAllowed = cancelReplaceAllowed;
     }
 
-    public ExchangeInfoResponseSymbolsInner allowAmend(
-            @jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public ExchangeInfoResponseSymbolsInner amendAllowed(
+            @jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
         return this;
     }
 
     /**
-     * Get allowAmend
+     * Get amendAllowed
      *
-     * @return allowAmend
+     * @return amendAllowed
      */
     @jakarta.annotation.Nullable
-    public Boolean getAllowAmend() {
-        return allowAmend;
+    public Boolean getAmendAllowed() {
+        return amendAllowed;
     }
 
-    public void setAllowAmend(@jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public void setAmendAllowed(@jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
     }
 
     public ExchangeInfoResponseSymbolsInner isSpotTradingAllowed(
@@ -586,18 +583,8 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     public ExchangeInfoResponseSymbolsInner filters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
+            @jakarta.annotation.Nullable ExchangeFilters filters) {
         this.filters = filters;
-        return this;
-    }
-
-    public ExchangeInfoResponseSymbolsInner addFiltersItem(
-            ExchangeInfoResponseExchangeFiltersInner filtersItem) {
-        if (this.filters == null) {
-            this.filters = new ArrayList<>();
-        }
-        this.filters.add(filtersItem);
         return this;
     }
 
@@ -608,13 +595,11 @@ public class ExchangeInfoResponseSymbolsInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseExchangeFiltersInner> getFilters() {
+    public ExchangeFilters getFilters() {
         return filters;
     }
 
-    public void setFilters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
+    public void setFilters(@jakarta.annotation.Nullable ExchangeFilters filters) {
         this.filters = filters;
     }
 
@@ -767,7 +752,7 @@ public class ExchangeInfoResponseSymbolsInner {
                 && Objects.equals(
                         this.cancelReplaceAllowed,
                         exchangeInfoResponseSymbolsInner.cancelReplaceAllowed)
-                && Objects.equals(this.allowAmend, exchangeInfoResponseSymbolsInner.allowAmend)
+                && Objects.equals(this.amendAllowed, exchangeInfoResponseSymbolsInner.amendAllowed)
                 && Objects.equals(
                         this.isSpotTradingAllowed,
                         exchangeInfoResponseSymbolsInner.isSpotTradingAllowed)
@@ -805,7 +790,7 @@ public class ExchangeInfoResponseSymbolsInner {
                 quoteOrderQtyMarketAllowed,
                 allowTrailingStop,
                 cancelReplaceAllowed,
-                allowAmend,
+                amendAllowed,
                 isSpotTradingAllowed,
                 isMarginTradingAllowed,
                 filters,
@@ -847,7 +832,7 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("		cancelReplaceAllowed: ")
                 .append(toIndentedString(cancelReplaceAllowed))
                 .append("\n");
-        sb.append("		allowAmend: ").append(toIndentedString(allowAmend)).append("\n");
+        sb.append("		amendAllowed: ").append(toIndentedString(amendAllowed)).append("\n");
         sb.append("		isSpotTradingAllowed: ")
                 .append(toIndentedString(isSpotTradingAllowed))
                 .append("\n");
@@ -951,10 +936,10 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("cancelReplaceAllowed=")
                 .append(urlEncode(cancelReplaceAllowedValueAsString))
                 .append("");
-        Object allowAmendValue = getAllowAmend();
-        String allowAmendValueAsString = "";
-        allowAmendValueAsString = allowAmendValue.toString();
-        sb.append("allowAmend=").append(urlEncode(allowAmendValueAsString)).append("");
+        Object amendAllowedValue = getAmendAllowed();
+        String amendAllowedValueAsString = "";
+        amendAllowedValueAsString = amendAllowedValue.toString();
+        sb.append("amendAllowed=").append(urlEncode(amendAllowedValueAsString)).append("");
         Object isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         String isSpotTradingAllowedValueAsString = "";
         isSpotTradingAllowedValueAsString = isSpotTradingAllowedValue.toString();
@@ -969,10 +954,7 @@ public class ExchangeInfoResponseSymbolsInner {
                 .append("");
         Object filtersValue = getFilters();
         String filtersValueAsString = "";
-        filtersValueAsString =
-                (String)
-                        ((Collection) filtersValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        filtersValueAsString = filtersValue.toString();
         sb.append("filters=").append(urlEncode(filtersValueAsString)).append("");
         Object permissionsValue = getPermissions();
         String permissionsValueAsString = "";
@@ -1048,7 +1030,7 @@ public class ExchangeInfoResponseSymbolsInner {
         openapiFields.add("quoteOrderQtyMarketAllowed");
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");
-        openapiFields.add("allowAmend");
+        openapiFields.add("amendAllowed");
         openapiFields.add("isSpotTradingAllowed");
         openapiFields.add("isMarginTradingAllowed");
         openapiFields.add("filters");
@@ -1077,18 +1059,6 @@ public class ExchangeInfoResponseSymbolsInner {
                                 "The required field(s) %s in ExchangeInfoResponseSymbolsInner is"
                                         + " not found in the empty JSON string",
                                 ExchangeInfoResponseSymbolsInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInfoResponseSymbolsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInfoResponseSymbolsInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1133,26 +1103,6 @@ public class ExchangeInfoResponseSymbolsInner {
                             "Expected the field `orderTypes` to be an array in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("orderTypes").toString()));
-        }
-        if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
-            JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
-            if (jsonArrayfilters != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("filters").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `filters` to be an array in the JSON string"
-                                            + " but got `%s`",
-                                    jsonObj.get("filters").toString()));
-                }
-
-                // validate the optional field `filters` (array)
-                for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    ExchangeInfoResponseExchangeFiltersInner.validateJsonElement(
-                            jsonArrayfilters.get(i));
-                }
-                ;
-            }
         }
         // ensure the optional json data is an array if present
         if (jsonObj.get("permissions") != null

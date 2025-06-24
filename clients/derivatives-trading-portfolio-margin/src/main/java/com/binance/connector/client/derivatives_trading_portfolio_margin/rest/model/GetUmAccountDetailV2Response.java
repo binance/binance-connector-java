@@ -33,9 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
@@ -221,18 +219,6 @@ public class GetUmAccountDetailV2Response {
                                 "The required field(s) %s in GetUmAccountDetailV2Response is not"
                                         + " found in the empty JSON string",
                                 GetUmAccountDetailV2Response.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetUmAccountDetailV2Response.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetUmAccountDetailV2Response` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();

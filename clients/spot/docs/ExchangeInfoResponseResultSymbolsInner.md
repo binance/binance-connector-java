@@ -23,10 +23,10 @@
 |**quoteOrderQtyMarketAllowed** | **Boolean** |  |  [optional] |
 |**allowTrailingStop** | **Boolean** |  |  [optional] |
 |**cancelReplaceAllowed** | **Boolean** |  |  [optional] |
-|**allowAmend** | **Boolean** |  |  [optional] |
+|**amendAllowed** | **Boolean** |  |  [optional] |
 |**isSpotTradingAllowed** | **Boolean** |  |  [optional] |
 |**isMarginTradingAllowed** | **Boolean** |  |  [optional] |
-|**filters** | [**List&lt;ExchangeInfoResponseResultExchangeFiltersInner&gt;**](ExchangeInfoResponseResultExchangeFiltersInner.md) |  |  [optional] |
+|**filters** | **ExchangeFilters** |  |  [optional] |
 |**permissions** | **List&lt;String&gt;** |  |  [optional] |
 |**permissionSets** | **List&lt;List&lt;String&gt;&gt;** |  |  [optional] |
 |**defaultSelfTradePreventionMode** | **String** |  |  [optional] |

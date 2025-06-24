@@ -59,8 +59,8 @@ public class ModifyOrderExample {
         ModifyOrderRequest modifyOrderRequest = new ModifyOrderRequest();
         modifyOrderRequest.symbol("");
         modifyOrderRequest.side(Side.BUY);
-        modifyOrderRequest.quantity(1d);
-        modifyOrderRequest.price(1d);
+        modifyOrderRequest.quantity(1.0d);
+        modifyOrderRequest.price(1.0d);
         CompletableFuture<ModifyOrderResponse> future = getApi().modifyOrder(modifyOrderRequest);
         future.handle(
                 (response, error) -> {
@@ -92,8 +92,8 @@ public class ModifyOrderExample {
         ModifyOrderRequest modifyOrderRequest = new ModifyOrderRequest();
         modifyOrderRequest.symbol("");
         modifyOrderRequest.side(Side.BUY);
-        modifyOrderRequest.quantity(1d);
-        modifyOrderRequest.price(1d);
+        modifyOrderRequest.quantity(1.0d);
+        modifyOrderRequest.price(1.0d);
         CompletableFuture<ModifyOrderResponse> future = getApi().modifyOrder(modifyOrderRequest);
         ModifyOrderResponse response = future.join();
         System.out.println(response);
