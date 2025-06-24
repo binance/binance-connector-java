@@ -7,7 +7,7 @@
 #### REST API
 
 - Fixed cases where the response can be an object or an array
-- rateLimits to be a unified as a single object
+- rateLimits to be unified as a single object
 - Modified response for `exchangeInfo()` method (`GET /api/v3/exchangeInfo`):
   - `symbols`: item property `amendAllowed` added
   - `symbols`: item property `allowAmend` deleted
