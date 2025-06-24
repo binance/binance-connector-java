@@ -65,7 +65,7 @@ public class AllOrdersResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private RateLimits rateLimits;
 
     public AllOrdersResponse() {}
 
@@ -137,19 +137,8 @@ public class AllOrdersResponse extends BaseDTO {
         this.result = result;
     }
 
-    public AllOrdersResponse rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+    public AllOrdersResponse rateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public AllOrdersResponse addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -160,13 +149,11 @@ public class AllOrdersResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public RateLimits getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -221,7 +208,7 @@ public class AllOrdersResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        RateLimits rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -341,26 +328,6 @@ public class AllOrdersResponse extends BaseDTO {
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
                     AllOrdersResponseResultInner.validateJsonElement(jsonArrayresult.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
                 }
                 ;
             }

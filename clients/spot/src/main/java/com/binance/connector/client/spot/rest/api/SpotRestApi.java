@@ -109,6 +109,70 @@ public class SpotRestApi {
     }
 
     /**
+     * Query all Order lists Retrieves all order lists based on provided optional parameters. Note
+     * that the time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than
+     * 24 hours. Weight: 20
+     *
+     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;AllOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-all-order-lists-user_data">Query
+     *     all Order lists Documentation</a>
+     */
+    public ApiResponse<AllOrderListResponse> allOrderList(
+            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            throws ApiException {
+        return accountApi.allOrderList(fromId, startTime, endTime, limit, recvWindow);
+    }
+
+    /**
+     * All orders Get all account orders; active, canceled, or filled. Weight: 20
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;AllOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#all-orders-user_data">All
+     *     orders Documentation</a>
+     */
+    public ApiResponse<AllOrdersResponse> allOrders(
+            String symbol,
+            Long orderId,
+            Long startTime,
+            Long endTime,
+            Integer limit,
+            Long recvWindow)
+            throws ApiException {
+        return accountApi.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
+    }
+
+    /**
      * Account information Get current account information. Weight: 20
      *
      * @param omitZeroBalances When set to &#x60;true&#x60;, emits only the non-zero balances of an
@@ -131,6 +195,85 @@ public class SpotRestApi {
     public ApiResponse<GetAccountResponse> getAccount(Boolean omitZeroBalances, Long recvWindow)
             throws ApiException {
         return accountApi.getAccount(omitZeroBalances, recvWindow);
+    }
+
+    /**
+     * Current open orders Get all open orders on a symbol. **Careful** when accessing this with no
+     * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
+     *
+     * @param symbol Symbol to query (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
+     *     open orders Documentation</a>
+     */
+    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
+            throws ApiException {
+        return accountApi.getOpenOrders(symbol, recvWindow);
+    }
+
+    /**
+     * Query order Check an order&#39;s status. Weight: 4
+     *
+     * @param symbol (required)
+     * @param orderId (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-user_data">Query
+     *     order Documentation</a>
+     */
+    public ApiResponse<GetOrderResponse> getOrder(
+            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            throws ApiException {
+        return accountApi.getOrder(symbol, orderId, origClientOrderId, recvWindow);
+    }
+
+    /**
+     * Query Order list Retrieves a specific order list based on provided optional parameters.
+     * Weight: 4
+     *
+     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
+     *     provided (optional)
+     * @param origClientOrderId (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;GetOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-list-user_data">Query
+     *     Order list Documentation</a>
+     */
+    public ApiResponse<GetOrderListResponse> getOrderList(
+            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+        return accountApi.getOrderList(orderListId, origClientOrderId, recvWindow);
     }
 
     /**
@@ -246,6 +389,28 @@ public class SpotRestApi {
             Long recvWindow)
             throws ApiException {
         return accountApi.myTrades(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
+    }
+
+    /**
+     * Query Open Order lists Weight: 6
+     *
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;OpenOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
+     *     Open Order lists Documentation</a>
+     */
+    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
+        return accountApi.openOrderList(recvWindow);
     }
 
     /**
@@ -727,70 +892,6 @@ public class SpotRestApi {
     }
 
     /**
-     * Query all Order lists Retrieves all order lists based on provided optional parameters. Note
-     * that the time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than
-     * 24 hours. Weight: 20
-     *
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;AllOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data">Query
-     *     all Order lists Documentation</a>
-     */
-    public ApiResponse<AllOrderListResponse> allOrderList(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
-            throws ApiException {
-        return tradeApi.allOrderList(fromId, startTime, endTime, limit, recvWindow);
-    }
-
-    /**
-     * All orders Get all account orders; active, canceled, or filled. Weight: 20
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;AllOrdersResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data">All
-     *     orders Documentation</a>
-     */
-    public ApiResponse<AllOrdersResponse> allOrders(
-            String symbol,
-            Long orderId,
-            Long startTime,
-            Long endTime,
-            Integer limit,
-            Long recvWindow)
-            throws ApiException {
-        return tradeApi.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
-    }
-
-    /**
      * Cancel All Open Orders on a Symbol Cancels all active orders on a symbol. This includes
      * orders that are part of an order list. Weight: 1
      *
@@ -894,85 +995,6 @@ public class SpotRestApi {
     }
 
     /**
-     * Current open orders Get all open orders on a symbol. **Careful** when accessing this with no
-     * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
-     *
-     * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data">Current
-     *     open orders Documentation</a>
-     */
-    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
-            throws ApiException {
-        return tradeApi.getOpenOrders(symbol, recvWindow);
-    }
-
-    /**
-     * Query order Check an order&#39;s status. Weight: 4
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOrderResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data">Query
-     *     order Documentation</a>
-     */
-    public ApiResponse<GetOrderResponse> getOrder(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
-            throws ApiException {
-        return tradeApi.getOrder(symbol, orderId, origClientOrderId, recvWindow);
-    }
-
-    /**
-     * Query Order list Retrieves a specific order list based on provided optional parameters.
-     * Weight: 4
-     *
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data">Query
-     *     Order list Documentation</a>
-     */
-    public ApiResponse<GetOrderListResponse> getOrderList(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
-        return tradeApi.getOrderList(orderListId, origClientOrderId, recvWindow);
-    }
-
-    /**
      * New order Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60;
      * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
      *
@@ -994,28 +1016,6 @@ public class SpotRestApi {
     public ApiResponse<NewOrderResponse> newOrder(NewOrderRequest newOrderRequest)
             throws ApiException {
         return tradeApi.newOrder(newOrderRequest);
-    }
-
-    /**
-     * Query Open Order lists Weight: 6
-     *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;OpenOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data">Query
-     *     Open Order lists Documentation</a>
-     */
-    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
-        return tradeApi.openOrderList(recvWindow);
     }
 
     /**
@@ -1107,7 +1107,7 @@ public class SpotRestApi {
     }
 
     /**
-     * New Order list - OTO Places an OTO. * An OTO (One-Triggers-the-Other) is an order list
+     * New Order list - OTO Place an OTO. * An OTO (One-Triggers-the-Other) is an order list
      * comprised of 2 orders. * The first order is called the **working order** and must be
      * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the
      * order book. * The second order is called the **pending order**. It can be any order type

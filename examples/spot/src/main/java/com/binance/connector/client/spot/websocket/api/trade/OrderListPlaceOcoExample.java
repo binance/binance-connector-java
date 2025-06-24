@@ -44,7 +44,7 @@ public class OrderListPlaceOcoExample {
     /**
      * WebSocket Place new Order list - OCO
      *
-     * <p>Send in an one-cancels the other (OCO) pair, where activation of one order immediately
+     * <p>Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately
      * cancels the other. * An OCO has 2 orders called the **above order** and **below order**. *
      * One of the orders must be a &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and
      * the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price
@@ -80,7 +80,7 @@ public class OrderListPlaceOcoExample {
     /**
      * WebSocket Place new Order list - OCO
      *
-     * <p>Send in an one-cancels the other (OCO) pair, where activation of one order immediately
+     * <p>Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately
      * cancels the other. * An OCO has 2 orders called the **above order** and **below order**. *
      * One of the orders must be a &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and
      * the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price

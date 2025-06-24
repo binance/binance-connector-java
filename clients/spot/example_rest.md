@@ -2,13 +2,25 @@
 
 [GET /api/v3/account/commission](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-commission-rates-user_data) - accountCommission - [AccountCommissionExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/AccountCommissionExample.java#L46)
 
+[GET /api/v3/allOrderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-all-order-lists-user_data) - allOrderList - [AllOrderListExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/AllOrderListExample.java#L48)
+
+[GET /api/v3/allOrders](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#all-orders-user_data) - allOrders - [AllOrdersExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/AllOrdersExample.java#L46)
+
 [GET /api/v3/account](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data) - getAccount - [GetAccountExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/GetAccountExample.java#L46)
+
+[GET /api/v3/openOrders](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data) - getOpenOrders - [GetOpenOrdersExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/GetOpenOrdersExample.java#L47)
+
+[GET /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-user_data) - getOrder - [GetOrderExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/GetOrderExample.java#L46)
+
+[GET /api/v3/orderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-list-user_data) - getOrderList - [GetOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/GetOrderListExample.java#L46)
 
 [GET /api/v3/myAllocations](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-allocations-user_data) - myAllocations - [MyAllocationsExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyAllocationsExample.java#L46)
 
 [GET /api/v3/myPreventedMatches](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-prevented-matches-user_data) - myPreventedMatches - [MyPreventedMatchesExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyPreventedMatchesExample.java#L52)
 
 [GET /api/v3/myTrades](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-trade-list-user_data) - myTrades - [MyTradesExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyTradesExample.java#L47)
+
+[GET /api/v3/openOrderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data) - openOrderList - [OpenOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/OpenOrderListExample.java#L46)
 
 [GET /api/v3/order/amendments](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-amendments-user_data) - orderAmendments - [OrderAmendmentsExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/OrderAmendmentsExample.java#L46)
 
@@ -50,25 +62,13 @@
 
 ## Trade
 
-[GET /api/v3/allOrderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data) - allOrderList - [AllOrderListExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/AllOrderListExample.java#L48)
-
-[GET /api/v3/allOrders](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data) - allOrders - [AllOrdersExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/AllOrdersExample.java#L46)
-
 [DELETE /api/v3/openOrders](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade) - deleteOpenOrders - [DeleteOpenOrdersExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/DeleteOpenOrdersExample.java#L47)
 
 [DELETE /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade) - deleteOrder - [DeleteOrderExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/DeleteOrderExample.java#L47)
 
 [DELETE /api/v3/orderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade) - deleteOrderList - [DeleteOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/DeleteOrderListExample.java#L46)
 
-[GET /api/v3/openOrders](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data) - getOpenOrders - [GetOpenOrdersExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/GetOpenOrdersExample.java#L47)
-
-[GET /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data) - getOrder - [GetOrderExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/GetOrderExample.java#L46)
-
-[GET /api/v3/orderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data) - getOrderList - [GetOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/GetOrderListExample.java#L46)
-
 [POST /api/v3/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade) - newOrder - [NewOrderExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/NewOrderExample.java#L50)
-
-[GET /api/v3/openOrderList](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data) - openOrderList - [OpenOrderListExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OpenOrderListExample.java#L46)
 
 [PUT /api/v3/order/amend/keepPriority](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderAmendKeepPriorityExample.java#L49)
 

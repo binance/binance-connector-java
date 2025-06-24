@@ -15,7 +15,6 @@ package com.binance.connector.client.spot.websocket.api.model;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -142,11 +141,11 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean cancelReplaceAllowed;
 
-    public static final String SERIALIZED_NAME_ALLOW_AMEND = "allowAmend";
+    public static final String SERIALIZED_NAME_AMEND_ALLOWED = "amendAllowed";
 
-    @SerializedName(SERIALIZED_NAME_ALLOW_AMEND)
+    @SerializedName(SERIALIZED_NAME_AMEND_ALLOWED)
     @jakarta.annotation.Nullable
-    private Boolean allowAmend;
+    private Boolean amendAllowed;
 
     public static final String SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED = "isSpotTradingAllowed";
 
@@ -164,7 +163,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters;
+    private ExchangeFilters filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -525,24 +524,24 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         this.cancelReplaceAllowed = cancelReplaceAllowed;
     }
 
-    public ExchangeInfoResponseResultSymbolsInner allowAmend(
-            @jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public ExchangeInfoResponseResultSymbolsInner amendAllowed(
+            @jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
         return this;
     }
 
     /**
-     * Get allowAmend
+     * Get amendAllowed
      *
-     * @return allowAmend
+     * @return amendAllowed
      */
     @jakarta.annotation.Nullable
-    public Boolean getAllowAmend() {
-        return allowAmend;
+    public Boolean getAmendAllowed() {
+        return amendAllowed;
     }
 
-    public void setAllowAmend(@jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public void setAmendAllowed(@jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
     }
 
     public ExchangeInfoResponseResultSymbolsInner isSpotTradingAllowed(
@@ -587,18 +586,8 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
     }
 
     public ExchangeInfoResponseResultSymbolsInner filters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters) {
+            @jakarta.annotation.Nullable ExchangeFilters filters) {
         this.filters = filters;
-        return this;
-    }
-
-    public ExchangeInfoResponseResultSymbolsInner addFiltersItem(
-            ExchangeInfoResponseResultExchangeFiltersInner filtersItem) {
-        if (this.filters == null) {
-            this.filters = new ArrayList<>();
-        }
-        this.filters.add(filtersItem);
         return this;
     }
 
@@ -609,13 +598,11 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> getFilters() {
+    public ExchangeFilters getFilters() {
         return filters;
     }
 
-    public void setFilters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filters) {
+    public void setFilters(@jakarta.annotation.Nullable ExchangeFilters filters) {
         this.filters = filters;
     }
 
@@ -775,7 +762,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                         this.cancelReplaceAllowed,
                         exchangeInfoResponseResultSymbolsInner.cancelReplaceAllowed)
                 && Objects.equals(
-                        this.allowAmend, exchangeInfoResponseResultSymbolsInner.allowAmend)
+                        this.amendAllowed, exchangeInfoResponseResultSymbolsInner.amendAllowed)
                 && Objects.equals(
                         this.isSpotTradingAllowed,
                         exchangeInfoResponseResultSymbolsInner.isSpotTradingAllowed)
@@ -814,7 +801,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 quoteOrderQtyMarketAllowed,
                 allowTrailingStop,
                 cancelReplaceAllowed,
-                allowAmend,
+                amendAllowed,
                 isSpotTradingAllowed,
                 isMarginTradingAllowed,
                 filters,
@@ -856,7 +843,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         sb.append("		cancelReplaceAllowed: ")
                 .append(toIndentedString(cancelReplaceAllowed))
                 .append("\n");
-        sb.append("		allowAmend: ").append(toIndentedString(allowAmend)).append("\n");
+        sb.append("		amendAllowed: ").append(toIndentedString(amendAllowed)).append("\n");
         sb.append("		isSpotTradingAllowed: ")
                 .append(toIndentedString(isSpotTradingAllowed))
                 .append("\n");
@@ -961,10 +948,10 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
             String cancelReplaceAllowedValueAsString = cancelReplaceAllowedValue.toString();
             valMap.put("cancelReplaceAllowed", cancelReplaceAllowedValueAsString);
         }
-        Boolean allowAmendValue = getAllowAmend();
-        if (allowAmendValue != null) {
-            String allowAmendValueAsString = allowAmendValue.toString();
-            valMap.put("allowAmend", allowAmendValueAsString);
+        Boolean amendAllowedValue = getAmendAllowed();
+        if (amendAllowedValue != null) {
+            String amendAllowedValueAsString = amendAllowedValue.toString();
+            valMap.put("amendAllowed", amendAllowedValueAsString);
         }
         Boolean isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         if (isSpotTradingAllowedValue != null) {
@@ -976,7 +963,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
             String isMarginTradingAllowedValueAsString = isMarginTradingAllowedValue.toString();
             valMap.put("isMarginTradingAllowed", isMarginTradingAllowedValueAsString);
         }
-        List<@Valid ExchangeInfoResponseResultExchangeFiltersInner> filtersValue = getFilters();
+        ExchangeFilters filtersValue = getFilters();
         if (filtersValue != null) {
             String filtersValueAsString = JSON.getGson().toJson(filtersValue);
             valMap.put("filters", filtersValueAsString);
@@ -1081,9 +1068,9 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         if (cancelReplaceAllowedValue != null) {
             valMap.put("cancelReplaceAllowed", cancelReplaceAllowedValue);
         }
-        Object allowAmendValue = getAllowAmend();
-        if (allowAmendValue != null) {
-            valMap.put("allowAmend", allowAmendValue);
+        Object amendAllowedValue = getAmendAllowed();
+        if (amendAllowedValue != null) {
+            valMap.put("amendAllowed", amendAllowedValue);
         }
         Object isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         if (isSpotTradingAllowedValue != null) {
@@ -1155,7 +1142,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         openapiFields.add("quoteOrderQtyMarketAllowed");
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");
-        openapiFields.add("allowAmend");
+        openapiFields.add("amendAllowed");
         openapiFields.add("isSpotTradingAllowed");
         openapiFields.add("isMarginTradingAllowed");
         openapiFields.add("filters");
@@ -1242,26 +1229,6 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                             "Expected the field `orderTypes` to be an array in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("orderTypes").toString()));
-        }
-        if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
-            JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
-            if (jsonArrayfilters != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("filters").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `filters` to be an array in the JSON string"
-                                            + " but got `%s`",
-                                    jsonObj.get("filters").toString()));
-                }
-
-                // validate the optional field `filters` (array)
-                for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    ExchangeInfoResponseResultExchangeFiltersInner.validateJsonElement(
-                            jsonArrayfilters.get(i));
-                }
-                ;
-            }
         }
         // ensure the optional json data is an array if present
         if (jsonObj.get("permissions") != null

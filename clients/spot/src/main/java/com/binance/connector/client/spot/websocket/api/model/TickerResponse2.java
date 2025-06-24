@@ -65,7 +65,7 @@ public class TickerResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid TickerResponse2RateLimitsInner> rateLimits;
+    private RateLimits rateLimits;
 
     public TickerResponse2() {}
 
@@ -137,17 +137,8 @@ public class TickerResponse2 extends BaseDTO {
         this.result = result;
     }
 
-    public TickerResponse2 rateLimits(
-            @jakarta.annotation.Nullable List<@Valid TickerResponse2RateLimitsInner> rateLimits) {
+    public TickerResponse2 rateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public TickerResponse2 addRateLimitsItem(TickerResponse2RateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -158,12 +149,11 @@ public class TickerResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid TickerResponse2RateLimitsInner> getRateLimits() {
+    public RateLimits getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(
-            @jakarta.annotation.Nullable List<@Valid TickerResponse2RateLimitsInner> rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -218,7 +208,7 @@ public class TickerResponse2 extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid TickerResponse2RateLimitsInner> rateLimitsValue = getRateLimits();
+        RateLimits rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -338,25 +328,6 @@ public class TickerResponse2 extends BaseDTO {
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
                     TickerResponse2ResultInner.validateJsonElement(jsonArrayresult.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    TickerResponse2RateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
                 }
                 ;
             }

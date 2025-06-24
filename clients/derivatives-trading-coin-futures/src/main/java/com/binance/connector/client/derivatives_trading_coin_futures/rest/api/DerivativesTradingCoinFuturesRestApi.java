@@ -1721,8 +1721,8 @@ public class DerivativesTradingCoinFuturesRestApi {
      * However the order will be cancelled by the amendment in the following situations: * when the
      * order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D;
      * &#x60;executedQty&#x60; * When the order is &#x60;GTX&#x60; and the new price will cause it
-     * to be executed immediately * One order can only be modfied for less than 10000 times * Modify
-     * order will set &#x60;selfTradePreventionMode&#x60; to &#x60;NONE&#x60; Weight: 1
+     * to be executed immediately * One order can only be modfied for less than 10000 times Weight:
+     * 1
      *
      * @param modifyOrderRequest (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;

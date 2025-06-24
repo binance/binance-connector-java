@@ -7,12 +7,16 @@ All URIs are relative to *http://localhost*
 | [**accountCommission**](AccountApi.md#accountCommission) | **POST** /account.commission | WebSocket Account Commission Rates |
 | [**accountRateLimitsOrders**](AccountApi.md#accountRateLimitsOrders) | **POST** /account.rateLimits.orders | WebSocket Unfilled Order Count |
 | [**accountStatus**](AccountApi.md#accountStatus) | **POST** /account.status | WebSocket Account information |
-| [**allOrderLists**](AccountApi.md#allOrderLists) | **POST** /allOrderLists | WebSocket Account Order list history |
+| [**allOrderLists**](AccountApi.md#allOrderLists) | **POST** /allOrderLists | WebSocket Account order list history |
 | [**allOrders**](AccountApi.md#allOrders) | **POST** /allOrders | WebSocket Account order history |
 | [**myAllocations**](AccountApi.md#myAllocations) | **POST** /myAllocations | WebSocket Account allocations |
 | [**myPreventedMatches**](AccountApi.md#myPreventedMatches) | **POST** /myPreventedMatches | WebSocket Account prevented matches |
 | [**myTrades**](AccountApi.md#myTrades) | **POST** /myTrades | WebSocket Account trade history |
+| [**openOrderListsStatus**](AccountApi.md#openOrderListsStatus) | **POST** /openOrderLists.status | WebSocket Current open Order lists |
+| [**openOrdersStatus**](AccountApi.md#openOrdersStatus) | **POST** /openOrders.status | WebSocket Current open orders |
 | [**orderAmendments**](AccountApi.md#orderAmendments) | **POST** /order.amendments | WebSocket Query Order Amendments |
+| [**orderListStatus**](AccountApi.md#orderListStatus) | **POST** /orderList.status | WebSocket Query Order list |
+| [**orderStatus**](AccountApi.md#orderStatus) | **POST** /order.status | WebSocket Query order |
 
 
 <a id="accountCommission"></a>
@@ -205,7 +209,7 @@ No authorization required
 # **allOrderLists**
 > AllOrderListsResponse allOrderLists(allOrderListsRequest)
 
-WebSocket Account Order list history
+WebSocket Account order list history
 
 Query information about all your order lists, filtered by time range. Weight: 20
 
@@ -261,7 +265,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Account Order list history |  -  |
+| **200** | Account order list history |  -  |
 
 <a id="allOrders"></a>
 # **allOrders**
@@ -511,6 +515,130 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Account trade history |  -  |
 
+<a id="openOrderListsStatus"></a>
+# **openOrderListsStatus**
+> OpenOrderListsStatusResponse openOrderListsStatus(openOrderListsStatusRequest)
+
+WebSocket Current open Order lists
+
+Query execution status of all open order lists.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event Weight: 6
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    OpenOrderListsStatusRequest openOrderListsStatusRequest = new OpenOrderListsStatusRequest(); // OpenOrderListsStatusRequest | 
+    try {
+      OpenOrderListsStatusResponse result = apiInstance.openOrderListsStatus(openOrderListsStatusRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#openOrderListsStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **openOrderListsStatusRequest** | [**OpenOrderListsStatusRequest**](OpenOrderListsStatusRequest.md)|  | |
+
+### Return type
+
+[**OpenOrderListsStatusResponse**](OpenOrderListsStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current open Order lists |  -  |
+
+<a id="openOrdersStatus"></a>
+# **openOrdersStatus**
+> OpenOrdersStatusResponse openOrdersStatus(openOrdersStatusRequest)
+
+WebSocket Current open orders
+
+Query execution status of all open orders.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the number of requested symbols:  | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60;  |      6 | | none      |     80 |
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest(); // OpenOrdersStatusRequest | 
+    try {
+      OpenOrdersStatusResponse result = apiInstance.openOrdersStatus(openOrdersStatusRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#openOrdersStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **openOrdersStatusRequest** | [**OpenOrdersStatusRequest**](OpenOrdersStatusRequest.md)|  | |
+
+### Return type
+
+[**OpenOrdersStatusResponse**](OpenOrdersStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current open orders |  -  |
+
 <a id="orderAmendments"></a>
 # **orderAmendments**
 > OrderAmendmentsResponse orderAmendments(orderAmendmentsRequest)
@@ -572,4 +700,128 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Query Order Amendments |  -  |
+
+<a id="orderListStatus"></a>
+# **orderListStatus**
+> OrderListStatusResponse orderListStatus(orderListStatusRequest)
+
+WebSocket Query Order list
+
+Check execution status of an Order list.  For execution status of individual orders, use &#x60;order.status&#x60;. Weight: 4
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    OrderListStatusRequest orderListStatusRequest = new OrderListStatusRequest(); // OrderListStatusRequest | 
+    try {
+      OrderListStatusResponse result = apiInstance.orderListStatus(orderListStatusRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#orderListStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderListStatusRequest** | [**OrderListStatusRequest**](OrderListStatusRequest.md)|  | |
+
+### Return type
+
+[**OrderListStatusResponse**](OrderListStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query Order list |  -  |
+
+<a id="orderStatus"></a>
+# **orderStatus**
+> OrderStatusResponse orderStatus(orderStatusRequest)
+
+WebSocket Query order
+
+Check execution status of an order. Weight: 4
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    OrderStatusRequest orderStatusRequest = new OrderStatusRequest(); // OrderStatusRequest | 
+    try {
+      OrderStatusResponse result = apiInstance.orderStatus(orderStatusRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#orderStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderStatusRequest** | [**OrderStatusRequest**](OrderStatusRequest.md)|  | |
+
+### Return type
+
+[**OrderStatusResponse**](OrderStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query order |  -  |
 

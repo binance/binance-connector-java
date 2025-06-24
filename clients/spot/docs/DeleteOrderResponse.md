@@ -16,6 +16,7 @@
 |**price** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
+|**origQuoteOrderQty** | **String** |  |  [optional] |
 |**cummulativeQuoteQty** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |

@@ -19,6 +19,7 @@ import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.websocket.api.model.PingResponse;
 import com.binance.connector.client.spot.websocket.api.model.TimeResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -104,27 +105,29 @@ public class GeneralApi {
     /**
      * WebSocket Test connectivity Test connectivity to the WebSocket API. Weight: 1
      *
+     * @return PingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Test connectivity </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#test-connectivity">WebSocket
      *     Test connectivity Documentation</a>
      */
-    public void ping() throws ApiException {
+    public CompletableFuture<PingResponse> ping() throws ApiException {
         pingValidateBeforeCall();
         String methodName = "/ping".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, Object> build =
-                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, Object>()
+        ApiRequestWrapperDTO<BaseRequestDTO, PingResponse> build =
+                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, PingResponse>()
                         .id(getRequestID())
                         .method(methodName)
                         .params(new BaseRequestDTO())
+                        .responseType(PingResponse.class)
                         .signed(false)
                         .build();
 
@@ -133,6 +136,7 @@ public class GeneralApi {
         } catch (InterruptedException e) {
             throw new ApiException(e);
         }
+        return build.getResponseCallback();
     }
 
     @SuppressWarnings("rawtypes")

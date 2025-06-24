@@ -73,7 +73,7 @@ No authorization required
 
 <a id="ping"></a>
 # **ping**
-> ping()
+> PingResponse ping()
 
 WebSocket Test connectivity
 
@@ -95,7 +95,8 @@ public class Example {
 
     GeneralApi apiInstance = new GeneralApi(defaultClient);
     try {
-      apiInstance.ping();
+      PingResponse result = apiInstance.ping();
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralApi#ping");
       System.err.println("Status code: " + e.getCode());
@@ -112,7 +113,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+[**PingResponse**](PingResponse.md)
 
 ### Authorization
 
@@ -121,12 +122,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Test connectivity |  -  |
 
 <a id="time"></a>
 # **time**

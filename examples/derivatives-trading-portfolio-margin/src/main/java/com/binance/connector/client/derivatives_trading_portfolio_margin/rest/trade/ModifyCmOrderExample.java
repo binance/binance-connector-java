@@ -59,8 +59,8 @@ public class ModifyCmOrderExample {
         ModifyCmOrderRequest modifyCmOrderRequest = new ModifyCmOrderRequest();
         modifyCmOrderRequest.symbol("");
         modifyCmOrderRequest.side(Side.BUY);
-        modifyCmOrderRequest.quantity(1d);
-        modifyCmOrderRequest.price(1d);
+        modifyCmOrderRequest.quantity(1.0d);
+        modifyCmOrderRequest.price(1.0d);
         ApiResponse<ModifyCmOrderResponse> response = getApi().modifyCmOrder(modifyCmOrderRequest);
         System.out.println(response.getData());
     }

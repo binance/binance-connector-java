@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**OrderListPlaceOtoResponseResult**](OrderListPlaceOtoResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;OrderListPlaceOtoResponseRateLimitsInner&gt;**](OrderListPlaceOtoResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

@@ -14,6 +14,7 @@ package com.binance.connector.client.derivatives_trading_coin_futures.rest.model
 
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -28,9 +29,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetFundingRateHistoryOfPerpetualFuturesResponse */
@@ -110,6 +109,18 @@ public class GetFundingRateHistoryOfPerpetualFuturesResponse
      *     GetFundingRateHistoryOfPerpetualFuturesResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            GetFundingRateHistoryOfPerpetualFuturesResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!GetFundingRateHistoryOfPerpetualFuturesResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -121,20 +132,6 @@ public class GetFundingRateHistoryOfPerpetualFuturesResponse
                                 GetFundingRateHistoryOfPerpetualFuturesResponse
                                         .openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetFundingRateHistoryOfPerpetualFuturesResponse.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetFundingRateHistoryOfPerpetualFuturesResponse`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }

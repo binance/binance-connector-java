@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**List&lt;OpenOrdersStatusResponseResultInner&gt;**](OpenOrdersStatusResponseResultInner.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;OpenOrderListsStatusResponseRateLimitsInner&gt;**](OpenOrderListsStatusResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

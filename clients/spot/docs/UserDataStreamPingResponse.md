@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**response** | **Object** |  |  [optional] |
-|**rateLimits** | [**List&lt;AvgPriceResponseRateLimitsInner&gt;**](AvgPriceResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

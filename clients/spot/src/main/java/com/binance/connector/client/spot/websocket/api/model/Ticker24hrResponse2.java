@@ -65,7 +65,7 @@ public class Ticker24hrResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AvgPriceResponseRateLimitsInner> rateLimits;
+    private RateLimits rateLimits;
 
     public Ticker24hrResponse2() {}
 
@@ -137,17 +137,8 @@ public class Ticker24hrResponse2 extends BaseDTO {
         this.result = result;
     }
 
-    public Ticker24hrResponse2 rateLimits(
-            @jakarta.annotation.Nullable List<@Valid AvgPriceResponseRateLimitsInner> rateLimits) {
+    public Ticker24hrResponse2 rateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public Ticker24hrResponse2 addRateLimitsItem(AvgPriceResponseRateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -158,12 +149,11 @@ public class Ticker24hrResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AvgPriceResponseRateLimitsInner> getRateLimits() {
+    public RateLimits getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(
-            @jakarta.annotation.Nullable List<@Valid AvgPriceResponseRateLimitsInner> rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -218,7 +208,7 @@ public class Ticker24hrResponse2 extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AvgPriceResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        RateLimits rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -338,25 +328,6 @@ public class Ticker24hrResponse2 extends BaseDTO {
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
                     Ticker24hrResponse2ResultInner.validateJsonElement(jsonArrayresult.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AvgPriceResponseRateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
                 }
                 ;
             }

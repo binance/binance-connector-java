@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**Ticker24hrResponse1Result**](Ticker24hrResponse1Result.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AvgPriceResponseRateLimitsInner&gt;**](AvgPriceResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

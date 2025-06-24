@@ -48,7 +48,7 @@ public class MarginAccountRepayExample {
     public void marginAccountRepayExample() throws ApiException {
         MarginAccountRepayRequest marginAccountRepayRequest = new MarginAccountRepayRequest();
         marginAccountRepayRequest.asset("");
-        marginAccountRepayRequest.amount(1d);
+        marginAccountRepayRequest.amount(1.0d);
         ApiResponse<MarginAccountRepayResponse> response =
                 getApi().marginAccountRepay(marginAccountRepayRequest);
         System.out.println(response.getData());

@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**OrderCancelReplaceResponseResult**](OrderCancelReplaceResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;OrderCancelReplaceResponseRateLimitsInner&gt;**](OrderCancelReplaceResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | **RateLimits** |  |  [optional] |
 
 
 

@@ -16,12 +16,8 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.common.websocket.adapter.ConnectionInterface;
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
-import com.binance.connector.client.spot.websocket.api.model.OpenOrderListsStatusRequest;
-import com.binance.connector.client.spot.websocket.api.model.OpenOrderListsStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OpenOrdersCancelAllRequest;
 import com.binance.connector.client.spot.websocket.api.model.OpenOrdersCancelAllResponse;
-import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusRequest;
-import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderAmendKeepPriorityRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderAmendKeepPriorityResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderCancelReplaceRequest;
@@ -38,12 +34,8 @@ import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoco
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtocoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceResponse;
-import com.binance.connector.client.spot.websocket.api.model.OrderListStatusRequest;
-import com.binance.connector.client.spot.websocket.api.model.OrderListStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderPlaceRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderPlaceResponse;
-import com.binance.connector.client.spot.websocket.api.model.OrderStatusRequest;
-import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestResponse;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceRequest;
@@ -66,71 +58,6 @@ public class TradeApi {
 
     public TradeApi(ConnectionInterface connection) {
         this.connection = connection;
-    }
-
-    /**
-     * WebSocket Current open Order lists Query execution status of all open order lists. If you
-     * need to continuously monitor order status updates, please consider using WebSocket Streams: *
-     * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event
-     * Weight: 6
-     *
-     * @param openOrderListsStatusRequest (required)
-     * @return OpenOrderListsStatusResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Current open Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#current-open-order-lists-user_data">WebSocket
-     *     Current open Order lists Documentation</a>
-     */
-    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
-            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
-        openOrderListsStatusValidateBeforeCall(openOrderListsStatusRequest);
-        String methodName = "/openOrderLists.status".substring(1);
-        ApiRequestWrapperDTO<OpenOrderListsStatusRequest, OpenOrderListsStatusResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                OpenOrderListsStatusRequest, OpenOrderListsStatusResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(openOrderListsStatusRequest)
-                        .responseType(OpenOrderListsStatusResponse.class)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void openOrderListsStatusValidateBeforeCall(
-            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<OpenOrderListsStatusRequest>> violations =
-                    validator.validate(openOrderListsStatusRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
     }
 
     /**
@@ -186,72 +113,6 @@ public class TradeApi {
 
             Set<ConstraintViolation<OpenOrdersCancelAllRequest>> violations =
                     validator.validate(openOrdersCancelAllRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Current open orders Query execution status of all open orders. If you need to
-     * continuously monitor order status updates, please consider using WebSocket Streams: *
-     * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event
-     * Weight: Adjusted based on the number of requested symbols: | Parameter | Weight | | ---------
-     * | ------ | | &#x60;symbol&#x60; | 6 | | none | 80 |
-     *
-     * @param openOrdersStatusRequest (required)
-     * @return OpenOrdersStatusResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#current-open-orders-user_data">WebSocket
-     *     Current open orders Documentation</a>
-     */
-    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
-            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
-        openOrdersStatusValidateBeforeCall(openOrdersStatusRequest);
-        String methodName = "/openOrders.status".substring(1);
-        ApiRequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                OpenOrdersStatusRequest, OpenOrdersStatusResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(openOrdersStatusRequest)
-                        .responseType(OpenOrdersStatusResponse.class)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void openOrdersStatusValidateBeforeCall(OpenOrdersStatusRequest openOrdersStatusRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<OpenOrdersStatusRequest>> violations =
-                    validator.validate(openOrdersStatusRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);
@@ -580,7 +441,7 @@ public class TradeApi {
     }
 
     /**
-     * WebSocket Place new Order list - OCO Send in an one-cancels the other (OCO) pair, where
+     * WebSocket Place new Order list - OCO Send in an one-cancels-the-other (OCO) pair, where
      * activation of one order immediately cancels the other. * An OCO has 2 orders called the
      * **above order** and **below order**. * One of the orders must be a
      * &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and the other must be
@@ -662,9 +523,12 @@ public class TradeApi {
      * except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending
      * order is only placed on the order book when the working order gets **fully filled**. * If
      * either the working order or the pending order is cancelled individually, the other order in
-     * the order list will also be canceled or expired. * OTOs add **2 orders** to the
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * the order list will also be canceled or expired. * When the order list is placed, if the
+     * working order gets **immediately fully filled**, the placement response will show the working
+     * order as &#x60;FILLED&#x60; but the pending order will still appear as
+     * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
+     * updated status. * OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
      *
      * @param orderListPlaceOtoRequest (required)
      * @return OrderListPlaceOtoResponse
@@ -733,8 +597,10 @@ public class TradeApi {
      * behavior of the working order is the same as the [OTO](#place-new-order-list---oto-trade). *
      * OTOCO has 2 pending orders (pending above and pending below), forming an OCO pair. The
      * pending orders are only placed on the order book when the working order gets **fully
-     * filled**. * OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 3
+     * filled**. * The rules of the pending above and pending below follow the same rules as the
+     * [Order list OCO](#new-order-list---oco-trade). * OTOCOs add **3 orders** to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * Unfilled Order Count: 3
      *
      * @param orderListPlaceOtocoRequest (required)
      * @return OrderListPlaceOtocoResponse
@@ -785,68 +651,6 @@ public class TradeApi {
 
             Set<ConstraintViolation<OrderListPlaceOtocoRequest>> violations =
                     validator.validate(orderListPlaceOtocoRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Query Order list Check execution status of an Order list. For execution status of
-     * individual orders, use &#x60;order.status&#x60;. Weight: 4
-     *
-     * @param orderListStatusRequest (required)
-     * @return OrderListStatusResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#query-order-list-user_data">WebSocket
-     *     Query Order list Documentation</a>
-     */
-    public CompletableFuture<OrderListStatusResponse> orderListStatus(
-            OrderListStatusRequest orderListStatusRequest) throws ApiException {
-        orderListStatusValidateBeforeCall(orderListStatusRequest);
-        String methodName = "/orderList.status".substring(1);
-        ApiRequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse> build =
-                new ApiRequestWrapperDTO.Builder<OrderListStatusRequest, OrderListStatusResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(orderListStatusRequest)
-                        .responseType(OrderListStatusResponse.class)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void orderListStatusValidateBeforeCall(OrderListStatusRequest orderListStatusRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<OrderListStatusRequest>> violations =
-                    validator.validate(orderListStatusRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);
@@ -909,67 +713,6 @@ public class TradeApi {
 
             Set<ConstraintViolation<OrderPlaceRequest>> violations =
                     validator.validate(orderPlaceRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Query order Check execution status of an order. Weight: 4
-     *
-     * @param orderStatusRequest (required)
-     * @return OrderStatusResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#query-order-user_data">WebSocket
-     *     Query order Documentation</a>
-     */
-    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
-            throws ApiException {
-        orderStatusValidateBeforeCall(orderStatusRequest);
-        String methodName = "/order.status".substring(1);
-        ApiRequestWrapperDTO<OrderStatusRequest, OrderStatusResponse> build =
-                new ApiRequestWrapperDTO.Builder<OrderStatusRequest, OrderStatusResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(orderStatusRequest)
-                        .responseType(OrderStatusResponse.class)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void orderStatusValidateBeforeCall(OrderStatusRequest orderStatusRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<OrderStatusRequest>> violations =
-                    validator.validate(orderStatusRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);
@@ -1047,7 +790,7 @@ public class TradeApi {
     /**
      * WebSocket Place new order using SOR Places an order using smart order routing (SOR). This
      * adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1 Unfilled Order Count: 1
+     * filter. Read [SOR FAQ](../faqs/sor_faq.md) to learn more. Weight: 1 Unfilled Order Count: 1
      *
      * @param sorOrderPlaceRequest (required)
      * @return SorOrderPlaceResponse

@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**asset** | **String** |  |  [optional] |
 |**marginAvailable** | **Boolean** |  |  [optional] |
-|**autoAssetExchange** | **Long** |  |  [optional] |
+|**autoAssetExchange** | **String** |  |  [optional] |
 
 
 

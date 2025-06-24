@@ -16,6 +16,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
 import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
+import com.binance.connector.client.spot.websocket.api.model.PingResponse;
+import java.util.concurrent.CompletableFuture;
 
 /** API examples for GeneralApi */
 public class PingExample {
@@ -40,7 +42,26 @@ public class PingExample {
      *
      * <p>Test connectivity to the WebSocket API. Weight: 1
      */
-    public void pingExample() {
-        getApi().ping();
+    public void pingExampleAsync() {
+        CompletableFuture<PingResponse> future = getApi().ping();
+        future.handle(
+                (response, error) -> {
+                    if (error != null) {
+                        System.err.println(error);
+                    }
+                    System.out.println(response);
+                    return response;
+                });
+    }
+
+    /**
+     * WebSocket Test connectivity
+     *
+     * <p>Test connectivity to the WebSocket API. Weight: 1
+     */
+    public void pingExampleSync() {
+        CompletableFuture<PingResponse> future = getApi().ping();
+        PingResponse response = future.join();
+        System.out.println(response);
     }
 }
