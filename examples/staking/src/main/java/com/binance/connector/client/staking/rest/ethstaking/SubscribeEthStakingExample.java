@@ -47,7 +47,7 @@ public class SubscribeEthStakingExample {
      */
     public void subscribeEthStakingExample() throws ApiException {
         SubscribeEthStakingRequest subscribeEthStakingRequest = new SubscribeEthStakingRequest();
-        subscribeEthStakingRequest.amount(1d);
+        subscribeEthStakingRequest.amount(1.0d);
         ApiResponse<SubscribeEthStakingResponse> response =
                 getApi().subscribeEthStaking(subscribeEthStakingRequest);
         System.out.println(response.getData());

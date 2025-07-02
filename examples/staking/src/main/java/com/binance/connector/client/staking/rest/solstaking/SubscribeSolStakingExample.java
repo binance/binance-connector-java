@@ -47,7 +47,7 @@ public class SubscribeSolStakingExample {
      */
     public void subscribeSolStakingExample() throws ApiException {
         SubscribeSolStakingRequest subscribeSolStakingRequest = new SubscribeSolStakingRequest();
-        subscribeSolStakingRequest.amount(1d);
+        subscribeSolStakingRequest.amount(1.0d);
         ApiResponse<SubscribeSolStakingResponse> response =
                 getApi().subscribeSolStaking(subscribeSolStakingRequest);
         System.out.println(response.getData());
