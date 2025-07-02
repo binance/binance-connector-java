@@ -47,7 +47,7 @@ public class RedeemEthExample {
      */
     public void redeemEthExample() throws ApiException {
         RedeemEthRequest redeemEthRequest = new RedeemEthRequest();
-        redeemEthRequest.amount(1d);
+        redeemEthRequest.amount(1.0d);
         ApiResponse<RedeemEthResponse> response = getApi().redeemEth(redeemEthRequest);
         System.out.println(response.getData());
     }

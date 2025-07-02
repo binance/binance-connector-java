@@ -22,6 +22,32 @@
 
 [POST /sapi/v1/eth-staking/wbeth/wrap](https://developers.binance.com/docs/staking/eth-staking/staking/Wrap-BETH) - wrapBeth - [WrapBethExample.java:48](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/ethstaking/WrapBethExample.java#L48)
 
+## OnChainYields
+
+[GET /sapi/v1/onchain-yields/locked/personalLeftQuota](https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Personal-Left-Quota) - getOnChainYieldsLockedPersonalLeftQuota - [GetOnChainYieldsLockedPersonalLeftQuotaExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedPersonalLeftQuotaExample.java#L46)
+
+[GET /sapi/v1/onchain-yields/locked/list](https://developers.binance.com/docs/staking/on-chain-yields/account/) - getOnChainYieldsLockedProductList - [GetOnChainYieldsLockedProductListExample.java:47](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedProductListExample.java#L47)
+
+[GET /sapi/v1/onchain-yields/locked/position](https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Product-Position) - getOnChainYieldsLockedProductPosition - [GetOnChainYieldsLockedProductPositionExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedProductPositionExample.java#L46)
+
+[GET /sapi/v1/onchain-yields/locked/history/redemptionRecord](https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Redemption-Record) - getOnChainYieldsLockedRedemptionRecord - [GetOnChainYieldsLockedRedemptionRecordExample.java:52](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedRedemptionRecordExample.java#L52)
+
+[GET /sapi/v1/onchain-yields/locked/history/rewardsRecord](https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Rewards-History) - getOnChainYieldsLockedRewardsHistory - [GetOnChainYieldsLockedRewardsHistoryExample.java:52](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedRewardsHistoryExample.java#L52)
+
+[GET /sapi/v1/onchain-yields/locked/subscriptionPreview](https://developers.binance.com/docs/staking/on-chain-yields/earn/) - getOnChainYieldsLockedSubscriptionPreview - [GetOnChainYieldsLockedSubscriptionPreviewExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedSubscriptionPreviewExample.java#L46)
+
+[GET /sapi/v1/onchain-yields/locked/history/subscriptionRecord](https://developers.binance.com/docs/staking/on-chain-yields/history/) - getOnChainYieldsLockedSubscriptionRecord - [GetOnChainYieldsLockedSubscriptionRecordExample.java:52](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/GetOnChainYieldsLockedSubscriptionRecordExample.java#L52)
+
+[GET /sapi/v1/onchain-yields/account](https://developers.binance.com/docs/staking/on-chain-yields/account/Onchain-Account) - onChainYieldsAccount - [OnChainYieldsAccountExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/OnChainYieldsAccountExample.java#L46)
+
+[POST /sapi/v1/onchain-yields/locked/redeem](https://developers.binance.com/docs/staking/on-chain-yields/earn/Redeem-Onchain-Locked-Product) - redeemOnChainYieldsLockedProduct - [RedeemOnChainYieldsLockedProductExample.java:49](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/RedeemOnChainYieldsLockedProductExample.java#L49)
+
+[POST /sapi/v1/onchain-yields/locked/setAutoSubscribe](https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Auto-Subscribe) - setOnChainYieldsLockedAutoSubscribe - [SetOnChainYieldsLockedAutoSubscribeExample.java:47](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/SetOnChainYieldsLockedAutoSubscribeExample.java#L47)
+
+[POST /sapi/v1/onchain-yields/locked/setRedeemOption](https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Redeem-Option) - setOnChainYieldsLockedProductRedeemOption - [SetOnChainYieldsLockedProductRedeemOptionExample.java:47](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/SetOnChainYieldsLockedProductRedeemOptionExample.java#L47)
+
+[POST /sapi/v1/onchain-yields/locked/subscribe](https://developers.binance.com/docs/staking/on-chain-yields/earn/Subscribe-Onchain-Locked-Product) - subscribeOnChainYieldsLockedProduct - [SubscribeOnChainYieldsLockedProductExample.java:48](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/SubscribeOnChainYieldsLockedProductExample.java#L48)
+
 ## SolStaking
 
 [POST /sapi/v1/sol-staking/sol/claim](https://developers.binance.com/docs/staking/sol-staking/staking/Claim-Boost-Rewards) - claimBoostRewards - [ClaimBoostRewardsExample.java:48](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/solstaking/ClaimBoostRewardsExample.java#L48)

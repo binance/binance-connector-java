@@ -47,7 +47,7 @@ public class RedeemSolExample {
      */
     public void redeemSolExample() throws ApiException {
         RedeemSolRequest redeemSolRequest = new RedeemSolRequest();
-        redeemSolRequest.amount(1d);
+        redeemSolRequest.amount(1.0d);
         ApiResponse<RedeemSolResponse> response = getApi().redeemSol(redeemSolRequest);
         System.out.println(response.getData());
     }

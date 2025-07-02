@@ -47,7 +47,7 @@ public class WrapBethExample {
      */
     public void wrapBethExample() throws ApiException {
         WrapBethRequest wrapBethRequest = new WrapBethRequest();
-        wrapBethRequest.amount(1d);
+        wrapBethRequest.amount(1.0d);
         ApiResponse<WrapBethResponse> response = getApi().wrapBeth(wrapBethRequest);
         System.out.println(response.getData());
     }
