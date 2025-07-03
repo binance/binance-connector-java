@@ -63,10 +63,10 @@ public class MarginAccountNewOtocoExample {
         marginAccountNewOtocoRequest.symbol("");
         marginAccountNewOtocoRequest.workingType("");
         marginAccountNewOtocoRequest.workingSide("");
-        marginAccountNewOtocoRequest.workingPrice(1d);
-        marginAccountNewOtocoRequest.workingQuantity(1d);
+        marginAccountNewOtocoRequest.workingPrice(1.0d);
+        marginAccountNewOtocoRequest.workingQuantity(1.0d);
         marginAccountNewOtocoRequest.pendingSide("");
-        marginAccountNewOtocoRequest.pendingQuantity(1d);
+        marginAccountNewOtocoRequest.pendingQuantity(1.0d);
         marginAccountNewOtocoRequest.pendingAboveType("");
         ApiResponse<MarginAccountNewOtocoResponse> response =
                 getApi().marginAccountNewOtoco(marginAccountNewOtocoRequest);
