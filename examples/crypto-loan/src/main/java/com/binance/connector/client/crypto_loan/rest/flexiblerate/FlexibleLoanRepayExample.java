@@ -50,7 +50,7 @@ public class FlexibleLoanRepayExample {
         FlexibleLoanRepayRequest flexibleLoanRepayRequest = new FlexibleLoanRepayRequest();
         flexibleLoanRepayRequest.loanCoin("");
         flexibleLoanRepayRequest.collateralCoin("");
-        flexibleLoanRepayRequest.repayAmount(1d);
+        flexibleLoanRepayRequest.repayAmount(1.0d);
         ApiResponse<FlexibleLoanRepayResponse> response =
                 getApi().flexibleLoanRepay(flexibleLoanRepayRequest);
         System.out.println(response.getData());

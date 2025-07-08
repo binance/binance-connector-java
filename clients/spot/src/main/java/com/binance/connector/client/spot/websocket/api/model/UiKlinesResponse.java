@@ -338,7 +338,7 @@ public class UiKlinesResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, UiKlinesResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

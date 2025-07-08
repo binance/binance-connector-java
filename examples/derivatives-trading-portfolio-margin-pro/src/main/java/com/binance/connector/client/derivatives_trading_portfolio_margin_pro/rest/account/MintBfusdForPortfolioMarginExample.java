@@ -50,7 +50,7 @@ public class MintBfusdForPortfolioMarginExample {
                 new MintBfusdForPortfolioMarginRequest();
         mintBfusdForPortfolioMarginRequest.fromAsset("");
         mintBfusdForPortfolioMarginRequest.targetAsset("");
-        mintBfusdForPortfolioMarginRequest.amount(1d);
+        mintBfusdForPortfolioMarginRequest.amount(1.0d);
         ApiResponse<MintBfusdForPortfolioMarginResponse> response =
                 getApi().mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest);
         System.out.println(response.getData());

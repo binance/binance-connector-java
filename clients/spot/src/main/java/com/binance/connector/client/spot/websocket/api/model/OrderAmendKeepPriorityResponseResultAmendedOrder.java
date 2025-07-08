@@ -980,7 +980,7 @@ public class OrderAmendKeepPriorityResponseResultAmendedOrder extends BaseDTO {
                                 JsonWriter out,
                                 OrderAmendKeepPriorityResponseResultAmendedOrder value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

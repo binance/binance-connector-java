@@ -249,7 +249,7 @@ public class OrderOcoResponseOrdersInner {
                         @Override
                         public void write(JsonWriter out, OrderOcoResponseOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1169,7 +1169,7 @@ public class CancelOrderResponse {
                         @Override
                         public void write(JsonWriter out, CancelOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

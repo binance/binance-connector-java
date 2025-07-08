@@ -204,7 +204,7 @@ public class NewSymbolInfoRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, NewSymbolInfoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

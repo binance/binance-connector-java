@@ -850,7 +850,7 @@ public class OrderListOtocoResponseOrderReportsInner {
                         public void write(
                                 JsonWriter out, OrderListOtocoResponseOrderReportsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

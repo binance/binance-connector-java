@@ -38,8 +38,7 @@ public class GiftCardRestApi {
      * your funding wallet. * To get started with, please make sure: * You have a Binance account *
      * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your
      * Binance funding wallet * You need Enable Withdrawals for the API Key which requests this
-     * endpoint. Weight: 1 * Monthly creation volume: 4,200,000 USDC / month / account * Monthly
-     * creation quantity: 6,000 Gift Cards / month / account
+     * endpoint. Weight: 1
      *
      * @param createADualTokenGiftCardRequest (required)
      * @return ApiResponse&lt;CreateADualTokenGiftCardResponse&gt;
@@ -66,8 +65,7 @@ public class GiftCardRestApi {
      * get started with, please make sure: * You have a Binance account * You have passed KYB * You
      * have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet *
      * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint. Weight:
-     * 1 * Monthly creation volume: 4,200,000 USDC / month / account * Monthly creation quantity:
-     * 6,000 Gift Cards / month / account
+     * 1
      *
      * @param createASingleTokenGiftCardRequest (required)
      * @return ApiResponse&lt;CreateASingleTokenGiftCardResponse&gt;

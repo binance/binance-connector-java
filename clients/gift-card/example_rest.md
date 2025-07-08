@@ -1,8 +1,8 @@
 ## MarketData
 
-[POST /sapi/v1/giftcard/buyCode](https://developers.binance.com/docs/gift_card/market-data/Create-a-dual-token-gift-card) - createADualTokenGiftCard - [CreateADualTokenGiftCardExample.java:57](/examples/gift-card/src/main/java/com/binance/connector/client/gift_card/rest/marketdata/CreateADualTokenGiftCardExample.java#L57)
+[POST /sapi/v1/giftcard/buyCode](https://developers.binance.com/docs/gift_card/market-data/Create-a-dual-token-gift-card) - createADualTokenGiftCard - [CreateADualTokenGiftCardExample.java:56](/examples/gift-card/src/main/java/com/binance/connector/client/gift_card/rest/marketdata/CreateADualTokenGiftCardExample.java#L56)
 
-[POST /sapi/v1/giftcard/createCode](https://developers.binance.com/docs/gift_card/market-data/Create-a-single-token-gift-card) - createASingleTokenGiftCard - [CreateASingleTokenGiftCardExample.java:51](/examples/gift-card/src/main/java/com/binance/connector/client/gift_card/rest/marketdata/CreateASingleTokenGiftCardExample.java#L51)
+[POST /sapi/v1/giftcard/createCode](https://developers.binance.com/docs/gift_card/market-data/Create-a-single-token-gift-card) - createASingleTokenGiftCard - [CreateASingleTokenGiftCardExample.java:50](/examples/gift-card/src/main/java/com/binance/connector/client/gift_card/rest/marketdata/CreateASingleTokenGiftCardExample.java#L50)
 
 [GET /sapi/v1/giftcard/cryptography/rsa-public-key](https://developers.binance.com/docs/gift_card/market-data/Fetch-RSA-Public-Key) - fetchRsaPublicKey - [FetchRsaPublicKeyExample.java:48](/examples/gift-card/src/main/java/com/binance/connector/client/gift_card/rest/marketdata/FetchRsaPublicKeyExample.java#L48)
 

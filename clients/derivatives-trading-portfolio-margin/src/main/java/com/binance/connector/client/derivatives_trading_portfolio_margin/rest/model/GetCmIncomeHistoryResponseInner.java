@@ -451,7 +451,7 @@ public class GetCmIncomeHistoryResponseInner {
                         @Override
                         public void write(JsonWriter out, GetCmIncomeHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

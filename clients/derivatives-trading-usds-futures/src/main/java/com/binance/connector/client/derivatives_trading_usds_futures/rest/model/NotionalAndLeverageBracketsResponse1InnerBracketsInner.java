@@ -360,7 +360,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
                                 JsonWriter out,
                                 NotionalAndLeverageBracketsResponse1InnerBracketsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -51,7 +51,7 @@ public class PlaceLimitOrderExample {
         PlaceLimitOrderRequest placeLimitOrderRequest = new PlaceLimitOrderRequest();
         placeLimitOrderRequest.baseAsset("");
         placeLimitOrderRequest.quoteAsset("");
-        placeLimitOrderRequest.limitPrice(1d);
+        placeLimitOrderRequest.limitPrice(1.0d);
         placeLimitOrderRequest.side("BUY");
         placeLimitOrderRequest.expiredType("");
         ApiResponse<PlaceLimitOrderResponse> response =

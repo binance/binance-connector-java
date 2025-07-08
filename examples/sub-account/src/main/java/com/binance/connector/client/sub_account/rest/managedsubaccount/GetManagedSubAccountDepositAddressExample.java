@@ -50,7 +50,7 @@ public class GetManagedSubAccountDepositAddressExample {
         String email = "sub-account-email@email.com";
         String coin = "";
         String network = "";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetManagedSubAccountDepositAddressResponse> response =
                 getApi().getManagedSubAccountDepositAddress(

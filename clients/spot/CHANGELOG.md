@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0 - 2025-07-08
+
+- Update `binance/common` module to version `1.3.0`.
+- Added `customHeaders` configuration.
+- Added `messageMaxSize` configuration for websocket.
+
 ## 3.0.0 - 2025-06-12
 
 ### Changed (2)

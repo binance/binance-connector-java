@@ -360,7 +360,7 @@ public class AccountInformationResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AccountInformationResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

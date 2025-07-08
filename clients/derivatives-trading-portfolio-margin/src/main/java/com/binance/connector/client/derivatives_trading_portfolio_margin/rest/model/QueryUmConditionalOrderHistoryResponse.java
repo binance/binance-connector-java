@@ -1109,7 +1109,7 @@ public class QueryUmConditionalOrderHistoryResponse {
                         public void write(
                                 JsonWriter out, QueryUmConditionalOrderHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

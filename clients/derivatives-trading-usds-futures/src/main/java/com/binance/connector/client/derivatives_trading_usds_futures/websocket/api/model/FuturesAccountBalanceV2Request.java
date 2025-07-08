@@ -245,7 +245,7 @@ public class FuturesAccountBalanceV2Request extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, FuturesAccountBalanceV2Request value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

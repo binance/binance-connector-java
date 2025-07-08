@@ -704,7 +704,7 @@ public class AccountBalanceResponse1Inner {
                         @Override
                         public void write(JsonWriter out, AccountBalanceResponse1Inner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

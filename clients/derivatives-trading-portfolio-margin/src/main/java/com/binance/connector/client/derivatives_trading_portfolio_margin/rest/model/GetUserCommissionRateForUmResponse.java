@@ -275,7 +275,7 @@ public class GetUserCommissionRateForUmResponse {
                         @Override
                         public void write(JsonWriter out, GetUserCommissionRateForUmResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

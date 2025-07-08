@@ -862,7 +862,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, KlineCandlestickStreamsResponseK value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

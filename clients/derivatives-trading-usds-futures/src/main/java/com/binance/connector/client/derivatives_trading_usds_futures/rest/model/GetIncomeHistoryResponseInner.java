@@ -443,7 +443,7 @@ public class GetIncomeHistoryResponseInner {
                         @Override
                         public void write(JsonWriter out, GetIncomeHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -710,7 +710,7 @@ public class NewMarginOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewMarginOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

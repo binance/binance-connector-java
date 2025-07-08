@@ -222,7 +222,7 @@ public class CancelAllCmOpenConditionalOrdersResponse {
                         public void write(
                                 JsonWriter out, CancelAllCmOpenConditionalOrdersResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

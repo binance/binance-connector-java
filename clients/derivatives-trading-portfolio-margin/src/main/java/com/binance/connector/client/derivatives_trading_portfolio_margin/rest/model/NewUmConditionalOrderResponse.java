@@ -978,7 +978,7 @@ public class NewUmConditionalOrderResponse {
                         @Override
                         public void write(JsonWriter out, NewUmConditionalOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

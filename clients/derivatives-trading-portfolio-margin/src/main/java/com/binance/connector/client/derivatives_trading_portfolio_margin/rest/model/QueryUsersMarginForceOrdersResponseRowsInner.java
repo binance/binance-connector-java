@@ -501,7 +501,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
                         public void write(
                                 JsonWriter out, QueryUsersMarginForceOrdersResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

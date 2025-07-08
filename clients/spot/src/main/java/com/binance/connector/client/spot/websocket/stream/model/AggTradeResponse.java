@@ -609,7 +609,7 @@ public class AggTradeResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AggTradeResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

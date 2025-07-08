@@ -62,7 +62,7 @@ public class TimeWeightedAveragePriceFutureAlgoExample {
                 new TimeWeightedAveragePriceFutureAlgoRequest();
         timeWeightedAveragePriceFutureAlgoRequest.symbol("BTCUSDT");
         timeWeightedAveragePriceFutureAlgoRequest.side("BUY");
-        timeWeightedAveragePriceFutureAlgoRequest.quantity(1d);
+        timeWeightedAveragePriceFutureAlgoRequest.quantity(1.0d);
         timeWeightedAveragePriceFutureAlgoRequest.duration(5000L);
         ApiResponse<TimeWeightedAveragePriceFutureAlgoResponse> response =
                 getApi().timeWeightedAveragePriceFutureAlgo(

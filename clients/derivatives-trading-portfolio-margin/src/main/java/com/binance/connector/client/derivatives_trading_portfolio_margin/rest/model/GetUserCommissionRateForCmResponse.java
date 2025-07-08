@@ -275,7 +275,7 @@ public class GetUserCommissionRateForCmResponse {
                         @Override
                         public void write(JsonWriter out, GetUserCommissionRateForCmResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

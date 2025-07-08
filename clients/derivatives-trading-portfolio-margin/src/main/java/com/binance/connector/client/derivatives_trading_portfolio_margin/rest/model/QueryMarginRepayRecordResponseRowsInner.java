@@ -412,7 +412,7 @@ public class QueryMarginRepayRecordResponseRowsInner {
                         public void write(
                                 JsonWriter out, QueryMarginRepayRecordResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

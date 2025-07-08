@@ -1163,7 +1163,7 @@ public class AllOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, AllOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

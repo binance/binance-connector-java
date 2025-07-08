@@ -49,7 +49,7 @@ public class TransferToMasterExample {
     public void transferToMasterExample() throws ApiException {
         TransferToMasterRequest transferToMasterRequest = new TransferToMasterRequest();
         transferToMasterRequest.asset("");
-        transferToMasterRequest.amount(1d);
+        transferToMasterRequest.amount(1.0d);
         ApiResponse<TransferToMasterResponse> response =
                 getApi().transferToMaster(transferToMasterRequest);
         System.out.println(response.getData());

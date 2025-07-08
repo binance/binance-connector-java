@@ -1546,7 +1546,7 @@ public class OrderListOtocoRequest {
                         @Override
                         public void write(JsonWriter out, OrderListOtocoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

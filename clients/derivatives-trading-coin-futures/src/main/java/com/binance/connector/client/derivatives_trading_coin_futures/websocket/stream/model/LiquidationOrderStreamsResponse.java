@@ -291,7 +291,7 @@ public class LiquidationOrderStreamsResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, LiquidationOrderStreamsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

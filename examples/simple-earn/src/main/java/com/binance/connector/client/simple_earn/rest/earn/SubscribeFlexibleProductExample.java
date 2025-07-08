@@ -50,7 +50,7 @@ public class SubscribeFlexibleProductExample {
         SubscribeFlexibleProductRequest subscribeFlexibleProductRequest =
                 new SubscribeFlexibleProductRequest();
         subscribeFlexibleProductRequest.productId("1");
-        subscribeFlexibleProductRequest.amount(1d);
+        subscribeFlexibleProductRequest.amount(1.0d);
         ApiResponse<SubscribeFlexibleProductResponse> response =
                 getApi().subscribeFlexibleProduct(subscribeFlexibleProductRequest);
         System.out.println(response.getData());

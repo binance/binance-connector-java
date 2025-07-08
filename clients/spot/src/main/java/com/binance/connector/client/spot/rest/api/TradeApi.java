@@ -67,7 +67,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/3.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/3.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 

@@ -74,7 +74,7 @@ public class UserUniversalTransferExample {
                 new UserUniversalTransferRequest();
         userUniversalTransferRequest.type("");
         userUniversalTransferRequest.asset("");
-        userUniversalTransferRequest.amount(1d);
+        userUniversalTransferRequest.amount(1.0d);
         ApiResponse<UserUniversalTransferResponse> response =
                 getApi().userUniversalTransfer(userUniversalTransferRequest);
         System.out.println(response.getData());

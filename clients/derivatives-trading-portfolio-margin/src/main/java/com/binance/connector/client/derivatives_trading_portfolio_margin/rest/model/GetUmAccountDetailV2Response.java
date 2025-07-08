@@ -282,7 +282,7 @@ public class GetUmAccountDetailV2Response {
                         @Override
                         public void write(JsonWriter out, GetUmAccountDetailV2Response value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

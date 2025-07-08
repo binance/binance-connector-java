@@ -407,7 +407,7 @@ public class MyPreventedMatchesRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MyPreventedMatchesRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

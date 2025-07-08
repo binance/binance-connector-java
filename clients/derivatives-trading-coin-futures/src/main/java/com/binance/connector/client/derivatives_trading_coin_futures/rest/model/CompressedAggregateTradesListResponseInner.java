@@ -395,7 +395,7 @@ public class CompressedAggregateTradesListResponseInner {
                         public void write(
                                 JsonWriter out, CompressedAggregateTradesListResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

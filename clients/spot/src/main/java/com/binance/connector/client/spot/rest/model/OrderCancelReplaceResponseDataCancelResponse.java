@@ -826,7 +826,7 @@ public class OrderCancelReplaceResponseDataCancelResponse {
                         public void write(
                                 JsonWriter out, OrderCancelReplaceResponseDataCancelResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

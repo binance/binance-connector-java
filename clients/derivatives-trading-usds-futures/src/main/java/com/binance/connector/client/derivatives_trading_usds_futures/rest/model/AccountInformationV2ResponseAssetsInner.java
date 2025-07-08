@@ -756,7 +756,7 @@ public class AccountInformationV2ResponseAssetsInner {
                         public void write(
                                 JsonWriter out, AccountInformationV2ResponseAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

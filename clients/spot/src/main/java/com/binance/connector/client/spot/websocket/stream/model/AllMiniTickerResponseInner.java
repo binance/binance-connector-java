@@ -566,7 +566,7 @@ public class AllMiniTickerResponseInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AllMiniTickerResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

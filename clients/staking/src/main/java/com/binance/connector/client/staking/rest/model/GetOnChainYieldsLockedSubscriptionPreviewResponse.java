@@ -545,7 +545,7 @@ public class GetOnChainYieldsLockedSubscriptionPreviewResponse {
                                 JsonWriter out,
                                 GetOnChainYieldsLockedSubscriptionPreviewResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

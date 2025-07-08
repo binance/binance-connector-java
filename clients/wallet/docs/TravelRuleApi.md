@@ -6,6 +6,7 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**brokerWithdraw**](TravelRuleApi.md#brokerWithdraw) | **POST** /sapi/v1/localentity/broker/withdraw/apply | Broker Withdraw (for brokers of local entities that require travel rule) (USER_DATA) |
 | [**depositHistoryTravelRule**](TravelRuleApi.md#depositHistoryTravelRule) | **GET** /sapi/v1/localentity/deposit/history | Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA) |
+| [**fetchAddressVerificationList**](TravelRuleApi.md#fetchAddressVerificationList) | **GET** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA) |
 | [**onboardedVaspList**](TravelRuleApi.md#onboardedVaspList) | **GET** /sapi/v1/localentity/vasp | Onboarded VASP list (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaire**](TravelRuleApi.md#submitDepositQuestionnaire) | **PUT** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaireTravelRule**](TravelRuleApi.md#submitDepositQuestionnaireTravelRule) | **PUT** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
@@ -157,6 +158,64 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Deposit History |  -  |
+
+<a id="fetchAddressVerificationList"></a>
+# **fetchAddressVerificationList**
+> FetchAddressVerificationListResponse fetchAddressVerificationList()
+
+Fetch address verification list (USER_DATA)
+
+Fetch address verification list  Weight: 10
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    try {
+      FetchAddressVerificationListResponse result = apiInstance.fetchAddressVerificationList();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#fetchAddressVerificationList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**FetchAddressVerificationListResponse**](FetchAddressVerificationListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Fetch address verification list |  -  |
 
 <a id="onboardedVaspList"></a>
 # **onboardedVaspList**
@@ -365,7 +424,7 @@ public class Example {
     TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
     String trId = "trId_example"; // String | Comma(,) separated list of travel rule record Ids.
     String txId = "txId_example"; // String | 
-    String withdrawOrderId = "withdrawOrderId_example"; // String | 
+    String withdrawOrderId = "withdrawOrderId_example"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
     String network = "network_example"; // String | 
     String coin = "coin_example"; // String | 
     Long travelRuleStatus = 56L; // Long | 0:Completed,1:Pending,2:Failed
@@ -394,7 +453,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **trId** | **String**| Comma(,) separated list of travel rule record Ids. | [optional] |
 | **txId** | **String**|  | [optional] |
-| **withdrawOrderId** | **String**|  | [optional] |
+| **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
 | **travelRuleStatus** | **Long**| 0:Completed,1:Pending,2:Failed | [optional] |
@@ -447,7 +506,7 @@ public class Example {
     TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
     String trId = "trId_example"; // String | Comma(,) separated list of travel rule record Ids.
     String txId = "txId_example"; // String | 
-    String withdrawOrderId = "withdrawOrderId_example"; // String | 
+    String withdrawOrderId = "withdrawOrderId_example"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
     String network = "network_example"; // String | 
     String coin = "coin_example"; // String | 
     Long travelRuleStatus = 56L; // Long | 0:Completed,1:Pending,2:Failed
@@ -476,7 +535,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **trId** | **String**| Comma(,) separated list of travel rule record Ids. | [optional] |
 | **txId** | **String**|  | [optional] |
-| **withdrawOrderId** | **String**|  | [optional] |
+| **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
 | **travelRuleStatus** | **Long**| 0:Completed,1:Pending,2:Failed | [optional] |

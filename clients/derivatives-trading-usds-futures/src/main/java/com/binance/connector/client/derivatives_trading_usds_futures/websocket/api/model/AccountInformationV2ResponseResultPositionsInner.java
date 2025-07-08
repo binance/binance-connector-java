@@ -653,7 +653,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
                                 JsonWriter out,
                                 AccountInformationV2ResponseResultPositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

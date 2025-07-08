@@ -278,7 +278,7 @@ public class DepthResponse {
                     new TypeAdapter<DepthResponse>() {
                         @Override
                         public void write(JsonWriter out, DepthResponse value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -928,7 +928,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, PositionInformationResponseResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

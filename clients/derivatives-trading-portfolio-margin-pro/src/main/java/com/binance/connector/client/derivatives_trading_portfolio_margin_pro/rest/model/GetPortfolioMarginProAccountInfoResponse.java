@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetPortfolioMarginProAccountInfoResponse */
@@ -416,19 +414,6 @@ public class GetPortfolioMarginProAccountInfoResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPortfolioMarginProAccountInfoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetPortfolioMarginProAccountInfoResponse` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("uniMMR") != null && !jsonObj.get("uniMMR").isJsonNull())
                 && !jsonObj.get("uniMMR").isJsonPrimitive()) {
@@ -519,7 +504,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
                         public void write(
                                 JsonWriter out, GetPortfolioMarginProAccountInfoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

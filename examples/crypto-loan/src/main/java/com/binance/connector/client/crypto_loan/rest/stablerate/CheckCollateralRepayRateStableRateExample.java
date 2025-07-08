@@ -48,7 +48,7 @@ public class CheckCollateralRepayRateStableRateExample {
     public void checkCollateralRepayRateStableRateExample() throws ApiException {
         String loanCoin = "";
         String collateralCoin = "";
-        Double repayAmount = 1d;
+        Double repayAmount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<CheckCollateralRepayRateStableRateResponse> response =
                 getApi().checkCollateralRepayRateStableRate(

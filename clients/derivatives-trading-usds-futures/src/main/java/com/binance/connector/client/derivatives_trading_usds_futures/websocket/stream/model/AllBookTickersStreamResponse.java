@@ -544,7 +544,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AllBookTickersStreamResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

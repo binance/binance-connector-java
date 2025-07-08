@@ -215,7 +215,7 @@ public class ModifyMultipleOrdersRequest {
                         @Override
                         public void write(JsonWriter out, ModifyMultipleOrdersRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

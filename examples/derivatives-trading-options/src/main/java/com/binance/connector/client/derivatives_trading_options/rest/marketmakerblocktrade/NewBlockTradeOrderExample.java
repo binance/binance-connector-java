@@ -53,8 +53,8 @@ public class NewBlockTradeOrderExample {
         newBlockTradeOrderRequest.legs(new Legs());
         newBlockTradeOrderRequest.symbol("");
         newBlockTradeOrderRequest.side(Side.BUY);
-        newBlockTradeOrderRequest.price(1d);
-        newBlockTradeOrderRequest.quantity(1d);
+        newBlockTradeOrderRequest.price(1.0d);
+        newBlockTradeOrderRequest.quantity(1.0d);
         ApiResponse<NewBlockTradeOrderResponse> response =
                 getApi().newBlockTradeOrder(newBlockTradeOrderRequest);
         System.out.println(response.getData());

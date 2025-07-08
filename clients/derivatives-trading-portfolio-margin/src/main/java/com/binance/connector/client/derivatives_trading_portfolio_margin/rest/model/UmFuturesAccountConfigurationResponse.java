@@ -420,7 +420,7 @@ public class UmFuturesAccountConfigurationResponse {
                         public void write(
                                 JsonWriter out, UmFuturesAccountConfigurationResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

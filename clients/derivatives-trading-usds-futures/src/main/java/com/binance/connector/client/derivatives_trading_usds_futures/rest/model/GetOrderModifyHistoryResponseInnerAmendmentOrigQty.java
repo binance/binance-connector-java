@@ -232,7 +232,7 @@ public class GetOrderModifyHistoryResponseInnerAmendmentOrigQty {
                                 JsonWriter out,
                                 GetOrderModifyHistoryResponseInnerAmendmentOrigQty value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -352,7 +352,7 @@ public class GetOnChainYieldsLockedRewardsHistoryResponseRowsInner {
                                 JsonWriter out,
                                 GetOnChainYieldsLockedRewardsHistoryResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

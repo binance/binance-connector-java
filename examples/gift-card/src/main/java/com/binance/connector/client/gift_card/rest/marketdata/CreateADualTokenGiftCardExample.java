@@ -49,8 +49,7 @@ public class CreateADualTokenGiftCardExample {
      * would be deducted from your funding wallet. * To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key
-     * which requests this endpoint. Weight: 1 * Monthly creation volume: 4,200,000 USDC / month /
-     * account * Monthly creation quantity: 6,000 Gift Cards / month / account
+     * which requests this endpoint. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */
@@ -59,7 +58,7 @@ public class CreateADualTokenGiftCardExample {
                 new CreateADualTokenGiftCardRequest();
         createADualTokenGiftCardRequest.baseToken("");
         createADualTokenGiftCardRequest.faceToken("");
-        createADualTokenGiftCardRequest.baseTokenAmount(1d);
+        createADualTokenGiftCardRequest.baseTokenAmount(1.0d);
         ApiResponse<CreateADualTokenGiftCardResponse> response =
                 getApi().createADualTokenGiftCard(createADualTokenGiftCardRequest);
         System.out.println(response.getData());

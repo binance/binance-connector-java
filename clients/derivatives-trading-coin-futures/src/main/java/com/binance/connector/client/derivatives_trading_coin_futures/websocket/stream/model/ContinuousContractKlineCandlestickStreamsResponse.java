@@ -401,7 +401,7 @@ public class ContinuousContractKlineCandlestickStreamsResponse extends BaseDTO {
                                 JsonWriter out,
                                 ContinuousContractKlineCandlestickStreamsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

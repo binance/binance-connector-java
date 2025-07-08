@@ -49,7 +49,7 @@ public class SpotAlgoApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-algo/1.1.0 (Java/%s; %s; %s)",
+                    "binance-algo/1.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

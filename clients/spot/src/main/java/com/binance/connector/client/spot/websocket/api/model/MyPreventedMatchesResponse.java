@@ -356,7 +356,7 @@ public class MyPreventedMatchesResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MyPreventedMatchesResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

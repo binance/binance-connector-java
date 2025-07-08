@@ -48,10 +48,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -132,6 +134,8 @@ public class ApiClient {
 
     private Gson json;
 
+    private Set<String> forbiddenHeaders = new HashSet<>(Arrays.asList("host", "authorization", "cookie", ":method", ":path"));
+
     public ApiClient(ClientConfiguration configuration) {
         this(configuration, new BinanceAuthenticationFactory(), null);
     }
@@ -182,6 +186,11 @@ public class ApiClient {
             if (configuration.getProxyAuthenticator() != null) {
                 builder.proxyAuthenticator(configuration.getProxyAuthenticator());
             }
+        }
+
+        if (configuration.getCustomHeaders() != null && !configuration.getCustomHeaders().isEmpty()) {
+            Interceptor customHeadersInterceptor = getCustomHeadersInterceptor(configuration.getCustomHeaders());
+            builder.addInterceptor(customHeadersInterceptor);
         }
 
         // Compression is enabled by default, so add interceptor to remove gzip only if config is
@@ -237,6 +246,24 @@ public class ApiClient {
 
     public void setJson(Gson json) {
         this.json = json;
+    }
+
+    public Interceptor getCustomHeadersInterceptor(Map<String, String> customHeaders) {
+        return chain -> {
+
+            Request request = chain.request();
+            Request.Builder newBuilder = request.newBuilder();
+            for (String headerName : customHeaders.keySet()) {
+                String headerValue = customHeaders.get(headerName);
+                if (!validateHeader(headerName, headerValue)) {
+                    throw new ApiException("Invalid header " + headerName + ", it is forbidden or invalid (contains CR/LF)");
+                }
+
+                newBuilder.addHeader(headerName, headerValue);
+            }
+
+            return chain.proceed(newBuilder.build());
+        };
     }
 
     public Interceptor getRetryInterceptor(Integer retryCount, Integer retryBackoff) {
@@ -1826,5 +1853,13 @@ public class ApiClient {
         rateLimit.setCount(Integer.valueOf(value));
 
         return rateLimit;
+    }
+
+    private Boolean validateHeader(String name, String value) {
+        if (forbiddenHeaders.contains(name)) {
+            return false;
+        }
+
+        return !value.contains("\n") && !value.contains("\t");
     }
 }

@@ -381,7 +381,7 @@ public class SymbolOrderBookTickerResponse1RateLimitsInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, SymbolOrderBookTickerResponse1RateLimitsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -285,7 +285,7 @@ public class SessionStatusResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, SessionStatusResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

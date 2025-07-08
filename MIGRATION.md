@@ -37,7 +37,7 @@ For Spot (Spot package):
     <dependency>
         <groupId>io.github.binance</groupId>
         <artifactId>binance-spot</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
     </dependency>
 ```
 
@@ -47,7 +47,7 @@ For Futures (COIN-M Futures package):
     <dependency>
         <groupId>io.github.binance</groupId>
         <artifactId>binance-derivatives-trading-coin-futures</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
     </dependency>
 ```
 

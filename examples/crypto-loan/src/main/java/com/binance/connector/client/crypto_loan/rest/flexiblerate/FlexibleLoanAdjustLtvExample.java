@@ -51,7 +51,7 @@ public class FlexibleLoanAdjustLtvExample {
                 new FlexibleLoanAdjustLtvRequest();
         flexibleLoanAdjustLtvRequest.loanCoin("");
         flexibleLoanAdjustLtvRequest.collateralCoin("");
-        flexibleLoanAdjustLtvRequest.adjustmentAmount(1d);
+        flexibleLoanAdjustLtvRequest.adjustmentAmount(1.0d);
         flexibleLoanAdjustLtvRequest.direction("");
         ApiResponse<FlexibleLoanAdjustLtvResponse> response =
                 getApi().flexibleLoanAdjustLtv(flexibleLoanAdjustLtvRequest);

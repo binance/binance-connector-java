@@ -271,7 +271,7 @@ public class QueryInsuranceFundBalanceSnapshotResponse2InnerAssetsInner {
                                 JsonWriter out,
                                 QueryInsuranceFundBalanceSnapshotResponse2InnerAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

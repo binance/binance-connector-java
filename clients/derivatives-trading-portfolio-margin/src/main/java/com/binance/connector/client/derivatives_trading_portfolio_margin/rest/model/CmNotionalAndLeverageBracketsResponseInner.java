@@ -259,7 +259,7 @@ public class CmNotionalAndLeverageBracketsResponseInner {
                         public void write(
                                 JsonWriter out, CmNotionalAndLeverageBracketsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

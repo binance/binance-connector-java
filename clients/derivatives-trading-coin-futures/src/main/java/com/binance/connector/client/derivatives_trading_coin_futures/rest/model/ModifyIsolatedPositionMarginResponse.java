@@ -278,7 +278,7 @@ public class ModifyIsolatedPositionMarginResponse {
                         public void write(
                                 JsonWriter out, ModifyIsolatedPositionMarginResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

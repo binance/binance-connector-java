@@ -310,7 +310,7 @@ public class OpenInterestStatisticsResponseInner {
                         @Override
                         public void write(JsonWriter out, OpenInterestStatisticsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

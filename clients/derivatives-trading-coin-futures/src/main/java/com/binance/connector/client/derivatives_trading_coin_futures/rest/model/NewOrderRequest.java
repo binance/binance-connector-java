@@ -871,7 +871,7 @@ public class NewOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

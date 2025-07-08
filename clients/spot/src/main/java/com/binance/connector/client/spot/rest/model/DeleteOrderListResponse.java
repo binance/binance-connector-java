@@ -556,7 +556,7 @@ public class DeleteOrderListResponse {
                         @Override
                         public void write(JsonWriter out, DeleteOrderListResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

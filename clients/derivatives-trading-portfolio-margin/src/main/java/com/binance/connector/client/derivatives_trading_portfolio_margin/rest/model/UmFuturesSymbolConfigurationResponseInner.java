@@ -345,7 +345,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
                         public void write(
                                 JsonWriter out, UmFuturesSymbolConfigurationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

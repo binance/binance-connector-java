@@ -1089,7 +1089,7 @@ public class OrderListOcoRequest {
                         @Override
                         public void write(JsonWriter out, OrderListOcoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

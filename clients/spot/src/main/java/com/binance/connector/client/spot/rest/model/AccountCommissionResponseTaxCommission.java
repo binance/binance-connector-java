@@ -301,7 +301,7 @@ public class AccountCommissionResponseTaxCommission {
                         public void write(
                                 JsonWriter out, AccountCommissionResponseTaxCommission value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

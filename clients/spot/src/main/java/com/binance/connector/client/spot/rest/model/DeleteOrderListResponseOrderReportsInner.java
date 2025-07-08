@@ -862,7 +862,7 @@ public class DeleteOrderListResponseOrderReportsInner {
                         public void write(
                                 JsonWriter out, DeleteOrderListResponseOrderReportsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

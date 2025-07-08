@@ -324,7 +324,7 @@ public class OrderListStatusResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderListStatusResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

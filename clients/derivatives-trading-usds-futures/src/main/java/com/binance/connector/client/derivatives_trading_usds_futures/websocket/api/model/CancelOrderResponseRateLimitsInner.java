@@ -368,7 +368,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, CancelOrderResponseRateLimitsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

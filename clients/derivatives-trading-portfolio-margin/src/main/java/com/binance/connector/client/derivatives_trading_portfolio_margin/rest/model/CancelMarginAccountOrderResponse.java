@@ -639,7 +639,7 @@ public class CancelMarginAccountOrderResponse {
                         @Override
                         public void write(JsonWriter out, CancelMarginAccountOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

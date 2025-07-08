@@ -2,6 +2,8 @@ package com.binance.connector.client.common.configuration;
 
 import com.binance.connector.client.common.dtos.TimeUnit;
 import java.net.Proxy;
+import java.util.Map;
+
 import okhttp3.Authenticator;
 import okhttp3.CertificatePinner;
 
@@ -13,6 +15,7 @@ public class ClientConfiguration {
     public static final int DEFAULT_BACKOFF = 200;
     public static final int DEFAULT_CONNECT_TIMEOUT = 1000;
     public static final int DEFAULT_READ_TIMEOUT = 5000;
+    public static final long DEFAULT_MAX_MESSAGE_SIZE = 65536L;
 
     /** Base URL */
     protected String url = "https://api.binance.com";
@@ -46,6 +49,9 @@ public class ClientConfiguration {
 
     /** timeunit to be returned by APIs, default MILLISECOND */
     private TimeUnit timeUnit;
+
+    /** custom headers to be added to each request */
+    private Map<String, String> customHeaders;
 
     public String getUrl() {
         return url;
@@ -133,5 +139,13 @@ public class ClientConfiguration {
 
     public void setReadTimeout(Integer readTimeout) {
         this.readTimeout = readTimeout;
+    }
+
+    public Map<String, String> getCustomHeaders() {
+        return customHeaders;
+    }
+
+    public void setCustomHeaders(Map<String, String> customHeaders) {
+        this.customHeaders = customHeaders;
     }
 }

@@ -16,7 +16,6 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -148,7 +147,7 @@ public class UsersForceOrdersResponse extends ArrayList<UsersForceOrdersResponse
                         @Override
                         public void write(JsonWriter out, UsersForceOrdersResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

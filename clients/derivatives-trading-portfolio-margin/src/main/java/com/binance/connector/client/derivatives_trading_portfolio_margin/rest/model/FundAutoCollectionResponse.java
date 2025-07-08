@@ -175,7 +175,7 @@ public class FundAutoCollectionResponse {
                         @Override
                         public void write(JsonWriter out, FundAutoCollectionResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1210,7 +1210,7 @@ public class ExchangeInformationResponseSymbolsInner {
                         public void write(
                                 JsonWriter out, ExchangeInformationResponseSymbolsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -214,7 +214,7 @@ public class PlaceMultipleOrdersRequest {
                         @Override
                         public void write(JsonWriter out, PlaceMultipleOrdersRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -379,7 +379,7 @@ public class AccountRateLimitsOrdersResponseResultInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, AccountRateLimitsOrdersResponseResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

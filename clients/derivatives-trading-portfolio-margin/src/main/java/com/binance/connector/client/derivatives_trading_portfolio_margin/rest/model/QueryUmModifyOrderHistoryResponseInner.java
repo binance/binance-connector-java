@@ -447,7 +447,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
                         public void write(
                                 JsonWriter out, QueryUmModifyOrderHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -43,8 +43,7 @@ public class CreateASingleTokenGiftCardExample {
      * <p>This API is for creating a Binance Gift Card. To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for
-     * the API Key which requests this endpoint. Weight: 1 * Monthly creation volume: 4,200,000 USDC
-     * / month / account * Monthly creation quantity: 6,000 Gift Cards / month / account
+     * the API Key which requests this endpoint. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */
@@ -52,7 +51,7 @@ public class CreateASingleTokenGiftCardExample {
         CreateASingleTokenGiftCardRequest createASingleTokenGiftCardRequest =
                 new CreateASingleTokenGiftCardRequest();
         createASingleTokenGiftCardRequest.token("");
-        createASingleTokenGiftCardRequest.amount(1d);
+        createASingleTokenGiftCardRequest.amount(1.0d);
         ApiResponse<CreateASingleTokenGiftCardResponse> response =
                 getApi().createASingleTokenGiftCard(createASingleTokenGiftCardRequest);
         System.out.println(response.getData());

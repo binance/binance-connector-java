@@ -971,7 +971,7 @@ public class QueryCurrentMarginOpenOrderResponseInner {
                         public void write(
                                 JsonWriter out, QueryCurrentMarginOpenOrderResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

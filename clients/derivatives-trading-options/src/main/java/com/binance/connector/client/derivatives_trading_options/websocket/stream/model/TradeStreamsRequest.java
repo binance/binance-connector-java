@@ -260,7 +260,7 @@ public class TradeStreamsRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TradeStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

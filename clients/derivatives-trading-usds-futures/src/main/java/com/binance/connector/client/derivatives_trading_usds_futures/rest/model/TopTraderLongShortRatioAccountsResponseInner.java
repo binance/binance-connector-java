@@ -354,7 +354,7 @@ public class TopTraderLongShortRatioAccountsResponseInner {
                         public void write(
                                 JsonWriter out, TopTraderLongShortRatioAccountsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

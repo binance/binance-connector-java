@@ -52,7 +52,7 @@ public class NewOrderExample {
         newOrderRequest.symbol("");
         newOrderRequest.side(Side.BUY);
         newOrderRequest.type(Type.LIMIT);
-        newOrderRequest.quantity(1d);
+        newOrderRequest.quantity(1.0d);
         ApiResponse<NewOrderResponse> response = getApi().newOrder(newOrderRequest);
         System.out.println(response.getData());
     }

@@ -290,7 +290,7 @@ public class NotionalAndLeverageBracketsResponse2 {
                         public void write(
                                 JsonWriter out, NotionalAndLeverageBracketsResponse2 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

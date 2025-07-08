@@ -52,9 +52,9 @@ public class MarginAccountNewOcoExample {
         MarginAccountNewOcoRequest marginAccountNewOcoRequest = new MarginAccountNewOcoRequest();
         marginAccountNewOcoRequest.symbol("");
         marginAccountNewOcoRequest.side(Side.BUY);
-        marginAccountNewOcoRequest.quantity(1d);
-        marginAccountNewOcoRequest.price(1d);
-        marginAccountNewOcoRequest.stopPrice(1d);
+        marginAccountNewOcoRequest.quantity(1.0d);
+        marginAccountNewOcoRequest.price(1.0d);
+        marginAccountNewOcoRequest.stopPrice(1.0d);
         ApiResponse<MarginAccountNewOcoResponse> response =
                 getApi().marginAccountNewOco(marginAccountNewOcoRequest);
         System.out.println(response.getData());

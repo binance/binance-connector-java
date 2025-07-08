@@ -815,7 +815,7 @@ public class TickerResponse1Result extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TickerResponse1Result value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

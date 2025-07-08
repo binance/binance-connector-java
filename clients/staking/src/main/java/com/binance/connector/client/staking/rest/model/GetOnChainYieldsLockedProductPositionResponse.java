@@ -252,7 +252,7 @@ public class GetOnChainYieldsLockedProductPositionResponse {
                         public void write(
                                 JsonWriter out, GetOnChainYieldsLockedProductPositionResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

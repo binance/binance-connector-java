@@ -46,7 +46,7 @@ public class GetFlexibleSubscriptionPreviewExample {
      */
     public void getFlexibleSubscriptionPreviewExample() throws ApiException {
         String productId = "1";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetFlexibleSubscriptionPreviewResponse> response =
                 getApi().getFlexibleSubscriptionPreview(productId, amount, recvWindow);

@@ -1101,7 +1101,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, Ticker24hrResponse2ResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

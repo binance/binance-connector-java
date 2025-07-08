@@ -354,7 +354,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
                                 JsonWriter out,
                                 NotionalBracketForPairResponseInnerBracketsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

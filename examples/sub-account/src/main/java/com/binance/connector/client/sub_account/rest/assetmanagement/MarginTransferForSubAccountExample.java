@@ -51,7 +51,7 @@ public class MarginTransferForSubAccountExample {
                 new MarginTransferForSubAccountRequest();
         marginTransferForSubAccountRequest.email("sub-account-email@email.com");
         marginTransferForSubAccountRequest.asset("");
-        marginTransferForSubAccountRequest.amount(1d);
+        marginTransferForSubAccountRequest.amount(1.0d);
         marginTransferForSubAccountRequest.type(0L);
         ApiResponse<MarginTransferForSubAccountResponse> response =
                 getApi().marginTransferForSubAccount(marginTransferForSubAccountRequest);

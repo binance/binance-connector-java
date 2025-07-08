@@ -137,18 +137,6 @@ public class JSON {
                         .EnableFuturesForSubAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
-                        .EnableLeverageTokenForSubAccountRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
-                        .EnableLeverageTokenForSubAccountResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
-                        .EnableMarginForSubAccountRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
-                        .EnableMarginForSubAccountResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
                         .EnableOptionsForSubAccountRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model

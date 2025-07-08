@@ -301,7 +301,7 @@ public class OrderListPlaceOtoResponseResultOrdersInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, OrderListPlaceOtoResponseResultOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

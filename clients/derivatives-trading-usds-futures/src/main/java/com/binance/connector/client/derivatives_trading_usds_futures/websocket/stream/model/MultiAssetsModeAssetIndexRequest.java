@@ -208,7 +208,7 @@ public class MultiAssetsModeAssetIndexRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MultiAssetsModeAssetIndexRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

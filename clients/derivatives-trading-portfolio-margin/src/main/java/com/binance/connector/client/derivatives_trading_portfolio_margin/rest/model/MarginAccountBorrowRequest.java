@@ -254,7 +254,7 @@ public class MarginAccountBorrowRequest {
                         @Override
                         public void write(JsonWriter out, MarginAccountBorrowRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -230,7 +230,7 @@ public class GetDownloadIdForFuturesTransactionHistoryResponse {
                                 JsonWriter out,
                                 GetDownloadIdForFuturesTransactionHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

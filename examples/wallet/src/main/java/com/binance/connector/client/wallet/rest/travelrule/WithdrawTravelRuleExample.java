@@ -54,7 +54,7 @@ public class WithdrawTravelRuleExample {
         WithdrawTravelRuleRequest withdrawTravelRuleRequest = new WithdrawTravelRuleRequest();
         withdrawTravelRuleRequest.coin("");
         withdrawTravelRuleRequest.address("");
-        withdrawTravelRuleRequest.amount(1d);
+        withdrawTravelRuleRequest.amount(1.0d);
         withdrawTravelRuleRequest.questionnaire("");
         ApiResponse<WithdrawTravelRuleResponse> response =
                 getApi().withdrawTravelRule(withdrawTravelRuleRequest);

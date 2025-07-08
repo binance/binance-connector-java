@@ -76,7 +76,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/1.2.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/1.3.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

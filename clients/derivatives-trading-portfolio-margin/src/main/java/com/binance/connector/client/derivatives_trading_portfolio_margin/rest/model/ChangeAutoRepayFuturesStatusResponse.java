@@ -180,7 +180,7 @@ public class ChangeAutoRepayFuturesStatusResponse {
                         public void write(
                                 JsonWriter out, ChangeAutoRepayFuturesStatusResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

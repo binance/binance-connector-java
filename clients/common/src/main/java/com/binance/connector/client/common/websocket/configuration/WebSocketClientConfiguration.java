@@ -29,6 +29,9 @@ public class WebSocketClientConfiguration extends ClientConfiguration {
     /** batchSize for the reconnect strategy */
     private Integer reconnectBatchSize = DEFAULT_RECONNECT_BATCH_SIZE;
 
+    /** messageMaxSize for WebSocket messages */
+    private Long messageMaxSize = DEFAULT_MAX_MESSAGE_SIZE;
+
     @Override
     public String getUrl() {
         return url;
@@ -93,5 +96,13 @@ public class WebSocketClientConfiguration extends ClientConfiguration {
 
     public void setUsePool(Boolean usePool) {
         this.usePool = usePool;
+    }
+
+    public Long getMessageMaxSize() {
+        return messageMaxSize;
+    }
+
+    public void setMessageMaxSize(Long messageMaxSize) {
+        this.messageMaxSize = messageMaxSize;
     }
 }
