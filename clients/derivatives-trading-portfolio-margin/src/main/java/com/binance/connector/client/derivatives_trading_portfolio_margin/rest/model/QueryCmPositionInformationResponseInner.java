@@ -607,7 +607,7 @@ public class QueryCmPositionInformationResponseInner {
                         public void write(
                                 JsonWriter out, QueryCmPositionInformationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

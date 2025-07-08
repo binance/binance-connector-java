@@ -178,7 +178,7 @@ public class QueryMarginMaxWithdrawResponse {
                         @Override
                         public void write(JsonWriter out, QueryMarginMaxWithdrawResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

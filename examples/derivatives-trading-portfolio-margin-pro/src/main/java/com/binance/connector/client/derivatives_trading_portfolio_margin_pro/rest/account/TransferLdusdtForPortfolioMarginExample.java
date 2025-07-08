@@ -50,7 +50,7 @@ public class TransferLdusdtForPortfolioMarginExample {
                 new TransferLdusdtForPortfolioMarginRequest();
         transferLdusdtForPortfolioMarginRequest.asset("");
         transferLdusdtForPortfolioMarginRequest.transferType("");
-        transferLdusdtForPortfolioMarginRequest.amount(1d);
+        transferLdusdtForPortfolioMarginRequest.amount(1.0d);
         ApiResponse<TransferLdusdtForPortfolioMarginResponse> response =
                 getApi().transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest);
         System.out.println(response.getData());

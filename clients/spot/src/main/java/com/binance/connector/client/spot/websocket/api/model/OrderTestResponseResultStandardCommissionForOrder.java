@@ -266,7 +266,7 @@ public class OrderTestResponseResultStandardCommissionForOrder extends BaseDTO {
                                 JsonWriter out,
                                 OrderTestResponseResultStandardCommissionForOrder value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

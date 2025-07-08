@@ -15,7 +15,6 @@ package com.binance.connector.client.spot.websocket.api.model;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -154,7 +153,7 @@ public class ExchangeFilters extends ArrayList<ExchangeFiltersInner> {
                         @Override
                         public void write(JsonWriter out, ExchangeFilters value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

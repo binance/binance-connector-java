@@ -802,7 +802,7 @@ public class DeleteOpenOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, DeleteOpenOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

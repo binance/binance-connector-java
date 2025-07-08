@@ -51,7 +51,7 @@ public class WithdrawExample {
         WithdrawRequest withdrawRequest = new WithdrawRequest();
         withdrawRequest.coin("");
         withdrawRequest.address("");
-        withdrawRequest.amount(1d);
+        withdrawRequest.amount(1.0d);
         ApiResponse<WithdrawResponse> response = getApi().withdraw(withdrawRequest);
         System.out.println(response.getData());
     }

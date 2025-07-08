@@ -53,7 +53,7 @@ public class SubAccountFuturesAssetTransferExample {
         subAccountFuturesAssetTransferRequest.toEmail("");
         subAccountFuturesAssetTransferRequest.futuresType(0L);
         subAccountFuturesAssetTransferRequest.asset("");
-        subAccountFuturesAssetTransferRequest.amount(1d);
+        subAccountFuturesAssetTransferRequest.amount(1.0d);
         ApiResponse<SubAccountFuturesAssetTransferResponse> response =
                 getApi().subAccountFuturesAssetTransfer(subAccountFuturesAssetTransferRequest);
         System.out.println(response.getData());

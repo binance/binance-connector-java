@@ -309,7 +309,7 @@ public class OpenOrderListsStatusResponseResultInnerOrdersInner extends BaseDTO 
                                 JsonWriter out,
                                 OpenOrderListsStatusResponseResultInnerOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -123,6 +123,9 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         }
 
         webSocketClient.setIdleTimeout(Duration.ZERO);
+        if (configuration.getMessageMaxSize() != null) {
+            webSocketClient.setMaxTextMessageSize(configuration.getMessageMaxSize());
+        }
 
         if (!webSocketClient.isStarted() && !webSocketClient.isStarting()) {
             try {

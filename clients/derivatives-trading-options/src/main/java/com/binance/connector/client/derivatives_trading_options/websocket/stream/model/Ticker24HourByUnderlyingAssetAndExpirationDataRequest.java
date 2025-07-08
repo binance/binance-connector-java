@@ -330,7 +330,7 @@ public class Ticker24HourByUnderlyingAssetAndExpirationDataRequest extends BaseD
                                 JsonWriter out,
                                 Ticker24HourByUnderlyingAssetAndExpirationDataRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

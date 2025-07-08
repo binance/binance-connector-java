@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** KeepaliveIsolatedMarginUserDataStreamRequest */
@@ -193,20 +191,6 @@ public class KeepaliveIsolatedMarginUserDataStreamRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!KeepaliveIsolatedMarginUserDataStreamRequest.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `KeepaliveIsolatedMarginUserDataStreamRequest` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField :
                 KeepaliveIsolatedMarginUserDataStreamRequest.openapiRequiredFields) {
@@ -255,7 +239,7 @@ public class KeepaliveIsolatedMarginUserDataStreamRequest {
                         public void write(
                                 JsonWriter out, KeepaliveIsolatedMarginUserDataStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -316,7 +316,7 @@ public class PingResponse extends BaseDTO {
                     new TypeAdapter<PingResponse>() {
                         @Override
                         public void write(JsonWriter out, PingResponse value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

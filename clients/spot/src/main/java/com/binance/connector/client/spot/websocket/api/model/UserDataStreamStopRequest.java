@@ -216,7 +216,7 @@ public class UserDataStreamStopRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, UserDataStreamStopRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

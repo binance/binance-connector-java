@@ -260,7 +260,7 @@ public class RollingWindowTickerRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, RollingWindowTickerRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

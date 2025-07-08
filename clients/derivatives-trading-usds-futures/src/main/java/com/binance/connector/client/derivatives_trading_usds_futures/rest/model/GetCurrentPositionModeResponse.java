@@ -172,7 +172,7 @@ public class GetCurrentPositionModeResponse {
                         @Override
                         public void write(JsonWriter out, GetCurrentPositionModeResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

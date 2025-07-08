@@ -437,7 +437,7 @@ public class MyTradesRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MyTradesRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

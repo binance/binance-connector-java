@@ -630,7 +630,7 @@ public class OrderListPlaceOcoResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderListPlaceOcoResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

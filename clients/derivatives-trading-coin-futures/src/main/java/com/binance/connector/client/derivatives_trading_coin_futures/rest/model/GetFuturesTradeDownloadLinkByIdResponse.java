@@ -378,7 +378,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
                         public void write(
                                 JsonWriter out, GetFuturesTradeDownloadLinkByIdResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

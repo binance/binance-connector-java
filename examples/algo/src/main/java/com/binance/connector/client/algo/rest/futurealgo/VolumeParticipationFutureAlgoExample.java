@@ -59,7 +59,7 @@ public class VolumeParticipationFutureAlgoExample {
                 new VolumeParticipationFutureAlgoRequest();
         volumeParticipationFutureAlgoRequest.symbol("BTCUSDT");
         volumeParticipationFutureAlgoRequest.side("BUY");
-        volumeParticipationFutureAlgoRequest.quantity(1d);
+        volumeParticipationFutureAlgoRequest.quantity(1.0d);
         volumeParticipationFutureAlgoRequest.urgency("LOW");
         ApiResponse<VolumeParticipationFutureAlgoResponse> response =
                 getApi().volumeParticipationFutureAlgo(volumeParticipationFutureAlgoRequest);

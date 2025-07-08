@@ -1174,7 +1174,7 @@ public class QueryOrderResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, QueryOrderResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

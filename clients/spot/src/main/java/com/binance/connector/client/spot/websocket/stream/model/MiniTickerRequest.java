@@ -215,7 +215,7 @@ public class MiniTickerRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MiniTickerRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

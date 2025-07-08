@@ -319,7 +319,7 @@ public class UserDataStreamPingResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, UserDataStreamPingResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

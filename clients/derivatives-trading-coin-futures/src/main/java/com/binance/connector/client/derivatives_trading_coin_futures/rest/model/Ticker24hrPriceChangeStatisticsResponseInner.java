@@ -837,7 +837,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
                         public void write(
                                 JsonWriter out, Ticker24hrPriceChangeStatisticsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

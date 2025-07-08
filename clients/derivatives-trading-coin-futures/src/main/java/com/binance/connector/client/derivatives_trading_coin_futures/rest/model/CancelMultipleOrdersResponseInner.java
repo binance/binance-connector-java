@@ -1226,7 +1226,7 @@ public class CancelMultipleOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, CancelMultipleOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

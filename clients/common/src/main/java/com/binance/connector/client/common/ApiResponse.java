@@ -22,7 +22,7 @@ public class ApiResponse<T> {
     private final int statusCode;
     private final Map<String, List<String>> headers;
     private final T data;
-    private final Map<RateLimitType, RateLimit> rateLimit;
+    private final Map<RateLimitType, RateLimit> rateLimits;
 
     /**
      * Constructor for ApiResponse.
@@ -51,17 +51,17 @@ public class ApiResponse<T> {
      * @param statusCode The status code of HTTP response
      * @param headers The headers of HTTP response
      * @param data The object deserialized from response bod
-     * @param
+     * @param rateLimits The rate limits information
      */
     public ApiResponse(
             int statusCode,
             Map<String, List<String>> headers,
             T data,
-            Map<RateLimitType, RateLimit> rateLimit) {
+            Map<RateLimitType, RateLimit> rateLimits) {
         this.statusCode = statusCode;
         this.headers = headers;
         this.data = data;
-        this.rateLimit = rateLimit;
+        this.rateLimits = rateLimits;
     }
 
     /**
@@ -89,5 +89,14 @@ public class ApiResponse<T> {
      */
     public T getData() {
         return data;
+    }
+
+    /**
+     * Get the RateLimits
+     *
+     * @return the rate limits info
+     */
+    public Map<RateLimitType, RateLimit> getRateLimits() {
+        return rateLimits;
     }
 }

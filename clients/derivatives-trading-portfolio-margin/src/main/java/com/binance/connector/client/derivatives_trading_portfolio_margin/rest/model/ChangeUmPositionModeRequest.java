@@ -220,7 +220,7 @@ public class ChangeUmPositionModeRequest {
                         @Override
                         public void write(JsonWriter out, ChangeUmPositionModeRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

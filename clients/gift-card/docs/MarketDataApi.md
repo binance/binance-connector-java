@@ -18,7 +18,7 @@ All URIs are relative to *https://api.binance.com*
 
 Create a dual-token gift card(fixed value, discount feature)(TRADE)
 
-* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You may create a gift card using USDT as baseToken, that is redeemable to another designated token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100 USDT plus 1 USDT fee. This gift card can keep the value fixed at 100 USDT before redemption, and will be redeemable to BTC equivalent to 100 USDT upon redemption. * Once successfully created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee would be deducted from your funding wallet.   * To get started with, please make sure: * You have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key which requests this endpoint.  Weight: 1 * Monthly creation volume: 4,200,000 USDC / month / account * Monthly creation quantity: 6,000 Gift Cards / month / account
+* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You may create a gift card using USDT as baseToken, that is redeemable to another designated token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100 USDT plus 1 USDT fee. This gift card can keep the value fixed at 100 USDT before redemption, and will be redeemable to BTC equivalent to 100 USDT upon redemption. * Once successfully created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee would be deducted from your funding wallet.   * To get started with, please make sure: * You have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key which requests this endpoint.  Weight: 1
 
 ### Example
 ```java
@@ -80,7 +80,7 @@ No authorization required
 
 Create a single-token gift card (USER_DATA)
 
-This API is for creating a Binance Gift Card.  To get started with, please make sure:  * You have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint.  Weight: 1 * Monthly creation volume: 4,200,000 USDC / month / account * Monthly creation quantity: 6,000 Gift Cards / month / account
+This API is for creating a Binance Gift Card.  To get started with, please make sure:  * You have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint.  Weight: 1
 
 ### Example
 ```java

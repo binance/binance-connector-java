@@ -393,7 +393,7 @@ public class FuturesTradingQuantitativeRulesIndicatorsResponseIndicators {
                                 JsonWriter out,
                                 FuturesTradingQuantitativeRulesIndicatorsResponseIndicators value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

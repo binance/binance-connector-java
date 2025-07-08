@@ -245,7 +245,7 @@ public class QueryMarginRepayRecordResponse {
                         @Override
                         public void write(JsonWriter out, QueryMarginRepayRecordResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

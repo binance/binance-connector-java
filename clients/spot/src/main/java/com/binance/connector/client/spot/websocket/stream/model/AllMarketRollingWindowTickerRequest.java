@@ -218,7 +218,7 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AllMarketRollingWindowTickerRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

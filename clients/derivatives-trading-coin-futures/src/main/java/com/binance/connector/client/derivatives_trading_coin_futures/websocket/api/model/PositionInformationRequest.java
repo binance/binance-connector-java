@@ -332,7 +332,7 @@ public class PositionInformationRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, PositionInformationRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

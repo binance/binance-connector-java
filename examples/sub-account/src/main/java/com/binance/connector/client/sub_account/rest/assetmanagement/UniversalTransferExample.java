@@ -62,7 +62,7 @@ public class UniversalTransferExample {
         universalTransferRequest.fromAccountType("");
         universalTransferRequest.toAccountType("");
         universalTransferRequest.asset("");
-        universalTransferRequest.amount(1d);
+        universalTransferRequest.amount(1.0d);
         ApiResponse<UniversalTransferResponse> response =
                 getApi().universalTransfer(universalTransferRequest);
         System.out.println(response.getData());

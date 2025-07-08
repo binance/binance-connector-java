@@ -6,8 +6,6 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**createAVirtualSubAccount**](AccountManagementApi.md#createAVirtualSubAccount) | **POST** /sapi/v1/sub-account/virtualSubAccount | Create a Virtual Sub-account (For Master Account) (USER_DATA) |
 | [**enableFuturesForSubAccount**](AccountManagementApi.md#enableFuturesForSubAccount) | **POST** /sapi/v1/sub-account/futures/enable | Enable Futures for Sub-account (For Master Account) (USER_DATA) |
-| [**enableLeverageTokenForSubAccount**](AccountManagementApi.md#enableLeverageTokenForSubAccount) | **POST** /sapi/v1/sub-account/blvt/enable | Enable Leverage Token for Sub-account (For Master Account) (USER_DATA) |
-| [**enableMarginForSubAccount**](AccountManagementApi.md#enableMarginForSubAccount) | **POST** /sapi/v1/sub-account/margin/enable | Enable Margin for Sub-account (For Master Account) (USER_DATA) |
 | [**enableOptionsForSubAccount**](AccountManagementApi.md#enableOptionsForSubAccount) | **POST** /sapi/v1/sub-account/eoptions/enable | Enable Options for Sub-account (For Master Account) (USER_DATA) |
 | [**getFuturesPositionRiskOfSubAccount**](AccountManagementApi.md#getFuturesPositionRiskOfSubAccount) | **GET** /sapi/v1/sub-account/futures/positionRisk | Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) |
 | [**getFuturesPositionRiskOfSubAccountV2**](AccountManagementApi.md#getFuturesPositionRiskOfSubAccountV2) | **GET** /sapi/v2/sub-account/futures/positionRisk | Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA) |
@@ -139,130 +137,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Enable Futures for Sub-account |  -  |
-
-<a id="enableLeverageTokenForSubAccount"></a>
-# **enableLeverageTokenForSubAccount**
-> EnableLeverageTokenForSubAccountResponse enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest)
-
-Enable Leverage Token for Sub-account (For Master Account) (USER_DATA)
-
-Enable Leverage Token for Sub-account  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.sub_account.ApiClient;
-import com.binance.connector.client.sub_account.ApiException;
-import com.binance.connector.client.sub_account.Configuration;
-import com.binance.connector.client.sub_account.models.*;
-import com.binance.connector.client.sub_account.rest.api.AccountManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest = new EnableLeverageTokenForSubAccountRequest(); // EnableLeverageTokenForSubAccountRequest | 
-    try {
-      EnableLeverageTokenForSubAccountResponse result = apiInstance.enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountManagementApi#enableLeverageTokenForSubAccount");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **enableLeverageTokenForSubAccountRequest** | [**EnableLeverageTokenForSubAccountRequest**](EnableLeverageTokenForSubAccountRequest.md)|  | |
-
-### Return type
-
-[**EnableLeverageTokenForSubAccountResponse**](EnableLeverageTokenForSubAccountResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Enable Leverage Token for Sub-account |  -  |
-
-<a id="enableMarginForSubAccount"></a>
-# **enableMarginForSubAccount**
-> EnableMarginForSubAccountResponse enableMarginForSubAccount(enableMarginForSubAccountRequest)
-
-Enable Margin for Sub-account (For Master Account) (USER_DATA)
-
-Enable Margin for Sub-account  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.sub_account.ApiClient;
-import com.binance.connector.client.sub_account.ApiException;
-import com.binance.connector.client.sub_account.Configuration;
-import com.binance.connector.client.sub_account.models.*;
-import com.binance.connector.client.sub_account.rest.api.AccountManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    EnableMarginForSubAccountRequest enableMarginForSubAccountRequest = new EnableMarginForSubAccountRequest(); // EnableMarginForSubAccountRequest | 
-    try {
-      EnableMarginForSubAccountResponse result = apiInstance.enableMarginForSubAccount(enableMarginForSubAccountRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountManagementApi#enableMarginForSubAccount");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **enableMarginForSubAccountRequest** | [**EnableMarginForSubAccountRequest**](EnableMarginForSubAccountRequest.md)|  | |
-
-### Return type
-
-[**EnableMarginForSubAccountResponse**](EnableMarginForSubAccountResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Enable Margin for Sub-account |  -  |
 
 <a id="enableOptionsForSubAccount"></a>
 # **enableOptionsForSubAccount**

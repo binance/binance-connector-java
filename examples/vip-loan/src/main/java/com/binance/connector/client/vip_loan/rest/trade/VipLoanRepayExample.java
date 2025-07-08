@@ -47,7 +47,7 @@ public class VipLoanRepayExample {
     public void vipLoanRepayExample() throws ApiException {
         VipLoanRepayRequest vipLoanRepayRequest = new VipLoanRepayRequest();
         vipLoanRepayRequest.orderId(1L);
-        vipLoanRepayRequest.amount(1d);
+        vipLoanRepayRequest.amount(1.0d);
         ApiResponse<VipLoanRepayResponse> response = getApi().vipLoanRepay(vipLoanRepayRequest);
         System.out.println(response.getData());
     }

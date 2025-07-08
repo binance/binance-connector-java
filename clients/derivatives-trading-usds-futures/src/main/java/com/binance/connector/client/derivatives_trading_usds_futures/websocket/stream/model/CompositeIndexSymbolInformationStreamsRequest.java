@@ -276,7 +276,7 @@ public class CompositeIndexSymbolInformationStreamsRequest extends BaseDTO {
                         public void write(
                                 JsonWriter out, CompositeIndexSymbolInformationStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

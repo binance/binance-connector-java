@@ -390,7 +390,7 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, SymbolOrderBookTickerResponse2 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

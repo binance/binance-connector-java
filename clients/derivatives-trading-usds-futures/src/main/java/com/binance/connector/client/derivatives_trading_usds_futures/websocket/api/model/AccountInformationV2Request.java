@@ -243,7 +243,7 @@ public class AccountInformationV2Request extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AccountInformationV2Request value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

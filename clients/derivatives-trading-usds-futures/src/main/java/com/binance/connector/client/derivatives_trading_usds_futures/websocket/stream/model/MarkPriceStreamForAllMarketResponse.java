@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_usds_futures.websocket.
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -159,7 +158,7 @@ public class MarkPriceStreamForAllMarketResponse
                         @Override
                         public void write(JsonWriter out, MarkPriceStreamForAllMarketResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

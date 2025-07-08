@@ -212,7 +212,7 @@ public class KeepaliveUserDataStreamResponseResult extends BaseDTO {
                         public void write(
                                 JsonWriter out, KeepaliveUserDataStreamResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

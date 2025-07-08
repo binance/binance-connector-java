@@ -480,7 +480,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
                         public void write(
                                 JsonWriter out, GetUmAccountDetailV2ResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

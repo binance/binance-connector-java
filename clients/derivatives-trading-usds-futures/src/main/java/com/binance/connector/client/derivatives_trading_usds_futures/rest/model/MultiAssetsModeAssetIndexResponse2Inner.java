@@ -625,7 +625,7 @@ public class MultiAssetsModeAssetIndexResponse2Inner {
                         public void write(
                                 JsonWriter out, MultiAssetsModeAssetIndexResponse2Inner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

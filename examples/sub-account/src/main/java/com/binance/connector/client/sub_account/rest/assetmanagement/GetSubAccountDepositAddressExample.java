@@ -49,7 +49,7 @@ public class GetSubAccountDepositAddressExample {
         String email = "sub-account-email@email.com";
         String coin = "";
         String network = "";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetSubAccountDepositAddressResponse> response =
                 getApi().getSubAccountDepositAddress(email, coin, network, amount, recvWindow);

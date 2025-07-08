@@ -257,7 +257,7 @@ public class QueryUserNegativeBalanceAutoExchangeRecordResponse {
                                 JsonWriter out,
                                 QueryUserNegativeBalanceAutoExchangeRecordResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

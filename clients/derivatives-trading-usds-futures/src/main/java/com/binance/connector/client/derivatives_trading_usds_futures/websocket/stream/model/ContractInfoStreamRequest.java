@@ -205,7 +205,7 @@ public class ContractInfoStreamRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, ContractInfoStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

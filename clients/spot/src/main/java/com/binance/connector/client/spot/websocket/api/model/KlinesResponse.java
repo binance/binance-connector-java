@@ -337,7 +337,7 @@ public class KlinesResponse extends BaseDTO {
                     new TypeAdapter<KlinesResponse>() {
                         @Override
                         public void write(JsonWriter out, KlinesResponse value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

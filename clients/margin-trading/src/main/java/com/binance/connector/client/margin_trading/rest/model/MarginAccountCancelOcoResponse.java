@@ -33,9 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
@@ -503,18 +501,6 @@ public class MarginAccountCancelOcoResponse {
                                 MarginAccountCancelOcoResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountCancelOcoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginAccountCancelOcoResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("contingencyType") != null && !jsonObj.get("contingencyType").isJsonNull())
                 && !jsonObj.get("contingencyType").isJsonPrimitive()) {
@@ -617,7 +603,7 @@ public class MarginAccountCancelOcoResponse {
                         @Override
                         public void write(JsonWriter out, MarginAccountCancelOcoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

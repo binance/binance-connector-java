@@ -1065,7 +1065,7 @@ public class OpenOrdersStatusResponseResultInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OpenOrdersStatusResponseResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

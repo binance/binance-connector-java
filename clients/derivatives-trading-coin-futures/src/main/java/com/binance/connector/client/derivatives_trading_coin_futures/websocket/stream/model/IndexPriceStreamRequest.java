@@ -306,7 +306,7 @@ public class IndexPriceStreamRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, IndexPriceStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

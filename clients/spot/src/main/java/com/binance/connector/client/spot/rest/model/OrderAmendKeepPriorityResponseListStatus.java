@@ -425,7 +425,7 @@ public class OrderAmendKeepPriorityResponseListStatus {
                         public void write(
                                 JsonWriter out, OrderAmendKeepPriorityResponseListStatus value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

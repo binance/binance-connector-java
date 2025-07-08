@@ -267,7 +267,7 @@ public class IndividualSymbolTickerStreamsRequest extends BaseDTO {
                         public void write(
                                 JsonWriter out, IndividualSymbolTickerStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

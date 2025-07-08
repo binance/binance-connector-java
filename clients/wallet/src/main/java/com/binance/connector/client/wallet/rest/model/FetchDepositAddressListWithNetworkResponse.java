@@ -14,8 +14,8 @@ package com.binance.connector.client.wallet.rest.model;
 
 import com.binance.connector.client.wallet.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,9 +28,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** FetchDepositAddressListWithNetworkResponse */
@@ -110,6 +108,18 @@ public class FetchDepositAddressListWithNetworkResponse
      *     FetchDepositAddressListWithNetworkResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            FetchDepositAddressListWithNetworkResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!FetchDepositAddressListWithNetworkResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -120,20 +130,6 @@ public class FetchDepositAddressListWithNetworkResponse
                                     + " the empty JSON string",
                                 FetchDepositAddressListWithNetworkResponse.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!FetchDepositAddressListWithNetworkResponse.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `FetchDepositAddressListWithNetworkResponse` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -158,7 +154,7 @@ public class FetchDepositAddressListWithNetworkResponse
                         public void write(
                                 JsonWriter out, FetchDepositAddressListWithNetworkResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

@@ -51,7 +51,7 @@ public class TransferToSubAccountOfSameMasterExample {
                 new TransferToSubAccountOfSameMasterRequest();
         transferToSubAccountOfSameMasterRequest.toEmail("");
         transferToSubAccountOfSameMasterRequest.asset("");
-        transferToSubAccountOfSameMasterRequest.amount(1d);
+        transferToSubAccountOfSameMasterRequest.amount(1.0d);
         ApiResponse<TransferToSubAccountOfSameMasterResponse> response =
                 getApi().transferToSubAccountOfSameMaster(transferToSubAccountOfSameMasterRequest);
         System.out.println(response.getData());

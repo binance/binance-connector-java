@@ -279,7 +279,7 @@ public class GetUmAccountDetailResponse {
                         @Override
                         public void write(JsonWriter out, GetUmAccountDetailResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -420,7 +420,7 @@ public class GetUmFuturesTradeDownloadLinkByIdResponse {
                         public void write(
                                 JsonWriter out, GetUmFuturesTradeDownloadLinkByIdResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

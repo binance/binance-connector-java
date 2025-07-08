@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.0 - 2025-07-08
+
+### Added (1)
+
+- Added `customHeaders` configuration.
+
+### Changed (1)
+
+- Update `binance/common` module to version `1.3.0`.
+
+### Removed (2)
+
+- `enableLeverageTokenForSubAccount()` (`POST /sapi/v1/sub-account/blvt/enable`)
+- `enableMarginForSubAccount()` (`POST /sapi/v1/sub-account/margin/enable`)
+
 ## 2.0.0 - 2025-05-26
 
 ### Changed (2)

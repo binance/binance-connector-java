@@ -50,7 +50,7 @@ public class VipLoanBorrowExample {
         VipLoanBorrowRequest vipLoanBorrowRequest = new VipLoanBorrowRequest();
         vipLoanBorrowRequest.loanAccountId(1L);
         vipLoanBorrowRequest.loanCoin("");
-        vipLoanBorrowRequest.loanAmount(1d);
+        vipLoanBorrowRequest.loanAmount(1.0d);
         vipLoanBorrowRequest.collateralAccountId(1L);
         vipLoanBorrowRequest.collateralCoin("");
         vipLoanBorrowRequest.isFlexibleRate(true);

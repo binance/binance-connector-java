@@ -309,7 +309,7 @@ public class OrderCancelReplaceResponseData {
                         @Override
                         public void write(JsonWriter out, OrderCancelReplaceResponseData value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

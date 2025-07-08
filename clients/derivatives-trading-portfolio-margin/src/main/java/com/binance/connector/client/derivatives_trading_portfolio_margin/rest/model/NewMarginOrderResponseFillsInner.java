@@ -301,7 +301,7 @@ public class NewMarginOrderResponseFillsInner {
                         @Override
                         public void write(JsonWriter out, NewMarginOrderResponseFillsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -167,7 +167,7 @@ public class CheckServerTimeResponse {
                         @Override
                         public void write(JsonWriter out, CheckServerTimeResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

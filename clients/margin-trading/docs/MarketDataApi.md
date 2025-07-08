@@ -9,6 +9,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getAllIsolatedMarginSymbol**](MarketDataApi.md#getAllIsolatedMarginSymbol) | **GET** /sapi/v1/margin/isolated/allPairs | Get All Isolated Margin Symbol(MARKET_DATA) |
 | [**getAllMarginAssets**](MarketDataApi.md#getAllMarginAssets) | **GET** /sapi/v1/margin/allAssets | Get All Margin Assets (MARKET_DATA) |
 | [**getDelistSchedule**](MarketDataApi.md#getDelistSchedule) | **GET** /sapi/v1/margin/delist-schedule | Get Delist Schedule (MARKET_DATA) |
+| [**getListSchedule**](MarketDataApi.md#getListSchedule) | **GET** /sapi/v1/margin/list-schedule | Get list Schedule (MARKET_DATA) |
 | [**queryIsolatedMarginTierData**](MarketDataApi.md#queryIsolatedMarginTierData) | **GET** /sapi/v1/margin/isolatedMarginTier | Query Isolated Margin Tier Data (USER_DATA) |
 | [**queryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataApi.md#queryLiabilityCoinLeverageBracketInCrossMarginProMode) | **GET** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) |
 | [**queryMarginAvailableInventory**](MarketDataApi.md#queryMarginAvailableInventory) | **GET** /sapi/v1/margin/available-inventory | Query Margin Available Inventory(USER_DATA) |
@@ -322,6 +323,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get Delist Schedule |  -  |
+
+<a id="getListSchedule"></a>
+# **getListSchedule**
+> GetListScheduleResponse getListSchedule(recvWindow)
+
+Get list Schedule (MARKET_DATA)
+
+Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.  Weight: 100
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.margin_trading.ApiClient;
+import com.binance.connector.client.margin_trading.ApiException;
+import com.binance.connector.client.margin_trading.Configuration;
+import com.binance.connector.client.margin_trading.models.*;
+import com.binance.connector.client.margin_trading.rest.api.MarketDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
+    Long recvWindow = 56L; // Long | No more than 60000
+    try {
+      GetListScheduleResponse result = apiInstance.getListSchedule(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketDataApi#getListSchedule");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**| No more than 60000 | [optional] |
+
+### Return type
+
+[**GetListScheduleResponse**](GetListScheduleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get list Schedule |  -  |
 
 <a id="queryIsolatedMarginTierData"></a>
 # **queryIsolatedMarginTierData**

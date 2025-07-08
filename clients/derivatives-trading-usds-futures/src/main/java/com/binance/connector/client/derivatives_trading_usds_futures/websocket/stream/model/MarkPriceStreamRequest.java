@@ -305,7 +305,7 @@ public class MarkPriceStreamRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MarkPriceStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

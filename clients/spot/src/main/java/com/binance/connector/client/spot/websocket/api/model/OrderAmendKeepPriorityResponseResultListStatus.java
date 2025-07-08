@@ -482,7 +482,7 @@ public class OrderAmendKeepPriorityResponseResultListStatus extends BaseDTO {
                                 JsonWriter out,
                                 OrderAmendKeepPriorityResponseResultListStatus value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

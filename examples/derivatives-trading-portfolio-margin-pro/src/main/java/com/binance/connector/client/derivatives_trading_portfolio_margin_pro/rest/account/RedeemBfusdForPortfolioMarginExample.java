@@ -50,7 +50,7 @@ public class RedeemBfusdForPortfolioMarginExample {
                 new RedeemBfusdForPortfolioMarginRequest();
         redeemBfusdForPortfolioMarginRequest.fromAsset("");
         redeemBfusdForPortfolioMarginRequest.targetAsset("");
-        redeemBfusdForPortfolioMarginRequest.amount(1d);
+        redeemBfusdForPortfolioMarginRequest.amount(1.0d);
         ApiResponse<RedeemBfusdForPortfolioMarginResponse> response =
                 getApi().redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest);
         System.out.println(response.getData());

@@ -388,7 +388,7 @@ public class OrderBookResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderBookResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

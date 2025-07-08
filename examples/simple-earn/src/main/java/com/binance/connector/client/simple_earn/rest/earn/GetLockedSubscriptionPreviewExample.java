@@ -46,7 +46,7 @@ public class GetLockedSubscriptionPreviewExample {
      */
     public void getLockedSubscriptionPreviewExample() throws ApiException {
         String projectId = "1";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Boolean autoSubscribe = false;
         Long recvWindow = 5000L;
         ApiResponse<GetLockedSubscriptionPreviewResponse> response =

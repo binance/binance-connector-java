@@ -212,7 +212,7 @@ public class ToggleBnbBurnOnUmFuturesTradeResponse {
                         public void write(
                                 JsonWriter out, ToggleBnbBurnOnUmFuturesTradeResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

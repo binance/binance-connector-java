@@ -201,7 +201,7 @@ public class MarginMaxBorrowResponse {
                         @Override
                         public void write(JsonWriter out, MarginMaxBorrowResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

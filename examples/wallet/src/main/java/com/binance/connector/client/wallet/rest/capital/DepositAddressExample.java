@@ -49,7 +49,7 @@ public class DepositAddressExample {
     public void depositAddressExample() throws ApiException {
         String coin = "";
         String network = "";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<DepositAddressResponse> response =
                 getApi().depositAddress(coin, network, amount, recvWindow);

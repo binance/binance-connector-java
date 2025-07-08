@@ -739,7 +739,7 @@ public class MarginAccountNewOcoRequest {
                         @Override
                         public void write(JsonWriter out, MarginAccountNewOcoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

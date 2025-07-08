@@ -50,7 +50,7 @@ public class SubscribeLockedProductExample {
         SubscribeLockedProductRequest subscribeLockedProductRequest =
                 new SubscribeLockedProductRequest();
         subscribeLockedProductRequest.projectId("1");
-        subscribeLockedProductRequest.amount(1d);
+        subscribeLockedProductRequest.amount(1.0d);
         ApiResponse<SubscribeLockedProductResponse> response =
                 getApi().subscribeLockedProduct(subscribeLockedProductRequest);
         System.out.println(response.getData());

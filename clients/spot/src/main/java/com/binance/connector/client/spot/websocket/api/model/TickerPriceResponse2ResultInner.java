@@ -253,7 +253,7 @@ public class TickerPriceResponse2ResultInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TickerPriceResponse2ResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

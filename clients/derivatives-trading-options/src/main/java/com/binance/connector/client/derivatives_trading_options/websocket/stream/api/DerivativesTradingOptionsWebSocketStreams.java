@@ -30,7 +30,7 @@ import com.binance.connector.client.derivatives_trading_options.websocket.stream
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/1.3.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebsocketMarketStreamsApi websocketMarketStreamsApi;

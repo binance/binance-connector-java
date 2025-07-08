@@ -264,7 +264,7 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
                                 JsonWriter out,
                                 CancelMarginAccountOcoOrdersResponseOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

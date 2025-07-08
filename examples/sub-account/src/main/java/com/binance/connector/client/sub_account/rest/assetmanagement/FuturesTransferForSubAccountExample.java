@@ -51,7 +51,7 @@ public class FuturesTransferForSubAccountExample {
                 new FuturesTransferForSubAccountRequest();
         futuresTransferForSubAccountRequest.email("sub-account-email@email.com");
         futuresTransferForSubAccountRequest.asset("");
-        futuresTransferForSubAccountRequest.amount(1d);
+        futuresTransferForSubAccountRequest.amount(1.0d);
         futuresTransferForSubAccountRequest.type(0L);
         ApiResponse<FuturesTransferForSubAccountResponse> response =
                 getApi().futuresTransferForSubAccount(futuresTransferForSubAccountRequest);

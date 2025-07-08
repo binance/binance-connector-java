@@ -312,7 +312,7 @@ public class MarkPriceOfAllSymbolsOfAPairRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MarkPriceOfAllSymbolsOfAPairRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

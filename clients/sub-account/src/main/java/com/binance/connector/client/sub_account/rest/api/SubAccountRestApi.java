@@ -14,10 +14,6 @@ import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheM
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.FuturesTransferForSubAccountRequest;
@@ -134,56 +130,6 @@ public class SubAccountRestApi {
             EnableFuturesForSubAccountRequest enableFuturesForSubAccountRequest)
             throws ApiException {
         return accountManagementApi.enableFuturesForSubAccount(enableFuturesForSubAccountRequest);
-    }
-
-    /**
-     * Enable Leverage Token for Sub-account (For Master Account) (USER_DATA) Enable Leverage Token
-     * for Sub-account Weight: 1
-     *
-     * @param enableLeverageTokenForSubAccountRequest (required)
-     * @return ApiResponse&lt;EnableLeverageTokenForSubAccountResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Leverage Token for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account">Enable
-     *     Leverage Token for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<EnableLeverageTokenForSubAccountResponse> enableLeverageTokenForSubAccount(
-            EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest)
-            throws ApiException {
-        return accountManagementApi.enableLeverageTokenForSubAccount(
-                enableLeverageTokenForSubAccountRequest);
-    }
-
-    /**
-     * Enable Margin for Sub-account (For Master Account) (USER_DATA) Enable Margin for Sub-account
-     * Weight: 1
-     *
-     * @param enableMarginForSubAccountRequest (required)
-     * @return ApiResponse&lt;EnableMarginForSubAccountResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Margin for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account">Enable
-     *     Margin for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<EnableMarginForSubAccountResponse> enableMarginForSubAccount(
-            EnableMarginForSubAccountRequest enableMarginForSubAccountRequest) throws ApiException {
-        return accountManagementApi.enableMarginForSubAccount(enableMarginForSubAccountRequest);
     }
 
     /**

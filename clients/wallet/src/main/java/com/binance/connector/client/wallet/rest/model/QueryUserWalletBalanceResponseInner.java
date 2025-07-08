@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUserWalletBalanceResponseInner */
@@ -219,18 +217,6 @@ public class QueryUserWalletBalanceResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryUserWalletBalanceResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryUserWalletBalanceResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("balance") != null && !jsonObj.get("balance").isJsonNull())
                 && !jsonObj.get("balance").isJsonPrimitive()) {
@@ -268,7 +254,7 @@ public class QueryUserWalletBalanceResponseInner {
                         @Override
                         public void write(JsonWriter out, QueryUserWalletBalanceResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

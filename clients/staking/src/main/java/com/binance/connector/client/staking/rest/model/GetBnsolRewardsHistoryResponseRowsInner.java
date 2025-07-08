@@ -347,7 +347,7 @@ public class GetBnsolRewardsHistoryResponseRowsInner {
                         public void write(
                                 JsonWriter out, GetBnsolRewardsHistoryResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

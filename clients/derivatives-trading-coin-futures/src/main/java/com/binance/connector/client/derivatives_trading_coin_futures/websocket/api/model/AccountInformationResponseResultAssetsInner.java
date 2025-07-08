@@ -807,7 +807,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, AccountInformationResponseResultAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

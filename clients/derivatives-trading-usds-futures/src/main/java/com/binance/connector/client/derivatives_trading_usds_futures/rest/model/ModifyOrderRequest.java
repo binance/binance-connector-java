@@ -439,7 +439,7 @@ public class ModifyOrderRequest {
                         @Override
                         public void write(JsonWriter out, ModifyOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

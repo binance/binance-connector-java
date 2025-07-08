@@ -12,8 +12,6 @@
 
 package com.binance.connector.client.sub_account.rest.api;
 
-import static org.junit.Assert.assertEquals;
-
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -27,10 +25,6 @@ import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAcco
 import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetFuturesPositionRiskOfSubAccountResponse;
@@ -38,7 +32,6 @@ import com.binance.connector.client.sub_account.rest.model.GetFuturesPositionRis
 import com.binance.connector.client.sub_account.rest.model.GetSubAccountsStatusOnMarginOrFuturesResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountListResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountTransactionStatisticsResponse;
-import jakarta.validation.constraints.*;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -46,6 +39,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertEquals;
 
 /** API tests for AccountManagementApi */
 public class AccountManagementApiTest {
@@ -159,79 +154,6 @@ public class AccountManagementApiTest {
                 "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/futures/enable", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Enable Leverage Token for Sub-account(For Master Account)
-     *
-     * <p>Enable Leverage Token for Sub-account Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void enableLeverageTokenForSubAccountTest() throws ApiException, CryptoException {
-        EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest =
-                new EnableLeverageTokenForSubAccountRequest();
-
-        enableLeverageTokenForSubAccountRequest.email("sub-account-email@email.com");
-        enableLeverageTokenForSubAccountRequest.enableBlvt(true);
-
-        ApiResponse<EnableLeverageTokenForSubAccountResponse> response =
-                api.enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000enableBlvt=true&email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "5637c5d98dd70674f12e4b6ae5f4f7f3a6c15655aff997d057d7e9b4ceadf77c",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/blvt/enable", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Enable Margin for Sub-account(For Master Account)
-     *
-     * <p>Enable Margin for Sub-account Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void enableMarginForSubAccountTest() throws ApiException, CryptoException {
-        EnableMarginForSubAccountRequest enableMarginForSubAccountRequest =
-                new EnableMarginForSubAccountRequest();
-
-        enableMarginForSubAccountRequest.email("sub-account-email@email.com");
-
-        ApiResponse<EnableMarginForSubAccountResponse> response =
-                api.enableMarginForSubAccount(enableMarginForSubAccountRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/margin/enable", actualRequest.url().encodedPath());
     }
 
     /**

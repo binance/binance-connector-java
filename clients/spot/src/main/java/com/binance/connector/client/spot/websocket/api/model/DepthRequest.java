@@ -251,7 +251,7 @@ public class DepthRequest extends BaseDTO {
                     new TypeAdapter<DepthRequest>() {
                         @Override
                         public void write(JsonWriter out, DepthRequest value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

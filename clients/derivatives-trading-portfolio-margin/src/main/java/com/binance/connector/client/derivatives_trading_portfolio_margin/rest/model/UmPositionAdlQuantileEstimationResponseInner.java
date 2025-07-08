@@ -228,7 +228,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
                         public void write(
                                 JsonWriter out, UmPositionAdlQuantileEstimationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

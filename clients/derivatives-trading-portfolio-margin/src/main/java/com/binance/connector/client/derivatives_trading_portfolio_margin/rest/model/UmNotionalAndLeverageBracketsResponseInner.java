@@ -301,7 +301,7 @@ public class UmNotionalAndLeverageBracketsResponseInner {
                         public void write(
                                 JsonWriter out, UmNotionalAndLeverageBracketsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -321,7 +321,7 @@ public class TimeResponse extends BaseDTO {
                     new TypeAdapter<TimeResponse>() {
                         @Override
                         public void write(JsonWriter out, TimeResponse value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

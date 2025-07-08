@@ -331,7 +331,7 @@ public class MarkPriceResponseInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MarkPriceResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

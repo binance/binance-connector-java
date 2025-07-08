@@ -53,7 +53,7 @@ public class BrokerWithdrawExample {
         BrokerWithdrawRequest brokerWithdrawRequest = new BrokerWithdrawRequest();
         brokerWithdrawRequest.address("");
         brokerWithdrawRequest.coin("");
-        brokerWithdrawRequest.amount(1d);
+        brokerWithdrawRequest.amount(1.0d);
         brokerWithdrawRequest.withdrawOrderId("1");
         brokerWithdrawRequest.questionnaire("");
         brokerWithdrawRequest.originatorPii("");

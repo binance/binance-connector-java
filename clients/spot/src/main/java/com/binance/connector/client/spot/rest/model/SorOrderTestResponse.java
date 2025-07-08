@@ -271,7 +271,7 @@ public class SorOrderTestResponse {
                         @Override
                         public void write(JsonWriter out, SorOrderTestResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

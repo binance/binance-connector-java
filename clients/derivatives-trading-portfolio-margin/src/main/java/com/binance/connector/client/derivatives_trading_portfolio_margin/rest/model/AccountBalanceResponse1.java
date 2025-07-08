@@ -16,7 +16,6 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.JS
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -148,7 +147,7 @@ public class AccountBalanceResponse1 extends ArrayList<AccountBalanceResponse1In
                         @Override
                         public void write(JsonWriter out, AccountBalanceResponse1 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

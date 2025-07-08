@@ -28,9 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryMarginInterestRateHistoryResponseInner */
@@ -259,20 +257,6 @@ public class QueryMarginInterestRateHistoryResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryMarginInterestRateHistoryResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryMarginInterestRateHistoryResponseInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -313,7 +297,7 @@ public class QueryMarginInterestRateHistoryResponseInner {
                         public void write(
                                 JsonWriter out, QueryMarginInterestRateHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

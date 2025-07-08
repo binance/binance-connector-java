@@ -1479,7 +1479,7 @@ public class OrderCancelResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderCancelResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

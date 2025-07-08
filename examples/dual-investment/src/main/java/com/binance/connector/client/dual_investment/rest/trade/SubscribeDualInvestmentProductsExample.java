@@ -52,7 +52,7 @@ public class SubscribeDualInvestmentProductsExample {
                 new SubscribeDualInvestmentProductsRequest();
         subscribeDualInvestmentProductsRequest.id("");
         subscribeDualInvestmentProductsRequest.orderId("1");
-        subscribeDualInvestmentProductsRequest.depositAmount(1d);
+        subscribeDualInvestmentProductsRequest.depositAmount(1.0d);
         subscribeDualInvestmentProductsRequest.autoCompoundPlan("NONE");
         ApiResponse<SubscribeDualInvestmentProductsResponse> response =
                 getApi().subscribeDualInvestmentProducts(subscribeDualInvestmentProductsRequest);

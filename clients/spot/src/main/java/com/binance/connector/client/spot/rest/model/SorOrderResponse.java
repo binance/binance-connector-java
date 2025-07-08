@@ -923,7 +923,7 @@ public class SorOrderResponse {
                         @Override
                         public void write(JsonWriter out, SorOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -175,7 +175,7 @@ public class NewUserDataStreamResponse {
                         @Override
                         public void write(JsonWriter out, NewUserDataStreamResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

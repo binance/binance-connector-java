@@ -1655,7 +1655,7 @@ public class Ticker24HourByUnderlyingAssetAndExpirationDataResponseInner extends
                                 JsonWriter out,
                                 Ticker24HourByUnderlyingAssetAndExpirationDataResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

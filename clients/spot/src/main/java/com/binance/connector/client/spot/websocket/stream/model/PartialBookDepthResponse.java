@@ -312,7 +312,7 @@ public class PartialBookDepthResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, PartialBookDepthResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

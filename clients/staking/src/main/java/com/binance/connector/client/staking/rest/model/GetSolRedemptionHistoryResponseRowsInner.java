@@ -468,7 +468,7 @@ public class GetSolRedemptionHistoryResponseRowsInner {
                         public void write(
                                 JsonWriter out, GetSolRedemptionHistoryResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -4,10 +4,6 @@
 
 [POST /sapi/v1/sub-account/futures/enable](https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account) - enableFuturesForSubAccount - [EnableFuturesForSubAccountExample.java:48](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/accountmanagement/EnableFuturesForSubAccountExample.java#L48)
 
-[POST /sapi/v1/sub-account/blvt/enable](https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account) - enableLeverageTokenForSubAccount - [EnableLeverageTokenForSubAccountExample.java:48](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/accountmanagement/EnableLeverageTokenForSubAccountExample.java#L48)
-
-[POST /sapi/v1/sub-account/margin/enable](https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account) - enableMarginForSubAccount - [EnableMarginForSubAccountExample.java:48](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/accountmanagement/EnableMarginForSubAccountExample.java#L48)
-
 [POST /sapi/v1/sub-account/eoptions/enable](https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account) - enableOptionsForSubAccount - [EnableOptionsForSubAccountExample.java:48](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/accountmanagement/EnableOptionsForSubAccountExample.java#L48)
 
 [GET /sapi/v1/sub-account/futures/positionRisk](https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account) - getFuturesPositionRiskOfSubAccount - [GetFuturesPositionRiskOfSubAccountExample.java:47](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/accountmanagement/GetFuturesPositionRiskOfSubAccountExample.java#L47)

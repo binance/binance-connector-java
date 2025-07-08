@@ -483,7 +483,7 @@ public class GetOrderListResponse {
                         @Override
                         public void write(JsonWriter out, GetOrderListResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

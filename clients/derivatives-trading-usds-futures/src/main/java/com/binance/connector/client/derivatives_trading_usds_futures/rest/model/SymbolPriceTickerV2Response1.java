@@ -250,7 +250,7 @@ public class SymbolPriceTickerV2Response1 {
                         @Override
                         public void write(JsonWriter out, SymbolPriceTickerV2Response1 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

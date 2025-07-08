@@ -52,7 +52,7 @@ public class WithdrawlAssetsFromTheManagedSubAccountExample {
                         new WithdrawlAssetsFromTheManagedSubAccountRequest();
         withdrawlAssetsFromTheManagedSubAccountRequest.fromEmail("");
         withdrawlAssetsFromTheManagedSubAccountRequest.asset("");
-        withdrawlAssetsFromTheManagedSubAccountRequest.amount(1d);
+        withdrawlAssetsFromTheManagedSubAccountRequest.amount(1.0d);
         ApiResponse<WithdrawlAssetsFromTheManagedSubAccountResponse> response =
                 getApi().withdrawlAssetsFromTheManagedSubAccount(
                                 withdrawlAssetsFromTheManagedSubAccountRequest);

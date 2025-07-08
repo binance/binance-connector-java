@@ -270,7 +270,7 @@ public class IndividualSymbolMiniTickerStreamRequest extends BaseDTO {
                         public void write(
                                 JsonWriter out, IndividualSymbolMiniTickerStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

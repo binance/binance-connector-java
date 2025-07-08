@@ -212,7 +212,7 @@ public class WrapBethRequest {
                         @Override
                         public void write(JsonWriter out, WrapBethRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

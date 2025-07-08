@@ -50,7 +50,7 @@ public class TimeWeightedAveragePriceSpotAlgoExample {
                 new TimeWeightedAveragePriceSpotAlgoRequest();
         timeWeightedAveragePriceSpotAlgoRequest.symbol("BTCUSDT");
         timeWeightedAveragePriceSpotAlgoRequest.side("BUY");
-        timeWeightedAveragePriceSpotAlgoRequest.quantity(1d);
+        timeWeightedAveragePriceSpotAlgoRequest.quantity(1.0d);
         timeWeightedAveragePriceSpotAlgoRequest.duration(5000L);
         ApiResponse<TimeWeightedAveragePriceSpotAlgoResponse> response =
                 getApi().timeWeightedAveragePriceSpotAlgo(timeWeightedAveragePriceSpotAlgoRequest);

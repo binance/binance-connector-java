@@ -51,7 +51,7 @@ public class DepositAssetsIntoTheManagedSubAccountExample {
                 new DepositAssetsIntoTheManagedSubAccountRequest();
         depositAssetsIntoTheManagedSubAccountRequest.toEmail("");
         depositAssetsIntoTheManagedSubAccountRequest.asset("");
-        depositAssetsIntoTheManagedSubAccountRequest.amount(1d);
+        depositAssetsIntoTheManagedSubAccountRequest.amount(1.0d);
         ApiResponse<DepositAssetsIntoTheManagedSubAccountResponse> response =
                 getApi().depositAssetsIntoTheManagedSubAccount(
                                 depositAssetsIntoTheManagedSubAccountRequest);
