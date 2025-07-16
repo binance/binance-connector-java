@@ -6,6 +6,8 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.adapter.stream.StreamConnectionPoolWrapper;
 import com.binance.connector.client.common.websocket.adapter.stream.StreamConnectionWrapper;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsRequest;
@@ -26,12 +28,20 @@ import com.binance.connector.client.derivatives_trading_options.websocket.stream
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.UserDataStreamEventsResponse;
+import com.google.gson.reflect.TypeToken;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/1.3.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final StreamConnectionInterface connection;
 
     private WebsocketMarketStreamsApi websocketMarketStreamsApi;
 
@@ -47,6 +57,7 @@ public class DerivativesTradingOptionsWebSocketStreams {
         if (!connection.isConnected()) {
             connection.connect();
         }
+        this.connection = connection;
 
         this.websocketMarketStreamsApi = new WebsocketMarketStreamsApi(connection);
     }
@@ -98,5 +109,30 @@ public class DerivativesTradingOptionsWebSocketStreams {
     public StreamBlockingQueueWrapper<TradeStreamsResponse> tradeStreams(
             TradeStreamsRequest tradeStreamsRequest) throws ApiException {
         return websocketMarketStreamsApi.tradeStreams(tradeStreamsRequest);
+    }
+
+    /**
+     * Subscribes to the user data WebSocket stream using the provided listen key.
+     *
+     * @param listenKey - The listen key for the user data WebSocket stream.
+     * @return A WebSocket stream handler for the user data stream.
+     */
+    public StreamBlockingQueueWrapper<UserDataStreamEventsResponse> userData(String listenKey) {
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(listenKey))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+
+        TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
+        StreamBlockingQueue<String> queue = queuesMap.get(listenKey);
+        return new StreamBlockingQueueWrapper<>(queue, typeToken, JSON.getGson());
+    }
+
+    public String getRequestID() {
+        return UUID.randomUUID().toString();
     }
 }

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**batchOrders** | **BatchOrders** |  |  |
+|**batchOrders** | **BatchOrdersPlaceMultipleOrders** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

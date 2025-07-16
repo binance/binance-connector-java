@@ -8,6 +8,9 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
+|**priceChange** | **String** |  |  [optional] |
+|**priceChangePercent** | **String** |  |  [optional] |
+|**weightedAvgPrice** | **String** |  |  [optional] |
 |**openPrice** | **String** |  |  [optional] |
 |**highPrice** | **String** |  |  [optional] |
 |**lowPrice** | **String** |  |  [optional] |

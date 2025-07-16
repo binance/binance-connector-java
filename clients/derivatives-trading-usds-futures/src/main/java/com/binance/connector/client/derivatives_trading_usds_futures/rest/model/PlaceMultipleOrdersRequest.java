@@ -41,7 +41,7 @@ public class PlaceMultipleOrdersRequest {
 
     @SerializedName(SERIALIZED_NAME_BATCH_ORDERS)
     @jakarta.annotation.Nonnull
-    private BatchOrders batchOrders;
+    private BatchOrdersPlaceMultipleOrders batchOrders;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -52,7 +52,7 @@ public class PlaceMultipleOrdersRequest {
     public PlaceMultipleOrdersRequest() {}
 
     public PlaceMultipleOrdersRequest batchOrders(
-            @jakarta.annotation.Nonnull BatchOrders batchOrders) {
+            @jakarta.annotation.Nonnull BatchOrdersPlaceMultipleOrders batchOrders) {
         this.batchOrders = batchOrders;
         return this;
     }
@@ -65,11 +65,12 @@ public class PlaceMultipleOrdersRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public BatchOrders getBatchOrders() {
+    public BatchOrdersPlaceMultipleOrders getBatchOrders() {
         return batchOrders;
     }
 
-    public void setBatchOrders(@jakarta.annotation.Nonnull BatchOrders batchOrders) {
+    public void setBatchOrders(
+            @jakarta.annotation.Nonnull BatchOrdersPlaceMultipleOrders batchOrders) {
         this.batchOrders = batchOrders;
     }
 

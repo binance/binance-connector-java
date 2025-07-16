@@ -40,7 +40,7 @@ public class QueryIndexPriceConstituentsExample {
     /**
      * Query Index Price Constituents
      *
-     * <p>Query index price constituents Weight: 2
+     * <p>Query index price constituents Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

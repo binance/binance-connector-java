@@ -6,6 +6,7 @@ import com.binance.connector.client.common.websocket.adapter.ConnectionInterface
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
 import com.binance.connector.client.common.websocket.adapter.PoolConnectionWrapper;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.binance.connector.client.spot.websocket.api.model.AccountCommissionRequest;
 import com.binance.connector.client.spot.websocket.api.model.AccountCommissionResponse;
@@ -91,6 +92,7 @@ import com.binance.connector.client.spot.websocket.api.model.TradesRecentRequest
 import com.binance.connector.client.spot.websocket.api.model.TradesRecentResponse;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
@@ -103,7 +105,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/3.1.0 (Java/%s; %s; %s)",
+                    "binance-spot/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -364,8 +366,8 @@ public class SpotWebSocketApi {
         return userDataStreamApi.userDataStreamStop(userDataStreamStopRequest);
     }
 
-    public CompletableFuture<UserDataStreamSubscribeResponse> userDataStreamSubscribe()
-            throws ApiException {
+    public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribe() throws ApiException {
         return userDataStreamApi.userDataStreamSubscribe();
     }
 

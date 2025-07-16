@@ -1,8 +1,10 @@
 name: Java Main Workflow
 
 on:
-#  pull_request:
-#    branches: [ master, rc-** ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master, rc-* ]
 
 jobs:
   detect-targets:
@@ -28,13 +30,13 @@ jobs:
           fi
           
           # Check each client dynamically
-          find clients/* -type d -maxdepth 0 | while read client; do
+          while read client; do
             CLIENT_NAME=$(basename "$client")
             if ! git diff --quiet "$BASE_COMMIT" HEAD -- "$client"; then
               echo "Changes detected in $CLIENT_NAME"
               MODIFIED_TARGETS+=("$CLIENT_NAME")
             fi
-          done
+          done < <(find clients/* -type d -maxdepth 0)
           
           # Convert to JSON array format
           MODIFIED_TARGETS_JSON=$(printf '%s\n' "${MODIFIED_TARGETS[@]}" | jq -R -s -c 'split("\n") | map(select(. != ""))')
@@ -42,7 +44,7 @@ jobs:
           echo "Detected modified targets: $MODIFIED_TARGETS_JSON"
           echo "modified_targets=$MODIFIED_TARGETS_JSON" >> $GITHUB_ENV
           echo "::set-output name=modified_targets::$MODIFIED_TARGETS_JSON"
-  checkstyle:
+  verify:
     runs-on: ubuntu-latest
     needs: detect-targets
     if: ${{ needs.detect-targets.outputs.modified_targets != '[]' }}
@@ -59,29 +61,5 @@ jobs:
             'examples/pom.xml'
       - name: Validate modules
         run: |
-          mvn -f clients/pom.xml -N install
-          mvn -f clients/pom.xml -pl common install
-          mvn -f clients/pom.xml -pl `echo '${{ needs.detect-targets.outputs.modified_targets }}' | jq -r 'join(",")'` validate
-  build:
-    runs-on: ubuntu-latest
-    needs: detect-targets
-    if: ${{ needs.detect-targets.outputs.modified_targets != '[]' }}
-    strategy:
-      matrix:
-        target: ${{ fromJson(needs.detect-targets.outputs.modified_targets) }}
-        java-version: [ 11, 17 ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'adopt'
-          cache: 'maven'
-          cache-dependency-path: |
-            'clients/pom.xml'
-            'examples/pom.xml'
-      - name: Build ${{ matrix.target }} module
-        run: |
-          mvn -f clients/pom.xml -N install
-          mvn -f clients/pom.xml -pl common,${{ matrix.target }} install -Dcheckstyle.skip=true
+          mvn -f clients/pom.xml -pl common install -Dgpg.skip
+          mvn -f clients/pom.xml -pl `echo '${{ needs.detect-targets.outputs.modified_targets }}' | jq -r 'join(",")'` verify -Dgpg.skip

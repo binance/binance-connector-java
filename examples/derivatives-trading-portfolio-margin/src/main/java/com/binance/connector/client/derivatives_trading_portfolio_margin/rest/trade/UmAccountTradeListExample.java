@@ -41,10 +41,10 @@ public class UmAccountTradeListExample {
      * UM Account Trade List(USER_DATA)
      *
      * <p>Get trades for a specific account and UM symbol. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last &#39;24 hours&#39; data will be
-     * returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer
-     * than 24 hours. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60;
-     * or &#x60;endTime&#x60;. Weight: 5
+     * &#x60;endTime&#x60; are both not sent, then the last &#39;7 days&#39; data will be returned.
+     * * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7
+     * days. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or
+     * &#x60;endTime&#x60;. Weight: 5
      *
      * @throws ApiException if the Api call fails
      */

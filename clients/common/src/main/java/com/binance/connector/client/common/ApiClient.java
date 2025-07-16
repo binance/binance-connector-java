@@ -134,7 +134,8 @@ public class ApiClient {
 
     private Gson json;
 
-    private Set<String> forbiddenHeaders = new HashSet<>(Arrays.asList("host", "authorization", "cookie", ":method", ":path"));
+    private Set<String> forbiddenHeaders =
+            new HashSet<>(Arrays.asList("host", "authorization", "cookie", ":method", ":path"));
 
     public ApiClient(ClientConfiguration configuration) {
         this(configuration, new BinanceAuthenticationFactory(), null);
@@ -188,8 +189,10 @@ public class ApiClient {
             }
         }
 
-        if (configuration.getCustomHeaders() != null && !configuration.getCustomHeaders().isEmpty()) {
-            Interceptor customHeadersInterceptor = getCustomHeadersInterceptor(configuration.getCustomHeaders());
+        if (configuration.getCustomHeaders() != null
+                && !configuration.getCustomHeaders().isEmpty()) {
+            Interceptor customHeadersInterceptor =
+                    getCustomHeadersInterceptor(configuration.getCustomHeaders());
             builder.addInterceptor(customHeadersInterceptor);
         }
 
@@ -217,13 +220,15 @@ public class ApiClient {
             if (authentication != null) {
                 authentications.put(BINANCE_SIGNATURE, authentication);
             }
-
-            Authentication binanceApiKeyOnly =
-                    (queryParams, headerParams, cookieParams, payload, method, uri) -> {
-                        headerParams.put(HEADER_API_KEY, signatureConfiguration.getApiKey());
-                    };
-            authentications.put(BINANCE_API_KEY_ONLY, binanceApiKeyOnly);
         }
+
+        Authentication binanceApiKeyOnly =
+                (queryParams, headerParams, cookieParams, payload, method, uri) -> {
+                    if (signatureConfiguration != null && signatureConfiguration.getApiKey() != null) {
+                        headerParams.put(HEADER_API_KEY, signatureConfiguration.getApiKey());
+                    }
+                };
+        authentications.put(BINANCE_API_KEY_ONLY, binanceApiKeyOnly);
     }
 
     private void init() {
@@ -250,13 +255,15 @@ public class ApiClient {
 
     public Interceptor getCustomHeadersInterceptor(Map<String, String> customHeaders) {
         return chain -> {
-
             Request request = chain.request();
             Request.Builder newBuilder = request.newBuilder();
             for (String headerName : customHeaders.keySet()) {
                 String headerValue = customHeaders.get(headerName);
                 if (!validateHeader(headerName, headerValue)) {
-                    throw new ApiException("Invalid header " + headerName + ", it is forbidden or invalid (contains CR/LF)");
+                    throw new ApiException(
+                            "Invalid header "
+                                    + headerName
+                                    + ", it is forbidden or invalid (contains CR/LF)");
                 }
 
                 newBuilder.addHeader(headerName, headerValue);
@@ -1413,9 +1420,22 @@ public class ApiClient {
 
         List<Pair> updatedQueryParams = new ArrayList<>(queryParams);
 
+        boolean hasAuth =
+                Arrays.stream(authNames)
+                        .anyMatch(
+                                s -> s.equals(BINANCE_SIGNATURE) || s.equals(BINANCE_API_KEY_ONLY));
+
+        // add api key to every request
+        String[] finalAuthNames;
+        if (!hasAuth) {
+            finalAuthNames = append(authNames, BINANCE_API_KEY_ONLY);
+        } else {
+            finalAuthNames = authNames;
+        }
+
         // update parameters with authentication settings
         updateParamsForAuth(
-                authNames,
+                finalAuthNames,
                 updatedQueryParams,
                 headerParams,
                 cookieParams,
@@ -1861,5 +1881,14 @@ public class ApiClient {
         }
 
         return !value.contains("\n") && !value.contains("\t");
+    }
+
+    private String[] append(String[] array, String value) {
+        if (array == null) {
+            return new String[] {value};
+        }
+        String[] newArray = Arrays.copyOf(array, array.length + 1);
+        newArray[newArray.length - 1] = value;
+        return newArray;
     }
 }

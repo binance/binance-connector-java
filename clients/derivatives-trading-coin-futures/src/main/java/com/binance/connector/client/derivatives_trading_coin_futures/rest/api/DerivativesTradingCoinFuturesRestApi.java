@@ -988,7 +988,7 @@ public class DerivativesTradingCoinFuturesRestApi {
     }
 
     /**
-     * Query Index Price Constituents Query index price constituents Weight: 2
+     * Query Index Price Constituents Query index price constituents Weight: 1
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryIndexPriceConstituentsResponse&gt;

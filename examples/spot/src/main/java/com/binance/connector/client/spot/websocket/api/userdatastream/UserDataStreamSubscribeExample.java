@@ -14,10 +14,12 @@ package com.binance.connector.client.spot.websocket.api.userdatastream;
 
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
 import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
 import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
-import java.util.concurrent.CompletableFuture;
 
 /** API examples for UserDataStreamApi */
 public class UserDataStreamSubscribeExample {
@@ -27,7 +29,9 @@ public class UserDataStreamSubscribeExample {
         if (api == null) {
             WebSocketClientConfiguration clientConfiguration =
                     SpotWebSocketApiUtil.getClientConfiguration();
-            clientConfiguration.setAutoLogon(false);
+            // if you want the connection to be auto logged on:
+            // https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests
+            clientConfiguration.setAutoLogon(true);
             SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
             signatureConfiguration.setApiKey("apiKey");
             signatureConfiguration.setPrivateKey("/path/to/private.key");
@@ -42,28 +46,17 @@ public class UserDataStreamSubscribeExample {
      *
      * <p>Subscribe to the User Data Stream in the current WebSocket connection. Weight: 2
      */
-    public void userDataStreamSubscribeExampleAsync() {
-        CompletableFuture<UserDataStreamSubscribeResponse> future =
+    public void userDataStreamSubscribeExampleStream() throws InterruptedException {
+        StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse> resp =
                 getApi().userDataStreamSubscribe();
-        future.handle(
-                (response, error) -> {
-                    if (error != null) {
-                        System.err.println(error);
-                    }
-                    System.out.println(response);
-                    return response;
-                });
-    }
-
-    /**
-     * WebSocket Subscribe to User Data Stream
-     *
-     * <p>Subscribe to the User Data Stream in the current WebSocket connection. Weight: 2
-     */
-    public void userDataStreamSubscribeExampleSync() {
-        CompletableFuture<UserDataStreamSubscribeResponse> future =
-                getApi().userDataStreamSubscribe();
-        UserDataStreamSubscribeResponse response = future.join();
-        System.out.println(response);
+        resp.getResponse()
+                .thenAccept(
+                        responseResult -> {
+                            System.out.println(responseResult);
+                        });
+        StreamBlockingQueueWrapper<UserDataStreamEventsResponse> stream = resp.getStream();
+        while (true) {
+            System.out.println(stream.take().getActualInstance());
+        }
     }
 }

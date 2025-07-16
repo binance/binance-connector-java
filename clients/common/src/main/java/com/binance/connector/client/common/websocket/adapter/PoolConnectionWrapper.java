@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.BlockingQueue;
 
 public class PoolConnectionWrapper implements ConnectionInterface {
     private final LinkedList<ConnectionWrapper> connectionList = new LinkedList<>();
@@ -84,6 +85,12 @@ public class PoolConnectionWrapper implements ConnectionInterface {
 
     public void send(RequestWrapperDTO request) throws InterruptedException {
         getConnection().send(request);
+    }
+
+    @Override
+    public BlockingQueue<String> sendForStream(ApiRequestWrapperDTO request)
+            throws InterruptedException {
+        return getConnection().sendForStream(request);
     }
 
     /**
