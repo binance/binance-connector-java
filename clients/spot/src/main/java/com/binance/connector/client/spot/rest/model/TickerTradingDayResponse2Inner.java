@@ -42,6 +42,24 @@ public class TickerTradingDayResponse2Inner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PRICE_CHANGE = "priceChange";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE)
+    @jakarta.annotation.Nullable
+    private String priceChange;
+
+    public static final String SERIALIZED_NAME_PRICE_CHANGE_PERCENT = "priceChangePercent";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE_PERCENT)
+    @jakarta.annotation.Nullable
+    private String priceChangePercent;
+
+    public static final String SERIALIZED_NAME_WEIGHTED_AVG_PRICE = "weightedAvgPrice";
+
+    @SerializedName(SERIALIZED_NAME_WEIGHTED_AVG_PRICE)
+    @jakarta.annotation.Nullable
+    private String weightedAvgPrice;
+
     public static final String SERIALIZED_NAME_OPEN_PRICE = "openPrice";
 
     @SerializedName(SERIALIZED_NAME_OPEN_PRICE)
@@ -127,6 +145,66 @@ public class TickerTradingDayResponse2Inner {
 
     public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
+    }
+
+    public TickerTradingDayResponse2Inner priceChange(
+            @jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+        return this;
+    }
+
+    /**
+     * Get priceChange
+     *
+     * @return priceChange
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChange() {
+        return priceChange;
+    }
+
+    public void setPriceChange(@jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+    }
+
+    public TickerTradingDayResponse2Inner priceChangePercent(
+            @jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+        return this;
+    }
+
+    /**
+     * Get priceChangePercent
+     *
+     * @return priceChangePercent
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChangePercent() {
+        return priceChangePercent;
+    }
+
+    public void setPriceChangePercent(@jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+    }
+
+    public TickerTradingDayResponse2Inner weightedAvgPrice(
+            @jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
+        return this;
+    }
+
+    /**
+     * Get weightedAvgPrice
+     *
+     * @return weightedAvgPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getWeightedAvgPrice() {
+        return weightedAvgPrice;
+    }
+
+    public void setWeightedAvgPrice(@jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
     }
 
     public TickerTradingDayResponse2Inner openPrice(@jakarta.annotation.Nullable String openPrice) {
@@ -350,6 +428,11 @@ public class TickerTradingDayResponse2Inner {
         TickerTradingDayResponse2Inner tickerTradingDayResponse2Inner =
                 (TickerTradingDayResponse2Inner) o;
         return Objects.equals(this.symbol, tickerTradingDayResponse2Inner.symbol)
+                && Objects.equals(this.priceChange, tickerTradingDayResponse2Inner.priceChange)
+                && Objects.equals(
+                        this.priceChangePercent, tickerTradingDayResponse2Inner.priceChangePercent)
+                && Objects.equals(
+                        this.weightedAvgPrice, tickerTradingDayResponse2Inner.weightedAvgPrice)
                 && Objects.equals(this.openPrice, tickerTradingDayResponse2Inner.openPrice)
                 && Objects.equals(this.highPrice, tickerTradingDayResponse2Inner.highPrice)
                 && Objects.equals(this.lowPrice, tickerTradingDayResponse2Inner.lowPrice)
@@ -367,6 +450,9 @@ public class TickerTradingDayResponse2Inner {
     public int hashCode() {
         return Objects.hash(
                 symbol,
+                priceChange,
+                priceChangePercent,
+                weightedAvgPrice,
                 openPrice,
                 highPrice,
                 lowPrice,
@@ -385,6 +471,11 @@ public class TickerTradingDayResponse2Inner {
         StringBuilder sb = new StringBuilder();
         sb.append("class TickerTradingDayResponse2Inner {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		priceChange: ").append(toIndentedString(priceChange)).append("\n");
+        sb.append("		priceChangePercent: ")
+                .append(toIndentedString(priceChangePercent))
+                .append("\n");
+        sb.append("		weightedAvgPrice: ").append(toIndentedString(weightedAvgPrice)).append("\n");
         sb.append("		openPrice: ").append(toIndentedString(openPrice)).append("\n");
         sb.append("		highPrice: ").append(toIndentedString(highPrice)).append("\n");
         sb.append("		lowPrice: ").append(toIndentedString(lowPrice)).append("\n");
@@ -407,6 +498,20 @@ public class TickerTradingDayResponse2Inner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object priceChangeValue = getPriceChange();
+        String priceChangeValueAsString = "";
+        priceChangeValueAsString = priceChangeValue.toString();
+        sb.append("priceChange=").append(urlEncode(priceChangeValueAsString)).append("");
+        Object priceChangePercentValue = getPriceChangePercent();
+        String priceChangePercentValueAsString = "";
+        priceChangePercentValueAsString = priceChangePercentValue.toString();
+        sb.append("priceChangePercent=")
+                .append(urlEncode(priceChangePercentValueAsString))
+                .append("");
+        Object weightedAvgPriceValue = getWeightedAvgPrice();
+        String weightedAvgPriceValueAsString = "";
+        weightedAvgPriceValueAsString = weightedAvgPriceValue.toString();
+        sb.append("weightedAvgPrice=").append(urlEncode(weightedAvgPriceValueAsString)).append("");
         Object openPriceValue = getOpenPrice();
         String openPriceValueAsString = "";
         openPriceValueAsString = openPriceValue.toString();
@@ -480,6 +585,9 @@ public class TickerTradingDayResponse2Inner {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
+        openapiFields.add("priceChange");
+        openapiFields.add("priceChangePercent");
+        openapiFields.add("weightedAvgPrice");
         openapiFields.add("openPrice");
         openapiFields.add("highPrice");
         openapiFields.add("lowPrice");
@@ -522,6 +630,32 @@ public class TickerTradingDayResponse2Inner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("priceChange") != null && !jsonObj.get("priceChange").isJsonNull())
+                && !jsonObj.get("priceChange").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChange` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("priceChange").toString()));
+        }
+        if ((jsonObj.get("priceChangePercent") != null
+                        && !jsonObj.get("priceChangePercent").isJsonNull())
+                && !jsonObj.get("priceChangePercent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChangePercent` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("priceChangePercent").toString()));
+        }
+        if ((jsonObj.get("weightedAvgPrice") != null
+                        && !jsonObj.get("weightedAvgPrice").isJsonNull())
+                && !jsonObj.get("weightedAvgPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `weightedAvgPrice` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("weightedAvgPrice").toString()));
         }
         if ((jsonObj.get("openPrice") != null && !jsonObj.get("openPrice").isJsonNull())
                 && !jsonObj.get("openPrice").isJsonPrimitive()) {

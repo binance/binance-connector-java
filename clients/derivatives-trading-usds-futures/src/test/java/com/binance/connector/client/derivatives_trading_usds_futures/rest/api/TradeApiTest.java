@@ -29,6 +29,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrders;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrdersPlaceMultipleOrders;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelOrderResponse;
@@ -807,7 +808,7 @@ public class TradeApiTest {
     public void placeMultipleOrdersTest() throws ApiException, CryptoException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
 
-        placeMultipleOrdersRequest.batchOrders(new BatchOrders());
+        placeMultipleOrdersRequest.batchOrders(new BatchOrdersPlaceMultipleOrders());
 
         ApiResponse<PlaceMultipleOrdersResponse> response =
                 api.placeMultipleOrders(placeMultipleOrdersRequest);

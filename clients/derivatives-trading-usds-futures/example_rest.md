@@ -46,7 +46,7 @@
 
 [POST /fapi/v1/convert/acceptQuote](https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Accept-Quote) - acceptTheOfferedQuote - [AcceptTheOfferedQuoteExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/convert/AcceptTheOfferedQuoteExample.java#L48)
 
-[GET /fapi/v1/convert/exchangeInfo](https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs) - listAllConvertPairs - [ListAllConvertPairsExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/convert/ListAllConvertPairsExample.java#L50)
+[GET /fapi/v1/convert/exchangeInfo](https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/) - listAllConvertPairs - [ListAllConvertPairsExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/convert/ListAllConvertPairsExample.java#L50)
 
 [GET /fapi/v1/convert/orderStatus](https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Order-Status) - orderStatus - [OrderStatusExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/convert/OrderStatusExample.java#L47)
 

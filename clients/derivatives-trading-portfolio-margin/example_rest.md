@@ -112,7 +112,7 @@
 
 [DELETE /papi/v1/um/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Order) - cancelUmOrder - [CancelUmOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelUmOrderExample.java#L48)
 
-[GET /papi/v1/cm/userTrades](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Account-Trade-List) - cmAccountTradeList - [CmAccountTradeListExample.java:53](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CmAccountTradeListExample.java#L53)
+[GET /papi/v1/cm/userTrades](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Account-Trade-List) - cmAccountTradeList - [CmAccountTradeListExample.java:55](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CmAccountTradeListExample.java#L55)
 
 [GET /papi/v1/cm/adlQuantile](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Position-ADL-Quantile-Estimation) - cmPositionAdlQuantileEstimation - [CmPositionAdlQuantileEstimationExample.java:55](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CmPositionAdlQuantileEstimationExample.java#L55)
 

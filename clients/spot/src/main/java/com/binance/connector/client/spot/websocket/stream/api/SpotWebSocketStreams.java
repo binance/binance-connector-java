@@ -34,12 +34,15 @@ import com.binance.connector.client.spot.websocket.stream.model.TickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.TickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.TradeRequest;
 import com.binance.connector.client.spot.websocket.stream.model.TradeResponse;
+import java.util.UUID;
 
 public class SpotWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/3.1.0 (Java/%s; %s; %s)",
+                    "binance-spot/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final StreamConnectionInterface connection;
 
     private WebSocketStreamsApi webSocketStreamsApi;
 
@@ -55,6 +58,7 @@ public class SpotWebSocketStreams {
         if (!connection.isConnected()) {
             connection.connect();
         }
+        this.connection = connection;
 
         this.webSocketStreamsApi = new WebSocketStreamsApi(connection);
     }
@@ -128,5 +132,9 @@ public class SpotWebSocketStreams {
     public StreamBlockingQueueWrapper<TradeResponse> trade(TradeRequest tradeRequest)
             throws ApiException {
         return webSocketStreamsApi.trade(tradeRequest);
+    }
+
+    public String getRequestID() {
+        return UUID.randomUUID().toString();
     }
 }

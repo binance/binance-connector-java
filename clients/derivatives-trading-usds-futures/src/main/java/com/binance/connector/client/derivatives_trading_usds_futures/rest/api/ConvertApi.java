@@ -49,7 +49,7 @@ public class ConvertApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/3.1.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -247,7 +247,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs">List
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/">List
      *     All Convert Pairs Documentation</a>
      */
     private okhttp3.Call listAllConvertPairsCall(String fromAsset, String toAsset)
@@ -365,7 +365,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs">List
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/">List
      *     All Convert Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(

@@ -10,6 +10,6 @@
 
     <artifactId>binance-common</artifactId>
     <name>common</name>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
     <packaging>jar</packaging>
 </project>

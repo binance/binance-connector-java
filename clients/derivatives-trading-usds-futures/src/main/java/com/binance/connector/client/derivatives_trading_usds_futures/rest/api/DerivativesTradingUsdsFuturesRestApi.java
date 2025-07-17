@@ -723,7 +723,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs">List
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/">List
      *     All Convert Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(

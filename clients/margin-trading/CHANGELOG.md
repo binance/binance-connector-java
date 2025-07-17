@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0 - 2025-07-16
+
+### Added (1)
+
+- Support Risk and Trade Data Streams.
+
+### Changed (1)
+
+- Update `binance/common` module to version `1.4.0`.
+
 ## 2.0.0 - 2025-07-08
 
 ### Added (1)

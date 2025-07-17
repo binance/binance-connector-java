@@ -48,6 +48,36 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
     @jakarta.annotation.Nullable
     private String msg;
 
+    public static final String SERIALIZED_NAME_SYMBOL = "symbol";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL)
+    @jakarta.annotation.Nullable
+    private String symbol;
+
+    public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private Long orderId;
+
+    public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_LIST_ID)
+    @jakarta.annotation.Nullable
+    private Long orderListId;
+
+    public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String clientOrderId;
+
+    public static final String SERIALIZED_NAME_TRANSACT_TIME = "transactTime";
+
+    @SerializedName(SERIALIZED_NAME_TRANSACT_TIME)
+    @jakarta.annotation.Nullable
+    private Long transactTime;
+
     public OrderCancelReplaceResponseDataNewOrderResponse() {}
 
     public OrderCancelReplaceResponseDataNewOrderResponse code(
@@ -90,6 +120,106 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
         this.msg = msg;
     }
 
+    public OrderCancelReplaceResponseDataNewOrderResponse symbol(
+            @jakarta.annotation.Nullable String symbol) {
+        this.symbol = symbol;
+        return this;
+    }
+
+    /**
+     * Get symbol
+     *
+     * @return symbol
+     */
+    @jakarta.annotation.Nullable
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
+        this.symbol = symbol;
+    }
+
+    public OrderCancelReplaceResponseDataNewOrderResponse orderId(
+            @jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
+        return this;
+    }
+
+    /**
+     * Get orderId
+     *
+     * @return orderId
+     */
+    @jakarta.annotation.Nullable
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public OrderCancelReplaceResponseDataNewOrderResponse orderListId(
+            @jakarta.annotation.Nullable Long orderListId) {
+        this.orderListId = orderListId;
+        return this;
+    }
+
+    /**
+     * Get orderListId
+     *
+     * @return orderListId
+     */
+    @jakarta.annotation.Nullable
+    public Long getOrderListId() {
+        return orderListId;
+    }
+
+    public void setOrderListId(@jakarta.annotation.Nullable Long orderListId) {
+        this.orderListId = orderListId;
+    }
+
+    public OrderCancelReplaceResponseDataNewOrderResponse clientOrderId(
+            @jakarta.annotation.Nullable String clientOrderId) {
+        this.clientOrderId = clientOrderId;
+        return this;
+    }
+
+    /**
+     * Get clientOrderId
+     *
+     * @return clientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getClientOrderId() {
+        return clientOrderId;
+    }
+
+    public void setClientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
+        this.clientOrderId = clientOrderId;
+    }
+
+    public OrderCancelReplaceResponseDataNewOrderResponse transactTime(
+            @jakarta.annotation.Nullable Long transactTime) {
+        this.transactTime = transactTime;
+        return this;
+    }
+
+    /**
+     * Get transactTime
+     *
+     * @return transactTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getTransactTime() {
+        return transactTime;
+    }
+
+    public void setTransactTime(@jakarta.annotation.Nullable Long transactTime) {
+        this.transactTime = transactTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,12 +232,25 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
                 orderCancelReplaceResponseDataNewOrderResponse =
                         (OrderCancelReplaceResponseDataNewOrderResponse) o;
         return Objects.equals(this.code, orderCancelReplaceResponseDataNewOrderResponse.code)
-                && Objects.equals(this.msg, orderCancelReplaceResponseDataNewOrderResponse.msg);
+                && Objects.equals(this.msg, orderCancelReplaceResponseDataNewOrderResponse.msg)
+                && Objects.equals(
+                        this.symbol, orderCancelReplaceResponseDataNewOrderResponse.symbol)
+                && Objects.equals(
+                        this.orderId, orderCancelReplaceResponseDataNewOrderResponse.orderId)
+                && Objects.equals(
+                        this.orderListId,
+                        orderCancelReplaceResponseDataNewOrderResponse.orderListId)
+                && Objects.equals(
+                        this.clientOrderId,
+                        orderCancelReplaceResponseDataNewOrderResponse.clientOrderId)
+                && Objects.equals(
+                        this.transactTime,
+                        orderCancelReplaceResponseDataNewOrderResponse.transactTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, msg);
+        return Objects.hash(code, msg, symbol, orderId, orderListId, clientOrderId, transactTime);
     }
 
     @Override
@@ -116,6 +259,11 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
         sb.append("class OrderCancelReplaceResponseDataNewOrderResponse {\n");
         sb.append("		code: ").append(toIndentedString(code)).append("\n");
         sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
+        sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
+        sb.append("		orderListId: ").append(toIndentedString(orderListId)).append("\n");
+        sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
+        sb.append("		transactTime: ").append(toIndentedString(transactTime)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -131,6 +279,26 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
         String msgValueAsString = "";
         msgValueAsString = msgValue.toString();
         sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
+        Object symbolValue = getSymbol();
+        String symbolValueAsString = "";
+        symbolValueAsString = symbolValue.toString();
+        sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object orderIdValue = getOrderId();
+        String orderIdValueAsString = "";
+        orderIdValueAsString = orderIdValue.toString();
+        sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
+        Object orderListIdValue = getOrderListId();
+        String orderListIdValueAsString = "";
+        orderListIdValueAsString = orderListIdValue.toString();
+        sb.append("orderListId=").append(urlEncode(orderListIdValueAsString)).append("");
+        Object clientOrderIdValue = getClientOrderId();
+        String clientOrderIdValueAsString = "";
+        clientOrderIdValueAsString = clientOrderIdValue.toString();
+        sb.append("clientOrderId=").append(urlEncode(clientOrderIdValueAsString)).append("");
+        Object transactTimeValue = getTransactTime();
+        String transactTimeValueAsString = "";
+        transactTimeValueAsString = transactTimeValue.toString();
+        sb.append("transactTime=").append(urlEncode(transactTimeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -161,6 +329,11 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("code");
         openapiFields.add("msg");
+        openapiFields.add("symbol");
+        openapiFields.add("orderId");
+        openapiFields.add("orderListId");
+        openapiFields.add("clientOrderId");
+        openapiFields.add("transactTime");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -194,6 +367,22 @@ public class OrderCancelReplaceResponseDataNewOrderResponse {
                             "Expected the field `msg` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("msg").toString()));
+        }
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `symbol` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
+                && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `clientOrderId` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("clientOrderId").toString()));
         }
     }
 

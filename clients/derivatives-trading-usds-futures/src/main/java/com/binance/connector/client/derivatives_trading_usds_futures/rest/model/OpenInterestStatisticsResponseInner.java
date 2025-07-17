@@ -54,6 +54,12 @@ public class OpenInterestStatisticsResponseInner {
     @jakarta.annotation.Nullable
     private String sumOpenInterestValue;
 
+    public static final String SERIALIZED_NAME_CM_C_CIRCULATING_SUPPLY = "CMCCirculatingSupply";
+
+    @SerializedName(SERIALIZED_NAME_CM_C_CIRCULATING_SUPPLY)
+    @jakarta.annotation.Nullable
+    private String cmCCirculatingSupply;
+
     public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
 
     @SerializedName(SERIALIZED_NAME_TIMESTAMP)
@@ -121,6 +127,26 @@ public class OpenInterestStatisticsResponseInner {
         this.sumOpenInterestValue = sumOpenInterestValue;
     }
 
+    public OpenInterestStatisticsResponseInner cmCCirculatingSupply(
+            @jakarta.annotation.Nullable String cmCCirculatingSupply) {
+        this.cmCCirculatingSupply = cmCCirculatingSupply;
+        return this;
+    }
+
+    /**
+     * Get cmCCirculatingSupply
+     *
+     * @return cmCCirculatingSupply
+     */
+    @jakarta.annotation.Nullable
+    public String getCmCCirculatingSupply() {
+        return cmCCirculatingSupply;
+    }
+
+    public void setCmCCirculatingSupply(@jakarta.annotation.Nullable String cmCCirculatingSupply) {
+        this.cmCCirculatingSupply = cmCCirculatingSupply;
+    }
+
     public OpenInterestStatisticsResponseInner timestamp(
             @jakarta.annotation.Nullable String timestamp) {
         this.timestamp = timestamp;
@@ -157,12 +183,16 @@ public class OpenInterestStatisticsResponseInner {
                 && Objects.equals(
                         this.sumOpenInterestValue,
                         openInterestStatisticsResponseInner.sumOpenInterestValue)
+                && Objects.equals(
+                        this.cmCCirculatingSupply,
+                        openInterestStatisticsResponseInner.cmCCirculatingSupply)
                 && Objects.equals(this.timestamp, openInterestStatisticsResponseInner.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, sumOpenInterest, sumOpenInterestValue, timestamp);
+        return Objects.hash(
+                symbol, sumOpenInterest, sumOpenInterestValue, cmCCirculatingSupply, timestamp);
     }
 
     @Override
@@ -173,6 +203,9 @@ public class OpenInterestStatisticsResponseInner {
         sb.append("		sumOpenInterest: ").append(toIndentedString(sumOpenInterest)).append("\n");
         sb.append("		sumOpenInterestValue: ")
                 .append(toIndentedString(sumOpenInterestValue))
+                .append("\n");
+        sb.append("		cmCCirculatingSupply: ")
+                .append(toIndentedString(cmCCirculatingSupply))
                 .append("\n");
         sb.append("		timestamp: ").append(toIndentedString(timestamp)).append("\n");
         sb.append("}");
@@ -195,6 +228,12 @@ public class OpenInterestStatisticsResponseInner {
         sumOpenInterestValueValueAsString = sumOpenInterestValueValue.toString();
         sb.append("sumOpenInterestValue=")
                 .append(urlEncode(sumOpenInterestValueValueAsString))
+                .append("");
+        Object cmCCirculatingSupplyValue = getCmCCirculatingSupply();
+        String cmCCirculatingSupplyValueAsString = "";
+        cmCCirculatingSupplyValueAsString = cmCCirculatingSupplyValue.toString();
+        sb.append("cmCCirculatingSupply=")
+                .append(urlEncode(cmCCirculatingSupplyValueAsString))
                 .append("");
         Object timestampValue = getTimestamp();
         String timestampValueAsString = "";
@@ -231,6 +270,7 @@ public class OpenInterestStatisticsResponseInner {
         openapiFields.add("symbol");
         openapiFields.add("sumOpenInterest");
         openapiFields.add("sumOpenInterestValue");
+        openapiFields.add("CMCCirculatingSupply");
         openapiFields.add("timestamp");
 
         // a set of required properties/fields (JSON key names)
@@ -281,6 +321,15 @@ public class OpenInterestStatisticsResponseInner {
                             "Expected the field `sumOpenInterestValue` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("sumOpenInterestValue").toString()));
+        }
+        if ((jsonObj.get("CMCCirculatingSupply") != null
+                        && !jsonObj.get("CMCCirculatingSupply").isJsonNull())
+                && !jsonObj.get("CMCCirculatingSupply").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `CMCCirculatingSupply` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("CMCCirculatingSupply").toString()));
         }
         if ((jsonObj.get("timestamp") != null && !jsonObj.get("timestamp").isJsonNull())
                 && !jsonObj.get("timestamp").isJsonPrimitive()) {

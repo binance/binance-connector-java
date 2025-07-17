@@ -17,6 +17,11 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.common.websocket.adapter.ConnectionInterface;
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
+import com.binance.connector.client.spot.websocket.api.JSON;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
@@ -24,12 +29,14 @@ import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopR
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
+import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.constraints.*;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
@@ -234,8 +241,8 @@ public class UserDataStreamApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-user_stream">WebSocket
      *     Subscribe to User Data Stream Documentation</a>
      */
-    public CompletableFuture<UserDataStreamSubscribeResponse> userDataStreamSubscribe()
-            throws ApiException {
+    public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribe() throws ApiException {
         userDataStreamSubscribeValidateBeforeCall();
         String methodName = "/userDataStream.subscribe".substring(1);
         ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeResponse> build =
@@ -248,11 +255,16 @@ public class UserDataStreamApi {
                         .build();
 
         try {
-            connection.send(build);
+            BlockingQueue<String> queue = connection.sendForStream(build);
+            TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
+
+            return new StreamResponse<>(
+                    build.getResponseCallback(),
+                    new StreamBlockingQueueWrapper<>(
+                            new StreamBlockingQueue<>(queue), typeToken, JSON.getGson()));
         } catch (InterruptedException e) {
             throw new ApiException(e);
         }
-        return build.getResponseCallback();
     }
 
     @SuppressWarnings("rawtypes")

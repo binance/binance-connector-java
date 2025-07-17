@@ -36,6 +36,18 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class OrderCancelReplaceResponseDataCancelResponse {
+    public static final String SERIALIZED_NAME_CODE = "code";
+
+    @SerializedName(SERIALIZED_NAME_CODE)
+    @jakarta.annotation.Nullable
+    private Long code;
+
+    public static final String SERIALIZED_NAME_MSG = "msg";
+
+    @SerializedName(SERIALIZED_NAME_MSG)
+    @jakarta.annotation.Nullable
+    private String msg;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -134,6 +146,46 @@ public class OrderCancelReplaceResponseDataCancelResponse {
     private String selfTradePreventionMode;
 
     public OrderCancelReplaceResponseDataCancelResponse() {}
+
+    public OrderCancelReplaceResponseDataCancelResponse code(
+            @jakarta.annotation.Nullable Long code) {
+        this.code = code;
+        return this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return code
+     */
+    @jakarta.annotation.Nullable
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(@jakarta.annotation.Nullable Long code) {
+        this.code = code;
+    }
+
+    public OrderCancelReplaceResponseDataCancelResponse msg(
+            @jakarta.annotation.Nullable String msg) {
+        this.msg = msg;
+        return this;
+    }
+
+    /**
+     * Get msg
+     *
+     * @return msg
+     */
+    @jakarta.annotation.Nullable
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(@jakarta.annotation.Nullable String msg) {
+        this.msg = msg;
+    }
 
     public OrderCancelReplaceResponseDataCancelResponse symbol(
             @jakarta.annotation.Nullable String symbol) {
@@ -466,7 +518,9 @@ public class OrderCancelReplaceResponseDataCancelResponse {
         }
         OrderCancelReplaceResponseDataCancelResponse orderCancelReplaceResponseDataCancelResponse =
                 (OrderCancelReplaceResponseDataCancelResponse) o;
-        return Objects.equals(this.symbol, orderCancelReplaceResponseDataCancelResponse.symbol)
+        return Objects.equals(this.code, orderCancelReplaceResponseDataCancelResponse.code)
+                && Objects.equals(this.msg, orderCancelReplaceResponseDataCancelResponse.msg)
+                && Objects.equals(this.symbol, orderCancelReplaceResponseDataCancelResponse.symbol)
                 && Objects.equals(
                         this.origClientOrderId,
                         orderCancelReplaceResponseDataCancelResponse.origClientOrderId)
@@ -504,6 +558,8 @@ public class OrderCancelReplaceResponseDataCancelResponse {
     @Override
     public int hashCode() {
         return Objects.hash(
+                code,
+                msg,
                 symbol,
                 origClientOrderId,
                 orderId,
@@ -526,6 +582,8 @@ public class OrderCancelReplaceResponseDataCancelResponse {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderCancelReplaceResponseDataCancelResponse {\n");
+        sb.append("		code: ").append(toIndentedString(code)).append("\n");
+        sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		origClientOrderId: ").append(toIndentedString(origClientOrderId)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
@@ -553,6 +611,14 @@ public class OrderCancelReplaceResponseDataCancelResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
+        Object codeValue = getCode();
+        String codeValueAsString = "";
+        codeValueAsString = codeValue.toString();
+        sb.append("code=").append(urlEncode(codeValueAsString)).append("");
+        Object msgValue = getMsg();
+        String msgValueAsString = "";
+        msgValueAsString = msgValue.toString();
+        sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -653,6 +719,8 @@ public class OrderCancelReplaceResponseDataCancelResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("code");
+        openapiFields.add("msg");
         openapiFields.add("symbol");
         openapiFields.add("origClientOrderId");
         openapiFields.add("orderId");
@@ -695,6 +763,14 @@ public class OrderCancelReplaceResponseDataCancelResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
+                && !jsonObj.get("msg").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `msg` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("msg").toString()));
+        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(

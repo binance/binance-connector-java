@@ -69,7 +69,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/1.3.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -3013,7 +3013,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Index Price Constituents Query index price constituents Weight: 2
+     * Query Index Price Constituents Query index price constituents Weight: 1
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryIndexPriceConstituentsResponse&gt;

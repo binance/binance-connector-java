@@ -284,6 +284,9 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderCancelReplaceResponseCancelResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponseData
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -292,6 +295,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
                         .OrderCancelReplaceResponseDataNewOrderResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderCancelReplaceResponseNewOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderListOcoRequest
                         .CustomTypeAdapterFactory());

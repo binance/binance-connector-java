@@ -38,6 +38,18 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class BatchOrdersInner {
+    public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private Long orderId;
+
+    public static final String SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID = "origClientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String origClientOrderId;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -101,295 +113,17 @@ public class BatchOrdersInner {
     @jakarta.annotation.Nullable
     private SideEnum side;
 
-    /** Gets or Sets positionSide */
-    @JsonAdapter(PositionSideEnum.Adapter.class)
-    public enum PositionSideEnum {
-        BOTH("BOTH"),
-
-        LONG("LONG"),
-
-        SHORT("SHORT");
-
-        private String value;
-
-        PositionSideEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static PositionSideEnum fromValue(String value) {
-            for (PositionSideEnum b : PositionSideEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<PositionSideEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final PositionSideEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public PositionSideEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return PositionSideEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            PositionSideEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
-
-    @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
-    @jakarta.annotation.Nullable
-    private PositionSideEnum positionSide;
-
-    public static final String SERIALIZED_NAME_TYPE = "type";
-
-    @SerializedName(SERIALIZED_NAME_TYPE)
-    @jakarta.annotation.Nullable
-    private String type;
-
-    /** Gets or Sets timeInForce */
-    @JsonAdapter(TimeInForceEnum.Adapter.class)
-    public enum TimeInForceEnum {
-        GTC("GTC"),
-
-        IOC("IOC"),
-
-        FOK("FOK"),
-
-        GTX("GTX"),
-
-        GTD("GTD");
-
-        private String value;
-
-        TimeInForceEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static TimeInForceEnum fromValue(String value) {
-            for (TimeInForceEnum b : TimeInForceEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<TimeInForceEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final TimeInForceEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public TimeInForceEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return TimeInForceEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            TimeInForceEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
-
-    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
-    @jakarta.annotation.Nullable
-    private TimeInForceEnum timeInForce;
-
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
     private Double quantity;
 
-    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
-
-    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
-    @jakarta.annotation.Nullable
-    private String reduceOnly;
-
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
     private Double price;
-
-    public static final String SERIALIZED_NAME_NEW_CLIENT_ORDER_ID = "newClientOrderId";
-
-    @SerializedName(SERIALIZED_NAME_NEW_CLIENT_ORDER_ID)
-    @jakarta.annotation.Nullable
-    private String newClientOrderId;
-
-    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
-
-    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
-    @jakarta.annotation.Nullable
-    private Double stopPrice;
-
-    public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
-
-    @SerializedName(SERIALIZED_NAME_ACTIVATION_PRICE)
-    @jakarta.annotation.Nullable
-    private Double activationPrice;
-
-    public static final String SERIALIZED_NAME_CALLBACK_RATE = "callbackRate";
-
-    @SerializedName(SERIALIZED_NAME_CALLBACK_RATE)
-    @jakarta.annotation.Nullable
-    private Double callbackRate;
-
-    /** Gets or Sets workingType */
-    @JsonAdapter(WorkingTypeEnum.Adapter.class)
-    public enum WorkingTypeEnum {
-        MARK_PRICE("MARK_PRICE"),
-
-        CONTRACT_PRICE("CONTRACT_PRICE");
-
-        private String value;
-
-        WorkingTypeEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static WorkingTypeEnum fromValue(String value) {
-            for (WorkingTypeEnum b : WorkingTypeEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<WorkingTypeEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final WorkingTypeEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public WorkingTypeEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return WorkingTypeEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            WorkingTypeEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_WORKING_TYPE = "workingType";
-
-    @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
-    @jakarta.annotation.Nullable
-    private WorkingTypeEnum workingType;
-
-    public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
-
-    @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
-    @jakarta.annotation.Nullable
-    private String priceProtect;
-
-    /** Gets or Sets newOrderRespType */
-    @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
-    public enum NewOrderRespTypeEnum {
-        ACK("ACK"),
-
-        RESULT("RESULT");
-
-        private String value;
-
-        NewOrderRespTypeEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static NewOrderRespTypeEnum fromValue(String value) {
-            for (NewOrderRespTypeEnum b : NewOrderRespTypeEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<NewOrderRespTypeEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final NewOrderRespTypeEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public NewOrderRespTypeEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return NewOrderRespTypeEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            NewOrderRespTypeEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
-
-    @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
-    @jakarta.annotation.Nullable
-    private NewOrderRespTypeEnum newOrderRespType;
 
     /** Gets or Sets priceMatch */
     @JsonAdapter(PriceMatchEnum.Adapter.class)
@@ -462,75 +196,52 @@ public class BatchOrdersInner {
     @jakarta.annotation.Nullable
     private PriceMatchEnum priceMatch;
 
-    /** Gets or Sets selfTradePreventionMode */
-    @JsonAdapter(SelfTradePreventionModeEnum.Adapter.class)
-    public enum SelfTradePreventionModeEnum {
-        EXPIRE_TAKER("EXPIRE_TAKER"),
+    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
-        EXPIRE_BOTH("EXPIRE_BOTH"),
-
-        EXPIRE_MAKER("EXPIRE_MAKER");
-
-        private String value;
-
-        SelfTradePreventionModeEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static SelfTradePreventionModeEnum fromValue(String value) {
-            for (SelfTradePreventionModeEnum b : SelfTradePreventionModeEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<SelfTradePreventionModeEnum> {
-            @Override
-            public void write(
-                    final JsonWriter jsonWriter, final SelfTradePreventionModeEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public SelfTradePreventionModeEnum read(final JsonReader jsonReader)
-                    throws IOException {
-                String value = jsonReader.nextString();
-                return SelfTradePreventionModeEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            SelfTradePreventionModeEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
-            "selfTradePreventionMode";
-
-    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionModeEnum selfTradePreventionMode;
-
-    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
-
-    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
-    @jakarta.annotation.Nullable
-    private Long goodTillDate;
+    private Long recvWindow;
 
     public BatchOrdersInner() {}
+
+    public BatchOrdersInner orderId(@jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
+        return this;
+    }
+
+    /**
+     * Get orderId
+     *
+     * @return orderId
+     */
+    @jakarta.annotation.Nullable
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public BatchOrdersInner origClientOrderId(
+            @jakarta.annotation.Nullable String origClientOrderId) {
+        this.origClientOrderId = origClientOrderId;
+        return this;
+    }
+
+    /**
+     * Get origClientOrderId
+     *
+     * @return origClientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getOrigClientOrderId() {
+        return origClientOrderId;
+    }
+
+    public void setOrigClientOrderId(@jakarta.annotation.Nullable String origClientOrderId) {
+        this.origClientOrderId = origClientOrderId;
+    }
 
     public BatchOrdersInner symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
@@ -570,64 +281,6 @@ public class BatchOrdersInner {
         this.side = side;
     }
 
-    public BatchOrdersInner positionSide(
-            @jakarta.annotation.Nullable PositionSideEnum positionSide) {
-        this.positionSide = positionSide;
-        return this;
-    }
-
-    /**
-     * Get positionSide
-     *
-     * @return positionSide
-     */
-    @jakarta.annotation.Nullable
-    public PositionSideEnum getPositionSide() {
-        return positionSide;
-    }
-
-    public void setPositionSide(@jakarta.annotation.Nullable PositionSideEnum positionSide) {
-        this.positionSide = positionSide;
-    }
-
-    public BatchOrdersInner type(@jakarta.annotation.Nullable String type) {
-        this.type = type;
-        return this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return type
-     */
-    @jakarta.annotation.Nullable
-    public String getType() {
-        return type;
-    }
-
-    public void setType(@jakarta.annotation.Nullable String type) {
-        this.type = type;
-    }
-
-    public BatchOrdersInner timeInForce(@jakarta.annotation.Nullable TimeInForceEnum timeInForce) {
-        this.timeInForce = timeInForce;
-        return this;
-    }
-
-    /**
-     * Get timeInForce
-     *
-     * @return timeInForce
-     */
-    @jakarta.annotation.Nullable
-    public TimeInForceEnum getTimeInForce() {
-        return timeInForce;
-    }
-
-    public void setTimeInForce(@jakarta.annotation.Nullable TimeInForceEnum timeInForce) {
-        this.timeInForce = timeInForce;
-    }
-
     public BatchOrdersInner quantity(@jakarta.annotation.Nullable Double quantity) {
         this.quantity = quantity;
         return this;
@@ -646,25 +299,6 @@ public class BatchOrdersInner {
 
     public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
         this.quantity = quantity;
-    }
-
-    public BatchOrdersInner reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
-        return this;
-    }
-
-    /**
-     * Get reduceOnly
-     *
-     * @return reduceOnly
-     */
-    @jakarta.annotation.Nullable
-    public String getReduceOnly() {
-        return reduceOnly;
-    }
-
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
     }
 
     public BatchOrdersInner price(@jakarta.annotation.Nullable Double price) {
@@ -687,144 +321,6 @@ public class BatchOrdersInner {
         this.price = price;
     }
 
-    public BatchOrdersInner newClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
-        this.newClientOrderId = newClientOrderId;
-        return this;
-    }
-
-    /**
-     * Get newClientOrderId
-     *
-     * @return newClientOrderId
-     */
-    @jakarta.annotation.Nullable
-    public String getNewClientOrderId() {
-        return newClientOrderId;
-    }
-
-    public void setNewClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
-        this.newClientOrderId = newClientOrderId;
-    }
-
-    public BatchOrdersInner stopPrice(@jakarta.annotation.Nullable Double stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable Double stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
-    public BatchOrdersInner activationPrice(@jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
-        return this;
-    }
-
-    /**
-     * Get activationPrice
-     *
-     * @return activationPrice
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getActivationPrice() {
-        return activationPrice;
-    }
-
-    public void setActivationPrice(@jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
-    }
-
-    public BatchOrdersInner callbackRate(@jakarta.annotation.Nullable Double callbackRate) {
-        this.callbackRate = callbackRate;
-        return this;
-    }
-
-    /**
-     * Get callbackRate
-     *
-     * @return callbackRate
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getCallbackRate() {
-        return callbackRate;
-    }
-
-    public void setCallbackRate(@jakarta.annotation.Nullable Double callbackRate) {
-        this.callbackRate = callbackRate;
-    }
-
-    public BatchOrdersInner workingType(@jakarta.annotation.Nullable WorkingTypeEnum workingType) {
-        this.workingType = workingType;
-        return this;
-    }
-
-    /**
-     * Get workingType
-     *
-     * @return workingType
-     */
-    @jakarta.annotation.Nullable
-    public WorkingTypeEnum getWorkingType() {
-        return workingType;
-    }
-
-    public void setWorkingType(@jakarta.annotation.Nullable WorkingTypeEnum workingType) {
-        this.workingType = workingType;
-    }
-
-    public BatchOrdersInner priceProtect(@jakarta.annotation.Nullable String priceProtect) {
-        this.priceProtect = priceProtect;
-        return this;
-    }
-
-    /**
-     * Get priceProtect
-     *
-     * @return priceProtect
-     */
-    @jakarta.annotation.Nullable
-    public String getPriceProtect() {
-        return priceProtect;
-    }
-
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
-        this.priceProtect = priceProtect;
-    }
-
-    public BatchOrdersInner newOrderRespType(
-            @jakarta.annotation.Nullable NewOrderRespTypeEnum newOrderRespType) {
-        this.newOrderRespType = newOrderRespType;
-        return this;
-    }
-
-    /**
-     * Get newOrderRespType
-     *
-     * @return newOrderRespType
-     */
-    @jakarta.annotation.Nullable
-    public NewOrderRespTypeEnum getNewOrderRespType() {
-        return newOrderRespType;
-    }
-
-    public void setNewOrderRespType(
-            @jakarta.annotation.Nullable NewOrderRespTypeEnum newOrderRespType) {
-        this.newOrderRespType = newOrderRespType;
-    }
-
     public BatchOrdersInner priceMatch(@jakarta.annotation.Nullable PriceMatchEnum priceMatch) {
         this.priceMatch = priceMatch;
         return this;
@@ -844,44 +340,23 @@ public class BatchOrdersInner {
         this.priceMatch = priceMatch;
     }
 
-    public BatchOrdersInner selfTradePreventionMode(
-            @jakarta.annotation.Nullable SelfTradePreventionModeEnum selfTradePreventionMode) {
-        this.selfTradePreventionMode = selfTradePreventionMode;
+    public BatchOrdersInner recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get selfTradePreventionMode
+     * Get recvWindow
      *
-     * @return selfTradePreventionMode
+     * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public SelfTradePreventionModeEnum getSelfTradePreventionMode() {
-        return selfTradePreventionMode;
+    public Long getRecvWindow() {
+        return recvWindow;
     }
 
-    public void setSelfTradePreventionMode(
-            @jakarta.annotation.Nullable SelfTradePreventionModeEnum selfTradePreventionMode) {
-        this.selfTradePreventionMode = selfTradePreventionMode;
-    }
-
-    public BatchOrdersInner goodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
-        this.goodTillDate = goodTillDate;
-        return this;
-    }
-
-    /**
-     * Get goodTillDate
-     *
-     * @return goodTillDate
-     */
-    @jakarta.annotation.Nullable
-    public Long getGoodTillDate() {
-        return goodTillDate;
-    }
-
-    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
-        this.goodTillDate = goodTillDate;
+    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
     }
 
     @Override
@@ -893,74 +368,34 @@ public class BatchOrdersInner {
             return false;
         }
         BatchOrdersInner batchOrdersInner = (BatchOrdersInner) o;
-        return Objects.equals(this.symbol, batchOrdersInner.symbol)
+        return Objects.equals(this.orderId, batchOrdersInner.orderId)
+                && Objects.equals(this.origClientOrderId, batchOrdersInner.origClientOrderId)
+                && Objects.equals(this.symbol, batchOrdersInner.symbol)
                 && Objects.equals(this.side, batchOrdersInner.side)
-                && Objects.equals(this.positionSide, batchOrdersInner.positionSide)
-                && Objects.equals(this.type, batchOrdersInner.type)
-                && Objects.equals(this.timeInForce, batchOrdersInner.timeInForce)
                 && Objects.equals(this.quantity, batchOrdersInner.quantity)
-                && Objects.equals(this.reduceOnly, batchOrdersInner.reduceOnly)
                 && Objects.equals(this.price, batchOrdersInner.price)
-                && Objects.equals(this.newClientOrderId, batchOrdersInner.newClientOrderId)
-                && Objects.equals(this.stopPrice, batchOrdersInner.stopPrice)
-                && Objects.equals(this.activationPrice, batchOrdersInner.activationPrice)
-                && Objects.equals(this.callbackRate, batchOrdersInner.callbackRate)
-                && Objects.equals(this.workingType, batchOrdersInner.workingType)
-                && Objects.equals(this.priceProtect, batchOrdersInner.priceProtect)
-                && Objects.equals(this.newOrderRespType, batchOrdersInner.newOrderRespType)
                 && Objects.equals(this.priceMatch, batchOrdersInner.priceMatch)
-                && Objects.equals(
-                        this.selfTradePreventionMode, batchOrdersInner.selfTradePreventionMode)
-                && Objects.equals(this.goodTillDate, batchOrdersInner.goodTillDate);
+                && Objects.equals(this.recvWindow, batchOrdersInner.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                symbol,
-                side,
-                positionSide,
-                type,
-                timeInForce,
-                quantity,
-                reduceOnly,
-                price,
-                newClientOrderId,
-                stopPrice,
-                activationPrice,
-                callbackRate,
-                workingType,
-                priceProtect,
-                newOrderRespType,
-                priceMatch,
-                selfTradePreventionMode,
-                goodTillDate);
+                orderId, origClientOrderId, symbol, side, quantity, price, priceMatch, recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class BatchOrdersInner {\n");
+        sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
+        sb.append("		origClientOrderId: ").append(toIndentedString(origClientOrderId)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
-        sb.append("		type: ").append(toIndentedString(type)).append("\n");
-        sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
-        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
-        sb.append("		activationPrice: ").append(toIndentedString(activationPrice)).append("\n");
-        sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
-        sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
-        sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
-        sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
-        sb.append("		selfTradePreventionMode: ")
-                .append(toIndentedString(selfTradePreventionMode))
-                .append("\n");
-        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
+        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -968,6 +403,16 @@ public class BatchOrdersInner {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
+        Object orderIdValue = getOrderId();
+        String orderIdValueAsString = "";
+        orderIdValueAsString = orderIdValue.toString();
+        sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
+        Object origClientOrderIdValue = getOrigClientOrderId();
+        String origClientOrderIdValueAsString = "";
+        origClientOrderIdValueAsString = origClientOrderIdValue.toString();
+        sb.append("origClientOrderId=")
+                .append(urlEncode(origClientOrderIdValueAsString))
+                .append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -976,72 +421,22 @@ public class BatchOrdersInner {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
-        Object positionSideValue = getPositionSide();
-        String positionSideValueAsString = "";
-        positionSideValueAsString = positionSideValue.toString();
-        sb.append("positionSide=").append(urlEncode(positionSideValueAsString)).append("");
-        Object typeValue = getType();
-        String typeValueAsString = "";
-        typeValueAsString = typeValue.toString();
-        sb.append("type=").append(urlEncode(typeValueAsString)).append("");
-        Object timeInForceValue = getTimeInForce();
-        String timeInForceValueAsString = "";
-        timeInForceValueAsString = timeInForceValue.toString();
-        sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
         Object quantityValue = getQuantity();
         String quantityValueAsString = "";
         quantityValueAsString = quantityValue.toString();
         sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
-        Object reduceOnlyValue = getReduceOnly();
-        String reduceOnlyValueAsString = "";
-        reduceOnlyValueAsString = reduceOnlyValue.toString();
-        sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object newClientOrderIdValue = getNewClientOrderId();
-        String newClientOrderIdValueAsString = "";
-        newClientOrderIdValueAsString = newClientOrderIdValue.toString();
-        sb.append("newClientOrderId=").append(urlEncode(newClientOrderIdValueAsString)).append("");
-        Object stopPriceValue = getStopPrice();
-        String stopPriceValueAsString = "";
-        stopPriceValueAsString = stopPriceValue.toString();
-        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
-        Object activationPriceValue = getActivationPrice();
-        String activationPriceValueAsString = "";
-        activationPriceValueAsString = activationPriceValue.toString();
-        sb.append("activationPrice=").append(urlEncode(activationPriceValueAsString)).append("");
-        Object callbackRateValue = getCallbackRate();
-        String callbackRateValueAsString = "";
-        callbackRateValueAsString = callbackRateValue.toString();
-        sb.append("callbackRate=").append(urlEncode(callbackRateValueAsString)).append("");
-        Object workingTypeValue = getWorkingType();
-        String workingTypeValueAsString = "";
-        workingTypeValueAsString = workingTypeValue.toString();
-        sb.append("workingType=").append(urlEncode(workingTypeValueAsString)).append("");
-        Object priceProtectValue = getPriceProtect();
-        String priceProtectValueAsString = "";
-        priceProtectValueAsString = priceProtectValue.toString();
-        sb.append("priceProtect=").append(urlEncode(priceProtectValueAsString)).append("");
-        Object newOrderRespTypeValue = getNewOrderRespType();
-        String newOrderRespTypeValueAsString = "";
-        newOrderRespTypeValueAsString = newOrderRespTypeValue.toString();
-        sb.append("newOrderRespType=").append(urlEncode(newOrderRespTypeValueAsString)).append("");
         Object priceMatchValue = getPriceMatch();
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
-        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
-        String selfTradePreventionModeValueAsString = "";
-        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
-        sb.append("selfTradePreventionMode=")
-                .append(urlEncode(selfTradePreventionModeValueAsString))
-                .append("");
-        Object goodTillDateValue = getGoodTillDate();
-        String goodTillDateValueAsString = "";
-        goodTillDateValueAsString = goodTillDateValue.toString();
-        sb.append("goodTillDate=").append(urlEncode(goodTillDateValueAsString)).append("");
+        Object recvWindowValue = getRecvWindow();
+        String recvWindowValueAsString = "";
+        recvWindowValueAsString = recvWindowValue.toString();
+        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         return sb.toString();
     }
 
@@ -1070,24 +465,14 @@ public class BatchOrdersInner {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("orderId");
+        openapiFields.add("origClientOrderId");
         openapiFields.add("symbol");
         openapiFields.add("side");
-        openapiFields.add("positionSide");
-        openapiFields.add("type");
-        openapiFields.add("timeInForce");
         openapiFields.add("quantity");
-        openapiFields.add("reduceOnly");
         openapiFields.add("price");
-        openapiFields.add("newClientOrderId");
-        openapiFields.add("stopPrice");
-        openapiFields.add("activationPrice");
-        openapiFields.add("callbackRate");
-        openapiFields.add("workingType");
-        openapiFields.add("priceProtect");
-        openapiFields.add("newOrderRespType");
         openapiFields.add("priceMatch");
-        openapiFields.add("selfTradePreventionMode");
-        openapiFields.add("goodTillDate");
+        openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1111,6 +496,15 @@ public class BatchOrdersInner {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("origClientOrderId") != null
+                        && !jsonObj.get("origClientOrderId").isJsonNull())
+                && !jsonObj.get("origClientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origClientOrderId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("origClientOrderId").toString()));
+        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1131,89 +525,6 @@ public class BatchOrdersInner {
         if (jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull()) {
             SideEnum.validateJsonElement(jsonObj.get("side"));
         }
-        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
-                && !jsonObj.get("positionSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `positionSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("positionSide").toString()));
-        }
-        // validate the optional field `positionSide`
-        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
-            PositionSideEnum.validateJsonElement(jsonObj.get("positionSide"));
-        }
-        if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
-                && !jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
-        if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
-                && !jsonObj.get("timeInForce").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `timeInForce` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("timeInForce").toString()));
-        }
-        // validate the optional field `timeInForce`
-        if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
-            TimeInForceEnum.validateJsonElement(jsonObj.get("timeInForce"));
-        }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
-        }
-        if ((jsonObj.get("newClientOrderId") != null
-                        && !jsonObj.get("newClientOrderId").isJsonNull())
-                && !jsonObj.get("newClientOrderId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `newClientOrderId` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("newClientOrderId").toString()));
-        }
-        if ((jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull())
-                && !jsonObj.get("workingType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `workingType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("workingType").toString()));
-        }
-        // validate the optional field `workingType`
-        if (jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull()) {
-            WorkingTypeEnum.validateJsonElement(jsonObj.get("workingType"));
-        }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
-        }
-        if ((jsonObj.get("newOrderRespType") != null
-                        && !jsonObj.get("newOrderRespType").isJsonNull())
-                && !jsonObj.get("newOrderRespType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `newOrderRespType` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("newOrderRespType").toString()));
-        }
-        // validate the optional field `newOrderRespType`
-        if (jsonObj.get("newOrderRespType") != null
-                && !jsonObj.get("newOrderRespType").isJsonNull()) {
-            NewOrderRespTypeEnum.validateJsonElement(jsonObj.get("newOrderRespType"));
-        }
         if ((jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull())
                 && !jsonObj.get("priceMatch").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1225,20 +536,6 @@ public class BatchOrdersInner {
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatchEnum.validateJsonElement(jsonObj.get("priceMatch"));
-        }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
-        }
-        // validate the optional field `selfTradePreventionMode`
-        if (jsonObj.get("selfTradePreventionMode") != null
-                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
-            SelfTradePreventionModeEnum.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 

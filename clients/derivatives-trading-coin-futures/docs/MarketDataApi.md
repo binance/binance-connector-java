@@ -1172,7 +1172,7 @@ No authorization required
 
 Query Index Price Constituents
 
-Query index price constituents  Weight: 2
+Query index price constituents  Weight: 1
 
 ### Example
 ```java

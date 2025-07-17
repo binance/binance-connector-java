@@ -800,7 +800,7 @@ No authorization required
 
 CM Account Trade List(USER_DATA)
 
-Get trades for a specific account and CM symbol.  * Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent * &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent together * &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together * &#x60;OrderId&#x60; can only be sent together with symbol * If a &#x60;pair&#x60; is sent, tickers for all symbols of the &#x60;pair&#x60; will be returned * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;  Weight: 20 with symbol, 40 with pair
+Get trades for a specific account and CM symbol.  * Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent * &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent together * &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together * &#x60;OrderId&#x60; can only be sent together with symbol * If a &#x60;pair&#x60; is sent, tickers for all symbols of the &#x60;pair&#x60; will be returned * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;24 hours&#39; data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 24 hours.  Weight: 20 with symbol, 40 with pair
 
 ### Example
 ```java
@@ -3674,7 +3674,7 @@ No authorization required
 
 UM Account Trade List(USER_DATA)
 
-Get trades for a specific account and UM symbol.   * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;24 hours&#39; data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 24 hours. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;.  Weight: 5
+Get trades for a specific account and UM symbol.   * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;7 days&#39; data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;.  Weight: 5
 
 ### Example
 ```java

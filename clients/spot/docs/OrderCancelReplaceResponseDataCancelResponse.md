@@ -7,6 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**code** | **Long** |  |  [optional] |
+|**msg** | **String** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**origClientOrderId** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |

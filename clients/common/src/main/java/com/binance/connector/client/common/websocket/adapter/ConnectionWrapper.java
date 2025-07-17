@@ -28,6 +28,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.text.DecimalFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,8 +37,10 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -86,6 +89,8 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     private CountDownLatch countDownLatch;
 
     private boolean pendingReconnect = false;
+
+    private List<BlockingQueue<String>> streamQueues = new ArrayList<>();
 
     public ConnectionWrapper(WebSocketClientConfiguration configuration, Gson gson) {
         this(configuration, null, gson);
@@ -349,6 +354,15 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         innerSend(request);
     }
 
+    @Override
+    public BlockingQueue<String> sendForStream(ApiRequestWrapperDTO request)
+            throws InterruptedException {
+        LinkedBlockingDeque<String> streamQueue = new LinkedBlockingDeque<>();
+        streamQueues.add(streamQueue);
+        send(request);
+        return streamQueue;
+    }
+
     public void innerSend(RequestWrapperDTO requestWrapperDTO) {
         send(requestWrapperDTO);
     }
@@ -431,12 +445,18 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
             JsonObject obj = root.getAsJsonObject();
             JsonElement idElem = obj.get("id");
             String id = idElem == null ? null : idElem.getAsString();
-
-            if (id == null) {
-                return;
+            RequestWrapperDTO requestWrapperDTO = null;
+            if (id != null) {
+                requestWrapperDTO = pendingRequest.get(id);
             }
 
-            RequestWrapperDTO requestWrapperDTO = pendingRequest.get(id);
+            if (requestWrapperDTO == null) {
+                for (BlockingQueue<String> streamQueue : streamQueues) {
+                    JsonElement eventElem = obj.get("event");
+                    streamQueue.offer(eventElem != null ? eventElem.toString() : message);
+                }
+                return;
+            }
             Type responseType = requestWrapperDTO.getResponseType();
 
             Object responseResult = gson.fromJson(root, responseType);

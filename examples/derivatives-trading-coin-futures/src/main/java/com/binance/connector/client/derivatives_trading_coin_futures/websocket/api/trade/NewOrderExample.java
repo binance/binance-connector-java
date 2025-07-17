@@ -30,7 +30,9 @@ public class NewOrderExample {
         if (api == null) {
             WebSocketClientConfiguration clientConfiguration =
                     DerivativesTradingCoinFuturesWebSocketApiUtil.getClientConfiguration();
-            clientConfiguration.setAutoLogon(false);
+            // if you want the connection to be auto logged on:
+            // https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests
+            clientConfiguration.setAutoLogon(true);
             SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
             signatureConfiguration.setApiKey("apiKey");
             signatureConfiguration.setPrivateKey("/path/to/private.key");

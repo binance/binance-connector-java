@@ -14,11 +14,12 @@ package com.binance.connector.client.spot.websocket.api.api;
 
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
-
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
@@ -26,14 +27,6 @@ import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopR
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.concurrent.CompletableFuture;
-
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
@@ -42,6 +35,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.concurrent.CompletableFuture;
 
 /** API tests for UserDataStreamApi */
 public class UserDataStreamApiTest {
@@ -189,7 +190,7 @@ public class UserDataStreamApiTest {
      */
     @Test
     public void userDataStreamSubscribeTest() throws ApiException, URISyntaxException, IOException {
-        CompletableFuture<UserDataStreamSubscribeResponse> response = api.userDataStreamSubscribe();
+        StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse> userDataStreamSubscribe = api.userDataStreamSubscribe();
         ArgumentCaptor<RequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
         Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());

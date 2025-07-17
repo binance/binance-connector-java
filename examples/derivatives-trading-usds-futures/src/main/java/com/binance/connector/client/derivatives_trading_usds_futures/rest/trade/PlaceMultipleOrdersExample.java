@@ -18,7 +18,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrders;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrdersPlaceMultipleOrders;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PlaceMultipleOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PlaceMultipleOrdersResponse;
 
@@ -52,7 +52,7 @@ public class PlaceMultipleOrdersExample {
      */
     public void placeMultipleOrdersExample() throws ApiException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
-        placeMultipleOrdersRequest.batchOrders(new BatchOrders());
+        placeMultipleOrdersRequest.batchOrders(new BatchOrdersPlaceMultipleOrders());
         ApiResponse<PlaceMultipleOrdersResponse> response =
                 getApi().placeMultipleOrders(placeMultipleOrdersRequest);
         System.out.println(response.getData());
