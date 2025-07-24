@@ -82,11 +82,11 @@
 
 [POST /api/v3/order/oco](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade) - orderOco - [OrderOcoExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderOcoExample.java#L53)
 
-[POST /api/v3/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade) - orderTest - [OrderTestExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderTestExample.java#L50)
+[POST /api/v3/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade) - orderTest - [OrderTestExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderTestExample.java#L52)
 
 [POST /api/v3/sor/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade) - sorOrder - [SorOrderExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderExample.java#L51)
 
-[POST /api/v3/sor/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderTestExample.java#L50)
+[POST /api/v3/sor/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderTestExample.java#L52)
 
 ## UserDataStream
 

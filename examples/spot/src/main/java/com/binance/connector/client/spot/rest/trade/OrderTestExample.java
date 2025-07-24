@@ -20,6 +20,8 @@ import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.OrderTestRequest;
 import com.binance.connector.client.spot.rest.model.OrderTestResponse;
+import com.binance.connector.client.spot.rest.model.OrderType;
+import com.binance.connector.client.spot.rest.model.Side;
 
 /** API examples for TradeApi */
 public class OrderTestExample {
@@ -49,6 +51,9 @@ public class OrderTestExample {
      */
     public void orderTestExample() throws ApiException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BNBUSDT");
+        orderTestRequest.side(Side.BUY);
+        orderTestRequest.type(OrderType.MARKET);
         ApiResponse<OrderTestResponse> response = getApi().orderTest(orderTestRequest);
         System.out.println(response.getData());
     }

@@ -67,7 +67,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/4.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -2449,6 +2449,80 @@ public class TradeApi {
                     "computeCommissionRates", orderTestRequest.getComputeCommissionRates());
         }
 
+        if (orderTestRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderTestRequest.getSymbol());
+        }
+
+        if (orderTestRequest.getSide() != null) {
+            localVarFormParams.put("side", orderTestRequest.getSide());
+        }
+
+        if (orderTestRequest.getType() != null) {
+            localVarFormParams.put("type", orderTestRequest.getType());
+        }
+
+        if (orderTestRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", orderTestRequest.getTimeInForce());
+        }
+
+        if (orderTestRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getQuantity()));
+        }
+
+        if (orderTestRequest.getQuoteOrderQty() != null) {
+            localVarFormParams.put(
+                    "quoteOrderQty",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getQuoteOrderQty()));
+        }
+
+        if (orderTestRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price", DecimalFormatter.getFormatter().format(orderTestRequest.getPrice()));
+        }
+
+        if (orderTestRequest.getNewClientOrderId() != null) {
+            localVarFormParams.put("newClientOrderId", orderTestRequest.getNewClientOrderId());
+        }
+
+        if (orderTestRequest.getStrategyId() != null) {
+            localVarFormParams.put("strategyId", orderTestRequest.getStrategyId());
+        }
+
+        if (orderTestRequest.getStrategyType() != null) {
+            localVarFormParams.put("strategyType", orderTestRequest.getStrategyType());
+        }
+
+        if (orderTestRequest.getStopPrice() != null) {
+            localVarFormParams.put(
+                    "stopPrice",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getStopPrice()));
+        }
+
+        if (orderTestRequest.getTrailingDelta() != null) {
+            localVarFormParams.put("trailingDelta", orderTestRequest.getTrailingDelta());
+        }
+
+        if (orderTestRequest.getIcebergQty() != null) {
+            localVarFormParams.put(
+                    "icebergQty",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getIcebergQty()));
+        }
+
+        if (orderTestRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderTestRequest.getNewOrderRespType());
+        }
+
+        if (orderTestRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderTestRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderTestRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", orderTestRequest.getRecvWindow());
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2780,6 +2854,65 @@ public class TradeApi {
         if (sorOrderTestRequest.getComputeCommissionRates() != null) {
             localVarFormParams.put(
                     "computeCommissionRates", sorOrderTestRequest.getComputeCommissionRates());
+        }
+
+        if (sorOrderTestRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", sorOrderTestRequest.getSymbol());
+        }
+
+        if (sorOrderTestRequest.getSide() != null) {
+            localVarFormParams.put("side", sorOrderTestRequest.getSide());
+        }
+
+        if (sorOrderTestRequest.getType() != null) {
+            localVarFormParams.put("type", sorOrderTestRequest.getType());
+        }
+
+        if (sorOrderTestRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", sorOrderTestRequest.getTimeInForce());
+        }
+
+        if (sorOrderTestRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getQuantity()));
+        }
+
+        if (sorOrderTestRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getPrice()));
+        }
+
+        if (sorOrderTestRequest.getNewClientOrderId() != null) {
+            localVarFormParams.put("newClientOrderId", sorOrderTestRequest.getNewClientOrderId());
+        }
+
+        if (sorOrderTestRequest.getStrategyId() != null) {
+            localVarFormParams.put("strategyId", sorOrderTestRequest.getStrategyId());
+        }
+
+        if (sorOrderTestRequest.getStrategyType() != null) {
+            localVarFormParams.put("strategyType", sorOrderTestRequest.getStrategyType());
+        }
+
+        if (sorOrderTestRequest.getIcebergQty() != null) {
+            localVarFormParams.put(
+                    "icebergQty",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getIcebergQty()));
+        }
+
+        if (sorOrderTestRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", sorOrderTestRequest.getNewOrderRespType());
+        }
+
+        if (sorOrderTestRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", sorOrderTestRequest.getSelfTradePreventionMode());
+        }
+
+        if (sorOrderTestRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", sorOrderTestRequest.getRecvWindow());
         }
 
         final String[] localVarAccepts = {"application/json"};

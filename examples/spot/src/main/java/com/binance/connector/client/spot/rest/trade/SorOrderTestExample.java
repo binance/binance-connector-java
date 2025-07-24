@@ -18,6 +18,8 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import com.binance.connector.client.spot.rest.model.OrderType;
+import com.binance.connector.client.spot.rest.model.Side;
 import com.binance.connector.client.spot.rest.model.SorOrderTestRequest;
 import com.binance.connector.client.spot.rest.model.SorOrderTestResponse;
 
@@ -49,6 +51,10 @@ public class SorOrderTestExample {
      */
     public void sorOrderTestExample() throws ApiException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BNBUSDT");
+        sorOrderTestRequest.side(Side.BUY);
+        sorOrderTestRequest.type(OrderType.MARKET);
+        sorOrderTestRequest.quantity(1.0d);
         ApiResponse<SorOrderTestResponse> response = getApi().sorOrderTest(sorOrderTestRequest);
         System.out.println(response.getData());
     }

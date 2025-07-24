@@ -57,7 +57,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_CANCEL_ORDER_ID)
     @jakarta.annotation.Nullable
-    private Integer cancelOrderId;
+    private Long cancelOrderId;
 
     public static final String SERIALIZED_NAME_CANCEL_ORIG_CLIENT_ORDER_ID =
             "cancelOrigClientOrderId";
@@ -223,7 +223,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     public OrderCancelReplaceRequest cancelOrderId(
-            @jakarta.annotation.Nullable Integer cancelOrderId) {
+            @jakarta.annotation.Nullable Long cancelOrderId) {
         this.cancelOrderId = cancelOrderId;
         return this;
     }
@@ -234,11 +234,11 @@ public class OrderCancelReplaceRequest extends BaseDTO {
      * @return cancelOrderId
      */
     @jakarta.annotation.Nullable
-    public Integer getCancelOrderId() {
+    public Long getCancelOrderId() {
         return cancelOrderId;
     }
 
-    public void setCancelOrderId(@jakarta.annotation.Nullable Integer cancelOrderId) {
+    public void setCancelOrderId(@jakarta.annotation.Nullable Long cancelOrderId) {
         this.cancelOrderId = cancelOrderId;
     }
 
@@ -759,7 +759,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             String cancelReplaceModeValueAsString = cancelReplaceModeValue.toString();
             valMap.put("cancelReplaceMode", cancelReplaceModeValueAsString);
         }
-        Integer cancelOrderIdValue = getCancelOrderId();
+        Long cancelOrderIdValue = getCancelOrderId();
         if (cancelOrderIdValue != null) {
             String cancelOrderIdValueAsString = cancelOrderIdValue.toString();
             valMap.put("cancelOrderId", cancelOrderIdValueAsString);

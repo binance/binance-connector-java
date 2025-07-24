@@ -49,7 +49,7 @@ public class AllOrdersRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
-    private Integer orderId;
+    private Long orderId;
 
     public static final String SERIALIZED_NAME_START_TIME = "startTime";
 
@@ -97,7 +97,7 @@ public class AllOrdersRequest extends BaseDTO {
         this.symbol = symbol;
     }
 
-    public AllOrdersRequest orderId(@jakarta.annotation.Nullable Integer orderId) {
+    public AllOrdersRequest orderId(@jakarta.annotation.Nullable Long orderId) {
         this.orderId = orderId;
         return this;
     }
@@ -108,11 +108,11 @@ public class AllOrdersRequest extends BaseDTO {
      * @return orderId
      */
     @jakarta.annotation.Nullable
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(@jakarta.annotation.Nullable Integer orderId) {
+    public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
         this.orderId = orderId;
     }
 
@@ -237,7 +237,7 @@ public class AllOrdersRequest extends BaseDTO {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
         }
-        Integer orderIdValue = getOrderId();
+        Long orderIdValue = getOrderId();
         if (orderIdValue != null) {
             String orderIdValueAsString = orderIdValue.toString();
             valMap.put("orderId", orderIdValueAsString);

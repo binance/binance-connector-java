@@ -16,6 +16,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
 import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
+import com.binance.connector.client.spot.websocket.api.model.OrderType;
+import com.binance.connector.client.spot.websocket.api.model.Side;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderTestResponse;
 import java.util.concurrent.CompletableFuture;
@@ -50,6 +52,10 @@ public class SorOrderTestExample {
      */
     public void sorOrderTestExampleAsync() {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BNBUSDT");
+        sorOrderTestRequest.side(Side.BUY);
+        sorOrderTestRequest.type(OrderType.MARKET);
+        sorOrderTestRequest.quantity(1.0d);
         CompletableFuture<SorOrderTestResponse> future = getApi().sorOrderTest(sorOrderTestRequest);
         future.handle(
                 (response, error) -> {
@@ -71,6 +77,10 @@ public class SorOrderTestExample {
      */
     public void sorOrderTestExampleSync() {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BNBUSDT");
+        sorOrderTestRequest.side(Side.BUY);
+        sorOrderTestRequest.type(OrderType.MARKET);
+        sorOrderTestRequest.quantity(1.0d);
         CompletableFuture<SorOrderTestResponse> future = getApi().sorOrderTest(sorOrderTestRequest);
         SorOrderTestResponse response = future.join();
         System.out.println(response);
