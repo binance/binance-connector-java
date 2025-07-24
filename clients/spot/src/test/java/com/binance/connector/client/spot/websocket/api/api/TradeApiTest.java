@@ -470,6 +470,7 @@ public class TradeApiTest {
     @Test
     public void orderTestTest() throws ApiException, URISyntaxException, IOException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BTCUSDT").quantity(0.00).side(Side.BUY).type(OrderType.LIMIT);
         CompletableFuture<OrderTestResponse> response = api.orderTest(orderTestRequest);
         ArgumentCaptor<RequestWrapperDTO<OrderTestRequest, OrderTestResponse>> callArgumentCaptor =
                 ArgumentCaptor.forClass(RequestWrapperDTO.class);
@@ -532,6 +533,7 @@ public class TradeApiTest {
     @Test
     public void sorOrderTestTest() throws ApiException, URISyntaxException, IOException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BTCUSDT").quantity(0.00).side(Side.BUY).type(OrderType.LIMIT);
         CompletableFuture<SorOrderTestResponse> response = api.sorOrderTest(sorOrderTestRequest);
         ArgumentCaptor<RequestWrapperDTO<SorOrderTestRequest, SorOrderTestResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);

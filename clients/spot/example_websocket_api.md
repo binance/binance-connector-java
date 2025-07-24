@@ -90,11 +90,11 @@
 
 [order.place](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#place-new-order-trade) - orderPlace - [OrderPlaceExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderPlaceExample.java#L51)
 
-[order.test](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-trade) - orderTest - [OrderTestExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderTestExample.java#L51)
+[order.test](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-trade) - orderTest - [OrderTestExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderTestExample.java#L53)
 
 [sor.order.place](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#place-new-order-using-sor-trade) - sorOrderPlace - [SorOrderPlaceExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderPlaceExample.java#L52)
 
-[sor.order.test](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderTestExample.java#L51)
+[sor.order.test](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderTestExample.java#L53)
 
 ## UserDataStream
 

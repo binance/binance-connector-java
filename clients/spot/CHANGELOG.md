@@ -1,5 +1,29 @@
 # Changelog
 
+## 5.0.0 - 2025-07-24
+
+### Changed (4)
+
+#### REST API
+
+- Added missing parameters to `orderTest()` (`POST /api/v3/order/test`)
+
+#### WebSocket API
+
+- Added missing parameters to `orderTest()`
+
+- Modified parameter `cancelOrderId`:
+  - format `Integer` → `Long`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+- Modified parameter `orderId`:
+  - format `Integer` → `Long`
+  - affected methods:
+    - `allOrders()` (`allOrders` method)
+    - `myTrades()` (`myTrades` method)
+    - `orderCancel()` (`order.cancel` method)
+    - `orderStatus()` (`order.status` method)
+
 ## 4.0.0 - 2025-07-16
 
 ### Added (1)
@@ -27,7 +51,6 @@
 - Modified response for `exchangeInfo()` method (`GET /api/v3/exchangeInfo`):
   - `symbols`: item property `amendAllowed` added
   - `symbols`: item property `allowAmend` deleted
-
 
 #### WebSocket API
 

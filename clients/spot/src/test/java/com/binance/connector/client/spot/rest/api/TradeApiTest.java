@@ -512,6 +512,10 @@ public class TradeApiTest {
     public void orderTestTest() throws ApiException, CryptoException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
 
+        orderTestRequest.symbol("BNBUSDT");
+        orderTestRequest.side(Side.BUY);
+        orderTestRequest.type(OrderType.MARKET);
+
         ApiResponse<OrderTestResponse> orderTestResponseApiResponse = api.orderTest(orderTestRequest);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -523,9 +527,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "6486465768232440fc305256c99d50fa366fe8e7f0e7be813f78507f50e0cb4c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order/test", actualRequest.url().encodedPath());
     }
@@ -581,6 +585,11 @@ public class TradeApiTest {
     public void sorOrderTestTest() throws ApiException, CryptoException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
 
+        sorOrderTestRequest.symbol("BNBUSDT");
+        sorOrderTestRequest.side(Side.BUY);
+        sorOrderTestRequest.type(OrderType.MARKET);
+        sorOrderTestRequest.quantity(1d);
+
         ApiResponse<SorOrderTestResponse> response = api.sorOrderTest(sorOrderTestRequest);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -593,9 +602,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "84bb7809eacf584b9d7dccae40864b17ca8fcf3de423b05e0a171b8a0c67ed62",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/sor/order/test", actualRequest.url().encodedPath());
     }

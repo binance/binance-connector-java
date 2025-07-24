@@ -18,6 +18,8 @@ import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
 import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderType;
+import com.binance.connector.client.spot.websocket.api.model.Side;
 import java.util.concurrent.CompletableFuture;
 
 /** API examples for TradeApi */
@@ -50,6 +52,9 @@ public class OrderTestExample {
      */
     public void orderTestExampleAsync() {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BNBUSDT");
+        orderTestRequest.side(Side.BUY);
+        orderTestRequest.type(OrderType.MARKET);
         CompletableFuture<OrderTestResponse> future = getApi().orderTest(orderTestRequest);
         future.handle(
                 (response, error) -> {
@@ -71,6 +76,9 @@ public class OrderTestExample {
      */
     public void orderTestExampleSync() {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BNBUSDT");
+        orderTestRequest.side(Side.BUY);
+        orderTestRequest.type(OrderType.MARKET);
         CompletableFuture<OrderTestResponse> future = getApi().orderTest(orderTestRequest);
         OrderTestResponse response = future.join();
         System.out.println(response);

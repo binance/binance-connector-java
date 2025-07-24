@@ -13,7 +13,7 @@ jobs:
       modified_targets: ${{ steps.filter.outputs.modified_targets }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -49,16 +49,16 @@ jobs:
     needs: detect-targets
     if: ${{ needs.detect-targets.outputs.modified_targets != '[]' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'adopt'
           cache: 'maven'
           cache-dependency-path: |
-            'clients/pom.xml'
-            'examples/pom.xml'
+            clients/pom.xml
+            examples/pom.xml
       - name: Validate modules
         run: |
           mvn -f clients/pom.xml -pl common install -Dgpg.skip

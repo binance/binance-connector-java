@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -41,6 +42,103 @@ public class OrderTestRequest {
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
     @jakarta.annotation.Nullable
     private Boolean computeCommissionRates;
+
+    public static final String SERIALIZED_NAME_SYMBOL = "symbol";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL)
+    @jakarta.annotation.Nonnull
+    private String symbol;
+
+    public static final String SERIALIZED_NAME_SIDE = "side";
+
+    @SerializedName(SERIALIZED_NAME_SIDE)
+    @jakarta.annotation.Nonnull
+    private Side side;
+
+    public static final String SERIALIZED_NAME_TYPE = "type";
+
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    @jakarta.annotation.Nonnull
+    private OrderType type;
+
+    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
+
+    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
+    @jakarta.annotation.Nullable
+    private TimeInForce timeInForce;
+
+    public static final String SERIALIZED_NAME_QUANTITY = "quantity";
+
+    @SerializedName(SERIALIZED_NAME_QUANTITY)
+    @jakarta.annotation.Nullable
+    private Double quantity;
+
+    public static final String SERIALIZED_NAME_QUOTE_ORDER_QTY = "quoteOrderQty";
+
+    @SerializedName(SERIALIZED_NAME_QUOTE_ORDER_QTY)
+    @jakarta.annotation.Nullable
+    private Double quoteOrderQty;
+
+    public static final String SERIALIZED_NAME_PRICE = "price";
+
+    @SerializedName(SERIALIZED_NAME_PRICE)
+    @jakarta.annotation.Nullable
+    private Double price;
+
+    public static final String SERIALIZED_NAME_NEW_CLIENT_ORDER_ID = "newClientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_NEW_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String newClientOrderId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_ID = "strategyId";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_ID)
+    @jakarta.annotation.Nullable
+    private Long strategyId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_TYPE)
+    @jakarta.annotation.Nullable
+    private Integer strategyType;
+
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private Double stopPrice;
+
+    public static final String SERIALIZED_NAME_TRAILING_DELTA = "trailingDelta";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_DELTA)
+    @jakarta.annotation.Nullable
+    private Long trailingDelta;
+
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
+
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
+    @jakarta.annotation.Nullable
+    private Double icebergQty;
+
+    public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
+
+    @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
+    @jakarta.annotation.Nullable
+    private NewOrderRespType newOrderRespType;
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private SelfTradePreventionMode selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
+
+    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
+    @jakarta.annotation.Nullable
+    private Long recvWindow;
 
     public OrderTestRequest() {}
 
@@ -65,6 +163,327 @@ public class OrderTestRequest {
         this.computeCommissionRates = computeCommissionRates;
     }
 
+    public OrderTestRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+        this.symbol = symbol;
+        return this;
+    }
+
+    /**
+     * Get symbol
+     *
+     * @return symbol
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+        this.symbol = symbol;
+    }
+
+    public OrderTestRequest side(@jakarta.annotation.Nonnull Side side) {
+        this.side = side;
+        return this;
+    }
+
+    /**
+     * Get side
+     *
+     * @return side
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public Side getSide() {
+        return side;
+    }
+
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
+        this.side = side;
+    }
+
+    public OrderTestRequest type(@jakarta.annotation.Nonnull OrderType type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public OrderType getType() {
+        return type;
+    }
+
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
+        this.type = type;
+    }
+
+    public OrderTestRequest timeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * Get timeInForce
+     *
+     * @return timeInForce
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    public void setTimeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+    }
+
+    public OrderTestRequest quantity(@jakarta.annotation.Nullable Double quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return quantity
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public OrderTestRequest quoteOrderQty(@jakarta.annotation.Nullable Double quoteOrderQty) {
+        this.quoteOrderQty = quoteOrderQty;
+        return this;
+    }
+
+    /**
+     * Get quoteOrderQty
+     *
+     * @return quoteOrderQty
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getQuoteOrderQty() {
+        return quoteOrderQty;
+    }
+
+    public void setQuoteOrderQty(@jakarta.annotation.Nullable Double quoteOrderQty) {
+        this.quoteOrderQty = quoteOrderQty;
+    }
+
+    public OrderTestRequest price(@jakarta.annotation.Nullable Double price) {
+        this.price = price;
+        return this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return price
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(@jakarta.annotation.Nullable Double price) {
+        this.price = price;
+    }
+
+    public OrderTestRequest newClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
+        this.newClientOrderId = newClientOrderId;
+        return this;
+    }
+
+    /**
+     * Get newClientOrderId
+     *
+     * @return newClientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getNewClientOrderId() {
+        return newClientOrderId;
+    }
+
+    public void setNewClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
+        this.newClientOrderId = newClientOrderId;
+    }
+
+    public OrderTestRequest strategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+        return this;
+    }
+
+    /**
+     * Get strategyId
+     *
+     * @return strategyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public OrderTestRequest strategyType(@jakarta.annotation.Nullable Integer strategyType) {
+        this.strategyType = strategyType;
+        return this;
+    }
+
+    /**
+     * Get strategyType
+     *
+     * @return strategyType
+     */
+    @jakarta.annotation.Nullable
+    public Integer getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(@jakarta.annotation.Nullable Integer strategyType) {
+        this.strategyType = strategyType;
+    }
+
+    public OrderTestRequest stopPrice(@jakarta.annotation.Nullable Double stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable Double stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
+    public OrderTestRequest trailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+        return this;
+    }
+
+    /**
+     * Get trailingDelta
+     *
+     * @return trailingDelta
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingDelta() {
+        return trailingDelta;
+    }
+
+    public void setTrailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+    }
+
+    public OrderTestRequest icebergQty(@jakarta.annotation.Nullable Double icebergQty) {
+        this.icebergQty = icebergQty;
+        return this;
+    }
+
+    /**
+     * Get icebergQty
+     *
+     * @return icebergQty
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getIcebergQty() {
+        return icebergQty;
+    }
+
+    public void setIcebergQty(@jakarta.annotation.Nullable Double icebergQty) {
+        this.icebergQty = icebergQty;
+    }
+
+    public OrderTestRequest newOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+        return this;
+    }
+
+    /**
+     * Get newOrderRespType
+     *
+     * @return newOrderRespType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public NewOrderRespType getNewOrderRespType() {
+        return newOrderRespType;
+    }
+
+    public void setNewOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+    }
+
+    public OrderTestRequest selfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public OrderTestRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
+        return this;
+    }
+
+    /**
+     * Get recvWindow
+     *
+     * @return recvWindow
+     */
+    @jakarta.annotation.Nullable
+    public Long getRecvWindow() {
+        return recvWindow;
+    }
+
+    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -74,12 +493,46 @@ public class OrderTestRequest {
             return false;
         }
         OrderTestRequest orderTestRequest = (OrderTestRequest) o;
-        return Objects.equals(this.computeCommissionRates, orderTestRequest.computeCommissionRates);
+        return Objects.equals(this.computeCommissionRates, orderTestRequest.computeCommissionRates)
+                && Objects.equals(this.symbol, orderTestRequest.symbol)
+                && Objects.equals(this.side, orderTestRequest.side)
+                && Objects.equals(this.type, orderTestRequest.type)
+                && Objects.equals(this.timeInForce, orderTestRequest.timeInForce)
+                && Objects.equals(this.quantity, orderTestRequest.quantity)
+                && Objects.equals(this.quoteOrderQty, orderTestRequest.quoteOrderQty)
+                && Objects.equals(this.price, orderTestRequest.price)
+                && Objects.equals(this.newClientOrderId, orderTestRequest.newClientOrderId)
+                && Objects.equals(this.strategyId, orderTestRequest.strategyId)
+                && Objects.equals(this.strategyType, orderTestRequest.strategyType)
+                && Objects.equals(this.stopPrice, orderTestRequest.stopPrice)
+                && Objects.equals(this.trailingDelta, orderTestRequest.trailingDelta)
+                && Objects.equals(this.icebergQty, orderTestRequest.icebergQty)
+                && Objects.equals(this.newOrderRespType, orderTestRequest.newOrderRespType)
+                && Objects.equals(
+                        this.selfTradePreventionMode, orderTestRequest.selfTradePreventionMode)
+                && Objects.equals(this.recvWindow, orderTestRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(computeCommissionRates);
+        return Objects.hash(
+                computeCommissionRates,
+                symbol,
+                side,
+                type,
+                timeInForce,
+                quantity,
+                quoteOrderQty,
+                price,
+                newClientOrderId,
+                strategyId,
+                strategyType,
+                stopPrice,
+                trailingDelta,
+                icebergQty,
+                newOrderRespType,
+                selfTradePreventionMode,
+                recvWindow);
     }
 
     @Override
@@ -89,6 +542,24 @@ public class OrderTestRequest {
         sb.append("		computeCommissionRates: ")
                 .append(toIndentedString(computeCommissionRates))
                 .append("\n");
+        sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		side: ").append(toIndentedString(side)).append("\n");
+        sb.append("		type: ").append(toIndentedString(type)).append("\n");
+        sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
+        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
+        sb.append("		quoteOrderQty: ").append(toIndentedString(quoteOrderQty)).append("\n");
+        sb.append("		price: ").append(toIndentedString(price)).append("\n");
+        sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
+        sb.append("		strategyId: ").append(toIndentedString(strategyId)).append("\n");
+        sb.append("		strategyType: ").append(toIndentedString(strategyType)).append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		trailingDelta: ").append(toIndentedString(trailingDelta)).append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
+        sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
+        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -102,6 +573,72 @@ public class OrderTestRequest {
         sb.append("computeCommissionRates=")
                 .append(urlEncode(computeCommissionRatesValueAsString))
                 .append("");
+        Object symbolValue = getSymbol();
+        String symbolValueAsString = "";
+        symbolValueAsString = symbolValue.toString();
+        sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object sideValue = getSide();
+        String sideValueAsString = "";
+        sideValueAsString = sideValue.toString();
+        sb.append("side=").append(urlEncode(sideValueAsString)).append("");
+        Object typeValue = getType();
+        String typeValueAsString = "";
+        typeValueAsString = typeValue.toString();
+        sb.append("type=").append(urlEncode(typeValueAsString)).append("");
+        Object timeInForceValue = getTimeInForce();
+        String timeInForceValueAsString = "";
+        timeInForceValueAsString = timeInForceValue.toString();
+        sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
+        Object quantityValue = getQuantity();
+        String quantityValueAsString = "";
+        quantityValueAsString = quantityValue.toString();
+        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
+        Object quoteOrderQtyValue = getQuoteOrderQty();
+        String quoteOrderQtyValueAsString = "";
+        quoteOrderQtyValueAsString = quoteOrderQtyValue.toString();
+        sb.append("quoteOrderQty=").append(urlEncode(quoteOrderQtyValueAsString)).append("");
+        Object priceValue = getPrice();
+        String priceValueAsString = "";
+        priceValueAsString = priceValue.toString();
+        sb.append("price=").append(urlEncode(priceValueAsString)).append("");
+        Object newClientOrderIdValue = getNewClientOrderId();
+        String newClientOrderIdValueAsString = "";
+        newClientOrderIdValueAsString = newClientOrderIdValue.toString();
+        sb.append("newClientOrderId=").append(urlEncode(newClientOrderIdValueAsString)).append("");
+        Object strategyIdValue = getStrategyId();
+        String strategyIdValueAsString = "";
+        strategyIdValueAsString = strategyIdValue.toString();
+        sb.append("strategyId=").append(urlEncode(strategyIdValueAsString)).append("");
+        Object strategyTypeValue = getStrategyType();
+        String strategyTypeValueAsString = "";
+        strategyTypeValueAsString = strategyTypeValue.toString();
+        sb.append("strategyType=").append(urlEncode(strategyTypeValueAsString)).append("");
+        Object stopPriceValue = getStopPrice();
+        String stopPriceValueAsString = "";
+        stopPriceValueAsString = stopPriceValue.toString();
+        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object trailingDeltaValue = getTrailingDelta();
+        String trailingDeltaValueAsString = "";
+        trailingDeltaValueAsString = trailingDeltaValue.toString();
+        sb.append("trailingDelta=").append(urlEncode(trailingDeltaValueAsString)).append("");
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
+        Object newOrderRespTypeValue = getNewOrderRespType();
+        String newOrderRespTypeValueAsString = "";
+        newOrderRespTypeValueAsString = newOrderRespTypeValue.toString();
+        sb.append("newOrderRespType=").append(urlEncode(newOrderRespTypeValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
+        Object recvWindowValue = getRecvWindow();
+        String recvWindowValueAsString = "";
+        recvWindowValueAsString = recvWindowValue.toString();
+        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         return sb.toString();
     }
 
@@ -131,9 +668,28 @@ public class OrderTestRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("computeCommissionRates");
+        openapiFields.add("symbol");
+        openapiFields.add("side");
+        openapiFields.add("type");
+        openapiFields.add("timeInForce");
+        openapiFields.add("quantity");
+        openapiFields.add("quoteOrderQty");
+        openapiFields.add("price");
+        openapiFields.add("newClientOrderId");
+        openapiFields.add("strategyId");
+        openapiFields.add("strategyType");
+        openapiFields.add("stopPrice");
+        openapiFields.add("trailingDelta");
+        openapiFields.add("icebergQty");
+        openapiFields.add("newOrderRespType");
+        openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("symbol");
+        openapiRequiredFields.add("side");
+        openapiRequiredFields.add("type");
     }
 
     /**
@@ -153,7 +709,51 @@ public class OrderTestRequest {
                                 OrderTestRequest.openapiRequiredFields.toString()));
             }
         }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : OrderTestRequest.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
+            }
+        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `symbol` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("symbol").toString()));
+        }
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
+        // validate the optional field `timeInForce`
+        if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
+            TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
+        }
+        if ((jsonObj.get("newClientOrderId") != null
+                        && !jsonObj.get("newClientOrderId").isJsonNull())
+                && !jsonObj.get("newClientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `newClientOrderId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("newClientOrderId").toString()));
+        }
+        // validate the optional field `newOrderRespType`
+        if (jsonObj.get("newOrderRespType") != null
+                && !jsonObj.get("newOrderRespType").isJsonNull()) {
+            NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
+        }
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
