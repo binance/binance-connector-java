@@ -52,9 +52,8 @@ public class ConvertRestApi {
      * <tr><td> 200 </td><td> List All Convert Pairs </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a
-     *     href="https://developers.binance.com/docs/convert/market-data/List-All-Convert-Pairs">List
-     *     All Convert Pairs Documentation</a>
+     * @see <a href="https://developers.binance.com/docs/convert/market-data/">List All Convert
+     *     Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(
             String fromAsset, String toAsset) throws ApiException {

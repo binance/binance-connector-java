@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1 - 2025-08-07
+- Update `binance/common` module to version `2.0.0`.
+- Add `Content-Type` header only if there is a body.
+
 ## 3.0.0 - 2025-07-08
 
 ### Added (1)

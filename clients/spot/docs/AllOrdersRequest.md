@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  |
-|**orderId** | **Integer** |  |  [optional] |
+|**orderId** | **Long** |  |  [optional] |
 |**startTime** | **Long** |  |  [optional] |
 |**endTime** | **Long** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |

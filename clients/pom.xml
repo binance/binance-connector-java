@@ -5,7 +5,7 @@
     <artifactId>binance-connector-java-clients</artifactId>
     <packaging>pom</packaging>
     <name>binance-connector-java-clients</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <url>https://github.com/binance/binance-connector-java</url>
     <description>Java connector to Binance APIs</description>
 
@@ -80,7 +80,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.7.0</version>
+                <version>0.8.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
@@ -352,11 +352,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind-version}</version>
         </dependency>
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>${jakarta.ws.rs-api-version}</version>
-        </dependency>
         <!-- test dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -385,7 +380,7 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.17.2</version>
+            <version>1.19.0</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -405,14 +400,13 @@
         <gson-fire-version>1.9.0</gson-fire-version>
         <okhttp-version>4.12.0</okhttp-version>
         <gson-version>2.12.1</gson-version>
-        <commons-lang3-version>3.17.0</commons-lang3-version>
+        <commons-lang3-version>3.18.0</commons-lang3-version>
         <jackson-databind-nullable-version>0.2.6</jackson-databind-nullable-version>
         <jackson-databind-version>2.19.0</jackson-databind-version>
         <jakarta-annotation-version>3.0.0</jakarta-annotation-version>
         <beanvalidation-version>3.1.1</beanvalidation-version>
         <junit-version>5.10.3</junit-version>
         <junit-platform-runner.version>1.10.0</junit-platform-runner.version>
-        <jakarta.ws.rs-api-version>2.1.6</jakarta.ws.rs-api-version>
         <jsr311-api-version>1.1.1</jsr311-api-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spotless.version>2.44.4</spotless.version>

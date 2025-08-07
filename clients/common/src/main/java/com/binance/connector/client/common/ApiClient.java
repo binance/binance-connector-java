@@ -1300,7 +1300,7 @@ public class ApiClient {
             Map<String, String> headerParams,
             Map<String, String> cookieParams,
             Map<String, Object> formParams,
-            String[] authNames)
+            Set<String> authNames)
             throws ApiException {
         Request request =
                 buildRequest(
@@ -1387,7 +1387,7 @@ public class ApiClient {
             Map<String, String> headerParams,
             Map<String, String> cookieParams,
             Map<String, Object> formParams,
-            String[] authNames)
+            Set<String> authNames)
             throws ApiException {
         final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
 
@@ -1420,22 +1420,11 @@ public class ApiClient {
 
         List<Pair> updatedQueryParams = new ArrayList<>(queryParams);
 
-        boolean hasAuth =
-                Arrays.stream(authNames)
-                        .anyMatch(
-                                s -> s.equals(BINANCE_SIGNATURE) || s.equals(BINANCE_API_KEY_ONLY));
-
-        // add api key to every request
-        String[] finalAuthNames;
-        if (!hasAuth) {
-            finalAuthNames = append(authNames, BINANCE_API_KEY_ONLY);
-        } else {
-            finalAuthNames = authNames;
-        }
+        authNames.add(BINANCE_API_KEY_ONLY);
 
         // update parameters with authentication settings
         updateParamsForAuth(
-                finalAuthNames,
+                authNames,
                 updatedQueryParams,
                 headerParams,
                 cookieParams,
@@ -1571,7 +1560,7 @@ public class ApiClient {
      * @throws com.binance.connector.client.common.ApiException If fails to update the parameters
      */
     public void updateParamsForAuth(
-            String[] authNames,
+            Set<String> authNames,
             List<Pair> queryParams,
             Map<String, String> headerParams,
             Map<String, String> cookieParams,

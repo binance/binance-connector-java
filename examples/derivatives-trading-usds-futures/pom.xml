@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.github.binance</groupId>
             <artifactId>binance-derivatives-trading-usds-futures</artifactId>
-            <version>4.0.0</version>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
 </project>

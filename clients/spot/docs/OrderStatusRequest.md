@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  |
-|**orderId** | **Integer** |  |  [optional] |
+|**orderId** | **Long** |  |  [optional] |
 |**origClientOrderId** | **String** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
