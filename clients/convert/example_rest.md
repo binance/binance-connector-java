@@ -1,6 +1,6 @@
 ## MarketData
 
-[GET /sapi/v1/convert/exchangeInfo](https://developers.binance.com/docs/convert/market-data/List-All-Convert-Pairs) - listAllConvertPairs - [ListAllConvertPairsExample.java:48](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/ListAllConvertPairsExample.java#L48)
+[GET /sapi/v1/convert/exchangeInfo](https://developers.binance.com/docs/convert/market-data/) - listAllConvertPairs - [ListAllConvertPairsExample.java:48](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/ListAllConvertPairsExample.java#L48)
 
 [GET /sapi/v1/convert/assetInfo](https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset) - queryOrderQuantityPrecisionPerAsset - [QueryOrderQuantityPrecisionPerAssetExample.java:46](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/QueryOrderQuantityPrecisionPerAssetExample.java#L46)
 

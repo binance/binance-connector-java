@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  |
 |**cancelReplaceMode** | **CancelReplaceMode** |  |  |
-|**cancelOrderId** | **Integer** |  |  [optional] |
+|**cancelOrderId** | **Long** |  |  [optional] |
 |**cancelOrigClientOrderId** | **String** |  |  [optional] |
 |**cancelNewClientOrderId** | **String** |  |  [optional] |
 |**side** | **Side** |  |  |

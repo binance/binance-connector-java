@@ -54,7 +54,7 @@ Each connector is published as a separate maven dependency. For example:
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-spot</artifactId>
-  <version>3.1.0</version>
+  <version>5.0.1</version>
 </dependency>
 ```
 
