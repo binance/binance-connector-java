@@ -134,6 +134,24 @@ public class OrderTestRequest {
     @jakarta.annotation.Nullable
     private SelfTradePreventionMode selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PegPriceType pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PegOffsetType pegOffsetType;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -465,6 +483,66 @@ public class OrderTestRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
+    public OrderTestRequest pegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pegPriceType
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegPriceType getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OrderTestRequest pegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetValue
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OrderTestRequest pegOffsetType(
+            @jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetType
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegOffsetType getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
     public OrderTestRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -510,6 +588,9 @@ public class OrderTestRequest {
                 && Objects.equals(this.newOrderRespType, orderTestRequest.newOrderRespType)
                 && Objects.equals(
                         this.selfTradePreventionMode, orderTestRequest.selfTradePreventionMode)
+                && Objects.equals(this.pegPriceType, orderTestRequest.pegPriceType)
+                && Objects.equals(this.pegOffsetValue, orderTestRequest.pegOffsetValue)
+                && Objects.equals(this.pegOffsetType, orderTestRequest.pegOffsetType)
                 && Objects.equals(this.recvWindow, orderTestRequest.recvWindow);
     }
 
@@ -532,6 +613,9 @@ public class OrderTestRequest {
                 icebergQty,
                 newOrderRespType,
                 selfTradePreventionMode,
+                pegPriceType,
+                pegOffsetValue,
+                pegOffsetType,
                 recvWindow);
     }
 
@@ -559,6 +643,9 @@ public class OrderTestRequest {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -635,6 +722,18 @@ public class OrderTestRequest {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object pegPriceTypeValue = getPegPriceType();
+        String pegPriceTypeValueAsString = "";
+        pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+        sb.append("pegPriceType=").append(urlEncode(pegPriceTypeValueAsString)).append("");
+        Object pegOffsetValueValue = getPegOffsetValue();
+        String pegOffsetValueValueAsString = "";
+        pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+        sb.append("pegOffsetValue=").append(urlEncode(pegOffsetValueValueAsString)).append("");
+        Object pegOffsetTypeValue = getPegOffsetType();
+        String pegOffsetTypeValueAsString = "";
+        pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+        sb.append("pegOffsetType=").append(urlEncode(pegOffsetTypeValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -683,6 +782,9 @@ public class OrderTestRequest {
         openapiFields.add("icebergQty");
         openapiFields.add("newOrderRespType");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("pegOffsetType");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -753,6 +855,14 @@ public class OrderTestRequest {
         if (jsonObj.get("selfTradePreventionMode") != null
                 && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
             SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
+        }
+        // validate the optional field `pegPriceType`
+        if (jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull()) {
+            PegPriceType.validateJsonElement(jsonObj.get("pegPriceType"));
+        }
+        // validate the optional field `pegOffsetType`
+        if (jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull()) {
+            PegOffsetType.validateJsonElement(jsonObj.get("pegOffsetType"));
         }
     }
 

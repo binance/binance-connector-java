@@ -21,6 +21,7 @@ import com.binance.connector.client.common.websocket.dtos.StreamResponse;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
 import com.binance.connector.client.spot.websocket.api.JSON;
+import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
@@ -28,6 +29,8 @@ import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStart
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -48,6 +51,47 @@ public class UserDataStreamApi {
     public UserDataStreamApi(ConnectionInterface connection) {
         this.connection = connection;
     }
+
+    /**
+     * WebSocket Listing all subscriptions Weight: 2 **Data Source**: Memory
+     *
+     * @return SessionSubscriptionsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Listing all subscriptions </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#listing-all-subscriptions">WebSocket
+     *     Listing all subscriptions Documentation</a>
+     */
+    public CompletableFuture<SessionSubscriptionsResponse> sessionSubscriptions()
+            throws ApiException {
+        sessionSubscriptionsValidateBeforeCall();
+        String methodName = "/session.subscriptions".substring(1);
+        ApiRequestWrapperDTO<BaseRequestDTO, SessionSubscriptionsResponse> build =
+                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, SessionSubscriptionsResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(new BaseRequestDTO())
+                        .responseType(SessionSubscriptionsResponse.class)
+                        .signed(false)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void sessionSubscriptionsValidateBeforeCall() throws ApiException {}
 
     /**
      * WebSocket Ping user data stream Ping a user data stream to keep it alive. User data streams
@@ -271,9 +315,58 @@ public class UserDataStreamApi {
     private void userDataStreamSubscribeValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
-     * current WebSocket connection. Weight: 2
+     * WebSocket Subscribe to User Data Stream through signature subscription Weight: 2
      *
+     * @return UserDataStreamSubscribeSignatureResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Subscribe to User Data Stream through signature subscription </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_data">WebSocket
+     *     Subscribe to User Data Stream through signature subscription Documentation</a>
+     */
+    public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribeSignature() throws ApiException {
+        userDataStreamSubscribeSignatureValidateBeforeCall();
+        String methodName = "/userDataStream.subscribe.signature".substring(1);
+        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeSignatureResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                BaseRequestDTO, UserDataStreamSubscribeSignatureResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(new BaseRequestDTO())
+                        .responseType(UserDataStreamSubscribeSignatureResponse.class)
+                        .build();
+
+        try {
+            BlockingQueue<String> queue = connection.sendForStream(build);
+            TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
+
+            return new StreamResponse<>(
+                    build.getResponseCallback(),
+                    new StreamBlockingQueueWrapper<>(
+                            new StreamBlockingQueue<>(queue), typeToken, JSON.getGson()));
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void userDataStreamSubscribeSignatureValidateBeforeCall() throws ApiException {}
+
+    /**
+     * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
+     * current WebSocket connection. Note that &#x60;session.logout&#x60; will only close the
+     * subscription created with &#x60;userdataStream.subscribe&#x60; but not subscriptions opened
+     * with &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
+     *
+     * @param userDataStreamUnsubscribeRequest (optional)
      * @return UserDataStreamUnsubscribeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -285,22 +378,24 @@ public class UserDataStreamApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream-user_stream">WebSocket
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream">WebSocket
      *     Unsubscribe from User Data Stream Documentation</a>
      */
-    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe()
-            throws ApiException {
-        userDataStreamUnsubscribeValidateBeforeCall();
+    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        userDataStreamUnsubscribeValidateBeforeCall(userDataStreamUnsubscribeRequest);
         String methodName = "/userDataStream.unsubscribe".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamUnsubscribeResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                BaseRequestDTO, UserDataStreamUnsubscribeResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(new BaseRequestDTO())
-                        .responseType(UserDataStreamUnsubscribeResponse.class)
-                        .signed(false)
-                        .build();
+        ApiRequestWrapperDTO<UserDataStreamUnsubscribeRequest, UserDataStreamUnsubscribeResponse>
+                build =
+                        new ApiRequestWrapperDTO.Builder<
+                                        UserDataStreamUnsubscribeRequest,
+                                        UserDataStreamUnsubscribeResponse>()
+                                .id(getRequestID())
+                                .method(methodName)
+                                .params(userDataStreamUnsubscribeRequest)
+                                .responseType(UserDataStreamUnsubscribeResponse.class)
+                                .signed(false)
+                                .build();
 
         try {
             connection.send(build);
@@ -311,7 +406,27 @@ public class UserDataStreamApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private void userDataStreamUnsubscribeValidateBeforeCall() throws ApiException {}
+    private void userDataStreamUnsubscribeValidateBeforeCall(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<UserDataStreamUnsubscribeRequest>> violations =
+                    validator.validate(userDataStreamUnsubscribeRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
 
     public String getRequestID() {
         return UUID.randomUUID().toString();

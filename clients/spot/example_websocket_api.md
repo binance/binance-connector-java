@@ -98,6 +98,8 @@
 
 ## UserDataStream
 
+[session.subscriptions](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#listing-all-subscriptions) - sessionSubscriptions - [SessionSubscriptionsExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/SessionSubscriptionsExample.java#L47)
+
 [userDataStream.ping](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#ping-user-data-stream-user_stream) - userDataStreamPing - [UserDataStreamPingExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamPingExample.java#L51)
 
 [userDataStream.start](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#start-user-data-stream-user_stream) - userDataStreamStart - [UserDataStreamStartExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamStartExample.java#L47)
@@ -106,5 +108,7 @@
 
 [userDataStream.subscribe](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-user_stream) - userDataStreamSubscribe - [UserDataStreamSubscribeExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeExample.java#L49)
 
-[userDataStream.unsubscribe](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream-user_stream) - userDataStreamUnsubscribe - [UserDataStreamUnsubscribeExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamUnsubscribeExample.java#L47)
+[userDataStream.subscribe.signature](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_data) - userDataStreamSubscribeSignature - [UserDataStreamSubscribeSignatureExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeSignatureExample.java#L49)
+
+[userDataStream.unsubscribe](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream) - userDataStreamUnsubscribe - [UserDataStreamUnsubscribeExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamUnsubscribeExample.java#L51)
 

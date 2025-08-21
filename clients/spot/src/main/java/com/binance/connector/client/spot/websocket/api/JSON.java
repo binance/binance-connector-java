@@ -177,6 +177,10 @@ public class JSON {
                         .AccountCommissionResponseResultDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
+                        .AccountCommissionResponseResultSpecialCommission
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
                         .AccountCommissionResponseResultStandardCommission
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -532,6 +536,10 @@ public class JSON {
                         .OrderTestResponseResultDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
+                        .OrderTestResponseResultSpecialCommissionForOrder
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
                         .OrderTestResponseResultStandardCommissionForOrder
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -574,6 +582,12 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.api.model
                         .SessionStatusResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
+                        .SessionSubscriptionsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
+                        .SessionSubscriptionsResponseResultInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -590,6 +604,9 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.SorOrderTestResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model.SorOrderTestResponseResult
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model.Symbols
@@ -738,6 +755,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .UserDataStreamSubscribeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
+                        .UserDataStreamSubscribeSignatureResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.api.model
+                        .UserDataStreamUnsubscribeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.api.model
                         .UserDataStreamUnsubscribeResponse.CustomTypeAdapterFactory());

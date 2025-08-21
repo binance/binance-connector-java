@@ -146,6 +146,12 @@ public class ExchangeInfoResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private Boolean amendAllowed;
 
+    public static final String SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED = "pegInstructionsAllowed";
+
+    @SerializedName(SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean pegInstructionsAllowed;
+
     public static final String SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED = "isSpotTradingAllowed";
 
     @SerializedName(SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED)
@@ -541,6 +547,27 @@ public class ExchangeInfoResponseSymbolsInner {
         this.amendAllowed = amendAllowed;
     }
 
+    public ExchangeInfoResponseSymbolsInner pegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
+        return this;
+    }
+
+    /**
+     * Get pegInstructionsAllowed
+     *
+     * @return pegInstructionsAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPegInstructionsAllowed() {
+        return pegInstructionsAllowed;
+    }
+
+    public void setPegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
+    }
+
     public ExchangeInfoResponseSymbolsInner isSpotTradingAllowed(
             @jakarta.annotation.Nullable Boolean isSpotTradingAllowed) {
         this.isSpotTradingAllowed = isSpotTradingAllowed;
@@ -754,6 +781,9 @@ public class ExchangeInfoResponseSymbolsInner {
                         exchangeInfoResponseSymbolsInner.cancelReplaceAllowed)
                 && Objects.equals(this.amendAllowed, exchangeInfoResponseSymbolsInner.amendAllowed)
                 && Objects.equals(
+                        this.pegInstructionsAllowed,
+                        exchangeInfoResponseSymbolsInner.pegInstructionsAllowed)
+                && Objects.equals(
                         this.isSpotTradingAllowed,
                         exchangeInfoResponseSymbolsInner.isSpotTradingAllowed)
                 && Objects.equals(
@@ -791,6 +821,7 @@ public class ExchangeInfoResponseSymbolsInner {
                 allowTrailingStop,
                 cancelReplaceAllowed,
                 amendAllowed,
+                pegInstructionsAllowed,
                 isSpotTradingAllowed,
                 isMarginTradingAllowed,
                 filters,
@@ -833,6 +864,9 @@ public class ExchangeInfoResponseSymbolsInner {
                 .append(toIndentedString(cancelReplaceAllowed))
                 .append("\n");
         sb.append("		amendAllowed: ").append(toIndentedString(amendAllowed)).append("\n");
+        sb.append("		pegInstructionsAllowed: ")
+                .append(toIndentedString(pegInstructionsAllowed))
+                .append("\n");
         sb.append("		isSpotTradingAllowed: ")
                 .append(toIndentedString(isSpotTradingAllowed))
                 .append("\n");
@@ -940,6 +974,12 @@ public class ExchangeInfoResponseSymbolsInner {
         String amendAllowedValueAsString = "";
         amendAllowedValueAsString = amendAllowedValue.toString();
         sb.append("amendAllowed=").append(urlEncode(amendAllowedValueAsString)).append("");
+        Object pegInstructionsAllowedValue = getPegInstructionsAllowed();
+        String pegInstructionsAllowedValueAsString = "";
+        pegInstructionsAllowedValueAsString = pegInstructionsAllowedValue.toString();
+        sb.append("pegInstructionsAllowed=")
+                .append(urlEncode(pegInstructionsAllowedValueAsString))
+                .append("");
         Object isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         String isSpotTradingAllowedValueAsString = "";
         isSpotTradingAllowedValueAsString = isSpotTradingAllowedValue.toString();
@@ -1031,6 +1071,7 @@ public class ExchangeInfoResponseSymbolsInner {
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");
         openapiFields.add("amendAllowed");
+        openapiFields.add("pegInstructionsAllowed");
         openapiFields.add("isSpotTradingAllowed");
         openapiFields.add("isMarginTradingAllowed");
         openapiFields.add("filters");

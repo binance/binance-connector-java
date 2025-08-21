@@ -147,6 +147,12 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean amendAllowed;
 
+    public static final String SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED = "pegInstructionsAllowed";
+
+    @SerializedName(SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean pegInstructionsAllowed;
+
     public static final String SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED = "isSpotTradingAllowed";
 
     @SerializedName(SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED)
@@ -544,6 +550,27 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         this.amendAllowed = amendAllowed;
     }
 
+    public ExchangeInfoResponseResultSymbolsInner pegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
+        return this;
+    }
+
+    /**
+     * Get pegInstructionsAllowed
+     *
+     * @return pegInstructionsAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPegInstructionsAllowed() {
+        return pegInstructionsAllowed;
+    }
+
+    public void setPegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
+    }
+
     public ExchangeInfoResponseResultSymbolsInner isSpotTradingAllowed(
             @jakarta.annotation.Nullable Boolean isSpotTradingAllowed) {
         this.isSpotTradingAllowed = isSpotTradingAllowed;
@@ -764,6 +791,9 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 && Objects.equals(
                         this.amendAllowed, exchangeInfoResponseResultSymbolsInner.amendAllowed)
                 && Objects.equals(
+                        this.pegInstructionsAllowed,
+                        exchangeInfoResponseResultSymbolsInner.pegInstructionsAllowed)
+                && Objects.equals(
                         this.isSpotTradingAllowed,
                         exchangeInfoResponseResultSymbolsInner.isSpotTradingAllowed)
                 && Objects.equals(
@@ -802,6 +832,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 allowTrailingStop,
                 cancelReplaceAllowed,
                 amendAllowed,
+                pegInstructionsAllowed,
                 isSpotTradingAllowed,
                 isMarginTradingAllowed,
                 filters,
@@ -844,6 +875,9 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 .append(toIndentedString(cancelReplaceAllowed))
                 .append("\n");
         sb.append("		amendAllowed: ").append(toIndentedString(amendAllowed)).append("\n");
+        sb.append("		pegInstructionsAllowed: ")
+                .append(toIndentedString(pegInstructionsAllowed))
+                .append("\n");
         sb.append("		isSpotTradingAllowed: ")
                 .append(toIndentedString(isSpotTradingAllowed))
                 .append("\n");
@@ -952,6 +986,11 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         if (amendAllowedValue != null) {
             String amendAllowedValueAsString = amendAllowedValue.toString();
             valMap.put("amendAllowed", amendAllowedValueAsString);
+        }
+        Boolean pegInstructionsAllowedValue = getPegInstructionsAllowed();
+        if (pegInstructionsAllowedValue != null) {
+            String pegInstructionsAllowedValueAsString = pegInstructionsAllowedValue.toString();
+            valMap.put("pegInstructionsAllowed", pegInstructionsAllowedValueAsString);
         }
         Boolean isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         if (isSpotTradingAllowedValue != null) {
@@ -1072,6 +1111,10 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         if (amendAllowedValue != null) {
             valMap.put("amendAllowed", amendAllowedValue);
         }
+        Object pegInstructionsAllowedValue = getPegInstructionsAllowed();
+        if (pegInstructionsAllowedValue != null) {
+            valMap.put("pegInstructionsAllowed", pegInstructionsAllowedValue);
+        }
         Object isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         if (isSpotTradingAllowedValue != null) {
             valMap.put("isSpotTradingAllowed", isSpotTradingAllowedValue);
@@ -1143,6 +1186,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");
         openapiFields.add("amendAllowed");
+        openapiFields.add("pegInstructionsAllowed");
         openapiFields.add("isSpotTradingAllowed");
         openapiFields.add("isMarginTradingAllowed");
         openapiFields.add("filters");

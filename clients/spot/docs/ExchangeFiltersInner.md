@@ -35,6 +35,8 @@
 |**maxTrailingAboveDelta** | **Long** |  |  [optional] |
 |**minTrailingBelowDelta** | **Long** |  |  [optional] |
 |**maxTrailingBelowDelta** | **Long** |  |  [optional] |
+|**maxNumOrderAmends** | **Long** |  |  [optional] |
+|**maxNumOrderLists** | **Long** |  |  [optional] |
 
 
 

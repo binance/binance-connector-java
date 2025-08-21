@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**OrderTestResponseResult**](OrderTestResponseResult.md) |  |  [optional] |
+|**result** | [**SorOrderTestResponseResult**](SorOrderTestResponseResult.md) |  |  [optional] |
 |**rateLimits** | **RateLimits** |  |  [optional] |
 
 

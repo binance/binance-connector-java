@@ -119,6 +119,24 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Integer aboveStrategyType;
 
+    public static final String SERIALIZED_NAME_ABOVE_PEG_PRICE_TYPE = "abovePegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private AbovePegPriceType abovePegPriceType;
+
+    public static final String SERIALIZED_NAME_ABOVE_PEG_OFFSET_TYPE = "abovePegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private AbovePegOffsetType abovePegOffsetType;
+
+    public static final String SERIALIZED_NAME_ABOVE_PEG_OFFSET_VALUE = "abovePegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer abovePegOffsetValue;
+
     public static final String SERIALIZED_NAME_BELOW_TYPE = "belowType";
 
     @SerializedName(SERIALIZED_NAME_BELOW_TYPE)
@@ -172,6 +190,24 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_BELOW_STRATEGY_TYPE)
     @jakarta.annotation.Nullable
     private Integer belowStrategyType;
+
+    public static final String SERIALIZED_NAME_BELOW_PEG_PRICE_TYPE = "belowPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private BelowPegPriceType belowPegPriceType;
+
+    public static final String SERIALIZED_NAME_BELOW_PEG_OFFSET_TYPE = "belowPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private BelowPegOffsetType belowPegOffsetType;
+
+    public static final String SERIALIZED_NAME_BELOW_PEG_OFFSET_VALUE = "belowPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer belowPegOffsetValue;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
@@ -459,6 +495,70 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         this.aboveStrategyType = aboveStrategyType;
     }
 
+    public OrderListPlaceOcoRequest abovePegPriceType(
+            @jakarta.annotation.Nullable AbovePegPriceType abovePegPriceType) {
+        this.abovePegPriceType = abovePegPriceType;
+        return this;
+    }
+
+    /**
+     * Get abovePegPriceType
+     *
+     * @return abovePegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AbovePegPriceType getAbovePegPriceType() {
+        return abovePegPriceType;
+    }
+
+    public void setAbovePegPriceType(
+            @jakarta.annotation.Nullable AbovePegPriceType abovePegPriceType) {
+        this.abovePegPriceType = abovePegPriceType;
+    }
+
+    public OrderListPlaceOcoRequest abovePegOffsetType(
+            @jakarta.annotation.Nullable AbovePegOffsetType abovePegOffsetType) {
+        this.abovePegOffsetType = abovePegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get abovePegOffsetType
+     *
+     * @return abovePegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AbovePegOffsetType getAbovePegOffsetType() {
+        return abovePegOffsetType;
+    }
+
+    public void setAbovePegOffsetType(
+            @jakarta.annotation.Nullable AbovePegOffsetType abovePegOffsetType) {
+        this.abovePegOffsetType = abovePegOffsetType;
+    }
+
+    public OrderListPlaceOcoRequest abovePegOffsetValue(
+            @jakarta.annotation.Nullable Integer abovePegOffsetValue) {
+        this.abovePegOffsetValue = abovePegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get abovePegOffsetValue
+     *
+     * @return abovePegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getAbovePegOffsetValue() {
+        return abovePegOffsetValue;
+    }
+
+    public void setAbovePegOffsetValue(@jakarta.annotation.Nullable Integer abovePegOffsetValue) {
+        this.abovePegOffsetValue = abovePegOffsetValue;
+    }
+
     public OrderListPlaceOcoRequest belowType(@jakarta.annotation.Nonnull BelowType belowType) {
         this.belowType = belowType;
         return this;
@@ -643,6 +743,70 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         this.belowStrategyType = belowStrategyType;
     }
 
+    public OrderListPlaceOcoRequest belowPegPriceType(
+            @jakarta.annotation.Nullable BelowPegPriceType belowPegPriceType) {
+        this.belowPegPriceType = belowPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get belowPegPriceType
+     *
+     * @return belowPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public BelowPegPriceType getBelowPegPriceType() {
+        return belowPegPriceType;
+    }
+
+    public void setBelowPegPriceType(
+            @jakarta.annotation.Nullable BelowPegPriceType belowPegPriceType) {
+        this.belowPegPriceType = belowPegPriceType;
+    }
+
+    public OrderListPlaceOcoRequest belowPegOffsetType(
+            @jakarta.annotation.Nullable BelowPegOffsetType belowPegOffsetType) {
+        this.belowPegOffsetType = belowPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get belowPegOffsetType
+     *
+     * @return belowPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public BelowPegOffsetType getBelowPegOffsetType() {
+        return belowPegOffsetType;
+    }
+
+    public void setBelowPegOffsetType(
+            @jakarta.annotation.Nullable BelowPegOffsetType belowPegOffsetType) {
+        this.belowPegOffsetType = belowPegOffsetType;
+    }
+
+    public OrderListPlaceOcoRequest belowPegOffsetValue(
+            @jakarta.annotation.Nullable Integer belowPegOffsetValue) {
+        this.belowPegOffsetValue = belowPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get belowPegOffsetValue
+     *
+     * @return belowPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getBelowPegOffsetValue() {
+        return belowPegOffsetValue;
+    }
+
+    public void setBelowPegOffsetValue(@jakarta.annotation.Nullable Integer belowPegOffsetValue) {
+        this.belowPegOffsetValue = belowPegOffsetValue;
+    }
+
     public OrderListPlaceOcoRequest newOrderRespType(
             @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
         this.newOrderRespType = newOrderRespType;
@@ -732,6 +896,12 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
                 && Objects.equals(this.aboveStrategyId, orderListPlaceOcoRequest.aboveStrategyId)
                 && Objects.equals(
                         this.aboveStrategyType, orderListPlaceOcoRequest.aboveStrategyType)
+                && Objects.equals(
+                        this.abovePegPriceType, orderListPlaceOcoRequest.abovePegPriceType)
+                && Objects.equals(
+                        this.abovePegOffsetType, orderListPlaceOcoRequest.abovePegOffsetType)
+                && Objects.equals(
+                        this.abovePegOffsetValue, orderListPlaceOcoRequest.abovePegOffsetValue)
                 && Objects.equals(this.belowType, orderListPlaceOcoRequest.belowType)
                 && Objects.equals(
                         this.belowClientOrderId, orderListPlaceOcoRequest.belowClientOrderId)
@@ -744,6 +914,12 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
                 && Objects.equals(this.belowStrategyId, orderListPlaceOcoRequest.belowStrategyId)
                 && Objects.equals(
                         this.belowStrategyType, orderListPlaceOcoRequest.belowStrategyType)
+                && Objects.equals(
+                        this.belowPegPriceType, orderListPlaceOcoRequest.belowPegPriceType)
+                && Objects.equals(
+                        this.belowPegOffsetType, orderListPlaceOcoRequest.belowPegOffsetType)
+                && Objects.equals(
+                        this.belowPegOffsetValue, orderListPlaceOcoRequest.belowPegOffsetValue)
                 && Objects.equals(this.newOrderRespType, orderListPlaceOcoRequest.newOrderRespType)
                 && Objects.equals(
                         this.selfTradePreventionMode,
@@ -767,6 +943,9 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
                 aboveTimeInForce,
                 aboveStrategyId,
                 aboveStrategyType,
+                abovePegPriceType,
+                abovePegOffsetType,
+                abovePegOffsetValue,
                 belowType,
                 belowClientOrderId,
                 belowIcebergQty,
@@ -776,6 +955,9 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
                 belowTimeInForce,
                 belowStrategyId,
                 belowStrategyType,
+                belowPegPriceType,
+                belowPegOffsetType,
+                belowPegOffsetValue,
                 newOrderRespType,
                 selfTradePreventionMode,
                 recvWindow);
@@ -802,6 +984,13 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         sb.append("		aboveTimeInForce: ").append(toIndentedString(aboveTimeInForce)).append("\n");
         sb.append("		aboveStrategyId: ").append(toIndentedString(aboveStrategyId)).append("\n");
         sb.append("		aboveStrategyType: ").append(toIndentedString(aboveStrategyType)).append("\n");
+        sb.append("		abovePegPriceType: ").append(toIndentedString(abovePegPriceType)).append("\n");
+        sb.append("		abovePegOffsetType: ")
+                .append(toIndentedString(abovePegOffsetType))
+                .append("\n");
+        sb.append("		abovePegOffsetValue: ")
+                .append(toIndentedString(abovePegOffsetValue))
+                .append("\n");
         sb.append("		belowType: ").append(toIndentedString(belowType)).append("\n");
         sb.append("		belowClientOrderId: ")
                 .append(toIndentedString(belowClientOrderId))
@@ -815,6 +1004,13 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         sb.append("		belowTimeInForce: ").append(toIndentedString(belowTimeInForce)).append("\n");
         sb.append("		belowStrategyId: ").append(toIndentedString(belowStrategyId)).append("\n");
         sb.append("		belowStrategyType: ").append(toIndentedString(belowStrategyType)).append("\n");
+        sb.append("		belowPegPriceType: ").append(toIndentedString(belowPegPriceType)).append("\n");
+        sb.append("		belowPegOffsetType: ")
+                .append(toIndentedString(belowPegOffsetType))
+                .append("\n");
+        sb.append("		belowPegOffsetValue: ")
+                .append(toIndentedString(belowPegOffsetValue))
+                .append("\n");
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
@@ -896,6 +1092,21 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
             String aboveStrategyTypeValueAsString = aboveStrategyTypeValue.toString();
             valMap.put("aboveStrategyType", aboveStrategyTypeValueAsString);
         }
+        AbovePegPriceType abovePegPriceTypeValue = getAbovePegPriceType();
+        if (abovePegPriceTypeValue != null) {
+            String abovePegPriceTypeValueAsString = abovePegPriceTypeValue.toString();
+            valMap.put("abovePegPriceType", abovePegPriceTypeValueAsString);
+        }
+        AbovePegOffsetType abovePegOffsetTypeValue = getAbovePegOffsetType();
+        if (abovePegOffsetTypeValue != null) {
+            String abovePegOffsetTypeValueAsString = abovePegOffsetTypeValue.toString();
+            valMap.put("abovePegOffsetType", abovePegOffsetTypeValueAsString);
+        }
+        Integer abovePegOffsetValueValue = getAbovePegOffsetValue();
+        if (abovePegOffsetValueValue != null) {
+            String abovePegOffsetValueValueAsString = abovePegOffsetValueValue.toString();
+            valMap.put("abovePegOffsetValue", abovePegOffsetValueValueAsString);
+        }
         BelowType belowTypeValue = getBelowType();
         if (belowTypeValue != null) {
             String belowTypeValueAsString = belowTypeValue.toString();
@@ -942,6 +1153,21 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         if (belowStrategyTypeValue != null) {
             String belowStrategyTypeValueAsString = belowStrategyTypeValue.toString();
             valMap.put("belowStrategyType", belowStrategyTypeValueAsString);
+        }
+        BelowPegPriceType belowPegPriceTypeValue = getBelowPegPriceType();
+        if (belowPegPriceTypeValue != null) {
+            String belowPegPriceTypeValueAsString = belowPegPriceTypeValue.toString();
+            valMap.put("belowPegPriceType", belowPegPriceTypeValueAsString);
+        }
+        BelowPegOffsetType belowPegOffsetTypeValue = getBelowPegOffsetType();
+        if (belowPegOffsetTypeValue != null) {
+            String belowPegOffsetTypeValueAsString = belowPegOffsetTypeValue.toString();
+            valMap.put("belowPegOffsetType", belowPegOffsetTypeValueAsString);
+        }
+        Integer belowPegOffsetValueValue = getBelowPegOffsetValue();
+        if (belowPegOffsetValueValue != null) {
+            String belowPegOffsetValueValueAsString = belowPegOffsetValueValue.toString();
+            valMap.put("belowPegOffsetValue", belowPegOffsetValueValueAsString);
         }
         NewOrderRespType newOrderRespTypeValue = getNewOrderRespType();
         if (newOrderRespTypeValue != null) {
@@ -1021,6 +1247,18 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         if (aboveStrategyTypeValue != null) {
             valMap.put("aboveStrategyType", aboveStrategyTypeValue);
         }
+        Object abovePegPriceTypeValue = getAbovePegPriceType();
+        if (abovePegPriceTypeValue != null) {
+            valMap.put("abovePegPriceType", abovePegPriceTypeValue);
+        }
+        Object abovePegOffsetTypeValue = getAbovePegOffsetType();
+        if (abovePegOffsetTypeValue != null) {
+            valMap.put("abovePegOffsetType", abovePegOffsetTypeValue);
+        }
+        Object abovePegOffsetValueValue = getAbovePegOffsetValue();
+        if (abovePegOffsetValueValue != null) {
+            valMap.put("abovePegOffsetValue", abovePegOffsetValueValue);
+        }
         Object belowTypeValue = getBelowType();
         if (belowTypeValue != null) {
             valMap.put("belowType", belowTypeValue);
@@ -1056,6 +1294,18 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         Object belowStrategyTypeValue = getBelowStrategyType();
         if (belowStrategyTypeValue != null) {
             valMap.put("belowStrategyType", belowStrategyTypeValue);
+        }
+        Object belowPegPriceTypeValue = getBelowPegPriceType();
+        if (belowPegPriceTypeValue != null) {
+            valMap.put("belowPegPriceType", belowPegPriceTypeValue);
+        }
+        Object belowPegOffsetTypeValue = getBelowPegOffsetType();
+        if (belowPegOffsetTypeValue != null) {
+            valMap.put("belowPegOffsetType", belowPegOffsetTypeValue);
+        }
+        Object belowPegOffsetValueValue = getBelowPegOffsetValue();
+        if (belowPegOffsetValueValue != null) {
+            valMap.put("belowPegOffsetValue", belowPegOffsetValueValue);
         }
         Object newOrderRespTypeValue = getNewOrderRespType();
         if (newOrderRespTypeValue != null) {
@@ -1108,6 +1358,9 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         openapiFields.add("aboveTimeInForce");
         openapiFields.add("aboveStrategyId");
         openapiFields.add("aboveStrategyType");
+        openapiFields.add("abovePegPriceType");
+        openapiFields.add("abovePegOffsetType");
+        openapiFields.add("abovePegOffsetValue");
         openapiFields.add("belowType");
         openapiFields.add("belowClientOrderId");
         openapiFields.add("belowIcebergQty");
@@ -1117,6 +1370,9 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         openapiFields.add("belowTimeInForce");
         openapiFields.add("belowStrategyId");
         openapiFields.add("belowStrategyType");
+        openapiFields.add("belowPegPriceType");
+        openapiFields.add("belowPegOffsetType");
+        openapiFields.add("belowPegOffsetValue");
         openapiFields.add("newOrderRespType");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("recvWindow");
@@ -1199,6 +1455,16 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
                                     + " JSON string but got `%s`",
                             jsonObj.get("aboveClientOrderId").toString()));
         }
+        // validate the optional field `abovePegPriceType`
+        if (jsonObj.get("abovePegPriceType") != null
+                && !jsonObj.get("abovePegPriceType").isJsonNull()) {
+            AbovePegPriceType.validateJsonElement(jsonObj.get("abovePegPriceType"));
+        }
+        // validate the optional field `abovePegOffsetType`
+        if (jsonObj.get("abovePegOffsetType") != null
+                && !jsonObj.get("abovePegOffsetType").isJsonNull()) {
+            AbovePegOffsetType.validateJsonElement(jsonObj.get("abovePegOffsetType"));
+        }
         // validate the required field `belowType`
         BelowType.validateJsonElement(jsonObj.get("belowType"));
         if ((jsonObj.get("belowClientOrderId") != null
@@ -1214,6 +1480,16 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
         if (jsonObj.get("belowTimeInForce") != null
                 && !jsonObj.get("belowTimeInForce").isJsonNull()) {
             BelowTimeInForce.validateJsonElement(jsonObj.get("belowTimeInForce"));
+        }
+        // validate the optional field `belowPegPriceType`
+        if (jsonObj.get("belowPegPriceType") != null
+                && !jsonObj.get("belowPegPriceType").isJsonNull()) {
+            BelowPegPriceType.validateJsonElement(jsonObj.get("belowPegPriceType"));
+        }
+        // validate the optional field `belowPegOffsetType`
+        if (jsonObj.get("belowPegOffsetType") != null
+                && !jsonObj.get("belowPegOffsetType").isJsonNull()) {
+            BelowPegOffsetType.validateJsonElement(jsonObj.get("belowPegOffsetType"));
         }
         // validate the optional field `newOrderRespType`
         if (jsonObj.get("newOrderRespType") != null

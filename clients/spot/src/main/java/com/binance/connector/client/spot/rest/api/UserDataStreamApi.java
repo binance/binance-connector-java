@@ -44,7 +44,7 @@ public class UserDataStreamApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/5.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 

@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -55,7 +56,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private Object result;
+    private SessionSubscriptionsResponseResultInner result;
 
     public UserDataStreamSubscribeResponse() {}
 
@@ -97,7 +98,8 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
         this.status = status;
     }
 
-    public UserDataStreamSubscribeResponse result(@jakarta.annotation.Nullable Object result) {
+    public UserDataStreamSubscribeResponse result(
+            @jakarta.annotation.Nullable SessionSubscriptionsResponseResultInner result) {
         this.result = result;
         return this;
     }
@@ -108,11 +110,13 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
      * @return result
      */
     @jakarta.annotation.Nullable
-    public Object getResult() {
+    @Valid
+    public SessionSubscriptionsResponseResultInner getResult() {
         return result;
     }
 
-    public void setResult(@jakarta.annotation.Nullable Object result) {
+    public void setResult(
+            @jakarta.annotation.Nullable SessionSubscriptionsResponseResultInner result) {
         this.result = result;
     }
 
@@ -161,9 +165,9 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        Object resultValue = getResult();
+        SessionSubscriptionsResponseResultInner resultValue = getResult();
         if (resultValue != null) {
-            String resultValueAsString = resultValue.toString();
+            String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
 
@@ -261,6 +265,10 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
                             "Expected the field `id` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
+        }
+        // validate the optional field `result`
+        if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
+            SessionSubscriptionsResponseResultInner.validateJsonElement(jsonObj.get("result"));
         }
     }
 

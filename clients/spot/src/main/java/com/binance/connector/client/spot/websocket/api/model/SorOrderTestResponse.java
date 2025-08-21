@@ -56,7 +56,7 @@ public class SorOrderTestResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private OrderTestResponseResult result;
+    private SorOrderTestResponseResult result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -105,7 +105,7 @@ public class SorOrderTestResponse extends BaseDTO {
     }
 
     public SorOrderTestResponse result(
-            @jakarta.annotation.Nullable OrderTestResponseResult result) {
+            @jakarta.annotation.Nullable SorOrderTestResponseResult result) {
         this.result = result;
         return this;
     }
@@ -117,11 +117,11 @@ public class SorOrderTestResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public OrderTestResponseResult getResult() {
+    public SorOrderTestResponseResult getResult() {
         return result;
     }
 
-    public void setResult(@jakarta.annotation.Nullable OrderTestResponseResult result) {
+    public void setResult(@jakarta.annotation.Nullable SorOrderTestResponseResult result) {
         this.result = result;
     }
 
@@ -191,7 +191,7 @@ public class SorOrderTestResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        OrderTestResponseResult resultValue = getResult();
+        SorOrderTestResponseResult resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
@@ -303,7 +303,7 @@ public class SorOrderTestResponse extends BaseDTO {
         }
         // validate the optional field `result`
         if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            OrderTestResponseResult.validateJsonElement(jsonObj.get("result"));
+            SorOrderTestResponseResult.validateJsonElement(jsonObj.get("result"));
         }
     }
 

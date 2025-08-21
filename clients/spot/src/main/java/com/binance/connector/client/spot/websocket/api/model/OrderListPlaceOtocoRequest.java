@@ -120,6 +120,24 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Integer workingStrategyType;
 
+    public static final String SERIALIZED_NAME_WORKING_PEG_PRICE_TYPE = "workingPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private WorkingPegPriceType workingPegPriceType;
+
+    public static final String SERIALIZED_NAME_WORKING_PEG_OFFSET_TYPE = "workingPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private WorkingPegOffsetType workingPegOffsetType;
+
+    public static final String SERIALIZED_NAME_WORKING_PEG_OFFSET_VALUE = "workingPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer workingPegOffsetValue;
+
     public static final String SERIALIZED_NAME_PENDING_SIDE = "pendingSide";
 
     @SerializedName(SERIALIZED_NAME_PENDING_SIDE)
@@ -190,6 +208,27 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Integer pendingAboveStrategyType;
 
+    public static final String SERIALIZED_NAME_PENDING_ABOVE_PEG_PRICE_TYPE =
+            "pendingAbovePegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_ABOVE_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingAbovePegPriceType pendingAbovePegPriceType;
+
+    public static final String SERIALIZED_NAME_PENDING_ABOVE_PEG_OFFSET_TYPE =
+            "pendingAbovePegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_ABOVE_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingAbovePegOffsetType pendingAbovePegOffsetType;
+
+    public static final String SERIALIZED_NAME_PENDING_ABOVE_PEG_OFFSET_VALUE =
+            "pendingAbovePegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_ABOVE_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pendingAbovePegOffsetValue;
+
     public static final String SERIALIZED_NAME_PENDING_BELOW_TYPE = "pendingBelowType";
 
     @SerializedName(SERIALIZED_NAME_PENDING_BELOW_TYPE)
@@ -247,6 +286,27 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_PENDING_BELOW_STRATEGY_TYPE)
     @jakarta.annotation.Nullable
     private Integer pendingBelowStrategyType;
+
+    public static final String SERIALIZED_NAME_PENDING_BELOW_PEG_PRICE_TYPE =
+            "pendingBelowPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_BELOW_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingBelowPegPriceType pendingBelowPegPriceType;
+
+    public static final String SERIALIZED_NAME_PENDING_BELOW_PEG_OFFSET_TYPE =
+            "pendingBelowPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_BELOW_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingBelowPegOffsetType pendingBelowPegOffsetType;
+
+    public static final String SERIALIZED_NAME_PENDING_BELOW_PEG_OFFSET_VALUE =
+            "pendingBelowPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_BELOW_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pendingBelowPegOffsetValue;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -531,6 +591,71 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         this.workingStrategyType = workingStrategyType;
     }
 
+    public OrderListPlaceOtocoRequest workingPegPriceType(
+            @jakarta.annotation.Nullable WorkingPegPriceType workingPegPriceType) {
+        this.workingPegPriceType = workingPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get workingPegPriceType
+     *
+     * @return workingPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public WorkingPegPriceType getWorkingPegPriceType() {
+        return workingPegPriceType;
+    }
+
+    public void setWorkingPegPriceType(
+            @jakarta.annotation.Nullable WorkingPegPriceType workingPegPriceType) {
+        this.workingPegPriceType = workingPegPriceType;
+    }
+
+    public OrderListPlaceOtocoRequest workingPegOffsetType(
+            @jakarta.annotation.Nullable WorkingPegOffsetType workingPegOffsetType) {
+        this.workingPegOffsetType = workingPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get workingPegOffsetType
+     *
+     * @return workingPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public WorkingPegOffsetType getWorkingPegOffsetType() {
+        return workingPegOffsetType;
+    }
+
+    public void setWorkingPegOffsetType(
+            @jakarta.annotation.Nullable WorkingPegOffsetType workingPegOffsetType) {
+        this.workingPegOffsetType = workingPegOffsetType;
+    }
+
+    public OrderListPlaceOtocoRequest workingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer workingPegOffsetValue) {
+        this.workingPegOffsetValue = workingPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get workingPegOffsetValue
+     *
+     * @return workingPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getWorkingPegOffsetValue() {
+        return workingPegOffsetValue;
+    }
+
+    public void setWorkingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer workingPegOffsetValue) {
+        this.workingPegOffsetValue = workingPegOffsetValue;
+    }
+
     public OrderListPlaceOtocoRequest pendingSide(
             @jakarta.annotation.Nonnull PendingSide pendingSide) {
         this.pendingSide = pendingSide;
@@ -769,6 +894,71 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         this.pendingAboveStrategyType = pendingAboveStrategyType;
     }
 
+    public OrderListPlaceOtocoRequest pendingAbovePegPriceType(
+            @jakarta.annotation.Nullable PendingAbovePegPriceType pendingAbovePegPriceType) {
+        this.pendingAbovePegPriceType = pendingAbovePegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pendingAbovePegPriceType
+     *
+     * @return pendingAbovePegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingAbovePegPriceType getPendingAbovePegPriceType() {
+        return pendingAbovePegPriceType;
+    }
+
+    public void setPendingAbovePegPriceType(
+            @jakarta.annotation.Nullable PendingAbovePegPriceType pendingAbovePegPriceType) {
+        this.pendingAbovePegPriceType = pendingAbovePegPriceType;
+    }
+
+    public OrderListPlaceOtocoRequest pendingAbovePegOffsetType(
+            @jakarta.annotation.Nullable PendingAbovePegOffsetType pendingAbovePegOffsetType) {
+        this.pendingAbovePegOffsetType = pendingAbovePegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pendingAbovePegOffsetType
+     *
+     * @return pendingAbovePegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingAbovePegOffsetType getPendingAbovePegOffsetType() {
+        return pendingAbovePegOffsetType;
+    }
+
+    public void setPendingAbovePegOffsetType(
+            @jakarta.annotation.Nullable PendingAbovePegOffsetType pendingAbovePegOffsetType) {
+        this.pendingAbovePegOffsetType = pendingAbovePegOffsetType;
+    }
+
+    public OrderListPlaceOtocoRequest pendingAbovePegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingAbovePegOffsetValue) {
+        this.pendingAbovePegOffsetValue = pendingAbovePegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get pendingAbovePegOffsetValue
+     *
+     * @return pendingAbovePegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getPendingAbovePegOffsetValue() {
+        return pendingAbovePegOffsetValue;
+    }
+
+    public void setPendingAbovePegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingAbovePegOffsetValue) {
+        this.pendingAbovePegOffsetValue = pendingAbovePegOffsetValue;
+    }
+
     public OrderListPlaceOtocoRequest pendingBelowType(
             @jakarta.annotation.Nullable PendingBelowType pendingBelowType) {
         this.pendingBelowType = pendingBelowType;
@@ -963,6 +1153,71 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         this.pendingBelowStrategyType = pendingBelowStrategyType;
     }
 
+    public OrderListPlaceOtocoRequest pendingBelowPegPriceType(
+            @jakarta.annotation.Nullable PendingBelowPegPriceType pendingBelowPegPriceType) {
+        this.pendingBelowPegPriceType = pendingBelowPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pendingBelowPegPriceType
+     *
+     * @return pendingBelowPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingBelowPegPriceType getPendingBelowPegPriceType() {
+        return pendingBelowPegPriceType;
+    }
+
+    public void setPendingBelowPegPriceType(
+            @jakarta.annotation.Nullable PendingBelowPegPriceType pendingBelowPegPriceType) {
+        this.pendingBelowPegPriceType = pendingBelowPegPriceType;
+    }
+
+    public OrderListPlaceOtocoRequest pendingBelowPegOffsetType(
+            @jakarta.annotation.Nullable PendingBelowPegOffsetType pendingBelowPegOffsetType) {
+        this.pendingBelowPegOffsetType = pendingBelowPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pendingBelowPegOffsetType
+     *
+     * @return pendingBelowPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingBelowPegOffsetType getPendingBelowPegOffsetType() {
+        return pendingBelowPegOffsetType;
+    }
+
+    public void setPendingBelowPegOffsetType(
+            @jakarta.annotation.Nullable PendingBelowPegOffsetType pendingBelowPegOffsetType) {
+        this.pendingBelowPegOffsetType = pendingBelowPegOffsetType;
+    }
+
+    public OrderListPlaceOtocoRequest pendingBelowPegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingBelowPegOffsetValue) {
+        this.pendingBelowPegOffsetValue = pendingBelowPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get pendingBelowPegOffsetValue
+     *
+     * @return pendingBelowPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getPendingBelowPegOffsetValue() {
+        return pendingBelowPegOffsetValue;
+    }
+
+    public void setPendingBelowPegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingBelowPegOffsetValue) {
+        this.pendingBelowPegOffsetValue = pendingBelowPegOffsetValue;
+    }
+
     public OrderListPlaceOtocoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -1013,6 +1268,13 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                         this.workingStrategyId, orderListPlaceOtocoRequest.workingStrategyId)
                 && Objects.equals(
                         this.workingStrategyType, orderListPlaceOtocoRequest.workingStrategyType)
+                && Objects.equals(
+                        this.workingPegPriceType, orderListPlaceOtocoRequest.workingPegPriceType)
+                && Objects.equals(
+                        this.workingPegOffsetType, orderListPlaceOtocoRequest.workingPegOffsetType)
+                && Objects.equals(
+                        this.workingPegOffsetValue,
+                        orderListPlaceOtocoRequest.workingPegOffsetValue)
                 && Objects.equals(this.pendingSide, orderListPlaceOtocoRequest.pendingSide)
                 && Objects.equals(this.pendingQuantity, orderListPlaceOtocoRequest.pendingQuantity)
                 && Objects.equals(
@@ -1041,6 +1303,15 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                         this.pendingAboveStrategyType,
                         orderListPlaceOtocoRequest.pendingAboveStrategyType)
                 && Objects.equals(
+                        this.pendingAbovePegPriceType,
+                        orderListPlaceOtocoRequest.pendingAbovePegPriceType)
+                && Objects.equals(
+                        this.pendingAbovePegOffsetType,
+                        orderListPlaceOtocoRequest.pendingAbovePegOffsetType)
+                && Objects.equals(
+                        this.pendingAbovePegOffsetValue,
+                        orderListPlaceOtocoRequest.pendingAbovePegOffsetValue)
+                && Objects.equals(
                         this.pendingBelowType, orderListPlaceOtocoRequest.pendingBelowType)
                 && Objects.equals(
                         this.pendingBelowClientOrderId,
@@ -1065,6 +1336,15 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 && Objects.equals(
                         this.pendingBelowStrategyType,
                         orderListPlaceOtocoRequest.pendingBelowStrategyType)
+                && Objects.equals(
+                        this.pendingBelowPegPriceType,
+                        orderListPlaceOtocoRequest.pendingBelowPegPriceType)
+                && Objects.equals(
+                        this.pendingBelowPegOffsetType,
+                        orderListPlaceOtocoRequest.pendingBelowPegOffsetType)
+                && Objects.equals(
+                        this.pendingBelowPegOffsetValue,
+                        orderListPlaceOtocoRequest.pendingBelowPegOffsetValue)
                 && Objects.equals(this.recvWindow, orderListPlaceOtocoRequest.recvWindow);
     }
 
@@ -1084,6 +1364,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 workingTimeInForce,
                 workingStrategyId,
                 workingStrategyType,
+                workingPegPriceType,
+                workingPegOffsetType,
+                workingPegOffsetValue,
                 pendingSide,
                 pendingQuantity,
                 pendingAboveType,
@@ -1095,6 +1378,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 pendingAboveTimeInForce,
                 pendingAboveStrategyId,
                 pendingAboveStrategyType,
+                pendingAbovePegPriceType,
+                pendingAbovePegOffsetType,
+                pendingAbovePegOffsetValue,
                 pendingBelowType,
                 pendingBelowClientOrderId,
                 pendingBelowPrice,
@@ -1104,6 +1390,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 pendingBelowTimeInForce,
                 pendingBelowStrategyId,
                 pendingBelowStrategyType,
+                pendingBelowPegPriceType,
+                pendingBelowPegOffsetType,
+                pendingBelowPegOffsetValue,
                 recvWindow);
     }
 
@@ -1132,6 +1421,15 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         sb.append("		workingStrategyType: ")
                 .append(toIndentedString(workingStrategyType))
                 .append("\n");
+        sb.append("		workingPegPriceType: ")
+                .append(toIndentedString(workingPegPriceType))
+                .append("\n");
+        sb.append("		workingPegOffsetType: ")
+                .append(toIndentedString(workingPegOffsetType))
+                .append("\n");
+        sb.append("		workingPegOffsetValue: ")
+                .append(toIndentedString(workingPegOffsetValue))
+                .append("\n");
         sb.append("		pendingSide: ").append(toIndentedString(pendingSide)).append("\n");
         sb.append("		pendingQuantity: ").append(toIndentedString(pendingQuantity)).append("\n");
         sb.append("		pendingAboveType: ").append(toIndentedString(pendingAboveType)).append("\n");
@@ -1157,6 +1455,15 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         sb.append("		pendingAboveStrategyType: ")
                 .append(toIndentedString(pendingAboveStrategyType))
                 .append("\n");
+        sb.append("		pendingAbovePegPriceType: ")
+                .append(toIndentedString(pendingAbovePegPriceType))
+                .append("\n");
+        sb.append("		pendingAbovePegOffsetType: ")
+                .append(toIndentedString(pendingAbovePegOffsetType))
+                .append("\n");
+        sb.append("		pendingAbovePegOffsetValue: ")
+                .append(toIndentedString(pendingAbovePegOffsetValue))
+                .append("\n");
         sb.append("		pendingBelowType: ").append(toIndentedString(pendingBelowType)).append("\n");
         sb.append("		pendingBelowClientOrderId: ")
                 .append(toIndentedString(pendingBelowClientOrderId))
@@ -1179,6 +1486,15 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 .append("\n");
         sb.append("		pendingBelowStrategyType: ")
                 .append(toIndentedString(pendingBelowStrategyType))
+                .append("\n");
+        sb.append("		pendingBelowPegPriceType: ")
+                .append(toIndentedString(pendingBelowPegPriceType))
+                .append("\n");
+        sb.append("		pendingBelowPegOffsetType: ")
+                .append(toIndentedString(pendingBelowPegOffsetType))
+                .append("\n");
+        sb.append("		pendingBelowPegOffsetValue: ")
+                .append(toIndentedString(pendingBelowPegOffsetValue))
                 .append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
@@ -1257,6 +1573,21 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
             String workingStrategyTypeValueAsString = workingStrategyTypeValue.toString();
             valMap.put("workingStrategyType", workingStrategyTypeValueAsString);
         }
+        WorkingPegPriceType workingPegPriceTypeValue = getWorkingPegPriceType();
+        if (workingPegPriceTypeValue != null) {
+            String workingPegPriceTypeValueAsString = workingPegPriceTypeValue.toString();
+            valMap.put("workingPegPriceType", workingPegPriceTypeValueAsString);
+        }
+        WorkingPegOffsetType workingPegOffsetTypeValue = getWorkingPegOffsetType();
+        if (workingPegOffsetTypeValue != null) {
+            String workingPegOffsetTypeValueAsString = workingPegOffsetTypeValue.toString();
+            valMap.put("workingPegOffsetType", workingPegOffsetTypeValueAsString);
+        }
+        Integer workingPegOffsetValueValue = getWorkingPegOffsetValue();
+        if (workingPegOffsetValueValue != null) {
+            String workingPegOffsetValueValueAsString = workingPegOffsetValueValue.toString();
+            valMap.put("workingPegOffsetValue", workingPegOffsetValueValueAsString);
+        }
         PendingSide pendingSideValue = getPendingSide();
         if (pendingSideValue != null) {
             String pendingSideValueAsString = pendingSideValue.toString();
@@ -1318,6 +1649,23 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
             String pendingAboveStrategyTypeValueAsString = pendingAboveStrategyTypeValue.toString();
             valMap.put("pendingAboveStrategyType", pendingAboveStrategyTypeValueAsString);
         }
+        PendingAbovePegPriceType pendingAbovePegPriceTypeValue = getPendingAbovePegPriceType();
+        if (pendingAbovePegPriceTypeValue != null) {
+            String pendingAbovePegPriceTypeValueAsString = pendingAbovePegPriceTypeValue.toString();
+            valMap.put("pendingAbovePegPriceType", pendingAbovePegPriceTypeValueAsString);
+        }
+        PendingAbovePegOffsetType pendingAbovePegOffsetTypeValue = getPendingAbovePegOffsetType();
+        if (pendingAbovePegOffsetTypeValue != null) {
+            String pendingAbovePegOffsetTypeValueAsString =
+                    pendingAbovePegOffsetTypeValue.toString();
+            valMap.put("pendingAbovePegOffsetType", pendingAbovePegOffsetTypeValueAsString);
+        }
+        Integer pendingAbovePegOffsetValueValue = getPendingAbovePegOffsetValue();
+        if (pendingAbovePegOffsetValueValue != null) {
+            String pendingAbovePegOffsetValueValueAsString =
+                    pendingAbovePegOffsetValueValue.toString();
+            valMap.put("pendingAbovePegOffsetValue", pendingAbovePegOffsetValueValueAsString);
+        }
         PendingBelowType pendingBelowTypeValue = getPendingBelowType();
         if (pendingBelowTypeValue != null) {
             String pendingBelowTypeValueAsString = pendingBelowTypeValue.toString();
@@ -1367,6 +1715,23 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         if (pendingBelowStrategyTypeValue != null) {
             String pendingBelowStrategyTypeValueAsString = pendingBelowStrategyTypeValue.toString();
             valMap.put("pendingBelowStrategyType", pendingBelowStrategyTypeValueAsString);
+        }
+        PendingBelowPegPriceType pendingBelowPegPriceTypeValue = getPendingBelowPegPriceType();
+        if (pendingBelowPegPriceTypeValue != null) {
+            String pendingBelowPegPriceTypeValueAsString = pendingBelowPegPriceTypeValue.toString();
+            valMap.put("pendingBelowPegPriceType", pendingBelowPegPriceTypeValueAsString);
+        }
+        PendingBelowPegOffsetType pendingBelowPegOffsetTypeValue = getPendingBelowPegOffsetType();
+        if (pendingBelowPegOffsetTypeValue != null) {
+            String pendingBelowPegOffsetTypeValueAsString =
+                    pendingBelowPegOffsetTypeValue.toString();
+            valMap.put("pendingBelowPegOffsetType", pendingBelowPegOffsetTypeValueAsString);
+        }
+        Integer pendingBelowPegOffsetValueValue = getPendingBelowPegOffsetValue();
+        if (pendingBelowPegOffsetValueValue != null) {
+            String pendingBelowPegOffsetValueValueAsString =
+                    pendingBelowPegOffsetValueValue.toString();
+            valMap.put("pendingBelowPegOffsetValue", pendingBelowPegOffsetValueValueAsString);
         }
         Long recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
@@ -1436,6 +1801,18 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         if (workingStrategyTypeValue != null) {
             valMap.put("workingStrategyType", workingStrategyTypeValue);
         }
+        Object workingPegPriceTypeValue = getWorkingPegPriceType();
+        if (workingPegPriceTypeValue != null) {
+            valMap.put("workingPegPriceType", workingPegPriceTypeValue);
+        }
+        Object workingPegOffsetTypeValue = getWorkingPegOffsetType();
+        if (workingPegOffsetTypeValue != null) {
+            valMap.put("workingPegOffsetType", workingPegOffsetTypeValue);
+        }
+        Object workingPegOffsetValueValue = getWorkingPegOffsetValue();
+        if (workingPegOffsetValueValue != null) {
+            valMap.put("workingPegOffsetValue", workingPegOffsetValueValue);
+        }
         Object pendingSideValue = getPendingSide();
         if (pendingSideValue != null) {
             valMap.put("pendingSide", pendingSideValue);
@@ -1480,6 +1857,18 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         if (pendingAboveStrategyTypeValue != null) {
             valMap.put("pendingAboveStrategyType", pendingAboveStrategyTypeValue);
         }
+        Object pendingAbovePegPriceTypeValue = getPendingAbovePegPriceType();
+        if (pendingAbovePegPriceTypeValue != null) {
+            valMap.put("pendingAbovePegPriceType", pendingAbovePegPriceTypeValue);
+        }
+        Object pendingAbovePegOffsetTypeValue = getPendingAbovePegOffsetType();
+        if (pendingAbovePegOffsetTypeValue != null) {
+            valMap.put("pendingAbovePegOffsetType", pendingAbovePegOffsetTypeValue);
+        }
+        Object pendingAbovePegOffsetValueValue = getPendingAbovePegOffsetValue();
+        if (pendingAbovePegOffsetValueValue != null) {
+            valMap.put("pendingAbovePegOffsetValue", pendingAbovePegOffsetValueValue);
+        }
         Object pendingBelowTypeValue = getPendingBelowType();
         if (pendingBelowTypeValue != null) {
             valMap.put("pendingBelowType", pendingBelowTypeValue);
@@ -1515,6 +1904,18 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         Object pendingBelowStrategyTypeValue = getPendingBelowStrategyType();
         if (pendingBelowStrategyTypeValue != null) {
             valMap.put("pendingBelowStrategyType", pendingBelowStrategyTypeValue);
+        }
+        Object pendingBelowPegPriceTypeValue = getPendingBelowPegPriceType();
+        if (pendingBelowPegPriceTypeValue != null) {
+            valMap.put("pendingBelowPegPriceType", pendingBelowPegPriceTypeValue);
+        }
+        Object pendingBelowPegOffsetTypeValue = getPendingBelowPegOffsetType();
+        if (pendingBelowPegOffsetTypeValue != null) {
+            valMap.put("pendingBelowPegOffsetType", pendingBelowPegOffsetTypeValue);
+        }
+        Object pendingBelowPegOffsetValueValue = getPendingBelowPegOffsetValue();
+        if (pendingBelowPegOffsetValueValue != null) {
+            valMap.put("pendingBelowPegOffsetValue", pendingBelowPegOffsetValueValue);
         }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
@@ -1559,6 +1960,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         openapiFields.add("workingTimeInForce");
         openapiFields.add("workingStrategyId");
         openapiFields.add("workingStrategyType");
+        openapiFields.add("workingPegPriceType");
+        openapiFields.add("workingPegOffsetType");
+        openapiFields.add("workingPegOffsetValue");
         openapiFields.add("pendingSide");
         openapiFields.add("pendingQuantity");
         openapiFields.add("pendingAboveType");
@@ -1570,6 +1974,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         openapiFields.add("pendingAboveTimeInForce");
         openapiFields.add("pendingAboveStrategyId");
         openapiFields.add("pendingAboveStrategyType");
+        openapiFields.add("pendingAbovePegPriceType");
+        openapiFields.add("pendingAbovePegOffsetType");
+        openapiFields.add("pendingAbovePegOffsetValue");
         openapiFields.add("pendingBelowType");
         openapiFields.add("pendingBelowClientOrderId");
         openapiFields.add("pendingBelowPrice");
@@ -1579,6 +1986,9 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         openapiFields.add("pendingBelowTimeInForce");
         openapiFields.add("pendingBelowStrategyId");
         openapiFields.add("pendingBelowStrategyType");
+        openapiFields.add("pendingBelowPegPriceType");
+        openapiFields.add("pendingBelowPegOffsetType");
+        openapiFields.add("pendingBelowPegOffsetValue");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -1677,6 +2087,16 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
                 && !jsonObj.get("workingTimeInForce").isJsonNull()) {
             WorkingTimeInForce.validateJsonElement(jsonObj.get("workingTimeInForce"));
         }
+        // validate the optional field `workingPegPriceType`
+        if (jsonObj.get("workingPegPriceType") != null
+                && !jsonObj.get("workingPegPriceType").isJsonNull()) {
+            WorkingPegPriceType.validateJsonElement(jsonObj.get("workingPegPriceType"));
+        }
+        // validate the optional field `workingPegOffsetType`
+        if (jsonObj.get("workingPegOffsetType") != null
+                && !jsonObj.get("workingPegOffsetType").isJsonNull()) {
+            WorkingPegOffsetType.validateJsonElement(jsonObj.get("workingPegOffsetType"));
+        }
         // validate the required field `pendingSide`
         PendingSide.validateJsonElement(jsonObj.get("pendingSide"));
         // validate the required field `pendingAboveType`
@@ -1694,6 +2114,16 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         if (jsonObj.get("pendingAboveTimeInForce") != null
                 && !jsonObj.get("pendingAboveTimeInForce").isJsonNull()) {
             PendingAboveTimeInForce.validateJsonElement(jsonObj.get("pendingAboveTimeInForce"));
+        }
+        // validate the optional field `pendingAbovePegPriceType`
+        if (jsonObj.get("pendingAbovePegPriceType") != null
+                && !jsonObj.get("pendingAbovePegPriceType").isJsonNull()) {
+            PendingAbovePegPriceType.validateJsonElement(jsonObj.get("pendingAbovePegPriceType"));
+        }
+        // validate the optional field `pendingAbovePegOffsetType`
+        if (jsonObj.get("pendingAbovePegOffsetType") != null
+                && !jsonObj.get("pendingAbovePegOffsetType").isJsonNull()) {
+            PendingAbovePegOffsetType.validateJsonElement(jsonObj.get("pendingAbovePegOffsetType"));
         }
         // validate the optional field `pendingBelowType`
         if (jsonObj.get("pendingBelowType") != null
@@ -1713,6 +2143,16 @@ public class OrderListPlaceOtocoRequest extends BaseDTO {
         if (jsonObj.get("pendingBelowTimeInForce") != null
                 && !jsonObj.get("pendingBelowTimeInForce").isJsonNull()) {
             PendingBelowTimeInForce.validateJsonElement(jsonObj.get("pendingBelowTimeInForce"));
+        }
+        // validate the optional field `pendingBelowPegPriceType`
+        if (jsonObj.get("pendingBelowPegPriceType") != null
+                && !jsonObj.get("pendingBelowPegPriceType").isJsonNull()) {
+            PendingBelowPegPriceType.validateJsonElement(jsonObj.get("pendingBelowPegPriceType"));
+        }
+        // validate the optional field `pendingBelowPegOffsetType`
+        if (jsonObj.get("pendingBelowPegOffsetType") != null
+                && !jsonObj.get("pendingBelowPegOffsetType").isJsonNull()) {
+            PendingBelowPegOffsetType.validateJsonElement(jsonObj.get("pendingBelowPegOffsetType"));
         }
     }
 

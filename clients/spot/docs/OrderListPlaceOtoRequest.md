@@ -20,6 +20,9 @@
 |**workingTimeInForce** | **WorkingTimeInForce** |  |  [optional] |
 |**workingStrategyId** | **Long** |  |  [optional] |
 |**workingStrategyType** | **Integer** |  |  [optional] |
+|**workingPegPriceType** | **WorkingPegPriceType** |  |  [optional] |
+|**workingPegOffsetType** | **WorkingPegOffsetType** |  |  [optional] |
+|**workingPegOffsetValue** | **Integer** |  |  [optional] |
 |**pendingType** | **PendingType** |  |  |
 |**pendingSide** | **PendingSide** |  |  |
 |**pendingClientOrderId** | **String** |  |  [optional] |
@@ -31,6 +34,9 @@
 |**pendingTimeInForce** | **PendingTimeInForce** |  |  [optional] |
 |**pendingStrategyId** | **Long** |  |  [optional] |
 |**pendingStrategyType** | **Integer** |  |  [optional] |
+|**pendingPegOffsetType** | **PendingPegOffsetType** |  |  [optional] |
+|**pendingPegPriceType** | **PendingPegPriceType** |  |  [optional] |
+|**pendingPegOffsetValue** | **Integer** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

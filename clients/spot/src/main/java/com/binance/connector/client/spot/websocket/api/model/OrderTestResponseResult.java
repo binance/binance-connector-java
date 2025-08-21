@@ -47,6 +47,13 @@ public class OrderTestResponseResult extends BaseDTO {
     @jakarta.annotation.Nullable
     private OrderTestResponseResultStandardCommissionForOrder standardCommissionForOrder;
 
+    public static final String SERIALIZED_NAME_SPECIAL_COMMISSION_FOR_ORDER =
+            "specialCommissionForOrder";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION_FOR_ORDER)
+    @jakarta.annotation.Nullable
+    private OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder;
+
     public static final String SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER = "taxCommissionForOrder";
 
     @SerializedName(SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER)
@@ -83,6 +90,30 @@ public class OrderTestResponseResult extends BaseDTO {
             @jakarta.annotation.Nullable
                     OrderTestResponseResultStandardCommissionForOrder standardCommissionForOrder) {
         this.standardCommissionForOrder = standardCommissionForOrder;
+    }
+
+    public OrderTestResponseResult specialCommissionForOrder(
+            @jakarta.annotation.Nullable
+                    OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder) {
+        this.specialCommissionForOrder = specialCommissionForOrder;
+        return this;
+    }
+
+    /**
+     * Get specialCommissionForOrder
+     *
+     * @return specialCommissionForOrder
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public OrderTestResponseResultSpecialCommissionForOrder getSpecialCommissionForOrder() {
+        return specialCommissionForOrder;
+    }
+
+    public void setSpecialCommissionForOrder(
+            @jakarta.annotation.Nullable
+                    OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder) {
+        this.specialCommissionForOrder = specialCommissionForOrder;
     }
 
     public OrderTestResponseResult taxCommissionForOrder(
@@ -143,13 +174,20 @@ public class OrderTestResponseResult extends BaseDTO {
                         this.standardCommissionForOrder,
                         orderTestResponseResult.standardCommissionForOrder)
                 && Objects.equals(
+                        this.specialCommissionForOrder,
+                        orderTestResponseResult.specialCommissionForOrder)
+                && Objects.equals(
                         this.taxCommissionForOrder, orderTestResponseResult.taxCommissionForOrder)
                 && Objects.equals(this.discount, orderTestResponseResult.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(standardCommissionForOrder, taxCommissionForOrder, discount);
+        return Objects.hash(
+                standardCommissionForOrder,
+                specialCommissionForOrder,
+                taxCommissionForOrder,
+                discount);
     }
 
     @Override
@@ -158,6 +196,9 @@ public class OrderTestResponseResult extends BaseDTO {
         sb.append("class OrderTestResponseResult {\n");
         sb.append("		standardCommissionForOrder: ")
                 .append(toIndentedString(standardCommissionForOrder))
+                .append("\n");
+        sb.append("		specialCommissionForOrder: ")
+                .append(toIndentedString(specialCommissionForOrder))
                 .append("\n");
         sb.append("		taxCommissionForOrder: ")
                 .append(toIndentedString(taxCommissionForOrder))
@@ -177,6 +218,13 @@ public class OrderTestResponseResult extends BaseDTO {
             String standardCommissionForOrderValueAsString =
                     JSON.getGson().toJson(standardCommissionForOrderValue);
             valMap.put("standardCommissionForOrder", standardCommissionForOrderValueAsString);
+        }
+        OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrderValue =
+                getSpecialCommissionForOrder();
+        if (specialCommissionForOrderValue != null) {
+            String specialCommissionForOrderValueAsString =
+                    JSON.getGson().toJson(specialCommissionForOrderValue);
+            valMap.put("specialCommissionForOrder", specialCommissionForOrderValueAsString);
         }
         OrderTestResponseResultStandardCommissionForOrder taxCommissionForOrderValue =
                 getTaxCommissionForOrder();
@@ -204,6 +252,10 @@ public class OrderTestResponseResult extends BaseDTO {
         Object standardCommissionForOrderValue = getStandardCommissionForOrder();
         if (standardCommissionForOrderValue != null) {
             valMap.put("standardCommissionForOrder", standardCommissionForOrderValue);
+        }
+        Object specialCommissionForOrderValue = getSpecialCommissionForOrder();
+        if (specialCommissionForOrderValue != null) {
+            valMap.put("specialCommissionForOrder", specialCommissionForOrderValue);
         }
         Object taxCommissionForOrderValue = getTaxCommissionForOrder();
         if (taxCommissionForOrderValue != null) {
@@ -240,6 +292,7 @@ public class OrderTestResponseResult extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("standardCommissionForOrder");
+        openapiFields.add("specialCommissionForOrder");
         openapiFields.add("taxCommissionForOrder");
         openapiFields.add("discount");
 
@@ -282,6 +335,12 @@ public class OrderTestResponseResult extends BaseDTO {
                 && !jsonObj.get("standardCommissionForOrder").isJsonNull()) {
             OrderTestResponseResultStandardCommissionForOrder.validateJsonElement(
                     jsonObj.get("standardCommissionForOrder"));
+        }
+        // validate the optional field `specialCommissionForOrder`
+        if (jsonObj.get("specialCommissionForOrder") != null
+                && !jsonObj.get("specialCommissionForOrder").isJsonNull()) {
+            OrderTestResponseResultSpecialCommissionForOrder.validateJsonElement(
+                    jsonObj.get("specialCommissionForOrder"));
         }
         // validate the optional field `taxCommissionForOrder`
         if (jsonObj.get("taxCommissionForOrder") != null

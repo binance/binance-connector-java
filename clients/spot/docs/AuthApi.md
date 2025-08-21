@@ -51,7 +51,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sessionLogonRequest** | [**SessionLogonRequest**](SessionLogonRequest.md)|  | |
+| **sessionLogonRequest** | [**SessionLogonRequest**](SessionLogonRequest.md)|  | [optional] |
 
 ### Return type
 

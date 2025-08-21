@@ -207,6 +207,18 @@ public class ExchangeFiltersInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long maxTrailingBelowDelta;
 
+    public static final String SERIALIZED_NAME_MAX_NUM_ORDER_AMENDS = "maxNumOrderAmends";
+
+    @SerializedName(SERIALIZED_NAME_MAX_NUM_ORDER_AMENDS)
+    @jakarta.annotation.Nullable
+    private Long maxNumOrderAmends;
+
+    public static final String SERIALIZED_NAME_MAX_NUM_ORDER_LISTS = "maxNumOrderLists";
+
+    @SerializedName(SERIALIZED_NAME_MAX_NUM_ORDER_LISTS)
+    @jakarta.annotation.Nullable
+    private Long maxNumOrderLists;
+
     public ExchangeFiltersInner() {}
 
     public ExchangeFiltersInner filterType(@jakarta.annotation.Nullable String filterType) {
@@ -753,6 +765,46 @@ public class ExchangeFiltersInner extends BaseDTO {
         this.maxTrailingBelowDelta = maxTrailingBelowDelta;
     }
 
+    public ExchangeFiltersInner maxNumOrderAmends(
+            @jakarta.annotation.Nullable Long maxNumOrderAmends) {
+        this.maxNumOrderAmends = maxNumOrderAmends;
+        return this;
+    }
+
+    /**
+     * Get maxNumOrderAmends
+     *
+     * @return maxNumOrderAmends
+     */
+    @jakarta.annotation.Nullable
+    public Long getMaxNumOrderAmends() {
+        return maxNumOrderAmends;
+    }
+
+    public void setMaxNumOrderAmends(@jakarta.annotation.Nullable Long maxNumOrderAmends) {
+        this.maxNumOrderAmends = maxNumOrderAmends;
+    }
+
+    public ExchangeFiltersInner maxNumOrderLists(
+            @jakarta.annotation.Nullable Long maxNumOrderLists) {
+        this.maxNumOrderLists = maxNumOrderLists;
+        return this;
+    }
+
+    /**
+     * Get maxNumOrderLists
+     *
+     * @return maxNumOrderLists
+     */
+    @jakarta.annotation.Nullable
+    public Long getMaxNumOrderLists() {
+        return maxNumOrderLists;
+    }
+
+    public void setMaxNumOrderLists(@jakarta.annotation.Nullable Long maxNumOrderLists) {
+        this.maxNumOrderLists = maxNumOrderLists;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -794,7 +846,9 @@ public class ExchangeFiltersInner extends BaseDTO {
                 && Objects.equals(
                         this.minTrailingBelowDelta, exchangeFiltersInner.minTrailingBelowDelta)
                 && Objects.equals(
-                        this.maxTrailingBelowDelta, exchangeFiltersInner.maxTrailingBelowDelta);
+                        this.maxTrailingBelowDelta, exchangeFiltersInner.maxTrailingBelowDelta)
+                && Objects.equals(this.maxNumOrderAmends, exchangeFiltersInner.maxNumOrderAmends)
+                && Objects.equals(this.maxNumOrderLists, exchangeFiltersInner.maxNumOrderLists);
     }
 
     @Override
@@ -827,7 +881,9 @@ public class ExchangeFiltersInner extends BaseDTO {
                 minTrailingAboveDelta,
                 maxTrailingAboveDelta,
                 minTrailingBelowDelta,
-                maxTrailingBelowDelta);
+                maxTrailingBelowDelta,
+                maxNumOrderAmends,
+                maxNumOrderLists);
     }
 
     @Override
@@ -872,6 +928,8 @@ public class ExchangeFiltersInner extends BaseDTO {
         sb.append("		maxTrailingBelowDelta: ")
                 .append(toIndentedString(maxTrailingBelowDelta))
                 .append("\n");
+        sb.append("		maxNumOrderAmends: ").append(toIndentedString(maxNumOrderAmends)).append("\n");
+        sb.append("		maxNumOrderLists: ").append(toIndentedString(maxNumOrderLists)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1020,6 +1078,16 @@ public class ExchangeFiltersInner extends BaseDTO {
             String maxTrailingBelowDeltaValueAsString = maxTrailingBelowDeltaValue.toString();
             valMap.put("maxTrailingBelowDelta", maxTrailingBelowDeltaValueAsString);
         }
+        Long maxNumOrderAmendsValue = getMaxNumOrderAmends();
+        if (maxNumOrderAmendsValue != null) {
+            String maxNumOrderAmendsValueAsString = maxNumOrderAmendsValue.toString();
+            valMap.put("maxNumOrderAmends", maxNumOrderAmendsValueAsString);
+        }
+        Long maxNumOrderListsValue = getMaxNumOrderLists();
+        if (maxNumOrderListsValue != null) {
+            String maxNumOrderListsValueAsString = maxNumOrderListsValue.toString();
+            valMap.put("maxNumOrderLists", maxNumOrderListsValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -1143,6 +1211,14 @@ public class ExchangeFiltersInner extends BaseDTO {
         if (maxTrailingBelowDeltaValue != null) {
             valMap.put("maxTrailingBelowDelta", maxTrailingBelowDeltaValue);
         }
+        Object maxNumOrderAmendsValue = getMaxNumOrderAmends();
+        if (maxNumOrderAmendsValue != null) {
+            valMap.put("maxNumOrderAmends", maxNumOrderAmendsValue);
+        }
+        Object maxNumOrderListsValue = getMaxNumOrderLists();
+        if (maxNumOrderListsValue != null) {
+            valMap.put("maxNumOrderLists", maxNumOrderListsValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -1197,6 +1273,8 @@ public class ExchangeFiltersInner extends BaseDTO {
         openapiFields.add("maxTrailingAboveDelta");
         openapiFields.add("minTrailingBelowDelta");
         openapiFields.add("maxTrailingBelowDelta");
+        openapiFields.add("maxNumOrderAmends");
+        openapiFields.add("maxNumOrderLists");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

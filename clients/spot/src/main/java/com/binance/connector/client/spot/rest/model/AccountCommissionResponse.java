@@ -49,6 +49,12 @@ public class AccountCommissionResponse {
     @jakarta.annotation.Nullable
     private AccountCommissionResponseStandardCommission standardCommission;
 
+    public static final String SERIALIZED_NAME_SPECIAL_COMMISSION = "specialCommission";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION)
+    @jakarta.annotation.Nullable
+    private AccountCommissionResponseSpecialCommission specialCommission;
+
     public static final String SERIALIZED_NAME_TAX_COMMISSION = "taxCommission";
 
     @SerializedName(SERIALIZED_NAME_TAX_COMMISSION)
@@ -104,6 +110,30 @@ public class AccountCommissionResponse {
             @jakarta.annotation.Nullable
                     AccountCommissionResponseStandardCommission standardCommission) {
         this.standardCommission = standardCommission;
+    }
+
+    public AccountCommissionResponse specialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
+        return this;
+    }
+
+    /**
+     * Get specialCommission
+     *
+     * @return specialCommission
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AccountCommissionResponseSpecialCommission getSpecialCommission() {
+        return specialCommission;
+    }
+
+    public void setSpecialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
     }
 
     public AccountCommissionResponse taxCommission(
@@ -162,13 +192,15 @@ public class AccountCommissionResponse {
         return Objects.equals(this.symbol, accountCommissionResponse.symbol)
                 && Objects.equals(
                         this.standardCommission, accountCommissionResponse.standardCommission)
+                && Objects.equals(
+                        this.specialCommission, accountCommissionResponse.specialCommission)
                 && Objects.equals(this.taxCommission, accountCommissionResponse.taxCommission)
                 && Objects.equals(this.discount, accountCommissionResponse.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, standardCommission, taxCommission, discount);
+        return Objects.hash(symbol, standardCommission, specialCommission, taxCommission, discount);
     }
 
     @Override
@@ -179,6 +211,7 @@ public class AccountCommissionResponse {
         sb.append("		standardCommission: ")
                 .append(toIndentedString(standardCommission))
                 .append("\n");
+        sb.append("		specialCommission: ").append(toIndentedString(specialCommission)).append("\n");
         sb.append("		taxCommission: ").append(toIndentedString(taxCommission)).append("\n");
         sb.append("		discount: ").append(toIndentedString(discount)).append("\n");
         sb.append("}");
@@ -197,6 +230,12 @@ public class AccountCommissionResponse {
         standardCommissionValueAsString = standardCommissionValue.toString();
         sb.append("standardCommission=")
                 .append(urlEncode(standardCommissionValueAsString))
+                .append("");
+        Object specialCommissionValue = getSpecialCommission();
+        String specialCommissionValueAsString = "";
+        specialCommissionValueAsString = specialCommissionValue.toString();
+        sb.append("specialCommission=")
+                .append(urlEncode(specialCommissionValueAsString))
                 .append("");
         Object taxCommissionValue = getTaxCommission();
         String taxCommissionValueAsString = "";
@@ -236,6 +275,7 @@ public class AccountCommissionResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
         openapiFields.add("standardCommission");
+        openapiFields.add("specialCommission");
         openapiFields.add("taxCommission");
         openapiFields.add("discount");
 
@@ -274,6 +314,12 @@ public class AccountCommissionResponse {
                 && !jsonObj.get("standardCommission").isJsonNull()) {
             AccountCommissionResponseStandardCommission.validateJsonElement(
                     jsonObj.get("standardCommission"));
+        }
+        // validate the optional field `specialCommission`
+        if (jsonObj.get("specialCommission") != null
+                && !jsonObj.get("specialCommission").isJsonNull()) {
+            AccountCommissionResponseSpecialCommission.validateJsonElement(
+                    jsonObj.get("specialCommission"));
         }
         // validate the optional field `taxCommission`
         if (jsonObj.get("taxCommission") != null && !jsonObj.get("taxCommission").isJsonNull()) {

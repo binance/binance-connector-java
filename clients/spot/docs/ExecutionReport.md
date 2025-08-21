@@ -57,6 +57,10 @@
 |**aLowerCase** | **Long** |  |  [optional] |
 |**kLowerCase** | **String** |  |  [optional] |
 |**uS** | **Boolean** |  |  [optional] |
+|**gP** | **String** |  |  [optional] |
+|**gOT** | **String** |  |  [optional] |
+|**gOV** | **Long** |  |  [optional] |
+|**gp** | **String** |  |  [optional] |
 
 
 
