@@ -20,6 +20,9 @@
 |**workingTimeInForce** | **WorkingTimeInForce** |  |  [optional] |
 |**workingStrategyId** | **Long** |  |  [optional] |
 |**workingStrategyType** | **Integer** |  |  [optional] |
+|**workingPegPriceType** | **WorkingPegPriceType** |  |  [optional] |
+|**workingPegOffsetType** | **WorkingPegOffsetType** |  |  [optional] |
+|**workingPegOffsetValue** | **Integer** |  |  [optional] |
 |**pendingSide** | **PendingSide** |  |  |
 |**pendingQuantity** | **Double** |  |  |
 |**pendingAboveType** | **PendingAboveType** |  |  |
@@ -31,6 +34,9 @@
 |**pendingAboveTimeInForce** | **PendingAboveTimeInForce** |  |  [optional] |
 |**pendingAboveStrategyId** | **Long** |  |  [optional] |
 |**pendingAboveStrategyType** | **Integer** |  |  [optional] |
+|**pendingAbovePegPriceType** | **PendingAbovePegPriceType** |  |  [optional] |
+|**pendingAbovePegOffsetType** | **PendingAbovePegOffsetType** |  |  [optional] |
+|**pendingAbovePegOffsetValue** | **Integer** |  |  [optional] |
 |**pendingBelowType** | **PendingBelowType** |  |  [optional] |
 |**pendingBelowClientOrderId** | **String** |  |  [optional] |
 |**pendingBelowPrice** | **Double** |  |  [optional] |
@@ -40,6 +46,9 @@
 |**pendingBelowTimeInForce** | **PendingBelowTimeInForce** |  |  [optional] |
 |**pendingBelowStrategyId** | **Long** |  |  [optional] |
 |**pendingBelowStrategyType** | **Integer** |  |  [optional] |
+|**pendingBelowPegPriceType** | **PendingBelowPegPriceType** |  |  [optional] |
+|**pendingBelowPegOffsetType** | **PendingBelowPegOffsetType** |  |  [optional] |
+|**pendingBelowPegOffsetValue** | **Integer** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

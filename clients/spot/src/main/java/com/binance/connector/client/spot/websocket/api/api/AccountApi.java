@@ -126,7 +126,7 @@ public class AccountApi {
      * WebSocket Unfilled Order Count Query your current unfilled order count for all intervals.
      * Weight: 40
      *
-     * @param accountRateLimitsOrdersRequest (required)
+     * @param accountRateLimitsOrdersRequest (optional)
      * @return AccountRateLimitsOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -190,7 +190,7 @@ public class AccountApi {
     /**
      * WebSocket Account information Query information about your account. Weight: 20
      *
-     * @param accountStatusRequest (required)
+     * @param accountStatusRequest (optional)
      * @return AccountStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -252,7 +252,7 @@ public class AccountApi {
      * WebSocket Account order list history Query information about all your order lists, filtered
      * by time range. Weight: 20
      *
-     * @param allOrderListsRequest (required)
+     * @param allOrderListsRequest (optional)
      * @return AllOrderListsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -569,7 +569,7 @@ public class AccountApi {
      * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event
      * Weight: 6
      *
-     * @param openOrderListsStatusRequest (required)
+     * @param openOrderListsStatusRequest (optional)
      * @return OpenOrderListsStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -635,7 +635,7 @@ public class AccountApi {
      * Weight: Adjusted based on the number of requested symbols: | Parameter | Weight | | ---------
      * | ------ | | &#x60;symbol&#x60; | 6 | | none | 80 |
      *
-     * @param openOrdersStatusRequest (required)
+     * @param openOrdersStatusRequest (optional)
      * @return OpenOrdersStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -759,7 +759,7 @@ public class AccountApi {
      * WebSocket Query Order list Check execution status of an Order list. For execution status of
      * individual orders, use &#x60;order.status&#x60;. Weight: 4
      *
-     * @param orderListStatusRequest (required)
+     * @param orderListStatusRequest (optional)
      * @return OrderListStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body

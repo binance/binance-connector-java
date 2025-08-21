@@ -116,6 +116,9 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
+                        .AccountCommissionResponseSpecialCommission.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
                         .AccountCommissionResponseStandardCommission.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
@@ -355,6 +358,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderTestResponseDiscount
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderTestResponseSpecialCommissionForOrder.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
                         .OrderTestResponseStandardCommissionForOrder.CustomTypeAdapterFactory());

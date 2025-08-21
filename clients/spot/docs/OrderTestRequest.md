@@ -23,6 +23,9 @@
 |**strategyId** | **Long** |  |  [optional] |
 |**strategyType** | **Integer** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
+|**pegPriceType** | **PegPriceType** |  |  [optional] |
+|**pegOffsetValue** | **Integer** |  |  [optional] |
+|**pegOffsetType** | **PegOffsetType** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

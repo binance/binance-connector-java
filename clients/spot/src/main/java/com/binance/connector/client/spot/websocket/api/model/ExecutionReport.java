@@ -339,6 +339,30 @@ public class ExecutionReport extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean uS;
 
+    public static final String SERIALIZED_NAME_G_P = "gP";
+
+    @SerializedName(SERIALIZED_NAME_G_P)
+    @jakarta.annotation.Nullable
+    private String gP;
+
+    public static final String SERIALIZED_NAME_G_O_T = "gOT";
+
+    @SerializedName(SERIALIZED_NAME_G_O_T)
+    @jakarta.annotation.Nullable
+    private String gOT;
+
+    public static final String SERIALIZED_NAME_G_O_V = "gOV";
+
+    @SerializedName(SERIALIZED_NAME_G_O_V)
+    @jakarta.annotation.Nullable
+    private Long gOV;
+
+    public static final String SERIALIZED_NAME_GP = "gp";
+
+    @SerializedName(SERIALIZED_NAME_GP)
+    @jakarta.annotation.Nullable
+    private String gp;
+
     public ExecutionReport() {}
 
     public ExecutionReport E(@jakarta.annotation.Nullable Long E) {
@@ -1291,6 +1315,82 @@ public class ExecutionReport extends BaseDTO {
         this.uS = uS;
     }
 
+    public ExecutionReport gP(@jakarta.annotation.Nullable String gP) {
+        this.gP = gP;
+        return this;
+    }
+
+    /**
+     * Get gP
+     *
+     * @return gP
+     */
+    @jakarta.annotation.Nullable
+    public String getgP() {
+        return gP;
+    }
+
+    public void setgP(@jakarta.annotation.Nullable String gP) {
+        this.gP = gP;
+    }
+
+    public ExecutionReport gOT(@jakarta.annotation.Nullable String gOT) {
+        this.gOT = gOT;
+        return this;
+    }
+
+    /**
+     * Get gOT
+     *
+     * @return gOT
+     */
+    @jakarta.annotation.Nullable
+    public String getgOT() {
+        return gOT;
+    }
+
+    public void setgOT(@jakarta.annotation.Nullable String gOT) {
+        this.gOT = gOT;
+    }
+
+    public ExecutionReport gOV(@jakarta.annotation.Nullable Long gOV) {
+        this.gOV = gOV;
+        return this;
+    }
+
+    /**
+     * Get gOV
+     *
+     * @return gOV
+     */
+    @jakarta.annotation.Nullable
+    public Long getgOV() {
+        return gOV;
+    }
+
+    public void setgOV(@jakarta.annotation.Nullable Long gOV) {
+        this.gOV = gOV;
+    }
+
+    public ExecutionReport gp(@jakarta.annotation.Nullable String gp) {
+        this.gp = gp;
+        return this;
+    }
+
+    /**
+     * Get gp
+     *
+     * @return gp
+     */
+    @jakarta.annotation.Nullable
+    public String getGp() {
+        return gp;
+    }
+
+    public void setGp(@jakarta.annotation.Nullable String gp) {
+        this.gp = gp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -1349,7 +1449,11 @@ public class ExecutionReport extends BaseDTO {
                 && Objects.equals(this.bLowerCase, executionReport.bLowerCase)
                 && Objects.equals(this.aLowerCase, executionReport.aLowerCase)
                 && Objects.equals(this.kLowerCase, executionReport.kLowerCase)
-                && Objects.equals(this.uS, executionReport.uS);
+                && Objects.equals(this.uS, executionReport.uS)
+                && Objects.equals(this.gP, executionReport.gP)
+                && Objects.equals(this.gOT, executionReport.gOT)
+                && Objects.equals(this.gOV, executionReport.gOV)
+                && Objects.equals(this.gp, executionReport.gp);
     }
 
     @Override
@@ -1404,7 +1508,11 @@ public class ExecutionReport extends BaseDTO {
                 bLowerCase,
                 aLowerCase,
                 kLowerCase,
-                uS);
+                uS,
+                gP,
+                gOT,
+                gOV,
+                gp);
     }
 
     @Override
@@ -1461,6 +1569,10 @@ public class ExecutionReport extends BaseDTO {
         sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
         sb.append("		kLowerCase: ").append(toIndentedString(kLowerCase)).append("\n");
         sb.append("		uS: ").append(toIndentedString(uS)).append("\n");
+        sb.append("		gP: ").append(toIndentedString(gP)).append("\n");
+        sb.append("		gOT: ").append(toIndentedString(gOT)).append("\n");
+        sb.append("		gOV: ").append(toIndentedString(gOV)).append("\n");
+        sb.append("		gp: ").append(toIndentedString(gp)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1719,6 +1831,26 @@ public class ExecutionReport extends BaseDTO {
             String uSValueAsString = uSValue.toString();
             valMap.put("uS", uSValueAsString);
         }
+        String gPValue = getgP();
+        if (gPValue != null) {
+            String gPValueAsString = gPValue.toString();
+            valMap.put("gP", gPValueAsString);
+        }
+        String gOTValue = getgOT();
+        if (gOTValue != null) {
+            String gOTValueAsString = gOTValue.toString();
+            valMap.put("gOT", gOTValueAsString);
+        }
+        Long gOVValue = getgOV();
+        if (gOVValue != null) {
+            String gOVValueAsString = gOVValue.toString();
+            valMap.put("gOV", gOVValueAsString);
+        }
+        String gpValue = getGp();
+        if (gpValue != null) {
+            String gpValueAsString = gpValue.toString();
+            valMap.put("gp", gpValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -1930,6 +2062,22 @@ public class ExecutionReport extends BaseDTO {
         if (uSValue != null) {
             valMap.put("uS", uSValue);
         }
+        Object gPValue = getgP();
+        if (gPValue != null) {
+            valMap.put("gP", gPValue);
+        }
+        Object gOTValue = getgOT();
+        if (gOTValue != null) {
+            valMap.put("gOT", gOTValue);
+        }
+        Object gOVValue = getgOV();
+        if (gOVValue != null) {
+            valMap.put("gOV", gOVValue);
+        }
+        Object gpValue = getGp();
+        if (gpValue != null) {
+            valMap.put("gp", gpValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -2006,6 +2154,10 @@ public class ExecutionReport extends BaseDTO {
         openapiFields.add("a");
         openapiFields.add("k");
         openapiFields.add("uS");
+        openapiFields.add("gP");
+        openapiFields.add("gOT");
+        openapiFields.add("gOV");
+        openapiFields.add("gp");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -2280,6 +2432,30 @@ public class ExecutionReport extends BaseDTO {
                             "Expected the field `k` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("k").toString()));
+        }
+        if ((jsonObj.get("gP") != null && !jsonObj.get("gP").isJsonNull())
+                && !jsonObj.get("gP").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `gP` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("gP").toString()));
+        }
+        if ((jsonObj.get("gOT") != null && !jsonObj.get("gOT").isJsonNull())
+                && !jsonObj.get("gOT").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `gOT` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("gOT").toString()));
+        }
+        if ((jsonObj.get("gp") != null && !jsonObj.get("gp").isJsonNull())
+                && !jsonObj.get("gp").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `gp` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("gp").toString()));
         }
     }
 

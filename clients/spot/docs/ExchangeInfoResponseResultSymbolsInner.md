@@ -24,6 +24,7 @@
 |**allowTrailingStop** | **Boolean** |  |  [optional] |
 |**cancelReplaceAllowed** | **Boolean** |  |  [optional] |
 |**amendAllowed** | **Boolean** |  |  [optional] |
+|**pegInstructionsAllowed** | **Boolean** |  |  [optional] |
 |**isSpotTradingAllowed** | **Boolean** |  |  [optional] |
 |**isMarginTradingAllowed** | **Boolean** |  |  [optional] |
 |**filters** | **ExchangeFilters** |  |  [optional] |

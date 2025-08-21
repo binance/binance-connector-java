@@ -67,7 +67,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/5.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -764,6 +764,18 @@ public class TradeApi {
                     "selfTradePreventionMode", newOrderRequest.getSelfTradePreventionMode());
         }
 
+        if (newOrderRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", newOrderRequest.getPegPriceType());
+        }
+
+        if (newOrderRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", newOrderRequest.getPegOffsetValue());
+        }
+
+        if (newOrderRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", newOrderRequest.getPegOffsetType());
+        }
+
         if (newOrderRequest.getRecvWindow() != null) {
             localVarFormParams.put("recvWindow", newOrderRequest.getRecvWindow());
         }
@@ -1174,6 +1186,18 @@ public class TradeApi {
                     orderCancelReplaceRequest.getOrderRateLimitExceededMode());
         }
 
+        if (orderCancelReplaceRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", orderCancelReplaceRequest.getPegPriceType());
+        }
+
+        if (orderCancelReplaceRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", orderCancelReplaceRequest.getPegOffsetValue());
+        }
+
+        if (orderCancelReplaceRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", orderCancelReplaceRequest.getPegOffsetType());
+        }
+
         if (orderCancelReplaceRequest.getRecvWindow() != null) {
             localVarFormParams.put("recvWindow", orderCancelReplaceRequest.getRecvWindow());
         }
@@ -1379,6 +1403,20 @@ public class TradeApi {
             localVarFormParams.put("aboveStrategyType", orderListOcoRequest.getAboveStrategyType());
         }
 
+        if (orderListOcoRequest.getAbovePegPriceType() != null) {
+            localVarFormParams.put("abovePegPriceType", orderListOcoRequest.getAbovePegPriceType());
+        }
+
+        if (orderListOcoRequest.getAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "abovePegOffsetType", orderListOcoRequest.getAbovePegOffsetType());
+        }
+
+        if (orderListOcoRequest.getAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "abovePegOffsetValue", orderListOcoRequest.getAbovePegOffsetValue());
+        }
+
         if (orderListOcoRequest.getBelowType() != null) {
             localVarFormParams.put("belowType", orderListOcoRequest.getBelowType());
         }
@@ -1420,6 +1458,20 @@ public class TradeApi {
 
         if (orderListOcoRequest.getBelowStrategyType() != null) {
             localVarFormParams.put("belowStrategyType", orderListOcoRequest.getBelowStrategyType());
+        }
+
+        if (orderListOcoRequest.getBelowPegPriceType() != null) {
+            localVarFormParams.put("belowPegPriceType", orderListOcoRequest.getBelowPegPriceType());
+        }
+
+        if (orderListOcoRequest.getBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "belowPegOffsetType", orderListOcoRequest.getBelowPegOffsetType());
+        }
+
+        if (orderListOcoRequest.getBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "belowPegOffsetValue", orderListOcoRequest.getBelowPegOffsetValue());
         }
 
         if (orderListOcoRequest.getNewOrderRespType() != null) {
@@ -1642,6 +1694,21 @@ public class TradeApi {
                     "workingStrategyType", orderListOtoRequest.getWorkingStrategyType());
         }
 
+        if (orderListOtoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOtoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOtoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOtoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOtoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOtoRequest.getWorkingPegOffsetValue());
+        }
+
         if (orderListOtoRequest.getPendingType() != null) {
             localVarFormParams.put("pendingType", orderListOtoRequest.getPendingType());
         }
@@ -1701,6 +1768,21 @@ public class TradeApi {
         if (orderListOtoRequest.getPendingStrategyType() != null) {
             localVarFormParams.put(
                     "pendingStrategyType", orderListOtoRequest.getPendingStrategyType());
+        }
+
+        if (orderListOtoRequest.getPendingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingPegPriceType", orderListOtoRequest.getPendingPegPriceType());
+        }
+
+        if (orderListOtoRequest.getPendingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetType", orderListOtoRequest.getPendingPegOffsetType());
+        }
+
+        if (orderListOtoRequest.getPendingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetValue", orderListOtoRequest.getPendingPegOffsetValue());
         }
 
         if (orderListOtoRequest.getRecvWindow() != null) {
@@ -1916,6 +1998,21 @@ public class TradeApi {
                     "workingStrategyType", orderListOtocoRequest.getWorkingStrategyType());
         }
 
+        if (orderListOtocoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOtocoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOtocoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOtocoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOtocoRequest.getWorkingPegOffsetValue());
+        }
+
         if (orderListOtocoRequest.getPendingSide() != null) {
             localVarFormParams.put("pendingSide", orderListOtocoRequest.getPendingSide());
         }
@@ -1981,6 +2078,24 @@ public class TradeApi {
                     orderListOtocoRequest.getPendingAboveStrategyType());
         }
 
+        if (orderListOtocoRequest.getPendingAbovePegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegPriceType",
+                    orderListOtocoRequest.getPendingAbovePegPriceType());
+        }
+
+        if (orderListOtocoRequest.getPendingAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetType",
+                    orderListOtocoRequest.getPendingAbovePegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getPendingAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetValue",
+                    orderListOtocoRequest.getPendingAbovePegOffsetValue());
+        }
+
         if (orderListOtocoRequest.getPendingBelowType() != null) {
             localVarFormParams.put("pendingBelowType", orderListOtocoRequest.getPendingBelowType());
         }
@@ -2033,6 +2148,24 @@ public class TradeApi {
             localVarFormParams.put(
                     "pendingBelowStrategyType",
                     orderListOtocoRequest.getPendingBelowStrategyType());
+        }
+
+        if (orderListOtocoRequest.getPendingBelowPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegPriceType",
+                    orderListOtocoRequest.getPendingBelowPegPriceType());
+        }
+
+        if (orderListOtocoRequest.getPendingBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetType",
+                    orderListOtocoRequest.getPendingBelowPegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getPendingBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetValue",
+                    orderListOtocoRequest.getPendingBelowPegOffsetValue());
         }
 
         if (orderListOtocoRequest.getRecvWindow() != null) {
@@ -2477,6 +2610,18 @@ public class TradeApi {
         if (orderTestRequest.getSelfTradePreventionMode() != null) {
             localVarFormParams.put(
                     "selfTradePreventionMode", orderTestRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderTestRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", orderTestRequest.getPegPriceType());
+        }
+
+        if (orderTestRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", orderTestRequest.getPegOffsetValue());
+        }
+
+        if (orderTestRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", orderTestRequest.getPegOffsetType());
         }
 
         if (orderTestRequest.getRecvWindow() != null) {

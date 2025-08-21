@@ -171,6 +171,24 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private OrderRateLimitExceededMode orderRateLimitExceededMode;
 
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PegPriceType pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PegOffsetType pegOffsetType;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -616,6 +634,68 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         this.orderRateLimitExceededMode = orderRateLimitExceededMode;
     }
 
+    public OrderCancelReplaceRequest pegPriceType(
+            @jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pegPriceType
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegPriceType getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OrderCancelReplaceRequest pegOffsetValue(
+            @jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetValue
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OrderCancelReplaceRequest pegOffsetType(
+            @jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetType
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegOffsetType getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
     public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -675,6 +755,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                 && Objects.equals(
                         this.orderRateLimitExceededMode,
                         orderCancelReplaceRequest.orderRateLimitExceededMode)
+                && Objects.equals(this.pegPriceType, orderCancelReplaceRequest.pegPriceType)
+                && Objects.equals(this.pegOffsetValue, orderCancelReplaceRequest.pegOffsetValue)
+                && Objects.equals(this.pegOffsetType, orderCancelReplaceRequest.pegOffsetType)
                 && Objects.equals(this.recvWindow, orderCancelReplaceRequest.recvWindow);
     }
 
@@ -702,6 +785,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                 selfTradePreventionMode,
                 cancelRestrictions,
                 orderRateLimitExceededMode,
+                pegPriceType,
+                pegOffsetValue,
+                pegOffsetType,
                 recvWindow);
     }
 
@@ -740,6 +826,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         sb.append("		orderRateLimitExceededMode: ")
                 .append(toIndentedString(orderRateLimitExceededMode))
                 .append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -859,6 +948,21 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                     orderRateLimitExceededModeValue.toString();
             valMap.put("orderRateLimitExceededMode", orderRateLimitExceededModeValueAsString);
         }
+        PegPriceType pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            String pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+            valMap.put("pegPriceType", pegPriceTypeValueAsString);
+        }
+        Integer pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            String pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+            valMap.put("pegOffsetValue", pegOffsetValueValueAsString);
+        }
+        PegOffsetType pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            String pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+            valMap.put("pegOffsetType", pegOffsetTypeValueAsString);
+        }
         Long recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             String recvWindowValueAsString = recvWindowValue.toString();
@@ -959,6 +1063,18 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         if (orderRateLimitExceededModeValue != null) {
             valMap.put("orderRateLimitExceededMode", orderRateLimitExceededModeValue);
         }
+        Object pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            valMap.put("pegPriceType", pegPriceTypeValue);
+        }
+        Object pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            valMap.put("pegOffsetValue", pegOffsetValueValue);
+        }
+        Object pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            valMap.put("pegOffsetType", pegOffsetTypeValue);
+        }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             valMap.put("recvWindow", recvWindowValue);
@@ -1010,6 +1126,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("cancelRestrictions");
         openapiFields.add("orderRateLimitExceededMode");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("pegOffsetType");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -1124,6 +1243,14 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                 && !jsonObj.get("orderRateLimitExceededMode").isJsonNull()) {
             OrderRateLimitExceededMode.validateJsonElement(
                     jsonObj.get("orderRateLimitExceededMode"));
+        }
+        // validate the optional field `pegPriceType`
+        if (jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull()) {
+            PegPriceType.validateJsonElement(jsonObj.get("pegPriceType"));
+        }
+        // validate the optional field `pegOffsetType`
+        if (jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull()) {
+            PegOffsetType.validateJsonElement(jsonObj.get("pegOffsetType"));
         }
     }
 

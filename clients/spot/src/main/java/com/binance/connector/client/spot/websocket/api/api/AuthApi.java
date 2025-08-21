@@ -46,7 +46,7 @@ public class AuthApi {
      * API key can be authenticated. Calling &#x60;session.logon&#x60; multiple times changes the
      * current authenticated API key. Weight: 2
      *
-     * @param sessionLogonRequest (required)
+     * @param sessionLogonRequest (optional)
      * @return SessionLogonResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body

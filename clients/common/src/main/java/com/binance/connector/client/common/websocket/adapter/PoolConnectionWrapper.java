@@ -5,7 +5,10 @@ import com.binance.connector.client.common.websocket.configuration.WebSocketClie
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,6 +24,9 @@ public class PoolConnectionWrapper implements ConnectionInterface {
             String.format(
                     "binance-connector-java/1.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    protected List<String> logonMethod = new ArrayList<>();
+    protected List<String> logoutMethod = new ArrayList<>();
 
     public PoolConnectionWrapper(WebSocketClientConfiguration clientConfiguration) {
         this(clientConfiguration, null);
@@ -73,6 +79,8 @@ public class PoolConnectionWrapper implements ConnectionInterface {
     public void connect() {
         for (ConnectionWrapper connectionWrapper : connectionList) {
             connectionWrapper.setUserAgent(userAgent);
+            connectionWrapper.setLogonMethods(logonMethod);
+            connectionWrapper.setLogoutMethods(logoutMethod);
             connectionWrapper.connect();
         }
         isConnected = true;
@@ -113,7 +121,19 @@ public class PoolConnectionWrapper implements ConnectionInterface {
     }
 
     @Override
-    public void setUserAgent(String userAgent) {}
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    @Override
+    public void setLogonMethods(List<String> logonMethods) {
+        this.logonMethod = logonMethods;
+    }
+
+    @Override
+    public void setLogoutMethods(List<String> logoutMethods) {
+        this.logoutMethod = logoutMethods;
+    }
 
     @Override
     public boolean isConnected() {

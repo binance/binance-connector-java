@@ -28,6 +28,9 @@
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
 |**cancelRestrictions** | **CancelRestrictions** |  |  [optional] |
 |**orderRateLimitExceededMode** | **OrderRateLimitExceededMode** |  |  [optional] |
+|**pegPriceType** | **PegPriceType** |  |  [optional] |
+|**pegOffsetValue** | **Integer** |  |  [optional] |
+|**pegOffsetType** | **PegOffsetType** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

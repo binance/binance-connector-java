@@ -39,7 +39,7 @@ public class BaseRequestDTO {
     }
 
     public String toUrlQueryString() {
-        return "timestamp=" + getTimestamp();
+        return "apiKey=" + apiKey + "&timestamp=" + timestamp;
     }
 
     @Override

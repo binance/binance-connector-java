@@ -26,6 +26,7 @@ import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStart
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
@@ -221,7 +222,7 @@ public class UserDataStreamApiTest {
     public void userDataStreamUnsubscribeTest()
             throws ApiException, URISyntaxException, IOException {
         CompletableFuture<UserDataStreamUnsubscribeResponse> response =
-                api.userDataStreamUnsubscribe();
+                api.userDataStreamUnsubscribe(new UserDataStreamUnsubscribeRequest());
         ArgumentCaptor<RequestWrapperDTO<BaseRequestDTO, UserDataStreamUnsubscribeResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
         Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());

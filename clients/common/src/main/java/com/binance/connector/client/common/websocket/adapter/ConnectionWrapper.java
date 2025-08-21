@@ -10,7 +10,7 @@ import com.binance.connector.client.common.websocket.configuration.WebSocketClie
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
-import com.binance.connector.client.common.websocket.dtos.SessionLogonResponse;
+import com.binance.connector.client.common.websocket.dtos.SessionResponse;
 import com.binance.connector.client.common.websocket.service.DeserializeExclusionStrategy;
 import com.binance.connector.client.common.websocket.service.SerializeExclusionStrategy;
 import com.google.gson.Gson;
@@ -64,12 +64,12 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     // -2015 for wrong API Keys, -1022 for wrong signature
     private static final List<Integer> ERROR_CODE_WRONG_CREDENTIALS = Arrays.asList(-2015, -1022);
 
-    private static final String LOGON_METHOD = "session.logon";
-    private static final String LOGOUT_METHOD = "session.logout";
-
     protected Map<String, RequestWrapperDTO> pendingRequest = new HashMap<>();
     protected Session session;
     protected Session oldSession;
+
+    protected List<String> logonMethods = new ArrayList<>();
+    protected List<String> logoutMethods = new ArrayList<>();
 
     private String userAgent =
             String.format(
@@ -193,7 +193,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     public void connect(Consumer<Session> customCallback)
             throws IOException, URISyntaxException, InterruptedException {
         pendingReconnect = false;
-        boolean autoLogon = configuration.getAutoLogon();
+        boolean autoLogon = !logonMethods.isEmpty() && (configuration.getAutoLogon() || isLoggedOn);
 
         // For LogOn mode, we need the logon to be completed before changing the session
         countDownLatch = new CountDownLatch(autoLogon ? 1 : 0);
@@ -399,12 +399,12 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
                         .build();
 
         build.setSignature(signatureGenerator.signAsString(build.toString()));
-        RequestWrapperDTO<? extends BaseRequestDTO, SessionLogonResponse> request =
-                new RequestWrapperDTO.Builder<BaseRequestDTO, SessionLogonResponse>()
+        RequestWrapperDTO<? extends BaseRequestDTO, SessionResponse> request =
+                new RequestWrapperDTO.Builder<BaseRequestDTO, SessionResponse>()
                         .id(UUID.randomUUID().toString())
-                        .method("session.logon")
+                        .method(logonMethods.get(0))
                         .params(build)
-                        .responseType(SessionLogonResponse.class)
+                        .responseType(SessionResponse.class)
                         .build();
 
         request.getResponseCallback()
@@ -462,13 +462,13 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
             Object responseResult = gson.fromJson(root, responseType);
             pendingRequest.remove(id);
 
-            if (LOGON_METHOD.equals(requestWrapperDTO.getMethod())) {
+            if (this.logonMethods.contains(requestWrapperDTO.getMethod())) {
                 if (obj.get("status").getAsInt() == 200) {
                     isLoggedOn = true;
                 }
             }
 
-            if (LOGOUT_METHOD.equals(requestWrapperDTO.getMethod())) {
+            if (this.logoutMethods.contains(requestWrapperDTO.getMethod())) {
                 if (obj.get("status").getAsInt() == 200) {
                     isLoggedOn = false;
                 }
@@ -507,6 +507,16 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     @Override
     public boolean isConnected() {
         return session != null && session.isOpen();
+    }
+
+    @Override
+    public void setLogonMethods(List<String> logonMethods) {
+        this.logonMethods = logonMethods;
+    }
+
+    @Override
+    public void setLogoutMethods(List<String> logoutMethods) {
+        this.logoutMethods = logoutMethods;
     }
 
     public URI getUri(String uri) throws URISyntaxException {

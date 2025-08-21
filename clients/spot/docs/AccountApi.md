@@ -123,7 +123,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountRateLimitsOrdersRequest** | [**AccountRateLimitsOrdersRequest**](AccountRateLimitsOrdersRequest.md)|  | |
+| **accountRateLimitsOrdersRequest** | [**AccountRateLimitsOrdersRequest**](AccountRateLimitsOrdersRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -185,7 +185,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountStatusRequest** | [**AccountStatusRequest**](AccountStatusRequest.md)|  | |
+| **accountStatusRequest** | [**AccountStatusRequest**](AccountStatusRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -247,7 +247,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **allOrderListsRequest** | [**AllOrderListsRequest**](AllOrderListsRequest.md)|  | |
+| **allOrderListsRequest** | [**AllOrderListsRequest**](AllOrderListsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -557,7 +557,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **openOrderListsStatusRequest** | [**OpenOrderListsStatusRequest**](OpenOrderListsStatusRequest.md)|  | |
+| **openOrderListsStatusRequest** | [**OpenOrderListsStatusRequest**](OpenOrderListsStatusRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -619,7 +619,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **openOrdersStatusRequest** | [**OpenOrdersStatusRequest**](OpenOrdersStatusRequest.md)|  | |
+| **openOrdersStatusRequest** | [**OpenOrdersStatusRequest**](OpenOrdersStatusRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -743,7 +743,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **orderListStatusRequest** | [**OrderListStatusRequest**](OrderListStatusRequest.md)|  | |
+| **orderListStatusRequest** | [**OrderListStatusRequest**](OrderListStatusRequest.md)|  | [optional] |
 
 ### Return type
 

@@ -69,6 +69,7 @@ import com.binance.connector.client.spot.websocket.api.model.SessionLogonRequest
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogoutResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceRequest;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceResponse;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderTestRequest;
@@ -99,13 +100,17 @@ import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStart
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/5.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -124,6 +129,15 @@ public class SpotWebSocketApi {
 
     public SpotWebSocketApi(ConnectionInterface connection) {
         connection.setUserAgent(USER_AGENT);
+        List<String> logonMethods = new ArrayList<>();
+        List<String> logoutMethods = new ArrayList<>();
+
+        logonMethods.add("/session.logon".substring(1));
+
+        logoutMethods.add("/session.logout".substring(1));
+
+        connection.setLogonMethods(logonMethods);
+        connection.setLogoutMethods(logoutMethods);
         if (!connection.isConnected()) {
             connection.connect();
         }
@@ -351,6 +365,11 @@ public class SpotWebSocketApi {
         return tradeApi.sorOrderTest(sorOrderTestRequest);
     }
 
+    public CompletableFuture<SessionSubscriptionsResponse> sessionSubscriptions()
+            throws ApiException {
+        return userDataStreamApi.sessionSubscriptions();
+    }
+
     public CompletableFuture<UserDataStreamPingResponse> userDataStreamPing(
             UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
         return userDataStreamApi.userDataStreamPing(userDataStreamPingRequest);
@@ -371,8 +390,13 @@ public class SpotWebSocketApi {
         return userDataStreamApi.userDataStreamSubscribe();
     }
 
-    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe()
-            throws ApiException {
-        return userDataStreamApi.userDataStreamUnsubscribe();
+    public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribeSignature() throws ApiException {
+        return userDataStreamApi.userDataStreamSubscribeSignature();
+    }
+
+    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        return userDataStreamApi.userDataStreamUnsubscribe(userDataStreamUnsubscribeRequest);
     }
 }
