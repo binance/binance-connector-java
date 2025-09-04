@@ -129,7 +129,7 @@ The new structure introduces a more modular approach to client initialization.
     DerivativesTradingCoinFuturesRestApi api = new DerivativesTradingCoinFuturesRestApi(clientConfiguration);
 
     Long recvWindow = 5000L;
-    ApiResponse<AccountInformationResponse> response = getApi().accountInformation(recvWindow);
+    ApiResponse<AccountInformationResponse> response = api.accountInformation(recvWindow);
     System.out.println(response.getData());
 ```
 
