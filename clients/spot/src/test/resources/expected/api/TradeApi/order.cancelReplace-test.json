@@ -1,0 +1,13 @@
+{
+  "id": "eaf3292c-64b6-4c04-ad4f-4ca2608b42b4",
+  "params": {
+    "symbol": "BTCUSDT",
+    "cancelReplaceMode": "STOP_ON_FAILURE",
+    "side": "BUY",
+    "type": "LIMIT",
+    "apiKey": "apiKey",
+    "timestamp": "1736393892000",
+    "signature": "bqpekl/uVBvtZQ1GFDzSE4EEJWfnGACWT/L5fgDM/CtTw4GmVWSWtF/RBzQ/aBcDFN+cfiCB3MqvpedhscujCQ=="
+  },
+  "method": "order.cancelReplace"
+}

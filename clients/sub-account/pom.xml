@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>binance-sub-account</artifactId>
+    <name>sub-account</name>
+    <version>3.0.1</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>io.github.binance</groupId>
+        <artifactId>binance-connector-java-clients</artifactId>
+        <version>1.1.1</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.binance</groupId>
+            <artifactId>binance-common</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+    </dependencies>
+</project>
