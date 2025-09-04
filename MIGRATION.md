@@ -51,7 +51,7 @@ For Futures (COIN-M Futures package):
     </dependency>
 ```
 
-### **Step 3: Update Imports**
+### **Step 2: Update Imports**
 
 Update your import paths:
 
