@@ -1,6 +1,15 @@
 # Changelog
 
+## 4.0.0 - 2025-09-22
+
+### Added (1)
+
+#### REST API
+
+- `getLimitPricePairs()` (`GET /sapi/v1/margin/limit-price-pairs`)
+
 ## 3.0.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

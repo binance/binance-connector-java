@@ -26,21 +26,21 @@ public class PayRestApi {
      * receiverInfo，there are different return values in different orderTypes. * Sender&#39;s
      * perspective when orderType is C2C * payerInfo : binanceId * receiverInfo : name,
      * binanceId/accountId/email/countryCode/phoneNumber/mobileCode (based on user input) *
-     * Receiver&#39;s perspective when orderType is C2C * payerInfo : name, accountId * receiverInfo
-     * : binanceId * Sender&#39;s perspective when orderType is CRYPTO_BOX * payerInfo : binanceId *
+     * Receiver&#39;s perspective when orderType is C2C * payerInfo : name * receiverInfo :
+     * binanceId * Sender&#39;s perspective when orderType is CRYPTO_BOX * payerInfo : binanceId *
      * receiverInfo : name(the value is always \&quot;Crypto Box\&quot;) * Receiver&#39;s
-     * perspective when orderType is CRYPTO_BOX * payerInfo : name, accountId * receiverInfo :
-     * binanceId * Sender&#39;s perspective when orderType is PAY * payerInfo : binanceId *
-     * receiverInfo : name * Receiver&#39;s perspective when orderType is PAY * payerInfo : name,
-     * accountId * receiverInfo : binanceId, name * Sender&#39;s perspective when orderType is
-     * PAY_REFUND * payerInfo : binanceId, name * receiverInfo : name, accountId * Receiver&#39;s
-     * perspective when orderType is PAY_REFUND * payerInfo : name * receiverInfo : binanceId *
-     * Sender&#39;s perspective when orderType is PAYOUT * payerInfo : binanceId, name *
-     * receiverInfo : name, accountId * Receiver&#39;s perspective when orderType is PAYOUT *
-     * payerInfo : name * receiverInfo : binanceId * Receiver&#39;s perspective when orderType is
-     * CRYPTO_BOX_RF * payerInfo : name(the value is always \&quot;Crypto Box\&quot;) * receiverInfo
-     * : binanceId * Sender&#39;s perspective when orderType is REMITTANCE * payerInfo : binanceId *
-     * receiverInfo : name, institutionName, cardNumber, digitalWalletId Weight: 3000
+     * perspective when orderType is CRYPTO_BOX * payerInfo : name * receiverInfo : binanceId *
+     * Sender&#39;s perspective when orderType is PAY * payerInfo : binanceId * receiverInfo : name
+     * * Receiver&#39;s perspective when orderType is PAY * payerInfo : name * receiverInfo :
+     * binanceId, name * Sender&#39;s perspective when orderType is PAY_REFUND * payerInfo :
+     * binanceId, name * receiverInfo : name, accountId * Receiver&#39;s perspective when orderType
+     * is PAY_REFUND * payerInfo : name * receiverInfo : binanceId * Sender&#39;s perspective when
+     * orderType is PAYOUT * payerInfo : binanceId, name * receiverInfo : name, accountId *
+     * Receiver&#39;s perspective when orderType is PAYOUT * payerInfo : name * receiverInfo :
+     * binanceId * Receiver&#39;s perspective when orderType is CRYPTO_BOX_RF * payerInfo : name(the
+     * value is always \&quot;Crypto Box\&quot;) * receiverInfo : binanceId * Sender&#39;s
+     * perspective when orderType is REMITTANCE * payerInfo : binanceId * receiverInfo : name,
+     * institutionName, cardNumber, digitalWalletId Weight: 3000
      *
      * @param startTime (optional)
      * @param endTime (optional)

@@ -24,6 +24,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetAllCrossMarginP
 import com.binance.connector.client.margin_trading.rest.model.GetAllIsolatedMarginSymbolResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetAllMarginAssetsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
@@ -51,7 +52,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/3.0.1 (Java/%s; %s; %s)",
+                    "binance-margin-trading/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -747,6 +748,139 @@ public class MarketDataApi {
         okhttp3.Call localVarCall = getDelistScheduleValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetDelistScheduleResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getLimitPricePairs
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Limit Price Pairs </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
+     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     */
+    private okhttp3.Call getLimitPricePairsCall() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/limit-price-pairs";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getLimitPricePairsValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("getLimitPricePairs");
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getLimitPricePairsCall();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Limit Price Pairs(MARKET_DATA) Query trading pairs with restriction on limit price range.
+     * In margin trading, you can place orders with limit price. Limit price should be within (-15%,
+     * 15%) of current index price for a list of margin trading pairs. This rule only impacts limit
+     * sell orders with limit price that is lower than current index price and limit buy orders with
+     * limit price that is higher than current index price. - Buy order: Your order will be rejected
+     * with an error message notification if the limit price is 15% above the index price. - Sell
+     * order: Your order will be rejected with an error message notification if the limit price is
+     * 15% below the index price. Please review the limit price order placing strategy, backtest and
+     * calibrate the planned order size with the trading volume and order book depth to prevent
+     * trading loss. Weight: 1
+     *
+     * @return ApiResponse&lt;GetLimitPricePairsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Limit Price Pairs </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
+     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetLimitPricePairsResponse> getLimitPricePairs() throws ApiException {
+        okhttp3.Call localVarCall = getLimitPricePairsValidateBeforeCall();
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetLimitPricePairsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

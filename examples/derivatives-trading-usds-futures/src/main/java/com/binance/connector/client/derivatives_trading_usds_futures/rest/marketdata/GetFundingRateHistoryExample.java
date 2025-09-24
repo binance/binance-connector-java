@@ -41,7 +41,7 @@ public class GetFundingRateHistoryExample {
      * Get Funding Rate History
      *
      * <p>Get Funding Rate History * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent,
-     * the most recent &#x60;limit&#x60; datas are returned. * If the number of data between
+     * the most recent 200 records are returned. * If the number of data between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; is larger than &#x60;limit&#x60;, return as
      * &#x60;startTime&#x60; + &#x60;limit&#x60;. * In ascending order. Weight: share 500/5min/IP
      * rate limit with GET /fapi/v1/fundingInfo

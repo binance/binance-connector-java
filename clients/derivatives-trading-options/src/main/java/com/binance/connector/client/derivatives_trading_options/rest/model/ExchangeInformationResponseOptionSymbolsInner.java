@@ -96,6 +96,12 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     @jakarta.annotation.Nullable
     private String takerFeeRate;
 
+    public static final String SERIALIZED_NAME_LIQUIDATION_FEE_RATE = "liquidationFeeRate";
+
+    @SerializedName(SERIALIZED_NAME_LIQUIDATION_FEE_RATE)
+    @jakarta.annotation.Nullable
+    private String liquidationFeeRate;
+
     public static final String SERIALIZED_NAME_MIN_QTY = "minQty";
 
     @SerializedName(SERIALIZED_NAME_MIN_QTY)
@@ -347,6 +353,26 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         this.takerFeeRate = takerFeeRate;
     }
 
+    public ExchangeInformationResponseOptionSymbolsInner liquidationFeeRate(
+            @jakarta.annotation.Nullable String liquidationFeeRate) {
+        this.liquidationFeeRate = liquidationFeeRate;
+        return this;
+    }
+
+    /**
+     * Get liquidationFeeRate
+     *
+     * @return liquidationFeeRate
+     */
+    @jakarta.annotation.Nullable
+    public String getLiquidationFeeRate() {
+        return liquidationFeeRate;
+    }
+
+    public void setLiquidationFeeRate(@jakarta.annotation.Nullable String liquidationFeeRate) {
+        this.liquidationFeeRate = liquidationFeeRate;
+    }
+
     public ExchangeInformationResponseOptionSymbolsInner minQty(
             @jakarta.annotation.Nullable String minQty) {
         this.minQty = minQty;
@@ -555,6 +581,9 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                 && Objects.equals(
                         this.takerFeeRate,
                         exchangeInformationResponseOptionSymbolsInner.takerFeeRate)
+                && Objects.equals(
+                        this.liquidationFeeRate,
+                        exchangeInformationResponseOptionSymbolsInner.liquidationFeeRate)
                 && Objects.equals(this.minQty, exchangeInformationResponseOptionSymbolsInner.minQty)
                 && Objects.equals(this.maxQty, exchangeInformationResponseOptionSymbolsInner.maxQty)
                 && Objects.equals(
@@ -590,6 +619,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                 unit,
                 makerFeeRate,
                 takerFeeRate,
+                liquidationFeeRate,
                 minQty,
                 maxQty,
                 initialMargin,
@@ -614,6 +644,9 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         sb.append("		unit: ").append(toIndentedString(unit)).append("\n");
         sb.append("		makerFeeRate: ").append(toIndentedString(makerFeeRate)).append("\n");
         sb.append("		takerFeeRate: ").append(toIndentedString(takerFeeRate)).append("\n");
+        sb.append("		liquidationFeeRate: ")
+                .append(toIndentedString(liquidationFeeRate))
+                .append("\n");
         sb.append("		minQty: ").append(toIndentedString(minQty)).append("\n");
         sb.append("		maxQty: ").append(toIndentedString(maxQty)).append("\n");
         sb.append("		initialMargin: ").append(toIndentedString(initialMargin)).append("\n");
@@ -671,6 +704,12 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         String takerFeeRateValueAsString = "";
         takerFeeRateValueAsString = takerFeeRateValue.toString();
         sb.append("takerFeeRate=").append(urlEncode(takerFeeRateValueAsString)).append("");
+        Object liquidationFeeRateValue = getLiquidationFeeRate();
+        String liquidationFeeRateValueAsString = "";
+        liquidationFeeRateValueAsString = liquidationFeeRateValue.toString();
+        sb.append("liquidationFeeRate=")
+                .append(urlEncode(liquidationFeeRateValueAsString))
+                .append("");
         Object minQtyValue = getMinQty();
         String minQtyValueAsString = "";
         minQtyValueAsString = minQtyValue.toString();
@@ -748,6 +787,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         openapiFields.add("unit");
         openapiFields.add("makerFeeRate");
         openapiFields.add("takerFeeRate");
+        openapiFields.add("liquidationFeeRate");
         openapiFields.add("minQty");
         openapiFields.add("maxQty");
         openapiFields.add("initialMargin");
@@ -850,6 +890,15 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                             "Expected the field `takerFeeRate` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("takerFeeRate").toString()));
+        }
+        if ((jsonObj.get("liquidationFeeRate") != null
+                        && !jsonObj.get("liquidationFeeRate").isJsonNull())
+                && !jsonObj.get("liquidationFeeRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `liquidationFeeRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("liquidationFeeRate").toString()));
         }
         if ((jsonObj.get("minQty") != null && !jsonObj.get("minQty").isJsonNull())
                 && !jsonObj.get("minQty").isJsonPrimitive()) {

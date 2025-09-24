@@ -57,7 +57,7 @@ public class EthStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/2.1.1 (Java/%s; %s; %s)",
+                    "binance-staking/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

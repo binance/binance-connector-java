@@ -38,7 +38,7 @@ public class SymbolPriceTickerExample {
     }
 
     /**
-     * Symbol Price Ticker
+     * Symbol Price Ticker(Deprecated)
      *
      * <p>Latest price for a symbol or symbols. * If the symbol is not sent, prices for all symbols
      * will be returned in an array. Weight: 1 for a single symbol; 2 when the symbol parameter is

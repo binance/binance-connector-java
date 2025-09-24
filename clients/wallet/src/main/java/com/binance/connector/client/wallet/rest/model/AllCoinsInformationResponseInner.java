@@ -54,41 +54,11 @@ public class AllCoinsInformationResponseInner {
     @jakarta.annotation.Nullable
     private Boolean depositAllEnable;
 
-    public static final String SERIALIZED_NAME_FREE = "free";
+    public static final String SERIALIZED_NAME_WITHDRAW_ALL_ENABLE = "withdrawAllEnable";
 
-    @SerializedName(SERIALIZED_NAME_FREE)
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_ALL_ENABLE)
     @jakarta.annotation.Nullable
-    private String free;
-
-    public static final String SERIALIZED_NAME_FREEZE = "freeze";
-
-    @SerializedName(SERIALIZED_NAME_FREEZE)
-    @jakarta.annotation.Nullable
-    private String freeze;
-
-    public static final String SERIALIZED_NAME_IPOABLE = "ipoable";
-
-    @SerializedName(SERIALIZED_NAME_IPOABLE)
-    @jakarta.annotation.Nullable
-    private String ipoable;
-
-    public static final String SERIALIZED_NAME_IPOING = "ipoing";
-
-    @SerializedName(SERIALIZED_NAME_IPOING)
-    @jakarta.annotation.Nullable
-    private String ipoing;
-
-    public static final String SERIALIZED_NAME_IS_LEGAL_MONEY = "isLegalMoney";
-
-    @SerializedName(SERIALIZED_NAME_IS_LEGAL_MONEY)
-    @jakarta.annotation.Nullable
-    private Boolean isLegalMoney;
-
-    public static final String SERIALIZED_NAME_LOCKED = "locked";
-
-    @SerializedName(SERIALIZED_NAME_LOCKED)
-    @jakarta.annotation.Nullable
-    private String locked;
+    private Boolean withdrawAllEnable;
 
     public static final String SERIALIZED_NAME_NAME = "name";
 
@@ -96,11 +66,41 @@ public class AllCoinsInformationResponseInner {
     @jakarta.annotation.Nullable
     private String name;
 
-    public static final String SERIALIZED_NAME_NETWORK_LIST = "networkList";
+    public static final String SERIALIZED_NAME_FREE = "free";
 
-    @SerializedName(SERIALIZED_NAME_NETWORK_LIST)
+    @SerializedName(SERIALIZED_NAME_FREE)
     @jakarta.annotation.Nullable
-    private List<@Valid AllCoinsInformationResponseInnerNetworkListInner> networkList;
+    private String free;
+
+    public static final String SERIALIZED_NAME_LOCKED = "locked";
+
+    @SerializedName(SERIALIZED_NAME_LOCKED)
+    @jakarta.annotation.Nullable
+    private String locked;
+
+    public static final String SERIALIZED_NAME_FREEZE = "freeze";
+
+    @SerializedName(SERIALIZED_NAME_FREEZE)
+    @jakarta.annotation.Nullable
+    private String freeze;
+
+    public static final String SERIALIZED_NAME_WITHDRAWING = "withdrawing";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAWING)
+    @jakarta.annotation.Nullable
+    private String withdrawing;
+
+    public static final String SERIALIZED_NAME_IPOING = "ipoing";
+
+    @SerializedName(SERIALIZED_NAME_IPOING)
+    @jakarta.annotation.Nullable
+    private String ipoing;
+
+    public static final String SERIALIZED_NAME_IPOABLE = "ipoable";
+
+    @SerializedName(SERIALIZED_NAME_IPOABLE)
+    @jakarta.annotation.Nullable
+    private String ipoable;
 
     public static final String SERIALIZED_NAME_STORAGE = "storage";
 
@@ -108,23 +108,23 @@ public class AllCoinsInformationResponseInner {
     @jakarta.annotation.Nullable
     private String storage;
 
+    public static final String SERIALIZED_NAME_IS_LEGAL_MONEY = "isLegalMoney";
+
+    @SerializedName(SERIALIZED_NAME_IS_LEGAL_MONEY)
+    @jakarta.annotation.Nullable
+    private Boolean isLegalMoney;
+
     public static final String SERIALIZED_NAME_TRADING = "trading";
 
     @SerializedName(SERIALIZED_NAME_TRADING)
     @jakarta.annotation.Nullable
     private Boolean trading;
 
-    public static final String SERIALIZED_NAME_WITHDRAW_ALL_ENABLE = "withdrawAllEnable";
+    public static final String SERIALIZED_NAME_NETWORK_LIST = "networkList";
 
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_ALL_ENABLE)
+    @SerializedName(SERIALIZED_NAME_NETWORK_LIST)
     @jakarta.annotation.Nullable
-    private Boolean withdrawAllEnable;
-
-    public static final String SERIALIZED_NAME_WITHDRAWING = "withdrawing";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAWING)
-    @jakarta.annotation.Nullable
-    private String withdrawing;
+    private List<@Valid AllCoinsInformationResponseInnerNetworkListInner> networkList;
 
     public AllCoinsInformationResponseInner() {}
 
@@ -167,6 +167,45 @@ public class AllCoinsInformationResponseInner {
         this.depositAllEnable = depositAllEnable;
     }
 
+    public AllCoinsInformationResponseInner withdrawAllEnable(
+            @jakarta.annotation.Nullable Boolean withdrawAllEnable) {
+        this.withdrawAllEnable = withdrawAllEnable;
+        return this;
+    }
+
+    /**
+     * Get withdrawAllEnable
+     *
+     * @return withdrawAllEnable
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getWithdrawAllEnable() {
+        return withdrawAllEnable;
+    }
+
+    public void setWithdrawAllEnable(@jakarta.annotation.Nullable Boolean withdrawAllEnable) {
+        this.withdrawAllEnable = withdrawAllEnable;
+    }
+
+    public AllCoinsInformationResponseInner name(@jakarta.annotation.Nullable String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@jakarta.annotation.Nullable String name) {
+        this.name = name;
+    }
+
     public AllCoinsInformationResponseInner free(@jakarta.annotation.Nullable String free) {
         this.free = free;
         return this;
@@ -184,6 +223,25 @@ public class AllCoinsInformationResponseInner {
 
     public void setFree(@jakarta.annotation.Nullable String free) {
         this.free = free;
+    }
+
+    public AllCoinsInformationResponseInner locked(@jakarta.annotation.Nullable String locked) {
+        this.locked = locked;
+        return this;
+    }
+
+    /**
+     * Get locked
+     *
+     * @return locked
+     */
+    @jakarta.annotation.Nullable
+    public String getLocked() {
+        return locked;
+    }
+
+    public void setLocked(@jakarta.annotation.Nullable String locked) {
+        this.locked = locked;
     }
 
     public AllCoinsInformationResponseInner freeze(@jakarta.annotation.Nullable String freeze) {
@@ -205,23 +263,24 @@ public class AllCoinsInformationResponseInner {
         this.freeze = freeze;
     }
 
-    public AllCoinsInformationResponseInner ipoable(@jakarta.annotation.Nullable String ipoable) {
-        this.ipoable = ipoable;
+    public AllCoinsInformationResponseInner withdrawing(
+            @jakarta.annotation.Nullable String withdrawing) {
+        this.withdrawing = withdrawing;
         return this;
     }
 
     /**
-     * Get ipoable
+     * Get withdrawing
      *
-     * @return ipoable
+     * @return withdrawing
      */
     @jakarta.annotation.Nullable
-    public String getIpoable() {
-        return ipoable;
+    public String getWithdrawing() {
+        return withdrawing;
     }
 
-    public void setIpoable(@jakarta.annotation.Nullable String ipoable) {
-        this.ipoable = ipoable;
+    public void setWithdrawing(@jakarta.annotation.Nullable String withdrawing) {
+        this.withdrawing = withdrawing;
     }
 
     public AllCoinsInformationResponseInner ipoing(@jakarta.annotation.Nullable String ipoing) {
@@ -241,6 +300,44 @@ public class AllCoinsInformationResponseInner {
 
     public void setIpoing(@jakarta.annotation.Nullable String ipoing) {
         this.ipoing = ipoing;
+    }
+
+    public AllCoinsInformationResponseInner ipoable(@jakarta.annotation.Nullable String ipoable) {
+        this.ipoable = ipoable;
+        return this;
+    }
+
+    /**
+     * Get ipoable
+     *
+     * @return ipoable
+     */
+    @jakarta.annotation.Nullable
+    public String getIpoable() {
+        return ipoable;
+    }
+
+    public void setIpoable(@jakarta.annotation.Nullable String ipoable) {
+        this.ipoable = ipoable;
+    }
+
+    public AllCoinsInformationResponseInner storage(@jakarta.annotation.Nullable String storage) {
+        this.storage = storage;
+        return this;
+    }
+
+    /**
+     * Get storage
+     *
+     * @return storage
+     */
+    @jakarta.annotation.Nullable
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setStorage(@jakarta.annotation.Nullable String storage) {
+        this.storage = storage;
     }
 
     public AllCoinsInformationResponseInner isLegalMoney(
@@ -263,42 +360,23 @@ public class AllCoinsInformationResponseInner {
         this.isLegalMoney = isLegalMoney;
     }
 
-    public AllCoinsInformationResponseInner locked(@jakarta.annotation.Nullable String locked) {
-        this.locked = locked;
+    public AllCoinsInformationResponseInner trading(@jakarta.annotation.Nullable Boolean trading) {
+        this.trading = trading;
         return this;
     }
 
     /**
-     * Get locked
+     * Get trading
      *
-     * @return locked
+     * @return trading
      */
     @jakarta.annotation.Nullable
-    public String getLocked() {
-        return locked;
+    public Boolean getTrading() {
+        return trading;
     }
 
-    public void setLocked(@jakarta.annotation.Nullable String locked) {
-        this.locked = locked;
-    }
-
-    public AllCoinsInformationResponseInner name(@jakarta.annotation.Nullable String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    @jakarta.annotation.Nullable
-    public String getName() {
-        return name;
-    }
-
-    public void setName(@jakarta.annotation.Nullable String name) {
-        this.name = name;
+    public void setTrading(@jakarta.annotation.Nullable Boolean trading) {
+        this.trading = trading;
     }
 
     public AllCoinsInformationResponseInner networkList(
@@ -334,84 +412,6 @@ public class AllCoinsInformationResponseInner {
         this.networkList = networkList;
     }
 
-    public AllCoinsInformationResponseInner storage(@jakarta.annotation.Nullable String storage) {
-        this.storage = storage;
-        return this;
-    }
-
-    /**
-     * Get storage
-     *
-     * @return storage
-     */
-    @jakarta.annotation.Nullable
-    public String getStorage() {
-        return storage;
-    }
-
-    public void setStorage(@jakarta.annotation.Nullable String storage) {
-        this.storage = storage;
-    }
-
-    public AllCoinsInformationResponseInner trading(@jakarta.annotation.Nullable Boolean trading) {
-        this.trading = trading;
-        return this;
-    }
-
-    /**
-     * Get trading
-     *
-     * @return trading
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getTrading() {
-        return trading;
-    }
-
-    public void setTrading(@jakarta.annotation.Nullable Boolean trading) {
-        this.trading = trading;
-    }
-
-    public AllCoinsInformationResponseInner withdrawAllEnable(
-            @jakarta.annotation.Nullable Boolean withdrawAllEnable) {
-        this.withdrawAllEnable = withdrawAllEnable;
-        return this;
-    }
-
-    /**
-     * Get withdrawAllEnable
-     *
-     * @return withdrawAllEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getWithdrawAllEnable() {
-        return withdrawAllEnable;
-    }
-
-    public void setWithdrawAllEnable(@jakarta.annotation.Nullable Boolean withdrawAllEnable) {
-        this.withdrawAllEnable = withdrawAllEnable;
-    }
-
-    public AllCoinsInformationResponseInner withdrawing(
-            @jakarta.annotation.Nullable String withdrawing) {
-        this.withdrawing = withdrawing;
-        return this;
-    }
-
-    /**
-     * Get withdrawing
-     *
-     * @return withdrawing
-     */
-    @jakarta.annotation.Nullable
-    public String getWithdrawing() {
-        return withdrawing;
-    }
-
-    public void setWithdrawing(@jakarta.annotation.Nullable String withdrawing) {
-        this.withdrawing = withdrawing;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -425,19 +425,19 @@ public class AllCoinsInformationResponseInner {
         return Objects.equals(this.coin, allCoinsInformationResponseInner.coin)
                 && Objects.equals(
                         this.depositAllEnable, allCoinsInformationResponseInner.depositAllEnable)
-                && Objects.equals(this.free, allCoinsInformationResponseInner.free)
-                && Objects.equals(this.freeze, allCoinsInformationResponseInner.freeze)
-                && Objects.equals(this.ipoable, allCoinsInformationResponseInner.ipoable)
-                && Objects.equals(this.ipoing, allCoinsInformationResponseInner.ipoing)
-                && Objects.equals(this.isLegalMoney, allCoinsInformationResponseInner.isLegalMoney)
-                && Objects.equals(this.locked, allCoinsInformationResponseInner.locked)
-                && Objects.equals(this.name, allCoinsInformationResponseInner.name)
-                && Objects.equals(this.networkList, allCoinsInformationResponseInner.networkList)
-                && Objects.equals(this.storage, allCoinsInformationResponseInner.storage)
-                && Objects.equals(this.trading, allCoinsInformationResponseInner.trading)
                 && Objects.equals(
                         this.withdrawAllEnable, allCoinsInformationResponseInner.withdrawAllEnable)
-                && Objects.equals(this.withdrawing, allCoinsInformationResponseInner.withdrawing);
+                && Objects.equals(this.name, allCoinsInformationResponseInner.name)
+                && Objects.equals(this.free, allCoinsInformationResponseInner.free)
+                && Objects.equals(this.locked, allCoinsInformationResponseInner.locked)
+                && Objects.equals(this.freeze, allCoinsInformationResponseInner.freeze)
+                && Objects.equals(this.withdrawing, allCoinsInformationResponseInner.withdrawing)
+                && Objects.equals(this.ipoing, allCoinsInformationResponseInner.ipoing)
+                && Objects.equals(this.ipoable, allCoinsInformationResponseInner.ipoable)
+                && Objects.equals(this.storage, allCoinsInformationResponseInner.storage)
+                && Objects.equals(this.isLegalMoney, allCoinsInformationResponseInner.isLegalMoney)
+                && Objects.equals(this.trading, allCoinsInformationResponseInner.trading)
+                && Objects.equals(this.networkList, allCoinsInformationResponseInner.networkList);
     }
 
     @Override
@@ -445,18 +445,18 @@ public class AllCoinsInformationResponseInner {
         return Objects.hash(
                 coin,
                 depositAllEnable,
-                free,
-                freeze,
-                ipoable,
-                ipoing,
-                isLegalMoney,
-                locked,
-                name,
-                networkList,
-                storage,
-                trading,
                 withdrawAllEnable,
-                withdrawing);
+                name,
+                free,
+                locked,
+                freeze,
+                withdrawing,
+                ipoing,
+                ipoable,
+                storage,
+                isLegalMoney,
+                trading,
+                networkList);
     }
 
     @Override
@@ -465,18 +465,18 @@ public class AllCoinsInformationResponseInner {
         sb.append("class AllCoinsInformationResponseInner {\n");
         sb.append("		coin: ").append(toIndentedString(coin)).append("\n");
         sb.append("		depositAllEnable: ").append(toIndentedString(depositAllEnable)).append("\n");
-        sb.append("		free: ").append(toIndentedString(free)).append("\n");
-        sb.append("		freeze: ").append(toIndentedString(freeze)).append("\n");
-        sb.append("		ipoable: ").append(toIndentedString(ipoable)).append("\n");
-        sb.append("		ipoing: ").append(toIndentedString(ipoing)).append("\n");
-        sb.append("		isLegalMoney: ").append(toIndentedString(isLegalMoney)).append("\n");
-        sb.append("		locked: ").append(toIndentedString(locked)).append("\n");
-        sb.append("		name: ").append(toIndentedString(name)).append("\n");
-        sb.append("		networkList: ").append(toIndentedString(networkList)).append("\n");
-        sb.append("		storage: ").append(toIndentedString(storage)).append("\n");
-        sb.append("		trading: ").append(toIndentedString(trading)).append("\n");
         sb.append("		withdrawAllEnable: ").append(toIndentedString(withdrawAllEnable)).append("\n");
+        sb.append("		name: ").append(toIndentedString(name)).append("\n");
+        sb.append("		free: ").append(toIndentedString(free)).append("\n");
+        sb.append("		locked: ").append(toIndentedString(locked)).append("\n");
+        sb.append("		freeze: ").append(toIndentedString(freeze)).append("\n");
         sb.append("		withdrawing: ").append(toIndentedString(withdrawing)).append("\n");
+        sb.append("		ipoing: ").append(toIndentedString(ipoing)).append("\n");
+        sb.append("		ipoable: ").append(toIndentedString(ipoable)).append("\n");
+        sb.append("		storage: ").append(toIndentedString(storage)).append("\n");
+        sb.append("		isLegalMoney: ").append(toIndentedString(isLegalMoney)).append("\n");
+        sb.append("		trading: ").append(toIndentedString(trading)).append("\n");
+        sb.append("		networkList: ").append(toIndentedString(networkList)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -492,34 +492,52 @@ public class AllCoinsInformationResponseInner {
         String depositAllEnableValueAsString = "";
         depositAllEnableValueAsString = depositAllEnableValue.toString();
         sb.append("depositAllEnable=").append(urlEncode(depositAllEnableValueAsString)).append("");
-        Object freeValue = getFree();
-        String freeValueAsString = "";
-        freeValueAsString = freeValue.toString();
-        sb.append("free=").append(urlEncode(freeValueAsString)).append("");
-        Object freezeValue = getFreeze();
-        String freezeValueAsString = "";
-        freezeValueAsString = freezeValue.toString();
-        sb.append("freeze=").append(urlEncode(freezeValueAsString)).append("");
-        Object ipoableValue = getIpoable();
-        String ipoableValueAsString = "";
-        ipoableValueAsString = ipoableValue.toString();
-        sb.append("ipoable=").append(urlEncode(ipoableValueAsString)).append("");
-        Object ipoingValue = getIpoing();
-        String ipoingValueAsString = "";
-        ipoingValueAsString = ipoingValue.toString();
-        sb.append("ipoing=").append(urlEncode(ipoingValueAsString)).append("");
-        Object isLegalMoneyValue = getIsLegalMoney();
-        String isLegalMoneyValueAsString = "";
-        isLegalMoneyValueAsString = isLegalMoneyValue.toString();
-        sb.append("isLegalMoney=").append(urlEncode(isLegalMoneyValueAsString)).append("");
-        Object lockedValue = getLocked();
-        String lockedValueAsString = "";
-        lockedValueAsString = lockedValue.toString();
-        sb.append("locked=").append(urlEncode(lockedValueAsString)).append("");
+        Object withdrawAllEnableValue = getWithdrawAllEnable();
+        String withdrawAllEnableValueAsString = "";
+        withdrawAllEnableValueAsString = withdrawAllEnableValue.toString();
+        sb.append("withdrawAllEnable=")
+                .append(urlEncode(withdrawAllEnableValueAsString))
+                .append("");
         Object nameValue = getName();
         String nameValueAsString = "";
         nameValueAsString = nameValue.toString();
         sb.append("name=").append(urlEncode(nameValueAsString)).append("");
+        Object freeValue = getFree();
+        String freeValueAsString = "";
+        freeValueAsString = freeValue.toString();
+        sb.append("free=").append(urlEncode(freeValueAsString)).append("");
+        Object lockedValue = getLocked();
+        String lockedValueAsString = "";
+        lockedValueAsString = lockedValue.toString();
+        sb.append("locked=").append(urlEncode(lockedValueAsString)).append("");
+        Object freezeValue = getFreeze();
+        String freezeValueAsString = "";
+        freezeValueAsString = freezeValue.toString();
+        sb.append("freeze=").append(urlEncode(freezeValueAsString)).append("");
+        Object withdrawingValue = getWithdrawing();
+        String withdrawingValueAsString = "";
+        withdrawingValueAsString = withdrawingValue.toString();
+        sb.append("withdrawing=").append(urlEncode(withdrawingValueAsString)).append("");
+        Object ipoingValue = getIpoing();
+        String ipoingValueAsString = "";
+        ipoingValueAsString = ipoingValue.toString();
+        sb.append("ipoing=").append(urlEncode(ipoingValueAsString)).append("");
+        Object ipoableValue = getIpoable();
+        String ipoableValueAsString = "";
+        ipoableValueAsString = ipoableValue.toString();
+        sb.append("ipoable=").append(urlEncode(ipoableValueAsString)).append("");
+        Object storageValue = getStorage();
+        String storageValueAsString = "";
+        storageValueAsString = storageValue.toString();
+        sb.append("storage=").append(urlEncode(storageValueAsString)).append("");
+        Object isLegalMoneyValue = getIsLegalMoney();
+        String isLegalMoneyValueAsString = "";
+        isLegalMoneyValueAsString = isLegalMoneyValue.toString();
+        sb.append("isLegalMoney=").append(urlEncode(isLegalMoneyValueAsString)).append("");
+        Object tradingValue = getTrading();
+        String tradingValueAsString = "";
+        tradingValueAsString = tradingValue.toString();
+        sb.append("trading=").append(urlEncode(tradingValueAsString)).append("");
         Object networkListValue = getNetworkList();
         String networkListValueAsString = "";
         networkListValueAsString =
@@ -527,24 +545,6 @@ public class AllCoinsInformationResponseInner {
                         ((Collection) networkListValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("networkList=").append(urlEncode(networkListValueAsString)).append("");
-        Object storageValue = getStorage();
-        String storageValueAsString = "";
-        storageValueAsString = storageValue.toString();
-        sb.append("storage=").append(urlEncode(storageValueAsString)).append("");
-        Object tradingValue = getTrading();
-        String tradingValueAsString = "";
-        tradingValueAsString = tradingValue.toString();
-        sb.append("trading=").append(urlEncode(tradingValueAsString)).append("");
-        Object withdrawAllEnableValue = getWithdrawAllEnable();
-        String withdrawAllEnableValueAsString = "";
-        withdrawAllEnableValueAsString = withdrawAllEnableValue.toString();
-        sb.append("withdrawAllEnable=")
-                .append(urlEncode(withdrawAllEnableValueAsString))
-                .append("");
-        Object withdrawingValue = getWithdrawing();
-        String withdrawingValueAsString = "";
-        withdrawingValueAsString = withdrawingValue.toString();
-        sb.append("withdrawing=").append(urlEncode(withdrawingValueAsString)).append("");
         return sb.toString();
     }
 
@@ -575,18 +575,18 @@ public class AllCoinsInformationResponseInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("coin");
         openapiFields.add("depositAllEnable");
-        openapiFields.add("free");
-        openapiFields.add("freeze");
-        openapiFields.add("ipoable");
-        openapiFields.add("ipoing");
-        openapiFields.add("isLegalMoney");
-        openapiFields.add("locked");
-        openapiFields.add("name");
-        openapiFields.add("networkList");
-        openapiFields.add("storage");
-        openapiFields.add("trading");
         openapiFields.add("withdrawAllEnable");
+        openapiFields.add("name");
+        openapiFields.add("free");
+        openapiFields.add("locked");
+        openapiFields.add("freeze");
         openapiFields.add("withdrawing");
+        openapiFields.add("ipoing");
+        openapiFields.add("ipoable");
+        openapiFields.add("storage");
+        openapiFields.add("isLegalMoney");
+        openapiFields.add("trading");
+        openapiFields.add("networkList");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -619,6 +619,14 @@ public class AllCoinsInformationResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("coin").toString()));
         }
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+                && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `name` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("name").toString()));
+        }
         if ((jsonObj.get("free") != null && !jsonObj.get("free").isJsonNull())
                 && !jsonObj.get("free").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -626,30 +634,6 @@ public class AllCoinsInformationResponseInner {
                             "Expected the field `free` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("free").toString()));
-        }
-        if ((jsonObj.get("freeze") != null && !jsonObj.get("freeze").isJsonNull())
-                && !jsonObj.get("freeze").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `freeze` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("freeze").toString()));
-        }
-        if ((jsonObj.get("ipoable") != null && !jsonObj.get("ipoable").isJsonNull())
-                && !jsonObj.get("ipoable").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ipoable` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("ipoable").toString()));
-        }
-        if ((jsonObj.get("ipoing") != null && !jsonObj.get("ipoing").isJsonNull())
-                && !jsonObj.get("ipoing").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ipoing` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("ipoing").toString()));
         }
         if ((jsonObj.get("locked") != null && !jsonObj.get("locked").isJsonNull())
                 && !jsonObj.get("locked").isJsonPrimitive()) {
@@ -659,13 +643,45 @@ public class AllCoinsInformationResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("locked").toString()));
         }
-        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
-                && !jsonObj.get("name").isJsonPrimitive()) {
+        if ((jsonObj.get("freeze") != null && !jsonObj.get("freeze").isJsonNull())
+                && !jsonObj.get("freeze").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `name` to be a primitive type in the JSON string"
+                            "Expected the field `freeze` to be a primitive type in the JSON string"
                                     + " but got `%s`",
-                            jsonObj.get("name").toString()));
+                            jsonObj.get("freeze").toString()));
+        }
+        if ((jsonObj.get("withdrawing") != null && !jsonObj.get("withdrawing").isJsonNull())
+                && !jsonObj.get("withdrawing").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `withdrawing` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("withdrawing").toString()));
+        }
+        if ((jsonObj.get("ipoing") != null && !jsonObj.get("ipoing").isJsonNull())
+                && !jsonObj.get("ipoing").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ipoing` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("ipoing").toString()));
+        }
+        if ((jsonObj.get("ipoable") != null && !jsonObj.get("ipoable").isJsonNull())
+                && !jsonObj.get("ipoable").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ipoable` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("ipoable").toString()));
+        }
+        if ((jsonObj.get("storage") != null && !jsonObj.get("storage").isJsonNull())
+                && !jsonObj.get("storage").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `storage` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("storage").toString()));
         }
         if (jsonObj.get("networkList") != null && !jsonObj.get("networkList").isJsonNull()) {
             JsonArray jsonArraynetworkList = jsonObj.getAsJsonArray("networkList");
@@ -686,22 +702,6 @@ public class AllCoinsInformationResponseInner {
                 }
                 ;
             }
-        }
-        if ((jsonObj.get("storage") != null && !jsonObj.get("storage").isJsonNull())
-                && !jsonObj.get("storage").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `storage` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("storage").toString()));
-        }
-        if ((jsonObj.get("withdrawing") != null && !jsonObj.get("withdrawing").isJsonNull())
-                && !jsonObj.get("withdrawing").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `withdrawing` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("withdrawing").toString()));
         }
     }
 

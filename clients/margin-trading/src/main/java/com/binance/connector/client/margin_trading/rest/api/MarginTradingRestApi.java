@@ -23,6 +23,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleR
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
@@ -715,6 +716,36 @@ public class MarginTradingRestApi {
     public ApiResponse<GetDelistScheduleResponse> getDelistSchedule(Long recvWindow)
             throws ApiException {
         return marketDataApi.getDelistSchedule(recvWindow);
+    }
+
+    /**
+     * Get Limit Price Pairs(MARKET_DATA) Query trading pairs with restriction on limit price range.
+     * In margin trading, you can place orders with limit price. Limit price should be within (-15%,
+     * 15%) of current index price for a list of margin trading pairs. This rule only impacts limit
+     * sell orders with limit price that is lower than current index price and limit buy orders with
+     * limit price that is higher than current index price. - Buy order: Your order will be rejected
+     * with an error message notification if the limit price is 15% above the index price. - Sell
+     * order: Your order will be rejected with an error message notification if the limit price is
+     * 15% below the index price. Please review the limit price order placing strategy, backtest and
+     * calibrate the planned order size with the trading volume and order book depth to prevent
+     * trading loss. Weight: 1
+     *
+     * @return ApiResponse&lt;GetLimitPricePairsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Limit Price Pairs </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
+     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetLimitPricePairsResponse> getLimitPricePairs() throws ApiException {
+        return marketDataApi.getLimitPricePairs();
     }
 
     /**

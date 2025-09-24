@@ -100,7 +100,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
 
     @SerializedName(SERIALIZED_NAME_MULTIPLIER_DECIMAL)
     @jakarta.annotation.Nullable
-    private Long multiplierDecimal;
+    private String multiplierDecimal;
 
     public ExchangeInformationResponseSymbolsInnerFiltersInner() {}
 
@@ -305,7 +305,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     public ExchangeInformationResponseSymbolsInnerFiltersInner multiplierDecimal(
-            @jakarta.annotation.Nullable Long multiplierDecimal) {
+            @jakarta.annotation.Nullable String multiplierDecimal) {
         this.multiplierDecimal = multiplierDecimal;
         return this;
     }
@@ -316,11 +316,11 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
      * @return multiplierDecimal
      */
     @jakarta.annotation.Nullable
-    public Long getMultiplierDecimal() {
+    public String getMultiplierDecimal() {
         return multiplierDecimal;
     }
 
-    public void setMultiplierDecimal(@jakarta.annotation.Nullable Long multiplierDecimal) {
+    public void setMultiplierDecimal(@jakarta.annotation.Nullable String multiplierDecimal) {
         this.multiplierDecimal = multiplierDecimal;
     }
 
@@ -584,6 +584,15 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
                             "Expected the field `multiplierDown` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("multiplierDown").toString()));
+        }
+        if ((jsonObj.get("multiplierDecimal") != null
+                        && !jsonObj.get("multiplierDecimal").isJsonNull())
+                && !jsonObj.get("multiplierDecimal").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `multiplierDecimal` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("multiplierDecimal").toString()));
         }
     }
 

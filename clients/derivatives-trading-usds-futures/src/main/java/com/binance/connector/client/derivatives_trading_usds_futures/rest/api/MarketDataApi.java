@@ -74,7 +74,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/4.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1200,8 +1200,8 @@ public class MarketDataApi {
 
     /**
      * Get Funding Rate History Get Funding Rate History * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are not sent, the most recent &#x60;limit&#x60; datas are returned. * If
-     * the number of data between &#x60;startTime&#x60; and &#x60;endTime&#x60; is larger than
+     * &#x60;endTime&#x60; are not sent, the most recent 200 records are returned. * If the number
+     * of data between &#x60;startTime&#x60; and &#x60;endTime&#x60; is larger than
      * &#x60;limit&#x60;, return as &#x60;startTime&#x60; + &#x60;limit&#x60;. * In ascending order.
      * Weight: share 500/5min/IP rate limit with GET /fapi/v1/fundingInfo
      *
@@ -3796,7 +3796,7 @@ public class MarketDataApi {
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
+     *     Price Ticker(Deprecated) Documentation</a>
      */
     private okhttp3.Call symbolPriceTickerCall(String symbol) throws ApiException {
         String basePath = null;
@@ -3887,9 +3887,9 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
-     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
-     * symbol parameter is omitted
+     * Symbol Price Ticker(Deprecated) Latest price for a symbol or symbols. * If the symbol is not
+     * sent, prices for all symbols will be returned in an array. Weight: 1 for a single symbol; 2
+     * when the symbol parameter is omitted
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
@@ -3904,7 +3904,7 @@ public class MarketDataApi {
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
+     *     Price Ticker(Deprecated) Documentation</a>
      */
     public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String symbol)
             throws ApiException {

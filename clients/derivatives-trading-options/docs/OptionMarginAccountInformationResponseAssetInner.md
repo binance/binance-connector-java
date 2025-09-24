@@ -14,7 +14,7 @@
 |**initialMargin** | **String** |  |  [optional] |
 |**maintMargin** | **String** |  |  [optional] |
 |**unrealizedPNL** | **String** |  |  [optional] |
-|**lpProfit** | **String** |  |  [optional] |
+|**adjustedEquity** | **String** |  |  [optional] |
 
 
 
