@@ -13,10 +13,12 @@ import com.binance.connector.client.wallet.rest.model.AssetDetailResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse;
+import com.binance.connector.client.wallet.rest.model.CheckQuestionnaireRequirementsResponse;
 import com.binance.connector.client.wallet.rest.model.DailyAccountSnapshotResponse;
 import com.binance.connector.client.wallet.rest.model.DepositAddressResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
@@ -34,7 +36,6 @@ import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConverte
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
-import com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
@@ -52,6 +53,7 @@ import com.binance.connector.client.wallet.rest.model.UserAssetRequest;
 import com.binance.connector.client.wallet.rest.model.UserAssetResponse;
 import com.binance.connector.client.wallet.rest.model.UserUniversalTransferRequest;
 import com.binance.connector.client.wallet.rest.model.UserUniversalTransferResponse;
+import com.binance.connector.client.wallet.rest.model.VaspListResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response;
@@ -543,8 +545,7 @@ public class WalletRestApi {
     }
 
     /**
-     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance * You need to open Permits
-     * Universal Transfer permission for the API Key which requests this endpoint. Weight: 60
+     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance Weight: 60
      *
      * @param quoteAsset &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc.
      *     default &#x60;BTC&#x60; (optional)
@@ -890,7 +891,12 @@ public class WalletRestApi {
      * Withdraw(USER_DATA) Submit a withdraw request. * If &#x60;network&#x60; not send, return with
      * default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
      * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
-     * (HMAC SHA256)&#x60;. Weight: 900
+     * (HMAC SHA256)&#x60;. * To check if travel rule is required, by using &#x60;GET
+     * /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than
+     * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
+     * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
+     * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
+     * travel rule please refer to the Travel Rule SAPI. Weight: 900
      *
      * @param withdrawRequest (required)
      * @return ApiResponse&lt;WithdrawResponse&gt;
@@ -1045,6 +1051,32 @@ public class WalletRestApi {
     }
 
     /**
+     * Check Questionnaire Requirements (for local entities that require travel rule) (supporting
+     * network) (USER_DATA) This API will return user-specific Travel Rule questionnaire requirement
+     * information in reference to the current API key. Weight: 1
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CheckQuestionnaireRequirementsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Check Questionnaire Requirements </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements">Check
+     *     Questionnaire Requirements (for local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CheckQuestionnaireRequirementsResponse> checkQuestionnaireRequirements(
+            Long recvWindow) throws ApiException {
+        return travelRuleApi.checkQuestionnaireRequirements(recvWindow);
+    }
+
+    /**
      * Deposit History (for local entities that required travel rule) (supporting network)
      * (USER_DATA) Fetch deposit history for local entities that required travel rule. * Please
      * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
@@ -1106,8 +1138,66 @@ public class WalletRestApi {
     }
 
     /**
-     * Fetch address verification list (USER_DATA) Fetch address verification list Weight: 10
+     * Deposit History V2 (for local entities that required travel rule) (supporting network)
+     * (USER_DATA) Fetch deposit history for local entities that with required travel rule
+     * information. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to
+     * make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
+     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
+     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
      *
+     * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
+     * @param txId (optional)
+     * @param network (optional)
+     * @param coin (optional)
+     * @param retrieveQuestionnaire true: return &#x60;questionnaire&#x60; within response.
+     *     (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param offset Default: 0 (optional)
+     * @param limit min 7, max 30, default 7 (optional)
+     * @return ApiResponse&lt;DepositHistoryV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Deposit History V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2">Deposit
+     *     History V2 (for local entities that required travel rule) (supporting network)
+     *     (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DepositHistoryV2Response> depositHistoryV2(
+            String depositId,
+            String txId,
+            String network,
+            String coin,
+            Boolean retrieveQuestionnaire,
+            Long startTime,
+            Long endTime,
+            Long offset,
+            Long limit)
+            throws ApiException {
+        return travelRuleApi.depositHistoryV2(
+                depositId,
+                txId,
+                network,
+                coin,
+                retrieveQuestionnaire,
+                startTime,
+                endTime,
+                offset,
+                limit);
+    }
+
+    /**
+     * Fetch address verification list (USER_DATA) Fetch address verification list for user to check
+     * on status and other details for the addresses stored in Address Book. Weight: 1
+     *
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;FetchAddressVerificationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1122,37 +1212,9 @@ public class WalletRestApi {
      *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
      *     address verification list (USER_DATA) Documentation</a>
      */
-    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList()
-            throws ApiException {
-        return travelRuleApi.fetchAddressVerificationList();
-    }
-
-    /**
-     * Onboarded VASP list (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch the onboarded VASP list for local entities that required travel rule. *
-     * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP
-     * rate Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically
-     * uses per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second.
-     * Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight
-     * used by the current IP.
-     *
-     * @return ApiResponse&lt;OnboardedVaspListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Onboarded VASP list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Onboarded-VASP-list">Onboarded
-     *     VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
-     *     Documentation</a>
-     */
-    public ApiResponse<OnboardedVaspListResponse> onboardedVaspList() throws ApiException {
-        return travelRuleApi.onboardedVaspList();
+    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList(
+            Long recvWindow) throws ApiException {
+        return travelRuleApi.fetchAddressVerificationList(recvWindow);
     }
 
     /**
@@ -1219,16 +1281,36 @@ public class WalletRestApi {
     }
 
     /**
+     * VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     * Fetch the VASP list for local entities. Weight: 1
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;VaspListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VASP list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list">VASP
+     *     list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     *     Documentation</a>
+     */
+    public ApiResponse<VaspListResponse> vaspList(Long recvWindow) throws ApiException {
+        return travelRuleApi.vaspList(recvWindow);
+    }
+
+    /**
      * Withdraw History (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. * This
-     * endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate *
+     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
      * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
      * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 18000 Request limit: 10
-     * requests per second &gt; * This endpoint specifically uses per second IP rate limit,
-     * user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint
-     * contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
+     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
@@ -1286,8 +1368,7 @@ public class WalletRestApi {
 
     /**
      * Withdraw History V2 (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. * This
-     * endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate *
+     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
      * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through
      * /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
@@ -1296,11 +1377,7 @@ public class WalletRestApi {
      * between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent,
      * startTime and endTime are not sent, will return last 7 days records by default. * Maximum
      * support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not
-     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 18000 Request
-     * limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate
-     * limit, user&#39;s total second level IP rate limit is 180000/second. Response from the
-     * endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the
-     * current IP.
+     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)

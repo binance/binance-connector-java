@@ -14,12 +14,12 @@
 |**isSoldOut** | **Boolean** |  |  [optional] |
 |**apr** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
-|**subscriptionStartTime** | **String** |  |  [optional] |
+|**subscriptionStartTime** | **Long** |  |  [optional] |
 |**extraRewardAsset** | **String** |  |  [optional] |
 |**extraRewardAPR** | **String** |  |  [optional] |
 |**boostRewardAsset** | **String** |  |  [optional] |
 |**boostApr** | **String** |  |  [optional] |
-|**boostEndTime** | **String** |  |  [optional] |
+|**boostEndTime** | **Long** |  |  [optional] |
 
 
 

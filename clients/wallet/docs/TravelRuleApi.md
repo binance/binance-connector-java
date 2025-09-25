@@ -5,11 +5,13 @@ All URIs are relative to *https://api.binance.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**brokerWithdraw**](TravelRuleApi.md#brokerWithdraw) | **POST** /sapi/v1/localentity/broker/withdraw/apply | Broker Withdraw (for brokers of local entities that require travel rule) (USER_DATA) |
+| [**checkQuestionnaireRequirements**](TravelRuleApi.md#checkQuestionnaireRequirements) | **GET** /sapi/v1/localentity/questionnaire-requirements | Check Questionnaire Requirements (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**depositHistoryTravelRule**](TravelRuleApi.md#depositHistoryTravelRule) | **GET** /sapi/v1/localentity/deposit/history | Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA) |
+| [**depositHistoryV2**](TravelRuleApi.md#depositHistoryV2) | **GET** /sapi/v2/localentity/deposit/history | Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA) |
 | [**fetchAddressVerificationList**](TravelRuleApi.md#fetchAddressVerificationList) | **GET** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA) |
-| [**onboardedVaspList**](TravelRuleApi.md#onboardedVaspList) | **GET** /sapi/v1/localentity/vasp | Onboarded VASP list (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaire**](TravelRuleApi.md#submitDepositQuestionnaire) | **PUT** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaireTravelRule**](TravelRuleApi.md#submitDepositQuestionnaireTravelRule) | **PUT** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
+| [**vaspList**](TravelRuleApi.md#vaspList) | **GET** /sapi/v1/localentity/vasp | VASP list (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**withdrawHistoryV1**](TravelRuleApi.md#withdrawHistoryV1) | **GET** /sapi/v1/localentity/withdraw/history | Withdraw History (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**withdrawHistoryV2**](TravelRuleApi.md#withdrawHistoryV2) | **GET** /sapi/v2/localentity/withdraw/history | Withdraw History V2 (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**withdrawTravelRule**](TravelRuleApi.md#withdrawTravelRule) | **POST** /sapi/v1/localentity/withdraw/apply | Withdraw (for local entities that require travel rule) (USER_DATA) |
@@ -76,6 +78,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broker Withdraw |  -  |
+
+<a id="checkQuestionnaireRequirements"></a>
+# **checkQuestionnaireRequirements**
+> CheckQuestionnaireRequirementsResponse checkQuestionnaireRequirements(recvWindow)
+
+Check Questionnaire Requirements (for local entities that require travel rule) (supporting network) (USER_DATA)
+
+This API will return user-specific Travel Rule questionnaire requirement information in reference to the current API key.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      CheckQuestionnaireRequirementsResponse result = apiInstance.checkQuestionnaireRequirements(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#checkQuestionnaireRequirements");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**CheckQuestionnaireRequirementsResponse**](CheckQuestionnaireRequirementsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Check Questionnaire Requirements |  -  |
 
 <a id="depositHistoryTravelRule"></a>
 # **depositHistoryTravelRule**
@@ -159,13 +223,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Deposit History |  -  |
 
-<a id="fetchAddressVerificationList"></a>
-# **fetchAddressVerificationList**
-> FetchAddressVerificationListResponse fetchAddressVerificationList()
+<a id="depositHistoryV2"></a>
+# **depositHistoryV2**
+> DepositHistoryV2Response depositHistoryV2(depositId, txId, network, coin, retrieveQuestionnaire, startTime, endTime, offset, limit)
 
-Fetch address verification list (USER_DATA)
+Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA)
 
-Fetch address verification list  Weight: 10
+Fetch deposit history for local entities that with required travel rule information.  * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must  Weight: 1
 
 ### Example
 ```java
@@ -182,8 +246,87 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    String depositId = "depositId_example"; // String | Comma(,) separated list of wallet tran Ids.
+    String txId = "txId_example"; // String | 
+    String network = "network_example"; // String | 
+    String coin = "coin_example"; // String | 
+    Boolean retrieveQuestionnaire = true; // Boolean | true: return `questionnaire` within response.
+    Long startTime = 56L; // Long | 
+    Long endTime = 56L; // Long | 
+    Long offset = 56L; // Long | Default: 0
+    Long limit = 56L; // Long | min 7, max 30, default 7
     try {
-      FetchAddressVerificationListResponse result = apiInstance.fetchAddressVerificationList();
+      DepositHistoryV2Response result = apiInstance.depositHistoryV2(depositId, txId, network, coin, retrieveQuestionnaire, startTime, endTime, offset, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#depositHistoryV2");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **depositId** | **String**| Comma(,) separated list of wallet tran Ids. | [optional] |
+| **txId** | **String**|  | [optional] |
+| **network** | **String**|  | [optional] |
+| **coin** | **String**|  | [optional] |
+| **retrieveQuestionnaire** | **Boolean**| true: return &#x60;questionnaire&#x60; within response. | [optional] |
+| **startTime** | **Long**|  | [optional] |
+| **endTime** | **Long**|  | [optional] |
+| **offset** | **Long**| Default: 0 | [optional] |
+| **limit** | **Long**| min 7, max 30, default 7 | [optional] |
+
+### Return type
+
+[**DepositHistoryV2Response**](DepositHistoryV2Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deposit History V2 |  -  |
+
+<a id="fetchAddressVerificationList"></a>
+# **fetchAddressVerificationList**
+> FetchAddressVerificationListResponse fetchAddressVerificationList(recvWindow)
+
+Fetch address verification list (USER_DATA)
+
+Fetch address verification list for user to check on status and other details for the addresses stored in Address Book.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      FetchAddressVerificationListResponse result = apiInstance.fetchAddressVerificationList(recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TravelRuleApi#fetchAddressVerificationList");
@@ -197,7 +340,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -216,64 +362,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Fetch address verification list |  -  |
-
-<a id="onboardedVaspList"></a>
-# **onboardedVaspList**
-> OnboardedVaspListResponse onboardedVaspList()
-
-Onboarded VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
-
-Fetch the onboarded VASP list for local entities that required travel rule.  * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate  Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.wallet.ApiClient;
-import com.binance.connector.client.wallet.ApiException;
-import com.binance.connector.client.wallet.Configuration;
-import com.binance.connector.client.wallet.models.*;
-import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
-    try {
-      OnboardedVaspListResponse result = apiInstance.onboardedVaspList();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TravelRuleApi#onboardedVaspList");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OnboardedVaspListResponse**](OnboardedVaspListResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Onboarded VASP list |  -  |
 
 <a id="submitDepositQuestionnaire"></a>
 # **submitDepositQuestionnaire**
@@ -399,13 +487,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Submit Deposit Questionnaire |  -  |
 
+<a id="vaspList"></a>
+# **vaspList**
+> VaspListResponse vaspList(recvWindow)
+
+VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
+
+Fetch the VASP list for local entities.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      VaspListResponse result = apiInstance.vaspList(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#vaspList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**VaspListResponse**](VaspListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | VASP list |  -  |
+
 <a id="withdrawHistoryV1"></a>
 # **withdrawHistoryV1**
 > WithdrawHistoryV1Response withdrawHistoryV1(trId, txId, withdrawOrderId, network, coin, travelRuleStatus, offset, limit, startTime, endTime, recvWindow)
 
 Withdraw History (for local entities that require travel rule) (supporting network) (USER_DATA)
 
-Fetch withdraw history for local entities that required travel rule.  * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less  Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
+Fetch withdraw history for local entities that required travel rule.  * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less  Weight: 1
 
 ### Example
 ```java
@@ -487,7 +637,7 @@ No authorization required
 
 Withdraw History V2 (for local entities that require travel rule) (supporting network) (USER_DATA)
 
-Fetch withdraw history for local entities that required travel rule.  * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less * If withdrawOrderId is sent, time between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent, startTime and endTime are not sent, will return last 7 days records by default. * Maximum support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not include withdrawalStatus, please input trId or txId retrieve the data.  Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
+Fetch withdraw history for local entities that required travel rule.  * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less * If withdrawOrderId is sent, time between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent, startTime and endTime are not sent, will return last 7 days records by default. * Maximum support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not include withdrawalStatus, please input trId or txId retrieve the data.  Weight: 1
 
 ### Example
 ```java

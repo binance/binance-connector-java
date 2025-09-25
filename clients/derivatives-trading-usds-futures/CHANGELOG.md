@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.0.0 - 2025-09-22
+
+### Changed (1)
+
+#### REST API
+
+- Modified response for `accountInformationV3()` method (`GET /fapi/v3/account`):
+  - `assets`: item property `marginAvailable` deleted
+
 ## 4.0.1 - 2025-08-07
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0 - 2025-09-22
+
+### Added (3)
+
+- `getSoftStakingProductList()` (`GET /sapi/v1/soft-staking/list`)
+- `getSoftStakingRewardsHistory()` (`GET /sapi/v1/soft-staking/history/rewardsRecord`)
+- `setSoftStaking()` (`GET /sapi/v1/soft-staking/set`)
+
 ## 2.1.1 - 2025-08-07
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.

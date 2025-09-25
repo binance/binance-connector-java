@@ -8,6 +8,7 @@ All URIs are relative to *https://eapi.binance.com*
 | [**getDownloadIdForOptionTransactionHistory**](AccountApi.md#getDownloadIdForOptionTransactionHistory) | **GET** /eapi/v1/income/asyn | Get Download Id For Option Transaction History (USER_DATA) |
 | [**getOptionTransactionHistoryDownloadLinkById**](AccountApi.md#getOptionTransactionHistoryDownloadLinkById) | **GET** /eapi/v1/income/asyn/id | Get Option Transaction History Download Link by Id (USER_DATA) |
 | [**optionAccountInformation**](AccountApi.md#optionAccountInformation) | **GET** /eapi/v1/account | Option Account Information(TRADE) |
+| [**optionMarginAccountInformation**](AccountApi.md#optionMarginAccountInformation) | **GET** /eapi/v1/marginAccount | Option Margin Account Information (USER_DATA) |
 
 
 <a id="accountFundingFlow"></a>
@@ -273,4 +274,66 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Option Account Information |  -  |
+
+<a id="optionMarginAccountInformation"></a>
+# **optionMarginAccountInformation**
+> OptionMarginAccountInformationResponse optionMarginAccountInformation(recvWindow)
+
+Option Margin Account Information (USER_DATA)
+
+Get current account information.  Weight: 3
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://eapi.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      OptionMarginAccountInformationResponse result = apiInstance.optionMarginAccountInformation(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#optionMarginAccountInformation");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**OptionMarginAccountInformationResponse**](OptionMarginAccountInformationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Option Margin Account Information |  -  |
 

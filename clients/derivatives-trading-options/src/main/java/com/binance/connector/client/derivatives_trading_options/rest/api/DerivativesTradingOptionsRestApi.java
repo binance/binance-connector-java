@@ -196,6 +196,29 @@ public class DerivativesTradingOptionsRestApi {
     }
 
     /**
+     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Margin-Account-Information">Option
+     *     Margin Account Information (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(
+            Long recvWindow) throws ApiException {
+        return accountApi.optionMarginAccountInformation(recvWindow);
+    }
+
+    /**
      * Check Server Time Test connectivity to the Rest API and get the current server time. Weight:
      * 1
      *
@@ -765,29 +788,6 @@ public class DerivativesTradingOptionsRestApi {
     public ApiResponse<GetMarketMakerProtectionConfigResponse> getMarketMakerProtectionConfig(
             String underlying, Long recvWindow) throws ApiException {
         return marketMakerEndpointsApi.getMarketMakerProtectionConfig(underlying, recvWindow);
-    }
-
-    /**
-     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
-     *
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Option-Margin-Account-Information">Option
-     *     Margin Account Information (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(
-            Long recvWindow) throws ApiException {
-        return marketMakerEndpointsApi.optionMarginAccountInformation(recvWindow);
     }
 
     /**

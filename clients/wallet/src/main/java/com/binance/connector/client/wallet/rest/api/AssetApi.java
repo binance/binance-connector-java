@@ -64,7 +64,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/2.1.1 (Java/%s; %s; %s)",
+                    "binance-wallet/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1868,8 +1868,7 @@ public class AssetApi {
     }
 
     /**
-     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance * You need to open Permits
-     * Universal Transfer permission for the API Key which requests this endpoint. Weight: 60
+     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance Weight: 60
      *
      * @param quoteAsset &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc.
      *     default &#x60;BTC&#x60; (optional)

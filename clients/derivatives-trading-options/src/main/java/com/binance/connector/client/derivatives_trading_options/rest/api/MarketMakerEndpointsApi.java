@@ -24,7 +24,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.AutoC
 import com.binance.connector.client.derivatives_trading_options.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetAutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetMarketMakerProtectionConfigResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetAutoCancelAllOpenOrdersRequest;
@@ -54,7 +53,7 @@ public class MarketMakerEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -527,139 +526,6 @@ public class MarketMakerEndpointsApi {
                 getMarketMakerProtectionConfigValidateBeforeCall(underlying, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetMarketMakerProtectionConfigResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for optionMarginAccountInformation
-     *
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Option-Margin-Account-Information">Option
-     *     Margin Account Information (USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call optionMarginAccountInformationCall(Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/eapi/v1/marginAccount";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call optionMarginAccountInformationValidateBeforeCall(Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("optionMarginAccountInformation", Long.class);
-            Set<ConstraintViolation<MarketMakerEndpointsApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return optionMarginAccountInformationCall(recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
-     *
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Option-Margin-Account-Information">Option
-     *     Margin Account Information (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(
-            Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = optionMarginAccountInformationValidateBeforeCall(recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<OptionMarginAccountInformationResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

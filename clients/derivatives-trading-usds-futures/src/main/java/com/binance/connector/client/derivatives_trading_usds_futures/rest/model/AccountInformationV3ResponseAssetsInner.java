@@ -114,12 +114,6 @@ public class AccountInformationV3ResponseAssetsInner {
     @jakarta.annotation.Nullable
     private Long updateTime;
 
-    public static final String SERIALIZED_NAME_MARGIN_AVAILABLE = "marginAvailable";
-
-    @SerializedName(SERIALIZED_NAME_MARGIN_AVAILABLE)
-    @jakarta.annotation.Nullable
-    private Boolean marginAvailable;
-
     public AccountInformationV3ResponseAssetsInner() {}
 
     public AccountInformationV3ResponseAssetsInner asset(
@@ -384,26 +378,6 @@ public class AccountInformationV3ResponseAssetsInner {
         this.updateTime = updateTime;
     }
 
-    public AccountInformationV3ResponseAssetsInner marginAvailable(
-            @jakarta.annotation.Nullable Boolean marginAvailable) {
-        this.marginAvailable = marginAvailable;
-        return this;
-    }
-
-    /**
-     * Get marginAvailable
-     *
-     * @return marginAvailable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getMarginAvailable() {
-        return marginAvailable;
-    }
-
-    public void setMarginAvailable(@jakarta.annotation.Nullable Boolean marginAvailable) {
-        this.marginAvailable = marginAvailable;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -444,10 +418,7 @@ public class AccountInformationV3ResponseAssetsInner {
                         this.maxWithdrawAmount,
                         accountInformationV3ResponseAssetsInner.maxWithdrawAmount)
                 && Objects.equals(
-                        this.updateTime, accountInformationV3ResponseAssetsInner.updateTime)
-                && Objects.equals(
-                        this.marginAvailable,
-                        accountInformationV3ResponseAssetsInner.marginAvailable);
+                        this.updateTime, accountInformationV3ResponseAssetsInner.updateTime);
     }
 
     @Override
@@ -465,8 +436,7 @@ public class AccountInformationV3ResponseAssetsInner {
                 crossUnPnl,
                 availableBalance,
                 maxWithdrawAmount,
-                updateTime,
-                marginAvailable);
+                updateTime);
     }
 
     @Override
@@ -492,7 +462,6 @@ public class AccountInformationV3ResponseAssetsInner {
         sb.append("		availableBalance: ").append(toIndentedString(availableBalance)).append("\n");
         sb.append("		maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
-        sb.append("		marginAvailable: ").append(toIndentedString(marginAvailable)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -560,10 +529,6 @@ public class AccountInformationV3ResponseAssetsInner {
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
         sb.append("updateTime=").append(urlEncode(updateTimeValueAsString)).append("");
-        Object marginAvailableValue = getMarginAvailable();
-        String marginAvailableValueAsString = "";
-        marginAvailableValueAsString = marginAvailableValue.toString();
-        sb.append("marginAvailable=").append(urlEncode(marginAvailableValueAsString)).append("");
         return sb.toString();
     }
 
@@ -605,7 +570,6 @@ public class AccountInformationV3ResponseAssetsInner {
         openapiFields.add("availableBalance");
         openapiFields.add("maxWithdrawAmount");
         openapiFields.add("updateTime");
-        openapiFields.add("marginAvailable");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

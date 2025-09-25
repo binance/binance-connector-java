@@ -27,12 +27,14 @@ import com.binance.connector.client.derivatives_trading_coin_futures.websocket.a
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.QueryOrderResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.StartUserDataStreamRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.StartUserDataStreamResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class DerivativesTradingCoinFuturesWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -48,6 +50,11 @@ public class DerivativesTradingCoinFuturesWebSocketApi {
 
     public DerivativesTradingCoinFuturesWebSocketApi(ConnectionInterface connection) {
         connection.setUserAgent(USER_AGENT);
+        List<String> logonMethods = new ArrayList<>();
+        List<String> logoutMethods = new ArrayList<>();
+
+        connection.setLogonMethods(logonMethods);
+        connection.setLogoutMethods(logoutMethods);
         if (!connection.isConnected()) {
             connection.connect();
         }

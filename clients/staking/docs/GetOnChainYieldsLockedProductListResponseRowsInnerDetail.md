@@ -14,7 +14,7 @@
 |**isSoldOut** | **Boolean** |  |  [optional] |
 |**apr** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
-|**subscriptionStartTime** | **String** |  |  [optional] |
+|**subscriptionStartTime** | **Long** |  |  [optional] |
 |**canRedeemToFlex** | **Boolean** |  |  [optional] |
 
 

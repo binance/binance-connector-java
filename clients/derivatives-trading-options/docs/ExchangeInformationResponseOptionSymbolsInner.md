@@ -16,6 +16,7 @@
 |**unit** | **Long** |  |  [optional] |
 |**makerFeeRate** | **String** |  |  [optional] |
 |**takerFeeRate** | **String** |  |  [optional] |
+|**liquidationFeeRate** | **String** |  |  [optional] |
 |**minQty** | **String** |  |  [optional] |
 |**maxQty** | **String** |  |  [optional] |
 |**initialMargin** | **String** |  |  [optional] |

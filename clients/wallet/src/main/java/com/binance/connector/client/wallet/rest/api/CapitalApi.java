@@ -54,7 +54,7 @@ public class CapitalApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/2.1.1 (Java/%s; %s; %s)",
+                    "binance-wallet/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1344,7 +1344,12 @@ public class CapitalApi {
      * Withdraw(USER_DATA) Submit a withdraw request. * If &#x60;network&#x60; not send, return with
      * default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
      * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
-     * (HMAC SHA256)&#x60;. Weight: 900
+     * (HMAC SHA256)&#x60;. * To check if travel rule is required, by using &#x60;GET
+     * /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than
+     * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
+     * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
+     * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
+     * travel rule please refer to the Travel Rule SAPI. Weight: 900
      *
      * @param withdrawRequest (required)
      * @return ApiResponse&lt;WithdrawResponse&gt;

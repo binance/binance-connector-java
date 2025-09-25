@@ -12,8 +12,6 @@
 
 package com.binance.connector.client.wallet.rest.api;
 
-import static org.junit.Assert.assertEquals;
-
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -26,16 +24,15 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
-import com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.VaspListResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.WithdrawTravelRuleResponse;
-import jakarta.validation.constraints.*;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -43,6 +40,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertEquals;
 
 /** API tests for TravelRuleApi */
 public class TravelRuleApiTest {
@@ -205,7 +204,8 @@ public class TravelRuleApiTest {
      */
     @Test
     public void onboardedVaspListTest() throws ApiException, CryptoException {
-        ApiResponse<OnboardedVaspListResponse> response = api.onboardedVaspList();
+        Long recvWindow = 5000L;
+        ApiResponse<VaspListResponse> vaspListResponseApiResponse = api.vaspList(recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -217,9 +217,9 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/localentity/vasp", actualRequest.url().encodedPath());
     }

@@ -57,7 +57,7 @@ public class FlexibleRateApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-crypto-loan/2.1.1 (Java/%s; %s; %s)",
+                    "binance-crypto-loan/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -455,8 +455,22 @@ public class FlexibleRateApi {
             localVarFormParams.put("loanCoin", flexibleLoanBorrowRequest.getLoanCoin());
         }
 
+        if (flexibleLoanBorrowRequest.getLoanAmount() != null) {
+            localVarFormParams.put(
+                    "loanAmount",
+                    DecimalFormatter.getFormatter()
+                            .format(flexibleLoanBorrowRequest.getLoanAmount()));
+        }
+
         if (flexibleLoanBorrowRequest.getCollateralCoin() != null) {
             localVarFormParams.put("collateralCoin", flexibleLoanBorrowRequest.getCollateralCoin());
+        }
+
+        if (flexibleLoanBorrowRequest.getCollateralAmount() != null) {
+            localVarFormParams.put(
+                    "collateralAmount",
+                    DecimalFormatter.getFormatter()
+                            .format(flexibleLoanBorrowRequest.getCollateralAmount()));
         }
 
         if (flexibleLoanBorrowRequest.getRecvWindow() != null) {

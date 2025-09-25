@@ -21,6 +21,8 @@ import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedRed
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedRewardsHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedSubscriptionPreviewResponse;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedSubscriptionRecordResponse;
+import com.binance.connector.client.staking.rest.model.GetSoftStakingProductListResponse;
+import com.binance.connector.client.staking.rest.model.GetSoftStakingRewardsHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetSolRedemptionHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetSolStakingHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetSolStakingQuotaDetailsResponse;
@@ -40,6 +42,7 @@ import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedAut
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedAutoSubscribeResponse;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedProductRedeemOptionRequest;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedProductRedeemOptionResponse;
+import com.binance.connector.client.staking.rest.model.SetSoftStakingResponse;
 import com.binance.connector.client.staking.rest.model.SolStakingAccountResponse;
 import com.binance.connector.client.staking.rest.model.SubscribeEthStakingRequest;
 import com.binance.connector.client.staking.rest.model.SubscribeEthStakingResponse;
@@ -54,6 +57,7 @@ public class StakingRestApi {
 
     private final EthStakingApi ethStakingApi;
     private final OnChainYieldsApi onChainYieldsApi;
+    private final SoftStakingApi softStakingApi;
     private final SolStakingApi solStakingApi;
 
     public StakingRestApi(ClientConfiguration configuration) {
@@ -63,6 +67,7 @@ public class StakingRestApi {
     public StakingRestApi(ApiClient apiClient) {
         this.ethStakingApi = new EthStakingApi(apiClient);
         this.onChainYieldsApi = new OnChainYieldsApi(apiClient);
+        this.softStakingApi = new SoftStakingApi(apiClient);
         this.solStakingApi = new SolStakingApi(apiClient);
     }
 
@@ -776,6 +781,91 @@ public class StakingRestApi {
                     throws ApiException {
         return onChainYieldsApi.subscribeOnChainYieldsLockedProduct(
                 subscribeOnChainYieldsLockedProductRequest);
+    }
+
+    /**
+     * Get Soft Staking Product List (USER_DATA) Get the available Soft Staking product list.
+     * Weight: 50
+     *
+     * @param asset (optional)
+     * @param current Currently querying page. Start from 1. Default:1 (optional)
+     * @param size Default:10, Max:100 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetSoftStakingProductListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Soft Staking Product List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/">Get Soft Staking
+     *     Product List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSoftStakingProductListResponse> getSoftStakingProductList(
+            String asset, Long current, Long size, Long recvWindow) throws ApiException {
+        return softStakingApi.getSoftStakingProductList(asset, current, size, recvWindow);
+    }
+
+    /**
+     * Get Soft Staking Rewards History(USER_DATA) * The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned. Weight: 50
+     *
+     * @param asset (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Currently querying page. Start from 1. Default:1 (optional)
+     * @param size Default:10, Max:100 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetSoftStakingRewardsHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Soft Staking Rewards History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/staking/soft-staking/Get-Soft-Staking-Rewards-History">Get
+     *     Soft Staking Rewards History(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSoftStakingRewardsHistoryResponse> getSoftStakingRewardsHistory(
+            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return softStakingApi.getSoftStakingRewardsHistory(
+                asset, startTime, endTime, current, size, recvWindow);
+    }
+
+    /**
+     * Set Soft Staking (USER_DATA) Enable or disable Soft Staking. Weight: 50
+     *
+     * @param softStaking true or false (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;SetSoftStakingResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Set Soft Staking </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/Set-Soft-Staking">Set
+     *     Soft Staking (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<SetSoftStakingResponse> setSoftStaking(Boolean softStaking, Long recvWindow)
+            throws ApiException {
+        return softStakingApi.setSoftStaking(softStaking, recvWindow);
     }
 
     /**

@@ -467,6 +467,10 @@ public class JSON {
                         .NotionalAndLeverageBracketsResponse2.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.rest.model
+                        .NotionalAndLeverageBracketsResponse2BracketsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.rest.model
                         .OldTradesLookupResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.rest.model

@@ -27,6 +27,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Accou
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetDownloadIdForOptionTransactionHistoryResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetOptionTransactionHistoryDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionAccountInformationResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import jakarta.validation.constraints.*;
 import okhttp3.Call;
 import okhttp3.Request;
@@ -214,5 +215,35 @@ public class AccountApiTest {
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/account", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Option Margin Account Information (USER_DATA)
+     *
+     * <p>Get current account information. Weight: 3
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void optionMarginAccountInformationTest() throws ApiException, CryptoException {
+        Long recvWindow = 5000L;
+        ApiResponse<OptionMarginAccountInformationResponse> response =
+                api.optionMarginAccountInformation(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/eapi/v1/marginAccount", actualRequest.url().encodedPath());
     }
 }

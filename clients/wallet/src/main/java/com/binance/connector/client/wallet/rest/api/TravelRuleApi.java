@@ -22,13 +22,15 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse;
+import com.binance.connector.client.wallet.rest.model.CheckQuestionnaireRequirementsResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationListResponse;
-import com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.VaspListResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawTravelRuleRequest;
@@ -56,7 +58,7 @@ public class TravelRuleApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/2.1.1 (Java/%s; %s; %s)",
+                    "binance-wallet/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -278,6 +280,143 @@ public class TravelRuleApi {
         okhttp3.Call localVarCall = brokerWithdrawValidateBeforeCall(brokerWithdrawRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<BrokerWithdrawResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for checkQuestionnaireRequirements
+     *
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Check Questionnaire Requirements </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements">Check
+     *     Questionnaire Requirements (for local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call checkQuestionnaireRequirementsCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/localentity/questionnaire-requirements";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call checkQuestionnaireRequirementsValidateBeforeCall(Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("checkQuestionnaireRequirements", Long.class);
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return checkQuestionnaireRequirementsCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Check Questionnaire Requirements (for local entities that require travel rule) (supporting
+     * network) (USER_DATA) This API will return user-specific Travel Rule questionnaire requirement
+     * information in reference to the current API key. Weight: 1
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CheckQuestionnaireRequirementsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Check Questionnaire Requirements </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements">Check
+     *     Questionnaire Requirements (for local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CheckQuestionnaireRequirementsResponse> checkQuestionnaireRequirements(
+            Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = checkQuestionnaireRequirementsValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CheckQuestionnaireRequirementsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -568,8 +707,270 @@ public class TravelRuleApi {
     }
 
     /**
+     * Build call for depositHistoryV2
+     *
+     * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
+     * @param txId (optional)
+     * @param network (optional)
+     * @param coin (optional)
+     * @param retrieveQuestionnaire true: return &#x60;questionnaire&#x60; within response.
+     *     (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param offset Default: 0 (optional)
+     * @param limit min 7, max 30, default 7 (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Deposit History V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2">Deposit
+     *     History V2 (for local entities that required travel rule) (supporting network)
+     *     (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call depositHistoryV2Call(
+            String depositId,
+            String txId,
+            String network,
+            String coin,
+            Boolean retrieveQuestionnaire,
+            Long startTime,
+            Long endTime,
+            Long offset,
+            Long limit)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/localentity/deposit/history";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (depositId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("depositId", depositId));
+        }
+
+        if (txId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("txId", txId));
+        }
+
+        if (network != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("network", network));
+        }
+
+        if (coin != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("coin", coin));
+        }
+
+        if (retrieveQuestionnaire != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "retrieveQuestionnaire", retrieveQuestionnaire));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call depositHistoryV2ValidateBeforeCall(
+            String depositId,
+            String txId,
+            String network,
+            String coin,
+            Boolean retrieveQuestionnaire,
+            Long startTime,
+            Long endTime,
+            Long offset,
+            Long limit)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {
+                depositId,
+                txId,
+                network,
+                coin,
+                retrieveQuestionnaire,
+                startTime,
+                endTime,
+                offset,
+                limit
+            };
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "depositHistoryV2",
+                                    String.class,
+                                    String.class,
+                                    String.class,
+                                    String.class,
+                                    Boolean.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return depositHistoryV2Call(
+                        depositId,
+                        txId,
+                        network,
+                        coin,
+                        retrieveQuestionnaire,
+                        startTime,
+                        endTime,
+                        offset,
+                        limit);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Deposit History V2 (for local entities that required travel rule) (supporting network)
+     * (USER_DATA) Fetch deposit history for local entities that with required travel rule
+     * information. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to
+     * make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
+     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
+     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     *
+     * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
+     * @param txId (optional)
+     * @param network (optional)
+     * @param coin (optional)
+     * @param retrieveQuestionnaire true: return &#x60;questionnaire&#x60; within response.
+     *     (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param offset Default: 0 (optional)
+     * @param limit min 7, max 30, default 7 (optional)
+     * @return ApiResponse&lt;DepositHistoryV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Deposit History V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2">Deposit
+     *     History V2 (for local entities that required travel rule) (supporting network)
+     *     (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DepositHistoryV2Response> depositHistoryV2(
+            String depositId,
+            String txId,
+            String network,
+            String coin,
+            Boolean retrieveQuestionnaire,
+            Long startTime,
+            Long endTime,
+            Long offset,
+            Long limit)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                depositHistoryV2ValidateBeforeCall(
+                        depositId,
+                        txId,
+                        network,
+                        coin,
+                        retrieveQuestionnaire,
+                        startTime,
+                        endTime,
+                        offset,
+                        limit);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<DepositHistoryV2Response>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for fetchAddressVerificationList
      *
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -583,7 +984,7 @@ public class TravelRuleApi {
      *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
      *     address verification list (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call fetchAddressVerificationListCall() throws ApiException {
+    private okhttp3.Call fetchAddressVerificationListCall(Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -608,6 +1009,10 @@ public class TravelRuleApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -639,7 +1044,8 @@ public class TravelRuleApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchAddressVerificationListValidateBeforeCall() throws ApiException {
+    private okhttp3.Call fetchAddressVerificationListValidateBeforeCall(Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -649,13 +1055,13 @@ public class TravelRuleApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {};
-            Method method = this.getClass().getMethod("fetchAddressVerificationList");
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("fetchAddressVerificationList", Long.class);
             Set<ConstraintViolation<TravelRuleApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return fetchAddressVerificationListCall();
+                return fetchAddressVerificationListCall(recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -669,8 +1075,10 @@ public class TravelRuleApi {
     }
 
     /**
-     * Fetch address verification list (USER_DATA) Fetch address verification list Weight: 10
+     * Fetch address verification list (USER_DATA) Fetch address verification list for user to check
+     * on status and other details for the addresses stored in Address Book. Weight: 1
      *
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;FetchAddressVerificationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -685,144 +1093,11 @@ public class TravelRuleApi {
      *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
      *     address verification list (USER_DATA) Documentation</a>
      */
-    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList()
-            throws ApiException {
-        okhttp3.Call localVarCall = fetchAddressVerificationListValidateBeforeCall();
+    public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList(
+            Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = fetchAddressVerificationListValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<FetchAddressVerificationListResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for onboardedVaspList
-     *
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Onboarded VASP list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Onboarded-VASP-list">Onboarded
-     *     VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
-     *     Documentation</a>
-     */
-    private okhttp3.Call onboardedVaspListCall() throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/localentity/vasp";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call onboardedVaspListValidateBeforeCall() throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {};
-            Method method = this.getClass().getMethod("onboardedVaspList");
-            Set<ConstraintViolation<TravelRuleApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return onboardedVaspListCall();
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Onboarded VASP list (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch the onboarded VASP list for local entities that required travel rule. *
-     * This endpoint specifically uses per second IP rate limit, user&#39;s total second level IP
-     * rate Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically
-     * uses per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second.
-     * Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight
-     * used by the current IP.
-     *
-     * @return ApiResponse&lt;OnboardedVaspListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Onboarded VASP list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Onboarded-VASP-list">Onboarded
-     *     VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
-     *     Documentation</a>
-     */
-    public ApiResponse<OnboardedVaspListResponse> onboardedVaspList() throws ApiException {
-        okhttp3.Call localVarCall = onboardedVaspListValidateBeforeCall();
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<OnboardedVaspListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1179,6 +1454,139 @@ public class TravelRuleApi {
     }
 
     /**
+     * Build call for vaspList
+     *
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VASP list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list">VASP
+     *     list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     *     Documentation</a>
+     */
+    private okhttp3.Call vaspListCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/localentity/vasp";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call vaspListValidateBeforeCall(Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("vaspList", Long.class);
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return vaspListCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     * Fetch the VASP list for local entities. Weight: 1
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;VaspListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VASP list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list">VASP
+     *     list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     *     Documentation</a>
+     */
+    public ApiResponse<VaspListResponse> vaspList(Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = vaspListValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<VaspListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for withdrawHistoryV1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
@@ -1401,15 +1809,11 @@ public class TravelRuleApi {
 
     /**
      * Withdraw History (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. * This
-     * endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate *
+     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
      * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
      * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 18000 Request limit: 10
-     * requests per second &gt; * This endpoint specifically uses per second IP rate limit,
-     * user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint
-     * contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
+     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
@@ -1692,8 +2096,7 @@ public class TravelRuleApi {
 
     /**
      * Withdraw History V2 (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. * This
-     * endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate *
+     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
      * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through
      * /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
@@ -1702,11 +2105,7 @@ public class TravelRuleApi {
      * between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent,
      * startTime and endTime are not sent, will return last 7 days records by default. * Maximum
      * support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not
-     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 18000 Request
-     * limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate
-     * limit, user&#39;s total second level IP rate limit is 180000/second. Response from the
-     * endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the
-     * current IP.
+     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)

@@ -40,9 +40,8 @@ public class WithdrawHistoryV2Example {
      * Withdraw History V2 (for local entities that require travel rule) (supporting network)
      * (USER_DATA)
      *
-     * <p>Fetch withdraw history for local entities that required travel rule. * This endpoint
-     * specifically uses per second IP rate limit, user&#39;s total second level IP rate *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through
+     * <p>Fetch withdraw history for local entities that required travel rule. * &#x60;network&#x60;
+     * may not be in the response for old withdraw. * Withdrawal made through
      * /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
      * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
@@ -50,11 +49,7 @@ public class WithdrawHistoryV2Example {
      * between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent,
      * startTime and endTime are not sent, will return last 7 days records by default. * Maximum
      * support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not
-     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 18000 Request
-     * limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate
-     * limit, user&#39;s total second level IP rate limit is 180000/second. Response from the
-     * endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the
-     * current IP.
+     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

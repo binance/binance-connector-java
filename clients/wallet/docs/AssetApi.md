@@ -695,7 +695,7 @@ No authorization required
 
 Query User Wallet Balance (USER_DATA)
 
-Query User Wallet Balance   * You need to open Permits Universal Transfer permission for the API Key which requests this endpoint.  Weight: 60
+Query User Wallet Balance  Weight: 60
 
 ### Example
 ```java

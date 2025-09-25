@@ -104,7 +104,7 @@ public class GetSimpleEarnFlexibleProductListResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_START_TIME)
     @jakarta.annotation.Nullable
-    private String subscriptionStartTime;
+    private Long subscriptionStartTime;
 
     public static final String SERIALIZED_NAME_STATUS = "status";
 
@@ -324,7 +324,7 @@ public class GetSimpleEarnFlexibleProductListResponseRowsInner {
     }
 
     public GetSimpleEarnFlexibleProductListResponseRowsInner subscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+            @jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
         return this;
     }
@@ -335,12 +335,11 @@ public class GetSimpleEarnFlexibleProductListResponseRowsInner {
      * @return subscriptionStartTime
      */
     @jakarta.annotation.Nullable
-    public String getSubscriptionStartTime() {
+    public Long getSubscriptionStartTime() {
         return subscriptionStartTime;
     }
 
-    public void setSubscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+    public void setSubscriptionStartTime(@jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
     }
 
@@ -627,15 +626,6 @@ public class GetSimpleEarnFlexibleProductListResponseRowsInner {
                             "Expected the field `productId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("productId").toString()));
-        }
-        if ((jsonObj.get("subscriptionStartTime") != null
-                        && !jsonObj.get("subscriptionStartTime").isJsonNull())
-                && !jsonObj.get("subscriptionStartTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `subscriptionStartTime` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("subscriptionStartTime").toString()));
         }
         if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
                 && !jsonObj.get("status").isJsonPrimitive()) {
