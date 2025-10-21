@@ -98,7 +98,7 @@ public class UserDataStreamApi {
      * close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket
      * Streams. In order to keep the stream open, you have to regularly send pings using the
      * &#x60;userDataStream.ping&#x60; request. It is recommended to send a ping once every 30
-     * minutes. Weight: 2
+     * minutes. This request does not require &#x60;signature&#x60;. Weight: 2
      *
      * @param userDataStreamPingRequest (required)
      * @return UserDataStreamPingResponse
@@ -162,7 +162,9 @@ public class UserDataStreamApi {
     }
 
     /**
-     * WebSocket Start user data stream Start a new user data stream. Weight: 2
+     * WebSocket Start user data stream Start a new user data stream. Note the stream will close in
+     * 60 minutes unless &#x60;userDataStream.ping&#x60; requests are sent regularly. This request
+     * does not require &#x60;signature&#x60;. Weight: 2
      *
      * @return UserDataStreamStartResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -204,7 +206,8 @@ public class UserDataStreamApi {
     private void userDataStreamStartValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Stop user data stream Explicitly stop and close the user data stream. Weight: 2
+     * WebSocket Stop user data stream Explicitly stop and close the user data stream. This request
+     * does not require &#x60;signature&#x60;. Weight: 2
      *
      * @param userDataStreamStopRequest (required)
      * @return UserDataStreamStopResponse

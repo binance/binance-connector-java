@@ -16,6 +16,8 @@
 
 [GET /api/v3/myAllocations](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-allocations-user_data) - myAllocations - [MyAllocationsExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyAllocationsExample.java#L46)
 
+[GET /api/v3/myFilters](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-relevant-filters-user_data) - myFilters - [MyFiltersExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyFiltersExample.java#L48)
+
 [GET /api/v3/myPreventedMatches](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-prevented-matches-user_data) - myPreventedMatches - [MyPreventedMatchesExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyPreventedMatchesExample.java#L52)
 
 [GET /api/v3/myTrades](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-trade-list-user_data) - myTrades - [MyTradesExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/account/MyTradesExample.java#L47)
@@ -94,5 +96,5 @@
 
 [POST /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#start-user-data-stream-user_stream) - newUserDataStream - [NewUserDataStreamExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/NewUserDataStreamExample.java#L47)
 
-[PUT /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#keepalive-user-data-stream-user_stream) - putUserDataStream - [PutUserDataStreamExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/PutUserDataStreamExample.java#L46)
+[PUT /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#keepalive-user-data-stream-user_stream) - putUserDataStream - [PutUserDataStreamExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/PutUserDataStreamExample.java#L47)
 

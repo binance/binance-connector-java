@@ -77,7 +77,7 @@ No authorization required
 
 WebSocket Ping user data stream
 
-Ping a user data stream to keep it alive.  User data streams close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60; request.  It is recommended to send a ping once every 30 minutes. Weight: 2
+Ping a user data stream to keep it alive.  User data streams close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60; request.  It is recommended to send a ping once every 30 minutes.  This request does not require &#x60;signature&#x60;. Weight: 2
 
 ### Example
 ```java
@@ -139,7 +139,7 @@ No authorization required
 
 WebSocket Start user data stream
 
-Start a new user data stream. Weight: 2
+Start a new user data stream. Note the stream will close in 60 minutes unless &#x60;userDataStream.ping&#x60; requests are sent regularly. This request does not require &#x60;signature&#x60;. Weight: 2
 
 ### Example
 ```java
@@ -197,7 +197,7 @@ No authorization required
 
 WebSocket Stop user data stream
 
-Explicitly stop and close the user data stream. Weight: 2
+Explicitly stop and close the user data stream. This request does not require &#x60;signature&#x60;. Weight: 2
 
 ### Example
 ```java

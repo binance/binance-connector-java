@@ -43,7 +43,8 @@ public class UserDataStreamStopExample {
     /**
      * WebSocket Stop user data stream
      *
-     * <p>Explicitly stop and close the user data stream. Weight: 2
+     * <p>Explicitly stop and close the user data stream. This request does not require
+     * &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamStopExampleAsync() {
         UserDataStreamStopRequest userDataStreamStopRequest = new UserDataStreamStopRequest();
@@ -63,7 +64,8 @@ public class UserDataStreamStopExample {
     /**
      * WebSocket Stop user data stream
      *
-     * <p>Explicitly stop and close the user data stream. Weight: 2
+     * <p>Explicitly stop and close the user data stream. This request does not require
+     * &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamStopExampleSync() {
         UserDataStreamStopRequest userDataStreamStopRequest = new UserDataStreamStopRequest();

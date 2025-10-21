@@ -12,6 +12,7 @@
 
 package com.binance.connector.client.spot.websocket.api.model;
 
+import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
@@ -74,7 +75,7 @@ public class OrderCancelRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderCancelRequest() {}
 
@@ -179,7 +180,7 @@ public class OrderCancelRequest extends BaseDTO {
         this.cancelRestrictions = cancelRestrictions;
     }
 
-    public OrderCancelRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderCancelRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -190,11 +191,12 @@ public class OrderCancelRequest extends BaseDTO {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -271,9 +273,10 @@ public class OrderCancelRequest extends BaseDTO {
             String cancelRestrictionsValueAsString = cancelRestrictionsValue.toString();
             valMap.put("cancelRestrictions", cancelRestrictionsValueAsString);
         }
-        Long recvWindowValue = getRecvWindow();
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 

@@ -49,7 +49,7 @@ public class AllOrdersExample {
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<AllOrdersResponse> response =
                 getApi().allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
         System.out.println(response.getData());

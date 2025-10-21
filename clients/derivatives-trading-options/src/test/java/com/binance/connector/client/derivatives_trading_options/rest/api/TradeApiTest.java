@@ -379,11 +379,10 @@ public class TradeApiTest {
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentOpenOptionOrdersResponse> response =
                 api.queryCurrentOpenOptionOrders(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                        symbol, orderId, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -396,10 +395,10 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
+                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "dc0808314025fc813dcde0328cd6754c982d28888760fc74b17e072087eb4895",
+                "51e9f45d125dacba55909402a133899dd5f0956cd707d8d24ff372c34f5a8155",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/openOrders", actualRequest.url().encodedPath());
     }

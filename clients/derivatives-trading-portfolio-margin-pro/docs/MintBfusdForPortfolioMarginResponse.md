@@ -11,7 +11,7 @@
 |**targetAsset** | **String** |  |  [optional] |
 |**fromAssetQty** | **Long** |  |  [optional] |
 |**targetAssetQty** | **Double** |  |  [optional] |
-|**rate** | **Double** |  |  [optional] |
+|**mintRate** | **Double** |  |  [optional] |
 
 
 

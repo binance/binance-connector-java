@@ -28,6 +28,8 @@ import com.binance.connector.client.spot.websocket.api.model.KlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.KlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersRequest;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyTradesRequest;
@@ -110,7 +112,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -178,6 +180,11 @@ public class SpotWebSocketApi {
     public CompletableFuture<MyAllocationsResponse> myAllocations(
             MyAllocationsRequest myAllocationsRequest) throws ApiException {
         return accountApi.myAllocations(myAllocationsRequest);
+    }
+
+    public CompletableFuture<MyFiltersResponse> myFilters(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        return accountApi.myFilters(myFiltersRequest);
     }
 
     public CompletableFuture<MyPreventedMatchesResponse> myPreventedMatches(

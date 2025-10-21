@@ -8,6 +8,8 @@
 
 [GET /eapi/v1/account](https://developers.binance.com/docs/derivatives/option/account/Option-Account-Information) - optionAccountInformation - [OptionAccountInformationExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/account/OptionAccountInformationExample.java#L47)
 
+[GET /eapi/v1/marginAccount](https://developers.binance.com/docs/derivatives/option/account/Option-Margin-Account-Information) - optionMarginAccountInformation - [OptionMarginAccountInformationExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/account/OptionMarginAccountInformationExample.java#L47)
+
 ## MarketData
 
 [GET /eapi/v1/time](https://developers.binance.com/docs/derivatives/option/market-data/Check-Server-Time) - checkServerTime - [CheckServerTimeExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/CheckServerTimeExample.java#L47)
@@ -46,7 +48,7 @@
 
 [PUT /eapi/v1/block/order/create](https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order) - extendBlockTradeOrder - [ExtendBlockTradeOrderExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerblocktrade/ExtendBlockTradeOrderExample.java#L48)
 
-[POST /eapi/v1/block/order/create](https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order) - newBlockTradeOrder - [NewBlockTradeOrderExample.java:50](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerblocktrade/NewBlockTradeOrderExample.java#L50)
+[POST /eapi/v1/block/order/create](https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order) - newBlockTradeOrder - [NewBlockTradeOrderExample.java:49](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerblocktrade/NewBlockTradeOrderExample.java#L49)
 
 [GET /eapi/v1/block/order/execute](https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail) - queryBlockTradeDetails - [QueryBlockTradeDetailsExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerblocktrade/QueryBlockTradeDetailsExample.java#L48)
 
@@ -59,8 +61,6 @@
 [GET /eapi/v1/countdownCancelAll](https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config) - getAutoCancelAllOpenOrders - [GetAutoCancelAllOpenOrdersExample.java:51](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerendpoints/GetAutoCancelAllOpenOrdersExample.java#L51)
 
 [GET /eapi/v1/mmp](https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Market-Maker-Protection-Config) - getMarketMakerProtectionConfig - [GetMarketMakerProtectionConfigExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerendpoints/GetMarketMakerProtectionConfigExample.java#L47)
-
-[GET /eapi/v1/marginAccount](https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Option-Margin-Account-Information) - optionMarginAccountInformation - [OptionMarginAccountInformationExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerendpoints/OptionMarginAccountInformationExample.java#L47)
 
 [POST /eapi/v1/mmpReset](https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Reset-Market-Maker-Protection-Config) - resetMarketMakerProtectionConfig - [ResetMarketMakerProtectionConfigExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketmakerendpoints/ResetMarketMakerProtectionConfigExample.java#L48)
 

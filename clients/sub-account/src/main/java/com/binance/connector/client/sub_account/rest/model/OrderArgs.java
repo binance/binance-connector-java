@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class OrderArgs extends ArrayList<Object> {
+public class OrderArgs extends ArrayList<OrderArgsInner> {
     public OrderArgs() {}
 
     @Override
@@ -116,13 +116,7 @@ public class OrderArgs extends ArrayList<Object> {
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            if (!element.getAsJsonPrimitive().isNumber()) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "Expected array items to be of type Number in the JSON string but"
-                                        + " got `%s`",
-                                jsonElement.toString()));
-            }
+            OrderArgsInner.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!OrderArgs.openapiRequiredFields

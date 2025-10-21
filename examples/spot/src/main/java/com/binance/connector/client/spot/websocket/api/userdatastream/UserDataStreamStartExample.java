@@ -42,7 +42,9 @@ public class UserDataStreamStartExample {
     /**
      * WebSocket Start user data stream
      *
-     * <p>Start a new user data stream. Weight: 2
+     * <p>Start a new user data stream. Note the stream will close in 60 minutes unless
+     * &#x60;userDataStream.ping&#x60; requests are sent regularly. This request does not require
+     * &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamStartExampleAsync() {
         CompletableFuture<UserDataStreamStartResponse> future = getApi().userDataStreamStart();
@@ -59,7 +61,9 @@ public class UserDataStreamStartExample {
     /**
      * WebSocket Start user data stream
      *
-     * <p>Start a new user data stream. Weight: 2
+     * <p>Start a new user data stream. Note the stream will close in 60 minutes unless
+     * &#x60;userDataStream.ping&#x60; requests are sent regularly. This request does not require
+     * &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamStartExampleSync() {
         CompletableFuture<UserDataStreamStartResponse> future = getApi().userDataStreamStart();

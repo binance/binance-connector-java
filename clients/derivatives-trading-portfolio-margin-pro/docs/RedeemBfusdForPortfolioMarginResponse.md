@@ -11,7 +11,7 @@
 |**targetAsset** | **String** |  |  [optional] |
 |**fromAssetQty** | **Double** |  |  [optional] |
 |**targetAssetQty** | **Double** |  |  [optional] |
-|**rate** | **Double** |  |  [optional] |
+|**redeemRate** | **Double** |  |  [optional] |
 
 
 

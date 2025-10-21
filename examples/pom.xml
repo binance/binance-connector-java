@@ -16,7 +16,6 @@
 
     <modules>
         <module>algo</module>
-        <module>auto-invest</module>
         <module>c2c</module>
         <module>convert</module>
         <module>copy-trading</module>

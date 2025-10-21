@@ -12,6 +12,8 @@
 
 [myAllocations](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-allocations-user_data) - myAllocations - [MyAllocationsExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyAllocationsExample.java#L48)
 
+[myFilters](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-relevant-filters-user_data) - myFilters - [MyFiltersExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyFiltersExample.java#L50)
+
 [myPreventedMatches](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-prevented-matches-user_data) - myPreventedMatches - [MyPreventedMatchesExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyPreventedMatchesExample.java#L54)
 
 [myTrades](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-trade-history-user_data) - myTrades - [MyTradesExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyTradesExample.java#L49)
@@ -100,11 +102,11 @@
 
 [session.subscriptions](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#listing-all-subscriptions) - sessionSubscriptions - [SessionSubscriptionsExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/SessionSubscriptionsExample.java#L47)
 
-[userDataStream.ping](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#ping-user-data-stream-user_stream) - userDataStreamPing - [UserDataStreamPingExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamPingExample.java#L51)
+[userDataStream.ping](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#ping-user-data-stream-user_stream) - userDataStreamPing - [UserDataStreamPingExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamPingExample.java#L52)
 
-[userDataStream.start](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#start-user-data-stream-user_stream) - userDataStreamStart - [UserDataStreamStartExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamStartExample.java#L47)
+[userDataStream.start](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#start-user-data-stream-user_stream) - userDataStreamStart - [UserDataStreamStartExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamStartExample.java#L49)
 
-[userDataStream.stop](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#stop-user-data-stream-user_stream) - userDataStreamStop - [UserDataStreamStopExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamStopExample.java#L48)
+[userDataStream.stop](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#stop-user-data-stream-user_stream) - userDataStreamStop - [UserDataStreamStopExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamStopExample.java#L49)
 
 [userDataStream.subscribe](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-user_stream) - userDataStreamSubscribe - [UserDataStreamSubscribeExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeExample.java#L49)
 

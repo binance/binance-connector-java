@@ -12,7 +12,7 @@
 |**startTime** | **Long** |  |  [optional] |
 |**endTime** | **Long** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

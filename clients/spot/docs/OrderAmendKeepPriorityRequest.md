@@ -12,7 +12,7 @@
 |**origClientOrderId** | **String** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
 |**newQty** | **Double** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

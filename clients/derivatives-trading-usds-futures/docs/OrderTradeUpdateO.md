@@ -43,6 +43,7 @@
 |**V** | **String** |  |  [optional] |
 |**pm** | **String** |  |  [optional] |
 |**gtd** | **Long** |  |  [optional] |
+|**er** | **String** |  |  [optional] |
 
 
 

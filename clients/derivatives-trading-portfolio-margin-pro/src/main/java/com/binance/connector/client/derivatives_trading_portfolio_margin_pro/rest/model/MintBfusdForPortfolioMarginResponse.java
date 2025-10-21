@@ -61,11 +61,11 @@ public class MintBfusdForPortfolioMarginResponse {
     @jakarta.annotation.Nullable
     private Double targetAssetQty;
 
-    public static final String SERIALIZED_NAME_RATE = "rate";
+    public static final String SERIALIZED_NAME_MINT_RATE = "mintRate";
 
-    @SerializedName(SERIALIZED_NAME_RATE)
+    @SerializedName(SERIALIZED_NAME_MINT_RATE)
     @jakarta.annotation.Nullable
-    private Double rate;
+    private Double mintRate;
 
     public MintBfusdForPortfolioMarginResponse() {}
 
@@ -150,24 +150,25 @@ public class MintBfusdForPortfolioMarginResponse {
         this.targetAssetQty = targetAssetQty;
     }
 
-    public MintBfusdForPortfolioMarginResponse rate(@jakarta.annotation.Nullable Double rate) {
-        this.rate = rate;
+    public MintBfusdForPortfolioMarginResponse mintRate(
+            @jakarta.annotation.Nullable Double mintRate) {
+        this.mintRate = mintRate;
         return this;
     }
 
     /**
-     * Get rate
+     * Get mintRate
      *
-     * @return rate
+     * @return mintRate
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getRate() {
-        return rate;
+    public Double getMintRate() {
+        return mintRate;
     }
 
-    public void setRate(@jakarta.annotation.Nullable Double rate) {
-        this.rate = rate;
+    public void setMintRate(@jakarta.annotation.Nullable Double mintRate) {
+        this.mintRate = mintRate;
     }
 
     @Override
@@ -186,12 +187,12 @@ public class MintBfusdForPortfolioMarginResponse {
                         this.fromAssetQty, mintBfusdForPortfolioMarginResponse.fromAssetQty)
                 && Objects.equals(
                         this.targetAssetQty, mintBfusdForPortfolioMarginResponse.targetAssetQty)
-                && Objects.equals(this.rate, mintBfusdForPortfolioMarginResponse.rate);
+                && Objects.equals(this.mintRate, mintBfusdForPortfolioMarginResponse.mintRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fromAsset, targetAsset, fromAssetQty, targetAssetQty, rate);
+        return Objects.hash(fromAsset, targetAsset, fromAssetQty, targetAssetQty, mintRate);
     }
 
     @Override
@@ -202,7 +203,7 @@ public class MintBfusdForPortfolioMarginResponse {
         sb.append("		targetAsset: ").append(toIndentedString(targetAsset)).append("\n");
         sb.append("		fromAssetQty: ").append(toIndentedString(fromAssetQty)).append("\n");
         sb.append("		targetAssetQty: ").append(toIndentedString(targetAssetQty)).append("\n");
-        sb.append("		rate: ").append(toIndentedString(rate)).append("\n");
+        sb.append("		mintRate: ").append(toIndentedString(mintRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -226,10 +227,10 @@ public class MintBfusdForPortfolioMarginResponse {
         String targetAssetQtyValueAsString = "";
         targetAssetQtyValueAsString = targetAssetQtyValue.toString();
         sb.append("targetAssetQty=").append(urlEncode(targetAssetQtyValueAsString)).append("");
-        Object rateValue = getRate();
-        String rateValueAsString = "";
-        rateValueAsString = rateValue.toString();
-        sb.append("rate=").append(urlEncode(rateValueAsString)).append("");
+        Object mintRateValue = getMintRate();
+        String mintRateValueAsString = "";
+        mintRateValueAsString = mintRateValue.toString();
+        sb.append("mintRate=").append(urlEncode(mintRateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -262,7 +263,7 @@ public class MintBfusdForPortfolioMarginResponse {
         openapiFields.add("targetAsset");
         openapiFields.add("fromAssetQty");
         openapiFields.add("targetAssetQty");
-        openapiFields.add("rate");
+        openapiFields.add("mintRate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

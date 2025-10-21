@@ -45,7 +45,7 @@ public class GetAccountExample {
      */
     public void getAccountExample() throws ApiException {
         Boolean omitZeroBalances = false;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<GetAccountResponse> response =
                 getApi().getAccount(omitZeroBalances, recvWindow);
         System.out.println(response.getData());

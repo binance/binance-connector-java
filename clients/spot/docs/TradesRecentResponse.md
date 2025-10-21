@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**List&lt;TradesRecentResponseResultInner&gt;**](TradesRecentResponseResultInner.md) |  |  [optional] |
-|**rateLimits** | **RateLimits** |  |  [optional] |
+|**rateLimits** | [**List&lt;RateLimits&gt;**](RateLimits.md) |  |  [optional] |
 
 
 

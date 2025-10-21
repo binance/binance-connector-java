@@ -273,6 +273,9 @@ public class JSON {
                 new com.binance.connector.client.sub_account.rest.model.OrderArgs
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model.OrderArgsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .QueryManagedSubAccountAssetDetailsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

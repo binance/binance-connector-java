@@ -308,7 +308,7 @@ public class OrderListOtocoRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderListOtocoRequest() {}
 
@@ -1210,7 +1210,7 @@ public class OrderListOtocoRequest {
         this.pendingBelowPegOffsetValue = pendingBelowPegOffsetValue;
     }
 
-    public OrderListOtocoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderListOtocoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -1221,11 +1221,12 @@ public class OrderListOtocoRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 

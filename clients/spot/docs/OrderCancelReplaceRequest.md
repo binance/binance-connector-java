@@ -31,7 +31,7 @@
 |**pegPriceType** | **PegPriceType** |  |  [optional] |
 |**pegOffsetValue** | **Integer** |  |  [optional] |
 |**pegOffsetType** | **PegOffsetType** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

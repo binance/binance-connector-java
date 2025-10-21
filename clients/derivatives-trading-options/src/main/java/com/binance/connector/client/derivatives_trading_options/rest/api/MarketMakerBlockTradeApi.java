@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_options.rest.api;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
-import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.JSON;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
@@ -53,7 +52,7 @@ public class MarketMakerBlockTradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/3.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -731,27 +730,6 @@ public class MarketMakerBlockTradeApi {
         if (newBlockTradeOrderRequest.getLegs() != null) {
             String json = JSON.getGson().toJson(newBlockTradeOrderRequest.getLegs());
             localVarFormParams.put("legs", json);
-        }
-
-        if (newBlockTradeOrderRequest.getSymbol() != null) {
-            localVarFormParams.put("symbol", newBlockTradeOrderRequest.getSymbol());
-        }
-
-        if (newBlockTradeOrderRequest.getSide() != null) {
-            localVarFormParams.put("side", newBlockTradeOrderRequest.getSide());
-        }
-
-        if (newBlockTradeOrderRequest.getPrice() != null) {
-            localVarFormParams.put(
-                    "price",
-                    DecimalFormatter.getFormatter().format(newBlockTradeOrderRequest.getPrice()));
-        }
-
-        if (newBlockTradeOrderRequest.getQuantity() != null) {
-            localVarFormParams.put(
-                    "quantity",
-                    DecimalFormatter.getFormatter()
-                            .format(newBlockTradeOrderRequest.getQuantity()));
         }
 
         if (newBlockTradeOrderRequest.getRecvWindow() != null) {

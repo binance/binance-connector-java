@@ -232,10 +232,6 @@ public class MarketMakerBlockTradeApiTest {
 
         newBlockTradeOrderRequest.liquidity("");
         newBlockTradeOrderRequest.legs(new Legs());
-        newBlockTradeOrderRequest.symbol("");
-        newBlockTradeOrderRequest.side(Side.BUY);
-        newBlockTradeOrderRequest.price(1d);
-        newBlockTradeOrderRequest.quantity(1d);
 
         ApiResponse<NewBlockTradeOrderResponse> response =
                 api.newBlockTradeOrder(newBlockTradeOrderRequest);
@@ -251,10 +247,10 @@ public class MarketMakerBlockTradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000symbol=&side=BUY&quantity=1&price=1&legs=%5B%5D&liquidity=",
+                "timestamp=1736393892000legs=%5B%5D&liquidity=",
                 signInputCaptor.getValue());
         assertEquals(
-                "67602c4e0a54cf28613b373cc457dccf540698cb3148e276c96f32ac09adf599",
+                "bfcdb97917945619131835baab3105074db01c428177e5af5122331605bf3cb8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/create", actualRequest.url().encodedPath());
     }

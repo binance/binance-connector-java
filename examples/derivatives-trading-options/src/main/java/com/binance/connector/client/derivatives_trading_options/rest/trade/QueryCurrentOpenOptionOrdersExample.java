@@ -50,11 +50,10 @@ public class QueryCurrentOpenOptionOrdersExample {
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentOpenOptionOrdersResponse> response =
                 getApi().queryCurrentOpenOptionOrders(
-                                symbol, orderId, startTime, endTime, limit, recvWindow);
+                                symbol, orderId, startTime, endTime, recvWindow);
         System.out.println(response.getData());
     }
 }

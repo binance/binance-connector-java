@@ -189,7 +189,7 @@ public class OrderCancelReplaceRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderCancelReplaceRequest() {}
 
@@ -691,7 +691,7 @@ public class OrderCancelReplaceRequest {
         this.pegOffsetType = pegOffsetType;
     }
 
-    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -702,11 +702,12 @@ public class OrderCancelReplaceRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 

@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**origClientOrderId** | **String** |  |  [optional] |
 |**orderListId** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 
