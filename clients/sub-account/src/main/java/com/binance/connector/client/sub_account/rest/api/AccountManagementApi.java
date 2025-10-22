@@ -53,7 +53,7 @@ public class AccountManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/3.0.1 (Java/%s; %s; %s)",
+                    "binance-sub-account/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1161,7 +1161,7 @@ public class AccountManagementApi {
     /**
      * Build call for querySubAccountTransactionStatistics
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1280,7 +1280,7 @@ public class AccountManagementApi {
      * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA) Query Sub-account
      * Transaction statistics (For Master Account). Weight: 60
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountTransactionStatisticsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1297,7 +1297,7 @@ public class AccountManagementApi {
      *     Sub-account Transaction Statistics (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountTransactionStatisticsResponse>
-            querySubAccountTransactionStatistics(@NotNull String email, Long recvWindow)
+            querySubAccountTransactionStatistics(String email, Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountTransactionStatisticsValidateBeforeCall(email, recvWindow);

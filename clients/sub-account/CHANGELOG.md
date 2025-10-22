@@ -1,6 +1,22 @@
 # Changelog
 
+## 4.0.0 - 2025-10-21
+
+### Changed (2)
+
+- Modified parameter `email`:
+  - required: `true` → `false`
+  - affected methods:
+    - `querySubAccountTransactionStatistics()` (`GET /sapi/v1/sub-account/transaction-statistics`)
+- Modified parameter `orderArgs`:
+  - item property `quantity` added
+  - item property `symbol` added
+  - item property `positionSide` added
+  - affected methods:
+    - `movePositionForSubAccount()` (`POST /sapi/v1/sub-account/futures/move-position`)
+
 ## 3.0.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

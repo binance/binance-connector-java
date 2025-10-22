@@ -46,7 +46,7 @@ public class GetOrderListExample {
     public void getOrderListExample() throws ApiException {
         Long orderListId = 1L;
         String origClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<GetOrderListResponse> response =
                 getApi().getOrderList(orderListId, origClientOrderId, recvWindow);
         System.out.println(response.getData());

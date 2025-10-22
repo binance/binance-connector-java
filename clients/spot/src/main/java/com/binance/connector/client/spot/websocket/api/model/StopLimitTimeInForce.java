@@ -26,9 +26,9 @@ import org.hibernate.validator.constraints.*;
 public enum StopLimitTimeInForce {
     GTC("GTC"),
 
-    FOK("FOK"),
+    IOC("IOC"),
 
-    IOC("IOC");
+    FOK("FOK");
 
     private String value;
 

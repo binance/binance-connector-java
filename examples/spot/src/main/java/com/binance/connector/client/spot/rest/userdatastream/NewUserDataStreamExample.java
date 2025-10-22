@@ -40,7 +40,7 @@ public class NewUserDataStreamExample {
      * Start user data stream
      *
      * <p>Start a new user data stream. The stream will close after 60 minutes unless a keepalive is
-     * sent. Weight: 2
+     * sent. This request does not require &#x60;signature&#x60;. Weight: 2
      *
      * @throws ApiException if the Api call fails
      */

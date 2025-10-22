@@ -87,6 +87,14 @@ public class PoolConnectionWrapper implements ConnectionInterface {
     }
 
     @Override
+    public void disconnect() {
+        for (ConnectionWrapper connectionWrapper : connectionList) {
+            connectionWrapper.disconnect();
+        }
+        isConnected = false;
+    }
+
+    @Override
     public void send(ApiRequestWrapperDTO request) throws InterruptedException {
         getConnection().send(request);
     }

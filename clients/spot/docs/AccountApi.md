@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**allOrderLists**](AccountApi.md#allOrderLists) | **POST** /allOrderLists | WebSocket Account order list history |
 | [**allOrders**](AccountApi.md#allOrders) | **POST** /allOrders | WebSocket Account order history |
 | [**myAllocations**](AccountApi.md#myAllocations) | **POST** /myAllocations | WebSocket Account allocations |
+| [**myFilters**](AccountApi.md#myFilters) | **POST** /myFilters | WebSocket Query Relevant Filters |
 | [**myPreventedMatches**](AccountApi.md#myPreventedMatches) | **POST** /myPreventedMatches | WebSocket Account prevented matches |
 | [**myTrades**](AccountApi.md#myTrades) | **POST** /myTrades | WebSocket Account trade history |
 | [**openOrderListsStatus**](AccountApi.md#openOrderListsStatus) | **POST** /openOrderLists.status | WebSocket Current open Order lists |
@@ -390,6 +391,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Account allocations |  -  |
+
+<a id="myFilters"></a>
+# **myFilters**
+> MyFiltersResponse myFilters(myFiltersRequest)
+
+WebSocket Query Relevant Filters
+
+Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This is the only endpoint that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it. Weight: 40
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    MyFiltersRequest myFiltersRequest = new MyFiltersRequest(); // MyFiltersRequest | 
+    try {
+      MyFiltersResponse result = apiInstance.myFilters(myFiltersRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#myFilters");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **myFiltersRequest** | [**MyFiltersRequest**](MyFiltersRequest.md)|  | |
+
+### Return type
+
+[**MyFiltersResponse**](MyFiltersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query Relevant Filters |  -  |
 
 <a id="myPreventedMatches"></a>
 # **myPreventedMatches**

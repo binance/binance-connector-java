@@ -61,11 +61,11 @@ public class RedeemBfusdForPortfolioMarginResponse {
     @jakarta.annotation.Nullable
     private Double targetAssetQty;
 
-    public static final String SERIALIZED_NAME_RATE = "rate";
+    public static final String SERIALIZED_NAME_REDEEM_RATE = "redeemRate";
 
-    @SerializedName(SERIALIZED_NAME_RATE)
+    @SerializedName(SERIALIZED_NAME_REDEEM_RATE)
     @jakarta.annotation.Nullable
-    private Double rate;
+    private Double redeemRate;
 
     public RedeemBfusdForPortfolioMarginResponse() {}
 
@@ -151,24 +151,25 @@ public class RedeemBfusdForPortfolioMarginResponse {
         this.targetAssetQty = targetAssetQty;
     }
 
-    public RedeemBfusdForPortfolioMarginResponse rate(@jakarta.annotation.Nullable Double rate) {
-        this.rate = rate;
+    public RedeemBfusdForPortfolioMarginResponse redeemRate(
+            @jakarta.annotation.Nullable Double redeemRate) {
+        this.redeemRate = redeemRate;
         return this;
     }
 
     /**
-     * Get rate
+     * Get redeemRate
      *
-     * @return rate
+     * @return redeemRate
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getRate() {
-        return rate;
+    public Double getRedeemRate() {
+        return redeemRate;
     }
 
-    public void setRate(@jakarta.annotation.Nullable Double rate) {
-        this.rate = rate;
+    public void setRedeemRate(@jakarta.annotation.Nullable Double redeemRate) {
+        this.redeemRate = redeemRate;
     }
 
     @Override
@@ -188,12 +189,13 @@ public class RedeemBfusdForPortfolioMarginResponse {
                         this.fromAssetQty, redeemBfusdForPortfolioMarginResponse.fromAssetQty)
                 && Objects.equals(
                         this.targetAssetQty, redeemBfusdForPortfolioMarginResponse.targetAssetQty)
-                && Objects.equals(this.rate, redeemBfusdForPortfolioMarginResponse.rate);
+                && Objects.equals(
+                        this.redeemRate, redeemBfusdForPortfolioMarginResponse.redeemRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fromAsset, targetAsset, fromAssetQty, targetAssetQty, rate);
+        return Objects.hash(fromAsset, targetAsset, fromAssetQty, targetAssetQty, redeemRate);
     }
 
     @Override
@@ -204,7 +206,7 @@ public class RedeemBfusdForPortfolioMarginResponse {
         sb.append("		targetAsset: ").append(toIndentedString(targetAsset)).append("\n");
         sb.append("		fromAssetQty: ").append(toIndentedString(fromAssetQty)).append("\n");
         sb.append("		targetAssetQty: ").append(toIndentedString(targetAssetQty)).append("\n");
-        sb.append("		rate: ").append(toIndentedString(rate)).append("\n");
+        sb.append("		redeemRate: ").append(toIndentedString(redeemRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -228,10 +230,10 @@ public class RedeemBfusdForPortfolioMarginResponse {
         String targetAssetQtyValueAsString = "";
         targetAssetQtyValueAsString = targetAssetQtyValue.toString();
         sb.append("targetAssetQty=").append(urlEncode(targetAssetQtyValueAsString)).append("");
-        Object rateValue = getRate();
-        String rateValueAsString = "";
-        rateValueAsString = rateValue.toString();
-        sb.append("rate=").append(urlEncode(rateValueAsString)).append("");
+        Object redeemRateValue = getRedeemRate();
+        String redeemRateValueAsString = "";
+        redeemRateValueAsString = redeemRateValue.toString();
+        sb.append("redeemRate=").append(urlEncode(redeemRateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -264,7 +266,7 @@ public class RedeemBfusdForPortfolioMarginResponse {
         openapiFields.add("targetAsset");
         openapiFields.add("fromAssetQty");
         openapiFields.add("targetAssetQty");
-        openapiFields.add("rate");
+        openapiFields.add("redeemRate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

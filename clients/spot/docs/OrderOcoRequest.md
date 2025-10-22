@@ -26,7 +26,7 @@
 |**stopLimitTimeInForce** | **StopLimitTimeInForce** |  |  [optional] |
 |**newOrderRespType** | **NewOrderRespType** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

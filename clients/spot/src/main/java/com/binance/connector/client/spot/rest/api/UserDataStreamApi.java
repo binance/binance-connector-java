@@ -44,7 +44,7 @@ public class UserDataStreamApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -314,7 +314,7 @@ public class UserDataStreamApi {
 
     /**
      * Start user data stream Start a new user data stream. The stream will close after 60 minutes
-     * unless a keepalive is sent. Weight: 2
+     * unless a keepalive is sent. This request does not require &#x60;signature&#x60;. Weight: 2
      *
      * @return ApiResponse&lt;NewUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -449,7 +449,7 @@ public class UserDataStreamApi {
     /**
      * Keepalive user data stream Keepalive a user data stream to prevent a time out. User data
      * streams will close after 60 minutes. It&#39;s recommended to send a ping about every 30
-     * minutes. Weight: 2
+     * minutes. This request does not require &#x60;signature&#x60;. Weight: 2
      *
      * @param putUserDataStreamRequest (required)
      * @return ApiResponse&lt;Void&gt;

@@ -48,7 +48,7 @@ public class DeleteOrderListExample {
         Long orderListId = 1L;
         String listClientOrderId = "";
         String newClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<DeleteOrderListResponse> response =
                 getApi().deleteOrderList(
                                 symbol,

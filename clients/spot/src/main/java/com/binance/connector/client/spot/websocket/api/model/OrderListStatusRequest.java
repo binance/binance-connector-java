@@ -12,6 +12,7 @@
 
 package com.binance.connector.client.spot.websocket.api.model;
 
+import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -55,7 +57,7 @@ public class OrderListStatusRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderListStatusRequest() {}
 
@@ -98,7 +100,7 @@ public class OrderListStatusRequest extends BaseDTO {
         this.orderListId = orderListId;
     }
 
-    public OrderListStatusRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderListStatusRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -109,11 +111,12 @@ public class OrderListStatusRequest extends BaseDTO {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -161,9 +164,10 @@ public class OrderListStatusRequest extends BaseDTO {
             String orderListIdValueAsString = orderListIdValue.toString();
             valMap.put("orderListId", orderListIdValueAsString);
         }
-        Long recvWindowValue = getRecvWindow();
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 

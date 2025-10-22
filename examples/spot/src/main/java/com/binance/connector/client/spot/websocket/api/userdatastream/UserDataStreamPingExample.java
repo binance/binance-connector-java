@@ -46,7 +46,8 @@ public class UserDataStreamPingExample {
      * <p>Ping a user data stream to keep it alive. User data streams close automatically after 60
      * minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the
      * stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60;
-     * request. It is recommended to send a ping once every 30 minutes. Weight: 2
+     * request. It is recommended to send a ping once every 30 minutes. This request does not
+     * require &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamPingExampleAsync() {
         UserDataStreamPingRequest userDataStreamPingRequest = new UserDataStreamPingRequest();
@@ -69,7 +70,8 @@ public class UserDataStreamPingExample {
      * <p>Ping a user data stream to keep it alive. User data streams close automatically after 60
      * minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the
      * stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60;
-     * request. It is recommended to send a ping once every 30 minutes. Weight: 2
+     * request. It is recommended to send a ping once every 30 minutes. This request does not
+     * require &#x60;signature&#x60;. Weight: 2
      */
     public void userDataStreamPingExampleSync() {
         UserDataStreamPingRequest userDataStreamPingRequest = new UserDataStreamPingRequest();

@@ -271,7 +271,7 @@ public class SubAccountRestApi {
      * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA) Query Sub-account
      * Transaction statistics (For Master Account). Weight: 60
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountTransactionStatisticsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

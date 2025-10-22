@@ -125,7 +125,7 @@ public class AccountApiTest {
     @Test
     public void getAccountTest() throws ApiException, CryptoException {
         Boolean omitZeroBalances = false;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<GetAccountResponse> response = api.getAccount(omitZeroBalances, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -162,7 +162,7 @@ public class AccountApiTest {
         Integer fromAllocationId = 1;
         Integer limit = 500;
         Long orderId = 1L;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<MyAllocationsResponse> response =
                 api.myAllocations(
                         symbol, startTime, endTime, fromAllocationId, limit, orderId, recvWindow);
@@ -206,7 +206,7 @@ public class AccountApiTest {
         Long orderId = 1L;
         Long fromPreventedMatchId = 1L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<MyPreventedMatchesResponse> response =
                 api.myPreventedMatches(
                         symbol, preventedMatchId, orderId, fromPreventedMatchId, limit, recvWindow);
@@ -245,7 +245,7 @@ public class AccountApiTest {
         Long endTime = 1735693200000L;
         Long fromId = 1L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<MyTradesResponse> response =
                 api.myTrades(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
 
@@ -277,7 +277,7 @@ public class AccountApiTest {
      */
     @Test
     public void rateLimitOrderTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<RateLimitOrderResponse> response = api.rateLimitOrder(recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -312,7 +312,7 @@ public class AccountApiTest {
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<AllOrderListResponse> response =
                 api.allOrderList(fromId, startTime, endTime, limit, recvWindow);
 
@@ -349,7 +349,7 @@ public class AccountApiTest {
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<AllOrdersResponse> response =
                 api.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
 
@@ -383,7 +383,7 @@ public class AccountApiTest {
     @Test
     public void getOpenOrdersTest() throws ApiException, CryptoException {
         String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<GetOpenOrdersResponse> response = api.getOpenOrders(symbol, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -417,7 +417,7 @@ public class AccountApiTest {
         String symbol = "BNBUSDT";
         Long orderId = 1L;
         String origClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<GetOrderResponse> response =
                 api.getOrder(symbol, orderId, origClientOrderId, recvWindow);
 
@@ -451,7 +451,7 @@ public class AccountApiTest {
     public void getOrderListTest() throws ApiException, CryptoException {
         Long orderListId = 1L;
         String origClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<GetOrderListResponse> response =
                 api.getOrderList(orderListId, origClientOrderId, recvWindow);
 
@@ -483,7 +483,7 @@ public class AccountApiTest {
      */
     @Test
     public void openOrderListTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<OpenOrderListResponse> response = api.openOrderList(recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);

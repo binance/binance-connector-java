@@ -28,6 +28,8 @@ import com.binance.connector.client.spot.websocket.api.model.AllOrdersRequest;
 import com.binance.connector.client.spot.websocket.api.model.AllOrdersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersRequest;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyTradesRequest;
@@ -424,6 +426,69 @@ public class AccountApi {
 
             Set<ConstraintViolation<MyAllocationsRequest>> violations =
                     validator.validate(myAllocationsRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket Query Relevant Filters Retrieves the list of [filters](filters.md) relevant to an
+     * account on a given symbol. This is the only endpoint that shows if an account has
+     * &#x60;MAX_ASSET&#x60; filters applied to it. Weight: 40
+     *
+     * @param myFiltersRequest (required)
+     * @return MyFiltersResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Relevant Filters </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-relevant-filters-user_data">WebSocket
+     *     Query Relevant Filters Documentation</a>
+     */
+    public CompletableFuture<MyFiltersResponse> myFilters(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        myFiltersValidateBeforeCall(myFiltersRequest);
+        String methodName = "/myFilters".substring(1);
+        ApiRequestWrapperDTO<MyFiltersRequest, MyFiltersResponse> build =
+                new ApiRequestWrapperDTO.Builder<MyFiltersRequest, MyFiltersResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(myFiltersRequest)
+                        .responseType(MyFiltersResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void myFiltersValidateBeforeCall(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<MyFiltersRequest>> violations =
+                    validator.validate(myFiltersRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

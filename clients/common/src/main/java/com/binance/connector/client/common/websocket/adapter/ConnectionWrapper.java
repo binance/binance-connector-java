@@ -544,4 +544,11 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
                 newQuery,
                 oldUri.getFragment());
     }
+
+    public void disconnect() {
+        if (this.session != null) {
+            this.session.disconnect();
+            setReady(false);
+        }
+    }
 }

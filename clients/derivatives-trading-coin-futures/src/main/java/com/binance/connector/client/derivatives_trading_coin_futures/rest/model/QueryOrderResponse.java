@@ -96,6 +96,12 @@ public class QueryOrderResponse {
     @jakarta.annotation.Nullable
     private String side;
 
+    public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
+
+    @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
+    @jakarta.annotation.Nullable
+    private String positionSide;
+
     public static final String SERIALIZED_NAME_STATUS = "status";
 
     @SerializedName(SERIALIZED_NAME_STATUS)
@@ -377,6 +383,25 @@ public class QueryOrderResponse {
 
     public void setSide(@jakarta.annotation.Nullable String side) {
         this.side = side;
+    }
+
+    public QueryOrderResponse positionSide(@jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
+        return this;
+    }
+
+    /**
+     * Get positionSide
+     *
+     * @return positionSide
+     */
+    @jakarta.annotation.Nullable
+    public String getPositionSide() {
+        return positionSide;
+    }
+
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
     }
 
     public QueryOrderResponse status(@jakarta.annotation.Nullable String status) {
@@ -685,6 +710,7 @@ public class QueryOrderResponse {
                 && Objects.equals(this.price, queryOrderResponse.price)
                 && Objects.equals(this.reduceOnly, queryOrderResponse.reduceOnly)
                 && Objects.equals(this.side, queryOrderResponse.side)
+                && Objects.equals(this.positionSide, queryOrderResponse.positionSide)
                 && Objects.equals(this.status, queryOrderResponse.status)
                 && Objects.equals(this.stopPrice, queryOrderResponse.stopPrice)
                 && Objects.equals(this.closePosition, queryOrderResponse.closePosition)
@@ -716,6 +742,7 @@ public class QueryOrderResponse {
                 price,
                 reduceOnly,
                 side,
+                positionSide,
                 status,
                 stopPrice,
                 closePosition,
@@ -747,6 +774,7 @@ public class QueryOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
+        sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
@@ -811,6 +839,10 @@ public class QueryOrderResponse {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
+        Object positionSideValue = getPositionSide();
+        String positionSideValueAsString = "";
+        positionSideValueAsString = positionSideValue.toString();
+        sb.append("positionSide=").append(urlEncode(positionSideValueAsString)).append("");
         Object statusValue = getStatus();
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
@@ -911,6 +943,7 @@ public class QueryOrderResponse {
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
         openapiFields.add("side");
+        openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
@@ -1012,6 +1045,14 @@ public class QueryOrderResponse {
                             "Expected the field `side` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
+        }
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
         if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
                 && !jsonObj.get("status").isJsonPrimitive()) {

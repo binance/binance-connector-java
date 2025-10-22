@@ -60,7 +60,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/3.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -542,7 +542,7 @@ public class TradeApi {
 
     /**
      * Cancel all Option orders on specific symbol (TRADE) Cancel all active order on a symbol.
-     * Weight: 1
+     * Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param recvWindow (optional)
@@ -1378,7 +1378,6 @@ public class TradeApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1394,7 +1393,7 @@ public class TradeApi {
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCurrentOpenOptionOrdersCall(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1436,10 +1435,6 @@ public class TradeApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
         }
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
         if (recvWindow != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
@@ -1476,7 +1471,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryCurrentOpenOptionOrdersValidateBeforeCall(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1487,13 +1482,12 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, orderId, startTime, endTime, limit, recvWindow};
+            Object[] parameterValues = {symbol, orderId, startTime, endTime, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "queryCurrentOpenOptionOrders",
                                     String.class,
-                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1503,7 +1497,7 @@ public class TradeApi {
 
             if (violations.size() == 0) {
                 return queryCurrentOpenOptionOrdersCall(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                        symbol, orderId, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1524,7 +1518,6 @@ public class TradeApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentOpenOptionOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1541,11 +1534,11 @@ public class TradeApi {
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOptionOrdersResponse> queryCurrentOpenOptionOrders(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryCurrentOpenOptionOrdersValidateBeforeCall(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                        symbol, orderId, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryCurrentOpenOptionOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

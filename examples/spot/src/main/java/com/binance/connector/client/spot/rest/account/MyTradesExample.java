@@ -51,7 +51,7 @@ public class MyTradesExample {
         Long endTime = 1735693200000L;
         Long fromId = 1L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<MyTradesResponse> response =
                 getApi().myTrades(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
         System.out.println(response.getData());

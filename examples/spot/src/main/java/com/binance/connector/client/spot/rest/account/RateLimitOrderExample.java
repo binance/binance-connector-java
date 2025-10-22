@@ -44,7 +44,7 @@ public class RateLimitOrderExample {
      * @throws ApiException if the Api call fails
      */
     public void rateLimitOrderExample() throws ApiException {
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<RateLimitOrderResponse> response = getApi().rateLimitOrder(recvWindow);
         System.out.println(response.getData());
     }

@@ -71,7 +71,7 @@ public class OrderAmendKeepPriorityRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderAmendKeepPriorityRequest() {}
 
@@ -175,7 +175,8 @@ public class OrderAmendKeepPriorityRequest {
         this.newQty = newQty;
     }
 
-    public OrderAmendKeepPriorityRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderAmendKeepPriorityRequest recvWindow(
+            @jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -186,11 +187,12 @@ public class OrderAmendKeepPriorityRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 

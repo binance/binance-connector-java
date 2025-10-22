@@ -160,7 +160,7 @@ No authorization required
 
 Cancel all Option orders on specific symbol (TRADE)
 
-Cancel all active order on a symbol.  Weight: 1
+Cancel all active order on a symbol.  Weight: 5
 
 ### Example
 ```java
@@ -544,7 +544,7 @@ No authorization required
 
 <a id="queryCurrentOpenOptionOrders"></a>
 # **queryCurrentOpenOptionOrders**
-> QueryCurrentOpenOptionOrdersResponse queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, limit, recvWindow)
+> QueryCurrentOpenOptionOrdersResponse queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow)
 
 Query Current Open Option Orders (USER_DATA)
 
@@ -569,10 +569,9 @@ public class Example {
     Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
     Long startTime = 56L; // Long | Start Time, e.g 1593511200000
     Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
     Long recvWindow = 56L; // Long | 
     try {
-      QueryCurrentOpenOptionOrdersResponse result = apiInstance.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
+      QueryCurrentOpenOptionOrdersResponse result = apiInstance.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TradeApi#queryCurrentOpenOptionOrders");
@@ -593,7 +592,6 @@ public class Example {
 | **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

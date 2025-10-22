@@ -39,7 +39,7 @@ import java.util.UUID;
 public class SpotWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;

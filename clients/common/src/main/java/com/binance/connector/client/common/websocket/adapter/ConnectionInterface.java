@@ -9,6 +9,8 @@ import java.util.concurrent.BlockingQueue;
 public interface ConnectionInterface {
     void connect();
 
+    void disconnect();
+
     void send(ApiRequestWrapperDTO request) throws InterruptedException;
 
     BlockingQueue<String> sendForStream(ApiRequestWrapperDTO request) throws InterruptedException;
@@ -22,5 +24,4 @@ public interface ConnectionInterface {
     void setLogonMethods(List<String> logonMethods);
 
     void setLogoutMethods(List<String> logoutMethods);
-
 }

@@ -120,7 +120,7 @@ public class SorOrderTestRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public SorOrderTestRequest() {}
 
@@ -390,7 +390,7 @@ public class SorOrderTestRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public SorOrderTestRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public SorOrderTestRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -401,11 +401,12 @@ public class SorOrderTestRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 

@@ -67,7 +67,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -108,7 +108,9 @@ public class TradeApi {
      * Build call for deleteOpenOrders
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -122,7 +124,8 @@ public class TradeApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
      *     All Open Orders on a Symbol Documentation</a>
      */
-    private okhttp3.Call deleteOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
+    private okhttp3.Call deleteOpenOrdersCall(String symbol, Double recvWindow)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -152,7 +155,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -186,7 +191,7 @@ public class TradeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -198,7 +203,8 @@ public class TradeApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {symbol, recvWindow};
-            Method method = this.getClass().getMethod("deleteOpenOrders", String.class, Long.class);
+            Method method =
+                    this.getClass().getMethod("deleteOpenOrders", String.class, Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -221,7 +227,9 @@ public class TradeApi {
      * orders that are part of an order list. Weight: 1
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -237,7 +245,7 @@ public class TradeApi {
      *     All Open Orders on a Symbol Documentation</a>
      */
     public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall = deleteOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<DeleteOpenOrdersResponse>() {}.getType();
@@ -254,7 +262,9 @@ public class TradeApi {
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
      * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -274,7 +284,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -324,7 +334,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -364,7 +376,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -387,7 +399,7 @@ public class TradeApi {
                                     String.class,
                                     String.class,
                                     CancelRestrictions.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -421,7 +433,9 @@ public class TradeApi {
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
      * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -442,7 +456,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderValidateBeforeCall(
@@ -467,7 +481,9 @@ public class TradeApi {
      * @param newClientOrderId A unique id among open orders. Automatically generated if not
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -486,7 +502,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -532,7 +548,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -571,7 +589,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -593,7 +611,7 @@ public class TradeApi {
                                     Long.class,
                                     String.class,
                                     String.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -622,7 +640,9 @@ public class TradeApi {
      * @param newClientOrderId A unique id among open orders. Automatically generated if not
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -642,7 +662,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderListValidateBeforeCall(
@@ -777,7 +797,9 @@ public class TradeApi {
         }
 
         if (newOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", newOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(newOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -936,7 +958,10 @@ public class TradeApi {
         }
 
         if (orderAmendKeepPriorityRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderAmendKeepPriorityRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderAmendKeepPriorityRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1199,7 +1224,10 @@ public class TradeApi {
         }
 
         if (orderCancelReplaceRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderCancelReplaceRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderCancelReplaceRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1389,10 +1417,7 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getAboveTimeInForce() != null) {
-            localVarFormParams.put(
-                    "aboveTimeInForce",
-                    DecimalFormatter.getFormatter()
-                            .format(orderListOcoRequest.getAboveTimeInForce()));
+            localVarFormParams.put("aboveTimeInForce", orderListOcoRequest.getAboveTimeInForce());
         }
 
         if (orderListOcoRequest.getAboveStrategyId() != null) {
@@ -1484,7 +1509,9 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1786,7 +1813,9 @@ public class TradeApi {
         }
 
         if (orderListOtoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2169,7 +2198,9 @@ public class TradeApi {
         }
 
         if (orderListOtocoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtocoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtocoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2401,7 +2432,9 @@ public class TradeApi {
         }
 
         if (orderOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2625,7 +2658,9 @@ public class TradeApi {
         }
 
         if (orderTestRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderTestRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2814,7 +2849,9 @@ public class TradeApi {
         }
 
         if (sorOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", sorOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -3009,7 +3046,9 @@ public class TradeApi {
         }
 
         if (sorOrderTestRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", sorOrderTestRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};

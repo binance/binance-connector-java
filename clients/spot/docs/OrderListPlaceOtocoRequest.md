@@ -49,7 +49,7 @@
 |**pendingBelowPegPriceType** | **PendingBelowPegPriceType** |  |  [optional] |
 |**pendingBelowPegOffsetType** | **PendingBelowPegOffsetType** |  |  [optional] |
 |**pendingBelowPegOffsetValue** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

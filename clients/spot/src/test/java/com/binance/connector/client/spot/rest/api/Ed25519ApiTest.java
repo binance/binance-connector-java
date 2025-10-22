@@ -62,7 +62,7 @@ public class Ed25519ApiTest {
         AccountApi api = new AccountApi(apiClientSpy);
 
         Boolean omitZeroBalances = null;
-        Long recvWindow = null;
+        Double recvWindow = null;
         ApiResponse<GetAccountResponse> response = api.getAccount(omitZeroBalances, recvWindow);
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture(), Mockito.any(Type.class));
@@ -112,7 +112,7 @@ public class Ed25519ApiTest {
         AccountApi api = new AccountApi(apiClientSpy);
 
         Boolean omitZeroBalances = null;
-        Long recvWindow = null;
+        Double recvWindow = null;
         ApiResponse<GetAccountResponse> response = api.getAccount(omitZeroBalances, recvWindow);
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture(), Mockito.any(Type.class));

@@ -14,6 +14,7 @@ package com.binance.connector.client.spot.rest.model;
 
 import com.binance.connector.client.spot.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -168,7 +169,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private ExchangeFilters filters;
+    private List<SymbolFilters> filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -610,8 +611,16 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     public ExchangeInfoResponseSymbolsInner filters(
-            @jakarta.annotation.Nullable ExchangeFilters filters) {
+            @jakarta.annotation.Nullable List<SymbolFilters> filters) {
         this.filters = filters;
+        return this;
+    }
+
+    public ExchangeInfoResponseSymbolsInner addFiltersItem(SymbolFilters filtersItem) {
+        if (this.filters == null) {
+            this.filters = new ArrayList<>();
+        }
+        this.filters.add(filtersItem);
         return this;
     }
 
@@ -622,11 +631,11 @@ public class ExchangeInfoResponseSymbolsInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public ExchangeFilters getFilters() {
+    public List<SymbolFilters> getFilters() {
         return filters;
     }
 
-    public void setFilters(@jakarta.annotation.Nullable ExchangeFilters filters) {
+    public void setFilters(@jakarta.annotation.Nullable List<SymbolFilters> filters) {
         this.filters = filters;
     }
 
@@ -994,7 +1003,10 @@ public class ExchangeInfoResponseSymbolsInner {
                 .append("");
         Object filtersValue = getFilters();
         String filtersValueAsString = "";
-        filtersValueAsString = filtersValue.toString();
+        filtersValueAsString =
+                (String)
+                        ((Collection) filtersValue)
+                                .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("filters=").append(urlEncode(filtersValueAsString)).append("");
         Object permissionsValue = getPermissions();
         String permissionsValueAsString = "";
@@ -1144,6 +1156,25 @@ public class ExchangeInfoResponseSymbolsInner {
                             "Expected the field `orderTypes` to be an array in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("orderTypes").toString()));
+        }
+        if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
+            JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
+            if (jsonArrayfilters != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("filters").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `filters` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("filters").toString()));
+                }
+
+                // validate the optional field `filters` (array)
+                for (int i = 0; i < jsonArrayfilters.size(); i++) {
+                    SymbolFilters.validateJsonElement(jsonArrayfilters.get(i));
+                }
+                ;
+            }
         }
         // ensure the optional json data is an array if present
         if (jsonObj.get("permissions") != null

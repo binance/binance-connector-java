@@ -21,7 +21,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.api.Derivat
 import com.binance.connector.client.derivatives_trading_options.rest.model.Legs;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.Side;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class NewBlockTradeOrderExample {
@@ -51,10 +50,6 @@ public class NewBlockTradeOrderExample {
         NewBlockTradeOrderRequest newBlockTradeOrderRequest = new NewBlockTradeOrderRequest();
         newBlockTradeOrderRequest.liquidity("");
         newBlockTradeOrderRequest.legs(new Legs());
-        newBlockTradeOrderRequest.symbol("");
-        newBlockTradeOrderRequest.side(Side.BUY);
-        newBlockTradeOrderRequest.price(1.0d);
-        newBlockTradeOrderRequest.quantity(1.0d);
         ApiResponse<NewBlockTradeOrderResponse> response =
                 getApi().newBlockTradeOrder(newBlockTradeOrderRequest);
         System.out.println(response.getData());

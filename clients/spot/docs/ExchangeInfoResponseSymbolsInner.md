@@ -27,7 +27,7 @@
 |**pegInstructionsAllowed** | **Boolean** |  |  [optional] |
 |**isSpotTradingAllowed** | **Boolean** |  |  [optional] |
 |**isMarginTradingAllowed** | **Boolean** |  |  [optional] |
-|**filters** | **ExchangeFilters** |  |  [optional] |
+|**filters** | [**List&lt;SymbolFilters&gt;**](SymbolFilters.md) |  |  [optional] |
 |**permissions** | **List&lt;String&gt;** |  |  [optional] |
 |**permissionSets** | **List&lt;List&lt;String&gt;&gt;** |  |  [optional] |
 |**defaultSelfTradePreventionMode** | **String** |  |  [optional] |

@@ -15,6 +15,7 @@ package com.binance.connector.client.spot.rest.api;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
+import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
@@ -27,6 +28,7 @@ import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
 import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
 import com.binance.connector.client.spot.rest.model.GetOrderResponse;
 import com.binance.connector.client.spot.rest.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.rest.model.MyFiltersResponse;
 import com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.rest.model.MyTradesResponse;
 import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
@@ -54,7 +56,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -230,7 +232,9 @@ public class AccountApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -245,7 +249,7 @@ public class AccountApi {
      *     all Order lists Documentation</a>
      */
     private okhttp3.Call allOrderListCall(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            Long fromId, Long startTime, Long endTime, Integer limit, Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -288,7 +292,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -323,7 +329,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call allOrderListValidateBeforeCall(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            Long fromId, Long startTime, Long endTime, Integer limit, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -343,7 +349,7 @@ public class AccountApi {
                                     Long.class,
                                     Long.class,
                                     Integer.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -370,7 +376,9 @@ public class AccountApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;AllOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -386,7 +394,7 @@ public class AccountApi {
      *     all Order lists Documentation</a>
      */
     public ApiResponse<AllOrderListResponse> allOrderList(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            Long fromId, Long startTime, Long endTime, Integer limit, Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 allOrderListValidateBeforeCall(fromId, startTime, endTime, limit, recvWindow);
@@ -403,7 +411,9 @@ public class AccountApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -423,7 +433,7 @@ public class AccountApi {
             Long startTime,
             Long endTime,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -470,7 +480,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -510,7 +522,7 @@ public class AccountApi {
             Long startTime,
             Long endTime,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -531,7 +543,7 @@ public class AccountApi {
                                     Long.class,
                                     Long.class,
                                     Integer.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -557,7 +569,9 @@ public class AccountApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;AllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -578,7 +592,7 @@ public class AccountApi {
             Long startTime,
             Long endTime,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 allOrdersValidateBeforeCall(symbol, orderId, startTime, endTime, limit, recvWindow);
@@ -591,7 +605,9 @@ public class AccountApi {
      *
      * @param omitZeroBalances When set to &#x60;true&#x60;, emits only the non-zero balances of an
      *     account. &lt;br&gt;Default value: &#x60;false&#x60; (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -605,7 +621,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data">Account
      *     information Documentation</a>
      */
-    private okhttp3.Call getAccountCall(Boolean omitZeroBalances, Long recvWindow)
+    private okhttp3.Call getAccountCall(Boolean omitZeroBalances, Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -637,7 +653,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -671,7 +689,7 @@ public class AccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAccountValidateBeforeCall(Boolean omitZeroBalances, Long recvWindow)
+    private okhttp3.Call getAccountValidateBeforeCall(Boolean omitZeroBalances, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -683,7 +701,7 @@ public class AccountApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {omitZeroBalances, recvWindow};
-            Method method = this.getClass().getMethod("getAccount", Boolean.class, Long.class);
+            Method method = this.getClass().getMethod("getAccount", Boolean.class, Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -706,7 +724,9 @@ public class AccountApi {
      *
      * @param omitZeroBalances When set to &#x60;true&#x60;, emits only the non-zero balances of an
      *     account. &lt;br&gt;Default value: &#x60;false&#x60; (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -721,7 +741,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data">Account
      *     information Documentation</a>
      */
-    public ApiResponse<GetAccountResponse> getAccount(Boolean omitZeroBalances, Long recvWindow)
+    public ApiResponse<GetAccountResponse> getAccount(Boolean omitZeroBalances, Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getAccountValidateBeforeCall(omitZeroBalances, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -733,7 +753,9 @@ public class AccountApi {
      * Build call for getOpenOrders
      *
      * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -747,7 +769,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
      *     open orders Documentation</a>
      */
-    private okhttp3.Call getOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
+    private okhttp3.Call getOpenOrdersCall(String symbol, Double recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -777,7 +799,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -811,7 +835,7 @@ public class AccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+    private okhttp3.Call getOpenOrdersValidateBeforeCall(String symbol, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -823,7 +847,7 @@ public class AccountApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {symbol, recvWindow};
-            Method method = this.getClass().getMethod("getOpenOrders", String.class, Long.class);
+            Method method = this.getClass().getMethod("getOpenOrders", String.class, Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -846,7 +870,9 @@ public class AccountApi {
      * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
      *
      * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -861,7 +887,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
      *     open orders Documentation</a>
      */
-    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
+    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -875,7 +901,9 @@ public class AccountApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -890,7 +918,7 @@ public class AccountApi {
      *     order Documentation</a>
      */
     private okhttp3.Call getOrderCall(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            String symbol, Long orderId, String origClientOrderId, Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -930,7 +958,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -965,7 +995,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getOrderValidateBeforeCall(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            String symbol, Long orderId, String origClientOrderId, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -980,7 +1010,11 @@ public class AccountApi {
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "getOrder", String.class, Long.class, String.class, Long.class);
+                                    "getOrder",
+                                    String.class,
+                                    Long.class,
+                                    String.class,
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1004,7 +1038,9 @@ public class AccountApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1020,7 +1056,7 @@ public class AccountApi {
      *     order Documentation</a>
      */
     public ApiResponse<GetOrderResponse> getOrder(
-            @NotNull String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            @NotNull String symbol, Long orderId, String origClientOrderId, Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getOrderValidateBeforeCall(symbol, orderId, origClientOrderId, recvWindow);
@@ -1034,7 +1070,9 @@ public class AccountApi {
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1049,7 +1087,7 @@ public class AccountApi {
      *     Order list Documentation</a>
      */
     private okhttp3.Call getOrderListCall(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+            Long orderListId, String origClientOrderId, Double recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1085,7 +1123,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1120,7 +1160,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getOrderListValidateBeforeCall(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+            Long orderListId, String origClientOrderId, Double recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1132,7 +1172,8 @@ public class AccountApi {
 
             Object[] parameterValues = {orderListId, origClientOrderId, recvWindow};
             Method method =
-                    this.getClass().getMethod("getOrderList", Long.class, String.class, Long.class);
+                    this.getClass()
+                            .getMethod("getOrderList", Long.class, String.class, Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1157,7 +1198,9 @@ public class AccountApi {
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1173,7 +1216,7 @@ public class AccountApi {
      *     Order list Documentation</a>
      */
     public ApiResponse<GetOrderListResponse> getOrderList(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+            Long orderListId, String origClientOrderId, Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getOrderListValidateBeforeCall(orderListId, origClientOrderId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1190,7 +1233,9 @@ public class AccountApi {
      * @param fromAllocationId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
      * @param orderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1211,7 +1256,7 @@ public class AccountApi {
             Integer fromAllocationId,
             Integer limit,
             Long orderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1263,7 +1308,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1304,7 +1351,7 @@ public class AccountApi {
             Integer fromAllocationId,
             Integer limit,
             Long orderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1328,7 +1375,7 @@ public class AccountApi {
                                     Integer.class,
                                     Integer.class,
                                     Long.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1356,7 +1403,9 @@ public class AccountApi {
      * @param fromAllocationId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
      * @param orderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyAllocationsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1378,13 +1427,159 @@ public class AccountApi {
             Integer fromAllocationId,
             Integer limit,
             Long orderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 myAllocationsValidateBeforeCall(
                         symbol, startTime, endTime, fromAllocationId, limit, orderId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<MyAllocationsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for myFilters
+     *
+     * @param symbol (required)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query relevant filters </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-relevant-filters-user_data">Query
+     *     relevant filters Documentation</a>
+     */
+    private okhttp3.Call myFiltersCall(String symbol, Double recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/myFilters";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call myFiltersValidateBeforeCall(String symbol, Double recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, recvWindow};
+            Method method = this.getClass().getMethod("myFilters", String.class, Double.class);
+            Set<ConstraintViolation<AccountApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return myFiltersCall(symbol, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query relevant filters Retrieves the list of [filters](filters.md) relevant to an account on
+     * a given symbol. This is the only endpoint that shows if an account has &#x60;MAX_ASSET&#x60;
+     * filters applied to it. Weight: 40
+     *
+     * @param symbol (required)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
+     * @return ApiResponse&lt;MyFiltersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query relevant filters </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-relevant-filters-user_data">Query
+     *     relevant filters Documentation</a>
+     */
+    public ApiResponse<MyFiltersResponse> myFilters(@NotNull String symbol, Double recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall = myFiltersValidateBeforeCall(symbol, recvWindow);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<MyFiltersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1396,7 +1591,9 @@ public class AccountApi {
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1416,7 +1613,7 @@ public class AccountApi {
             Long orderId,
             Long fromPreventedMatchId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1466,7 +1663,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1506,7 +1705,7 @@ public class AccountApi {
             Long orderId,
             Long fromPreventedMatchId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1529,7 +1728,7 @@ public class AccountApi {
                                     Long.class,
                                     Long.class,
                                     Integer.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1562,7 +1761,9 @@ public class AccountApi {
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyPreventedMatchesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1583,7 +1784,7 @@ public class AccountApi {
             Long orderId,
             Long fromPreventedMatchId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 myPreventedMatchesValidateBeforeCall(
@@ -1602,7 +1803,9 @@ public class AccountApi {
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1623,7 +1826,7 @@ public class AccountApi {
             Long endTime,
             Long fromId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1674,7 +1877,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1715,7 +1920,7 @@ public class AccountApi {
             Long endTime,
             Long fromId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1739,7 +1944,7 @@ public class AccountApi {
                                     Long.class,
                                     Long.class,
                                     Integer.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1767,7 +1972,9 @@ public class AccountApi {
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyTradesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1789,7 +1996,7 @@ public class AccountApi {
             Long endTime,
             Long fromId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 myTradesValidateBeforeCall(
@@ -1801,7 +2008,9 @@ public class AccountApi {
     /**
      * Build call for openOrderList
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1815,7 +2024,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
      *     Open Order lists Documentation</a>
      */
-    private okhttp3.Call openOrderListCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call openOrderListCall(Double recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1841,7 +2050,9 @@ public class AccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1875,7 +2086,7 @@ public class AccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call openOrderListValidateBeforeCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call openOrderListValidateBeforeCall(Double recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1886,7 +2097,7 @@ public class AccountApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("openOrderList", Long.class);
+            Method method = this.getClass().getMethod("openOrderList", Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1907,7 +2118,9 @@ public class AccountApi {
     /**
      * Query Open Order lists Weight: 6
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;OpenOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1922,7 +2135,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
      *     Open Order lists Documentation</a>
      */
-    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
+    public ApiResponse<OpenOrderListResponse> openOrderList(Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall = openOrderListValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<OpenOrderListResponse>() {}.getType();
@@ -1936,7 +2149,9 @@ public class AccountApi {
      * @param orderId (required)
      * @param fromExecutionId (optional)
      * @param limit Default:500; Maximum: 1000 (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1951,7 +2166,7 @@ public class AccountApi {
      *     Order Amendments Documentation</a>
      */
     private okhttp3.Call orderAmendmentsCall(
-            String symbol, Long orderId, Long fromExecutionId, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long fromExecutionId, Long limit, Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1995,7 +2210,9 @@ public class AccountApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2030,7 +2247,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call orderAmendmentsValidateBeforeCall(
-            String symbol, Long orderId, Long fromExecutionId, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long fromExecutionId, Long limit, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -2050,7 +2267,7 @@ public class AccountApi {
                                     Long.class,
                                     Long.class,
                                     Long.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -2075,7 +2292,9 @@ public class AccountApi {
      * @param orderId (required)
      * @param fromExecutionId (optional)
      * @param limit Default:500; Maximum: 1000 (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;OrderAmendmentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2095,7 +2314,7 @@ public class AccountApi {
             @NotNull Long orderId,
             Long fromExecutionId,
             Long limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 orderAmendmentsValidateBeforeCall(
@@ -2108,7 +2327,9 @@ public class AccountApi {
     /**
      * Build call for rateLimitOrder
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2122,7 +2343,7 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data">Query
      *     Unfilled Order Count Documentation</a>
      */
-    private okhttp3.Call rateLimitOrderCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call rateLimitOrderCall(Double recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -2148,7 +2369,9 @@ public class AccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2182,7 +2405,7 @@ public class AccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call rateLimitOrderValidateBeforeCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call rateLimitOrderValidateBeforeCall(Double recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -2193,7 +2416,7 @@ public class AccountApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("rateLimitOrder", Long.class);
+            Method method = this.getClass().getMethod("rateLimitOrder", Double.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -2215,7 +2438,9 @@ public class AccountApi {
      * Query Unfilled Order Count Displays the user&#39;s unfilled order count for all intervals.
      * Weight: 40
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;RateLimitOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2230,7 +2455,8 @@ public class AccountApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data">Query
      *     Unfilled Order Count Documentation</a>
      */
-    public ApiResponse<RateLimitOrderResponse> rateLimitOrder(Long recvWindow) throws ApiException {
+    public ApiResponse<RateLimitOrderResponse> rateLimitOrder(Double recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall = rateLimitOrderValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<RateLimitOrderResponse>() {}.getType();

@@ -2133,7 +2133,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is
      * &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can
      * only be modfied for less than 10000 times Weight: 1 on 10s order rate
-     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 1 on IP rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
      * limit(x-mbx-used-weight-1m)
      *
      * @param modifyOrderRequest (required)

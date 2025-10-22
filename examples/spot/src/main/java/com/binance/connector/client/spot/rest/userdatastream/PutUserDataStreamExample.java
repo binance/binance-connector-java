@@ -39,7 +39,8 @@ public class PutUserDataStreamExample {
      * Keepalive user data stream
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. It&#39;s recommended to send a ping about every 30 minutes. Weight: 2
+     * minutes. It&#39;s recommended to send a ping about every 30 minutes. This request does not
+     * require &#x60;signature&#x60;. Weight: 2
      *
      * @throws ApiException if the Api call fails
      */

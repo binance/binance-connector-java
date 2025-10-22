@@ -15,6 +15,7 @@ package com.binance.connector.client.spot.websocket.api.model;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -27,7 +28,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -62,7 +65,7 @@ public class UserDataStreamStopResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private RateLimits rateLimits;
+    private List<@Valid RateLimits> rateLimits;
 
     public UserDataStreamStopResponse() {}
 
@@ -124,8 +127,16 @@ public class UserDataStreamStopResponse extends BaseDTO {
     }
 
     public UserDataStreamStopResponse rateLimits(
-            @jakarta.annotation.Nullable RateLimits rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
         this.rateLimits = rateLimits;
+        return this;
+    }
+
+    public UserDataStreamStopResponse addRateLimitsItem(RateLimits rateLimitsItem) {
+        if (this.rateLimits == null) {
+            this.rateLimits = new ArrayList<>();
+        }
+        this.rateLimits.add(rateLimitsItem);
         return this;
     }
 
@@ -136,11 +147,11 @@ public class UserDataStreamStopResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public RateLimits getRateLimits() {
+    public List<@Valid RateLimits> getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(@jakarta.annotation.Nullable RateLimits rateLimits) {
+    public void setRateLimits(@jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -195,7 +206,7 @@ public class UserDataStreamStopResponse extends BaseDTO {
             String responseValueAsString = responseValue.toString();
             valMap.put("response", responseValueAsString);
         }
-        RateLimits rateLimitsValue = getRateLimits();
+        List<@Valid RateLimits> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -299,6 +310,25 @@ public class UserDataStreamStopResponse extends BaseDTO {
                             "Expected the field `id` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
+        }
+        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
+            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
+            if (jsonArrayrateLimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("rateLimits").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `rateLimits` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("rateLimits").toString()));
+                }
+
+                // validate the optional field `rateLimits` (array)
+                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
+                    RateLimits.validateJsonElement(jsonArrayrateLimits.get(i));
+                }
+                ;
+            }
         }
     }
 

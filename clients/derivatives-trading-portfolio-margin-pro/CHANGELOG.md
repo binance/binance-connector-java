@@ -1,6 +1,21 @@
 # Changelog
 
+## 4.0.0 - 2025-10-21
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `mintBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/mint`):
+  - property `mintRate` added
+  - property `rate` deleted
+
+- Modified response for `redeemBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/redeem`):
+  - property `redeemRate` added
+  - property `rate` deleted
+
 ## 3.0.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

@@ -156,7 +156,7 @@ public class OrderOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderOcoRequest() {}
 
@@ -546,7 +546,7 @@ public class OrderOcoRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderOcoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderOcoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -557,11 +557,12 @@ public class OrderOcoRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 

@@ -124,7 +124,7 @@ public class SorOrderTestRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public SorOrderTestRequest() {}
 
@@ -394,7 +394,7 @@ public class SorOrderTestRequest extends BaseDTO {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public SorOrderTestRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public SorOrderTestRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -405,11 +405,12 @@ public class SorOrderTestRequest extends BaseDTO {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -555,9 +556,10 @@ public class SorOrderTestRequest extends BaseDTO {
             String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValueAsString);
         }
-        Long recvWindowValue = getRecvWindow();
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 

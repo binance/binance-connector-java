@@ -941,7 +941,7 @@ public class DerivativesTradingOptionsRestApi {
 
     /**
      * Cancel all Option orders on specific symbol (TRADE) Cancel all active order on a symbol.
-     * Weight: 1
+     * Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param recvWindow (optional)
@@ -1101,7 +1101,6 @@ public class DerivativesTradingOptionsRestApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentOpenOptionOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1118,10 +1117,10 @@ public class DerivativesTradingOptionsRestApi {
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOptionOrdersResponse> queryCurrentOpenOptionOrders(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         return tradeApi.queryCurrentOpenOptionOrders(
-                symbol, orderId, startTime, endTime, limit, recvWindow);
+                symbol, orderId, startTime, endTime, recvWindow);
     }
 
     /**
