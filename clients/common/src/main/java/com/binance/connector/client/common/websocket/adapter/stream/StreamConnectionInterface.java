@@ -16,6 +16,8 @@ public interface StreamConnectionInterface {
 
     void connect();
 
+    void disconnect();
+
     boolean isConnected();
 
     void setUserAgent(String userAgent);
