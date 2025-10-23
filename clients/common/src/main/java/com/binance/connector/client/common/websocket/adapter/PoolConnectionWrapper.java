@@ -147,4 +147,12 @@ public class PoolConnectionWrapper implements ConnectionInterface {
     public boolean isConnected() {
         return isConnected;
     }
+
+    @Override
+    public void stop() throws Exception {
+        for (ConnectionWrapper connectionWrapper : connectionList) {
+            connectionWrapper.stop();
+        }
+        isConnected = false;
+    }
 }

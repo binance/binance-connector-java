@@ -24,4 +24,6 @@ public interface ConnectionInterface {
     void setLogonMethods(List<String> logonMethods);
 
     void setLogoutMethods(List<String> logoutMethods);
+
+    void stop() throws Exception;
 }

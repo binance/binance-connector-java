@@ -21,4 +21,6 @@ public interface StreamConnectionInterface {
     boolean isConnected();
 
     void setUserAgent(String userAgent);
+
+    void stop() throws Exception;
 }

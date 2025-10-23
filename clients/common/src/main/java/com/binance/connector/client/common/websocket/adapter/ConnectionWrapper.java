@@ -49,6 +49,7 @@ import org.bouncycastle.crypto.CryptoException;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.http.HttpField;
 import org.eclipse.jetty.http.HttpHeader;
+import org.eclipse.jetty.util.component.LifeCycle;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
@@ -91,6 +92,8 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     private boolean pendingReconnect = false;
 
     private List<BlockingQueue<String>> streamQueues = new ArrayList<>();
+
+    private Timer timer;
 
     public ConnectionWrapper(WebSocketClientConfiguration configuration, Gson gson) {
         this(configuration, null, gson);
@@ -160,8 +163,8 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         }
 
         Integer reconnectAfter = configuration.getReconnectIntervalTime();
-        new Timer()
-                .scheduleAtFixedRate(
+        this.timer = new Timer();
+        this.timer.scheduleAtFixedRate(
                         new TimerTask() {
                             @Override
                             public void run() {
@@ -221,6 +224,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         CompletableFuture<Session> clientSessionPromise =
                 webSocketClient.connect(this, serverURI, clientUpgradeRequest);
         Session session = clientSessionPromise.join();
+
         if (callback != null) {
             callback.accept(session);
         }
@@ -501,6 +505,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         if (this.oldSession != null) {
             this.oldSession.close(StatusCode.NORMAL, "close after reconnect", WriteCallback.NOOP);
         }
+        canReconnect = true;
         setReady(true);
     }
 
@@ -548,7 +553,17 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     public void disconnect() {
         if (this.session != null) {
             this.session.disconnect();
+        }
+        setReady(false);
+        canReconnect = false;
+    }
+
+    public void stop() throws Exception {
+        if (this.webSocketClient != null) {
             setReady(false);
+            canReconnect = false;
+            timer.cancel();
+            webSocketClient.stop();
         }
     }
 }
