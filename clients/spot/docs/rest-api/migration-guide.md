@@ -22,7 +22,7 @@ With the transition to a modularized structure, the Binance Connector has been s
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-spot</artifactId>
-  <version>7.0.0</version>
+  <version>7.0.1</version>
 </dependency>
 ```
 
