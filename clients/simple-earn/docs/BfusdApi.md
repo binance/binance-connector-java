@@ -1,26 +1,26 @@
-# RwusdApi
+# BfusdApi
 
 All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getRwusdAccount**](RwusdApi.md#getRwusdAccount) | **GET** /sapi/v1/rwusd/account | Get RWUSD Account (USER_DATA) |
-| [**getRwusdQuotaDetails**](RwusdApi.md#getRwusdQuotaDetails) | **GET** /sapi/v1/rwusd/quota | Get RWUSD Quota Details (USER_DATA) |
-| [**getRwusdRateHistory**](RwusdApi.md#getRwusdRateHistory) | **GET** /sapi/v1/rwusd/history/rateHistory | Get RWUSD Rate History (USER_DATA) |
-| [**getRwusdRedemptionHistory**](RwusdApi.md#getRwusdRedemptionHistory) | **GET** /sapi/v1/rwusd/history/redemptionHistory | Get RWUSD Redemption History (USER_DATA) |
-| [**getRwusdRewardsHistory**](RwusdApi.md#getRwusdRewardsHistory) | **GET** /sapi/v1/rwusd/history/rewardsHistory | Get RWUSD Rewards History (USER_DATA) |
-| [**getRwusdSubscriptionHistory**](RwusdApi.md#getRwusdSubscriptionHistory) | **GET** /sapi/v1/rwusd/history/subscriptionHistory | Get RWUSD subscription history(USER_DATA) |
-| [**redeemRwusd**](RwusdApi.md#redeemRwusd) | **POST** /sapi/v1/rwusd/redeem | Redeem RWUSD(TRADE) |
-| [**subscribeRwusd**](RwusdApi.md#subscribeRwusd) | **POST** /sapi/v1/rwusd/subscribe | Subscribe RWUSD(TRADE) |
+| [**getBfusdAccount**](BfusdApi.md#getBfusdAccount) | **GET** /sapi/v1/bfusd/account | Get BFUSD Account (USER_DATA) |
+| [**getBfusdQuotaDetails**](BfusdApi.md#getBfusdQuotaDetails) | **GET** /sapi/v1/bfusd/quota | Get BFUSD Quota Details (USER_DATA) |
+| [**getBfusdRateHistory**](BfusdApi.md#getBfusdRateHistory) | **GET** /sapi/v1/bfusd/history/rateHistory | Get BFUSD Rate History (USER_DATA) |
+| [**getBfusdRedemptionHistory**](BfusdApi.md#getBfusdRedemptionHistory) | **GET** /sapi/v1/bfusd/history/redemptionHistory | Get BFUSD Redemption History (USER_DATA) |
+| [**getBfusdRewardsHistory**](BfusdApi.md#getBfusdRewardsHistory) | **GET** /sapi/v1/bfusd/history/rewardsHistory | Get BFUSD Rewards History (USER_DATA) |
+| [**getBfusdSubscriptionHistory**](BfusdApi.md#getBfusdSubscriptionHistory) | **GET** /sapi/v1/bfusd/history/subscriptionHistory | Get BFUSD subscription history(USER_DATA) |
+| [**redeemBfusd**](BfusdApi.md#redeemBfusd) | **POST** /sapi/v1/bfusd/redeem | Redeem BFUSD(TRADE) |
+| [**subscribeBfusd**](BfusdApi.md#subscribeBfusd) | **POST** /sapi/v1/bfusd/subscribe | Subscribe BFUSD(TRADE) |
 
 
-<a id="getRwusdAccount"></a>
-# **getRwusdAccount**
-> GetRwusdAccountResponse getRwusdAccount(recvWindow)
+<a id="getBfusdAccount"></a>
+# **getBfusdAccount**
+> GetBfusdAccountResponse getBfusdAccount(recvWindow)
 
-Get RWUSD Account (USER_DATA)
+Get BFUSD Account (USER_DATA)
 
-Get RWUSD account information.  Weight: 150
+Get BFUSD account information.  Weight: 150
 
 ### Example
 ```java
@@ -29,20 +29,20 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdAccountResponse result = apiInstance.getRwusdAccount(recvWindow);
+      GetBfusdAccountResponse result = apiInstance.getBfusdAccount(recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdAccount");
+      System.err.println("Exception when calling BfusdApi#getBfusdAccount");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -60,7 +60,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdAccountResponse**](GetRwusdAccountResponse.md)
+[**GetBfusdAccountResponse**](GetBfusdAccountResponse.md)
 
 ### Authorization
 
@@ -74,15 +74,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD Account |  -  |
+| **200** | Get BFUSD Account |  -  |
 
-<a id="getRwusdQuotaDetails"></a>
-# **getRwusdQuotaDetails**
-> GetRwusdQuotaDetailsResponse getRwusdQuotaDetails(recvWindow)
+<a id="getBfusdQuotaDetails"></a>
+# **getBfusdQuotaDetails**
+> GetBfusdQuotaDetailsResponse getBfusdQuotaDetails(recvWindow)
 
-Get RWUSD Quota Details (USER_DATA)
+Get BFUSD Quota Details (USER_DATA)
 
-Get RWUSD quota details including subscription quota, fast redemption quota, and standard redemption quota.  Weight: 150
+Get BFUSD quota details including fast redemption quota and standard redemption quota.  Weight: 150
 
 ### Example
 ```java
@@ -91,20 +91,20 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdQuotaDetailsResponse result = apiInstance.getRwusdQuotaDetails(recvWindow);
+      GetBfusdQuotaDetailsResponse result = apiInstance.getBfusdQuotaDetails(recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdQuotaDetails");
+      System.err.println("Exception when calling BfusdApi#getBfusdQuotaDetails");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -122,7 +122,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdQuotaDetailsResponse**](GetRwusdQuotaDetailsResponse.md)
+[**GetBfusdQuotaDetailsResponse**](GetBfusdQuotaDetailsResponse.md)
 
 ### Authorization
 
@@ -136,15 +136,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD Quota Details |  -  |
+| **200** | Get BFUSD Quota Details |  -  |
 
-<a id="getRwusdRateHistory"></a>
-# **getRwusdRateHistory**
-> GetRwusdRateHistoryResponse getRwusdRateHistory(startTime, endTime, current, size, recvWindow)
+<a id="getBfusdRateHistory"></a>
+# **getBfusdRateHistory**
+> GetBfusdRateHistoryResponse getBfusdRateHistory(startTime, endTime, current, size, recvWindow)
 
-Get RWUSD Rate History (USER_DATA)
+Get BFUSD Rate History (USER_DATA)
 
-Get RWUSD rate history sorted by descending order.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD rate history sorted by descending order.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
 
 ### Example
 ```java
@@ -153,24 +153,24 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
     Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdRateHistoryResponse result = apiInstance.getRwusdRateHistory(startTime, endTime, current, size, recvWindow);
+      GetBfusdRateHistoryResponse result = apiInstance.getBfusdRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdRateHistory");
+      System.err.println("Exception when calling BfusdApi#getBfusdRateHistory");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -192,7 +192,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdRateHistoryResponse**](GetRwusdRateHistoryResponse.md)
+[**GetBfusdRateHistoryResponse**](GetBfusdRateHistoryResponse.md)
 
 ### Authorization
 
@@ -206,15 +206,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD Rate History |  -  |
+| **200** | Get BFUSD Rate History |  -  |
 
-<a id="getRwusdRedemptionHistory"></a>
-# **getRwusdRedemptionHistory**
-> GetRwusdRedemptionHistoryResponse getRwusdRedemptionHistory(startTime, endTime, current, size, recvWindow)
+<a id="getBfusdRedemptionHistory"></a>
+# **getBfusdRedemptionHistory**
+> GetBfusdRedemptionHistoryResponse getBfusdRedemptionHistory(startTime, endTime, current, size, recvWindow)
 
-Get RWUSD Redemption History (USER_DATA)
+Get BFUSD Redemption History (USER_DATA)
 
-Get RWUSD redemption history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD redemption history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
 
 ### Example
 ```java
@@ -223,24 +223,24 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
     Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdRedemptionHistoryResponse result = apiInstance.getRwusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
+      GetBfusdRedemptionHistoryResponse result = apiInstance.getBfusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdRedemptionHistory");
+      System.err.println("Exception when calling BfusdApi#getBfusdRedemptionHistory");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -262,7 +262,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdRedemptionHistoryResponse**](GetRwusdRedemptionHistoryResponse.md)
+[**GetBfusdRedemptionHistoryResponse**](GetBfusdRedemptionHistoryResponse.md)
 
 ### Authorization
 
@@ -276,15 +276,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD Redemption History |  -  |
+| **200** | Get BFUSD Redemption History |  -  |
 
-<a id="getRwusdRewardsHistory"></a>
-# **getRwusdRewardsHistory**
-> GetRwusdRewardsHistoryResponse getRwusdRewardsHistory(startTime, endTime, current, size, recvWindow)
+<a id="getBfusdRewardsHistory"></a>
+# **getBfusdRewardsHistory**
+> GetBfusdRewardsHistoryResponse getBfusdRewardsHistory(startTime, endTime, current, size, recvWindow)
 
-Get RWUSD Rewards History (USER_DATA)
+Get BFUSD Rewards History (USER_DATA)
 
-Get RWUSD rewards history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD rewards history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
 
 ### Example
 ```java
@@ -293,24 +293,24 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
     Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdRewardsHistoryResponse result = apiInstance.getRwusdRewardsHistory(startTime, endTime, current, size, recvWindow);
+      GetBfusdRewardsHistoryResponse result = apiInstance.getBfusdRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdRewardsHistory");
+      System.err.println("Exception when calling BfusdApi#getBfusdRewardsHistory");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -332,7 +332,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdRewardsHistoryResponse**](GetRwusdRewardsHistoryResponse.md)
+[**GetBfusdRewardsHistoryResponse**](GetBfusdRewardsHistoryResponse.md)
 
 ### Authorization
 
@@ -346,15 +346,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD Rewards History |  -  |
+| **200** | Get BFUSD Rewards History |  -  |
 
-<a id="getRwusdSubscriptionHistory"></a>
-# **getRwusdSubscriptionHistory**
-> GetRwusdSubscriptionHistoryResponse getRwusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow)
+<a id="getBfusdSubscriptionHistory"></a>
+# **getBfusdSubscriptionHistory**
+> GetBfusdSubscriptionHistoryResponse getBfusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow)
 
-Get RWUSD subscription history(USER_DATA)
+Get BFUSD subscription history(USER_DATA)
 
-Get RWUSD subscription history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD subscription history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
 
 ### Example
 ```java
@@ -363,14 +363,14 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
@@ -378,10 +378,10 @@ public class Example {
     Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
     Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetRwusdSubscriptionHistoryResponse result = apiInstance.getRwusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow);
+      GetBfusdSubscriptionHistoryResponse result = apiInstance.getBfusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#getRwusdSubscriptionHistory");
+      System.err.println("Exception when calling BfusdApi#getBfusdSubscriptionHistory");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -404,7 +404,7 @@ public class Example {
 
 ### Return type
 
-[**GetRwusdSubscriptionHistoryResponse**](GetRwusdSubscriptionHistoryResponse.md)
+[**GetBfusdSubscriptionHistoryResponse**](GetBfusdSubscriptionHistoryResponse.md)
 
 ### Authorization
 
@@ -418,15 +418,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Get RWUSD subscription history |  -  |
+| **200** | Get BFUSD subscription history |  -  |
 
-<a id="redeemRwusd"></a>
-# **redeemRwusd**
-> RedeemRwusdResponse redeemRwusd(redeemRwusdRequest)
+<a id="redeemBfusd"></a>
+# **redeemBfusd**
+> RedeemBfusdResponse redeemBfusd(redeemBfusdRequest)
 
-Redeem RWUSD(TRADE)
+Redeem BFUSD(TRADE)
 
-Redeem RWUSD to USDC  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Redeem BFUSD to USDT  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
 
 ### Example
 ```java
@@ -435,20 +435,20 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
-    RedeemRwusdRequest redeemRwusdRequest = new RedeemRwusdRequest(); // RedeemRwusdRequest | 
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
+    RedeemBfusdRequest redeemBfusdRequest = new RedeemBfusdRequest(); // RedeemBfusdRequest | 
     try {
-      RedeemRwusdResponse result = apiInstance.redeemRwusd(redeemRwusdRequest);
+      RedeemBfusdResponse result = apiInstance.redeemBfusd(redeemBfusdRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#redeemRwusd");
+      System.err.println("Exception when calling BfusdApi#redeemBfusd");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -462,11 +462,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **redeemRwusdRequest** | [**RedeemRwusdRequest**](RedeemRwusdRequest.md)|  | |
+| **redeemBfusdRequest** | [**RedeemBfusdRequest**](RedeemBfusdRequest.md)|  | |
 
 ### Return type
 
-[**RedeemRwusdResponse**](RedeemRwusdResponse.md)
+[**RedeemBfusdResponse**](RedeemBfusdResponse.md)
 
 ### Authorization
 
@@ -480,15 +480,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Redeem RWUSD |  -  |
+| **200** | Redeem BFUSD |  -  |
 
-<a id="subscribeRwusd"></a>
-# **subscribeRwusd**
-> SubscribeRwusdResponse subscribeRwusd(subscribeRwusdRequest)
+<a id="subscribeBfusd"></a>
+# **subscribeBfusd**
+> SubscribeBfusdResponse subscribeBfusd(subscribeBfusdRequest)
 
-Subscribe RWUSD(TRADE)
+Subscribe BFUSD(TRADE)
 
-Subscribe RWUSD  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Subscribe BFUSD  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
 
 ### Example
 ```java
@@ -497,20 +497,20 @@ import com.binance.connector.client.simple_earn.ApiClient;
 import com.binance.connector.client.simple_earn.ApiException;
 import com.binance.connector.client.simple_earn.Configuration;
 import com.binance.connector.client.simple_earn.models.*;
-import com.binance.connector.client.simple_earn.rest.api.RwusdApi;
+import com.binance.connector.client.simple_earn.rest.api.BfusdApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.binance.com");
 
-    RwusdApi apiInstance = new RwusdApi(defaultClient);
-    SubscribeRwusdRequest subscribeRwusdRequest = new SubscribeRwusdRequest(); // SubscribeRwusdRequest | 
+    BfusdApi apiInstance = new BfusdApi(defaultClient);
+    SubscribeBfusdRequest subscribeBfusdRequest = new SubscribeBfusdRequest(); // SubscribeBfusdRequest | 
     try {
-      SubscribeRwusdResponse result = apiInstance.subscribeRwusd(subscribeRwusdRequest);
+      SubscribeBfusdResponse result = apiInstance.subscribeBfusd(subscribeBfusdRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RwusdApi#subscribeRwusd");
+      System.err.println("Exception when calling BfusdApi#subscribeBfusd");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -524,11 +524,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscribeRwusdRequest** | [**SubscribeRwusdRequest**](SubscribeRwusdRequest.md)|  | |
+| **subscribeBfusdRequest** | [**SubscribeBfusdRequest**](SubscribeBfusdRequest.md)|  | |
 
 ### Return type
 
-[**SubscribeRwusdResponse**](SubscribeRwusdResponse.md)
+[**SubscribeBfusdResponse**](SubscribeBfusdResponse.md)
 
 ### Authorization
 
@@ -542,5 +542,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Subscribe RWUSD |  -  |
+| **200** | Subscribe BFUSD |  -  |
 

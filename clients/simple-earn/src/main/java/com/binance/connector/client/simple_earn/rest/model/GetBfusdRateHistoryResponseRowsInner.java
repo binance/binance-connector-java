@@ -31,11 +31,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** GetRwusdRateHistoryResponseRowsInner */
+/** GetBfusdRateHistoryResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class GetRwusdRateHistoryResponseRowsInner {
+public class GetBfusdRateHistoryResponseRowsInner {
     public static final String SERIALIZED_NAME_ANNUAL_PERCENTAGE_RATE = "annualPercentageRate";
 
     @SerializedName(SERIALIZED_NAME_ANNUAL_PERCENTAGE_RATE)
@@ -48,9 +48,9 @@ public class GetRwusdRateHistoryResponseRowsInner {
     @jakarta.annotation.Nullable
     private Long time;
 
-    public GetRwusdRateHistoryResponseRowsInner() {}
+    public GetBfusdRateHistoryResponseRowsInner() {}
 
-    public GetRwusdRateHistoryResponseRowsInner annualPercentageRate(
+    public GetBfusdRateHistoryResponseRowsInner annualPercentageRate(
             @jakarta.annotation.Nullable String annualPercentageRate) {
         this.annualPercentageRate = annualPercentageRate;
         return this;
@@ -70,7 +70,7 @@ public class GetRwusdRateHistoryResponseRowsInner {
         this.annualPercentageRate = annualPercentageRate;
     }
 
-    public GetRwusdRateHistoryResponseRowsInner time(@jakarta.annotation.Nullable Long time) {
+    public GetBfusdRateHistoryResponseRowsInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
@@ -97,12 +97,12 @@ public class GetRwusdRateHistoryResponseRowsInner {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetRwusdRateHistoryResponseRowsInner getRwusdRateHistoryResponseRowsInner =
-                (GetRwusdRateHistoryResponseRowsInner) o;
+        GetBfusdRateHistoryResponseRowsInner getBfusdRateHistoryResponseRowsInner =
+                (GetBfusdRateHistoryResponseRowsInner) o;
         return Objects.equals(
                         this.annualPercentageRate,
-                        getRwusdRateHistoryResponseRowsInner.annualPercentageRate)
-                && Objects.equals(this.time, getRwusdRateHistoryResponseRowsInner.time);
+                        getBfusdRateHistoryResponseRowsInner.annualPercentageRate)
+                && Objects.equals(this.time, getBfusdRateHistoryResponseRowsInner.time);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class GetRwusdRateHistoryResponseRowsInner {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class GetRwusdRateHistoryResponseRowsInner {\n");
+        sb.append("class GetBfusdRateHistoryResponseRowsInner {\n");
         sb.append("		annualPercentageRate: ")
                 .append(toIndentedString(annualPercentageRate))
                 .append("\n");
@@ -175,17 +175,17 @@ public class GetRwusdRateHistoryResponseRowsInner {
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     GetRwusdRateHistoryResponseRowsInner
+     *     GetBfusdRateHistoryResponseRowsInner
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!GetRwusdRateHistoryResponseRowsInner.openapiRequiredFields
+            if (!GetBfusdRateHistoryResponseRowsInner.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
-                                "The required field(s) %s in GetRwusdRateHistoryResponseRowsInner"
+                                "The required field(s) %s in GetBfusdRateHistoryResponseRowsInner"
                                         + " is not found in the empty JSON string",
-                                GetRwusdRateHistoryResponseRowsInner.openapiRequiredFields
+                                GetBfusdRateHistoryResponseRowsInner.openapiRequiredFields
                                         .toString()));
             }
         }
@@ -205,27 +205,27 @@ public class GetRwusdRateHistoryResponseRowsInner {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!GetRwusdRateHistoryResponseRowsInner.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'GetRwusdRateHistoryResponseRowsInner'
+            if (!GetBfusdRateHistoryResponseRowsInner.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'GetBfusdRateHistoryResponseRowsInner'
                 // and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<GetRwusdRateHistoryResponseRowsInner> thisAdapter =
+            final TypeAdapter<GetBfusdRateHistoryResponseRowsInner> thisAdapter =
                     gson.getDelegateAdapter(
-                            this, TypeToken.get(GetRwusdRateHistoryResponseRowsInner.class));
+                            this, TypeToken.get(GetBfusdRateHistoryResponseRowsInner.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<GetRwusdRateHistoryResponseRowsInner>() {
+                    new TypeAdapter<GetBfusdRateHistoryResponseRowsInner>() {
                         @Override
                         public void write(
-                                JsonWriter out, GetRwusdRateHistoryResponseRowsInner value)
+                                JsonWriter out, GetBfusdRateHistoryResponseRowsInner value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public GetRwusdRateHistoryResponseRowsInner read(JsonReader in)
+                        public GetBfusdRateHistoryResponseRowsInner read(JsonReader in)
                                 throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
@@ -236,20 +236,20 @@ public class GetRwusdRateHistoryResponseRowsInner {
     }
 
     /**
-     * Create an instance of GetRwusdRateHistoryResponseRowsInner given an JSON string
+     * Create an instance of GetBfusdRateHistoryResponseRowsInner given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of GetRwusdRateHistoryResponseRowsInner
+     * @return An instance of GetBfusdRateHistoryResponseRowsInner
      * @throws IOException if the JSON string is invalid with respect to
-     *     GetRwusdRateHistoryResponseRowsInner
+     *     GetBfusdRateHistoryResponseRowsInner
      */
-    public static GetRwusdRateHistoryResponseRowsInner fromJson(String jsonString)
+    public static GetBfusdRateHistoryResponseRowsInner fromJson(String jsonString)
             throws IOException {
-        return JSON.getGson().fromJson(jsonString, GetRwusdRateHistoryResponseRowsInner.class);
+        return JSON.getGson().fromJson(jsonString, GetBfusdRateHistoryResponseRowsInner.class);
     }
 
     /**
-     * Convert an instance of GetRwusdRateHistoryResponseRowsInner to an JSON string
+     * Convert an instance of GetBfusdRateHistoryResponseRowsInner to an JSON string
      *
      * @return JSON string
      */

@@ -1,6 +1,6 @@
 
 
-# GetRwusdRateHistoryResponseRowsInner
+# GetBfusdRateHistoryResponseRowsInner
 
 
 ## Properties

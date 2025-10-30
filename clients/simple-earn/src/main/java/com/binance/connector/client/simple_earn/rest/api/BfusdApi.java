@@ -20,16 +20,16 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdAccountResponse;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdQuotaDetailsResponse;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdRateHistoryResponse;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdRedemptionHistoryResponse;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdRewardsHistoryResponse;
-import com.binance.connector.client.simple_earn.rest.model.GetRwusdSubscriptionHistoryResponse;
-import com.binance.connector.client.simple_earn.rest.model.RedeemRwusdRequest;
-import com.binance.connector.client.simple_earn.rest.model.RedeemRwusdResponse;
-import com.binance.connector.client.simple_earn.rest.model.SubscribeRwusdRequest;
-import com.binance.connector.client.simple_earn.rest.model.SubscribeRwusdResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRedemptionHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRewardsHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdSubscriptionHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest;
+import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdResponse;
+import com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdRequest;
+import com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -46,7 +46,7 @@ import java.util.Map;
 import java.util.Set;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
-public class RwusdApi {
+public class BfusdApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
@@ -57,11 +57,11 @@ public class RwusdApi {
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
-    public RwusdApi(ClientConfiguration clientConfiguration) {
+    public BfusdApi(ClientConfiguration clientConfiguration) {
         this(new ApiClient(clientConfiguration));
     }
 
-    public RwusdApi(ApiClient apiClient) {
+    public BfusdApi(ApiClient apiClient) {
         apiClient.setUserAgent(USER_AGENT);
         this.localVarApiClient = apiClient;
     }
@@ -91,7 +91,7 @@ public class RwusdApi {
     }
 
     /**
-     * Build call for getRwusdAccount
+     * Build call for getBfusdAccount
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
@@ -100,13 +100,13 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Account </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/account/">Get RWUSD
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
      *     Account (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdAccountCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call getBfusdAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -123,7 +123,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/account";
+        String localVarPath = "/sapi/v1/bfusd/account";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -166,7 +166,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdAccountValidateBeforeCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call getBfusdAccountValidateBeforeCall(Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -177,12 +177,12 @@ public class RwusdApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("getRwusdAccount", Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Method method = this.getClass().getMethod("getBfusdAccount", Long.class);
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdAccountCall(recvWindow);
+                return getBfusdAccountCall(recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -196,32 +196,32 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight: 150
+     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight: 150
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdAccountResponse&gt;
+     * @return ApiResponse&lt;GetBfusdAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Account </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/account/">Get RWUSD
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
      *     Account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdAccountResponse> getRwusdAccount(Long recvWindow)
+    public ApiResponse<GetBfusdAccountResponse> getBfusdAccount(Long recvWindow)
             throws ApiException {
-        okhttp3.Call localVarCall = getRwusdAccountValidateBeforeCall(recvWindow);
+        okhttp3.Call localVarCall = getBfusdAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdAccountResponse>() {}.getType();
+                new TypeToken<GetBfusdAccountResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for getRwusdQuotaDetails
+     * Build call for getBfusdQuotaDetails
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
@@ -230,14 +230,14 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Quota Details </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Quota Details </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details">Get
-     *     RWUSD Quota Details (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     BFUSD Quota Details (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdQuotaDetailsCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call getBfusdQuotaDetailsCall(Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -254,7 +254,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/quota";
+        String localVarPath = "/sapi/v1/bfusd/quota";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -297,7 +297,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdQuotaDetailsValidateBeforeCall(Long recvWindow)
+    private okhttp3.Call getBfusdQuotaDetailsValidateBeforeCall(Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -309,12 +309,12 @@ public class RwusdApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("getRwusdQuotaDetails", Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Method method = this.getClass().getMethod("getBfusdQuotaDetails", Long.class);
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdQuotaDetailsCall(recvWindow);
+                return getBfusdQuotaDetailsCall(recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -328,34 +328,34 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Quota Details (USER_DATA) Get RWUSD quota details including subscription quota,
-     * fast redemption quota, and standard redemption quota. Weight: 150
+     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including fast redemption quota
+     * and standard redemption quota. Weight: 150
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdQuotaDetailsResponse&gt;
+     * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Quota Details </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Quota Details </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details">Get
-     *     RWUSD Quota Details (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     BFUSD Quota Details (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdQuotaDetailsResponse> getRwusdQuotaDetails(Long recvWindow)
+    public ApiResponse<GetBfusdQuotaDetailsResponse> getBfusdQuotaDetails(Long recvWindow)
             throws ApiException {
-        okhttp3.Call localVarCall = getRwusdQuotaDetailsValidateBeforeCall(recvWindow);
+        okhttp3.Call localVarCall = getBfusdQuotaDetailsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdQuotaDetailsResponse>() {}.getType();
+                new TypeToken<GetBfusdQuotaDetailsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for getRwusdRateHistory
+     * Build call for getBfusdRateHistory
      *
      * @param startTime (optional)
      * @param endTime (optional)
@@ -368,14 +368,14 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Rate History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rate History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History">Get
-     *     RWUSD Rate History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     BFUSD Rate History (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdRateHistoryCall(
+    private okhttp3.Call getBfusdRateHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -394,7 +394,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/history/rateHistory";
+        String localVarPath = "/sapi/v1/bfusd/history/rateHistory";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -453,7 +453,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdRateHistoryValidateBeforeCall(
+    private okhttp3.Call getBfusdRateHistoryValidateBeforeCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
@@ -469,17 +469,17 @@ public class RwusdApi {
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "getRwusdRateHistory",
+                                    "getBfusdRateHistory",
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdRateHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getBfusdRateHistoryCall(startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -493,7 +493,7 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Rate History (USER_DATA) Get RWUSD rate history sorted by descending order. * The
+     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order. * The
      * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
      * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
      * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
@@ -508,33 +508,33 @@ public class RwusdApi {
      * @param current Currently querying page. Starts from 1. Default: 1 (optional)
      * @param size Number of results per page. Default: 10, Max: 100 (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdRateHistoryResponse&gt;
+     * @return ApiResponse&lt;GetBfusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Rate History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rate History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History">Get
-     *     RWUSD Rate History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     BFUSD Rate History (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdRateHistoryResponse> getRwusdRateHistory(
+    public ApiResponse<GetBfusdRateHistoryResponse> getBfusdRateHistory(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
-                getRwusdRateHistoryValidateBeforeCall(
+                getBfusdRateHistoryValidateBeforeCall(
                         startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdRateHistoryResponse>() {}.getType();
+                new TypeToken<GetBfusdRateHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for getRwusdRedemptionHistory
+     * Build call for getBfusdRedemptionHistory
      *
      * @param startTime (optional)
      * @param endTime (optional)
@@ -547,14 +547,14 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Redemption History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Redemption History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History">Get
-     *     RWUSD Redemption History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     BFUSD Redemption History (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdRedemptionHistoryCall(
+    private okhttp3.Call getBfusdRedemptionHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -573,7 +573,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/history/redemptionHistory";
+        String localVarPath = "/sapi/v1/bfusd/history/redemptionHistory";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -632,7 +632,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdRedemptionHistoryValidateBeforeCall(
+    private okhttp3.Call getBfusdRedemptionHistoryValidateBeforeCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
@@ -648,17 +648,17 @@ public class RwusdApi {
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "getRwusdRedemptionHistory",
+                                    "getBfusdRedemptionHistory",
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdRedemptionHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getBfusdRedemptionHistoryCall(startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -672,7 +672,7 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Redemption History (USER_DATA) Get RWUSD redemption history. * The time between
+     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history. * The time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
@@ -687,33 +687,33 @@ public class RwusdApi {
      * @param current Currently querying page. Starts from 1. Default: 1 (optional)
      * @param size Number of results per page. Default: 10, Max: 100 (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdRedemptionHistoryResponse&gt;
+     * @return ApiResponse&lt;GetBfusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Redemption History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Redemption History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History">Get
-     *     RWUSD Redemption History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     BFUSD Redemption History (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdRedemptionHistoryResponse> getRwusdRedemptionHistory(
+    public ApiResponse<GetBfusdRedemptionHistoryResponse> getBfusdRedemptionHistory(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
-                getRwusdRedemptionHistoryValidateBeforeCall(
+                getBfusdRedemptionHistoryValidateBeforeCall(
                         startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdRedemptionHistoryResponse>() {}.getType();
+                new TypeToken<GetBfusdRedemptionHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for getRwusdRewardsHistory
+     * Build call for getBfusdRewardsHistory
      *
      * @param startTime (optional)
      * @param endTime (optional)
@@ -726,14 +726,14 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Rewards History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rewards History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History">Get
-     *     RWUSD Rewards History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     BFUSD Rewards History (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdRewardsHistoryCall(
+    private okhttp3.Call getBfusdRewardsHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -752,7 +752,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/history/rewardsHistory";
+        String localVarPath = "/sapi/v1/bfusd/history/rewardsHistory";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -811,7 +811,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdRewardsHistoryValidateBeforeCall(
+    private okhttp3.Call getBfusdRewardsHistoryValidateBeforeCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
@@ -827,17 +827,17 @@ public class RwusdApi {
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "getRwusdRewardsHistory",
+                                    "getBfusdRewardsHistory",
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdRewardsHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getBfusdRewardsHistoryCall(startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -851,7 +851,7 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Rewards History (USER_DATA) Get RWUSD rewards history. * The time between
+     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history. * The time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
@@ -866,33 +866,33 @@ public class RwusdApi {
      * @param current Currently querying page. Starts from 1. Default: 1 (optional)
      * @param size Number of results per page. Default: 10, Max: 100 (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdRewardsHistoryResponse&gt;
+     * @return ApiResponse&lt;GetBfusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD Rewards History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rewards History </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History">Get
-     *     RWUSD Rewards History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     BFUSD Rewards History (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdRewardsHistoryResponse> getRwusdRewardsHistory(
+    public ApiResponse<GetBfusdRewardsHistoryResponse> getBfusdRewardsHistory(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
-                getRwusdRewardsHistoryValidateBeforeCall(
+                getBfusdRewardsHistoryValidateBeforeCall(
                         startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdRewardsHistoryResponse>() {}.getType();
+                new TypeToken<GetBfusdRewardsHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for getRwusdSubscriptionHistory
+     * Build call for getBfusdSubscriptionHistory
      *
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
@@ -906,14 +906,14 @@ public class RwusdApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD subscription history </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD subscription history </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history">Get
-     *     RWUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
+     *     BFUSD subscription history(USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getRwusdSubscriptionHistoryCall(
+    private okhttp3.Call getBfusdSubscriptionHistoryCall(
             String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -932,7 +932,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/history/subscriptionHistory";
+        String localVarPath = "/sapi/v1/bfusd/history/subscriptionHistory";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -995,7 +995,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRwusdSubscriptionHistoryValidateBeforeCall(
+    private okhttp3.Call getBfusdSubscriptionHistoryValidateBeforeCall(
             String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
@@ -1011,18 +1011,18 @@ public class RwusdApi {
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "getRwusdSubscriptionHistory",
+                                    "getBfusdSubscriptionHistory",
                                     String.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getRwusdSubscriptionHistoryCall(
+                return getBfusdSubscriptionHistoryCall(
                         asset, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
@@ -1037,7 +1037,7 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD subscription history(USER_DATA) Get RWUSD subscription history * The time between
+     * Get BFUSD subscription history(USER_DATA) Get BFUSD subscription history * The time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
@@ -1053,48 +1053,48 @@ public class RwusdApi {
      * @param current Currently querying page. Starts from 1. Default: 1 (optional)
      * @param size Number of results per page. Default: 10, Max: 100 (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
-     * @return ApiResponse&lt;GetRwusdSubscriptionHistoryResponse&gt;
+     * @return ApiResponse&lt;GetBfusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get RWUSD subscription history </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD subscription history </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history">Get
-     *     RWUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
+     *     BFUSD subscription history(USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdSubscriptionHistoryResponse> getRwusdSubscriptionHistory(
+    public ApiResponse<GetBfusdSubscriptionHistoryResponse> getBfusdSubscriptionHistory(
             String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
-                getRwusdSubscriptionHistoryValidateBeforeCall(
+                getBfusdSubscriptionHistoryValidateBeforeCall(
                         asset, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetRwusdSubscriptionHistoryResponse>() {}.getType();
+                new TypeToken<GetBfusdSubscriptionHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for redeemRwusd
+     * Build call for redeemBfusd
      *
-     * @param redeemRwusdRequest (required)
+     * @param redeemBfusdRequest (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Redeem RWUSD </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD">Redeem
-     *     RWUSD(TRADE) Documentation</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
+     *     BFUSD(TRADE) Documentation</a>
      */
-    private okhttp3.Call redeemRwusdCall(RedeemRwusdRequest redeemRwusdRequest)
+    private okhttp3.Call redeemBfusdCall(RedeemBfusdRequest redeemBfusdRequest)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1112,7 +1112,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/redeem";
+        String localVarPath = "/sapi/v1/bfusd/redeem";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1120,18 +1120,18 @@ public class RwusdApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (redeemRwusdRequest.getAmount() != null) {
+        if (redeemBfusdRequest.getAmount() != null) {
             localVarFormParams.put(
                     "amount",
-                    DecimalFormatter.getFormatter().format(redeemRwusdRequest.getAmount()));
+                    DecimalFormatter.getFormatter().format(redeemBfusdRequest.getAmount()));
         }
 
-        if (redeemRwusdRequest.getType() != null) {
-            localVarFormParams.put("type", redeemRwusdRequest.getType());
+        if (redeemBfusdRequest.getType() != null) {
+            localVarFormParams.put("type", redeemBfusdRequest.getType());
         }
 
-        if (redeemRwusdRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", redeemRwusdRequest.getRecvWindow());
+        if (redeemBfusdRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", redeemBfusdRequest.getRecvWindow());
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1165,7 +1165,7 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call redeemRwusdValidateBeforeCall(RedeemRwusdRequest redeemRwusdRequest)
+    private okhttp3.Call redeemBfusdValidateBeforeCall(RedeemBfusdRequest redeemBfusdRequest)
             throws ApiException {
         try {
             Validator validator =
@@ -1176,13 +1176,13 @@ public class RwusdApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {redeemRwusdRequest};
-            Method method = this.getClass().getMethod("redeemRwusd", RedeemRwusdRequest.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+            Object[] parameterValues = {redeemBfusdRequest};
+            Method method = this.getClass().getMethod("redeemBfusd", RedeemBfusdRequest.class);
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return redeemRwusdCall(redeemRwusdRequest);
+                return redeemBfusdCall(redeemBfusdRequest);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1196,49 +1196,49 @@ public class RwusdApi {
     }
 
     /**
-     * Redeem RWUSD(TRADE) Redeem RWUSD to USDC * You need to open Enable Spot &amp; Margin Trading
+     * Redeem BFUSD(TRADE) Redeem BFUSD to USDT * You need to open Enable Spot &amp; Margin Trading
      * permission for the API Key which requests this endpoint. Weight: 150
      *
-     * @param redeemRwusdRequest (required)
-     * @return ApiResponse&lt;RedeemRwusdResponse&gt;
+     * @param redeemBfusdRequest (required)
+     * @return ApiResponse&lt;RedeemBfusdResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Redeem RWUSD </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD">Redeem
-     *     RWUSD(TRADE) Documentation</a>
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
+     *     BFUSD(TRADE) Documentation</a>
      */
-    public ApiResponse<RedeemRwusdResponse> redeemRwusd(
-            @Valid @NotNull RedeemRwusdRequest redeemRwusdRequest) throws ApiException {
-        okhttp3.Call localVarCall = redeemRwusdValidateBeforeCall(redeemRwusdRequest);
+    public ApiResponse<RedeemBfusdResponse> redeemBfusd(
+            @Valid @NotNull RedeemBfusdRequest redeemBfusdRequest) throws ApiException {
+        okhttp3.Call localVarCall = redeemBfusdValidateBeforeCall(redeemBfusdRequest);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<RedeemRwusdResponse>() {}.getType();
+                new TypeToken<RedeemBfusdResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Build call for subscribeRwusd
+     * Build call for subscribeBfusd
      *
-     * @param subscribeRwusdRequest (required)
+     * @param subscribeBfusdRequest (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Subscribe RWUSD </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Subscribe BFUSD </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD">Subscribe
-     *     RWUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
+     *     BFUSD(TRADE) Documentation</a>
      */
-    private okhttp3.Call subscribeRwusdCall(SubscribeRwusdRequest subscribeRwusdRequest)
+    private okhttp3.Call subscribeBfusdCall(SubscribeBfusdRequest subscribeBfusdRequest)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1256,7 +1256,7 @@ public class RwusdApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/sapi/v1/rwusd/subscribe";
+        String localVarPath = "/sapi/v1/bfusd/subscribe";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1264,18 +1264,18 @@ public class RwusdApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (subscribeRwusdRequest.getAsset() != null) {
-            localVarFormParams.put("asset", subscribeRwusdRequest.getAsset());
+        if (subscribeBfusdRequest.getAsset() != null) {
+            localVarFormParams.put("asset", subscribeBfusdRequest.getAsset());
         }
 
-        if (subscribeRwusdRequest.getAmount() != null) {
+        if (subscribeBfusdRequest.getAmount() != null) {
             localVarFormParams.put(
                     "amount",
-                    DecimalFormatter.getFormatter().format(subscribeRwusdRequest.getAmount()));
+                    DecimalFormatter.getFormatter().format(subscribeBfusdRequest.getAmount()));
         }
 
-        if (subscribeRwusdRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", subscribeRwusdRequest.getRecvWindow());
+        if (subscribeBfusdRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", subscribeBfusdRequest.getRecvWindow());
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1309,8 +1309,8 @@ public class RwusdApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call subscribeRwusdValidateBeforeCall(
-            SubscribeRwusdRequest subscribeRwusdRequest) throws ApiException {
+    private okhttp3.Call subscribeBfusdValidateBeforeCall(
+            SubscribeBfusdRequest subscribeBfusdRequest) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1320,14 +1320,14 @@ public class RwusdApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {subscribeRwusdRequest};
+            Object[] parameterValues = {subscribeBfusdRequest};
             Method method =
-                    this.getClass().getMethod("subscribeRwusd", SubscribeRwusdRequest.class);
-            Set<ConstraintViolation<RwusdApi>> violations =
+                    this.getClass().getMethod("subscribeBfusd", SubscribeBfusdRequest.class);
+            Set<ConstraintViolation<BfusdApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return subscribeRwusdCall(subscribeRwusdRequest);
+                return subscribeBfusdCall(subscribeBfusdRequest);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1341,29 +1341,29 @@ public class RwusdApi {
     }
 
     /**
-     * Subscribe RWUSD(TRADE) Subscribe RWUSD * You need to open Enable Spot &amp; Margin Trading
+     * Subscribe BFUSD(TRADE) Subscribe BFUSD * You need to open Enable Spot &amp; Margin Trading
      * permission for the API Key which requests this endpoint. Weight: 150
      *
-     * @param subscribeRwusdRequest (required)
-     * @return ApiResponse&lt;SubscribeRwusdResponse&gt;
+     * @param subscribeBfusdRequest (required)
+     * @return ApiResponse&lt;SubscribeBfusdResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Subscribe RWUSD </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Subscribe BFUSD </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD">Subscribe
-     *     RWUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
+     *     BFUSD(TRADE) Documentation</a>
      */
-    public ApiResponse<SubscribeRwusdResponse> subscribeRwusd(
-            @Valid @NotNull SubscribeRwusdRequest subscribeRwusdRequest) throws ApiException {
-        okhttp3.Call localVarCall = subscribeRwusdValidateBeforeCall(subscribeRwusdRequest);
+    public ApiResponse<SubscribeBfusdResponse> subscribeBfusd(
+            @Valid @NotNull SubscribeBfusdRequest subscribeBfusdRequest) throws ApiException {
+        okhttp3.Call localVarCall = subscribeBfusdValidateBeforeCall(subscribeBfusdRequest);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<SubscribeRwusdResponse>() {}.getType();
+                new TypeToken<SubscribeBfusdResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }
