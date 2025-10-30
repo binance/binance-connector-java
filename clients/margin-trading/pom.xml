@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>binance-margin-trading</artifactId>
     <name>margin-trading</name>
-    <version>4.0.0</version>
+    <version>5.0.0</version>
     <packaging>jar</packaging>
 
     <parent>

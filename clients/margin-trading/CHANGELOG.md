@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.0.0 - 2025-10-27
+
+### Changed (6)
+
+#### REST API
+
+- Marked `closeIsolatedMarginUserDataStream` (`DELETE /sapi/v1/userDataStream/isolated`) as deprecated
+- Marked `closeMarginUserDataStream` (`DELETE /sapi/v1/userDataStream`) as deprecated
+- Marked `keepaliveIsolatedMarginUserDataStream` (`PUT /sapi/v1/userDataStream/isolated`) as deprecated
+- Marked `keepaliveMarginUserDataStream` (`PUT /sapi/v1/userDataStream`) as deprecated
+- Marked `startIsolatedMarginUserDataStream` (`POST /sapi/v1/userDataStream/isolated`) as deprecated
+- Marked `startMarginUserDataStream` (`POST /sapi/v1/userDataStream`) as deprecated
+
 ## 4.0.0 - 2025-09-22
 
 ### Added (1)

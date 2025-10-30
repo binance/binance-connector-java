@@ -47,7 +47,7 @@ public class TradeDataStreamApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/4.0.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -98,10 +98,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream">Close
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call closeIsolatedMarginUserDataStreamCall(String symbol, String listenkey)
             throws ApiException {
         String basePath = null;
@@ -165,6 +167,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call closeIsolatedMarginUserDataStreamValidateBeforeCall(
             String symbol, String listenkey) throws ApiException {
@@ -217,10 +220,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream">Close
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<Void> closeIsolatedMarginUserDataStream(
             @NotNull String symbol, @NotNull String listenkey) throws ApiException {
         okhttp3.Call localVarCall =
@@ -241,10 +246,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream">Close
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call closeMarginUserDataStreamCall(String listenkey) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -303,6 +310,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call closeMarginUserDataStreamValidateBeforeCall(String listenkey)
             throws ApiException {
@@ -348,10 +356,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream">Close
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<Void> closeMarginUserDataStream(@NotNull String listenkey)
             throws ApiException {
         okhttp3.Call localVarCall = closeMarginUserDataStreamValidateBeforeCall(listenkey);
@@ -371,10 +381,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream">Keepalive
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call keepaliveIsolatedMarginUserDataStreamCall(
             KeepaliveIsolatedMarginUserDataStreamRequest
                     keepaliveIsolatedMarginUserDataStreamRequest)
@@ -442,6 +454,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call keepaliveIsolatedMarginUserDataStreamValidateBeforeCall(
             KeepaliveIsolatedMarginUserDataStreamRequest
@@ -495,10 +508,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream">Keepalive
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<Void> keepaliveIsolatedMarginUserDataStream(
             @Valid @NotNull
                     KeepaliveIsolatedMarginUserDataStreamRequest
@@ -523,10 +538,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream">Keepalive
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call keepaliveMarginUserDataStreamCall(
             KeepaliveMarginUserDataStreamRequest keepaliveMarginUserDataStreamRequest)
             throws ApiException {
@@ -588,6 +605,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call keepaliveMarginUserDataStreamValidateBeforeCall(
             KeepaliveMarginUserDataStreamRequest keepaliveMarginUserDataStreamRequest)
@@ -639,10 +657,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream">Keepalive
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<Void> keepaliveMarginUserDataStream(
             @Valid @NotNull
                     KeepaliveMarginUserDataStreamRequest keepaliveMarginUserDataStreamRequest)
@@ -666,10 +686,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> Start Isolated Margin User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream">Start
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call startIsolatedMarginUserDataStreamCall(
             StartIsolatedMarginUserDataStreamRequest startIsolatedMarginUserDataStreamRequest)
             throws ApiException {
@@ -730,6 +752,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call startIsolatedMarginUserDataStreamValidateBeforeCall(
             StartIsolatedMarginUserDataStreamRequest startIsolatedMarginUserDataStreamRequest)
@@ -784,10 +807,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> Start Isolated Margin User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream">Start
      *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<StartIsolatedMarginUserDataStreamResponse> startIsolatedMarginUserDataStream(
             @Valid @NotNull
                     StartIsolatedMarginUserDataStreamRequest
@@ -813,10 +838,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> Start Margin User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream">Start
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call startMarginUserDataStreamCall() throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -871,6 +898,7 @@ public class TradeDataStreamApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call startMarginUserDataStreamValidateBeforeCall() throws ApiException {
         try {
@@ -917,10 +945,12 @@ public class TradeDataStreamApi {
      * <tr><td> 200 </td><td> Start Margin User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream">Start
      *     Margin User Data Stream (USER_STREAM) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<StartMarginUserDataStreamResponse> startMarginUserDataStream()
             throws ApiException {
         okhttp3.Call localVarCall = startMarginUserDataStreamValidateBeforeCall();
