@@ -50,6 +50,48 @@ public class GetCurrentEthStakingQuotaResponse {
     @jakarta.annotation.Nullable
     private String leftRedemptionPersonalQuota;
 
+    public static final String SERIALIZED_NAME_MIN_STAKE_AMOUNT = "minStakeAmount";
+
+    @SerializedName(SERIALIZED_NAME_MIN_STAKE_AMOUNT)
+    @jakarta.annotation.Nullable
+    private String minStakeAmount;
+
+    public static final String SERIALIZED_NAME_MIN_REDEEM_AMOUNT = "minRedeemAmount";
+
+    @SerializedName(SERIALIZED_NAME_MIN_REDEEM_AMOUNT)
+    @jakarta.annotation.Nullable
+    private String minRedeemAmount;
+
+    public static final String SERIALIZED_NAME_REDEEM_PERIOD = "redeemPeriod";
+
+    @SerializedName(SERIALIZED_NAME_REDEEM_PERIOD)
+    @jakarta.annotation.Nullable
+    private Long redeemPeriod;
+
+    public static final String SERIALIZED_NAME_STAKEABLE = "stakeable";
+
+    @SerializedName(SERIALIZED_NAME_STAKEABLE)
+    @jakarta.annotation.Nullable
+    private Boolean stakeable;
+
+    public static final String SERIALIZED_NAME_REDEEMABLE = "redeemable";
+
+    @SerializedName(SERIALIZED_NAME_REDEEMABLE)
+    @jakarta.annotation.Nullable
+    private Boolean redeemable;
+
+    public static final String SERIALIZED_NAME_COMMISSION_FEE = "commissionFee";
+
+    @SerializedName(SERIALIZED_NAME_COMMISSION_FEE)
+    @jakarta.annotation.Nullable
+    private String commissionFee;
+
+    public static final String SERIALIZED_NAME_CALCULATING = "calculating";
+
+    @SerializedName(SERIALIZED_NAME_CALCULATING)
+    @jakarta.annotation.Nullable
+    private Boolean calculating;
+
     public GetCurrentEthStakingQuotaResponse() {}
 
     public GetCurrentEthStakingQuotaResponse leftStakingPersonalQuota(
@@ -94,6 +136,146 @@ public class GetCurrentEthStakingQuotaResponse {
         this.leftRedemptionPersonalQuota = leftRedemptionPersonalQuota;
     }
 
+    public GetCurrentEthStakingQuotaResponse minStakeAmount(
+            @jakarta.annotation.Nullable String minStakeAmount) {
+        this.minStakeAmount = minStakeAmount;
+        return this;
+    }
+
+    /**
+     * Get minStakeAmount
+     *
+     * @return minStakeAmount
+     */
+    @jakarta.annotation.Nullable
+    public String getMinStakeAmount() {
+        return minStakeAmount;
+    }
+
+    public void setMinStakeAmount(@jakarta.annotation.Nullable String minStakeAmount) {
+        this.minStakeAmount = minStakeAmount;
+    }
+
+    public GetCurrentEthStakingQuotaResponse minRedeemAmount(
+            @jakarta.annotation.Nullable String minRedeemAmount) {
+        this.minRedeemAmount = minRedeemAmount;
+        return this;
+    }
+
+    /**
+     * Get minRedeemAmount
+     *
+     * @return minRedeemAmount
+     */
+    @jakarta.annotation.Nullable
+    public String getMinRedeemAmount() {
+        return minRedeemAmount;
+    }
+
+    public void setMinRedeemAmount(@jakarta.annotation.Nullable String minRedeemAmount) {
+        this.minRedeemAmount = minRedeemAmount;
+    }
+
+    public GetCurrentEthStakingQuotaResponse redeemPeriod(
+            @jakarta.annotation.Nullable Long redeemPeriod) {
+        this.redeemPeriod = redeemPeriod;
+        return this;
+    }
+
+    /**
+     * Get redeemPeriod
+     *
+     * @return redeemPeriod
+     */
+    @jakarta.annotation.Nullable
+    public Long getRedeemPeriod() {
+        return redeemPeriod;
+    }
+
+    public void setRedeemPeriod(@jakarta.annotation.Nullable Long redeemPeriod) {
+        this.redeemPeriod = redeemPeriod;
+    }
+
+    public GetCurrentEthStakingQuotaResponse stakeable(
+            @jakarta.annotation.Nullable Boolean stakeable) {
+        this.stakeable = stakeable;
+        return this;
+    }
+
+    /**
+     * Get stakeable
+     *
+     * @return stakeable
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getStakeable() {
+        return stakeable;
+    }
+
+    public void setStakeable(@jakarta.annotation.Nullable Boolean stakeable) {
+        this.stakeable = stakeable;
+    }
+
+    public GetCurrentEthStakingQuotaResponse redeemable(
+            @jakarta.annotation.Nullable Boolean redeemable) {
+        this.redeemable = redeemable;
+        return this;
+    }
+
+    /**
+     * Get redeemable
+     *
+     * @return redeemable
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getRedeemable() {
+        return redeemable;
+    }
+
+    public void setRedeemable(@jakarta.annotation.Nullable Boolean redeemable) {
+        this.redeemable = redeemable;
+    }
+
+    public GetCurrentEthStakingQuotaResponse commissionFee(
+            @jakarta.annotation.Nullable String commissionFee) {
+        this.commissionFee = commissionFee;
+        return this;
+    }
+
+    /**
+     * Get commissionFee
+     *
+     * @return commissionFee
+     */
+    @jakarta.annotation.Nullable
+    public String getCommissionFee() {
+        return commissionFee;
+    }
+
+    public void setCommissionFee(@jakarta.annotation.Nullable String commissionFee) {
+        this.commissionFee = commissionFee;
+    }
+
+    public GetCurrentEthStakingQuotaResponse calculating(
+            @jakarta.annotation.Nullable Boolean calculating) {
+        this.calculating = calculating;
+        return this;
+    }
+
+    /**
+     * Get calculating
+     *
+     * @return calculating
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCalculating() {
+        return calculating;
+    }
+
+    public void setCalculating(@jakarta.annotation.Nullable Boolean calculating) {
+        this.calculating = calculating;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -109,12 +291,31 @@ public class GetCurrentEthStakingQuotaResponse {
                         getCurrentEthStakingQuotaResponse.leftStakingPersonalQuota)
                 && Objects.equals(
                         this.leftRedemptionPersonalQuota,
-                        getCurrentEthStakingQuotaResponse.leftRedemptionPersonalQuota);
+                        getCurrentEthStakingQuotaResponse.leftRedemptionPersonalQuota)
+                && Objects.equals(
+                        this.minStakeAmount, getCurrentEthStakingQuotaResponse.minStakeAmount)
+                && Objects.equals(
+                        this.minRedeemAmount, getCurrentEthStakingQuotaResponse.minRedeemAmount)
+                && Objects.equals(this.redeemPeriod, getCurrentEthStakingQuotaResponse.redeemPeriod)
+                && Objects.equals(this.stakeable, getCurrentEthStakingQuotaResponse.stakeable)
+                && Objects.equals(this.redeemable, getCurrentEthStakingQuotaResponse.redeemable)
+                && Objects.equals(
+                        this.commissionFee, getCurrentEthStakingQuotaResponse.commissionFee)
+                && Objects.equals(this.calculating, getCurrentEthStakingQuotaResponse.calculating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(leftStakingPersonalQuota, leftRedemptionPersonalQuota);
+        return Objects.hash(
+                leftStakingPersonalQuota,
+                leftRedemptionPersonalQuota,
+                minStakeAmount,
+                minRedeemAmount,
+                redeemPeriod,
+                stakeable,
+                redeemable,
+                commissionFee,
+                calculating);
     }
 
     @Override
@@ -127,6 +328,13 @@ public class GetCurrentEthStakingQuotaResponse {
         sb.append("		leftRedemptionPersonalQuota: ")
                 .append(toIndentedString(leftRedemptionPersonalQuota))
                 .append("\n");
+        sb.append("		minStakeAmount: ").append(toIndentedString(minStakeAmount)).append("\n");
+        sb.append("		minRedeemAmount: ").append(toIndentedString(minRedeemAmount)).append("\n");
+        sb.append("		redeemPeriod: ").append(toIndentedString(redeemPeriod)).append("\n");
+        sb.append("		stakeable: ").append(toIndentedString(stakeable)).append("\n");
+        sb.append("		redeemable: ").append(toIndentedString(redeemable)).append("\n");
+        sb.append("		commissionFee: ").append(toIndentedString(commissionFee)).append("\n");
+        sb.append("		calculating: ").append(toIndentedString(calculating)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -146,6 +354,34 @@ public class GetCurrentEthStakingQuotaResponse {
         sb.append("leftRedemptionPersonalQuota=")
                 .append(urlEncode(leftRedemptionPersonalQuotaValueAsString))
                 .append("");
+        Object minStakeAmountValue = getMinStakeAmount();
+        String minStakeAmountValueAsString = "";
+        minStakeAmountValueAsString = minStakeAmountValue.toString();
+        sb.append("minStakeAmount=").append(urlEncode(minStakeAmountValueAsString)).append("");
+        Object minRedeemAmountValue = getMinRedeemAmount();
+        String minRedeemAmountValueAsString = "";
+        minRedeemAmountValueAsString = minRedeemAmountValue.toString();
+        sb.append("minRedeemAmount=").append(urlEncode(minRedeemAmountValueAsString)).append("");
+        Object redeemPeriodValue = getRedeemPeriod();
+        String redeemPeriodValueAsString = "";
+        redeemPeriodValueAsString = redeemPeriodValue.toString();
+        sb.append("redeemPeriod=").append(urlEncode(redeemPeriodValueAsString)).append("");
+        Object stakeableValue = getStakeable();
+        String stakeableValueAsString = "";
+        stakeableValueAsString = stakeableValue.toString();
+        sb.append("stakeable=").append(urlEncode(stakeableValueAsString)).append("");
+        Object redeemableValue = getRedeemable();
+        String redeemableValueAsString = "";
+        redeemableValueAsString = redeemableValue.toString();
+        sb.append("redeemable=").append(urlEncode(redeemableValueAsString)).append("");
+        Object commissionFeeValue = getCommissionFee();
+        String commissionFeeValueAsString = "";
+        commissionFeeValueAsString = commissionFeeValue.toString();
+        sb.append("commissionFee=").append(urlEncode(commissionFeeValueAsString)).append("");
+        Object calculatingValue = getCalculating();
+        String calculatingValueAsString = "";
+        calculatingValueAsString = calculatingValue.toString();
+        sb.append("calculating=").append(urlEncode(calculatingValueAsString)).append("");
         return sb.toString();
     }
 
@@ -176,6 +412,13 @@ public class GetCurrentEthStakingQuotaResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("leftStakingPersonalQuota");
         openapiFields.add("leftRedemptionPersonalQuota");
+        openapiFields.add("minStakeAmount");
+        openapiFields.add("minRedeemAmount");
+        openapiFields.add("redeemPeriod");
+        openapiFields.add("stakeable");
+        openapiFields.add("redeemable");
+        openapiFields.add("commissionFee");
+        openapiFields.add("calculating");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -218,6 +461,30 @@ public class GetCurrentEthStakingQuotaResponse {
                             "Expected the field `leftRedemptionPersonalQuota` to be a primitive"
                                     + " type in the JSON string but got `%s`",
                             jsonObj.get("leftRedemptionPersonalQuota").toString()));
+        }
+        if ((jsonObj.get("minStakeAmount") != null && !jsonObj.get("minStakeAmount").isJsonNull())
+                && !jsonObj.get("minStakeAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `minStakeAmount` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("minStakeAmount").toString()));
+        }
+        if ((jsonObj.get("minRedeemAmount") != null && !jsonObj.get("minRedeemAmount").isJsonNull())
+                && !jsonObj.get("minRedeemAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `minRedeemAmount` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("minRedeemAmount").toString()));
+        }
+        if ((jsonObj.get("commissionFee") != null && !jsonObj.get("commissionFee").isJsonNull())
+                && !jsonObj.get("commissionFee").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `commissionFee` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("commissionFee").toString()));
         }
     }
 

@@ -48,6 +48,14 @@
 
 [POST /sapi/v1/onchain-yields/locked/subscribe](https://developers.binance.com/docs/staking/on-chain-yields/earn/Subscribe-Onchain-Locked-Product) - subscribeOnChainYieldsLockedProduct - [SubscribeOnChainYieldsLockedProductExample.java:48](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/onchainyields/SubscribeOnChainYieldsLockedProductExample.java#L48)
 
+## SoftStaking
+
+[GET /sapi/v1/soft-staking/list](https://developers.binance.com/docs/staking/soft-staking/) - getSoftStakingProductList - [GetSoftStakingProductListExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/softstaking/GetSoftStakingProductListExample.java#L46)
+
+[GET /sapi/v1/soft-staking/history/rewardsRecord](https://developers.binance.com/docs/staking/soft-staking/Get-Soft-Staking-Rewards-History) - getSoftStakingRewardsHistory - [GetSoftStakingRewardsHistoryExample.java:52](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/softstaking/GetSoftStakingRewardsHistoryExample.java#L52)
+
+[GET /sapi/v1/soft-staking/set](https://developers.binance.com/docs/staking/soft-staking/Set-Soft-Staking) - setSoftStaking - [SetSoftStakingExample.java:46](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/softstaking/SetSoftStakingExample.java#L46)
+
 ## SolStaking
 
 [POST /sapi/v1/sol-staking/sol/claim](https://developers.binance.com/docs/staking/sol-staking/staking/Claim-Boost-Rewards) - claimBoostRewards - [ClaimBoostRewardsExample.java:48](/examples/staking/src/main/java/com/binance/connector/client/staking/rest/solstaking/ClaimBoostRewardsExample.java#L48)
