@@ -40,19 +40,22 @@ public class GetC2CTradeHistoryExample {
      * Get C2C Trade History (USER_DATA)
      *
      * <p>Get C2C Trade History * The max interval between startTime and endTime is 30 days. * If
-     * startTime and endTime are not sent, the recent 7 days&#39; data will be returned. * The
-     * earliest startTime is supported on June 10, 2020 * Return up to 200 records per request.
-     * Weight: 1
+     * startTime and endTime are not sent, the recent 30 days&#39; data will be returned. * You can
+     * only view data from the past 6 months. To see all C2C orders, please check
+     * https://c2c.binance.com/en/fiatOrder Weight: 1
      *
      * @throws ApiException if the Api call fails
      */
     public void getC2CTradeHistoryExample() throws ApiException {
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+        String tradeType = "";
+        Long startTimestamp = 0L;
+        Long endTimestamp = 0L;
         Long page = 1L;
+        Long rows = 100L;
         Long recvWindow = 5000L;
         ApiResponse<GetC2CTradeHistoryResponse> response =
-                getApi().getC2CTradeHistory(startTime, endTime, page, recvWindow);
+                getApi().getC2CTradeHistory(
+                                tradeType, startTimestamp, endTimestamp, page, rows, recvWindow);
         System.out.println(response.getData());
     }
 }
