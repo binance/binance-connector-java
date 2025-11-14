@@ -18,10 +18,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.fiat.rest.FiatRestApiUtil;
 import com.binance.connector.client.fiat.rest.api.FiatRestApi;
-import com.binance.connector.client.fiat.rest.model.GetFiatDepositWithdrawHistoryResponse;
+import com.binance.connector.client.fiat.rest.model.FiatWithdrawResponse;
 
 /** API examples for FiatApi */
-public class GetFiatDepositWithdrawHistoryExample {
+public class FiatWithdrawExample {
     private FiatRestApi api;
 
     public FiatRestApi getApi() {
@@ -37,23 +37,20 @@ public class GetFiatDepositWithdrawHistoryExample {
     }
 
     /**
-     * Get Fiat Deposit/Withdraw History (USER_DATA)
+     * Fiat Withdraw(WITHDRAW)
      *
-     * <p>Get Fiat Deposit/Withdraw History * If beginTime and endTime are not sent, the recent
-     * 30-day data will be returned. Weight: 45000
+     * <p>Submit withdraw request, in this version, we only support BRL withdrawal via
+     * bank_transfer. You need to call this api first, and call query order detail api in a loop to
+     * get the status of the order until this order is successful. Before calling this api, please
+     * make sure you have already completed your KYC or KYB, and already activated your fiat service
+     * on our website. you need to bind your bank account on web/app before using the corresponding
+     * account number Weight: 45000
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFiatDepositWithdrawHistoryExample() throws ApiException {
-        String transactionType = "";
-        Long beginTime = 0L;
-        Long endTime = 1641782889000L;
-        Long page = 1L;
-        Long rows = 100L;
+    public void fiatWithdrawExample() throws ApiException {
         Long recvWindow = 5000L;
-        ApiResponse<GetFiatDepositWithdrawHistoryResponse> response =
-                getApi().getFiatDepositWithdrawHistory(
-                                transactionType, beginTime, endTime, page, rows, recvWindow);
+        ApiResponse<FiatWithdrawResponse> response = getApi().fiatWithdraw(recvWindow);
         System.out.println(response.getData());
     }
 }

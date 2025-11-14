@@ -19,8 +19,10 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.fiat.rest.model.FiatWithdrawResponse;
 import com.binance.connector.client.fiat.rest.model.GetFiatDepositWithdrawHistoryResponse;
 import com.binance.connector.client.fiat.rest.model.GetFiatPaymentsHistoryResponse;
+import com.binance.connector.client.fiat.rest.model.GetOrderDetailResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -43,7 +45,7 @@ public class FiatApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-fiat/1.2.1 (Java/%s; %s; %s)",
+                    "binance-fiat/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -78,6 +80,140 @@ public class FiatApi {
 
     public void setCustomBaseUrl(String customBaseUrl) {
         this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for fiatWithdraw
+     *
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Fiat Withdraw </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Fiat-Withdraw">Fiat
+     *     Withdraw(WITHDRAW) Documentation</a>
+     */
+    private okhttp3.Call fiatWithdrawCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/fiat/withdraw";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call fiatWithdrawValidateBeforeCall(Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("fiatWithdraw", Long.class);
+            Set<ConstraintViolation<FiatApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return fiatWithdrawCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Fiat Withdraw(WITHDRAW) Submit withdraw request, in this version, we only support BRL
+     * withdrawal via bank_transfer. You need to call this api first, and call query order detail
+     * api in a loop to get the status of the order until this order is successful. Before calling
+     * this api, please make sure you have already completed your KYC or KYB, and already activated
+     * your fiat service on our website. you need to bind your bank account on web/app before using
+     * the corresponding account number Weight: 45000
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;FiatWithdrawResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Fiat Withdraw </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Fiat-Withdraw">Fiat
+     *     Withdraw(WITHDRAW) Documentation</a>
+     */
+    public ApiResponse<FiatWithdrawResponse> fiatWithdraw(Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = fiatWithdrawValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<FiatWithdrawResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -240,7 +376,7 @@ public class FiatApi {
 
     /**
      * Get Fiat Deposit/Withdraw History (USER_DATA) Get Fiat Deposit/Withdraw History * If
-     * beginTime and endTime are not sent, the recent 30-day data will be returned. Weight: 90000
+     * beginTime and endTime are not sent, the recent 30-day data will be returned. Weight: 45000
      *
      * @param transactionType 0-buy,1-sell (required)
      * @param beginTime (optional)
@@ -476,6 +612,145 @@ public class FiatApi {
                         transactionType, beginTime, endTime, page, rows, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetFiatPaymentsHistoryResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getOrderDetail
+     *
+     * @param orderId order id retrieved from the api call of withdrawal (required)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Order Detail </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Get-Order-Detail">Get Order
+     *     Detail(USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getOrderDetailCall(String orderId, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/fiat/get-order-detail";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getOrderDetailValidateBeforeCall(String orderId, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderId, recvWindow};
+            Method method = this.getClass().getMethod("getOrderDetail", String.class, Long.class);
+            Set<ConstraintViolation<FiatApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getOrderDetailCall(orderId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Order Detail(USER_DATA) Get Order Detail Before calling this api, please make sure you
+     * have already completed your KYC or KYB, and already activated your fiat service on our
+     * website. Weight: 45000
+     *
+     * @param orderId order id retrieved from the api call of withdrawal (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetOrderDetailResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Order Detail </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/fiat/rest-api/Get-Order-Detail">Get Order
+     *     Detail(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetOrderDetailResponse> getOrderDetail(
+            @NotNull String orderId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = getOrderDetailValidateBeforeCall(orderId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetOrderDetailResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

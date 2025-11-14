@@ -18,10 +18,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.fiat.rest.FiatRestApiUtil;
 import com.binance.connector.client.fiat.rest.api.FiatRestApi;
-import com.binance.connector.client.fiat.rest.model.GetFiatDepositWithdrawHistoryResponse;
+import com.binance.connector.client.fiat.rest.model.GetOrderDetailResponse;
 
 /** API examples for FiatApi */
-public class GetFiatDepositWithdrawHistoryExample {
+public class GetOrderDetailExample {
     private FiatRestApi api;
 
     public FiatRestApi getApi() {
@@ -37,23 +37,17 @@ public class GetFiatDepositWithdrawHistoryExample {
     }
 
     /**
-     * Get Fiat Deposit/Withdraw History (USER_DATA)
+     * Get Order Detail(USER_DATA)
      *
-     * <p>Get Fiat Deposit/Withdraw History * If beginTime and endTime are not sent, the recent
-     * 30-day data will be returned. Weight: 45000
+     * <p>Get Order Detail Before calling this api, please make sure you have already completed your
+     * KYC or KYB, and already activated your fiat service on our website. Weight: 45000
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFiatDepositWithdrawHistoryExample() throws ApiException {
-        String transactionType = "";
-        Long beginTime = 0L;
-        Long endTime = 1641782889000L;
-        Long page = 1L;
-        Long rows = 100L;
+    public void getOrderDetailExample() throws ApiException {
+        String orderId = "1";
         Long recvWindow = 5000L;
-        ApiResponse<GetFiatDepositWithdrawHistoryResponse> response =
-                getApi().getFiatDepositWithdrawHistory(
-                                transactionType, beginTime, endTime, page, rows, recvWindow);
+        ApiResponse<GetOrderDetailResponse> response = getApi().getOrderDetail(orderId, recvWindow);
         System.out.println(response.getData());
     }
 }
