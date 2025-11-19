@@ -1,5 +1,38 @@
 # Changelog
 
+## 7.0.0 - 2025-11-18
+
+### Changed (5)
+
+#### REST API
+
+- Modified parameter `batchOrders`:
+  - items.`timeInForce`: enum added: `RPI`
+  - items.`timeInForce`: enum added: `RPI`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /fapi/v1/batchOrders`)
+- Modified parameter `timeInForce`:
+  - enum added: `RPI`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+    - `newOrder()` (`POST /fapi/v1/order`)
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified response for `oldTradesLookup()` (`GET /fapi/v1/historicalTrades`):
+  - items: property `isRPITrade` added
+  - items: item property `isRPITrade` added
+
+- Modified response for `recentTradesList()` (`GET /fapi/v1/trades`):
+  - items: property `isRPITrade` added
+  - items: item property `isRPITrade` added
+
+#### WebSocket API
+
+- Modified parameter `timeInForce`:
+  - enum added: `RPI`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+    - `newOrder()` (`order.place` method)
+
 ## 6.0.0 - 2025-10-21
 
 ### Changed (21)

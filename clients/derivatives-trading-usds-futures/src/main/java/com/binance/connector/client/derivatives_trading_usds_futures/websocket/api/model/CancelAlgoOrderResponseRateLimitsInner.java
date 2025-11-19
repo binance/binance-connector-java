@@ -34,11 +34,11 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** CancelOrderResponseRateLimitsInner */
+/** CancelAlgoOrderResponseRateLimitsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class CancelOrderResponseRateLimitsInner extends BaseDTO {
+public class CancelAlgoOrderResponseRateLimitsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_RATE_LIMIT_TYPE = "rateLimitType";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMIT_TYPE)
@@ -69,9 +69,9 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long count;
 
-    public CancelOrderResponseRateLimitsInner() {}
+    public CancelAlgoOrderResponseRateLimitsInner() {}
 
-    public CancelOrderResponseRateLimitsInner rateLimitType(
+    public CancelAlgoOrderResponseRateLimitsInner rateLimitType(
             @jakarta.annotation.Nullable String rateLimitType) {
         this.rateLimitType = rateLimitType;
         return this;
@@ -91,7 +91,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         this.rateLimitType = rateLimitType;
     }
 
-    public CancelOrderResponseRateLimitsInner interval(
+    public CancelAlgoOrderResponseRateLimitsInner interval(
             @jakarta.annotation.Nullable String interval) {
         this.interval = interval;
         return this;
@@ -111,7 +111,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         this.interval = interval;
     }
 
-    public CancelOrderResponseRateLimitsInner intervalNum(
+    public CancelAlgoOrderResponseRateLimitsInner intervalNum(
             @jakarta.annotation.Nullable Long intervalNum) {
         this.intervalNum = intervalNum;
         return this;
@@ -131,7 +131,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         this.intervalNum = intervalNum;
     }
 
-    public CancelOrderResponseRateLimitsInner limit(@jakarta.annotation.Nullable Long limit) {
+    public CancelAlgoOrderResponseRateLimitsInner limit(@jakarta.annotation.Nullable Long limit) {
         this.limit = limit;
         return this;
     }
@@ -150,7 +150,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         this.limit = limit;
     }
 
-    public CancelOrderResponseRateLimitsInner count(@jakarta.annotation.Nullable Long count) {
+    public CancelAlgoOrderResponseRateLimitsInner count(@jakarta.annotation.Nullable Long count) {
         this.count = count;
         return this;
     }
@@ -177,13 +177,15 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CancelOrderResponseRateLimitsInner cancelOrderResponseRateLimitsInner =
-                (CancelOrderResponseRateLimitsInner) o;
-        return Objects.equals(this.rateLimitType, cancelOrderResponseRateLimitsInner.rateLimitType)
-                && Objects.equals(this.interval, cancelOrderResponseRateLimitsInner.interval)
-                && Objects.equals(this.intervalNum, cancelOrderResponseRateLimitsInner.intervalNum)
-                && Objects.equals(this.limit, cancelOrderResponseRateLimitsInner.limit)
-                && Objects.equals(this.count, cancelOrderResponseRateLimitsInner.count);
+        CancelAlgoOrderResponseRateLimitsInner cancelAlgoOrderResponseRateLimitsInner =
+                (CancelAlgoOrderResponseRateLimitsInner) o;
+        return Objects.equals(
+                        this.rateLimitType, cancelAlgoOrderResponseRateLimitsInner.rateLimitType)
+                && Objects.equals(this.interval, cancelAlgoOrderResponseRateLimitsInner.interval)
+                && Objects.equals(
+                        this.intervalNum, cancelAlgoOrderResponseRateLimitsInner.intervalNum)
+                && Objects.equals(this.limit, cancelAlgoOrderResponseRateLimitsInner.limit)
+                && Objects.equals(this.count, cancelAlgoOrderResponseRateLimitsInner.count);
     }
 
     @Override
@@ -194,7 +196,7 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CancelOrderResponseRateLimitsInner {\n");
+        sb.append("class CancelAlgoOrderResponseRateLimitsInner {\n");
         sb.append("		rateLimitType: ").append(toIndentedString(rateLimitType)).append("\n");
         sb.append("		interval: ").append(toIndentedString(interval)).append("\n");
         sb.append("		intervalNum: ").append(toIndentedString(intervalNum)).append("\n");
@@ -305,17 +307,17 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     CancelOrderResponseRateLimitsInner
+     *     CancelAlgoOrderResponseRateLimitsInner
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!CancelOrderResponseRateLimitsInner.openapiRequiredFields
+            if (!CancelAlgoOrderResponseRateLimitsInner.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
-                                "The required field(s) %s in CancelOrderResponseRateLimitsInner is"
-                                        + " not found in the empty JSON string",
-                                CancelOrderResponseRateLimitsInner.openapiRequiredFields
+                                "The required field(s) %s in CancelAlgoOrderResponseRateLimitsInner"
+                                        + " is not found in the empty JSON string",
+                                CancelAlgoOrderResponseRateLimitsInner.openapiRequiredFields
                                         .toString()));
             }
         }
@@ -323,11 +325,12 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
         // check to see if the JSON string contains additional fields
         for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelOrderResponseRateLimitsInner.openapiFields.contains(entry.getKey())) {
+            if (!CancelAlgoOrderResponseRateLimitsInner.openapiFields.contains(entry.getKey())) {
                 throw new IllegalArgumentException(
                         String.format(
                                 "The field `%s` in the JSON string is not defined in the"
-                                    + " `CancelOrderResponseRateLimitsInner` properties. JSON: %s",
+                                    + " `CancelAlgoOrderResponseRateLimitsInner` properties. JSON:"
+                                    + " %s",
                                 entry.getKey(), jsonElement.toString()));
             }
         }
@@ -354,26 +357,27 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!CancelOrderResponseRateLimitsInner.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'CancelOrderResponseRateLimitsInner' and
-                // its subtypes
+            if (!CancelAlgoOrderResponseRateLimitsInner.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CancelAlgoOrderResponseRateLimitsInner'
+                // and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<CancelOrderResponseRateLimitsInner> thisAdapter =
+            final TypeAdapter<CancelAlgoOrderResponseRateLimitsInner> thisAdapter =
                     gson.getDelegateAdapter(
-                            this, TypeToken.get(CancelOrderResponseRateLimitsInner.class));
+                            this, TypeToken.get(CancelAlgoOrderResponseRateLimitsInner.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<CancelOrderResponseRateLimitsInner>() {
+                    new TypeAdapter<CancelAlgoOrderResponseRateLimitsInner>() {
                         @Override
-                        public void write(JsonWriter out, CancelOrderResponseRateLimitsInner value)
+                        public void write(
+                                JsonWriter out, CancelAlgoOrderResponseRateLimitsInner value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public CancelOrderResponseRateLimitsInner read(JsonReader in)
+                        public CancelAlgoOrderResponseRateLimitsInner read(JsonReader in)
                                 throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
@@ -384,20 +388,20 @@ public class CancelOrderResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Create an instance of CancelOrderResponseRateLimitsInner given an JSON string
+     * Create an instance of CancelAlgoOrderResponseRateLimitsInner given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of CancelOrderResponseRateLimitsInner
+     * @return An instance of CancelAlgoOrderResponseRateLimitsInner
      * @throws IOException if the JSON string is invalid with respect to
-     *     CancelOrderResponseRateLimitsInner
+     *     CancelAlgoOrderResponseRateLimitsInner
      */
-    public static CancelOrderResponseRateLimitsInner fromJson(String jsonString)
+    public static CancelAlgoOrderResponseRateLimitsInner fromJson(String jsonString)
             throws IOException {
-        return JSON.getGson().fromJson(jsonString, CancelOrderResponseRateLimitsInner.class);
+        return JSON.getGson().fromJson(jsonString, CancelAlgoOrderResponseRateLimitsInner.class);
     }
 
     /**
-     * Convert an instance of CancelOrderResponseRateLimitsInner to an JSON string
+     * Convert an instance of CancelAlgoOrderResponseRateLimitsInner to an JSON string
      *
      * @return JSON string
      */

@@ -78,7 +78,8 @@ public class WebsocketMarketStreamsApi {
      * Aggregate Trade Streams The Aggregate Trade Streams push market trade information that is
      * aggregated for fills with same price and taking side every 100 milliseconds. Only market
      * trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be
-     * aggregated. Update Speed: 100ms
+     * aggregated. Retail Price Improvement(RPI) orders are aggregated and without special tags to
+     * be distinguished. Update Speed: 100ms
      *
      * @param aggregateTradeStreamsRequest (required)
      * @return AggregateTradeStreamsResponse
@@ -162,7 +163,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * All Book Tickers Stream Pushes any update to the best bid or ask&#39;s price or quantity in
-     * real-time for all symbols. Update Speed: 5s
+     * real-time for all symbols. Retail Price Improvement(RPI) orders are not visible and excluded
+     * in the response message. Update Speed: 5s
      *
      * @param allBookTickersStreamRequest (required)
      * @return AllBookTickersStreamResponse
@@ -786,7 +788,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Diff. Book Depth Streams Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100
-     * milliseconds (if existing) Update Speed: 250ms, 500ms, 100ms
+     * milliseconds (if existing) Retail Price Improvement(RPI) orders are not visible and excluded
+     * in the response message. Update Speed: 250ms, 500ms, 100ms
      *
      * @param diffBookDepthStreamsRequest (required)
      * @return DiffBookDepthStreamsResponse
@@ -875,7 +878,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Individual Symbol Book Ticker Streams Pushes any update to the best bid or ask&#39;s price or
-     * quantity in real-time for a specified symbol. Update Speed: Real-time
+     * quantity in real-time for a specified symbol. Retail Price Improvement(RPI) orders are not
+     * visible and excluded in the response message. Update Speed: Real-time
      *
      * @param individualSymbolBookTickerStreamsRequest (required)
      * @return IndividualSymbolBookTickerStreamsResponse
@@ -1589,7 +1593,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Partial Book Depth Streams Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;**
-     * are 5, 10, or 20. Update Speed: 250ms, 500ms or 100ms
+     * are 5, 10, or 20. Retail Price Improvement(RPI) orders are not visible and excluded in the
+     * response message. Update Speed: 250ms, 500ms or 100ms
      *
      * @param partialBookDepthStreamsRequest (required)
      * @return PartialBookDepthStreamsResponse

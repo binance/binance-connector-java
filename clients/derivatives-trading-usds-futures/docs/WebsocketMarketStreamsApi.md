@@ -30,7 +30,7 @@ All URIs are relative to *http://localhost*
 
 Aggregate Trade Streams
 
-The Aggregate Trade Streams push market trade information that is aggregated for fills with same price and taking side every 100 milliseconds. Only market trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.  Update Speed: 100ms
+The Aggregate Trade Streams push market trade information that is aggregated for fills with same price and taking side every 100 milliseconds. Only market trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.   Retail Price Improvement(RPI) orders are aggregated and without special tags to be distinguished.  Update Speed: 100ms
 
 ### Example
 ```java
@@ -92,7 +92,7 @@ No authorization required
 
 All Book Tickers Stream
 
-Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all symbols.  Update Speed: 5s
+Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all symbols.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 5s
 
 ### Example
 ```java
@@ -526,7 +526,7 @@ No authorization required
 
 Diff. Book Depth Streams
 
-Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if existing)  Update Speed: 250ms, 500ms, 100ms
+Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if existing)  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 250ms, 500ms, 100ms
 
 ### Example
 ```java
@@ -588,7 +588,7 @@ No authorization required
 
 Individual Symbol Book Ticker Streams
 
-Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a specified symbol.  Update Speed: Real-time
+Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a specified symbol.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: Real-time
 
 ### Example
 ```java
@@ -1084,7 +1084,7 @@ No authorization required
 
 Partial Book Depth Streams
 
-Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;** are 5, 10, or 20.  Update Speed: 250ms, 500ms or 100ms
+Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;** are 5, 10, or 20.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 250ms, 500ms or 100ms
 
 ### Example
 ```java

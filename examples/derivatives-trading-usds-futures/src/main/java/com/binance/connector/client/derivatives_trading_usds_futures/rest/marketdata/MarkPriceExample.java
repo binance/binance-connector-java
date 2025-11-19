@@ -40,7 +40,7 @@ public class MarkPriceExample {
     /**
      * Mark Price
      *
-     * <p>Mark Price and Funding Rate Weight: 1
+     * <p>Mark Price and Funding Rate Weight: 1 with symbol, 10 without symbol
      *
      * @throws ApiException if the Api call fails
      */

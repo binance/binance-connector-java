@@ -1,6 +1,6 @@
 
 
-# CancelOrderResponseRateLimitsInner
+# CancelAlgoOrderResponseRateLimitsInner
 
 
 ## Properties

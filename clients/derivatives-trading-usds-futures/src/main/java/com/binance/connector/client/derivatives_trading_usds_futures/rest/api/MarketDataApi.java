@@ -74,7 +74,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -706,15 +706,16 @@ public class MarketDataApi {
     /**
      * Compressed/Aggregate Trades List Get compressed, aggregate market trades. Market trades that
      * fill in 100ms with the same price and the same taking side will have the quantity aggregated.
-     * * support querying futures trade histories that are not older than one year * If both
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; must be less than 1 hour. * If &#x60;fromId&#x60;,
-     * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades
-     * will be returned. * Only market trades will be aggregated and returned, which means the
-     * insurance fund trades and ADL trades won&#39;t be aggregated. * Sending both
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response
-     * timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
-     * Weight: 20
+     * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
+     * distinguished. * support querying futures trade histories that are not older than one year *
+     * If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. * If
+     * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
+     * recent aggregate trades will be returned. * Only market trades will be aggregated and
+     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. *
+     * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause
+     * response timeout, please send either &#x60;fromId&#x60; or
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60; Weight: 20
      *
      * @param symbol (required)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
@@ -1998,7 +1999,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Mark Price Mark Price and Funding Rate Weight: 1
+     * Mark Price Mark Price and Funding Rate Weight: 1 with symbol, 10 without symbol
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;MarkPriceResponse&gt;
@@ -2905,7 +2906,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Order Book Query symbol orderbook Weight: Adjusted based on the limit: | Limit | Weight | |
+     * Order Book Query symbol orderbook Retail Price Improvement(RPI) orders are not visible and
+     * excluded in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
      * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @param symbol (required)
@@ -3753,7 +3755,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. * If the
+     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. Retail
+     * Price Improvement(RPI) orders are not visible and excluded in the response message. * If the
      * symbol is not sent, bookTickers for all symbols will be returned in an array. * The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
      * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
@@ -3794,10 +3797,12 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker(Deprecated) Documentation</a>
+     *     Price Ticker Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call symbolPriceTickerCall(String symbol) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -3856,6 +3861,7 @@ public class MarketDataApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call symbolPriceTickerValidateBeforeCall(String symbol) throws ApiException {
         try {
@@ -3887,9 +3893,9 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Price Ticker(Deprecated) Latest price for a symbol or symbols. * If the symbol is not
-     * sent, prices for all symbols will be returned in an array. Weight: 1 for a single symbol; 2
-     * when the symbol parameter is omitted
+     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
+     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
+     * symbol parameter is omitted
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
@@ -3902,10 +3908,12 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker(Deprecated) Documentation</a>
+     *     Price Ticker Documentation</a>
      */
+    @Deprecated
     public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String symbol)
             throws ApiException {
         okhttp3.Call localVarCall = symbolPriceTickerValidateBeforeCall(symbol);

@@ -177,7 +177,9 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
         GTX("GTX"),
 
-        GTD("GTD");
+        GTD("GTD"),
+
+        RPI("RPI");
 
         private String value;
 

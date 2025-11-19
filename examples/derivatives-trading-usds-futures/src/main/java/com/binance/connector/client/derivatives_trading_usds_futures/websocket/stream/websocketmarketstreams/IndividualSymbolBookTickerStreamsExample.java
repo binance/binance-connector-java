@@ -37,7 +37,8 @@ public class IndividualSymbolBookTickerStreamsExample {
      * Individual Symbol Book Ticker Streams
      *
      * <p>Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a
-     * specified symbol. Update Speed: Real-time
+     * specified symbol. Retail Price Improvement(RPI) orders are not visible and excluded in the
+     * response message. Update Speed: Real-time
      *
      * @throws ApiException if the Api call fails
      */
