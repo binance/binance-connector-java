@@ -28,8 +28,6 @@ import com.binance.connector.client.margin_trading.rest.model.GetListScheduleRes
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
-import com.binance.connector.client.margin_trading.rest.model.KeepaliveIsolatedMarginUserDataStreamRequest;
-import com.binance.connector.client.margin_trading.rest.model.KeepaliveMarginUserDataStreamRequest;
 import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayResponse;
@@ -71,9 +69,6 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOu
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
-import com.binance.connector.client.margin_trading.rest.model.StartIsolatedMarginUserDataStreamRequest;
-import com.binance.connector.client.margin_trading.rest.model.StartIsolatedMarginUserDataStreamResponse;
-import com.binance.connector.client.margin_trading.rest.model.StartMarginUserDataStreamResponse;
 import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamResponse;
 
 public class MarginTradingRestApi {
@@ -83,7 +78,6 @@ public class MarginTradingRestApi {
     private final MarketDataApi marketDataApi;
     private final RiskDataStreamApi riskDataStreamApi;
     private final TradeApi tradeApi;
-    private final TradeDataStreamApi tradeDataStreamApi;
     private final TransferApi transferApi;
 
     public MarginTradingRestApi(ClientConfiguration configuration) {
@@ -96,7 +90,6 @@ public class MarginTradingRestApi {
         this.marketDataApi = new MarketDataApi(apiClient);
         this.riskDataStreamApi = new RiskDataStreamApi(apiClient);
         this.tradeApi = new TradeApi(apiClient);
-        this.tradeDataStreamApi = new TradeDataStreamApi(apiClient);
         this.transferApi = new TransferApi(apiClient);
     }
 
@@ -934,22 +927,19 @@ public class MarginTradingRestApi {
     }
 
     /**
-     * Create Special Key(Low-Latency Trading)(TRADE) **Binance Margin offers low-latency trading
+     * Create Special Key(Low-Latency Trading)(TRADE) - Binance Margin offers low-latency trading
      * through a [special
      * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 4 or higher. ** **If you are VIP level 3 or
-     * below, please contact your VIP manager for eligibility criterias.** We support several types
-     * of API keys: * Ed25519 (recommended) * HMAC * RSA We recommend to **use Ed25519 API keys** as
-     * it should provide the best performance and security out of all supported key types. We accept
-     * PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on
-     * Binance. Please refer to the document below
+     * available exclusively to users with VIP level 4 or higher. - If you are VIP level 3 or below,
+     * please contact your VIP manager for eligibility criterias.** **Supported Products:** - Cross
+     * Margin - Isolated Margin - Portfolio Margin Pro - Cross Margin Pro (Additional agreement
+     * required and subject to meeting eligibility criteria) **Unsupported Products:** - Portfolio
+     * Margin We support several types of API keys: * Ed25519 (recommended) * HMAC * RSA We
+     * recommend to **use Ed25519 API keys** as it should provide the best performance and security
+     * out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an
+     * RSA key pair to send API requests on Binance. Please refer to the document below
      * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . Read [REST
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#signed-trade-and-user_data-endpoint-security)
-     * or [WebSocket
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md#request-security)
-     * documentation to learn how to use different API keys You need to enable Permits “Enable Spot
-     * &amp; Margin Trading” option for the API Key which requests this endpoint. Weight: 1(UID)
+     * . Weight: 1(UID)
      *
      * @param createSpecialKeyRequest (required)
      * @return ApiResponse&lt;CreateSpecialKeyResponse&gt;
@@ -1722,158 +1712,6 @@ public class MarginTradingRestApi {
     public void smallLiabilityExchange(SmallLiabilityExchangeRequest smallLiabilityExchangeRequest)
             throws ApiException {
         tradeApi.smallLiabilityExchange(smallLiabilityExchangeRequest);
-    }
-
-    /**
-     * Close Isolated Margin User Data Stream (USER_STREAM) Close out a isolated margin user data
-     * stream. Weight: 3000
-     *
-     * @param symbol (required)
-     * @param listenkey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream">Close
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void closeIsolatedMarginUserDataStream(String symbol, String listenkey)
-            throws ApiException {
-        tradeDataStreamApi.closeIsolatedMarginUserDataStream(symbol, listenkey);
-    }
-
-    /**
-     * Close Margin User Data Stream (USER_STREAM) Close out a Margin user data stream. Weight: 3000
-     *
-     * @param listenkey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream">Close
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void closeMarginUserDataStream(String listenkey) throws ApiException {
-        tradeDataStreamApi.closeMarginUserDataStream(listenkey);
-    }
-
-    /**
-     * Keepalive Isolated Margin User Data Stream (USER_STREAM) Keepalive an isolated margin user
-     * data stream to prevent a time out. Weight: 1
-     *
-     * @param keepaliveIsolatedMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream">Keepalive
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void keepaliveIsolatedMarginUserDataStream(
-            KeepaliveIsolatedMarginUserDataStreamRequest
-                    keepaliveIsolatedMarginUserDataStreamRequest)
-            throws ApiException {
-        tradeDataStreamApi.keepaliveIsolatedMarginUserDataStream(
-                keepaliveIsolatedMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Keepalive Margin User Data Stream (USER_STREAM) Keepalive a margin user data stream to
-     * prevent a time out. Weight: 1
-     *
-     * @param keepaliveMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream">Keepalive
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void keepaliveMarginUserDataStream(
-            KeepaliveMarginUserDataStreamRequest keepaliveMarginUserDataStreamRequest)
-            throws ApiException {
-        tradeDataStreamApi.keepaliveMarginUserDataStream(keepaliveMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Start Isolated Margin User Data Stream (USER_STREAM) Start a new isolated margin user data
-     * stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has
-     * an active listenKey, that listenKey will be returned and its validity will be extended for 60
-     * minutes. Weight: 1
-     *
-     * @param startIsolatedMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;StartIsolatedMarginUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start Isolated Margin User Data Stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream">Start
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public ApiResponse<StartIsolatedMarginUserDataStreamResponse> startIsolatedMarginUserDataStream(
-            StartIsolatedMarginUserDataStreamRequest startIsolatedMarginUserDataStreamRequest)
-            throws ApiException {
-        return tradeDataStreamApi.startIsolatedMarginUserDataStream(
-                startIsolatedMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Start Margin User Data Stream (USER_STREAM) Start a new margin user data stream. The stream
-     * will close after 60 minutes unless a keepalive is sent. If the account has an active
-     * listenKey, that listenKey will be returned and its validity will be extended for 60 minutes.
-     * Weight: 1
-     *
-     * @return ApiResponse&lt;StartMarginUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start Margin User Data Stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream">Start
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public ApiResponse<StartMarginUserDataStreamResponse> startMarginUserDataStream()
-            throws ApiException {
-        return tradeDataStreamApi.startMarginUserDataStream();
     }
 
     /**

@@ -42,7 +42,7 @@ public class C2CApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-c2c/1.2.1 (Java/%s; %s; %s)",
+                    "binance-c2c/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -82,9 +82,11 @@ public class C2CApi {
     /**
      * Build call for getC2CTradeHistory
      *
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param tradeType BUY, SELL (optional)
+     * @param startTimestamp (optional)
+     * @param endTimestamp (optional)
      * @param page Default 1 (optional)
+     * @param rows default 100, max 100 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -99,7 +101,13 @@ public class C2CApi {
      *     Trade History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getC2CTradeHistoryCall(
-            Long startTime, Long endTime, Long page, Long recvWindow) throws ApiException {
+            String tradeType,
+            Long startTimestamp,
+            Long endTimestamp,
+            Long page,
+            Long rows,
+            Long recvWindow)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -124,16 +132,26 @@ public class C2CApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (startTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        if (tradeType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tradeType", tradeType));
         }
 
-        if (endTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        if (startTimestamp != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("startTimestamp", startTimestamp));
+        }
+
+        if (endTimestamp != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("endTimestamp", endTimestamp));
         }
 
         if (page != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (rows != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("rows", rows));
         }
 
         if (recvWindow != null) {
@@ -172,7 +190,13 @@ public class C2CApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getC2CTradeHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long page, Long recvWindow) throws ApiException {
+            String tradeType,
+            Long startTimestamp,
+            Long endTimestamp,
+            Long page,
+            Long rows,
+            Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -182,11 +206,15 @@ public class C2CApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, page, recvWindow};
+            Object[] parameterValues = {
+                tradeType, startTimestamp, endTimestamp, page, rows, recvWindow
+            };
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getC2CTradeHistory",
+                                    String.class,
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -195,7 +223,8 @@ public class C2CApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getC2CTradeHistoryCall(startTime, endTime, page, recvWindow);
+                return getC2CTradeHistoryCall(
+                        tradeType, startTimestamp, endTimestamp, page, rows, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -209,14 +238,16 @@ public class C2CApi {
     }
 
     /**
-     * Get C2C Trade History (USER_DATA) Get C2C Trade History * The max interval between startTime
-     * and endTime is 30 days. * If startTime and endTime are not sent, the recent 7 days&#39; data
-     * will be returned. * The earliest startTime is supported on June 10, 2020 * Return up to 200
-     * records per request. Weight: 1
+     * Get C2C Trade History (USER_DATA) Get C2C Trade History * The max interval between
+     * startTimestamp and endTimestamp is 30 days. * If startTimestamp and endTimestamp are not
+     * sent, the recent 30 days&#39; data will be returned. * You can only view data from the past 6
+     * months. To see all C2C orders, please check https://c2c.binance.com/en/fiatOrder Weight: 1
      *
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param tradeType BUY, SELL (optional)
+     * @param startTimestamp (optional)
+     * @param endTimestamp (optional)
      * @param page Default 1 (optional)
+     * @param rows default 100, max 100 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetC2CTradeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -232,9 +263,16 @@ public class C2CApi {
      *     Trade History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetC2CTradeHistoryResponse> getC2CTradeHistory(
-            Long startTime, Long endTime, Long page, Long recvWindow) throws ApiException {
+            String tradeType,
+            Long startTimestamp,
+            Long endTimestamp,
+            Long page,
+            Long rows,
+            Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
-                getC2CTradeHistoryValidateBeforeCall(startTime, endTime, page, recvWindow);
+                getC2CTradeHistoryValidateBeforeCall(
+                        tradeType, startTimestamp, endTimestamp, page, rows, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetC2CTradeHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

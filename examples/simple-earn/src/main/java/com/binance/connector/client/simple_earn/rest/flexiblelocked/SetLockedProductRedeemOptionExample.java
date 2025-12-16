@@ -49,7 +49,7 @@ public class SetLockedProductRedeemOptionExample {
         SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest =
                 new SetLockedProductRedeemOptionRequest();
         setLockedProductRedeemOptionRequest.positionId("1");
-        setLockedProductRedeemOptionRequest.redeemTo("");
+        setLockedProductRedeemOptionRequest.redeemTo("SPOT");
         ApiResponse<SetLockedProductRedeemOptionResponse> response =
                 getApi().setLockedProductRedeemOption(setLockedProductRedeemOptionRequest);
         System.out.println(response.getData());

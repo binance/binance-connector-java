@@ -60,7 +60,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/4.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -707,7 +707,8 @@ public class TradeApi {
 
     /**
      * Cancel Multiple Option Orders (TRADE) Cancel multiple orders. * At least one instance of
-     * &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent. Weight: 1
+     * &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent. * Max 10 orders can be
+     * deleted in one request Weight: 1
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param orderIds Order ID, e.g [4611875134427365377,4611875134427365378] (optional)

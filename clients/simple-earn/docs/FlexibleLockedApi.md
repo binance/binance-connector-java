@@ -56,9 +56,9 @@ public class Example {
     String productId = "productId_example"; // String | 
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetCollateralRecordResponse result = apiInstance.getCollateralRecord(productId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -80,9 +80,9 @@ public class Example {
 | **productId** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -126,7 +126,7 @@ public class Example {
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String productId = "productId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexiblePersonalLeftQuotaResponse result = apiInstance.getFlexiblePersonalLeftQuota(productId, recvWindow);
       System.out.println(result);
@@ -146,7 +146,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -191,9 +191,9 @@ public class Example {
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String asset = "asset_example"; // String | USDC or USDT
     String productId = "productId_example"; // String | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleProductPositionResponse result = apiInstance.getFlexibleProductPosition(asset, productId, current, size, recvWindow);
       System.out.println(result);
@@ -214,9 +214,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**| USDC or USDT | [optional] |
 | **productId** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -264,9 +264,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleRedemptionRecordResponse result = apiInstance.getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -290,9 +290,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -340,9 +340,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleRewardsHistoryResponse result = apiInstance.getFlexibleRewardsHistory(type, productId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -366,9 +366,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -413,7 +413,7 @@ public class Example {
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String productId = "productId_example"; // String | 
     Double amount = 3.4D; // Double | 
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleSubscriptionPreviewResponse result = apiInstance.getFlexibleSubscriptionPreview(productId, amount, recvWindow);
       System.out.println(result);
@@ -434,7 +434,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**|  | |
 | **amount** | **Double**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -482,9 +482,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleSubscriptionRecordResponse result = apiInstance.getFlexibleSubscriptionRecord(productId, purchaseId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -508,9 +508,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -554,7 +554,7 @@ public class Example {
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String projectId = "projectId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedPersonalLeftQuotaResponse result = apiInstance.getLockedPersonalLeftQuota(projectId, recvWindow);
       System.out.println(result);
@@ -574,7 +574,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -620,9 +620,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     String positionId = "positionId_example"; // String | 
     String projectId = "projectId_example"; // String | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedProductPositionResponse result = apiInstance.getLockedProductPosition(asset, positionId, projectId, current, size, recvWindow);
       System.out.println(result);
@@ -644,9 +644,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **positionId** | **String**|  | [optional] |
 | **projectId** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -694,9 +694,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedRedemptionRecordResponse result = apiInstance.getLockedRedemptionRecord(positionId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -720,9 +720,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -769,9 +769,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedRewardsHistoryResponse result = apiInstance.getLockedRewardsHistory(positionId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -794,9 +794,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -842,7 +842,7 @@ public class Example {
     String projectId = "projectId_example"; // String | 
     Double amount = 3.4D; // Double | 
     Boolean autoSubscribe = true; // Boolean | true or false, default true.
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedSubscriptionPreviewResponse result = apiInstance.getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);
       System.out.println(result);
@@ -864,7 +864,7 @@ public class Example {
 | **projectId** | **String**|  | |
 | **amount** | **Double**|  | |
 | **autoSubscribe** | **Boolean**| true or false, default true. | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -911,9 +911,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedSubscriptionRecordResponse result = apiInstance.getLockedSubscriptionRecord(purchaseId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -936,9 +936,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -985,9 +985,9 @@ public class Example {
     String aprPeriod = "aprPeriod_example"; // String | \"DAY\",\"YEAR\",default\"DAY\"
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRateHistoryResponse result = apiInstance.getRateHistory(productId, aprPeriod, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -1010,9 +1010,9 @@ public class Example {
 | **aprPeriod** | **String**| \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -1056,9 +1056,9 @@ public class Example {
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String asset = "asset_example"; // String | USDC or USDT
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetSimpleEarnFlexibleProductListResponse result = apiInstance.getSimpleEarnFlexibleProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -1078,9 +1078,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**| USDC or USDT | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -1124,9 +1124,9 @@ public class Example {
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
     String asset = "asset_example"; // String | USDC or USDT
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetSimpleEarnLockedProductListResponse result = apiInstance.getSimpleEarnLockedProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -1146,9 +1146,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**| USDC or USDT | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -1501,7 +1501,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       SimpleAccountResponse result = apiInstance.simpleAccount(recvWindow);
       System.out.println(result);
@@ -1520,7 +1520,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 

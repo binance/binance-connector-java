@@ -10,11 +10,14 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountInformationV2Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountInformationV3Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountTradeListResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AdlRiskResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AllOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BasisResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelOrderResponse;
@@ -32,11 +35,14 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CompressedAggregateTradesListResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ContinuousContractKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ContractType;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountBalanceV2Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountBalanceV3Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountConfigurationResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradingQuantitativeRulesIndicatorsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetBnbBurnStatusResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetCurrentMultiAssetsModeResponse;
@@ -67,6 +73,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.MultiAssetsModeAssetIndexResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NotionalAndLeverageBracketsResponse;
@@ -85,12 +93,15 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionInformationV3Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PremiumIndexKlineDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QuarterlyContractSettlementPriceResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAllAlgoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryCurrentOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryIndexPriceConstituentsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryInsuranceFundBalanceSnapshotResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryUserRateLimitResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.RecentTradesListResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.RpiOrderBookResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.StartUserDataStreamResponse;
@@ -106,6 +117,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ToggleBnbBurnOnFuturesTradeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TopTraderLongShortRatioAccountsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TopTraderLongShortRatioPositionsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TradingScheduleResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UserCommissionRateResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UsersForceOrdersResponse;
 
@@ -781,6 +793,32 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
+     * ADL Risk Query the symbol-level ADL risk rating. The ADL risk rating measures the likelihood
+     * of ADL during liquidation, and the rating takes into account the insurance fund balance,
+     * position concentration on the symbol, order book depth, price volatility, average leverage,
+     * unrealized PnL, and margin utilization at the symbol level. The rating can be high, medium
+     * and low, and is updated every 30 minutes. Weight: 1
+     *
+     * @param symbol (optional)
+     * @return ApiResponse&lt;AdlRiskResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> ADL Risk </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk">ADL
+     *     Risk Documentation</a>
+     */
+    public ApiResponse<AdlRiskResponse> adlRisk(String symbol) throws ApiException {
+        return marketDataApi.adlRisk(symbol);
+    }
+
+    /**
      * Basis Query future basis * If startTime and endTime are not sent, the most recent data is
      * returned. * Only the data of the latest 30 days is available. Weight: 0
      *
@@ -866,15 +904,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
     /**
      * Compressed/Aggregate Trades List Get compressed, aggregate market trades. Market trades that
      * fill in 100ms with the same price and the same taking side will have the quantity aggregated.
-     * * support querying futures trade histories that are not older than one year * If both
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; must be less than 1 hour. * If &#x60;fromId&#x60;,
-     * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades
-     * will be returned. * Only market trades will be aggregated and returned, which means the
-     * insurance fund trades and ADL trades won&#39;t be aggregated. * Sending both
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response
-     * timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
-     * Weight: 20
+     * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
+     * distinguished. * support querying futures trade histories that are not older than one year *
+     * If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. * If
+     * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
+     * recent aggregate trades will be returned. * Only market trades will be aggregated and
+     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. *
+     * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause
+     * response timeout, please send either &#x60;fromId&#x60; or
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60; Weight: 20
      *
      * @param symbol (required)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
@@ -906,8 +945,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Continuous Contract Kline/Candlestick Data Kline/candlestick bars for a specific contract
      * type. Klines are uniquely identified by their open time. * If startTime and endTime are not
      * sent, the most recent klines are returned. * Contract type: * PERPETUAL * CURRENT_QUARTER *
-     * NEXT_QUARTER Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | |
-     * [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * NEXT_QUARTER * TRADIFI_PERPETUAL Weight: based on parameter LIMIT | LIMIT | weight | |
+     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
+     * 10 |
      *
      * @param pair (required)
      * @param contractType (required)
@@ -1113,7 +1153,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Mark Price Mark Price and Funding Rate Weight: 1
+     * Mark Price Mark Price and Funding Rate Weight: 1 with symbol, 10 without symbol
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;MarkPriceResponse&gt;
@@ -1274,7 +1314,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Order Book Query symbol orderbook Weight: Adjusted based on the limit: | Limit | Weight | |
+     * Order Book Query symbol orderbook Retail Price Improvement(RPI) orders are not visible and
+     * excluded in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
      * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @param symbol (required)
@@ -1352,7 +1393,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query Index Price Constituents Query index price constituents Weight: 2
+     * Query Index Price Constituents Query index price constituents **Note**: Prices from
+     * constituents of TradFi perps will be hiden and displayed as -1. Weight: 2
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryIndexPriceConstituentsResponse&gt;
@@ -1424,7 +1466,35 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. * If the
+     * RPI Order Book Query symbol orderbook with RPI orders RPI(Retail Price Improvement) orders
+     * are included and aggreated in the response message. Crossed price levels are hidden and
+     * invisible. Weight: Adjusted based on the limit: | Limit | Weight | | ------------- | ------ |
+     * | 1000 | 20 |
+     *
+     * @param symbol (required)
+     * @param limit Default 100; max 1000 (optional)
+     * @return ApiResponse&lt;RpiOrderBookResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> RPI Order Book </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI">RPI
+     *     Order Book Documentation</a>
+     */
+    public ApiResponse<RpiOrderBookResponse> rpiOrderBook(String symbol, Long limit)
+            throws ApiException {
+        return marketDataApi.rpiOrderBook(symbol, limit);
+    }
+
+    /**
+     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. Retail
+     * Price Improvement(RPI) orders are not visible and excluded in the response message. * If the
      * symbol is not sent, bookTickers for all symbols will be returned in an array. * The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
      * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
@@ -1450,9 +1520,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Symbol Price Ticker(Deprecated) Latest price for a symbol or symbols. * If the symbol is not
-     * sent, prices for all symbols will be returned in an array. Weight: 1 for a single symbol; 2
-     * when the symbol parameter is omitted
+     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
+     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
+     * symbol parameter is omitted
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
@@ -1465,9 +1535,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker(Deprecated) Documentation</a>
+     *     Price Ticker Documentation</a>
      */
     public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String symbol)
             throws ApiException {
@@ -1655,6 +1726,31 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
+     * Trading Schedule Trading session schedules for a one-week period starting from the day prior
+     * to the query time, covering both the U.S. equity and commodity markets. Equity market session
+     * types include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
+     * \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;, while commodity market session types
+     * include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Weight: 5
+     *
+     * @return ApiResponse&lt;TradingScheduleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Trading Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule">Trading
+     *     Schedule Documentation</a>
+     */
+    public ApiResponse<TradingScheduleResponse> tradingSchedule() throws ApiException {
+        return marketDataApi.tradingSchedule();
+    }
+
+    /**
      * Classic Portfolio Margin Account Information (USER_DATA) Get Classic Portfolio Margin current
      * account information. * maxWithdrawAmount is for asset transfer out to the spot wallet.
      * Weight: 5
@@ -1787,6 +1883,56 @@ public class DerivativesTradingUsdsFuturesRestApi {
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
             AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest) throws ApiException {
         return tradeApi.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
+    }
+
+    /**
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
+     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     *
+     * @param algoid (optional)
+     * @param clientalgoid (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     Algo Order (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
+            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
+        return tradeApi.cancelAlgoOrder(algoid, clientalgoid, recvWindow);
+    }
+
+    /**
+     * Cancel All Algo Open Orders (TRADE) Cancel All Algo Open Orders Weight: 1
+     *
+     * @param symbol (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelAllAlgoOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     All Algo Open Orders (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelAllAlgoOpenOrdersResponse> cancelAllAlgoOpenOrders(
+            String symbol, Long recvWindow) throws ApiException {
+        return tradeApi.cancelAllAlgoOpenOrders(symbol, recvWindow);
     }
 
     /**
@@ -1971,6 +2117,35 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
+     * Current All Algo Open Orders (USER_DATA) Get all algo open orders on a symbol. * If the
+     * symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for a
+     * single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
+     * symbol.
+     *
+     * @param algoType (optional)
+     * @param symbol (optional)
+     * @param algoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CurrentAllAlgoOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     All Algo Open Orders (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CurrentAllAlgoOpenOrdersResponse> currentAllAlgoOpenOrders(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        return tradeApi.currentAllAlgoOpenOrders(algoType, symbol, algoId, recvWindow);
+    }
+
+    /**
      * Current All Open Orders (USER_DATA) Get all open orders on a symbol. * If the symbol is not
      * sent, orders for all symbols will be returned in an array. Weight: 1 for a single symbol; 40
      * when the symbol parameter is omitted Careful when accessing this with no symbol.
@@ -1994,6 +2169,30 @@ public class DerivativesTradingUsdsFuturesRestApi {
     public ApiResponse<CurrentAllOpenOrdersResponse> currentAllOpenOrders(
             String symbol, Long recvWindow) throws ApiException {
         return tradeApi.currentAllOpenOrders(symbol, recvWindow);
+    }
+
+    /**
+     * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
+     *
+     * @param futuresTradfiPerpsContractRequest (required)
+     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
+     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+            FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        return tradeApi.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
     }
 
     /**
@@ -2154,6 +2353,59 @@ public class DerivativesTradingUsdsFuturesRestApi {
     public ApiResponse<ModifyOrderResponse> modifyOrder(ModifyOrderRequest modifyOrderRequest)
             throws ApiException {
         return tradeApi.modifyOrder(modifyOrderRequest);
+    }
+
+    /**
+     * New Algo Order(TRADE) Send in a new Algo order. * Condition orders will be triggered when: *
+     * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
+     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
+     * order placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the
+     * lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price *
+     * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
+     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
+     * following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest
+     * price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price. *
+     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
+     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 0 on IP rate
+     * limit(x-mbx-used-weight-1m)
+     *
+     * @param newAlgoOrderRequest (required)
+     * @return ApiResponse&lt;NewAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
+     *     Algo Order(TRADE) Documentation</a>
+     */
+    public ApiResponse<NewAlgoOrderResponse> newAlgoOrder(NewAlgoOrderRequest newAlgoOrderRequest)
+            throws ApiException {
+        return tradeApi.newAlgoOrder(newAlgoOrderRequest);
     }
 
     /**
@@ -2325,6 +2577,78 @@ public class DerivativesTradingUsdsFuturesRestApi {
     public ApiResponse<PositionInformationV3Response> positionInformationV3(
             String symbol, Long recvWindow) throws ApiException {
         return tradeApi.positionInformationV3(symbol, recvWindow);
+    }
+
+    /**
+     * Query Algo Order (USER_DATA) Check an algo order&#39;s status. * These orders will not be
+     * found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
+     * filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days
+     * &lt; current time * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. *
+     * &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     Algo Order (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryAlgoOrderResponse> queryAlgoOrder(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        return tradeApi.queryAlgoOrder(algoId, clientAlgoId, recvWindow);
+    }
+
+    /**
+     * Query All Algo Orders (USER_DATA) Get all algo orders; active, CANCELED, TRIGGERED or
+     * FINISHED . * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
+     * &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt;
+     * current time * order create time + 90 days &lt; current time * If &#x60;algoId&#x60; is set,
+     * it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are
+     * returned. * The query time period must be less then 7 days( default as the recent 7 days).
+     * Weight: 5
+     *
+     * @param symbol (required)
+     * @param algoId (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param page (optional)
+     * @param limit Default 100; max 1000 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All Algo Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     All Algo Orders (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryAllAlgoOrdersResponse> queryAllAlgoOrders(
+            String symbol,
+            Long algoId,
+            Long startTime,
+            Long endTime,
+            Long page,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        return tradeApi.queryAllAlgoOrders(
+                symbol, algoId, startTime, endTime, page, limit, recvWindow);
     }
 
     /**

@@ -46,6 +46,10 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.RpiDiffBookDepthStreamsRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.RpiDiffBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.UserDataStreamEventsResponse;
 import com.google.gson.reflect.TypeToken;
 import java.util.Collections;
@@ -56,7 +60,7 @@ import java.util.UUID;
 public class DerivativesTradingUsdsFuturesWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -197,6 +201,16 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
             PartialBookDepthStreamsRequest partialBookDepthStreamsRequest) throws ApiException {
         return websocketMarketStreamsApi.partialBookDepthStreams(partialBookDepthStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<RpiDiffBookDepthStreamsResponse> rpiDiffBookDepthStreams(
+            RpiDiffBookDepthStreamsRequest rpiDiffBookDepthStreamsRequest) throws ApiException {
+        return websocketMarketStreamsApi.rpiDiffBookDepthStreams(rpiDiffBookDepthStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(
+            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
+        return websocketMarketStreamsApi.tradingSessionStream(tradingSessionStreamRequest);
     }
 
     /**

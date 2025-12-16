@@ -74,7 +74,7 @@ public class FlexibleLockedApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/3.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -117,9 +117,9 @@ public class FlexibleLockedApi {
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -278,9 +278,9 @@ public class FlexibleLockedApi {
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetCollateralRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -315,7 +315,7 @@ public class FlexibleLockedApi {
      * Build call for getFlexiblePersonalLeftQuota
      *
      * @param productId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -430,7 +430,7 @@ public class FlexibleLockedApi {
      * Get Flexible Personal Left Quota(USER_DATA) Get Flexible Personal Left Quota Weight: 150
      *
      * @param productId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexiblePersonalLeftQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -459,9 +459,9 @@ public class FlexibleLockedApi {
      *
      * @param asset USDC or USDT (optional)
      * @param productId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -597,9 +597,9 @@ public class FlexibleLockedApi {
      *
      * @param asset USDC or USDT (optional)
      * @param productId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -633,9 +633,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -812,9 +812,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -856,9 +856,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1036,9 +1036,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1076,7 +1076,7 @@ public class FlexibleLockedApi {
      *
      * @param productId (required)
      * @param amount (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1202,7 +1202,7 @@ public class FlexibleLockedApi {
      *
      * @param productId (required)
      * @param amount (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1235,9 +1235,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1421,9 +1421,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1467,7 +1467,7 @@ public class FlexibleLockedApi {
      * Build call for getLockedPersonalLeftQuota
      *
      * @param projectId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1582,7 +1582,7 @@ public class FlexibleLockedApi {
      * Get Locked Personal Left Quota(USER_DATA) Get Locked Personal Left Quota Weight: 150
      *
      * @param projectId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedPersonalLeftQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1612,9 +1612,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1767,9 +1767,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1808,9 +1808,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1987,9 +1987,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2029,9 +2029,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2200,9 +2200,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2240,7 +2240,7 @@ public class FlexibleLockedApi {
      * @param projectId (required)
      * @param amount (required)
      * @param autoSubscribe true or false, default true. (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2376,7 +2376,7 @@ public class FlexibleLockedApi {
      * @param projectId (required)
      * @param amount (required)
      * @param autoSubscribe true or false, default true. (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2412,9 +2412,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2583,9 +2583,9 @@ public class FlexibleLockedApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2624,9 +2624,9 @@ public class FlexibleLockedApi {
      * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2795,9 +2795,9 @@ public class FlexibleLockedApi {
      * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2833,9 +2833,9 @@ public class FlexibleLockedApi {
      * Build call for getSimpleEarnFlexibleProductList
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2964,9 +2964,9 @@ public class FlexibleLockedApi {
      * list Weight: 150
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnFlexibleProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2995,9 +2995,9 @@ public class FlexibleLockedApi {
      * Build call for getSimpleEarnLockedProductList
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3126,9 +3126,9 @@ public class FlexibleLockedApi {
      * available Simple Earn locked product list Weight: 150
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnLockedProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3906,7 +3906,7 @@ public class FlexibleLockedApi {
     /**
      * Build call for simpleAccount
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -4012,7 +4012,7 @@ public class FlexibleLockedApi {
     /**
      * Simple Account(USER_DATA) Simple Account query Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;SimpleAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4361,6 +4361,4 @@ public class FlexibleLockedApi {
                 new TypeToken<SubscribeLockedProductResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-
-
 }

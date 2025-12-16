@@ -1,5 +1,29 @@
 # Changelog
 
+## 5.0.0 - 2025-12-16
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `orders`:
+  - items.`isMmp`: type `boolean` → `string`
+  - items.`postOnly`: type `boolean` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`reduceOnly`: type `boolean` → `string`
+  - items.`isMmp`: type `boolean` → `string`
+  - items.`postOnly`: type `boolean` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`reduceOnly`: type `boolean` → `string`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /eapi/v1/batchOrders`)
+#### WebSocket Streams
+
+- Modified response for `tradeStreams()` (`<symbol>@trade` stream):
+  - `t`: type `integer` → `string`
+
 ## 4.0.0 - 2025-10-21
 
 ### Changed (17)

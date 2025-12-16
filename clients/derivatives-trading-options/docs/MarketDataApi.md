@@ -7,6 +7,7 @@ All URIs are relative to *https://eapi.binance.com*
 | [**checkServerTime**](MarketDataApi.md#checkServerTime) | **GET** /eapi/v1/time | Check Server Time |
 | [**exchangeInformation**](MarketDataApi.md#exchangeInformation) | **GET** /eapi/v1/exchangeInfo | Exchange Information |
 | [**historicalExerciseRecords**](MarketDataApi.md#historicalExerciseRecords) | **GET** /eapi/v1/exerciseHistory | Historical Exercise Records |
+| [**indexPriceTicker**](MarketDataApi.md#indexPriceTicker) | **GET** /eapi/v1/index | Index Price Ticker |
 | [**klineCandlestickData**](MarketDataApi.md#klineCandlestickData) | **GET** /eapi/v1/klines | Kline/Candlestick Data |
 | [**oldTradesLookup**](MarketDataApi.md#oldTradesLookup) | **GET** /eapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA) |
 | [**openInterest**](MarketDataApi.md#openInterest) | **GET** /eapi/v1/openInterest | Open Interest |
@@ -14,7 +15,6 @@ All URIs are relative to *https://eapi.binance.com*
 | [**orderBook**](MarketDataApi.md#orderBook) | **GET** /eapi/v1/depth | Order Book |
 | [**recentBlockTradesList**](MarketDataApi.md#recentBlockTradesList) | **GET** /eapi/v1/blockTrades | Recent Block Trades List |
 | [**recentTradesList**](MarketDataApi.md#recentTradesList) | **GET** /eapi/v1/trades | Recent Trades List |
-| [**symbolPriceTicker**](MarketDataApi.md#symbolPriceTicker) | **GET** /eapi/v1/index | Symbol Price Ticker |
 | [**testConnectivity**](MarketDataApi.md#testConnectivity) | **GET** /eapi/v1/ping | Test Connectivity |
 | [**ticker24hrPriceChangeStatistics**](MarketDataApi.md#ticker24hrPriceChangeStatistics) | **GET** /eapi/v1/ticker | 24hr Ticker Price Change Statistics |
 
@@ -202,6 +202,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Historical Exercise Records |  -  |
+
+<a id="indexPriceTicker"></a>
+# **indexPriceTicker**
+> IndexPriceTickerResponse indexPriceTicker(underlying)
+
+Index Price Ticker
+
+Get spot index price for option underlying.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://eapi.binance.com");
+
+    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
+    String underlying = "underlying_example"; // String | Option underlying, e.g BTCUSDT
+    try {
+      IndexPriceTickerResponse result = apiInstance.indexPriceTicker(underlying);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketDataApi#indexPriceTicker");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **underlying** | **String**| Option underlying, e.g BTCUSDT | |
+
+### Return type
+
+[**IndexPriceTickerResponse**](IndexPriceTickerResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Index Price Ticker |  -  |
 
 <a id="klineCandlestickData"></a>
 # **klineCandlestickData**
@@ -656,68 +718,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recent Trades List |  -  |
-
-<a id="symbolPriceTicker"></a>
-# **symbolPriceTicker**
-> SymbolPriceTickerResponse symbolPriceTicker(underlying)
-
-Symbol Price Ticker
-
-Get spot index price for option underlying.  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://eapi.binance.com");
-
-    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String underlying = "underlying_example"; // String | Option underlying, e.g BTCUSDT
-    try {
-      SymbolPriceTickerResponse result = apiInstance.symbolPriceTicker(underlying);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketDataApi#symbolPriceTicker");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **underlying** | **String**| Option underlying, e.g BTCUSDT | |
-
-### Return type
-
-[**SymbolPriceTickerResponse**](SymbolPriceTickerResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Symbol Price Ticker |  -  |
 
 <a id="testConnectivity"></a>
 # **testConnectivity**

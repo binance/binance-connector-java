@@ -16,10 +16,14 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.common.websocket.adapter.ConnectionInterface;
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.ModifyOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.PositionInformationRequest;
@@ -44,6 +48,68 @@ public class TradeApi {
 
     public TradeApi(ConnectionInterface connection) {
         this.connection = connection;
+    }
+
+    /**
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
+     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     *
+     * @param cancelAlgoOrderRequest (required)
+     * @return CancelAlgoOrderResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Cancel-Algo-Order">Cancel
+     *     Algo Order (TRADE) Documentation</a>
+     */
+    public CompletableFuture<CancelAlgoOrderResponse> cancelAlgoOrder(
+            CancelAlgoOrderRequest cancelAlgoOrderRequest) throws ApiException {
+        cancelAlgoOrderValidateBeforeCall(cancelAlgoOrderRequest);
+        String methodName = "/algoOrder.cancel".substring(1);
+        ApiRequestWrapperDTO<CancelAlgoOrderRequest, CancelAlgoOrderResponse> build =
+                new ApiRequestWrapperDTO.Builder<CancelAlgoOrderRequest, CancelAlgoOrderResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(cancelAlgoOrderRequest)
+                        .responseType(CancelAlgoOrderResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void cancelAlgoOrderValidateBeforeCall(CancelAlgoOrderRequest cancelAlgoOrderRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<CancelAlgoOrderRequest>> violations =
+                    validator.validate(cancelAlgoOrderRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
     }
 
     /**
@@ -171,6 +237,96 @@ public class TradeApi {
 
             Set<ConstraintViolation<ModifyOrderRequest>> violations =
                     validator.validate(modifyOrderRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Algo Order(TRADE) Send in a new algo order. * Condition orders will be triggered when: *
+     * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
+     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
+     * order placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the
+     * lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price *
+     * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
+     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
+     * following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest
+     * price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price. *
+     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
+     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 0
+     *
+     * @param newAlgoOrderRequest (required)
+     * @return NewAlgoOrderResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Algo-Order">New
+     *     Algo Order(TRADE) Documentation</a>
+     */
+    public CompletableFuture<NewAlgoOrderResponse> newAlgoOrder(
+            NewAlgoOrderRequest newAlgoOrderRequest) throws ApiException {
+        newAlgoOrderValidateBeforeCall(newAlgoOrderRequest);
+        String methodName = "/algoOrder.place".substring(1);
+        ApiRequestWrapperDTO<NewAlgoOrderRequest, NewAlgoOrderResponse> build =
+                new ApiRequestWrapperDTO.Builder<NewAlgoOrderRequest, NewAlgoOrderResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(newAlgoOrderRequest)
+                        .responseType(NewAlgoOrderResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void newAlgoOrderValidateBeforeCall(NewAlgoOrderRequest newAlgoOrderRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<NewAlgoOrderRequest>> violations =
+                    validator.validate(newAlgoOrderRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

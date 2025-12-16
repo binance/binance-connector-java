@@ -1,5 +1,89 @@
 # Changelog
 
+## 7.0.0 - 2025-12-16
+
+### Added (14)
+
+#### REST API
+
+- `adlRisk()` (`GET /fapi/v1/symbolAdlRisk`)
+- `cancelAlgoOrder()` (`DELETE /fapi/v1/algoOrder`)
+- `cancelAllAlgoOpenOrders()` (`DELETE /fapi/v1/algoOpenOrders`)
+- `currentAllAlgoOpenOrders()` (`GET /fapi/v1/openAlgoOrders`)
+- `futuresTradfiPerpsContract()` (`POST /fapi/v1/stock/contract`)
+- `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- `queryAlgoOrder()` (`GET /fapi/v1/algoOrder`)
+- `queryAllAlgoOrders()` (`GET /fapi/v1/allAlgoOrders`)
+- `rpiOrderBook()` (`GET /fapi/v1/rpiDepth`)
+- `tradingSchedule()` (`GET /fapi/v1/tradingSchedule`)
+
+#### WebSocket API
+
+- `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- `newAlgoOrder()` (`algoOrder.place` method)
+
+#### WebSocket Streams
+
+- `rpiDiffBookDepthStreams()` (`<symbol>@rpiDepth@500ms` stream)
+- `tradingSessionStream()` (`tradingSession` stream)
+
+### Changed (8)
+
+#### REST API
+
+- Modified parameter `batchOrders`:
+  - items.`activationPrice`: type `number` → `string`
+  - items.`callbackRate`: type `number` → `string`
+  - items.`goodTillDate`: type `integer` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`stopPrice`: type `number` → `string`
+  - items.`timeInForce`: enum added: `RPI`
+  - items.`activationPrice`: type `number` → `string`
+  - items.`callbackRate`: type `number` → `string`
+  - items.`goodTillDate`: type `integer` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`stopPrice`: type `number` → `string`
+  - items.`timeInForce`: enum added: `RPI`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /fapi/v1/batchOrders`)
+- Modified parameter `batchOrders`:
+  - items.`orderId`: type `integer` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`recvWindow`: type `integer` → `string`
+  - items.`orderId`: type `integer` → `string`
+  - items.`price`: type `number` → `string`
+  - items.`quantity`: type `number` → `string`
+  - items.`recvWindow`: type `integer` → `string`
+  - affected methods:
+    - `modifyMultipleOrders()` (`PUT /fapi/v1/batchOrders`)
+- Modified parameter `timeInForce`:
+  - enum added: `RPI`
+  - affected methods:
+    - `newOrder()` (`POST /fapi/v1/order`)
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified response for `userCommissionRate()` (`GET /fapi/v1/commissionRate`):
+  - property `rpiCommissionRate` added
+
+- Modified response for `oldTradesLookup()` (`GET /fapi/v1/historicalTrades`):
+  - items: property `isRPITrade` added
+  - items: item property `isRPITrade` added
+
+- Modified response for `recentTradesList()` (`GET /fapi/v1/trades`):
+  - items: property `isRPITrade` added
+  - items: item property `isRPITrade` added
+
+- Marked `symbolPriceTicker()` (`GET /fapi/v1/ticker/price`) as deprecated.
+
+#### WebSocket API
+
+- Modified parameter `timeInForce`:
+  - enum added: `RPI`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+
 ## 6.0.0 - 2025-10-21
 
 ### Changed (21)

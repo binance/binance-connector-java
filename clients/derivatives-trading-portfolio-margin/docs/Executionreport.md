@@ -35,7 +35,6 @@
 |**I** | **Long** |  |  [optional] |
 |**wLowerCase** | **Boolean** |  |  [optional] |
 |**mLowerCase** | **Boolean** |  |  [optional] |
-|**M** | **Boolean** |  |  [optional] |
 |**O** | **Long** |  |  [optional] |
 |**Z** | **String** |  |  [optional] |
 |**Y** | **String** |  |  [optional] |

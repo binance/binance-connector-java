@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>binance-derivatives-trading-coin-futures</artifactId>
     <name>derivatives-trading-coin-futures</name>
-    <version>4.0.1</version>
+    <version>5.0.0</version>
     <packaging>jar</packaging>
 
     <parent>

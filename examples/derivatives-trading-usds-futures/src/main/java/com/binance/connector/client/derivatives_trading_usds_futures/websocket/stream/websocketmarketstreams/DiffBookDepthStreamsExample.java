@@ -37,7 +37,8 @@ public class DiffBookDepthStreamsExample {
      * Diff. Book Depth Streams
      *
      * <p>Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if
-     * existing) Update Speed: 250ms, 500ms, 100ms
+     * existing) Retail Price Improvement(RPI) orders are not visible and excluded in the response
+     * message. Update Speed: 250ms, 500ms, 100ms
      *
      * @throws ApiException if the Api call fails
      */

@@ -207,12 +207,6 @@ public class Executionreport extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean mLowerCase;
 
-    public static final String SERIALIZED_NAME_M = "M";
-
-    @SerializedName(SERIALIZED_NAME_M)
-    @jakarta.annotation.Nullable
-    private Boolean M;
-
     public static final String SERIALIZED_NAME_O = "O";
 
     @SerializedName(SERIALIZED_NAME_O)
@@ -825,25 +819,6 @@ public class Executionreport extends BaseDTO {
         this.mLowerCase = mLowerCase;
     }
 
-    public Executionreport M(@jakarta.annotation.Nullable Boolean M) {
-        this.M = M;
-        return this;
-    }
-
-    /**
-     * Get M
-     *
-     * @return M
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getM() {
-        return M;
-    }
-
-    public void setM(@jakarta.annotation.Nullable Boolean M) {
-        this.M = M;
-    }
-
     public Executionreport O(@jakarta.annotation.Nullable Long O) {
         this.O = O;
         return this;
@@ -1128,7 +1103,6 @@ public class Executionreport extends BaseDTO {
                 && Objects.equals(this.I, executionreport.I)
                 && Objects.equals(this.wLowerCase, executionreport.wLowerCase)
                 && Objects.equals(this.mLowerCase, executionreport.mLowerCase)
-                && Objects.equals(this.M, executionreport.M)
                 && Objects.equals(this.O, executionreport.O)
                 && Objects.equals(this.Z, executionreport.Z)
                 && Objects.equals(this.Y, executionreport.Y)
@@ -1175,7 +1149,6 @@ public class Executionreport extends BaseDTO {
                 I,
                 wLowerCase,
                 mLowerCase,
-                M,
                 O,
                 Z,
                 Y,
@@ -1223,7 +1196,6 @@ public class Executionreport extends BaseDTO {
         sb.append("		I: ").append(toIndentedString(I)).append("\n");
         sb.append("		wLowerCase: ").append(toIndentedString(wLowerCase)).append("\n");
         sb.append("		mLowerCase: ").append(toIndentedString(mLowerCase)).append("\n");
-        sb.append("		M: ").append(toIndentedString(M)).append("\n");
         sb.append("		O: ").append(toIndentedString(O)).append("\n");
         sb.append("		Z: ").append(toIndentedString(Z)).append("\n");
         sb.append("		Y: ").append(toIndentedString(Y)).append("\n");
@@ -1384,11 +1356,6 @@ public class Executionreport extends BaseDTO {
         if (mLowerCaseValue != null) {
             String mLowerCaseValueAsString = mLowerCaseValue.toString();
             valMap.put("mLowerCase", mLowerCaseValueAsString);
-        }
-        Boolean MValue = getM();
-        if (MValue != null) {
-            String MValueAsString = MValue.toString();
-            valMap.put("M", MValueAsString);
         }
         Long OValue = getO();
         if (OValue != null) {
@@ -1578,10 +1545,6 @@ public class Executionreport extends BaseDTO {
         if (mLowerCaseValue != null) {
             valMap.put("mLowerCase", mLowerCaseValue);
         }
-        Object MValue = getM();
-        if (MValue != null) {
-            valMap.put("M", MValue);
-        }
         Object OValue = getO();
         if (OValue != null) {
             valMap.put("O", OValue);
@@ -1688,7 +1651,6 @@ public class Executionreport extends BaseDTO {
         openapiFields.add("I");
         openapiFields.add("w");
         openapiFields.add("m");
-        openapiFields.add("M");
         openapiFields.add("O");
         openapiFields.add("Z");
         openapiFields.add("Y");

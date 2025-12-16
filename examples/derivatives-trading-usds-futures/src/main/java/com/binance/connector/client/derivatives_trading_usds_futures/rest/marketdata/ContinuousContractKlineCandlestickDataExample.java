@@ -44,9 +44,9 @@ public class ContinuousContractKlineCandlestickDataExample {
      *
      * <p>Kline/candlestick bars for a specific contract type. Klines are uniquely identified by
      * their open time. * If startTime and endTime are not sent, the most recent klines are
-     * returned. * Contract type: * PERPETUAL * CURRENT_QUARTER * NEXT_QUARTER Weight: based on
-     * parameter LIMIT | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2
-     * | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * returned. * Contract type: * PERPETUAL * CURRENT_QUARTER * NEXT_QUARTER * TRADIFI_PERPETUAL
+     * Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 |
+     * | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
      *
      * @throws ApiException if the Api call fails
      */

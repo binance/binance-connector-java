@@ -34,7 +34,7 @@ import java.util.concurrent.CompletableFuture;
 public class DerivativesTradingCoinFuturesWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/4.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;

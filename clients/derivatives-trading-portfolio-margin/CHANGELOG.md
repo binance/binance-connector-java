@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.0 - 2025-12-16
+
+### Changed (1)
+
+#### WebSocket Streams
+
+- Modified response for `userData()` method:
+  - removed `M` from `Executionreport`
+
 ## 3.0.0 - 2025-09-22
 
 ### Changed (2)

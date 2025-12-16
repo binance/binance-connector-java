@@ -26,6 +26,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelOrderResponse;
@@ -37,7 +39,10 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangeMultiAssetsModeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangePositionModeRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangePositionModeResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllOpenOrdersResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyIsolatedPositionMarginRequest;
@@ -46,6 +51,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderIdList;
@@ -55,6 +62,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionAdlQuantileEstimationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionInformationV2Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionInformationV3Response;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAllAlgoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryCurrentOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TestOrderRequest;
@@ -83,7 +92,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -671,6 +680,298 @@ public class TradeApi {
                 autoCancelAllOpenOrdersValidateBeforeCall(autoCancelAllOpenOrdersRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AutoCancelAllOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for cancelAlgoOrder
+     *
+     * @param algoid (optional)
+     * @param clientalgoid (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     Algo Order (TRADE) Documentation</a>
+     */
+    private okhttp3.Call cancelAlgoOrderCall(Long algoid, String clientalgoid, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/algoOrder";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoid != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoid", algoid));
+        }
+
+        if (clientalgoid != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientalgoid", clientalgoid));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call cancelAlgoOrderValidateBeforeCall(
+            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoid, clientalgoid, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod("cancelAlgoOrder", Long.class, String.class, Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return cancelAlgoOrderCall(algoid, clientalgoid, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
+     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     *
+     * @param algoid (optional)
+     * @param clientalgoid (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     Algo Order (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
+            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                cancelAlgoOrderValidateBeforeCall(algoid, clientalgoid, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CancelAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for cancelAllAlgoOpenOrders
+     *
+     * @param symbol (required)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     All Algo Open Orders (TRADE) Documentation</a>
+     */
+    private okhttp3.Call cancelAllAlgoOpenOrdersCall(String symbol, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/algoOpenOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call cancelAllAlgoOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, recvWindow};
+            Method method =
+                    this.getClass().getMethod("cancelAllAlgoOpenOrders", String.class, Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return cancelAllAlgoOpenOrdersCall(symbol, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Cancel All Algo Open Orders (TRADE) Cancel All Algo Open Orders Weight: 1
+     *
+     * @param symbol (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelAllAlgoOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     All Algo Open Orders (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelAllAlgoOpenOrdersResponse> cancelAllAlgoOpenOrders(
+            @NotNull String symbol, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = cancelAllAlgoOpenOrdersValidateBeforeCall(symbol, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CancelAllAlgoOpenOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1740,6 +2041,169 @@ public class TradeApi {
     }
 
     /**
+     * Build call for currentAllAlgoOpenOrders
+     *
+     * @param algoType (optional)
+     * @param symbol (optional)
+     * @param algoId (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     All Algo Open Orders (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call currentAllAlgoOpenOrdersCall(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/openAlgoOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoType", algoType));
+        }
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call currentAllAlgoOpenOrdersValidateBeforeCall(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoType, symbol, algoId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "currentAllAlgoOpenOrders",
+                                    String.class,
+                                    String.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return currentAllAlgoOpenOrdersCall(algoType, symbol, algoId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Current All Algo Open Orders (USER_DATA) Get all algo open orders on a symbol. * If the
+     * symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for a
+     * single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
+     * symbol.
+     *
+     * @param algoType (optional)
+     * @param symbol (optional)
+     * @param algoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CurrentAllAlgoOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current All Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     All Algo Open Orders (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CurrentAllAlgoOpenOrdersResponse> currentAllAlgoOpenOrders(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                currentAllAlgoOpenOrdersValidateBeforeCall(algoType, symbol, algoId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CurrentAllAlgoOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for currentAllOpenOrders
      *
      * @param symbol (optional)
@@ -1879,6 +2343,148 @@ public class TradeApi {
         okhttp3.Call localVarCall = currentAllOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CurrentAllOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for futuresTradfiPerpsContract
+     *
+     * @param futuresTradfiPerpsContractRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
+     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call futuresTradfiPerpsContractCall(
+            FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/stock/contract";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (futuresTradfiPerpsContractRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", futuresTradfiPerpsContractRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call futuresTradfiPerpsContractValidateBeforeCall(
+            FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {futuresTradfiPerpsContractRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "futuresTradfiPerpsContract",
+                                    FuturesTradfiPerpsContractRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return futuresTradfiPerpsContractCall(futuresTradfiPerpsContractRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
+     *
+     * @param futuresTradfiPerpsContractRequest (required)
+     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
+     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+            @Valid @NotNull FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                futuresTradfiPerpsContractValidateBeforeCall(futuresTradfiPerpsContractRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<FuturesTradfiPerpsContractResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -2768,6 +3374,258 @@ public class TradeApi {
     }
 
     /**
+     * Build call for newAlgoOrder
+     *
+     * @param newAlgoOrderRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
+     *     Algo Order(TRADE) Documentation</a>
+     */
+    private okhttp3.Call newAlgoOrderCall(NewAlgoOrderRequest newAlgoOrderRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/algoOrder";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (newAlgoOrderRequest.getAlgoType() != null) {
+            localVarFormParams.put("algoType", newAlgoOrderRequest.getAlgoType());
+        }
+
+        if (newAlgoOrderRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", newAlgoOrderRequest.getSymbol());
+        }
+
+        if (newAlgoOrderRequest.getSide() != null) {
+            localVarFormParams.put("side", newAlgoOrderRequest.getSide());
+        }
+
+        if (newAlgoOrderRequest.getPositionSide() != null) {
+            localVarFormParams.put("positionSide", newAlgoOrderRequest.getPositionSide());
+        }
+
+        if (newAlgoOrderRequest.getType() != null) {
+            localVarFormParams.put("type", newAlgoOrderRequest.getType());
+        }
+
+        if (newAlgoOrderRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", newAlgoOrderRequest.getTimeInForce());
+        }
+
+        if (newAlgoOrderRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(newAlgoOrderRequest.getQuantity()));
+        }
+
+        if (newAlgoOrderRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price",
+                    DecimalFormatter.getFormatter().format(newAlgoOrderRequest.getPrice()));
+        }
+
+        if (newAlgoOrderRequest.getTriggerPrice() != null) {
+            localVarFormParams.put(
+                    "triggerPrice",
+                    DecimalFormatter.getFormatter().format(newAlgoOrderRequest.getTriggerPrice()));
+        }
+
+        if (newAlgoOrderRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", newAlgoOrderRequest.getWorkingType());
+        }
+
+        if (newAlgoOrderRequest.getPriceMatch() != null) {
+            localVarFormParams.put("priceMatch", newAlgoOrderRequest.getPriceMatch());
+        }
+
+        if (newAlgoOrderRequest.getClosePosition() != null) {
+            localVarFormParams.put("closePosition", newAlgoOrderRequest.getClosePosition());
+        }
+
+        if (newAlgoOrderRequest.getPriceProtect() != null) {
+            localVarFormParams.put("priceProtect", newAlgoOrderRequest.getPriceProtect());
+        }
+
+        if (newAlgoOrderRequest.getReduceOnly() != null) {
+            localVarFormParams.put("reduceOnly", newAlgoOrderRequest.getReduceOnly());
+        }
+
+        if (newAlgoOrderRequest.getActivationPrice() != null) {
+            localVarFormParams.put(
+                    "activationPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(newAlgoOrderRequest.getActivationPrice()));
+        }
+
+        if (newAlgoOrderRequest.getCallbackRate() != null) {
+            localVarFormParams.put(
+                    "callbackRate",
+                    DecimalFormatter.getFormatter().format(newAlgoOrderRequest.getCallbackRate()));
+        }
+
+        if (newAlgoOrderRequest.getClientAlgoId() != null) {
+            localVarFormParams.put("clientAlgoId", newAlgoOrderRequest.getClientAlgoId());
+        }
+
+        if (newAlgoOrderRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", newAlgoOrderRequest.getSelfTradePreventionMode());
+        }
+
+        if (newAlgoOrderRequest.getGoodTillDate() != null) {
+            localVarFormParams.put("goodTillDate", newAlgoOrderRequest.getGoodTillDate());
+        }
+
+        if (newAlgoOrderRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", newAlgoOrderRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newAlgoOrderValidateBeforeCall(NewAlgoOrderRequest newAlgoOrderRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {newAlgoOrderRequest};
+            Method method = this.getClass().getMethod("newAlgoOrder", NewAlgoOrderRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return newAlgoOrderCall(newAlgoOrderRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Algo Order(TRADE) Send in a new Algo order. * Condition orders will be triggered when: *
+     * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
+     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
+     * order placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the
+     * lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price *
+     * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
+     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
+     * following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest
+     * price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price. *
+     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
+     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 0 on IP rate
+     * limit(x-mbx-used-weight-1m)
+     *
+     * @param newAlgoOrderRequest (required)
+     * @return ApiResponse&lt;NewAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
+     *     Algo Order(TRADE) Documentation</a>
+     */
+    public ApiResponse<NewAlgoOrderResponse> newAlgoOrder(
+            @Valid @NotNull NewAlgoOrderRequest newAlgoOrderRequest) throws ApiException {
+        okhttp3.Call localVarCall = newAlgoOrderValidateBeforeCall(newAlgoOrderRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<NewAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for newOrder
      *
      * @param newOrderRequest (required)
@@ -3603,6 +4461,372 @@ public class TradeApi {
         okhttp3.Call localVarCall = positionInformationV3ValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<PositionInformationV3Response>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for queryAlgoOrder
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     Algo Order (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryAlgoOrderCall(Long algoId, String clientAlgoId, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/algoOrder";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (clientAlgoId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryAlgoOrderValidateBeforeCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod("queryAlgoOrder", Long.class, String.class, Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryAlgoOrderCall(algoId, clientAlgoId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Algo Order (USER_DATA) Check an algo order&#39;s status. * These orders will not be
+     * found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
+     * filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days
+     * &lt; current time * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. *
+     * &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     Algo Order (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryAlgoOrderResponse> queryAlgoOrder(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                queryAlgoOrderValidateBeforeCall(algoId, clientAlgoId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for queryAllAlgoOrders
+     *
+     * @param symbol (required)
+     * @param algoId (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param page (optional)
+     * @param limit Default 100; max 1000 (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All Algo Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     All Algo Orders (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryAllAlgoOrdersCall(
+            String symbol,
+            Long algoId,
+            Long startTime,
+            Long endTime,
+            Long page,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/allAlgoOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryAllAlgoOrdersValidateBeforeCall(
+            String symbol,
+            Long algoId,
+            Long startTime,
+            Long endTime,
+            Long page,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {
+                symbol, algoId, startTime, endTime, page, limit, recvWindow
+            };
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryAllAlgoOrders",
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryAllAlgoOrdersCall(
+                        symbol, algoId, startTime, endTime, page, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query All Algo Orders (USER_DATA) Get all algo orders; active, CANCELED, TRIGGERED or
+     * FINISHED . * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
+     * &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt;
+     * current time * order create time + 90 days &lt; current time * If &#x60;algoId&#x60; is set,
+     * it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are
+     * returned. * The query time period must be less then 7 days( default as the recent 7 days).
+     * Weight: 5
+     *
+     * @param symbol (required)
+     * @param algoId (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param page (optional)
+     * @param limit Default 100; max 1000 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All Algo Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     All Algo Orders (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryAllAlgoOrdersResponse> queryAllAlgoOrders(
+            @NotNull String symbol,
+            Long algoId,
+            Long startTime,
+            Long endTime,
+            Long page,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                queryAllAlgoOrdersValidateBeforeCall(
+                        symbol, algoId, startTime, endTime, page, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryAllAlgoOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

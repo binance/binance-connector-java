@@ -54,13 +54,15 @@
 
 ## MarketData
 
+[GET /fapi/v1/symbolAdlRisk](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk) - adlRisk - [AdlRiskExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/AdlRiskExample.java#L51)
+
 [GET /futures/data/basis](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Basis) - basis - [BasisExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/BasisExample.java#L50)
 
 [GET /fapi/v1/time](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Check-Server-Time) - checkServerTime - [CheckServerTimeExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/CheckServerTimeExample.java#L47)
 
 [GET /fapi/v1/indexInfo](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Composite-Index-Symbol-Information) - compositeIndexSymbolInformation - [CompositeIndexSymbolInformationExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/CompositeIndexSymbolInformationExample.java#L47)
 
-[GET /fapi/v1/aggTrades](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Compressed-Aggregate-Trades-List) - compressedAggregateTradesList - [CompressedAggregateTradesListExample.java:56](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/CompressedAggregateTradesListExample.java#L56)
+[GET /fapi/v1/aggTrades](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Compressed-Aggregate-Trades-List) - compressedAggregateTradesList - [CompressedAggregateTradesListExample.java:58](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/CompressedAggregateTradesListExample.java#L58)
 
 [GET /fapi/v1/continuousKlines](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Continuous-Contract-Kline-Candlestick-Data) - continuousContractKlineCandlestickData - [ContinuousContractKlineCandlestickDataExample.java:53](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/ContinuousContractKlineCandlestickDataExample.java#L53)
 
@@ -88,19 +90,21 @@
 
 [GET /futures/data/openInterestHist](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest-Statistics) - openInterestStatistics - [OpenInterestStatisticsExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/OpenInterestStatisticsExample.java#L50)
 
-[GET /fapi/v1/depth](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book) - orderBook - [OrderBookExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/OrderBookExample.java#L48)
+[GET /fapi/v1/depth](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book) - orderBook - [OrderBookExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/OrderBookExample.java#L49)
 
 [GET /fapi/v1/premiumIndexKlines](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Premium-index-Kline-Data) - premiumIndexKlineData - [PremiumIndexKlineDataExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/PremiumIndexKlineDataExample.java#L51)
 
 [GET /futures/data/delivery-price](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Delivery-Price) - quarterlyContractSettlementPrice - [QuarterlyContractSettlementPriceExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/QuarterlyContractSettlementPriceExample.java#L47)
 
-[GET /fapi/v1/constituents](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Constituents) - queryIndexPriceConstituents - [QueryIndexPriceConstituentsExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/QueryIndexPriceConstituentsExample.java#L47)
+[GET /fapi/v1/constituents](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Constituents) - queryIndexPriceConstituents - [QueryIndexPriceConstituentsExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/QueryIndexPriceConstituentsExample.java#L48)
 
 [GET /fapi/v1/insuranceBalance](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Query-Insurance-Fund-Balance-Snapshot) - queryInsuranceFundBalanceSnapshot - [QueryInsuranceFundBalanceSnapshotExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/QueryInsuranceFundBalanceSnapshotExample.java#L47)
 
 [GET /fapi/v1/trades](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Recent-Trades-List) - recentTradesList - [RecentTradesListExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/RecentTradesListExample.java#L49)
 
-[GET /fapi/v1/ticker/bookTicker](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Order-Book-Ticker) - symbolOrderBookTicker - [SymbolOrderBookTickerExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/SymbolOrderBookTickerExample.java#L50)
+[GET /fapi/v1/rpiDepth](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI) - rpiOrderBook - [RpiOrderBookExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/RpiOrderBookExample.java#L49)
+
+[GET /fapi/v1/ticker/bookTicker](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Order-Book-Ticker) - symbolOrderBookTicker - [SymbolOrderBookTickerExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/SymbolOrderBookTickerExample.java#L51)
 
 [GET /fapi/v1/ticker/price](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker) - symbolPriceTicker - [SymbolPriceTickerExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/SymbolPriceTickerExample.java#L49)
 
@@ -116,6 +120,8 @@
 
 [GET /futures/data/topLongShortPositionRatio](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Trader-Long-Short-Ratio) - topTraderLongShortRatioPositions - [TopTraderLongShortRatioPositionsExample.java:54](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TopTraderLongShortRatioPositionsExample.java#L54)
 
+[GET /fapi/v1/tradingSchedule](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule) - tradingSchedule - [TradingScheduleExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TradingScheduleExample.java#L51)
+
 ## PortfolioMarginEndpoints
 
 [GET /fapi/v1/pmAccountInfo](https://developers.binance.com/docs/derivatives/usds-margined-futures/portfolio-margin-endpoints/Classic-Portfolio-Margin-Account-Information) - classicPortfolioMarginAccountInformation - [ClassicPortfolioMarginAccountInformationExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/portfoliomarginendpoints/ClassicPortfolioMarginAccountInformationExample.java#L48)
@@ -127,6 +133,10 @@
 [GET /fapi/v1/allOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders) - allOrders - [AllOrdersExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/AllOrdersExample.java#L52)
 
 [POST /fapi/v1/countdownCancelAll](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders) - autoCancelAllOpenOrders - [AutoCancelAllOpenOrdersExample.java:56](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/AutoCancelAllOpenOrdersExample.java#L56)
+
+[DELETE /fapi/v1/algoOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order) - cancelAlgoOrder - [CancelAlgoOrderExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CancelAlgoOrderExample.java#L48)
+
+[DELETE /fapi/v1/algoOpenOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders) - cancelAllAlgoOpenOrders - [CancelAllAlgoOpenOrdersExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CancelAllAlgoOpenOrdersExample.java#L47)
 
 [DELETE /fapi/v1/allOpenOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders) - cancelAllOpenOrders - [CancelAllOpenOrdersExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CancelAllOpenOrdersExample.java#L47)
 
@@ -142,7 +152,11 @@
 
 [POST /fapi/v1/positionSide/dual](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode) - changePositionMode - [ChangePositionModeExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/ChangePositionModeExample.java#L49)
 
+[GET /fapi/v1/openAlgoOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders) - currentAllAlgoOpenOrders - [CurrentAllAlgoOpenOrdersExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CurrentAllAlgoOpenOrdersExample.java#L49)
+
 [GET /fapi/v1/openOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders) - currentAllOpenOrders - [CurrentAllOpenOrdersExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CurrentAllOpenOrdersExample.java#L49)
+
+[POST /fapi/v1/stock/contract](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract) - futuresTradfiPerpsContract - [FuturesTradfiPerpsContractExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/FuturesTradfiPerpsContractExample.java#L48)
 
 [GET /fapi/v1/orderAmendment](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History) - getOrderModifyHistory - [GetOrderModifyHistoryExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/GetOrderModifyHistoryExample.java#L49)
 
@@ -154,6 +168,8 @@
 
 [PUT /fapi/v1/order](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order) - modifyOrder - [ModifyOrderExample.java:60](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/ModifyOrderExample.java#L60)
 
+[POST /fapi/v1/algoOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order) - newAlgoOrder - [NewAlgoOrderExample.java:79](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewAlgoOrderExample.java#L79)
+
 [POST /fapi/v1/order](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order) - newOrder - [NewOrderExample.java:86](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewOrderExample.java#L86)
 
 [POST /fapi/v1/batchOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders) - placeMultipleOrders - [PlaceMultipleOrdersExample.java:53](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/PlaceMultipleOrdersExample.java#L53)
@@ -163,6 +179,10 @@
 [GET /fapi/v2/positionRisk](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V2) - positionInformationV2 - [PositionInformationV2Example.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/PositionInformationV2Example.java#L48)
 
 [GET /fapi/v3/positionRisk](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3) - positionInformationV3 - [PositionInformationV3Example.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/PositionInformationV3Example.java#L49)
+
+[GET /fapi/v1/algoOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order) - queryAlgoOrder - [QueryAlgoOrderExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/QueryAlgoOrderExample.java#L51)
+
+[GET /fapi/v1/allAlgoOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders) - queryAllAlgoOrders - [QueryAllAlgoOrdersExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/QueryAllAlgoOrdersExample.java#L52)
 
 [GET /fapi/v1/openOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order) - queryCurrentOpenOrder - [QueryCurrentOpenOrderExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/QueryCurrentOpenOrderExample.java#L49)
 

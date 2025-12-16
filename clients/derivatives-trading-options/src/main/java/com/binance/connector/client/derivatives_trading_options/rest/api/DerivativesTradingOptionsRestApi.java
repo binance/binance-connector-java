@@ -26,6 +26,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.GetDo
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetOptionTransactionHistoryDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
@@ -55,7 +56,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.SetAu
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.StartUserDataStreamResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.UserExerciseRecordResponse;
 
@@ -289,6 +289,29 @@ public class DerivativesTradingOptionsRestApi {
     }
 
     /**
+     * Index Price Ticker Get spot index price for option underlying. Weight: 1
+     *
+     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @return ApiResponse&lt;IndexPriceTickerResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Index Price Ticker </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Index-Price-Ticker">Index
+     *     Price Ticker Documentation</a>
+     */
+    public ApiResponse<IndexPriceTickerResponse> indexPriceTicker(String underlying)
+            throws ApiException {
+        return marketDataApi.indexPriceTicker(underlying);
+    }
+
+    /**
      * Kline/Candlestick Data Kline/candlestick bars for an option symbol. Klines are uniquely
      * identified by their open time. * If startTime and endTime are not sent, the most recent
      * klines are returned. Weight: 1
@@ -461,29 +484,6 @@ public class DerivativesTradingOptionsRestApi {
     public ApiResponse<RecentTradesListResponse> recentTradesList(String symbol, Long limit)
             throws ApiException {
         return marketDataApi.recentTradesList(symbol, limit);
-    }
-
-    /**
-     * Symbol Price Ticker Get spot index price for option underlying. Weight: 1
-     *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
-     * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
-     */
-    public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String underlying)
-            throws ApiException {
-        return marketDataApi.symbolPriceTicker(underlying);
     }
 
     /**
@@ -967,7 +967,8 @@ public class DerivativesTradingOptionsRestApi {
 
     /**
      * Cancel Multiple Option Orders (TRADE) Cancel multiple orders. * At least one instance of
-     * &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent. Weight: 1
+     * &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent. * Max 10 orders can be
+     * deleted in one request Weight: 1
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param orderIds Order ID, e.g [4611875134427365377,4611875134427365378] (optional)

@@ -23,7 +23,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -177,7 +176,9 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
         GTX("GTX"),
 
-        GTD("GTD");
+        GTD("GTD"),
+
+        RPI("RPI");
 
         private String value;
 
@@ -233,7 +234,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
-    private Double quantity;
+    private String quantity;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
@@ -245,7 +246,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
-    private Double price;
+    private String price;
 
     public static final String SERIALIZED_NAME_NEW_CLIENT_ORDER_ID = "newClientOrderId";
 
@@ -257,19 +258,19 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
-    private Double stopPrice;
+    private String stopPrice;
 
     public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
 
     @SerializedName(SERIALIZED_NAME_ACTIVATION_PRICE)
     @jakarta.annotation.Nullable
-    private Double activationPrice;
+    private String activationPrice;
 
     public static final String SERIALIZED_NAME_CALLBACK_RATE = "callbackRate";
 
     @SerializedName(SERIALIZED_NAME_CALLBACK_RATE)
     @jakarta.annotation.Nullable
-    private Double callbackRate;
+    private String callbackRate;
 
     /** Gets or Sets workingType */
     @JsonAdapter(WorkingTypeEnum.Adapter.class)
@@ -528,7 +529,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
     @jakarta.annotation.Nullable
-    private Long goodTillDate;
+    private String goodTillDate;
 
     public BatchOrdersPlaceMultipleOrdersInner() {}
 
@@ -630,7 +631,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
     }
 
     public BatchOrdersPlaceMultipleOrdersInner quantity(
-            @jakarta.annotation.Nullable Double quantity) {
+            @jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -641,12 +642,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return quantity
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
+    public void setQuantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
     }
 
@@ -670,7 +670,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         this.reduceOnly = reduceOnly;
     }
 
-    public BatchOrdersPlaceMultipleOrdersInner price(@jakarta.annotation.Nullable Double price) {
+    public BatchOrdersPlaceMultipleOrdersInner price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
@@ -681,12 +681,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return price
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(@jakarta.annotation.Nullable Double price) {
+    public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
     }
 
@@ -711,7 +710,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
     }
 
     public BatchOrdersPlaceMultipleOrdersInner stopPrice(
-            @jakarta.annotation.Nullable Double stopPrice) {
+            @jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
         return this;
     }
@@ -722,17 +721,16 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return stopPrice
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getStopPrice() {
+    public String getStopPrice() {
         return stopPrice;
     }
 
-    public void setStopPrice(@jakarta.annotation.Nullable Double stopPrice) {
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
     }
 
     public BatchOrdersPlaceMultipleOrdersInner activationPrice(
-            @jakarta.annotation.Nullable Double activationPrice) {
+            @jakarta.annotation.Nullable String activationPrice) {
         this.activationPrice = activationPrice;
         return this;
     }
@@ -743,17 +741,16 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return activationPrice
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getActivationPrice() {
+    public String getActivationPrice() {
         return activationPrice;
     }
 
-    public void setActivationPrice(@jakarta.annotation.Nullable Double activationPrice) {
+    public void setActivationPrice(@jakarta.annotation.Nullable String activationPrice) {
         this.activationPrice = activationPrice;
     }
 
     public BatchOrdersPlaceMultipleOrdersInner callbackRate(
-            @jakarta.annotation.Nullable Double callbackRate) {
+            @jakarta.annotation.Nullable String callbackRate) {
         this.callbackRate = callbackRate;
         return this;
     }
@@ -764,12 +761,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return callbackRate
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getCallbackRate() {
+    public String getCallbackRate() {
         return callbackRate;
     }
 
-    public void setCallbackRate(@jakarta.annotation.Nullable Double callbackRate) {
+    public void setCallbackRate(@jakarta.annotation.Nullable String callbackRate) {
         this.callbackRate = callbackRate;
     }
 
@@ -876,7 +872,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
     }
 
     public BatchOrdersPlaceMultipleOrdersInner goodTillDate(
-            @jakarta.annotation.Nullable Long goodTillDate) {
+            @jakarta.annotation.Nullable String goodTillDate) {
         this.goodTillDate = goodTillDate;
         return this;
     }
@@ -887,11 +883,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return goodTillDate
      */
     @jakarta.annotation.Nullable
-    public Long getGoodTillDate() {
+    public String getGoodTillDate() {
         return goodTillDate;
     }
 
-    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+    public void setGoodTillDate(@jakarta.annotation.Nullable String goodTillDate) {
         this.goodTillDate = goodTillDate;
     }
 
@@ -1185,6 +1181,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForceEnum.validateJsonElement(jsonObj.get("timeInForce"));
         }
+        if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
+                && !jsonObj.get("quantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quantity").toString()));
+        }
         if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
                 && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1192,6 +1196,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                             "Expected the field `reduceOnly` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("reduceOnly").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())
@@ -1201,6 +1213,30 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                             "Expected the field `newClientOrderId` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("newClientOrderId").toString()));
+        }
+        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
+                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `stopPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("stopPrice").toString()));
+        }
+        if ((jsonObj.get("activationPrice") != null && !jsonObj.get("activationPrice").isJsonNull())
+                && !jsonObj.get("activationPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `activationPrice` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("activationPrice").toString()));
+        }
+        if ((jsonObj.get("callbackRate") != null && !jsonObj.get("callbackRate").isJsonNull())
+                && !jsonObj.get("callbackRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `callbackRate` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("callbackRate").toString()));
         }
         if ((jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull())
                 && !jsonObj.get("workingType").isJsonPrimitive()) {
@@ -1261,6 +1297,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         if (jsonObj.get("selfTradePreventionMode") != null
                 && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
             SelfTradePreventionModeEnum.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
+        }
+        if ((jsonObj.get("goodTillDate") != null && !jsonObj.get("goodTillDate").isJsonNull())
+                && !jsonObj.get("goodTillDate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `goodTillDate` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("goodTillDate").toString()));
         }
     }
 

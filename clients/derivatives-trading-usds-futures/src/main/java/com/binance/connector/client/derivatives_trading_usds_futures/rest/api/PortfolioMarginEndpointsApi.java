@@ -42,7 +42,7 @@ public class PortfolioMarginEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

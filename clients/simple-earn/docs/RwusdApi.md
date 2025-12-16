@@ -37,7 +37,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdAccountResponse result = apiInstance.getRwusdAccount(recvWindow);
       System.out.println(result);
@@ -56,7 +56,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -99,7 +99,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdQuotaDetailsResponse result = apiInstance.getRwusdQuotaDetails(recvWindow);
       System.out.println(result);
@@ -118,7 +118,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -163,9 +163,9 @@ public class Example {
     RwusdApi apiInstance = new RwusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRateHistoryResponse result = apiInstance.getRwusdRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -186,9 +186,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -233,9 +233,9 @@ public class Example {
     RwusdApi apiInstance = new RwusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRedemptionHistoryResponse result = apiInstance.getRwusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -256,9 +256,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -303,9 +303,9 @@ public class Example {
     RwusdApi apiInstance = new RwusdApi(defaultClient);
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRewardsHistoryResponse result = apiInstance.getRwusdRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -326,9 +326,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 
@@ -374,9 +374,9 @@ public class Example {
     String asset = "asset_example"; // String | USDC or USDT
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying the page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
+    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdSubscriptionHistoryResponse result = apiInstance.getRwusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -398,9 +398,9 @@ public class Example {
 | **asset** | **String**| USDC or USDT | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying the page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
+| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
 

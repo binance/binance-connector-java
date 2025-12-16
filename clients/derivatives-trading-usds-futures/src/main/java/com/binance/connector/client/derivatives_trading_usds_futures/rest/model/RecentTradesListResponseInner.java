@@ -72,6 +72,12 @@ public class RecentTradesListResponseInner {
     @jakarta.annotation.Nullable
     private Boolean isBuyerMaker;
 
+    public static final String SERIALIZED_NAME_IS_R_P_I_TRADE = "isRPITrade";
+
+    @SerializedName(SERIALIZED_NAME_IS_R_P_I_TRADE)
+    @jakarta.annotation.Nullable
+    private Boolean isRPITrade;
+
     public RecentTradesListResponseInner() {}
 
     public RecentTradesListResponseInner id(@jakarta.annotation.Nullable Long id) {
@@ -189,6 +195,26 @@ public class RecentTradesListResponseInner {
         this.isBuyerMaker = isBuyerMaker;
     }
 
+    public RecentTradesListResponseInner isRPITrade(
+            @jakarta.annotation.Nullable Boolean isRPITrade) {
+        this.isRPITrade = isRPITrade;
+        return this;
+    }
+
+    /**
+     * Get isRPITrade
+     *
+     * @return isRPITrade
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getIsRPITrade() {
+        return isRPITrade;
+    }
+
+    public void setIsRPITrade(@jakarta.annotation.Nullable Boolean isRPITrade) {
+        this.isRPITrade = isRPITrade;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -204,12 +230,13 @@ public class RecentTradesListResponseInner {
                 && Objects.equals(this.qty, recentTradesListResponseInner.qty)
                 && Objects.equals(this.quoteQty, recentTradesListResponseInner.quoteQty)
                 && Objects.equals(this.time, recentTradesListResponseInner.time)
-                && Objects.equals(this.isBuyerMaker, recentTradesListResponseInner.isBuyerMaker);
+                && Objects.equals(this.isBuyerMaker, recentTradesListResponseInner.isBuyerMaker)
+                && Objects.equals(this.isRPITrade, recentTradesListResponseInner.isRPITrade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, qty, quoteQty, time, isBuyerMaker);
+        return Objects.hash(id, price, qty, quoteQty, time, isBuyerMaker, isRPITrade);
     }
 
     @Override
@@ -222,6 +249,7 @@ public class RecentTradesListResponseInner {
         sb.append("		quoteQty: ").append(toIndentedString(quoteQty)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		isBuyerMaker: ").append(toIndentedString(isBuyerMaker)).append("\n");
+        sb.append("		isRPITrade: ").append(toIndentedString(isRPITrade)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -253,6 +281,10 @@ public class RecentTradesListResponseInner {
         String isBuyerMakerValueAsString = "";
         isBuyerMakerValueAsString = isBuyerMakerValue.toString();
         sb.append("isBuyerMaker=").append(urlEncode(isBuyerMakerValueAsString)).append("");
+        Object isRPITradeValue = getIsRPITrade();
+        String isRPITradeValueAsString = "";
+        isRPITradeValueAsString = isRPITradeValue.toString();
+        sb.append("isRPITrade=").append(urlEncode(isRPITradeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -287,6 +319,7 @@ public class RecentTradesListResponseInner {
         openapiFields.add("quoteQty");
         openapiFields.add("time");
         openapiFields.add("isBuyerMaker");
+        openapiFields.add("isRPITrade");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

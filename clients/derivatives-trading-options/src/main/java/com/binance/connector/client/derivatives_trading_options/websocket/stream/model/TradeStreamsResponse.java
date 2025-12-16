@@ -61,7 +61,7 @@ public class TradeStreamsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_T_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private Long tLowerCase;
+    private String tLowerCase;
 
     public static final String SERIALIZED_NAME_P_LOWER_CASE = "p";
 
@@ -164,7 +164,7 @@ public class TradeStreamsResponse extends BaseDTO {
         this.sLowerCase = sLowerCase;
     }
 
-    public TradeStreamsResponse tLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+    public TradeStreamsResponse tLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
         this.tLowerCase = tLowerCase;
         return this;
     }
@@ -175,11 +175,11 @@ public class TradeStreamsResponse extends BaseDTO {
      * @return tLowerCase
      */
     @jakarta.annotation.Nullable
-    public Long gettLowerCase() {
+    public String gettLowerCase() {
         return tLowerCase;
     }
 
-    public void settLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+    public void settLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
         this.tLowerCase = tLowerCase;
     }
 
@@ -392,7 +392,7 @@ public class TradeStreamsResponse extends BaseDTO {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
-        Long tLowerCaseValue = gettLowerCase();
+        String tLowerCaseValue = gettLowerCase();
         if (tLowerCaseValue != null) {
             String tLowerCaseValueAsString = tLowerCaseValue.toString();
             valMap.put("tLowerCase", tLowerCaseValueAsString);
@@ -574,6 +574,14 @@ public class TradeStreamsResponse extends BaseDTO {
                             "Expected the field `s` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("s").toString()));
+        }
+        if ((jsonObj.get("t") != null && !jsonObj.get("t").isJsonNull())
+                && !jsonObj.get("t").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `t` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("t").toString()));
         }
         if ((jsonObj.get("p") != null && !jsonObj.get("p").isJsonNull())
                 && !jsonObj.get("p").isJsonPrimitive()) {

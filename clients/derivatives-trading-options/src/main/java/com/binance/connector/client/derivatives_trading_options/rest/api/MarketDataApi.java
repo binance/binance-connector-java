@@ -22,6 +22,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.derivatives_trading_options.rest.model.CheckServerTimeResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OldTradesLookupResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
@@ -29,7 +30,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Optio
 import com.binance.connector.client.derivatives_trading_options.rest.model.OrderBookResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentBlockTradesListResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentTradesListResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -53,7 +53,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/4.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -496,6 +496,137 @@ public class MarketDataApi {
                 historicalExerciseRecordsValidateBeforeCall(underlying, startTime, endTime, limit);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<HistoricalExerciseRecordsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for indexPriceTicker
+     *
+     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Index Price Ticker </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Index-Price-Ticker">Index
+     *     Price Ticker Documentation</a>
+     */
+    private okhttp3.Call indexPriceTickerCall(String underlying) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/eapi/v1/index";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (underlying != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("underlying", underlying));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call indexPriceTickerValidateBeforeCall(String underlying) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {underlying};
+            Method method = this.getClass().getMethod("indexPriceTicker", String.class);
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return indexPriceTickerCall(underlying);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Index Price Ticker Get spot index price for option underlying. Weight: 1
+     *
+     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @return ApiResponse&lt;IndexPriceTickerResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Index Price Ticker </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Index-Price-Ticker">Index
+     *     Price Ticker Documentation</a>
+     */
+    public ApiResponse<IndexPriceTickerResponse> indexPriceTicker(@NotNull String underlying)
+            throws ApiException {
+        okhttp3.Call localVarCall = indexPriceTickerValidateBeforeCall(underlying);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<IndexPriceTickerResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1506,138 +1637,6 @@ public class MarketDataApi {
         okhttp3.Call localVarCall = recentTradesListValidateBeforeCall(symbol, limit);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<RecentTradesListResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for symbolPriceTicker
-     *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
-     */
-    private okhttp3.Call symbolPriceTickerCall(String underlying) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/eapi/v1/index";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (underlying != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("underlying", underlying));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call symbolPriceTickerValidateBeforeCall(String underlying)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {underlying};
-            Method method = this.getClass().getMethod("symbolPriceTicker", String.class);
-            Set<ConstraintViolation<MarketDataApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return symbolPriceTickerCall(underlying);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Symbol Price Ticker Get spot index price for option underlying. Weight: 1
-     *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
-     * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
-     */
-    public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(@NotNull String underlying)
-            throws ApiException {
-        okhttp3.Call localVarCall = symbolPriceTickerValidateBeforeCall(underlying);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<SymbolPriceTickerResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

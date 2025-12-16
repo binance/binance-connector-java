@@ -44,7 +44,7 @@ public class SoftStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/3.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
