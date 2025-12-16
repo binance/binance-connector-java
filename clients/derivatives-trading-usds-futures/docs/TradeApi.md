@@ -4,13 +4,77 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**cancelAlgoOrder**](TradeApi.md#cancelAlgoOrder) | **POST** /algoOrder.cancel | Cancel Algo Order (TRADE) |
 | [**cancelOrder**](TradeApi.md#cancelOrder) | **POST** /order.cancel | Cancel Order (TRADE) |
 | [**modifyOrder**](TradeApi.md#modifyOrder) | **POST** /order.modify | Modify Order (TRADE) |
+| [**newAlgoOrder**](TradeApi.md#newAlgoOrder) | **POST** /algoOrder.place | New Algo Order(TRADE) |
 | [**newOrder**](TradeApi.md#newOrder) | **POST** /order.place | New Order(TRADE) |
 | [**positionInformation**](TradeApi.md#positionInformation) | **POST** /account.position | Position Information (USER_DATA) |
 | [**positionInformationV2**](TradeApi.md#positionInformationV2) | **POST** /v2/account.position | Position Information V2 (USER_DATA) |
 | [**queryOrder**](TradeApi.md#queryOrder) | **POST** /order.status | Query Order (USER_DATA) |
 
+
+<a id="cancelAlgoOrder"></a>
+# **cancelAlgoOrder**
+> CancelAlgoOrderResponse cancelAlgoOrder(cancelAlgoOrderRequest)
+
+Cancel Algo Order (TRADE)
+
+Cancel an active algo order.  * Either &#x60;algoid&#x60; or &#x60;clientalgoid&#x60; must be sent.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiClient;
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiException;
+import com.binance.connector.client.derivatives_trading_usds_futures.Configuration;
+import com.binance.connector.client.derivatives_trading_usds_futures.models.*;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    CancelAlgoOrderRequest cancelAlgoOrderRequest = new CancelAlgoOrderRequest(); // CancelAlgoOrderRequest | 
+    try {
+      CancelAlgoOrderResponse result = apiInstance.cancelAlgoOrder(cancelAlgoOrderRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#cancelAlgoOrder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cancelAlgoOrderRequest** | [**CancelAlgoOrderRequest**](CancelAlgoOrderRequest.md)|  | |
+
+### Return type
+
+[**CancelAlgoOrderResponse**](CancelAlgoOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Cancel Algo Order |  -  |
 
 <a id="cancelOrder"></a>
 # **cancelOrder**
@@ -135,6 +199,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Modify Order |  -  |
+
+<a id="newAlgoOrder"></a>
+# **newAlgoOrder**
+> NewAlgoOrderResponse newAlgoOrder(newAlgoOrderRequest)
+
+New Algo Order(TRADE)
+
+Send in a new algo order.  * Condition orders will be triggered when:  * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60;  * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 - &#x60;callbackRate&#x60;)  * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price.  * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.  Weight: 0
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiClient;
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiException;
+import com.binance.connector.client.derivatives_trading_usds_futures.Configuration;
+import com.binance.connector.client.derivatives_trading_usds_futures.models.*;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    NewAlgoOrderRequest newAlgoOrderRequest = new NewAlgoOrderRequest(); // NewAlgoOrderRequest | 
+    try {
+      NewAlgoOrderResponse result = apiInstance.newAlgoOrder(newAlgoOrderRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#newAlgoOrder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **newAlgoOrderRequest** | [**NewAlgoOrderRequest**](NewAlgoOrderRequest.md)|  | |
+
+### Return type
+
+[**NewAlgoOrderResponse**](NewAlgoOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | New Algo Order |  -  |
 
 <a id="newOrder"></a>
 # **newOrder**

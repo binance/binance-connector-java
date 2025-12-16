@@ -46,7 +46,7 @@ public class GetRwusdRateHistoryResponse {
 
     @SerializedName(SERIALIZED_NAME_ROWS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetRwusdRateHistoryResponseRowsInner> rows;
+    private List<@Valid GetBfusdRateHistoryResponseRowsInner> rows;
 
     public static final String SERIALIZED_NAME_TOTAL = "total";
 
@@ -57,12 +57,12 @@ public class GetRwusdRateHistoryResponse {
     public GetRwusdRateHistoryResponse() {}
 
     public GetRwusdRateHistoryResponse rows(
-            @jakarta.annotation.Nullable List<@Valid GetRwusdRateHistoryResponseRowsInner> rows) {
+            @jakarta.annotation.Nullable List<@Valid GetBfusdRateHistoryResponseRowsInner> rows) {
         this.rows = rows;
         return this;
     }
 
-    public GetRwusdRateHistoryResponse addRowsItem(GetRwusdRateHistoryResponseRowsInner rowsItem) {
+    public GetRwusdRateHistoryResponse addRowsItem(GetBfusdRateHistoryResponseRowsInner rowsItem) {
         if (this.rows == null) {
             this.rows = new ArrayList<>();
         }
@@ -77,12 +77,12 @@ public class GetRwusdRateHistoryResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetRwusdRateHistoryResponseRowsInner> getRows() {
+    public List<@Valid GetBfusdRateHistoryResponseRowsInner> getRows() {
         return rows;
     }
 
     public void setRows(
-            @jakarta.annotation.Nullable List<@Valid GetRwusdRateHistoryResponseRowsInner> rows) {
+            @jakarta.annotation.Nullable List<@Valid GetBfusdRateHistoryResponseRowsInner> rows) {
         this.rows = rows;
     }
 
@@ -215,7 +215,7 @@ public class GetRwusdRateHistoryResponse {
 
                 // validate the optional field `rows` (array)
                 for (int i = 0; i < jsonArrayrows.size(); i++) {
-                    GetRwusdRateHistoryResponseRowsInner.validateJsonElement(jsonArrayrows.get(i));
+                    GetBfusdRateHistoryResponseRowsInner.validateJsonElement(jsonArrayrows.get(i));
                 }
                 ;
             }

@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**orderId** | **Long** |  |  [optional] |
+|**orderId** | **String** |  |  [optional] |
 |**origClientOrderId** | **String** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**side** | [**SideEnum**](#SideEnum) |  |  [optional] |
-|**quantity** | **Double** |  |  [optional] |
-|**price** | **Double** |  |  [optional] |
+|**quantity** | **String** |  |  [optional] |
+|**price** | **String** |  |  [optional] |
 |**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **String** |  |  [optional] |
 
 
 

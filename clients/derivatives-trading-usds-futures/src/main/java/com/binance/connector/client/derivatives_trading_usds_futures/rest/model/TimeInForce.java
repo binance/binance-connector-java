@@ -32,7 +32,9 @@ public enum TimeInForce {
 
     GTX("GTX"),
 
-    GTD("GTD");
+    GTD("GTD"),
+
+    RPI("RPI");
 
     private String value;
 

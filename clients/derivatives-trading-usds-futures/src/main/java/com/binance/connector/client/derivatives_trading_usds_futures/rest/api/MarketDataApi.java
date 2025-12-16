@@ -19,6 +19,7 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AdlRiskResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BasisResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CheckServerTimeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CompositeIndexSymbolInformationResponse;
@@ -45,6 +46,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryIndexPriceConstituentsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryInsuranceFundBalanceSnapshotResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.RecentTradesListResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.RpiOrderBookResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolOrderBookTickerResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolPriceTickerV2Response;
@@ -52,6 +54,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Ticker24hrPriceChangeStatisticsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TopTraderLongShortRatioAccountsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TopTraderLongShortRatioPositionsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TradingScheduleResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -74,7 +77,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -109,6 +112,139 @@ public class MarketDataApi {
 
     public void setCustomBaseUrl(String customBaseUrl) {
         this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for adlRisk
+     *
+     * @param symbol (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> ADL Risk </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk">ADL
+     *     Risk Documentation</a>
+     */
+    private okhttp3.Call adlRiskCall(String symbol) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/symbolAdlRisk";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call adlRiskValidateBeforeCall(String symbol) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol};
+            Method method = this.getClass().getMethod("adlRisk", String.class);
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return adlRiskCall(symbol);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * ADL Risk Query the symbol-level ADL risk rating. The ADL risk rating measures the likelihood
+     * of ADL during liquidation, and the rating takes into account the insurance fund balance,
+     * position concentration on the symbol, order book depth, price volatility, average leverage,
+     * unrealized PnL, and margin utilization at the symbol level. The rating can be high, medium
+     * and low, and is updated every 30 minutes. Weight: 1
+     *
+     * @param symbol (optional)
+     * @return ApiResponse&lt;AdlRiskResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> ADL Risk </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk">ADL
+     *     Risk Documentation</a>
+     */
+    public ApiResponse<AdlRiskResponse> adlRisk(String symbol) throws ApiException {
+        okhttp3.Call localVarCall = adlRiskValidateBeforeCall(symbol);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<AdlRiskResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -706,15 +842,16 @@ public class MarketDataApi {
     /**
      * Compressed/Aggregate Trades List Get compressed, aggregate market trades. Market trades that
      * fill in 100ms with the same price and the same taking side will have the quantity aggregated.
-     * * support querying futures trade histories that are not older than one year * If both
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; must be less than 1 hour. * If &#x60;fromId&#x60;,
-     * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades
-     * will be returned. * Only market trades will be aggregated and returned, which means the
-     * insurance fund trades and ADL trades won&#39;t be aggregated. * Sending both
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response
-     * timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
-     * Weight: 20
+     * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
+     * distinguished. * support querying futures trade histories that are not older than one year *
+     * If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. * If
+     * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
+     * recent aggregate trades will be returned. * Only market trades will be aggregated and
+     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. *
+     * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause
+     * response timeout, please send either &#x60;fromId&#x60; or
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60; Weight: 20
      *
      * @param symbol (required)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
@@ -905,8 +1042,9 @@ public class MarketDataApi {
      * Continuous Contract Kline/Candlestick Data Kline/candlestick bars for a specific contract
      * type. Klines are uniquely identified by their open time. * If startTime and endTime are not
      * sent, the most recent klines are returned. * Contract type: * PERPETUAL * CURRENT_QUARTER *
-     * NEXT_QUARTER Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | |
-     * [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * NEXT_QUARTER * TRADIFI_PERPETUAL Weight: based on parameter LIMIT | LIMIT | weight | |
+     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
+     * 10 |
      *
      * @param pair (required)
      * @param contractType (required)
@@ -1998,7 +2136,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Mark Price Mark Price and Funding Rate Weight: 1
+     * Mark Price Mark Price and Funding Rate Weight: 1 with symbol, 10 without symbol
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;MarkPriceResponse&gt;
@@ -2905,7 +3043,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Order Book Query symbol orderbook Weight: Adjusted based on the limit: | Limit | Weight | |
+     * Order Book Query symbol orderbook Retail Price Improvement(RPI) orders are not visible and
+     * excluded in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
      * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @param symbol (required)
@@ -3348,7 +3487,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Index Price Constituents Query index price constituents Weight: 2
+     * Query Index Price Constituents Query index price constituents **Note**: Prices from
+     * constituents of TradFi perps will be hiden and displayed as -1. Weight: 2
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryIndexPriceConstituentsResponse&gt;
@@ -3647,6 +3787,147 @@ public class MarketDataApi {
     }
 
     /**
+     * Build call for rpiOrderBook
+     *
+     * @param symbol (required)
+     * @param limit Default 100; max 1000 (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> RPI Order Book </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI">RPI
+     *     Order Book Documentation</a>
+     */
+    private okhttp3.Call rpiOrderBookCall(String symbol, Long limit) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/rpiDepth";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call rpiOrderBookValidateBeforeCall(String symbol, Long limit)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, limit};
+            Method method = this.getClass().getMethod("rpiOrderBook", String.class, Long.class);
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return rpiOrderBookCall(symbol, limit);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * RPI Order Book Query symbol orderbook with RPI orders RPI(Retail Price Improvement) orders
+     * are included and aggreated in the response message. Crossed price levels are hidden and
+     * invisible. Weight: Adjusted based on the limit: | Limit | Weight | | ------------- | ------ |
+     * | 1000 | 20 |
+     *
+     * @param symbol (required)
+     * @param limit Default 100; max 1000 (optional)
+     * @return ApiResponse&lt;RpiOrderBookResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> RPI Order Book </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI">RPI
+     *     Order Book Documentation</a>
+     */
+    public ApiResponse<RpiOrderBookResponse> rpiOrderBook(@NotNull String symbol, Long limit)
+            throws ApiException {
+        okhttp3.Call localVarCall = rpiOrderBookValidateBeforeCall(symbol, limit);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<RpiOrderBookResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for symbolOrderBookTicker
      *
      * @param symbol (optional)
@@ -3753,7 +4034,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. * If the
+     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. Retail
+     * Price Improvement(RPI) orders are not visible and excluded in the response message. * If the
      * symbol is not sent, bookTickers for all symbols will be returned in an array. * The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
      * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
@@ -3794,10 +4076,12 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker(Deprecated) Documentation</a>
+     *     Price Ticker Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call symbolPriceTickerCall(String symbol) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -3856,6 +4140,7 @@ public class MarketDataApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call symbolPriceTickerValidateBeforeCall(String symbol) throws ApiException {
         try {
@@ -3887,9 +4172,9 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Price Ticker(Deprecated) Latest price for a symbol or symbols. * If the symbol is not
-     * sent, prices for all symbols will be returned in an array. Weight: 1 for a single symbol; 2
-     * when the symbol parameter is omitted
+     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
+     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
+     * symbol parameter is omitted
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
@@ -3902,10 +4187,12 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
-     *     Price Ticker(Deprecated) Documentation</a>
+     *     Price Ticker Documentation</a>
      */
+    @Deprecated
     public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String symbol)
             throws ApiException {
         okhttp3.Call localVarCall = symbolPriceTickerValidateBeforeCall(symbol);
@@ -4853,6 +5140,134 @@ public class MarketDataApi {
                         symbol, period, limit, startTime, endTime);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TopTraderLongShortRatioPositionsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for tradingSchedule
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Trading Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule">Trading
+     *     Schedule Documentation</a>
+     */
+    private okhttp3.Call tradingScheduleCall() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/fapi/v1/tradingSchedule";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call tradingScheduleValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("tradingSchedule");
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return tradingScheduleCall();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Trading Schedule Trading session schedules for a one-week period starting from the day prior
+     * to the query time, covering both the U.S. equity and commodity markets. Equity market session
+     * types include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
+     * \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;, while commodity market session types
+     * include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Weight: 5
+     *
+     * @return ApiResponse&lt;TradingScheduleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Trading Schedule </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule">Trading
+     *     Schedule Documentation</a>
+     */
+    public ApiResponse<TradingScheduleResponse> tradingSchedule() throws ApiException {
+        okhttp3.Call localVarCall = tradingScheduleValidateBeforeCall();
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<TradingScheduleResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

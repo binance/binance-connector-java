@@ -356,44 +356,6 @@ public class AccountApiTest {
     }
 
     /**
-     * Mint BFUSD for Portfolio Margin(TRADE)
-     *
-     * <p>Mint BFUSD for all types of Portfolio Margin account Weight: 1500
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void mintBfusdForPortfolioMarginTest() throws ApiException, CryptoException {
-        MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest =
-                new MintBfusdForPortfolioMarginRequest();
-
-        mintBfusdForPortfolioMarginRequest.fromAsset("");
-        mintBfusdForPortfolioMarginRequest.targetAsset("");
-        mintBfusdForPortfolioMarginRequest.amount(1d);
-
-        ApiResponse<MintBfusdForPortfolioMarginResponse> response =
-                api.mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000amount=1&targetAsset=&fromAsset=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d714bfb2f91e65ebbaad39e62d090ec5733259dbebd895824c737a3a2585eff5",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/mint", actualRequest.url().encodedPath());
-    }
-
-    /**
      * Portfolio Margin Pro Bankruptcy Loan Repay
      *
      * <p>Repay Portfolio Margin Pro Bankruptcy Loan Weight: 3000
@@ -531,44 +493,6 @@ public class AccountApiTest {
                 "08f5e5a6f9b5d64dcf3e4057c1196835facab312d474221a75a08bcfee1c2c0e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/interest-history", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Redeem BFUSD for Portfolio Margin(TRADE)
-     *
-     * <p>Redeem BFUSD for all types of Portfolio Margin account Weight: 1500
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void redeemBfusdForPortfolioMarginTest() throws ApiException, CryptoException {
-        RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest =
-                new RedeemBfusdForPortfolioMarginRequest();
-
-        redeemBfusdForPortfolioMarginRequest.fromAsset("");
-        redeemBfusdForPortfolioMarginRequest.targetAsset("");
-        redeemBfusdForPortfolioMarginRequest.amount(1d);
-
-        ApiResponse<RedeemBfusdForPortfolioMarginResponse> response =
-                api.redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000amount=1&targetAsset=&fromAsset=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d714bfb2f91e65ebbaad39e62d090ec5733259dbebd895824c737a3a2585eff5",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/redeem", actualRequest.url().encodedPath());
     }
 
     /**

@@ -53,7 +53,7 @@ public class RwusdApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/3.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -93,7 +93,7 @@ public class RwusdApi {
     /**
      * Build call for getRwusdAccount
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -198,7 +198,7 @@ public class RwusdApi {
     /**
      * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -223,7 +223,7 @@ public class RwusdApi {
     /**
      * Build call for getRwusdQuotaDetails
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -331,7 +331,7 @@ public class RwusdApi {
      * Get RWUSD Quota Details (USER_DATA) Get RWUSD quota details including subscription quota,
      * fast redemption quota, and standard redemption quota. Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -359,9 +359,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -505,9 +505,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -538,9 +538,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -684,9 +684,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -717,9 +717,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -863,9 +863,9 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -897,9 +897,9 @@ public class RwusdApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1050,9 +1050,9 @@ public class RwusdApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body

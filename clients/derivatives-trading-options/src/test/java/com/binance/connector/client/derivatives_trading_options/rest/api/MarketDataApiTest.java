@@ -26,6 +26,7 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_options.rest.model.CheckServerTimeResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OldTradesLookupResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
@@ -343,7 +344,7 @@ public class MarketDataApiTest {
     @Test
     public void symbolPriceTickerTest() throws ApiException, CryptoException {
         String underlying = "";
-        ApiResponse<SymbolPriceTickerResponse> response = api.symbolPriceTicker(underlying);
+        ApiResponse<IndexPriceTickerResponse> response = api.indexPriceTicker(underlying);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

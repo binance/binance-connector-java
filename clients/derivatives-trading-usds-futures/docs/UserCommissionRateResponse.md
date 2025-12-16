@@ -10,6 +10,7 @@
 |**symbol** | **String** |  |  [optional] |
 |**makerCommissionRate** | **String** |  |  [optional] |
 |**takerCommissionRate** | **String** |  |  [optional] |
+|**rpiCommissionRate** | **String** |  |  [optional] |
 
 
 

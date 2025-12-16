@@ -23,7 +23,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -160,13 +159,13 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
-    private Double quantity;
+    private String quantity;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
-    private Double price;
+    private String price;
 
     /** Gets or Sets timeInForce */
     @JsonAdapter(TimeInForceEnum.Adapter.class)
@@ -231,13 +230,13 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean reduceOnly;
+    private String reduceOnly;
 
     public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
 
     @SerializedName(SERIALIZED_NAME_POST_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean postOnly;
+    private String postOnly;
 
     /** Gets or Sets newOrderRespType */
     @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
@@ -306,7 +305,7 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_IS_MMP)
     @jakarta.annotation.Nullable
-    private Boolean isMmp;
+    private String isMmp;
 
     public OrdersInner() {}
 
@@ -367,7 +366,7 @@ public class OrdersInner {
         this.type = type;
     }
 
-    public OrdersInner quantity(@jakarta.annotation.Nullable Double quantity) {
+    public OrdersInner quantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -378,16 +377,15 @@ public class OrdersInner {
      * @return quantity
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
+    public void setQuantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
     }
 
-    public OrdersInner price(@jakarta.annotation.Nullable Double price) {
+    public OrdersInner price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
@@ -398,12 +396,11 @@ public class OrdersInner {
      * @return price
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(@jakarta.annotation.Nullable Double price) {
+    public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
     }
 
@@ -426,7 +423,7 @@ public class OrdersInner {
         this.timeInForce = timeInForce;
     }
 
-    public OrdersInner reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
+    public OrdersInner reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -437,15 +434,15 @@ public class OrdersInner {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public Boolean getReduceOnly() {
+    public String getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
-    public OrdersInner postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+    public OrdersInner postOnly(@jakarta.annotation.Nullable String postOnly) {
         this.postOnly = postOnly;
         return this;
     }
@@ -456,11 +453,11 @@ public class OrdersInner {
      * @return postOnly
      */
     @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
+    public String getPostOnly() {
         return postOnly;
     }
 
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+    public void setPostOnly(@jakarta.annotation.Nullable String postOnly) {
         this.postOnly = postOnly;
     }
 
@@ -504,7 +501,7 @@ public class OrdersInner {
         this.clientOrderId = clientOrderId;
     }
 
-    public OrdersInner isMmp(@jakarta.annotation.Nullable Boolean isMmp) {
+    public OrdersInner isMmp(@jakarta.annotation.Nullable String isMmp) {
         this.isMmp = isMmp;
         return this;
     }
@@ -515,11 +512,11 @@ public class OrdersInner {
      * @return isMmp
      */
     @jakarta.annotation.Nullable
-    public Boolean getIsMmp() {
+    public String getIsMmp() {
         return isMmp;
     }
 
-    public void setIsMmp(@jakarta.annotation.Nullable Boolean isMmp) {
+    public void setIsMmp(@jakarta.annotation.Nullable String isMmp) {
         this.isMmp = isMmp;
     }
 
@@ -721,6 +718,22 @@ public class OrdersInner {
         if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
             TypeEnum.validateJsonElement(jsonObj.get("type"));
         }
+        if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
+                && !jsonObj.get("quantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quantity").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
+        }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -732,6 +745,22 @@ public class OrdersInner {
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForceEnum.validateJsonElement(jsonObj.get("timeInForce"));
+        }
+        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
+                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("reduceOnly").toString()));
+        }
+        if ((jsonObj.get("postOnly") != null && !jsonObj.get("postOnly").isJsonNull())
+                && !jsonObj.get("postOnly").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `postOnly` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("postOnly").toString()));
         }
         if ((jsonObj.get("newOrderRespType") != null
                         && !jsonObj.get("newOrderRespType").isJsonNull())
@@ -754,6 +783,14 @@ public class OrdersInner {
                             "Expected the field `clientOrderId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("clientOrderId").toString()));
+        }
+        if ((jsonObj.get("isMmp") != null && !jsonObj.get("isMmp").isJsonNull())
+                && !jsonObj.get("isMmp").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `isMmp` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("isMmp").toString()));
         }
     }
 

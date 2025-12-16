@@ -5,6 +5,12 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRedemptionHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdRewardsHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetBfusdSubscriptionHistoryResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetCollateralRecordResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexiblePersonalLeftQuotaResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexibleProductPositionResponse;
@@ -27,6 +33,8 @@ import com.binance.connector.client.simple_earn.rest.model.GetRwusdRewardsHistor
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdSubscriptionHistoryResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnFlexibleProductListResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnLockedProductListResponse;
+import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest;
+import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdResponse;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductResponse;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductRequest;
@@ -40,6 +48,8 @@ import com.binance.connector.client.simple_earn.rest.model.SetLockedAutoSubscrib
 import com.binance.connector.client.simple_earn.rest.model.SetLockedProductRedeemOptionRequest;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedProductRedeemOptionResponse;
 import com.binance.connector.client.simple_earn.rest.model.SimpleAccountResponse;
+import com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdRequest;
+import com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdResponse;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProductResponse;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeLockedProductRequest;
@@ -49,6 +59,7 @@ import com.binance.connector.client.simple_earn.rest.model.SubscribeRwusdRespons
 
 public class SimpleEarnRestApi {
 
+    private final BfusdApi bfusdApi;
     private final FlexibleLockedApi flexibleLockedApi;
     private final RwusdApi rwusdApi;
 
@@ -57,8 +68,248 @@ public class SimpleEarnRestApi {
     }
 
     public SimpleEarnRestApi(ApiClient apiClient) {
+        this.bfusdApi = new BfusdApi(apiClient);
         this.flexibleLockedApi = new FlexibleLockedApi(apiClient);
         this.rwusdApi = new RwusdApi(apiClient);
+    }
+
+    /**
+     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight: 150
+     *
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdAccountResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
+     *     Account (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdAccountResponse> getBfusdAccount(Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdAccount(recvWindow);
+    }
+
+    /**
+     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including fast redemption quota
+     * and standard redemption quota. Weight: 150
+     *
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Quota Details </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     BFUSD Quota Details (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdQuotaDetailsResponse> getBfusdQuotaDetails(Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdQuotaDetails(recvWindow);
+    }
+
+    /**
+     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order. * The
+     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
+     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
+     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
+     * is not sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
+     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
+     * Weight: 150
+     *
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdRateHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     BFUSD Rate History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdRateHistoryResponse> getBfusdRateHistory(
+            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdRateHistory(startTime, endTime, current, size, recvWindow);
+    }
+
+    /**
+     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history. * The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
+     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
+     * Weight: 150
+     *
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdRedemptionHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Redemption History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     BFUSD Redemption History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdRedemptionHistoryResponse> getBfusdRedemptionHistory(
+            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
+    }
+
+    /**
+     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history. * The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
+     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
+     * Weight: 150
+     *
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdRewardsHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD Rewards History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     BFUSD Rewards History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdRewardsHistoryResponse> getBfusdRewardsHistory(
+            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdRewardsHistory(startTime, endTime, current, size, recvWindow);
+    }
+
+    /**
+     * Get BFUSD subscription history(USER_DATA) Get BFUSD subscription history * The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
+     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned. Weight: 150
+     *
+     * @param asset USDC or USDT (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @return ApiResponse&lt;GetBfusdSubscriptionHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get BFUSD subscription history </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
+     *     BFUSD subscription history(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetBfusdSubscriptionHistoryResponse> getBfusdSubscriptionHistory(
+            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return bfusdApi.getBfusdSubscriptionHistory(
+                asset, startTime, endTime, current, size, recvWindow);
+    }
+
+    /**
+     * Redeem BFUSD(TRADE) Redeem BFUSD to USDT * You need to open Enable Spot &amp; Margin Trading
+     * permission for the API Key which requests this endpoint. Weight: 150
+     *
+     * @param redeemBfusdRequest (required)
+     * @return ApiResponse&lt;RedeemBfusdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
+     *     BFUSD(TRADE) Documentation</a>
+     */
+    public ApiResponse<RedeemBfusdResponse> redeemBfusd(RedeemBfusdRequest redeemBfusdRequest)
+            throws ApiException {
+        return bfusdApi.redeemBfusd(redeemBfusdRequest);
+    }
+
+    /**
+     * Subscribe BFUSD(TRADE) Subscribe BFUSD * You need to open Enable Spot &amp; Margin Trading
+     * permission for the API Key which requests this endpoint. Weight: 150
+     *
+     * @param subscribeBfusdRequest (required)
+     * @return ApiResponse&lt;SubscribeBfusdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Subscribe BFUSD </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
+     *     BFUSD(TRADE) Documentation</a>
+     */
+    public ApiResponse<SubscribeBfusdResponse> subscribeBfusd(
+            SubscribeBfusdRequest subscribeBfusdRequest) throws ApiException {
+        return bfusdApi.subscribeBfusd(subscribeBfusdRequest);
     }
 
     /**
@@ -73,9 +324,9 @@ public class SimpleEarnRestApi {
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetCollateralRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -106,7 +357,7 @@ public class SimpleEarnRestApi {
      * Get Flexible Personal Left Quota(USER_DATA) Get Flexible Personal Left Quota Weight: 150
      *
      * @param productId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexiblePersonalLeftQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -131,9 +382,9 @@ public class SimpleEarnRestApi {
      *
      * @param asset USDC or USDT (optional)
      * @param productId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -169,9 +420,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -215,9 +466,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -251,7 +502,7 @@ public class SimpleEarnRestApi {
      *
      * @param productId (required)
      * @param amount (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -285,9 +536,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -320,7 +571,7 @@ public class SimpleEarnRestApi {
      * Get Locked Personal Left Quota(USER_DATA) Get Locked Personal Left Quota Weight: 150
      *
      * @param projectId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedPersonalLeftQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -346,9 +597,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -389,9 +640,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -433,9 +684,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -469,7 +720,7 @@ public class SimpleEarnRestApi {
      * @param projectId (required)
      * @param amount (required)
      * @param autoSubscribe true or false, default true. (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -504,9 +755,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -547,9 +798,9 @@ public class SimpleEarnRestApi {
      * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -582,9 +833,9 @@ public class SimpleEarnRestApi {
      * list Weight: 150
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnFlexibleProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -609,9 +860,9 @@ public class SimpleEarnRestApi {
      * available Simple Earn locked product list Weight: 150
      *
      * @param asset USDC or USDT (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnLockedProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -753,7 +1004,7 @@ public class SimpleEarnRestApi {
     /**
      * Simple Account(USER_DATA) Simple Account query Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;SimpleAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -824,7 +1075,7 @@ public class SimpleEarnRestApi {
     /**
      * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -847,7 +1098,7 @@ public class SimpleEarnRestApi {
      * Get RWUSD Quota Details (USER_DATA) Get RWUSD quota details including subscription quota,
      * fast redemption quota, and standard redemption quota. Weight: 150
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -880,9 +1131,9 @@ public class SimpleEarnRestApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -916,9 +1167,9 @@ public class SimpleEarnRestApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -952,9 +1203,9 @@ public class SimpleEarnRestApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -989,9 +1240,9 @@ public class SimpleEarnRestApi {
      * @param asset USDC or USDT (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying the page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
+     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body

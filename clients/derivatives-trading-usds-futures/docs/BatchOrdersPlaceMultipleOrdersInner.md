@@ -12,19 +12,19 @@
 |**positionSide** | [**PositionSideEnum**](#PositionSideEnum) |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**timeInForce** | [**TimeInForceEnum**](#TimeInForceEnum) |  |  [optional] |
-|**quantity** | **Double** |  |  [optional] |
+|**quantity** | **String** |  |  [optional] |
 |**reduceOnly** | **String** |  |  [optional] |
-|**price** | **Double** |  |  [optional] |
+|**price** | **String** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
-|**stopPrice** | **Double** |  |  [optional] |
-|**activationPrice** | **Double** |  |  [optional] |
-|**callbackRate** | **Double** |  |  [optional] |
+|**stopPrice** | **String** |  |  [optional] |
+|**activationPrice** | **String** |  |  [optional] |
+|**callbackRate** | **String** |  |  [optional] |
 |**workingType** | [**WorkingTypeEnum**](#WorkingTypeEnum) |  |  [optional] |
 |**priceProtect** | **String** |  |  [optional] |
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) |  |  [optional] |
 |**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) |  |  [optional] |
-|**goodTillDate** | **Long** |  |  [optional] |
+|**goodTillDate** | **String** |  |  [optional] |
 
 
 
@@ -56,6 +56,7 @@
 | FOK | &quot;FOK&quot; |
 | GTX | &quot;GTX&quot; |
 | GTD | &quot;GTD&quot; |
+| RPI | &quot;RPI&quot; |
 
 
 

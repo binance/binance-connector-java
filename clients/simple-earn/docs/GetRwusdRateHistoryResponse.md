@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rows** | [**List&lt;GetRwusdRateHistoryResponseRowsInner&gt;**](GetRwusdRateHistoryResponseRowsInner.md) |  |  [optional] |
+|**rows** | [**List&lt;GetBfusdRateHistoryResponseRowsInner&gt;**](GetBfusdRateHistoryResponseRowsInner.md) |  |  [optional] |
 |**total** | **String** |  |  [optional] |
 
 

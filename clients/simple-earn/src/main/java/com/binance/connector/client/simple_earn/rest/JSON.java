@@ -109,6 +109,44 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdQuotaDetailsResponseFastRedemptionQuota
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdQuotaDetailsResponseStandardRedemptionQuota
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdRateHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdRedemptionHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdRedemptionHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdRewardsHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdRewardsHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdSubscriptionHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdSubscriptionHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model.GetCollateralRecordResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -209,9 +247,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model
-                        .GetRwusdRateHistoryResponseRowsInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.simple_earn.rest.model
                         .GetRwusdRedemptionHistoryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model
@@ -251,6 +286,12 @@ public class JSON {
                         .GetSimpleEarnLockedProductListResponseRowsInnerQuota
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.RedeemBfusdResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -288,6 +329,12 @@ public class JSON {
                         .SetLockedProductRedeemOptionResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model.SimpleAccountResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model.SubscribeBfusdResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model

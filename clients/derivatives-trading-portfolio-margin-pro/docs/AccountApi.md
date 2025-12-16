@@ -13,14 +13,12 @@ All URIs are relative to *https://api.binance.com*
 | [**getPortfolioMarginProAccountInfo**](AccountApi.md#getPortfolioMarginProAccountInfo) | **GET** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA) |
 | [**getPortfolioMarginProSpanAccountInfo**](AccountApi.md#getPortfolioMarginProSpanAccountInfo) | **GET** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA) |
 | [**getTransferableEarnAssetBalanceForPortfolioMargin**](AccountApi.md#getTransferableEarnAssetBalanceForPortfolioMargin) | **GET** /sapi/v1/portfolio/earn-asset-balance | Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA) |
-| [**mintBfusdForPortfolioMargin**](AccountApi.md#mintBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/mint | Mint BFUSD for Portfolio Margin(TRADE) |
 | [**portfolioMarginProBankruptcyLoanRepay**](AccountApi.md#portfolioMarginProBankruptcyLoanRepay) | **POST** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay |
 | [**queryPortfolioMarginProBankruptcyLoanAmount**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanAmount) | **GET** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA) |
 | [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
 | [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) |
-| [**redeemBfusdForPortfolioMargin**](AccountApi.md#redeemBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/redeem | Redeem BFUSD for Portfolio Margin(TRADE) |
 | [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
-| [**transferLdusdtForPortfolioMargin**](AccountApi.md#transferLdusdtForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT for Portfolio Margin(TRADE) |
+| [**transferLdusdtRwusdForPortfolioMargin**](AccountApi.md#transferLdusdtRwusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) |
 
 
 <a id="bnbTransfer"></a>
@@ -587,68 +585,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Get Transferable Earn Asset Balance for Portfolio Margin |  -  |
 
-<a id="mintBfusdForPortfolioMargin"></a>
-# **mintBfusdForPortfolioMargin**
-> MintBfusdForPortfolioMarginResponse mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest)
-
-Mint BFUSD for Portfolio Margin(TRADE)
-
-Mint BFUSD for all types of Portfolio Margin account  Weight: 1500
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountApi apiInstance = new AccountApi(defaultClient);
-    MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest = new MintBfusdForPortfolioMarginRequest(); // MintBfusdForPortfolioMarginRequest | 
-    try {
-      MintBfusdForPortfolioMarginResponse result = apiInstance.mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#mintBfusdForPortfolioMargin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **mintBfusdForPortfolioMarginRequest** | [**MintBfusdForPortfolioMarginRequest**](MintBfusdForPortfolioMarginRequest.md)|  | |
-
-### Return type
-
-[**MintBfusdForPortfolioMarginResponse**](MintBfusdForPortfolioMarginResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Mint BFUSD for Portfolio Margin |  -  |
-
 <a id="portfolioMarginProBankruptcyLoanRepay"></a>
 # **portfolioMarginProBankruptcyLoanRepay**
 > PortfolioMarginProBankruptcyLoanRepayResponse portfolioMarginProBankruptcyLoanRepay(portfolioMarginProBankruptcyLoanRepayRequest)
@@ -913,68 +849,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Portfolio Margin Pro Negative Balance Interest History |  -  |
 
-<a id="redeemBfusdForPortfolioMargin"></a>
-# **redeemBfusdForPortfolioMargin**
-> RedeemBfusdForPortfolioMarginResponse redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest)
-
-Redeem BFUSD for Portfolio Margin(TRADE)
-
-Redeem BFUSD for all types of Portfolio Margin account  Weight: 1500
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountApi apiInstance = new AccountApi(defaultClient);
-    RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest = new RedeemBfusdForPortfolioMarginRequest(); // RedeemBfusdForPortfolioMarginRequest | 
-    try {
-      RedeemBfusdForPortfolioMarginResponse result = apiInstance.redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#redeemBfusdForPortfolioMargin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **redeemBfusdForPortfolioMarginRequest** | [**RedeemBfusdForPortfolioMarginRequest**](RedeemBfusdForPortfolioMarginRequest.md)|  | |
-
-### Return type
-
-[**RedeemBfusdForPortfolioMarginResponse**](RedeemBfusdForPortfolioMarginResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Redeem BFUSD for Portfolio Margin |  -  |
-
 <a id="repayFuturesNegativeBalance"></a>
 # **repayFuturesNegativeBalance**
 > RepayFuturesNegativeBalanceResponse repayFuturesNegativeBalance(repayFuturesNegativeBalanceRequest)
@@ -1037,13 +911,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Repay futures Negative Balance |  -  |
 
-<a id="transferLdusdtForPortfolioMargin"></a>
-# **transferLdusdtForPortfolioMargin**
-> TransferLdusdtForPortfolioMarginResponse transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest)
+<a id="transferLdusdtRwusdForPortfolioMargin"></a>
+# **transferLdusdtRwusdForPortfolioMargin**
+> TransferLdusdtRwusdForPortfolioMarginResponse transferLdusdtRwusdForPortfolioMargin(transferLdusdtRwusdForPortfolioMarginRequest)
 
-Transfer LDUSDT for Portfolio Margin(TRADE)
+Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
 
-Transfer LDUSDT as collateral for all types of Portfolio Margin account  Weight: 1500
+Transfer LDUSDT/RWUSD as collateral for all types of Portfolio Margin account  Weight: 1500
 
 ### Example
 ```java
@@ -1060,12 +934,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest = new TransferLdusdtForPortfolioMarginRequest(); // TransferLdusdtForPortfolioMarginRequest | 
+    TransferLdusdtRwusdForPortfolioMarginRequest transferLdusdtRwusdForPortfolioMarginRequest = new TransferLdusdtRwusdForPortfolioMarginRequest(); // TransferLdusdtRwusdForPortfolioMarginRequest | 
     try {
-      TransferLdusdtForPortfolioMarginResponse result = apiInstance.transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest);
+      TransferLdusdtRwusdForPortfolioMarginResponse result = apiInstance.transferLdusdtRwusdForPortfolioMargin(transferLdusdtRwusdForPortfolioMarginRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#transferLdusdtForPortfolioMargin");
+      System.err.println("Exception when calling AccountApi#transferLdusdtRwusdForPortfolioMargin");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1079,11 +953,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **transferLdusdtForPortfolioMarginRequest** | [**TransferLdusdtForPortfolioMarginRequest**](TransferLdusdtForPortfolioMarginRequest.md)|  | |
+| **transferLdusdtRwusdForPortfolioMarginRequest** | [**TransferLdusdtRwusdForPortfolioMarginRequest**](TransferLdusdtRwusdForPortfolioMarginRequest.md)|  | |
 
 ### Return type
 
-[**TransferLdusdtForPortfolioMarginResponse**](TransferLdusdtForPortfolioMarginResponse.md)
+[**TransferLdusdtRwusdForPortfolioMarginResponse**](TransferLdusdtRwusdForPortfolioMarginResponse.md)
 
 ### Authorization
 
@@ -1097,5 +971,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Transfer LDUSDT for Portfolio Margin |  -  |
+| **200** | Transfer LDUSDT/RWUSD for Portfolio Margin |  -  |
 

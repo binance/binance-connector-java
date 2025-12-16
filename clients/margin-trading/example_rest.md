@@ -48,6 +48,8 @@
 
 [GET /sapi/v1/margin/delist-schedule](https://developers.binance.com/docs/margin_trading/market-data/Get-Delist-Schedule) - getDelistSchedule - [GetDelistScheduleExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/GetDelistScheduleExample.java#L47)
 
+[GET /sapi/v1/margin/limit-price-pairs](https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs) - getLimitPricePairs - [GetLimitPricePairsExample.java:56](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/GetLimitPricePairsExample.java#L56)
+
 [GET /sapi/v1/margin/list-schedule](https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule) - getListSchedule - [GetListScheduleExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/GetListScheduleExample.java#L48)
 
 [GET /sapi/v1/margin/isolatedMarginTier](https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data) - queryIsolatedMarginTierData - [QueryIsolatedMarginTierDataExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryIsolatedMarginTierDataExample.java#L48)
@@ -68,7 +70,7 @@
 
 ## Trade
 
-[POST /sapi/v1/margin/apiKey](https://developers.binance.com/docs/margin_trading/trade/Create-Special-Key-of-Low-Latency-Trading) - createSpecialKey - [CreateSpecialKeyExample.java:62](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/CreateSpecialKeyExample.java#L62)
+[POST /sapi/v1/margin/apiKey](https://developers.binance.com/docs/margin_trading/trade/Create-Special-Key-of-Low-Latency-Trading) - createSpecialKey - [CreateSpecialKeyExample.java:59](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/CreateSpecialKeyExample.java#L59)
 
 [DELETE /sapi/v1/margin/apiKey](https://developers.binance.com/docs/margin_trading/trade/Delete-Special-Key-of-Low-Latency-Trading) - deleteSpecialKey - [DeleteSpecialKeyExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/DeleteSpecialKeyExample.java#L48)
 
@@ -117,20 +119,6 @@
 [GET /sapi/v1/margin/api-key-list](https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-List-of-Low-Latency-Trading) - querySpecialKeyList - [QuerySpecialKeyListExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QuerySpecialKeyListExample.java#L47)
 
 [POST /sapi/v1/margin/exchange-small-liability](https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange) - smallLiabilityExchange - [SmallLiabilityExchangeExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/SmallLiabilityExchangeExample.java#L48)
-
-## TradeDataStream
-
-[DELETE /sapi/v1/userDataStream/isolated](https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream) - closeIsolatedMarginUserDataStream - [CloseIsolatedMarginUserDataStreamExample.java:45](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/CloseIsolatedMarginUserDataStreamExample.java#L45)
-
-[DELETE /sapi/v1/userDataStream](https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream) - closeMarginUserDataStream - [CloseMarginUserDataStreamExample.java:45](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/CloseMarginUserDataStreamExample.java#L45)
-
-[PUT /sapi/v1/userDataStream/isolated](https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream) - keepaliveIsolatedMarginUserDataStream - [KeepaliveIsolatedMarginUserDataStreamExample.java:46](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/KeepaliveIsolatedMarginUserDataStreamExample.java#L46)
-
-[PUT /sapi/v1/userDataStream](https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream) - keepaliveMarginUserDataStream - [KeepaliveMarginUserDataStreamExample.java:46](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/KeepaliveMarginUserDataStreamExample.java#L46)
-
-[POST /sapi/v1/userDataStream/isolated](https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream) - startIsolatedMarginUserDataStream - [StartIsolatedMarginUserDataStreamExample.java:50](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/StartIsolatedMarginUserDataStreamExample.java#L50)
-
-[POST /sapi/v1/userDataStream](https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream) - startMarginUserDataStream - [StartMarginUserDataStreamExample.java:49](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/tradedatastream/StartMarginUserDataStreamExample.java#L49)
 
 ## Transfer
 

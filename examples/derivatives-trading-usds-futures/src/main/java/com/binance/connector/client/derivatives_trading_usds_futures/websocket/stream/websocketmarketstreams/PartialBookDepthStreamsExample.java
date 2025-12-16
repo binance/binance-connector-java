@@ -37,6 +37,7 @@ public class PartialBookDepthStreamsExample {
      * Partial Book Depth Streams
      *
      * <p>Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;** are 5, 10, or 20.
+     * Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
      * Update Speed: 250ms, 500ms or 100ms
      *
      * @throws ApiException if the Api call fails

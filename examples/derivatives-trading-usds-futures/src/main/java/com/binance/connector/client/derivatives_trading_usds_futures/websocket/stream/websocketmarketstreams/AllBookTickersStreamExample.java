@@ -37,7 +37,8 @@ public class AllBookTickersStreamExample {
      * All Book Tickers Stream
      *
      * <p>Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all
-     * symbols. Update Speed: 5s
+     * symbols. Retail Price Improvement(RPI) orders are not visible and excluded in the response
+     * message. Update Speed: 5s
      *
      * @throws ApiException if the Api call fails
      */

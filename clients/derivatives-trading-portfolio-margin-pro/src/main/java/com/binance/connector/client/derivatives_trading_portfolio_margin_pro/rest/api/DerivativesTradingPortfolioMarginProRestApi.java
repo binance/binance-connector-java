@@ -19,8 +19,6 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProSpanAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetTransferableEarnAssetBalanceForPortfolioMarginResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginCollateralRateResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayResponse;
@@ -29,12 +27,10 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanAmountResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
 
 public class DerivativesTradingPortfolioMarginProRestApi {
 
@@ -272,31 +268,6 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Mint BFUSD for Portfolio Margin(TRADE) Mint BFUSD for all types of Portfolio Margin account
-     * Weight: 1500
-     *
-     * @param mintBfusdForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;MintBfusdForPortfolioMarginResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Mint BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Mint-BFUSD-Portfolio-Margin">Mint
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    public ApiResponse<MintBfusdForPortfolioMarginResponse> mintBfusdForPortfolioMargin(
-            MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        return accountApi.mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest);
-    }
-
-    /**
      * Portfolio Margin Pro Bankruptcy Loan Repay Repay Portfolio Margin Pro Bankruptcy Loan Weight:
      * 3000
      *
@@ -417,31 +388,6 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Redeem BFUSD for Portfolio Margin(TRADE) Redeem BFUSD for all types of Portfolio Margin
-     * account Weight: 1500
-     *
-     * @param redeemBfusdForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;RedeemBfusdForPortfolioMarginResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Redeem BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Redeem-BFUSD-Portfolio-Margin">Redeem
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    public ApiResponse<RedeemBfusdForPortfolioMarginResponse> redeemBfusdForPortfolioMargin(
-            RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        return accountApi.redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest);
-    }
-
-    /**
      * Repay futures Negative Balance(USER_DATA) Repay futures Negative Balance Weight: 1500
      *
      * @param repayFuturesNegativeBalanceRequest (required)
@@ -466,28 +412,31 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Transfer LDUSDT for Portfolio Margin(TRADE) Transfer LDUSDT as collateral for all types of
-     * Portfolio Margin account Weight: 1500
+     * Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) Transfer LDUSDT/RWUSD as collateral for all
+     * types of Portfolio Margin account Weight: 1500
      *
-     * @param transferLdusdtForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;TransferLdusdtForPortfolioMarginResponse&gt;
+     * @param transferLdusdtRwusdForPortfolioMarginRequest (required)
+     * @return ApiResponse&lt;TransferLdusdtRwusdForPortfolioMarginResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Transfer LDUSDT for Portfolio Margin </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Transfer LDUSDT/RWUSD for Portfolio Margin </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin">Transfer
-     *     LDUSDT for Portfolio Margin(TRADE) Documentation</a>
+     *     LDUSDT/RWUSD for Portfolio Margin(TRADE) Documentation</a>
      */
-    public ApiResponse<TransferLdusdtForPortfolioMarginResponse> transferLdusdtForPortfolioMargin(
-            TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest)
-            throws ApiException {
-        return accountApi.transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest);
+    public ApiResponse<TransferLdusdtRwusdForPortfolioMarginResponse>
+            transferLdusdtRwusdForPortfolioMargin(
+                    TransferLdusdtRwusdForPortfolioMarginRequest
+                            transferLdusdtRwusdForPortfolioMarginRequest)
+                    throws ApiException {
+        return accountApi.transferLdusdtRwusdForPortfolioMargin(
+                transferLdusdtRwusdForPortfolioMarginRequest);
     }
 
     /**

@@ -224,7 +224,7 @@ No authorization required
 
 Cancel Multiple Option Orders (TRADE)
 
-Cancel multiple orders.  * At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.  Weight: 1
+Cancel multiple orders.  * At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent. * Max 10 orders can be deleted in one request  Weight: 1
 
 ### Example
 ```java

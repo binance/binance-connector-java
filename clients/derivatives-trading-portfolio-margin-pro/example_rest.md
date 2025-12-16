@@ -18,8 +18,6 @@
 
 [GET /sapi/v1/portfolio/earn-asset-balance](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Transferable-Earn-Asset-Balance-for-Portfolio-Margin) - getTransferableEarnAssetBalanceForPortfolioMargin - [GetTransferableEarnAssetBalanceForPortfolioMarginExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/GetTransferableEarnAssetBalanceForPortfolioMarginExample.java#L47)
 
-[POST /sapi/v1/portfolio/mint](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Mint-BFUSD-Portfolio-Margin) - mintBfusdForPortfolioMargin - [MintBfusdForPortfolioMarginExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/MintBfusdForPortfolioMarginExample.java#L48)
-
 [POST /sapi/v1/portfolio/repay](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Classic-Portfolio-Margin-Bankruptcy-Loan-Repay) - portfolioMarginProBankruptcyLoanRepay - [PortfolioMarginProBankruptcyLoanRepayExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/PortfolioMarginProBankruptcyLoanRepayExample.java#L48)
 
 [GET /sapi/v1/portfolio/pmLoan](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Bankruptcy-Loan-Amount) - queryPortfolioMarginProBankruptcyLoanAmount - [QueryPortfolioMarginProBankruptcyLoanAmountExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/QueryPortfolioMarginProBankruptcyLoanAmountExample.java#L48)
@@ -28,11 +26,9 @@
 
 [GET /sapi/v1/portfolio/interest-history](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History) - queryPortfolioMarginProNegativeBalanceInterestHistory - [QueryPortfolioMarginProNegativeBalanceInterestHistoryExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/QueryPortfolioMarginProNegativeBalanceInterestHistoryExample.java#L47)
 
-[POST /sapi/v1/portfolio/redeem](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Redeem-BFUSD-Portfolio-Margin) - redeemBfusdForPortfolioMargin - [RedeemBfusdForPortfolioMarginExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/RedeemBfusdForPortfolioMarginExample.java#L48)
-
 [POST /sapi/v1/portfolio/repay-futures-negative-balance](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance) - repayFuturesNegativeBalance - [RepayFuturesNegativeBalanceExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/RepayFuturesNegativeBalanceExample.java#L48)
 
-[POST /sapi/v1/portfolio/earn-asset-transfer](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin) - transferLdusdtForPortfolioMargin - [TransferLdusdtForPortfolioMarginExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/TransferLdusdtForPortfolioMarginExample.java#L48)
+[POST /sapi/v1/portfolio/earn-asset-transfer](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin) - transferLdusdtRwusdForPortfolioMargin - [TransferLdusdtRwusdForPortfolioMarginExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/TransferLdusdtRwusdForPortfolioMarginExample.java#L48)
 
 ## MarketData
 

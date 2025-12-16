@@ -23,7 +23,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -42,7 +41,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
-    private Long orderId;
+    private String orderId;
 
     public static final String SERIALIZED_NAME_ORIG_CLIENT_ORDER_ID = "origClientOrderId";
 
@@ -117,13 +116,13 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
-    private Double quantity;
+    private String quantity;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
-    private Double price;
+    private String price;
 
     /** Gets or Sets priceMatch */
     @JsonAdapter(PriceMatchEnum.Adapter.class)
@@ -200,11 +199,11 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private String recvWindow;
 
     public BatchOrdersInner() {}
 
-    public BatchOrdersInner orderId(@jakarta.annotation.Nullable Long orderId) {
+    public BatchOrdersInner orderId(@jakarta.annotation.Nullable String orderId) {
         this.orderId = orderId;
         return this;
     }
@@ -215,11 +214,11 @@ public class BatchOrdersInner {
      * @return orderId
      */
     @jakarta.annotation.Nullable
-    public Long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
+    public void setOrderId(@jakarta.annotation.Nullable String orderId) {
         this.orderId = orderId;
     }
 
@@ -281,7 +280,7 @@ public class BatchOrdersInner {
         this.side = side;
     }
 
-    public BatchOrdersInner quantity(@jakarta.annotation.Nullable Double quantity) {
+    public BatchOrdersInner quantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -292,16 +291,15 @@ public class BatchOrdersInner {
      * @return quantity
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
+    public void setQuantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
     }
 
-    public BatchOrdersInner price(@jakarta.annotation.Nullable Double price) {
+    public BatchOrdersInner price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
@@ -312,12 +310,11 @@ public class BatchOrdersInner {
      * @return price
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(@jakarta.annotation.Nullable Double price) {
+    public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
     }
 
@@ -340,7 +337,7 @@ public class BatchOrdersInner {
         this.priceMatch = priceMatch;
     }
 
-    public BatchOrdersInner recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public BatchOrdersInner recvWindow(@jakarta.annotation.Nullable String recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -351,11 +348,11 @@ public class BatchOrdersInner {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    public String getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable String recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -496,6 +493,14 @@ public class BatchOrdersInner {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("orderId") != null && !jsonObj.get("orderId").isJsonNull())
+                && !jsonObj.get("orderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `orderId` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("orderId").toString()));
+        }
         if ((jsonObj.get("origClientOrderId") != null
                         && !jsonObj.get("origClientOrderId").isJsonNull())
                 && !jsonObj.get("origClientOrderId").isJsonPrimitive()) {
@@ -525,6 +530,22 @@ public class BatchOrdersInner {
         if (jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull()) {
             SideEnum.validateJsonElement(jsonObj.get("side"));
         }
+        if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
+                && !jsonObj.get("quantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quantity").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
+        }
         if ((jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull())
                 && !jsonObj.get("priceMatch").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -536,6 +557,14 @@ public class BatchOrdersInner {
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatchEnum.validateJsonElement(jsonObj.get("priceMatch"));
+        }
+        if ((jsonObj.get("recvWindow") != null && !jsonObj.get("recvWindow").isJsonNull())
+                && !jsonObj.get("recvWindow").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `recvWindow` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("recvWindow").toString()));
         }
     }
 

@@ -223,12 +223,6 @@ public class JSON {
                         .GetSummaryOfMarginAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
-                        .KeepaliveIsolatedMarginUserDataStreamRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.rest.model
-                        .KeepaliveMarginUserDataStreamRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.rest.model
                         .KeepaliveUserDataStreamRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
@@ -475,15 +469,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .SmallLiabilityExchangeRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.rest.model
-                        .StartIsolatedMarginUserDataStreamRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.rest.model
-                        .StartIsolatedMarginUserDataStreamResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.rest.model
-                        .StartMarginUserDataStreamResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .StartUserDataStreamResponse.CustomTypeAdapterFactory());

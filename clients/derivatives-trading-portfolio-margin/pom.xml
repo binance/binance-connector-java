@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>binance-derivatives-trading-portfolio-margin</artifactId>
     <name>derivatives-trading-portfolio-margin</name>
-    <version>3.0.1</version>
+    <version>4.0.0</version>
     <packaging>jar</packaging>
 
     <parent>

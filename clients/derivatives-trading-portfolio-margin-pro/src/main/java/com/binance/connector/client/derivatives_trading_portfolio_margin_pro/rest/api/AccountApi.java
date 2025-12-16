@@ -33,19 +33,15 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProSpanAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetTransferableEarnAssetBalanceForPortfolioMarginResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanAmountResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -69,7 +65,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin-pro/4.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin-pro/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1393,166 +1389,6 @@ public class AccountApi {
     }
 
     /**
-     * Build call for mintBfusdForPortfolioMargin
-     *
-     * @param mintBfusdForPortfolioMarginRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Mint BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Mint-BFUSD-Portfolio-Margin">Mint
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    private okhttp3.Call mintBfusdForPortfolioMarginCall(
-            MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/portfolio/mint";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (mintBfusdForPortfolioMarginRequest.getFromAsset() != null) {
-            localVarFormParams.put("fromAsset", mintBfusdForPortfolioMarginRequest.getFromAsset());
-        }
-
-        if (mintBfusdForPortfolioMarginRequest.getTargetAsset() != null) {
-            localVarFormParams.put(
-                    "targetAsset", mintBfusdForPortfolioMarginRequest.getTargetAsset());
-        }
-
-        if (mintBfusdForPortfolioMarginRequest.getAmount() != null) {
-            localVarFormParams.put(
-                    "amount",
-                    DecimalFormatter.getFormatter()
-                            .format(mintBfusdForPortfolioMarginRequest.getAmount()));
-        }
-
-        if (mintBfusdForPortfolioMarginRequest.getRecvWindow() != null) {
-            localVarFormParams.put(
-                    "recvWindow", mintBfusdForPortfolioMarginRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call mintBfusdForPortfolioMarginValidateBeforeCall(
-            MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {mintBfusdForPortfolioMarginRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "mintBfusdForPortfolioMargin",
-                                    MintBfusdForPortfolioMarginRequest.class);
-            Set<ConstraintViolation<AccountApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return mintBfusdForPortfolioMarginCall(mintBfusdForPortfolioMarginRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Mint BFUSD for Portfolio Margin(TRADE) Mint BFUSD for all types of Portfolio Margin account
-     * Weight: 1500
-     *
-     * @param mintBfusdForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;MintBfusdForPortfolioMarginResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Mint BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Mint-BFUSD-Portfolio-Margin">Mint
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    public ApiResponse<MintBfusdForPortfolioMarginResponse> mintBfusdForPortfolioMargin(
-            @Valid @NotNull MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                mintBfusdForPortfolioMarginValidateBeforeCall(mintBfusdForPortfolioMarginRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<MintBfusdForPortfolioMarginResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for portfolioMarginProBankruptcyLoanRepay
      *
      * @param portfolioMarginProBankruptcyLoanRepayRequest (required)
@@ -2202,169 +2038,6 @@ public class AccountApi {
     }
 
     /**
-     * Build call for redeemBfusdForPortfolioMargin
-     *
-     * @param redeemBfusdForPortfolioMarginRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Redeem BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Redeem-BFUSD-Portfolio-Margin">Redeem
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    private okhttp3.Call redeemBfusdForPortfolioMarginCall(
-            RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/portfolio/redeem";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (redeemBfusdForPortfolioMarginRequest.getFromAsset() != null) {
-            localVarFormParams.put(
-                    "fromAsset", redeemBfusdForPortfolioMarginRequest.getFromAsset());
-        }
-
-        if (redeemBfusdForPortfolioMarginRequest.getTargetAsset() != null) {
-            localVarFormParams.put(
-                    "targetAsset", redeemBfusdForPortfolioMarginRequest.getTargetAsset());
-        }
-
-        if (redeemBfusdForPortfolioMarginRequest.getAmount() != null) {
-            localVarFormParams.put(
-                    "amount",
-                    DecimalFormatter.getFormatter()
-                            .format(redeemBfusdForPortfolioMarginRequest.getAmount()));
-        }
-
-        if (redeemBfusdForPortfolioMarginRequest.getRecvWindow() != null) {
-            localVarFormParams.put(
-                    "recvWindow", redeemBfusdForPortfolioMarginRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call redeemBfusdForPortfolioMarginValidateBeforeCall(
-            RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {redeemBfusdForPortfolioMarginRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "redeemBfusdForPortfolioMargin",
-                                    RedeemBfusdForPortfolioMarginRequest.class);
-            Set<ConstraintViolation<AccountApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return redeemBfusdForPortfolioMarginCall(redeemBfusdForPortfolioMarginRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Redeem BFUSD for Portfolio Margin(TRADE) Redeem BFUSD for all types of Portfolio Margin
-     * account Weight: 1500
-     *
-     * @param redeemBfusdForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;RedeemBfusdForPortfolioMarginResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Redeem BFUSD for Portfolio Margin </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Redeem-BFUSD-Portfolio-Margin">Redeem
-     *     BFUSD for Portfolio Margin(TRADE) Documentation</a>
-     */
-    public ApiResponse<RedeemBfusdForPortfolioMarginResponse> redeemBfusdForPortfolioMargin(
-            @Valid @NotNull
-                    RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                redeemBfusdForPortfolioMarginValidateBeforeCall(
-                        redeemBfusdForPortfolioMarginRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<RedeemBfusdForPortfolioMarginResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for repayFuturesNegativeBalance
      *
      * @param repayFuturesNegativeBalanceRequest (required)
@@ -2512,24 +2185,25 @@ public class AccountApi {
     }
 
     /**
-     * Build call for transferLdusdtForPortfolioMargin
+     * Build call for transferLdusdtRwusdForPortfolioMargin
      *
-     * @param transferLdusdtForPortfolioMarginRequest (required)
+     * @param transferLdusdtRwusdForPortfolioMarginRequest (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Transfer LDUSDT for Portfolio Margin </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Transfer LDUSDT/RWUSD for Portfolio Margin </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin">Transfer
-     *     LDUSDT for Portfolio Margin(TRADE) Documentation</a>
+     *     LDUSDT/RWUSD for Portfolio Margin(TRADE) Documentation</a>
      */
-    private okhttp3.Call transferLdusdtForPortfolioMarginCall(
-            TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest)
+    private okhttp3.Call transferLdusdtRwusdForPortfolioMarginCall(
+            TransferLdusdtRwusdForPortfolioMarginRequest
+                    transferLdusdtRwusdForPortfolioMarginRequest)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -2555,25 +2229,26 @@ public class AccountApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (transferLdusdtForPortfolioMarginRequest.getAsset() != null) {
-            localVarFormParams.put("asset", transferLdusdtForPortfolioMarginRequest.getAsset());
-        }
-
-        if (transferLdusdtForPortfolioMarginRequest.getTransferType() != null) {
+        if (transferLdusdtRwusdForPortfolioMarginRequest.getAsset() != null) {
             localVarFormParams.put(
-                    "transferType", transferLdusdtForPortfolioMarginRequest.getTransferType());
+                    "asset", transferLdusdtRwusdForPortfolioMarginRequest.getAsset());
         }
 
-        if (transferLdusdtForPortfolioMarginRequest.getAmount() != null) {
+        if (transferLdusdtRwusdForPortfolioMarginRequest.getTransferType() != null) {
+            localVarFormParams.put(
+                    "transferType", transferLdusdtRwusdForPortfolioMarginRequest.getTransferType());
+        }
+
+        if (transferLdusdtRwusdForPortfolioMarginRequest.getAmount() != null) {
             localVarFormParams.put(
                     "amount",
                     DecimalFormatter.getFormatter()
-                            .format(transferLdusdtForPortfolioMarginRequest.getAmount()));
+                            .format(transferLdusdtRwusdForPortfolioMarginRequest.getAmount()));
         }
 
-        if (transferLdusdtForPortfolioMarginRequest.getRecvWindow() != null) {
+        if (transferLdusdtRwusdForPortfolioMarginRequest.getRecvWindow() != null) {
             localVarFormParams.put(
-                    "recvWindow", transferLdusdtForPortfolioMarginRequest.getRecvWindow());
+                    "recvWindow", transferLdusdtRwusdForPortfolioMarginRequest.getRecvWindow());
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2607,8 +2282,9 @@ public class AccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call transferLdusdtForPortfolioMarginValidateBeforeCall(
-            TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest)
+    private okhttp3.Call transferLdusdtRwusdForPortfolioMarginValidateBeforeCall(
+            TransferLdusdtRwusdForPortfolioMarginRequest
+                    transferLdusdtRwusdForPortfolioMarginRequest)
             throws ApiException {
         try {
             Validator validator =
@@ -2619,18 +2295,18 @@ public class AccountApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {transferLdusdtForPortfolioMarginRequest};
+            Object[] parameterValues = {transferLdusdtRwusdForPortfolioMarginRequest};
             Method method =
                     this.getClass()
                             .getMethod(
-                                    "transferLdusdtForPortfolioMargin",
-                                    TransferLdusdtForPortfolioMarginRequest.class);
+                                    "transferLdusdtRwusdForPortfolioMargin",
+                                    TransferLdusdtRwusdForPortfolioMarginRequest.class);
             Set<ConstraintViolation<AccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return transferLdusdtForPortfolioMarginCall(
-                        transferLdusdtForPortfolioMarginRequest);
+                return transferLdusdtRwusdForPortfolioMarginCall(
+                        transferLdusdtRwusdForPortfolioMarginRequest);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -2644,33 +2320,35 @@ public class AccountApi {
     }
 
     /**
-     * Transfer LDUSDT for Portfolio Margin(TRADE) Transfer LDUSDT as collateral for all types of
-     * Portfolio Margin account Weight: 1500
+     * Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) Transfer LDUSDT/RWUSD as collateral for all
+     * types of Portfolio Margin account Weight: 1500
      *
-     * @param transferLdusdtForPortfolioMarginRequest (required)
-     * @return ApiResponse&lt;TransferLdusdtForPortfolioMarginResponse&gt;
+     * @param transferLdusdtRwusdForPortfolioMarginRequest (required)
+     * @return ApiResponse&lt;TransferLdusdtRwusdForPortfolioMarginResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Transfer LDUSDT for Portfolio Margin </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Transfer LDUSDT/RWUSD for Portfolio Margin </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin">Transfer
-     *     LDUSDT for Portfolio Margin(TRADE) Documentation</a>
+     *     LDUSDT/RWUSD for Portfolio Margin(TRADE) Documentation</a>
      */
-    public ApiResponse<TransferLdusdtForPortfolioMarginResponse> transferLdusdtForPortfolioMargin(
-            @Valid @NotNull
-                    TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest)
-            throws ApiException {
+    public ApiResponse<TransferLdusdtRwusdForPortfolioMarginResponse>
+            transferLdusdtRwusdForPortfolioMargin(
+                    @Valid @NotNull
+                            TransferLdusdtRwusdForPortfolioMarginRequest
+                                    transferLdusdtRwusdForPortfolioMarginRequest)
+                    throws ApiException {
         okhttp3.Call localVarCall =
-                transferLdusdtForPortfolioMarginValidateBeforeCall(
-                        transferLdusdtForPortfolioMarginRequest);
+                transferLdusdtRwusdForPortfolioMarginValidateBeforeCall(
+                        transferLdusdtRwusdForPortfolioMarginRequest);
         java.lang.reflect.Type localVarReturnType =
-                new TypeToken<TransferLdusdtForPortfolioMarginResponse>() {}.getType();
+                new TypeToken<TransferLdusdtRwusdForPortfolioMarginResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

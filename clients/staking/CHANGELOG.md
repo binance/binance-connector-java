@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.0 - 2025-12-16
+
+### Changed (1)
+
+- Modified response for `getCurrentEthStakingQuota()` (`GET /sapi/v1/eth-staking/eth/quota`):
+  - property `calculating` added
+  - property `minStakeAmount` added
+  - property `redeemPeriod` added
+  - property `stakeable` added
+  - property `commissionFee` added
+  - property `redeemable` added
+  - property `minRedeemAmount` added
+
 ## 3.0.0 - 2025-09-22
 
 ### Added (3)
@@ -9,6 +22,7 @@
 - `setSoftStaking()` (`GET /sapi/v1/soft-staking/set`)
 
 ## 2.1.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

@@ -18,6 +18,8 @@
 
 [GET /eapi/v1/exerciseHistory](https://developers.binance.com/docs/derivatives/option/market-data/Historical-Exercise-Records) - historicalExerciseRecords - [HistoricalExerciseRecordsExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/HistoricalExerciseRecordsExample.java#L48)
 
+[GET /eapi/v1/index](https://developers.binance.com/docs/derivatives/option/market-data/Index-Price-Ticker) - indexPriceTicker - [IndexPriceTickerExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/IndexPriceTickerExample.java#L47)
+
 [GET /eapi/v1/klines](https://developers.binance.com/docs/derivatives/option/market-data/Kline-Candlestick-Data) - klineCandlestickData - [KlineCandlestickDataExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/KlineCandlestickDataExample.java#L48)
 
 [GET /eapi/v1/historicalTrades](https://developers.binance.com/docs/derivatives/option/market-data/Old-Trades-Lookup) - oldTradesLookup - [OldTradesLookupExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/OldTradesLookupExample.java#L47)
@@ -31,8 +33,6 @@
 [GET /eapi/v1/blockTrades](https://developers.binance.com/docs/derivatives/option/market-data/Recent-Block-Trade-List) - recentBlockTradesList - [RecentBlockTradesListExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/RecentBlockTradesListExample.java#L47)
 
 [GET /eapi/v1/trades](https://developers.binance.com/docs/derivatives/option/market-data/Recent-Trades-List) - recentTradesList - [RecentTradesListExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/RecentTradesListExample.java#L47)
-
-[GET /eapi/v1/index](https://developers.binance.com/docs/derivatives/option/market-data/Symbol-Price-Ticker) - symbolPriceTicker - [SymbolPriceTickerExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/SymbolPriceTickerExample.java#L47)
 
 [GET /eapi/v1/ping](https://developers.binance.com/docs/derivatives/option/market-data/Test-Connectivity) - testConnectivity - [TestConnectivityExample.java:45](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/marketdata/TestConnectivityExample.java#L45)
 
@@ -76,7 +76,7 @@
 
 [DELETE /eapi/v1/allOpenOrders](https://developers.binance.com/docs/derivatives/option/trade/Cancel-all-Option-orders-on-specific-symbol) - cancelAllOptionOrdersOnSpecificSymbol - [CancelAllOptionOrdersOnSpecificSymbolExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/CancelAllOptionOrdersOnSpecificSymbolExample.java#L47)
 
-[DELETE /eapi/v1/batchOrders](https://developers.binance.com/docs/derivatives/option/trade/Cancel-Multiple-Option-Orders) - cancelMultipleOptionOrders - [CancelMultipleOptionOrdersExample.java:50](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/CancelMultipleOptionOrdersExample.java#L50)
+[DELETE /eapi/v1/batchOrders](https://developers.binance.com/docs/derivatives/option/trade/Cancel-Multiple-Option-Orders) - cancelMultipleOptionOrders - [CancelMultipleOptionOrdersExample.java:51](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/CancelMultipleOptionOrdersExample.java#L51)
 
 [DELETE /eapi/v1/order](https://developers.binance.com/docs/derivatives/option/trade/Cancel-Option-Order) - cancelOptionOrder - [CancelOptionOrderExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/CancelOptionOrderExample.java#L48)
 

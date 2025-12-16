@@ -10,7 +10,7 @@
 |**eLowerCase** | **String** |  |  [optional] |
 |**E** | **Long** |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
-|**tLowerCase** | **Long** |  |  [optional] |
+|**tLowerCase** | **String** |  |  [optional] |
 |**pLowerCase** | **String** |  |  [optional] |
 |**qLowerCase** | **String** |  |  [optional] |
 |**bLowerCase** | **Long** |  |  [optional] |
