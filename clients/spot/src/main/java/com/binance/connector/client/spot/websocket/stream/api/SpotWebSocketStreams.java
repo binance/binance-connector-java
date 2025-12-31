@@ -13,7 +13,6 @@ import com.binance.connector.client.spot.websocket.stream.model.AggTradeResponse
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AllMiniTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AllTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceResponse;
 import com.binance.connector.client.spot.websocket.stream.model.BookTickerRequest;
@@ -39,7 +38,7 @@ import java.util.UUID;
 public class SpotWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -78,10 +77,6 @@ public class SpotWebSocketStreams {
 
     public StreamBlockingQueueWrapper<AllMiniTickerResponse> allMiniTicker() throws ApiException {
         return webSocketStreamsApi.allMiniTicker();
-    }
-
-    public StreamBlockingQueueWrapper<AllTickerResponse> allTicker() throws ApiException {
-        return webSocketStreamsApi.allTicker();
     }
 
     public StreamBlockingQueueWrapper<AvgPriceResponse> avgPrice(AvgPriceRequest avgPriceRequest)

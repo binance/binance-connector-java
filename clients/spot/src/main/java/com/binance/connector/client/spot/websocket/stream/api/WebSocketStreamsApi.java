@@ -23,7 +23,6 @@ import com.binance.connector.client.spot.websocket.stream.model.AggTradeResponse
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AllMiniTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AllTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceResponse;
 import com.binance.connector.client.spot.websocket.stream.model.BookTickerRequest;
@@ -277,56 +276,6 @@ public class WebSocketStreamsApi {
 
     @SuppressWarnings("rawtypes")
     private void allMiniTickerValidateBeforeCall() throws ApiException {}
-
-    /**
-     * WebSocket All Market Tickers Stream 24hr rolling window ticker statistics for all symbols
-     * that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling
-     * window for the previous 24hrs. Note that only tickers that have changed will be present in
-     * the array.
-     *
-     * @return AllTickerResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> All Market Tickers Stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-tickers-stream">WebSocket
-     *     All Market Tickers Stream Documentation</a>
-     */
-    public StreamBlockingQueueWrapper<AllTickerResponse> allTicker() throws ApiException {
-        StreamBlockingQueue<String> queue = allTickerRaw();
-
-        TypeToken<AllTickerResponse> typeToken = new TypeToken<AllTickerResponse>() {};
-
-        return new StreamBlockingQueueWrapper<>(queue, typeToken);
-    }
-
-    public StreamBlockingQueue<String> allTickerRaw() throws ApiException {
-        allTickerValidateBeforeCall();
-
-        String methodName = "/!ticker@arr".substring(1);
-        if ("@".equals(methodName.substring(methodName.length() - 1))) {
-            methodName = methodName.substring(0, methodName.length() - 1);
-        }
-
-        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
-                new RequestWrapperDTO.Builder<Set<String>, Object>()
-                        .id(getRequestID())
-                        .method("SUBSCRIBE")
-                        .params(Collections.singleton(methodName))
-                        .build();
-        Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
-        return queuesMap.get(methodName);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void allTickerValidateBeforeCall() throws ApiException {}
 
     /**
      * WebSocket Average Price Average price streams push changes in the average price over a fixed

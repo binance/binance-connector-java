@@ -52,6 +52,10 @@ import com.binance.connector.client.spot.websocket.api.model.OrderListCancelRequ
 import com.binance.connector.client.spot.websocket.api.model.OrderListCancelResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtocoRequest;
@@ -96,11 +100,6 @@ import com.binance.connector.client.spot.websocket.api.model.TradesRecentRespons
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
@@ -112,7 +111,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -342,6 +341,16 @@ public class SpotWebSocketApi {
         return tradeApi.orderListPlaceOco(orderListPlaceOcoRequest);
     }
 
+    public CompletableFuture<OrderListPlaceOpoResponse> orderListPlaceOpo(
+            OrderListPlaceOpoRequest orderListPlaceOpoRequest) throws ApiException {
+        return tradeApi.orderListPlaceOpo(orderListPlaceOpoRequest);
+    }
+
+    public CompletableFuture<OrderListPlaceOpocoResponse> orderListPlaceOpoco(
+            OrderListPlaceOpocoRequest orderListPlaceOpocoRequest) throws ApiException {
+        return tradeApi.orderListPlaceOpoco(orderListPlaceOpocoRequest);
+    }
+
     public CompletableFuture<OrderListPlaceOtoResponse> orderListPlaceOto(
             OrderListPlaceOtoRequest orderListPlaceOtoRequest) throws ApiException {
         return tradeApi.orderListPlaceOto(orderListPlaceOtoRequest);
@@ -375,21 +384,6 @@ public class SpotWebSocketApi {
     public CompletableFuture<SessionSubscriptionsResponse> sessionSubscriptions()
             throws ApiException {
         return userDataStreamApi.sessionSubscriptions();
-    }
-
-    public CompletableFuture<UserDataStreamPingResponse> userDataStreamPing(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        return userDataStreamApi.userDataStreamPing(userDataStreamPingRequest);
-    }
-
-    public CompletableFuture<UserDataStreamStartResponse> userDataStreamStart()
-            throws ApiException {
-        return userDataStreamApi.userDataStreamStart();
-    }
-
-    public CompletableFuture<UserDataStreamStopResponse> userDataStreamStop(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        return userDataStreamApi.userDataStreamStop(userDataStreamStopRequest);
     }
 
     public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>

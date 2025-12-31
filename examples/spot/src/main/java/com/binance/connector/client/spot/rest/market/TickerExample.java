@@ -18,6 +18,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.TickerResponse;
 import com.binance.connector.client.spot.rest.model.TickerType;
@@ -53,7 +54,9 @@ public class TickerExample {
         Symbols symbols = null;
         WindowSize windowSize = WindowSize.WINDOW_SIZE_1m;
         TickerType type = TickerType.FULL;
-        ApiResponse<TickerResponse> response = getApi().ticker(symbol, symbols, windowSize, type);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<TickerResponse> response =
+                getApi().ticker(symbol, symbols, windowSize, type, symbolStatus);
         System.out.println(response.getData());
     }
 }

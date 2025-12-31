@@ -18,6 +18,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.TickerTradingDayResponse;
 import com.binance.connector.client.spot.rest.model.TickerType;
@@ -52,8 +53,9 @@ public class TickerTradingDayExample {
         Symbols symbols = null;
         String timeZone = "";
         TickerType type = TickerType.FULL;
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<TickerTradingDayResponse> response =
-                getApi().tickerTradingDay(symbol, symbols, timeZone, type);
+                getApi().tickerTradingDay(symbol, symbols, timeZone, type, symbolStatus);
         System.out.println(response.getData());
     }
 }

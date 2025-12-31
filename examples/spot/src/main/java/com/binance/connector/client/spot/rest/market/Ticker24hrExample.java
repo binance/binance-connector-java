@@ -18,6 +18,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.Ticker24hrResponse;
 import com.binance.connector.client.spot.rest.model.TickerType;
@@ -59,7 +60,9 @@ public class Ticker24hrExample {
         String symbol = "BNBUSDT";
         Symbols symbols = null;
         TickerType type = TickerType.FULL;
-        ApiResponse<Ticker24hrResponse> response = getApi().ticker24hr(symbol, symbols, type);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<Ticker24hrResponse> response =
+                getApi().ticker24hr(symbol, symbols, type, symbolStatus);
         System.out.println(response.getData());
     }
 }

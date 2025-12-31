@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**symbols** | **Symbols** |  |  [optional] |
+|**symbolStatus** | **SymbolStatus** |  |  [optional] |
 
 
 
