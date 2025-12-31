@@ -19,6 +19,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.DepthResponse;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 
 /** API examples for MarketApi */
 public class DepthExample {
@@ -47,7 +48,8 @@ public class DepthExample {
     public void depthExample() throws ApiException {
         String symbol = "BNBUSDT";
         Integer limit = 500;
-        ApiResponse<DepthResponse> response = getApi().depth(symbol, limit);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<DepthResponse> response = getApi().depth(symbol, limit, symbolStatus);
         System.out.println(response.getData());
     }
 }

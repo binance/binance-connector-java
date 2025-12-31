@@ -24,7 +24,6 @@ import com.binance.connector.client.spot.websocket.stream.model.AggTradeResponse
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AllMiniTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AllTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.stream.model.AvgPriceResponse;
 import com.binance.connector.client.spot.websocket.stream.model.BookTickerRequest;
@@ -200,37 +199,6 @@ public class WebSocketStreamsApiTest {
         URL resource =
                 WebSocketStreamsApiTest.class.getResource(
                         "/expected/stream/WebSocketStreamsApi/!miniTicker@arr-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * WebSocket All Market Tickers Stream
-     *
-     * <p>24hr rolling window ticker statistics for all symbols that changed in an array. These are
-     * NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs. Note
-     * that only tickers that have changed will be present in the array.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void allTickerTest() throws ApiException, URISyntaxException, IOException {
-        StreamBlockingQueueWrapper<AllTickerResponse> response = api.allTicker();
-        ArgumentCaptor<RequestWrapperDTO<Set<String>, AllTickerResponse>> callArgumentCaptor =
-                ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<Set<String>, AllTickerResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        Set<String> params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                WebSocketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebSocketStreamsApi/!ticker@arr-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
 
         JSONAssert.assertEquals(expectedJson, sentPayload, true);

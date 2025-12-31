@@ -122,6 +122,12 @@ public class ExchangeInfoResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private Boolean otoAllowed;
 
+    public static final String SERIALIZED_NAME_OPO_ALLOWED = "opoAllowed";
+
+    @SerializedName(SERIALIZED_NAME_OPO_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean opoAllowed;
+
     public static final String SERIALIZED_NAME_QUOTE_ORDER_QTY_MARKET_ALLOWED =
             "quoteOrderQtyMarketAllowed";
 
@@ -467,6 +473,26 @@ public class ExchangeInfoResponseSymbolsInner {
         this.otoAllowed = otoAllowed;
     }
 
+    public ExchangeInfoResponseSymbolsInner opoAllowed(
+            @jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+        return this;
+    }
+
+    /**
+     * Get opoAllowed
+     *
+     * @return opoAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getOpoAllowed() {
+        return opoAllowed;
+    }
+
+    public void setOpoAllowed(@jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+    }
+
     public ExchangeInfoResponseSymbolsInner quoteOrderQtyMarketAllowed(
             @jakarta.annotation.Nullable Boolean quoteOrderQtyMarketAllowed) {
         this.quoteOrderQtyMarketAllowed = quoteOrderQtyMarketAllowed;
@@ -780,6 +806,7 @@ public class ExchangeInfoResponseSymbolsInner {
                         this.icebergAllowed, exchangeInfoResponseSymbolsInner.icebergAllowed)
                 && Objects.equals(this.ocoAllowed, exchangeInfoResponseSymbolsInner.ocoAllowed)
                 && Objects.equals(this.otoAllowed, exchangeInfoResponseSymbolsInner.otoAllowed)
+                && Objects.equals(this.opoAllowed, exchangeInfoResponseSymbolsInner.opoAllowed)
                 && Objects.equals(
                         this.quoteOrderQtyMarketAllowed,
                         exchangeInfoResponseSymbolsInner.quoteOrderQtyMarketAllowed)
@@ -826,6 +853,7 @@ public class ExchangeInfoResponseSymbolsInner {
                 icebergAllowed,
                 ocoAllowed,
                 otoAllowed,
+                opoAllowed,
                 quoteOrderQtyMarketAllowed,
                 allowTrailingStop,
                 cancelReplaceAllowed,
@@ -865,6 +893,7 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("		icebergAllowed: ").append(toIndentedString(icebergAllowed)).append("\n");
         sb.append("		ocoAllowed: ").append(toIndentedString(ocoAllowed)).append("\n");
         sb.append("		otoAllowed: ").append(toIndentedString(otoAllowed)).append("\n");
+        sb.append("		opoAllowed: ").append(toIndentedString(opoAllowed)).append("\n");
         sb.append("		quoteOrderQtyMarketAllowed: ")
                 .append(toIndentedString(quoteOrderQtyMarketAllowed))
                 .append("\n");
@@ -961,6 +990,10 @@ public class ExchangeInfoResponseSymbolsInner {
         String otoAllowedValueAsString = "";
         otoAllowedValueAsString = otoAllowedValue.toString();
         sb.append("otoAllowed=").append(urlEncode(otoAllowedValueAsString)).append("");
+        Object opoAllowedValue = getOpoAllowed();
+        String opoAllowedValueAsString = "";
+        opoAllowedValueAsString = opoAllowedValue.toString();
+        sb.append("opoAllowed=").append(urlEncode(opoAllowedValueAsString)).append("");
         Object quoteOrderQtyMarketAllowedValue = getQuoteOrderQtyMarketAllowed();
         String quoteOrderQtyMarketAllowedValueAsString = "";
         quoteOrderQtyMarketAllowedValueAsString = quoteOrderQtyMarketAllowedValue.toString();
@@ -1079,6 +1112,7 @@ public class ExchangeInfoResponseSymbolsInner {
         openapiFields.add("icebergAllowed");
         openapiFields.add("ocoAllowed");
         openapiFields.add("otoAllowed");
+        openapiFields.add("opoAllowed");
         openapiFields.add("quoteOrderQtyMarketAllowed");
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");

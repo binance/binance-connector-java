@@ -6,8 +6,6 @@
 
 [!miniTicker@arr](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-mini-tickers-stream) - allMiniTicker - [AllMiniTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AllMiniTickerExample.java#L44)
 
-[!ticker@arr](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-tickers-stream) - allTicker - [AllTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AllTickerExample.java#L44)
-
 [<symbol>@avgPrice](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#average-price) - avgPrice - [AvgPriceExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AvgPriceExample.java#L43)
 
 [<symbol>@bookTicker](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-book-ticker-streams) - bookTicker - [BookTickerExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/BookTickerExample.java#L45)

@@ -10,6 +10,7 @@
 |**symbol** | **String** |  |  [optional] |
 |**symbols** | **Symbols** |  |  [optional] |
 |**tickerType** | **TickerType** |  |  [optional] |
+|**symbolStatus** | **SymbolStatus** |  |  [optional] |
 
 
 

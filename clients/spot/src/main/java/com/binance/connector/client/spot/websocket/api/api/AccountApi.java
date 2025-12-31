@@ -438,7 +438,7 @@ public class AccountApi {
 
     /**
      * WebSocket Query Relevant Filters Retrieves the list of [filters](filters.md) relevant to an
-     * account on a given symbol. This is the only endpoint that shows if an account has
+     * account on a given symbol. This is the only method that shows if an account has
      * &#x60;MAX_ASSET&#x60; filters applied to it. Weight: 40
      *
      * @param myFiltersRequest (required)

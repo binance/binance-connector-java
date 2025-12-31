@@ -44,8 +44,8 @@ public class MyFiltersExample {
      * WebSocket Query Relevant Filters
      *
      * <p>Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This
-     * is the only endpoint that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to
-     * it. Weight: 40
+     * is the only method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it.
+     * Weight: 40
      */
     public void myFiltersExampleAsync() {
         MyFiltersRequest myFiltersRequest = new MyFiltersRequest();
@@ -65,8 +65,8 @@ public class MyFiltersExample {
      * WebSocket Query Relevant Filters
      *
      * <p>Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This
-     * is the only endpoint that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to
-     * it. Weight: 40
+     * is the only method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it.
+     * Weight: 40
      */
     public void myFiltersExampleSync() {
         MyFiltersRequest myFiltersRequest = new MyFiltersRequest();

@@ -52,6 +52,12 @@ public class TickerPriceRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Symbols symbols;
 
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
+
     public TickerPriceRequest() {}
 
     public TickerPriceRequest symbol(@jakarta.annotation.Nullable String symbol) {
@@ -93,6 +99,26 @@ public class TickerPriceRequest extends BaseDTO {
         this.symbols = symbols;
     }
 
+    public TickerPriceRequest symbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,12 +129,13 @@ public class TickerPriceRequest extends BaseDTO {
         }
         TickerPriceRequest tickerPriceRequest = (TickerPriceRequest) o;
         return Objects.equals(this.symbol, tickerPriceRequest.symbol)
-                && Objects.equals(this.symbols, tickerPriceRequest.symbols);
+                && Objects.equals(this.symbols, tickerPriceRequest.symbols)
+                && Objects.equals(this.symbolStatus, tickerPriceRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, symbols);
+        return Objects.hash(symbol, symbols, symbolStatus);
     }
 
     @Override
@@ -117,6 +144,7 @@ public class TickerPriceRequest extends BaseDTO {
         sb.append("class TickerPriceRequest {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -134,6 +162,11 @@ public class TickerPriceRequest extends BaseDTO {
         if (symbolsValue != null) {
             String symbolsValueAsString = JSON.getGson().toJson(symbolsValue);
             valMap.put("symbols", symbolsValueAsString);
+        }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -153,6 +186,10 @@ public class TickerPriceRequest extends BaseDTO {
         Object symbolsValue = getSymbols();
         if (symbolsValue != null) {
             valMap.put("symbols", symbolsValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -182,6 +219,7 @@ public class TickerPriceRequest extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
         openapiFields.add("symbols");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -224,6 +262,10 @@ public class TickerPriceRequest extends BaseDTO {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 

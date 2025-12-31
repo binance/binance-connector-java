@@ -27,6 +27,7 @@ import com.binance.connector.client.spot.rest.model.GetTradesResponse;
 import com.binance.connector.client.spot.rest.model.HistoricalTradesResponse;
 import com.binance.connector.client.spot.rest.model.Interval;
 import com.binance.connector.client.spot.rest.model.KlinesResponse;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.Ticker24hrResponse;
 import com.binance.connector.client.spot.rest.model.TickerBookTickerResponse;
@@ -58,7 +59,7 @@ public class MarketApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/7.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -399,6 +400,7 @@ public class MarketApi {
      *
      * @param symbol (required)
      * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -412,7 +414,8 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book">Order
      *     book Documentation</a>
      */
-    private okhttp3.Call depthCall(String symbol, Integer limit) throws ApiException {
+    private okhttp3.Call depthCall(String symbol, Integer limit, SymbolStatus symbolStatus)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -445,6 +448,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -475,7 +483,8 @@ public class MarketApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call depthValidateBeforeCall(String symbol, Integer limit) throws ApiException {
+    private okhttp3.Call depthValidateBeforeCall(
+            String symbol, Integer limit, SymbolStatus symbolStatus) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -485,13 +494,15 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, limit};
-            Method method = this.getClass().getMethod("depth", String.class, Integer.class);
+            Object[] parameterValues = {symbol, limit, symbolStatus};
+            Method method =
+                    this.getClass()
+                            .getMethod("depth", String.class, Integer.class, SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return depthCall(symbol, limit);
+                return depthCall(symbol, limit, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -510,6 +521,7 @@ public class MarketApi {
      *
      * @param symbol (required)
      * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;DepthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -524,9 +536,9 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book">Order
      *     book Documentation</a>
      */
-    public ApiResponse<DepthResponse> depth(@NotNull String symbol, Integer limit)
-            throws ApiException {
-        okhttp3.Call localVarCall = depthValidateBeforeCall(symbol, limit);
+    public ApiResponse<DepthResponse> depth(
+            @NotNull String symbol, Integer limit, SymbolStatus symbolStatus) throws ApiException {
+        okhttp3.Call localVarCall = depthValidateBeforeCall(symbol, limit, symbolStatus);
         java.lang.reflect.Type localVarReturnType = new TypeToken<DepthResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1013,6 +1025,7 @@ public class MarketApi {
      * @param symbols List of symbols to query (optional)
      * @param windowSize (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1027,7 +1040,11 @@ public class MarketApi {
      *     window price change statistics Documentation</a>
      */
     private okhttp3.Call tickerCall(
-            String symbol, Symbols symbols, WindowSize windowSize, TickerType type)
+            String symbol,
+            Symbols symbols,
+            WindowSize windowSize,
+            TickerType type,
+            SymbolStatus symbolStatus)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1070,6 +1087,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1101,7 +1123,11 @@ public class MarketApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tickerValidateBeforeCall(
-            String symbol, Symbols symbols, WindowSize windowSize, TickerType type)
+            String symbol,
+            Symbols symbols,
+            WindowSize windowSize,
+            TickerType type,
+            SymbolStatus symbolStatus)
             throws ApiException {
         try {
             Validator validator =
@@ -1112,7 +1138,7 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, symbols, windowSize, type};
+            Object[] parameterValues = {symbol, symbols, windowSize, type, symbolStatus};
             Method method =
                     this.getClass()
                             .getMethod(
@@ -1120,12 +1146,13 @@ public class MarketApi {
                                     String.class,
                                     Symbols.class,
                                     WindowSize.class,
-                                    TickerType.class);
+                                    TickerType.class,
+                                    SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return tickerCall(symbol, symbols, windowSize, type);
+                return tickerCall(symbol, symbols, windowSize, type, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1148,6 +1175,7 @@ public class MarketApi {
      * @param symbols List of symbols to query (optional)
      * @param windowSize (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1163,9 +1191,14 @@ public class MarketApi {
      *     window price change statistics Documentation</a>
      */
     public ApiResponse<TickerResponse> ticker(
-            String symbol, Symbols symbols, WindowSize windowSize, TickerType type)
+            String symbol,
+            Symbols symbols,
+            WindowSize windowSize,
+            TickerType type,
+            SymbolStatus symbolStatus)
             throws ApiException {
-        okhttp3.Call localVarCall = tickerValidateBeforeCall(symbol, symbols, windowSize, type);
+        okhttp3.Call localVarCall =
+                tickerValidateBeforeCall(symbol, symbols, windowSize, type, symbolStatus);
         java.lang.reflect.Type localVarReturnType = new TypeToken<TickerResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1176,6 +1209,7 @@ public class MarketApi {
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1189,7 +1223,8 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics">24hr
      *     ticker price change statistics Documentation</a>
      */
-    private okhttp3.Call ticker24hrCall(String symbol, Symbols symbols, TickerType type)
+    private okhttp3.Call ticker24hrCall(
+            String symbol, Symbols symbols, TickerType type, SymbolStatus symbolStatus)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1228,6 +1263,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1259,7 +1299,8 @@ public class MarketApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call ticker24hrValidateBeforeCall(
-            String symbol, Symbols symbols, TickerType type) throws ApiException {
+            String symbol, Symbols symbols, TickerType type, SymbolStatus symbolStatus)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1269,15 +1310,20 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, symbols, type};
+            Object[] parameterValues = {symbol, symbols, type, symbolStatus};
             Method method =
                     this.getClass()
-                            .getMethod("ticker24hr", String.class, Symbols.class, TickerType.class);
+                            .getMethod(
+                                    "ticker24hr",
+                                    String.class,
+                                    Symbols.class,
+                                    TickerType.class,
+                                    SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return ticker24hrCall(symbol, symbols, type);
+                return ticker24hrCall(symbol, symbols, type, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1307,6 +1353,7 @@ public class MarketApi {
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;Ticker24hrResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1322,8 +1369,10 @@ public class MarketApi {
      *     ticker price change statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrResponse> ticker24hr(
-            String symbol, Symbols symbols, TickerType type) throws ApiException {
-        okhttp3.Call localVarCall = ticker24hrValidateBeforeCall(symbol, symbols, type);
+            String symbol, Symbols symbols, TickerType type, SymbolStatus symbolStatus)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                ticker24hrValidateBeforeCall(symbol, symbols, type, symbolStatus);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<Ticker24hrResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1334,6 +1383,7 @@ public class MarketApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1347,7 +1397,8 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker">Symbol
      *     order book ticker Documentation</a>
      */
-    private okhttp3.Call tickerBookTickerCall(String symbol, Symbols symbols) throws ApiException {
+    private okhttp3.Call tickerBookTickerCall(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1381,6 +1432,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbols", json));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1411,8 +1467,8 @@ public class MarketApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tickerBookTickerValidateBeforeCall(String symbol, Symbols symbols)
-            throws ApiException {
+    private okhttp3.Call tickerBookTickerValidateBeforeCall(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1422,14 +1478,19 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, symbols};
+            Object[] parameterValues = {symbol, symbols, symbolStatus};
             Method method =
-                    this.getClass().getMethod("tickerBookTicker", String.class, Symbols.class);
+                    this.getClass()
+                            .getMethod(
+                                    "tickerBookTicker",
+                                    String.class,
+                                    Symbols.class,
+                                    SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return tickerBookTickerCall(symbol, symbols);
+                return tickerBookTickerCall(symbol, symbols, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1453,6 +1514,7 @@ public class MarketApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerBookTickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1467,9 +1529,10 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker">Symbol
      *     order book ticker Documentation</a>
      */
-    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(String symbol, Symbols symbols)
-            throws ApiException {
-        okhttp3.Call localVarCall = tickerBookTickerValidateBeforeCall(symbol, symbols);
+    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        okhttp3.Call localVarCall =
+                tickerBookTickerValidateBeforeCall(symbol, symbols, symbolStatus);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TickerBookTickerResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1480,6 +1543,7 @@ public class MarketApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1493,7 +1557,8 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker">Symbol
      *     price ticker Documentation</a>
      */
-    private okhttp3.Call tickerPriceCall(String symbol, Symbols symbols) throws ApiException {
+    private okhttp3.Call tickerPriceCall(String symbol, Symbols symbols, SymbolStatus symbolStatus)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1527,6 +1592,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbols", json));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1557,8 +1627,8 @@ public class MarketApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tickerPriceValidateBeforeCall(String symbol, Symbols symbols)
-            throws ApiException {
+    private okhttp3.Call tickerPriceValidateBeforeCall(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1568,13 +1638,16 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, symbols};
-            Method method = this.getClass().getMethod("tickerPrice", String.class, Symbols.class);
+            Object[] parameterValues = {symbol, symbols, symbolStatus};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "tickerPrice", String.class, Symbols.class, SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return tickerPriceCall(symbol, symbols);
+                return tickerPriceCall(symbol, symbols, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1598,6 +1671,7 @@ public class MarketApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerPriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1612,9 +1686,9 @@ public class MarketApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker">Symbol
      *     price ticker Documentation</a>
      */
-    public ApiResponse<TickerPriceResponse> tickerPrice(String symbol, Symbols symbols)
-            throws ApiException {
-        okhttp3.Call localVarCall = tickerPriceValidateBeforeCall(symbol, symbols);
+    public ApiResponse<TickerPriceResponse> tickerPrice(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        okhttp3.Call localVarCall = tickerPriceValidateBeforeCall(symbol, symbols, symbolStatus);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TickerPriceResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1627,6 +1701,7 @@ public class MarketApi {
      * @param symbols List of symbols to query (optional)
      * @param timeZone Default: 0 (UTC) (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1641,7 +1716,12 @@ public class MarketApi {
      *     Day Ticker Documentation</a>
      */
     private okhttp3.Call tickerTradingDayCall(
-            String symbol, Symbols symbols, String timeZone, TickerType type) throws ApiException {
+            String symbol,
+            Symbols symbols,
+            String timeZone,
+            TickerType type,
+            SymbolStatus symbolStatus)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1683,6 +1763,11 @@ public class MarketApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
         }
 
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1714,7 +1799,12 @@ public class MarketApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tickerTradingDayValidateBeforeCall(
-            String symbol, Symbols symbols, String timeZone, TickerType type) throws ApiException {
+            String symbol,
+            Symbols symbols,
+            String timeZone,
+            TickerType type,
+            SymbolStatus symbolStatus)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1724,7 +1814,7 @@ public class MarketApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, symbols, timeZone, type};
+            Object[] parameterValues = {symbol, symbols, timeZone, type, symbolStatus};
             Method method =
                     this.getClass()
                             .getMethod(
@@ -1732,12 +1822,13 @@ public class MarketApi {
                                     String.class,
                                     Symbols.class,
                                     String.class,
-                                    TickerType.class);
+                                    TickerType.class,
+                                    SymbolStatus.class);
             Set<ConstraintViolation<MarketApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return tickerTradingDayCall(symbol, symbols, timeZone, type);
+                return tickerTradingDayCall(symbol, symbols, timeZone, type, symbolStatus);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1759,6 +1850,7 @@ public class MarketApi {
      * @param symbols List of symbols to query (optional)
      * @param timeZone Default: 0 (UTC) (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerTradingDayResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1774,9 +1866,14 @@ public class MarketApi {
      *     Day Ticker Documentation</a>
      */
     public ApiResponse<TickerTradingDayResponse> tickerTradingDay(
-            String symbol, Symbols symbols, String timeZone, TickerType type) throws ApiException {
+            String symbol,
+            Symbols symbols,
+            String timeZone,
+            TickerType type,
+            SymbolStatus symbolStatus)
+            throws ApiException {
         okhttp3.Call localVarCall =
-                tickerTradingDayValidateBeforeCall(symbol, symbols, timeZone, type);
+                tickerTradingDayValidateBeforeCall(symbol, symbols, timeZone, type, symbolStatus);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TickerTradingDayResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
