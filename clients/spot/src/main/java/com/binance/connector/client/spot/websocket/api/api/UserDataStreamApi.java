@@ -23,11 +23,6 @@ import com.binance.connector.client.common.websocket.service.StreamBlockingQueue
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
@@ -94,183 +89,6 @@ public class UserDataStreamApi {
     private void sessionSubscriptionsValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Ping user data stream Ping a user data stream to keep it alive. User data streams
-     * close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket
-     * Streams. In order to keep the stream open, you have to regularly send pings using the
-     * &#x60;userDataStream.ping&#x60; request. It is recommended to send a ping once every 30
-     * minutes. This request does not require &#x60;signature&#x60;. Weight: 2
-     *
-     * @param userDataStreamPingRequest (required)
-     * @return UserDataStreamPingResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Ping user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#ping-user-data-stream-user_stream">WebSocket
-     *     Ping user data stream Documentation</a>
-     */
-    public CompletableFuture<UserDataStreamPingResponse> userDataStreamPing(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        userDataStreamPingValidateBeforeCall(userDataStreamPingRequest);
-        String methodName = "/userDataStream.ping".substring(1);
-        ApiRequestWrapperDTO<UserDataStreamPingRequest, UserDataStreamPingResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                UserDataStreamPingRequest, UserDataStreamPingResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(userDataStreamPingRequest)
-                        .responseType(UserDataStreamPingResponse.class)
-                        .signed(false)
-                        .apiKeyOnly(true)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void userDataStreamPingValidateBeforeCall(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<UserDataStreamPingRequest>> violations =
-                    validator.validate(userDataStreamPingRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Start user data stream Start a new user data stream. Note the stream will close in
-     * 60 minutes unless &#x60;userDataStream.ping&#x60; requests are sent regularly. This request
-     * does not require &#x60;signature&#x60;. Weight: 2
-     *
-     * @return UserDataStreamStartResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#start-user-data-stream-user_stream">WebSocket
-     *     Start user data stream Documentation</a>
-     */
-    public CompletableFuture<UserDataStreamStartResponse> userDataStreamStart()
-            throws ApiException {
-        userDataStreamStartValidateBeforeCall();
-        String methodName = "/userDataStream.start".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamStartResponse> build =
-                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, UserDataStreamStartResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(new BaseRequestDTO())
-                        .responseType(UserDataStreamStartResponse.class)
-                        .signed(false)
-                        .apiKeyOnly(true)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void userDataStreamStartValidateBeforeCall() throws ApiException {}
-
-    /**
-     * WebSocket Stop user data stream Explicitly stop and close the user data stream. This request
-     * does not require &#x60;signature&#x60;. Weight: 2
-     *
-     * @param userDataStreamStopRequest (required)
-     * @return UserDataStreamStopResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Stop user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#stop-user-data-stream-user_stream">WebSocket
-     *     Stop user data stream Documentation</a>
-     */
-    public CompletableFuture<UserDataStreamStopResponse> userDataStreamStop(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        userDataStreamStopValidateBeforeCall(userDataStreamStopRequest);
-        String methodName = "/userDataStream.stop".substring(1);
-        ApiRequestWrapperDTO<UserDataStreamStopRequest, UserDataStreamStopResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                UserDataStreamStopRequest, UserDataStreamStopResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(userDataStreamStopRequest)
-                        .responseType(UserDataStreamStopResponse.class)
-                        .signed(false)
-                        .apiKeyOnly(true)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void userDataStreamStopValidateBeforeCall(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<UserDataStreamStopRequest>> violations =
-                    validator.validate(userDataStreamStopRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
      * WebSocket Subscribe to User Data Stream Subscribe to the User Data Stream in the current
      * WebSocket connection. Weight: 2
      *
@@ -331,7 +149,7 @@ public class UserDataStreamApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_data">WebSocket
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_stream">WebSocket
      *     Subscribe to User Data Stream through signature subscription Documentation</a>
      */
     public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>

@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -50,6 +51,12 @@ public class DepthRequest extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_LIMIT)
     @jakarta.annotation.Nullable
     private Integer limit;
+
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
 
     public DepthRequest() {}
 
@@ -92,6 +99,26 @@ public class DepthRequest extends BaseDTO {
         this.limit = limit;
     }
 
+    public DepthRequest symbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,12 +129,13 @@ public class DepthRequest extends BaseDTO {
         }
         DepthRequest depthRequest = (DepthRequest) o;
         return Objects.equals(this.symbol, depthRequest.symbol)
-                && Objects.equals(this.limit, depthRequest.limit);
+                && Objects.equals(this.limit, depthRequest.limit)
+                && Objects.equals(this.symbolStatus, depthRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, limit);
+        return Objects.hash(symbol, limit, symbolStatus);
     }
 
     @Override
@@ -116,6 +144,7 @@ public class DepthRequest extends BaseDTO {
         sb.append("class DepthRequest {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		limit: ").append(toIndentedString(limit)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -133,6 +162,11 @@ public class DepthRequest extends BaseDTO {
         if (limitValue != null) {
             String limitValueAsString = limitValue.toString();
             valMap.put("limit", limitValueAsString);
+        }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -152,6 +186,10 @@ public class DepthRequest extends BaseDTO {
         Object limitValue = getLimit();
         if (limitValue != null) {
             valMap.put("limit", limitValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -181,6 +219,7 @@ public class DepthRequest extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
         openapiFields.add("limit");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -233,6 +272,10 @@ public class DepthRequest extends BaseDTO {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 

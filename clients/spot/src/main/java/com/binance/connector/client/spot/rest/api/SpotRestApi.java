@@ -30,7 +30,6 @@ import com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.rest.model.MyTradesResponse;
 import com.binance.connector.client.spot.rest.model.NewOrderRequest;
 import com.binance.connector.client.spot.rest.model.NewOrderResponse;
-import com.binance.connector.client.spot.rest.model.NewUserDataStreamResponse;
 import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityRequest;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityResponse;
@@ -39,6 +38,10 @@ import com.binance.connector.client.spot.rest.model.OrderCancelReplaceRequest;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOcoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOtoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtocoRequest;
@@ -48,7 +51,6 @@ import com.binance.connector.client.spot.rest.model.OrderOcoResponse;
 import com.binance.connector.client.spot.rest.model.OrderTestRequest;
 import com.binance.connector.client.spot.rest.model.OrderTestResponse;
 import com.binance.connector.client.spot.rest.model.Permissions;
-import com.binance.connector.client.spot.rest.model.PutUserDataStreamRequest;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
 import com.binance.connector.client.spot.rest.model.SorOrderRequest;
 import com.binance.connector.client.spot.rest.model.SorOrderResponse;
@@ -72,7 +74,6 @@ public class SpotRestApi {
     private final GeneralApi generalApi;
     private final MarketApi marketApi;
     private final TradeApi tradeApi;
-    private final UserDataStreamApi userDataStreamApi;
 
     public SpotRestApi(ClientConfiguration configuration) {
         this(SpotRestApiUtil.getDefaultClient(configuration));
@@ -83,7 +84,6 @@ public class SpotRestApi {
         this.generalApi = new GeneralApi(apiClient);
         this.marketApi = new MarketApi(apiClient);
         this.tradeApi = new TradeApi(apiClient);
-        this.userDataStreamApi = new UserDataStreamApi(apiClient);
     }
 
     /**
@@ -653,6 +653,7 @@ public class SpotRestApi {
      *
      * @param symbol (required)
      * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;DepthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -667,8 +668,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book">Order
      *     book Documentation</a>
      */
-    public ApiResponse<DepthResponse> depth(String symbol, Integer limit) throws ApiException {
-        return marketApi.depth(symbol, limit);
+    public ApiResponse<DepthResponse> depth(String symbol, Integer limit, SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.depth(symbol, limit, symbolStatus);
     }
 
     /**
@@ -765,6 +767,7 @@ public class SpotRestApi {
      * @param symbols List of symbols to query (optional)
      * @param windowSize (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -780,9 +783,13 @@ public class SpotRestApi {
      *     window price change statistics Documentation</a>
      */
     public ApiResponse<TickerResponse> ticker(
-            String symbol, Symbols symbols, WindowSize windowSize, TickerType type)
+            String symbol,
+            Symbols symbols,
+            WindowSize windowSize,
+            TickerType type,
+            SymbolStatus symbolStatus)
             throws ApiException {
-        return marketApi.ticker(symbol, symbols, windowSize, type);
+        return marketApi.ticker(symbol, symbols, windowSize, type, symbolStatus);
     }
 
     /**
@@ -802,6 +809,7 @@ public class SpotRestApi {
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;Ticker24hrResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -817,8 +825,9 @@ public class SpotRestApi {
      *     ticker price change statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrResponse> ticker24hr(
-            String symbol, Symbols symbols, TickerType type) throws ApiException {
-        return marketApi.ticker24hr(symbol, symbols, type);
+            String symbol, Symbols symbols, TickerType type, SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.ticker24hr(symbol, symbols, type, symbolStatus);
     }
 
     /**
@@ -832,6 +841,7 @@ public class SpotRestApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerBookTickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -846,9 +856,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker">Symbol
      *     order book ticker Documentation</a>
      */
-    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(String symbol, Symbols symbols)
-            throws ApiException {
-        return marketApi.tickerBookTicker(symbol, symbols);
+    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        return marketApi.tickerBookTicker(symbol, symbols, symbolStatus);
     }
 
     /**
@@ -862,6 +872,7 @@ public class SpotRestApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerPriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -876,9 +887,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker">Symbol
      *     price ticker Documentation</a>
      */
-    public ApiResponse<TickerPriceResponse> tickerPrice(String symbol, Symbols symbols)
-            throws ApiException {
-        return marketApi.tickerPrice(symbol, symbols);
+    public ApiResponse<TickerPriceResponse> tickerPrice(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        return marketApi.tickerPrice(symbol, symbols, symbolStatus);
     }
 
     /**
@@ -890,6 +901,7 @@ public class SpotRestApi {
      * @param symbols List of symbols to query (optional)
      * @param timeZone Default: 0 (UTC) (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerTradingDayResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -905,8 +917,13 @@ public class SpotRestApi {
      *     Day Ticker Documentation</a>
      */
     public ApiResponse<TickerTradingDayResponse> tickerTradingDay(
-            String symbol, Symbols symbols, String timeZone, TickerType type) throws ApiException {
-        return marketApi.tickerTradingDay(symbol, symbols, timeZone, type);
+            String symbol,
+            Symbols symbols,
+            String timeZone,
+            TickerType type,
+            SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.tickerTradingDay(symbol, symbols, timeZone, type, symbolStatus);
     }
 
     /**
@@ -1167,6 +1184,53 @@ public class SpotRestApi {
     }
 
     /**
+     * New Order List - OPO Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     *
+     * @param orderListOpoRequest (required)
+     * @return ApiResponse&lt;OrderListOpoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
+     *     Order List - OPO Documentation</a>
+     */
+    public ApiResponse<OrderListOpoResponse> orderListOpo(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        return tradeApi.orderListOpo(orderListOpoRequest);
+    }
+
+    /**
+     * New Order List - OPOCO Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     *
+     * @param orderListOpocoRequest (required)
+     * @return ApiResponse&lt;OrderListOpocoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
+     *     Order List - OPOCO Documentation</a>
+     */
+    public ApiResponse<OrderListOpocoResponse> orderListOpoco(
+            OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        return tradeApi.orderListOpoco(orderListOpocoRequest);
+    }
+
+    /**
      * New Order list - OTO Place an OTO. * An OTO (One-Triggers-the-Other) is an order list
      * comprised of 2 orders. * The first order is called the **working order** and must be
      * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the
@@ -1252,6 +1316,7 @@ public class SpotRestApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
      *     OCO - Deprecated Documentation</a>
@@ -1336,74 +1401,5 @@ public class SpotRestApi {
     public ApiResponse<SorOrderTestResponse> sorOrderTest(SorOrderTestRequest sorOrderTestRequest)
             throws ApiException {
         return tradeApi.sorOrderTest(sorOrderTestRequest);
-    }
-
-    /**
-     * Close user data stream Close out a user data stream. Weight: 2
-     *
-     * @param listenKey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#close-user-data-stream-user_stream">Close
-     *     user data stream Documentation</a>
-     */
-    public void deleteUserDataStream(String listenKey) throws ApiException {
-        userDataStreamApi.deleteUserDataStream(listenKey);
-    }
-
-    /**
-     * Start user data stream Start a new user data stream. The stream will close after 60 minutes
-     * unless a keepalive is sent. This request does not require &#x60;signature&#x60;. Weight: 2
-     *
-     * @return ApiResponse&lt;NewUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#start-user-data-stream-user_stream">Start
-     *     user data stream Documentation</a>
-     */
-    public ApiResponse<NewUserDataStreamResponse> newUserDataStream() throws ApiException {
-        return userDataStreamApi.newUserDataStream();
-    }
-
-    /**
-     * Keepalive user data stream Keepalive a user data stream to prevent a time out. User data
-     * streams will close after 60 minutes. It&#39;s recommended to send a ping about every 30
-     * minutes. This request does not require &#x60;signature&#x60;. Weight: 2
-     *
-     * @param putUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#keepalive-user-data-stream-user_stream">Keepalive
-     *     user data stream Documentation</a>
-     */
-    public void putUserDataStream(PutUserDataStreamRequest putUserDataStreamRequest)
-            throws ApiException {
-        userDataStreamApi.putUserDataStream(putUserDataStreamRequest);
     }
 }

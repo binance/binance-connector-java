@@ -11,6 +11,8 @@ All URIs are relative to *http://localhost*
 | [**orderListCancel**](TradeApi.md#orderListCancel) | **POST** /orderList.cancel | WebSocket Cancel Order list |
 | [**orderListPlace**](TradeApi.md#orderListPlace) | **POST** /orderList.place | WebSocket Place new OCO - Deprecated |
 | [**orderListPlaceOco**](TradeApi.md#orderListPlaceOco) | **POST** /orderList.place.oco | WebSocket Place new Order list - OCO |
+| [**orderListPlaceOpo**](TradeApi.md#orderListPlaceOpo) | **POST** /orderList.place.opo | WebSocket OPO |
+| [**orderListPlaceOpoco**](TradeApi.md#orderListPlaceOpoco) | **POST** /orderList.place.opoco | WebSocket OPOCO |
 | [**orderListPlaceOto**](TradeApi.md#orderListPlaceOto) | **POST** /orderList.place.oto | WebSocket Place new Order list - OTO |
 | [**orderListPlaceOtoco**](TradeApi.md#orderListPlaceOtoco) | **POST** /orderList.place.otoco | WebSocket Place new Order list - OTOCO |
 | [**orderPlace**](TradeApi.md#orderPlace) | **POST** /order.place | WebSocket Place new order |
@@ -452,6 +454,130 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Place new Order list - OCO |  -  |
+
+<a id="orderListPlaceOpo"></a>
+# **orderListPlaceOpo**
+> OrderListPlaceOpoResponse orderListPlaceOpo(orderListPlaceOpoRequest)
+
+WebSocket OPO
+
+Place an [OPO](./faqs/opo.md).  * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1  Unfilled Order Count: 2
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest(); // OrderListPlaceOpoRequest | 
+    try {
+      OrderListPlaceOpoResponse result = apiInstance.orderListPlaceOpo(orderListPlaceOpoRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#orderListPlaceOpo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderListPlaceOpoRequest** | [**OrderListPlaceOpoRequest**](OrderListPlaceOpoRequest.md)|  | |
+
+### Return type
+
+[**OrderListPlaceOpoResponse**](OrderListPlaceOpoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OPO |  -  |
+
+<a id="orderListPlaceOpoco"></a>
+# **orderListPlaceOpoco**
+> OrderListPlaceOpocoResponse orderListPlaceOpoco(orderListPlaceOpocoRequest)
+
+WebSocket OPOCO
+
+Place an [OPOCO](./faqs/opo.md). Weight: 1  Unfilled Order Count: 3
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    OrderListPlaceOpocoRequest orderListPlaceOpocoRequest = new OrderListPlaceOpocoRequest(); // OrderListPlaceOpocoRequest | 
+    try {
+      OrderListPlaceOpocoResponse result = apiInstance.orderListPlaceOpoco(orderListPlaceOpocoRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#orderListPlaceOpoco");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderListPlaceOpocoRequest** | [**OrderListPlaceOpocoRequest**](OrderListPlaceOpocoRequest.md)|  | |
+
+### Return type
+
+[**OrderListPlaceOpocoResponse**](OrderListPlaceOpocoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OPOCO |  -  |
 
 <a id="orderListPlaceOto"></a>
 # **orderListPlaceOto**

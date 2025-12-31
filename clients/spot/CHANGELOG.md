@@ -1,5 +1,71 @@
 # Changelog
 
+## 8.0.0 - 2025-12-31
+
+### Added (4)
+
+#### REST API
+
+- `orderListOpo()` (`POST /api/v3/orderList/opo`)
+- `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+
+#### WebSocket API
+
+- `orderListPlaceOpo()` (`orderList.place.opo` method)
+- `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+
+### Changed (6)
+
+#### REST API
+
+- Added parameter `symbolStatus`
+  - affected methods:
+    - `depth()` (`GET /api/v3/depth`)
+    - `ticker()` (`GET /api/v3/ticker`)
+    - `ticker24hr()` (`GET /api/v3/ticker/24hr`)
+    - `tickerBookTicker()` (`GET /api/v3/ticker/bookTicker`)
+    - `tickerPrice()` (`GET /api/v3/ticker/price`)
+    - `tickerTradingDay()` (`GET /api/v3/ticker/tradingDay`)
+- Modified response for `exchangeInfo()` (`GET /api/v3/exchangeInfo`):
+  - `symbols`.items: property `opoAllowed` added
+  - `symbols`.items: item property `opoAllowed` added
+
+- Marked `orderOco()` (`POST /api/v3/order/oco`) as deprecated.
+
+#### WebSocket API
+
+- Added parameter `symbolStatus`
+  - affected methods:
+    - `depth()` (`depth` method)
+    - `ticker()` (`ticker` method)
+    - `ticker24hr()` (`ticker.24hr` method)
+    - `tickerBook()` (`ticker.book` method)
+    - `tickerPrice()` (`ticker.price` method)
+    - `tickerTradingDay()` (`ticker.tradingDay` method)
+- Modified response for `exchangeInfo()` (`exchangeInfo` method):
+  - `result`.`symbols`.items: property `opoAllowed` added
+  - `result`.`symbols`.items: item property `opoAllowed` added
+
+- Marked `orderListPlace()` (`orderList.place` method) as deprecated.
+
+### Removed (7)
+
+#### REST API
+
+- `deleteUserDataStream()` (`DELETE /api/v3/userDataStream`)
+- `newUserDataStream()` (`POST /api/v3/userDataStream`)
+- `putUserDataStream()` (`PUT /api/v3/userDataStream`)
+
+#### WebSocket API
+
+- `/userDataStream.ping()` (`userDataStream.ping` method)
+- `/userDataStream.start()` (`userDataStream.start` method)
+- `/userDataStream.stop()` (`userDataStream.stop` method)
+
+#### WebSocket Streams
+
+- `/!ticker@arr()` (`!ticker@arr` stream)
+
 ## 7.0.0 - 2025-10-21
 
 ### Added (2)

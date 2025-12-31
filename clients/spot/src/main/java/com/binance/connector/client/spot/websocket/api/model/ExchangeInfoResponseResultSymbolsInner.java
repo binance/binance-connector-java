@@ -123,6 +123,12 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean otoAllowed;
 
+    public static final String SERIALIZED_NAME_OPO_ALLOWED = "opoAllowed";
+
+    @SerializedName(SERIALIZED_NAME_OPO_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean opoAllowed;
+
     public static final String SERIALIZED_NAME_QUOTE_ORDER_QTY_MARKET_ALLOWED =
             "quoteOrderQtyMarketAllowed";
 
@@ -470,6 +476,26 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         this.otoAllowed = otoAllowed;
     }
 
+    public ExchangeInfoResponseResultSymbolsInner opoAllowed(
+            @jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+        return this;
+    }
+
+    /**
+     * Get opoAllowed
+     *
+     * @return opoAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getOpoAllowed() {
+        return opoAllowed;
+    }
+
+    public void setOpoAllowed(@jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+    }
+
     public ExchangeInfoResponseResultSymbolsInner quoteOrderQtyMarketAllowed(
             @jakarta.annotation.Nullable Boolean quoteOrderQtyMarketAllowed) {
         this.quoteOrderQtyMarketAllowed = quoteOrderQtyMarketAllowed;
@@ -789,6 +815,8 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 && Objects.equals(
                         this.otoAllowed, exchangeInfoResponseResultSymbolsInner.otoAllowed)
                 && Objects.equals(
+                        this.opoAllowed, exchangeInfoResponseResultSymbolsInner.opoAllowed)
+                && Objects.equals(
                         this.quoteOrderQtyMarketAllowed,
                         exchangeInfoResponseResultSymbolsInner.quoteOrderQtyMarketAllowed)
                 && Objects.equals(
@@ -837,6 +865,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
                 icebergAllowed,
                 ocoAllowed,
                 otoAllowed,
+                opoAllowed,
                 quoteOrderQtyMarketAllowed,
                 allowTrailingStop,
                 cancelReplaceAllowed,
@@ -876,6 +905,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         sb.append("		icebergAllowed: ").append(toIndentedString(icebergAllowed)).append("\n");
         sb.append("		ocoAllowed: ").append(toIndentedString(ocoAllowed)).append("\n");
         sb.append("		otoAllowed: ").append(toIndentedString(otoAllowed)).append("\n");
+        sb.append("		opoAllowed: ").append(toIndentedString(opoAllowed)).append("\n");
         sb.append("		quoteOrderQtyMarketAllowed: ")
                 .append(toIndentedString(quoteOrderQtyMarketAllowed))
                 .append("\n");
@@ -974,6 +1004,11 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         if (otoAllowedValue != null) {
             String otoAllowedValueAsString = otoAllowedValue.toString();
             valMap.put("otoAllowed", otoAllowedValueAsString);
+        }
+        Boolean opoAllowedValue = getOpoAllowed();
+        if (opoAllowedValue != null) {
+            String opoAllowedValueAsString = opoAllowedValue.toString();
+            valMap.put("opoAllowed", opoAllowedValueAsString);
         }
         Boolean quoteOrderQtyMarketAllowedValue = getQuoteOrderQtyMarketAllowed();
         if (quoteOrderQtyMarketAllowedValue != null) {
@@ -1104,6 +1139,10 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         if (otoAllowedValue != null) {
             valMap.put("otoAllowed", otoAllowedValue);
         }
+        Object opoAllowedValue = getOpoAllowed();
+        if (opoAllowedValue != null) {
+            valMap.put("opoAllowed", opoAllowedValue);
+        }
         Object quoteOrderQtyMarketAllowedValue = getQuoteOrderQtyMarketAllowed();
         if (quoteOrderQtyMarketAllowedValue != null) {
             valMap.put("quoteOrderQtyMarketAllowed", quoteOrderQtyMarketAllowedValue);
@@ -1191,6 +1230,7 @@ public class ExchangeInfoResponseResultSymbolsInner extends BaseDTO {
         openapiFields.add("icebergAllowed");
         openapiFields.add("ocoAllowed");
         openapiFields.add("otoAllowed");
+        openapiFields.add("opoAllowed");
         openapiFields.add("quoteOrderQtyMarketAllowed");
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");

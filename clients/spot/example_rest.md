@@ -42,7 +42,7 @@
 
 [GET /api/v3/avgPrice](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#current-average-price) - avgPrice - [AvgPriceExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/AvgPriceExample.java#L46)
 
-[GET /api/v3/depth](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book) - depth - [DepthExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/DepthExample.java#L47)
+[GET /api/v3/depth](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book) - depth - [DepthExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/DepthExample.java#L48)
 
 [GET /api/v3/trades](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#recent-trades-list) - getTrades - [GetTradesExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/GetTradesExample.java#L46)
 
@@ -50,15 +50,15 @@
 
 [GET /api/v3/klines](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#klinecandlestick-data) - klines - [KlinesExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/KlinesExample.java#L48)
 
-[GET /api/v3/ticker](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics) - ticker - [TickerExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerExample.java#L51)
+[GET /api/v3/ticker](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics) - ticker - [TickerExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerExample.java#L52)
 
-[GET /api/v3/ticker/24hr](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics) - ticker24hr - [Ticker24hrExample.java:58](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/Ticker24hrExample.java#L58)
+[GET /api/v3/ticker/24hr](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics) - ticker24hr - [Ticker24hrExample.java:59](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/Ticker24hrExample.java#L59)
 
-[GET /api/v3/ticker/bookTicker](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker) - tickerBookTicker - [TickerBookTickerExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerBookTickerExample.java#L53)
+[GET /api/v3/ticker/bookTicker](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker) - tickerBookTicker - [TickerBookTickerExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerBookTickerExample.java#L54)
 
-[GET /api/v3/ticker/price](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker) - tickerPrice - [TickerPriceExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerPriceExample.java#L53)
+[GET /api/v3/ticker/price](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker) - tickerPrice - [TickerPriceExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerPriceExample.java#L54)
 
-[GET /api/v3/ticker/tradingDay](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#trading-day-ticker) - tickerTradingDay - [TickerTradingDayExample.java:50](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerTradingDayExample.java#L50)
+[GET /api/v3/ticker/tradingDay](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#trading-day-ticker) - tickerTradingDay - [TickerTradingDayExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerTradingDayExample.java#L51)
 
 [GET /api/v3/uiKlines](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#uiklines) - uiKlines - [UiKlinesExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/UiKlinesExample.java#L49)
 
@@ -78,6 +78,10 @@
 
 [POST /api/v3/orderList/oco](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade) - orderListOco - [OrderListOcoExample.java:62](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOcoExample.java#L62)
 
+[POST /api/v3/orderList/opo](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade) - orderListOpo - [OrderListOpoExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOpoExample.java#L52)
+
+[POST /api/v3/orderList/opoco](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade) - orderListOpoco - [OrderListOpocoExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOpocoExample.java#L51)
+
 [POST /api/v3/orderList/oto](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oto-trade) - orderListOto - [OrderListOtoExample.java:63](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOtoExample.java#L63)
 
 [POST /api/v3/orderList/otoco](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---otoco-trade) - orderListOtoco - [OrderListOtocoExample.java:60](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOtocoExample.java#L60)
@@ -89,12 +93,4 @@
 [POST /api/v3/sor/order](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade) - sorOrder - [SorOrderExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderExample.java#L51)
 
 [POST /api/v3/sor/order/test](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade) - sorOrderTest - [SorOrderTestExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/SorOrderTestExample.java#L52)
-
-## UserDataStream
-
-[DELETE /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#close-user-data-stream-user_stream) - deleteUserDataStream - [DeleteUserDataStreamExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/DeleteUserDataStreamExample.java#L44)
-
-[POST /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#start-user-data-stream-user_stream) - newUserDataStream - [NewUserDataStreamExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/NewUserDataStreamExample.java#L47)
-
-[PUT /api/v3/userDataStream](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#keepalive-user-data-stream-user_stream) - putUserDataStream - [PutUserDataStreamExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/userdatastream/PutUserDataStreamExample.java#L47)
 

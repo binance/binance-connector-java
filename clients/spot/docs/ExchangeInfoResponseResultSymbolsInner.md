@@ -20,6 +20,7 @@
 |**icebergAllowed** | **Boolean** |  |  [optional] |
 |**ocoAllowed** | **Boolean** |  |  [optional] |
 |**otoAllowed** | **Boolean** |  |  [optional] |
+|**opoAllowed** | **Boolean** |  |  [optional] |
 |**quoteOrderQtyMarketAllowed** | **Boolean** |  |  [optional] |
 |**allowTrailingStop** | **Boolean** |  |  [optional] |
 |**cancelReplaceAllowed** | **Boolean** |  |  [optional] |
