@@ -32,7 +32,7 @@ All URIs are relative to *http://localhost*
 
 Aggregate Trade Streams
 
-The Aggregate Trade Streams push market trade information that is aggregated for fills with same price and taking side every 100 milliseconds. Only market trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.   Retail Price Improvement(RPI) orders are aggregated and without special tags to be distinguished.  Update Speed: 100ms
+The Aggregate Trade Streams push market trade information that is aggregated for fills with same price and taking side every 100 milliseconds. Only market trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.   Retail Price Improvement(RPI) orders are aggregated into field &#x60;q&#x60; and without special tags to be distinguished.  Update Speed: 100ms
 
 ### Example
 ```java
@@ -962,7 +962,7 @@ No authorization required
 
 Mark Price Stream for All market
 
-Mark price and funding rate for all symbols pushed every 3 seconds or every second.  **Note**:  This stream does not cover TradFi Perps.  Update Speed: 3000ms or 1000ms
+Mark price and funding rate for all symbols pushed every 3 seconds or every second.  **Note**:  TradFi symbols will be pushed through a seperate message.  Update Speed: 3000ms or 1000ms
 
 ### Example
 ```java
@@ -1210,7 +1210,7 @@ No authorization required
 
 Trading Session Stream
 
-Trading session information of U.S. equity market and commodity market which updates every second. Trading session information of different markets is pushed in seperate messages. Session types of equity market include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot; and \&quot;NO_TRADING\&quot;. And session types of commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;.  Update Speed: 1s
+Trading session information for the underlying assets of TradFi Perpetual contracts—covering the U.S. equity market and the commodity market—is updated every second. Trading session information for different underlying markets is pushed in separate messages. Session types for the equity market include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;. Session types for the commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;.  Update Speed: 1s
 
 ### Example
 ```java

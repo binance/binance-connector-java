@@ -1,5 +1,22 @@
 # Changelog
 
+## 8.0.0 - 2026-01-06
+
+### Changed (3)
+
+#### WebSocket API
+
+- Added parameter `activatePrice`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Deleted parameter `activationPrice`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+#### WebSocket Streams
+
+- Modified response for `aggregateTradeStreams()` (`<symbol>@aggTrade` stream):
+  - property `nq` added
+
 ## 7.0.0 - 2025-12-16
 
 ### Added (14)

@@ -36,12 +36,13 @@ public class TradingSessionStreamExample {
     /**
      * Trading Session Stream
      *
-     * <p>Trading session information of U.S. equity market and commodity market which updates every
-     * second. Trading session information of different markets is pushed in seperate messages.
-     * Session types of equity market include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
-     * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot; and \&quot;NO_TRADING\&quot;. And session
-     * types of commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Update
-     * Speed: 1s
+     * <p>Trading session information for the underlying assets of TradFi Perpetual
+     * contracts—covering the U.S. equity market and the commodity market—is updated every second.
+     * Trading session information for different underlying markets is pushed in separate messages.
+     * Session types for the equity market include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
+     * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;. Session
+     * types for the commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;.
+     * Update Speed: 1s
      *
      * @throws ApiException if the Api call fails
      */

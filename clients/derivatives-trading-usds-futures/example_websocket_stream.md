@@ -30,7 +30,7 @@
 
 [<symbol>@markPrice@<updateSpeed>](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream) - markPriceStream - [MarkPriceStreamExample.java:44](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/MarkPriceStreamExample.java#L44)
 
-[!markPrice@arr@<updateSpeed>](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream-for-All-market) - markPriceStreamForAllMarket - [MarkPriceStreamForAllMarketExample.java:44](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/MarkPriceStreamForAllMarketExample.java#L44)
+[!markPrice@arr@<updateSpeed>](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream-for-All-market) - markPriceStreamForAllMarket - [MarkPriceStreamForAllMarketExample.java:45](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/MarkPriceStreamForAllMarketExample.java#L45)
 
 [!assetIndex@arr](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Multi-Assets-Mode-Asset-Index) - multiAssetsModeAssetIndex - [MultiAssetsModeAssetIndexExample.java:43](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/MultiAssetsModeAssetIndexExample.java#L43)
 
@@ -38,5 +38,5 @@
 
 [<symbol>@rpiDepth@500ms](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams-RPI) - rpiDiffBookDepthStreams - [RpiDiffBookDepthStreamsExample.java:47](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/RpiDiffBookDepthStreamsExample.java#L47)
 
-[tradingSession](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Trading-Session-Stream) - tradingSessionStream - [TradingSessionStreamExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/TradingSessionStreamExample.java#L48)
+[tradingSession](https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Trading-Session-Stream) - tradingSessionStream - [TradingSessionStreamExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/websocketmarketstreams/TradingSessionStreamExample.java#L49)
 

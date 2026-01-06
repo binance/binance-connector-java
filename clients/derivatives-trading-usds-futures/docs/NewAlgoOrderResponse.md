@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**NewAlgoOrderResponseResult**](NewAlgoOrderResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;CancelAlgoOrderResponseRateLimitsInner&gt;**](CancelAlgoOrderResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;CancelOrderResponseRateLimitsInner&gt;**](CancelOrderResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

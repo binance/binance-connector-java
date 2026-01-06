@@ -138,18 +138,6 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String origType;
 
-    public static final String SERIALIZED_NAME_ACTIVATE_PRICE = "activatePrice";
-
-    @SerializedName(SERIALIZED_NAME_ACTIVATE_PRICE)
-    @jakarta.annotation.Nullable
-    private String activatePrice;
-
-    public static final String SERIALIZED_NAME_PRICE_RATE = "priceRate";
-
-    @SerializedName(SERIALIZED_NAME_PRICE_RATE)
-    @jakarta.annotation.Nullable
-    private String priceRate;
-
     public static final String SERIALIZED_NAME_UPDATE_TIME = "updateTime";
 
     @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
@@ -530,46 +518,6 @@ public class PlaceMultipleOrdersResponseInner {
         this.origType = origType;
     }
 
-    public PlaceMultipleOrdersResponseInner activatePrice(
-            @jakarta.annotation.Nullable String activatePrice) {
-        this.activatePrice = activatePrice;
-        return this;
-    }
-
-    /**
-     * Get activatePrice
-     *
-     * @return activatePrice
-     */
-    @jakarta.annotation.Nullable
-    public String getActivatePrice() {
-        return activatePrice;
-    }
-
-    public void setActivatePrice(@jakarta.annotation.Nullable String activatePrice) {
-        this.activatePrice = activatePrice;
-    }
-
-    public PlaceMultipleOrdersResponseInner priceRate(
-            @jakarta.annotation.Nullable String priceRate) {
-        this.priceRate = priceRate;
-        return this;
-    }
-
-    /**
-     * Get priceRate
-     *
-     * @return priceRate
-     */
-    @jakarta.annotation.Nullable
-    public String getPriceRate() {
-        return priceRate;
-    }
-
-    public void setPriceRate(@jakarta.annotation.Nullable String priceRate) {
-        this.priceRate = priceRate;
-    }
-
     public PlaceMultipleOrdersResponseInner updateTime(
             @jakarta.annotation.Nullable Long updateTime) {
         this.updateTime = updateTime;
@@ -756,9 +704,6 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.timeInForce, placeMultipleOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, placeMultipleOrdersResponseInner.type)
                 && Objects.equals(this.origType, placeMultipleOrdersResponseInner.origType)
-                && Objects.equals(
-                        this.activatePrice, placeMultipleOrdersResponseInner.activatePrice)
-                && Objects.equals(this.priceRate, placeMultipleOrdersResponseInner.priceRate)
                 && Objects.equals(this.updateTime, placeMultipleOrdersResponseInner.updateTime)
                 && Objects.equals(this.workingType, placeMultipleOrdersResponseInner.workingType)
                 && Objects.equals(this.priceProtect, placeMultipleOrdersResponseInner.priceProtect)
@@ -791,8 +736,6 @@ public class PlaceMultipleOrdersResponseInner {
                 timeInForce,
                 type,
                 origType,
-                activatePrice,
-                priceRate,
                 updateTime,
                 workingType,
                 priceProtect,
@@ -824,8 +767,6 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
-        sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
-        sb.append("		priceRate: ").append(toIndentedString(priceRate)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
@@ -911,14 +852,6 @@ public class PlaceMultipleOrdersResponseInner {
         String origTypeValueAsString = "";
         origTypeValueAsString = origTypeValue.toString();
         sb.append("origType=").append(urlEncode(origTypeValueAsString)).append("");
-        Object activatePriceValue = getActivatePrice();
-        String activatePriceValueAsString = "";
-        activatePriceValueAsString = activatePriceValue.toString();
-        sb.append("activatePrice=").append(urlEncode(activatePriceValueAsString)).append("");
-        Object priceRateValue = getPriceRate();
-        String priceRateValueAsString = "";
-        priceRateValueAsString = priceRateValue.toString();
-        sb.append("priceRate=").append(urlEncode(priceRateValueAsString)).append("");
         Object updateTimeValue = getUpdateTime();
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
@@ -998,8 +931,6 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("origType");
-        openapiFields.add("activatePrice");
-        openapiFields.add("priceRate");
         openapiFields.add("updateTime");
         openapiFields.add("workingType");
         openapiFields.add("priceProtect");
@@ -1151,22 +1082,6 @@ public class PlaceMultipleOrdersResponseInner {
                             "Expected the field `origType` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("origType").toString()));
-        }
-        if ((jsonObj.get("activatePrice") != null && !jsonObj.get("activatePrice").isJsonNull())
-                && !jsonObj.get("activatePrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `activatePrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("activatePrice").toString()));
-        }
-        if ((jsonObj.get("priceRate") != null && !jsonObj.get("priceRate").isJsonNull())
-                && !jsonObj.get("priceRate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceRate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceRate").toString()));
         }
         if ((jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull())
                 && !jsonObj.get("workingType").isJsonPrimitive()) {
