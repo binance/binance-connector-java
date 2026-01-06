@@ -92,7 +92,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -3478,11 +3478,10 @@ public class TradeApi {
             localVarFormParams.put("reduceOnly", newAlgoOrderRequest.getReduceOnly());
         }
 
-        if (newAlgoOrderRequest.getActivationPrice() != null) {
+        if (newAlgoOrderRequest.getActivatePrice() != null) {
             localVarFormParams.put(
-                    "activationPrice",
-                    DecimalFormatter.getFormatter()
-                            .format(newAlgoOrderRequest.getActivationPrice()));
+                    "activatePrice",
+                    DecimalFormatter.getFormatter().format(newAlgoOrderRequest.getActivatePrice()));
         }
 
         if (newAlgoOrderRequest.getCallbackRate() != null) {
@@ -3570,8 +3569,11 @@ public class TradeApi {
     }
 
     /**
-     * New Algo Order(TRADE) Send in a new Algo order. * Condition orders will be triggered when: *
-     * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * New Algo Order(TRADE) Send in a new Algo order. * Algo order with type &#x60;STOP&#x60;,
+     * parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Algo order with
+     * type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
+     * &#x60;GTC&#x60;). * Condition orders will be triggered when: * If
+     * parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
      * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
      * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
@@ -3583,14 +3585,14 @@ public class TradeApi {
      * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
      * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
      * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
-     * order placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the
-     * lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
-     * &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price *
-     * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest
+     * price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1
+     * - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
      * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
      * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
-     * following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest
-     * price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price. *
+     * following requirements: * BUY: &#x60;activatePrice&#x60; should be smaller than latest price.
+     * * SELL: &#x60;activatePrice&#x60; should be larger than latest price. *
      * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
      * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
      * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
@@ -3706,36 +3708,6 @@ public class TradeApi {
             localVarFormParams.put("newClientOrderId", newOrderRequest.getNewClientOrderId());
         }
 
-        if (newOrderRequest.getStopPrice() != null) {
-            localVarFormParams.put(
-                    "stopPrice",
-                    DecimalFormatter.getFormatter().format(newOrderRequest.getStopPrice()));
-        }
-
-        if (newOrderRequest.getClosePosition() != null) {
-            localVarFormParams.put("closePosition", newOrderRequest.getClosePosition());
-        }
-
-        if (newOrderRequest.getActivationPrice() != null) {
-            localVarFormParams.put(
-                    "activationPrice",
-                    DecimalFormatter.getFormatter().format(newOrderRequest.getActivationPrice()));
-        }
-
-        if (newOrderRequest.getCallbackRate() != null) {
-            localVarFormParams.put(
-                    "callbackRate",
-                    DecimalFormatter.getFormatter().format(newOrderRequest.getCallbackRate()));
-        }
-
-        if (newOrderRequest.getWorkingType() != null) {
-            localVarFormParams.put("workingType", newOrderRequest.getWorkingType());
-        }
-
-        if (newOrderRequest.getPriceProtect() != null) {
-            localVarFormParams.put("priceProtect", newOrderRequest.getPriceProtect());
-        }
-
         if (newOrderRequest.getNewOrderRespType() != null) {
             localVarFormParams.put("newOrderRespType", newOrderRequest.getNewOrderRespType());
         }
@@ -3819,40 +3791,10 @@ public class TradeApi {
     }
 
     /**
-     * New Order(TRADE) Send in a new order. * Order with type &#x60;STOP&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Order with type
-     * &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Condition orders will be triggered when: * If
-     * parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
-     * &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
-     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
-     * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
-     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * New Order(TRADE) Send in a new order. * If &#x60;newOrderRespType &#x60; is sent as
+     * &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be
+     * return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final
+     * status result of the order(FILLED or EXPIRED) will be returned directly. *
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
      * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
      * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to

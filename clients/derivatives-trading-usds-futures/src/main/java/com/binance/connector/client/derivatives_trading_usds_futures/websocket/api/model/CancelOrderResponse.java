@@ -65,7 +65,7 @@ public class CancelOrderResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid CancelAlgoOrderResponseRateLimitsInner> rateLimits;
+    private List<@Valid CancelOrderResponseRateLimitsInner> rateLimits;
 
     public CancelOrderResponse() {}
 
@@ -130,13 +130,13 @@ public class CancelOrderResponse extends BaseDTO {
 
     public CancelOrderResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid CancelAlgoOrderResponseRateLimitsInner> rateLimits) {
+                    List<@Valid CancelOrderResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public CancelOrderResponse addRateLimitsItem(
-            CancelAlgoOrderResponseRateLimitsInner rateLimitsItem) {
+            CancelOrderResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -151,13 +151,13 @@ public class CancelOrderResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid CancelAlgoOrderResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid CancelOrderResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid CancelAlgoOrderResponseRateLimitsInner> rateLimits) {
+                    List<@Valid CancelOrderResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -212,7 +212,7 @@ public class CancelOrderResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid CancelAlgoOrderResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid CancelOrderResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -335,7 +335,7 @@ public class CancelOrderResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    CancelAlgoOrderResponseRateLimitsInner.validateJsonElement(
+                    CancelOrderResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

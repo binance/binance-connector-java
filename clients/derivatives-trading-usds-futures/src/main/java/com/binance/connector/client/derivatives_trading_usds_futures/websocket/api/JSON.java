@@ -166,6 +166,9 @@ public class JSON {
                         .model.CancelOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
+                        .model.CancelOrderResponseRateLimitsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.CancelOrderResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api

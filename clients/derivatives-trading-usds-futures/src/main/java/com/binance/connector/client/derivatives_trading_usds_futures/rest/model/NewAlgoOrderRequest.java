@@ -121,11 +121,11 @@ public class NewAlgoOrderRequest {
     @jakarta.annotation.Nullable
     private String reduceOnly;
 
-    public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
+    public static final String SERIALIZED_NAME_ACTIVATE_PRICE = "activatePrice";
 
-    @SerializedName(SERIALIZED_NAME_ACTIVATION_PRICE)
+    @SerializedName(SERIALIZED_NAME_ACTIVATE_PRICE)
     @jakarta.annotation.Nullable
-    private Double activationPrice;
+    private Double activatePrice;
 
     public static final String SERIALIZED_NAME_CALLBACK_RATE = "callbackRate";
 
@@ -439,25 +439,24 @@ public class NewAlgoOrderRequest {
         this.reduceOnly = reduceOnly;
     }
 
-    public NewAlgoOrderRequest activationPrice(
-            @jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
+    public NewAlgoOrderRequest activatePrice(@jakarta.annotation.Nullable Double activatePrice) {
+        this.activatePrice = activatePrice;
         return this;
     }
 
     /**
-     * Get activationPrice
+     * Get activatePrice
      *
-     * @return activationPrice
+     * @return activatePrice
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getActivationPrice() {
-        return activationPrice;
+    public Double getActivatePrice() {
+        return activatePrice;
     }
 
-    public void setActivationPrice(@jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
+    public void setActivatePrice(@jakarta.annotation.Nullable Double activatePrice) {
+        this.activatePrice = activatePrice;
     }
 
     public NewAlgoOrderRequest callbackRate(@jakarta.annotation.Nullable Double callbackRate) {
@@ -582,7 +581,7 @@ public class NewAlgoOrderRequest {
                 && Objects.equals(this.closePosition, newAlgoOrderRequest.closePosition)
                 && Objects.equals(this.priceProtect, newAlgoOrderRequest.priceProtect)
                 && Objects.equals(this.reduceOnly, newAlgoOrderRequest.reduceOnly)
-                && Objects.equals(this.activationPrice, newAlgoOrderRequest.activationPrice)
+                && Objects.equals(this.activatePrice, newAlgoOrderRequest.activatePrice)
                 && Objects.equals(this.callbackRate, newAlgoOrderRequest.callbackRate)
                 && Objects.equals(this.clientAlgoId, newAlgoOrderRequest.clientAlgoId)
                 && Objects.equals(
@@ -608,7 +607,7 @@ public class NewAlgoOrderRequest {
                 closePosition,
                 priceProtect,
                 reduceOnly,
-                activationPrice,
+                activatePrice,
                 callbackRate,
                 clientAlgoId,
                 selfTradePreventionMode,
@@ -634,7 +633,7 @@ public class NewAlgoOrderRequest {
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		activationPrice: ").append(toIndentedString(activationPrice)).append("\n");
+        sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
         sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
         sb.append("		clientAlgoId: ").append(toIndentedString(clientAlgoId)).append("\n");
         sb.append("		selfTradePreventionMode: ")
@@ -705,10 +704,10 @@ public class NewAlgoOrderRequest {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object activationPriceValue = getActivationPrice();
-        String activationPriceValueAsString = "";
-        activationPriceValueAsString = activationPriceValue.toString();
-        sb.append("activationPrice=").append(urlEncode(activationPriceValueAsString)).append("");
+        Object activatePriceValue = getActivatePrice();
+        String activatePriceValueAsString = "";
+        activatePriceValueAsString = activatePriceValue.toString();
+        sb.append("activatePrice=").append(urlEncode(activatePriceValueAsString)).append("");
         Object callbackRateValue = getCallbackRate();
         String callbackRateValueAsString = "";
         callbackRateValueAsString = callbackRateValue.toString();
@@ -773,7 +772,7 @@ public class NewAlgoOrderRequest {
         openapiFields.add("closePosition");
         openapiFields.add("priceProtect");
         openapiFields.add("reduceOnly");
-        openapiFields.add("activationPrice");
+        openapiFields.add("activatePrice");
         openapiFields.add("callbackRate");
         openapiFields.add("clientAlgoId");
         openapiFields.add("selfTradePreventionMode");
