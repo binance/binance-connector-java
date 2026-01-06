@@ -24,8 +24,6 @@
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**origType** | **String** |  |  [optional] |
-|**activatePrice** | **String** |  |  [optional] |
-|**priceRate** | **String** |  |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
 |**workingType** | **String** |  |  [optional] |
 |**priceProtect** | **Boolean** |  |  [optional] |

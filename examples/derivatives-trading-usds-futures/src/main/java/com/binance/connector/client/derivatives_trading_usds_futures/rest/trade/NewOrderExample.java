@@ -42,44 +42,15 @@ public class NewOrderExample {
     /**
      * New Order(TRADE)
      *
-     * <p>Send in a new order. * Order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60;
-     * can be sent ( default &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches
-     * the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
-     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
-     * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
-     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
-     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
-     * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
-     * order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * <p>Send in a new order. * If &#x60;newOrderRespType &#x60; is sent as &#x60;RESULT&#x60; : *
+     * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. *
+     * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the
+     * order(FILLED or EXPIRED) will be returned directly. * &#x60;selfTradePreventionMode&#x60; is
+     * only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or
+     * &#x60;GTD&#x60;. * In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto
+     * cancel time might be delayed comparing to &#x60;goodTillDate&#x60; Weight: 1 on 10s order
+     * rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP
+     * rate limit(x-mbx-used-weight-1m)
      *
      * @throws ApiException if the Api call fails
      */

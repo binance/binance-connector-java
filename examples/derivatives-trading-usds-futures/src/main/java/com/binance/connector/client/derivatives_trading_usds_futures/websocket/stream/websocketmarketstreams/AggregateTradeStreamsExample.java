@@ -39,8 +39,8 @@ public class AggregateTradeStreamsExample {
      * <p>The Aggregate Trade Streams push market trade information that is aggregated for fills
      * with same price and taking side every 100 milliseconds. Only market trades will be
      * aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.
-     * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
-     * distinguished. Update Speed: 100ms
+     * Retail Price Improvement(RPI) orders are aggregated into field &#x60;q&#x60; and without
+     * special tags to be distinguished. Update Speed: 100ms
      *
      * @throws ApiException if the Api call fails
      */

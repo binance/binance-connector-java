@@ -13,6 +13,7 @@
 |**aLowerCase** | **Long** |  |  [optional] |
 |**pLowerCase** | **String** |  |  [optional] |
 |**qLowerCase** | **String** |  |  [optional] |
+|**nq** | **String** |  |  [optional] |
 |**fLowerCase** | **Long** |  |  [optional] |
 |**lLowerCase** | **Long** |  |  [optional] |
 |**T** | **Long** |  |  [optional] |

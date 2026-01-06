@@ -16,11 +16,6 @@
 |**reduceOnly** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
-|**stopPrice** | **String** |  |  [optional] |
-|**activationPrice** | **String** |  |  [optional] |
-|**callbackRate** | **String** |  |  [optional] |
-|**workingType** | [**WorkingTypeEnum**](#WorkingTypeEnum) |  |  [optional] |
-|**priceProtect** | **String** |  |  [optional] |
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) |  |  [optional] |
 |**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) |  |  [optional] |
@@ -57,15 +52,6 @@
 | GTX | &quot;GTX&quot; |
 | GTD | &quot;GTD&quot; |
 | RPI | &quot;RPI&quot; |
-
-
-
-## Enum: WorkingTypeEnum
-
-| Name | Value |
-|---- | -----|
-| MARK_PRICE | &quot;MARK_PRICE&quot; |
-| CONTRACT_PRICE | &quot;CONTRACT_PRICE&quot; |
 
 
 

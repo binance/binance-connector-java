@@ -120,7 +120,7 @@
 
 [GET /futures/data/topLongShortPositionRatio](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Trader-Long-Short-Ratio) - topTraderLongShortRatioPositions - [TopTraderLongShortRatioPositionsExample.java:54](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TopTraderLongShortRatioPositionsExample.java#L54)
 
-[GET /fapi/v1/tradingSchedule](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule) - tradingSchedule - [TradingScheduleExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TradingScheduleExample.java#L51)
+[GET /fapi/v1/tradingSchedule](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule) - tradingSchedule - [TradingScheduleExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TradingScheduleExample.java#L52)
 
 ## PortfolioMarginEndpoints
 
@@ -168,9 +168,9 @@
 
 [PUT /fapi/v1/order](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order) - modifyOrder - [ModifyOrderExample.java:60](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/ModifyOrderExample.java#L60)
 
-[POST /fapi/v1/algoOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order) - newAlgoOrder - [NewAlgoOrderExample.java:79](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewAlgoOrderExample.java#L79)
+[POST /fapi/v1/algoOrder](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order) - newAlgoOrder - [NewAlgoOrderExample.java:82](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewAlgoOrderExample.java#L82)
 
-[POST /fapi/v1/order](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order) - newOrder - [NewOrderExample.java:86](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewOrderExample.java#L86)
+[POST /fapi/v1/order](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order) - newOrder - [NewOrderExample.java:57](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/NewOrderExample.java#L57)
 
 [POST /fapi/v1/batchOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders) - placeMultipleOrders - [PlaceMultipleOrdersExample.java:53](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/PlaceMultipleOrdersExample.java#L53)
 

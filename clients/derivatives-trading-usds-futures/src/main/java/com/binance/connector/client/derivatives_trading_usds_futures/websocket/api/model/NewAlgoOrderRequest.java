@@ -131,11 +131,11 @@ public class NewAlgoOrderRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private String reduceOnly;
 
-    public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
+    public static final String SERIALIZED_NAME_ACTIVATE_PRICE = "activatePrice";
 
-    @SerializedName(SERIALIZED_NAME_ACTIVATION_PRICE)
+    @SerializedName(SERIALIZED_NAME_ACTIVATE_PRICE)
     @jakarta.annotation.Nullable
-    private Double activationPrice;
+    private Double activatePrice;
 
     public static final String SERIALIZED_NAME_CALLBACK_RATE = "callbackRate";
 
@@ -468,25 +468,24 @@ public class NewAlgoOrderRequest extends BaseDTO {
         this.reduceOnly = reduceOnly;
     }
 
-    public NewAlgoOrderRequest activationPrice(
-            @jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
+    public NewAlgoOrderRequest activatePrice(@jakarta.annotation.Nullable Double activatePrice) {
+        this.activatePrice = activatePrice;
         return this;
     }
 
     /**
-     * Get activationPrice
+     * Get activatePrice
      *
-     * @return activationPrice
+     * @return activatePrice
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getActivationPrice() {
-        return activationPrice;
+    public Double getActivatePrice() {
+        return activatePrice;
     }
 
-    public void setActivationPrice(@jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
+    public void setActivatePrice(@jakarta.annotation.Nullable Double activatePrice) {
+        this.activatePrice = activatePrice;
     }
 
     public NewAlgoOrderRequest callbackRate(@jakarta.annotation.Nullable Double callbackRate) {
@@ -612,7 +611,7 @@ public class NewAlgoOrderRequest extends BaseDTO {
                 && Objects.equals(this.closePosition, newAlgoOrderRequest.closePosition)
                 && Objects.equals(this.priceProtect, newAlgoOrderRequest.priceProtect)
                 && Objects.equals(this.reduceOnly, newAlgoOrderRequest.reduceOnly)
-                && Objects.equals(this.activationPrice, newAlgoOrderRequest.activationPrice)
+                && Objects.equals(this.activatePrice, newAlgoOrderRequest.activatePrice)
                 && Objects.equals(this.callbackRate, newAlgoOrderRequest.callbackRate)
                 && Objects.equals(this.clientAlgoId, newAlgoOrderRequest.clientAlgoId)
                 && Objects.equals(
@@ -639,7 +638,7 @@ public class NewAlgoOrderRequest extends BaseDTO {
                 closePosition,
                 priceProtect,
                 reduceOnly,
-                activationPrice,
+                activatePrice,
                 callbackRate,
                 clientAlgoId,
                 selfTradePreventionMode,
@@ -666,7 +665,7 @@ public class NewAlgoOrderRequest extends BaseDTO {
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		activationPrice: ").append(toIndentedString(activationPrice)).append("\n");
+        sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
         sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
         sb.append("		clientAlgoId: ").append(toIndentedString(clientAlgoId)).append("\n");
         sb.append("		selfTradePreventionMode: ")
@@ -758,11 +757,11 @@ public class NewAlgoOrderRequest extends BaseDTO {
             String reduceOnlyValueAsString = reduceOnlyValue.toString();
             valMap.put("reduceOnly", reduceOnlyValueAsString);
         }
-        Double activationPriceValue = getActivationPrice();
-        if (activationPriceValue != null) {
-            String activationPriceValueAsString =
-                    DecimalFormatter.getFormatter().format(activationPriceValue);
-            valMap.put("activationPrice", activationPriceValueAsString);
+        Double activatePriceValue = getActivatePrice();
+        if (activatePriceValue != null) {
+            String activatePriceValueAsString =
+                    DecimalFormatter.getFormatter().format(activatePriceValue);
+            valMap.put("activatePrice", activatePriceValueAsString);
         }
         Double callbackRateValue = getCallbackRate();
         if (callbackRateValue != null) {
@@ -861,9 +860,9 @@ public class NewAlgoOrderRequest extends BaseDTO {
         if (reduceOnlyValue != null) {
             valMap.put("reduceOnly", reduceOnlyValue);
         }
-        Object activationPriceValue = getActivationPrice();
-        if (activationPriceValue != null) {
-            valMap.put("activationPrice", activationPriceValue);
+        Object activatePriceValue = getActivatePrice();
+        if (activatePriceValue != null) {
+            valMap.put("activatePrice", activatePriceValue);
         }
         Object callbackRateValue = getCallbackRate();
         if (callbackRateValue != null) {
@@ -926,7 +925,7 @@ public class NewAlgoOrderRequest extends BaseDTO {
         openapiFields.add("closePosition");
         openapiFields.add("priceProtect");
         openapiFields.add("reduceOnly");
-        openapiFields.add("activationPrice");
+        openapiFields.add("activatePrice");
         openapiFields.add("callbackRate");
         openapiFields.add("clientAlgoId");
         openapiFields.add("selfTradePreventionMode");

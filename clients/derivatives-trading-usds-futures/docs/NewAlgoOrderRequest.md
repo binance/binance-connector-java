@@ -22,7 +22,7 @@
 |**closePosition** | **String** |  |  [optional] |
 |**priceProtect** | **String** |  |  [optional] |
 |**reduceOnly** | **String** |  |  [optional] |
-|**activationPrice** | **Double** |  |  [optional] |
+|**activatePrice** | **Double** |  |  [optional] |
 |**callbackRate** | **Double** |  |  [optional] |
 |**clientAlgoId** | **String** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
