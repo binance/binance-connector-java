@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**id** | **Long** |  |  [optional] |
+|**tradeId** | **Long** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**qty** | **String** |  |  [optional] |

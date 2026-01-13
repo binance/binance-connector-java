@@ -121,12 +121,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "e6c675628031b06a2cee642f08dd8c2ef4f300380d1b62eeeb68aa3dd76194f1",
-                actualRequest.url().queryParameter("signature"));
+                "e6c675628031b06a2cee642f08dd8c2ef4f300380d1b62eeeb68aa3dd76194f1", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/userTrades", actualRequest.url().encodedPath());
     }
 
@@ -165,7 +162,7 @@ public class TradeApiTest {
     /**
      * Cancel all Option orders on specific symbol (TRADE)
      *
-     * <p>Cancel all active order on a symbol. Weight: 1
+     * <p>Cancel all active order on a symbol. Weight: 5
      *
      * @throws ApiException if the Api call fails
      */
@@ -186,11 +183,14 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "symbol=&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
                 "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/allOpenOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/eapi/v1/allOpenOrders", actualRequest.url().encodedPath());
     }
 
     /**
@@ -254,12 +254,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176",
-                actualRequest.url().queryParameter("signature"));
+                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 
@@ -273,11 +270,10 @@ public class TradeApiTest {
     @Test
     public void newOrderTest() throws ApiException, CryptoException {
         NewOrderRequest newOrderRequest = new NewOrderRequest();
-
         newOrderRequest.symbol("");
         newOrderRequest.side(Side.BUY);
         newOrderRequest.type(Type.LIMIT);
-        newOrderRequest.quantity(1d);
+        newOrderRequest.quantity(1.0d);
 
         ApiResponse<NewOrderResponse> response = api.newOrder(newOrderRequest);
 
@@ -291,12 +287,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=&side=BUY&quantity=1&type=LIMIT",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bd7c3ca01fc9cf18bcbcb549be33525c3f9d56758986c3b229f2a0784fdf9232",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=&side=BUY&quantity=1&type=LIMIT", signInputCaptor.getValue());
+        assertEquals("bd7c3ca01fc9cf18bcbcb549be33525c3f9d56758986c3b229f2a0784fdf9232", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 
@@ -342,7 +334,6 @@ public class TradeApiTest {
     @Test
     public void placeMultipleOrdersTest() throws ApiException, CryptoException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
-
         placeMultipleOrdersRequest.orders(new Orders());
 
         ApiResponse<PlaceMultipleOrdersResponse> response =
@@ -360,8 +351,7 @@ public class TradeApiTest {
 
         assertEquals("timestamp=1736393892000orders=%5B%5D", signInputCaptor.getValue());
         assertEquals(
-                "f273926c44bae2debb7be2afff1b241effae47359ba75471bfd81910d65528e2",
-                actualRequest.url().queryParameter("signature"));
+                "f273926c44bae2debb7be2afff1b241effae47359ba75471bfd81910d65528e2", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/batchOrders", actualRequest.url().encodedPath());
     }
 
@@ -381,8 +371,7 @@ public class TradeApiTest {
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentOpenOptionOrdersResponse> response =
-                api.queryCurrentOpenOptionOrders(
-                        symbol, orderId, startTime, endTime, recvWindow);
+                api.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -394,9 +383,7 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "51e9f45d125dacba55909402a133899dd5f0956cd707d8d24ff372c34f5a8155",
                 actualRequest.url().queryParameter("signature"));
@@ -432,9 +419,7 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "dc0808314025fc813dcde0328cd6754c982d28888760fc74b17e072087eb4895",
                 actualRequest.url().queryParameter("signature"));
@@ -470,12 +455,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176",
-                actualRequest.url().queryParameter("signature"));
+                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 
@@ -506,12 +488,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "3d9795ecfdb1326d191e1c4777f0f21d3abe1b7efbde9431ba818a057bd1dd7f",
-                actualRequest.url().queryParameter("signature"));
+                "3d9795ecfdb1326d191e1c4777f0f21d3abe1b7efbde9431ba818a057bd1dd7f", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exerciseRecord", actualRequest.url().encodedPath());
     }
 }

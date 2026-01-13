@@ -53,7 +53,7 @@ public class MarketMakerEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +104,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
      *     All Open Orders (Kill-Switch) Heartbeat (TRADE) Documentation</a>
      */
     private okhttp3.Call autoCancelAllOpenOrdersCall(
@@ -226,7 +226,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
      *     All Open Orders (Kill-Switch) Heartbeat (TRADE) Documentation</a>
      */
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
@@ -254,7 +254,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     private okhttp3.Call getAutoCancelAllOpenOrdersCall(String underlying, Long recvWindow)
@@ -374,7 +374,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetAutoCancelAllOpenOrdersResponse> getAutoCancelAllOpenOrders(
@@ -401,7 +401,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call getMarketMakerProtectionConfigCall(String underlying, Long recvWindow)
@@ -517,7 +517,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetMarketMakerProtectionConfigResponse> getMarketMakerProtectionConfig(
@@ -543,7 +543,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call resetMarketMakerProtectionConfigCall(
@@ -665,7 +665,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<ResetMarketMakerProtectionConfigResponse> resetMarketMakerProtectionConfig(
@@ -694,7 +694,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     private okhttp3.Call setAutoCancelAllOpenOrdersCall(
@@ -832,7 +832,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetAutoCancelAllOpenOrdersResponse> setAutoCancelAllOpenOrders(
@@ -859,7 +859,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call setMarketMakerProtectionConfigCall(
@@ -1011,7 +1011,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetMarketMakerProtectionConfigResponse> setMarketMakerProtectionConfig(

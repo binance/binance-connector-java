@@ -20,9 +20,6 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AccountFundingFlowResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetDownloadIdForOptionTransactionHistoryResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetOptionTransactionHistoryDownloadLinkByIdResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -46,7 +43,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -103,7 +100,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Account-Funding-Flow">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow">Account
      *     Funding Flow (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountFundingFlowCall(
@@ -260,7 +257,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Account-Funding-Flow">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow">Account
      *     Funding Flow (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountFundingFlowResponse> accountFundingFlow(
@@ -280,447 +277,6 @@ public class AccountApi {
     }
 
     /**
-     * Build call for getDownloadIdForOptionTransactionHistory
-     *
-     * @param startTime Timestamp in ms (required)
-     * @param endTime Timestamp in ms (required)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Download Id For Option Transaction History </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Download-Id-For-Option-Transaction-History">Get
-     *     Download Id For Option Transaction History (USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call getDownloadIdForOptionTransactionHistoryCall(
-            Long startTime, Long endTime, Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/eapi/v1/income/asyn";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (startTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
-        }
-
-        if (endTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDownloadIdForOptionTransactionHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {startTime, endTime, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getDownloadIdForOptionTransactionHistory",
-                                    Long.class,
-                                    Long.class,
-                                    Long.class);
-            Set<ConstraintViolation<AccountApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getDownloadIdForOptionTransactionHistoryCall(startTime, endTime, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Get Download Id For Option Transaction History (USER_DATA) Get download id for option
-     * transaction history * Request Limitation is 5 times per month, shared by &gt; front end
-     * download page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * can not be longer than 1 year Weight: 5
-     *
-     * @param startTime Timestamp in ms (required)
-     * @param endTime Timestamp in ms (required)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetDownloadIdForOptionTransactionHistoryResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Download Id For Option Transaction History </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Download-Id-For-Option-Transaction-History">Get
-     *     Download Id For Option Transaction History (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetDownloadIdForOptionTransactionHistoryResponse>
-            getDownloadIdForOptionTransactionHistory(
-                    @NotNull Long startTime, @NotNull Long endTime, Long recvWindow)
-                    throws ApiException {
-        okhttp3.Call localVarCall =
-                getDownloadIdForOptionTransactionHistoryValidateBeforeCall(
-                        startTime, endTime, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetDownloadIdForOptionTransactionHistoryResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getOptionTransactionHistoryDownloadLinkById
-     *
-     * @param downloadId get by download id api (required)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Option Transaction History Download Link by Id </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Option-Transaction-History-Download-Link-by-Id">Get
-     *     Option Transaction History Download Link by Id (USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call getOptionTransactionHistoryDownloadLinkByIdCall(
-            String downloadId, Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/eapi/v1/income/asyn/id";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (downloadId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("downloadId", downloadId));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOptionTransactionHistoryDownloadLinkByIdValidateBeforeCall(
-            String downloadId, Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {downloadId, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getOptionTransactionHistoryDownloadLinkById",
-                                    String.class,
-                                    Long.class);
-            Set<ConstraintViolation<AccountApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getOptionTransactionHistoryDownloadLinkByIdCall(downloadId, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Get Option Transaction History Download Link by Id (USER_DATA) Get option transaction history
-     * download Link by Id * Download link expiration: 24h Weight: 5
-     *
-     * @param downloadId get by download id api (required)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetOptionTransactionHistoryDownloadLinkByIdResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Option Transaction History Download Link by Id </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Option-Transaction-History-Download-Link-by-Id">Get
-     *     Option Transaction History Download Link by Id (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetOptionTransactionHistoryDownloadLinkByIdResponse>
-            getOptionTransactionHistoryDownloadLinkById(@NotNull String downloadId, Long recvWindow)
-                    throws ApiException {
-        okhttp3.Call localVarCall =
-                getOptionTransactionHistoryDownloadLinkByIdValidateBeforeCall(
-                        downloadId, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetOptionTransactionHistoryDownloadLinkByIdResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for optionAccountInformation
-     *
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Account-Information">Option
-     *     Account Information(TRADE) Documentation</a>
-     */
-    private okhttp3.Call optionAccountInformationCall(Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/eapi/v1/account";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call optionAccountInformationValidateBeforeCall(Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("optionAccountInformation", Long.class);
-            Set<ConstraintViolation<AccountApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return optionAccountInformationCall(recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Option Account Information(TRADE) Get current account information. Weight: 3
-     *
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;OptionAccountInformationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Account-Information">Option
-     *     Account Information(TRADE) Documentation</a>
-     */
-    public ApiResponse<OptionAccountInformationResponse> optionAccountInformation(Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall = optionAccountInformationValidateBeforeCall(recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<OptionAccountInformationResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for optionMarginAccountInformation
      *
      * @param recvWindow (optional)
@@ -734,7 +290,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Margin-Account-Information">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information">Option
      *     Margin Account Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call optionMarginAccountInformationCall(Long recvWindow) throws ApiException {
@@ -842,7 +398,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Margin-Account-Information">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information">Option
      *     Margin Account Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(

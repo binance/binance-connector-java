@@ -14,8 +14,6 @@
 |**strikePrice** | **String** |  |  [optional] |
 |**underlying** | **String** |  |  [optional] |
 |**unit** | **Long** |  |  [optional] |
-|**makerFeeRate** | **String** |  |  [optional] |
-|**takerFeeRate** | **String** |  |  [optional] |
 |**liquidationFeeRate** | **String** |  |  [optional] |
 |**minQty** | **String** |  |  [optional] |
 |**maxQty** | **String** |  |  [optional] |
@@ -26,6 +24,7 @@
 |**priceScale** | **Long** |  |  [optional] |
 |**quantityScale** | **Long** |  |  [optional] |
 |**quoteAsset** | **String** |  |  [optional] |
+|**status** | **String** |  |  [optional] |
 
 
 

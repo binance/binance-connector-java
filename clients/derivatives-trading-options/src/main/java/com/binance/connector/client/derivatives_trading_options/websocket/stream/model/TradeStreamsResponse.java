@@ -51,6 +51,12 @@ public class TradeStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long E;
 
+    public static final String SERIALIZED_NAME_T = "T";
+
+    @SerializedName(SERIALIZED_NAME_T)
+    @jakarta.annotation.Nullable
+    private Long T;
+
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
@@ -61,7 +67,7 @@ public class TradeStreamsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_T_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String tLowerCase;
+    private Long tLowerCase;
 
     public static final String SERIALIZED_NAME_P_LOWER_CASE = "p";
 
@@ -75,23 +81,11 @@ public class TradeStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String qLowerCase;
 
-    public static final String SERIALIZED_NAME_B_LOWER_CASE = "b";
+    public static final String SERIALIZED_NAME_X = "X";
 
-    @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
+    @SerializedName(SERIALIZED_NAME_X)
     @jakarta.annotation.Nullable
-    private Long bLowerCase;
-
-    public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
-
-    @SerializedName(SERIALIZED_NAME_A_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private Long aLowerCase;
-
-    public static final String SERIALIZED_NAME_T = "T";
-
-    @SerializedName(SERIALIZED_NAME_T)
-    @jakarta.annotation.Nullable
-    private Long T;
+    private String X;
 
     public static final String SERIALIZED_NAME_S = "S";
 
@@ -99,11 +93,11 @@ public class TradeStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String S;
 
-    public static final String SERIALIZED_NAME_X = "X";
+    public static final String SERIALIZED_NAME_M_LOWER_CASE = "m";
 
-    @SerializedName(SERIALIZED_NAME_X)
+    @SerializedName(SERIALIZED_NAME_M_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String X;
+    private Boolean mLowerCase;
 
     public TradeStreamsResponse() {}
 
@@ -145,6 +139,25 @@ public class TradeStreamsResponse extends BaseDTO {
         this.E = E;
     }
 
+    public TradeStreamsResponse T(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
+        return this;
+    }
+
+    /**
+     * Get T
+     *
+     * @return T
+     */
+    @jakarta.annotation.Nullable
+    public Long getT() {
+        return T;
+    }
+
+    public void setT(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
+    }
+
     public TradeStreamsResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
         this.sLowerCase = sLowerCase;
         return this;
@@ -164,7 +177,7 @@ public class TradeStreamsResponse extends BaseDTO {
         this.sLowerCase = sLowerCase;
     }
 
-    public TradeStreamsResponse tLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
+    public TradeStreamsResponse tLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
         this.tLowerCase = tLowerCase;
         return this;
     }
@@ -175,11 +188,11 @@ public class TradeStreamsResponse extends BaseDTO {
      * @return tLowerCase
      */
     @jakarta.annotation.Nullable
-    public String gettLowerCase() {
+    public Long gettLowerCase() {
         return tLowerCase;
     }
 
-    public void settLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
+    public void settLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
         this.tLowerCase = tLowerCase;
     }
 
@@ -221,61 +234,23 @@ public class TradeStreamsResponse extends BaseDTO {
         this.qLowerCase = qLowerCase;
     }
 
-    public TradeStreamsResponse bLowerCase(@jakarta.annotation.Nullable Long bLowerCase) {
-        this.bLowerCase = bLowerCase;
+    public TradeStreamsResponse X(@jakarta.annotation.Nullable String X) {
+        this.X = X;
         return this;
     }
 
     /**
-     * Get bLowerCase
+     * Get X
      *
-     * @return bLowerCase
+     * @return X
      */
     @jakarta.annotation.Nullable
-    public Long getbLowerCase() {
-        return bLowerCase;
+    public String getX() {
+        return X;
     }
 
-    public void setbLowerCase(@jakarta.annotation.Nullable Long bLowerCase) {
-        this.bLowerCase = bLowerCase;
-    }
-
-    public TradeStreamsResponse aLowerCase(@jakarta.annotation.Nullable Long aLowerCase) {
-        this.aLowerCase = aLowerCase;
-        return this;
-    }
-
-    /**
-     * Get aLowerCase
-     *
-     * @return aLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public Long getaLowerCase() {
-        return aLowerCase;
-    }
-
-    public void setaLowerCase(@jakarta.annotation.Nullable Long aLowerCase) {
-        this.aLowerCase = aLowerCase;
-    }
-
-    public TradeStreamsResponse T(@jakarta.annotation.Nullable Long T) {
-        this.T = T;
-        return this;
-    }
-
-    /**
-     * Get T
-     *
-     * @return T
-     */
-    @jakarta.annotation.Nullable
-    public Long getT() {
-        return T;
-    }
-
-    public void setT(@jakarta.annotation.Nullable Long T) {
-        this.T = T;
+    public void setX(@jakarta.annotation.Nullable String X) {
+        this.X = X;
     }
 
     public TradeStreamsResponse S(@jakarta.annotation.Nullable String S) {
@@ -297,23 +272,23 @@ public class TradeStreamsResponse extends BaseDTO {
         this.S = S;
     }
 
-    public TradeStreamsResponse X(@jakarta.annotation.Nullable String X) {
-        this.X = X;
+    public TradeStreamsResponse mLowerCase(@jakarta.annotation.Nullable Boolean mLowerCase) {
+        this.mLowerCase = mLowerCase;
         return this;
     }
 
     /**
-     * Get X
+     * Get mLowerCase
      *
-     * @return X
+     * @return mLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getX() {
-        return X;
+    public Boolean getmLowerCase() {
+        return mLowerCase;
     }
 
-    public void setX(@jakarta.annotation.Nullable String X) {
-        this.X = X;
+    public void setmLowerCase(@jakarta.annotation.Nullable Boolean mLowerCase) {
+        this.mLowerCase = mLowerCase;
     }
 
     @Override
@@ -327,31 +302,20 @@ public class TradeStreamsResponse extends BaseDTO {
         TradeStreamsResponse tradeStreamsResponse = (TradeStreamsResponse) o;
         return Objects.equals(this.eLowerCase, tradeStreamsResponse.eLowerCase)
                 && Objects.equals(this.E, tradeStreamsResponse.E)
+                && Objects.equals(this.T, tradeStreamsResponse.T)
                 && Objects.equals(this.sLowerCase, tradeStreamsResponse.sLowerCase)
                 && Objects.equals(this.tLowerCase, tradeStreamsResponse.tLowerCase)
                 && Objects.equals(this.pLowerCase, tradeStreamsResponse.pLowerCase)
                 && Objects.equals(this.qLowerCase, tradeStreamsResponse.qLowerCase)
-                && Objects.equals(this.bLowerCase, tradeStreamsResponse.bLowerCase)
-                && Objects.equals(this.aLowerCase, tradeStreamsResponse.aLowerCase)
-                && Objects.equals(this.T, tradeStreamsResponse.T)
+                && Objects.equals(this.X, tradeStreamsResponse.X)
                 && Objects.equals(this.S, tradeStreamsResponse.S)
-                && Objects.equals(this.X, tradeStreamsResponse.X);
+                && Objects.equals(this.mLowerCase, tradeStreamsResponse.mLowerCase);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                eLowerCase,
-                E,
-                sLowerCase,
-                tLowerCase,
-                pLowerCase,
-                qLowerCase,
-                bLowerCase,
-                aLowerCase,
-                T,
-                S,
-                X);
+                eLowerCase, E, T, sLowerCase, tLowerCase, pLowerCase, qLowerCase, X, S, mLowerCase);
     }
 
     @Override
@@ -360,15 +324,14 @@ public class TradeStreamsResponse extends BaseDTO {
         sb.append("class TradeStreamsResponse {\n");
         sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
+        sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		tLowerCase: ").append(toIndentedString(tLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
         sb.append("		qLowerCase: ").append(toIndentedString(qLowerCase)).append("\n");
-        sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
-        sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
-        sb.append("		T: ").append(toIndentedString(T)).append("\n");
-        sb.append("		S: ").append(toIndentedString(S)).append("\n");
         sb.append("		X: ").append(toIndentedString(X)).append("\n");
+        sb.append("		S: ").append(toIndentedString(S)).append("\n");
+        sb.append("		mLowerCase: ").append(toIndentedString(mLowerCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -387,12 +350,17 @@ public class TradeStreamsResponse extends BaseDTO {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
+        Long TValue = getT();
+        if (TValue != null) {
+            String TValueAsString = TValue.toString();
+            valMap.put("T", TValueAsString);
+        }
         String sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
-        String tLowerCaseValue = gettLowerCase();
+        Long tLowerCaseValue = gettLowerCase();
         if (tLowerCaseValue != null) {
             String tLowerCaseValueAsString = tLowerCaseValue.toString();
             valMap.put("tLowerCase", tLowerCaseValueAsString);
@@ -407,30 +375,20 @@ public class TradeStreamsResponse extends BaseDTO {
             String qLowerCaseValueAsString = qLowerCaseValue.toString();
             valMap.put("qLowerCase", qLowerCaseValueAsString);
         }
-        Long bLowerCaseValue = getbLowerCase();
-        if (bLowerCaseValue != null) {
-            String bLowerCaseValueAsString = bLowerCaseValue.toString();
-            valMap.put("bLowerCase", bLowerCaseValueAsString);
-        }
-        Long aLowerCaseValue = getaLowerCase();
-        if (aLowerCaseValue != null) {
-            String aLowerCaseValueAsString = aLowerCaseValue.toString();
-            valMap.put("aLowerCase", aLowerCaseValueAsString);
-        }
-        Long TValue = getT();
-        if (TValue != null) {
-            String TValueAsString = TValue.toString();
-            valMap.put("T", TValueAsString);
+        String XValue = getX();
+        if (XValue != null) {
+            String XValueAsString = XValue.toString();
+            valMap.put("X", XValueAsString);
         }
         String SValue = getS();
         if (SValue != null) {
             String SValueAsString = SValue.toString();
             valMap.put("S", SValueAsString);
         }
-        String XValue = getX();
-        if (XValue != null) {
-            String XValueAsString = XValue.toString();
-            valMap.put("X", XValueAsString);
+        Boolean mLowerCaseValue = getmLowerCase();
+        if (mLowerCaseValue != null) {
+            String mLowerCaseValueAsString = mLowerCaseValue.toString();
+            valMap.put("mLowerCase", mLowerCaseValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -451,6 +409,10 @@ public class TradeStreamsResponse extends BaseDTO {
         if (EValue != null) {
             valMap.put("E", EValue);
         }
+        Object TValue = getT();
+        if (TValue != null) {
+            valMap.put("T", TValue);
+        }
         Object sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
@@ -467,25 +429,17 @@ public class TradeStreamsResponse extends BaseDTO {
         if (qLowerCaseValue != null) {
             valMap.put("qLowerCase", qLowerCaseValue);
         }
-        Object bLowerCaseValue = getbLowerCase();
-        if (bLowerCaseValue != null) {
-            valMap.put("bLowerCase", bLowerCaseValue);
-        }
-        Object aLowerCaseValue = getaLowerCase();
-        if (aLowerCaseValue != null) {
-            valMap.put("aLowerCase", aLowerCaseValue);
-        }
-        Object TValue = getT();
-        if (TValue != null) {
-            valMap.put("T", TValue);
+        Object XValue = getX();
+        if (XValue != null) {
+            valMap.put("X", XValue);
         }
         Object SValue = getS();
         if (SValue != null) {
             valMap.put("S", SValue);
         }
-        Object XValue = getX();
-        if (XValue != null) {
-            valMap.put("X", XValue);
+        Object mLowerCaseValue = getmLowerCase();
+        if (mLowerCaseValue != null) {
+            valMap.put("mLowerCase", mLowerCaseValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -515,15 +469,14 @@ public class TradeStreamsResponse extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("e");
         openapiFields.add("E");
+        openapiFields.add("T");
         openapiFields.add("s");
         openapiFields.add("t");
         openapiFields.add("p");
         openapiFields.add("q");
-        openapiFields.add("b");
-        openapiFields.add("a");
-        openapiFields.add("T");
-        openapiFields.add("S");
         openapiFields.add("X");
+        openapiFields.add("S");
+        openapiFields.add("m");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -575,14 +528,6 @@ public class TradeStreamsResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("s").toString()));
         }
-        if ((jsonObj.get("t") != null && !jsonObj.get("t").isJsonNull())
-                && !jsonObj.get("t").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `t` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("t").toString()));
-        }
         if ((jsonObj.get("p") != null && !jsonObj.get("p").isJsonNull())
                 && !jsonObj.get("p").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -599,14 +544,6 @@ public class TradeStreamsResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("q").toString()));
         }
-        if ((jsonObj.get("S") != null && !jsonObj.get("S").isJsonNull())
-                && !jsonObj.get("S").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `S` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("S").toString()));
-        }
         if ((jsonObj.get("X") != null && !jsonObj.get("X").isJsonNull())
                 && !jsonObj.get("X").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -614,6 +551,14 @@ public class TradeStreamsResponse extends BaseDTO {
                             "Expected the field `X` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("X").toString()));
+        }
+        if ((jsonObj.get("S") != null && !jsonObj.get("S").isJsonNull())
+                && !jsonObj.get("S").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `S` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("S").toString()));
         }
     }
 

@@ -51,35 +51,23 @@ public class NewSymbolInfoResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long E;
 
-    public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
-
-    @SerializedName(SERIALIZED_NAME_U_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private String uLowerCase;
-
-    public static final String SERIALIZED_NAME_QA = "qa";
-
-    @SerializedName(SERIALIZED_NAME_QA)
-    @jakarta.annotation.Nullable
-    private String qa;
-
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
     private String sLowerCase;
 
-    public static final String SERIALIZED_NAME_UNIT = "unit";
+    public static final String SERIALIZED_NAME_PS = "ps";
 
-    @SerializedName(SERIALIZED_NAME_UNIT)
+    @SerializedName(SERIALIZED_NAME_PS)
     @jakarta.annotation.Nullable
-    private Long unit;
+    private String ps;
 
-    public static final String SERIALIZED_NAME_MQ = "mq";
+    public static final String SERIALIZED_NAME_QA = "qa";
 
-    @SerializedName(SERIALIZED_NAME_MQ)
+    @SerializedName(SERIALIZED_NAME_QA)
     @jakarta.annotation.Nullable
-    private String mq;
+    private String qa;
 
     public static final String SERIALIZED_NAME_D_LOWER_CASE = "d";
 
@@ -93,11 +81,29 @@ public class NewSymbolInfoResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String sp;
 
-    public static final String SERIALIZED_NAME_ED = "ed";
+    public static final String SERIALIZED_NAME_DT = "dt";
 
-    @SerializedName(SERIALIZED_NAME_ED)
+    @SerializedName(SERIALIZED_NAME_DT)
     @jakarta.annotation.Nullable
-    private Long ed;
+    private Long dt;
+
+    public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
+
+    @SerializedName(SERIALIZED_NAME_U_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private Long uLowerCase;
+
+    public static final String SERIALIZED_NAME_OT = "ot";
+
+    @SerializedName(SERIALIZED_NAME_OT)
+    @jakarta.annotation.Nullable
+    private Long ot;
+
+    public static final String SERIALIZED_NAME_CS = "cs";
+
+    @SerializedName(SERIALIZED_NAME_CS)
+    @jakarta.annotation.Nullable
+    private String cs;
 
     public NewSymbolInfoResponse() {}
 
@@ -139,44 +145,6 @@ public class NewSymbolInfoResponse extends BaseDTO {
         this.E = E;
     }
 
-    public NewSymbolInfoResponse uLowerCase(@jakarta.annotation.Nullable String uLowerCase) {
-        this.uLowerCase = uLowerCase;
-        return this;
-    }
-
-    /**
-     * Get uLowerCase
-     *
-     * @return uLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public String getuLowerCase() {
-        return uLowerCase;
-    }
-
-    public void setuLowerCase(@jakarta.annotation.Nullable String uLowerCase) {
-        this.uLowerCase = uLowerCase;
-    }
-
-    public NewSymbolInfoResponse qa(@jakarta.annotation.Nullable String qa) {
-        this.qa = qa;
-        return this;
-    }
-
-    /**
-     * Get qa
-     *
-     * @return qa
-     */
-    @jakarta.annotation.Nullable
-    public String getQa() {
-        return qa;
-    }
-
-    public void setQa(@jakarta.annotation.Nullable String qa) {
-        this.qa = qa;
-    }
-
     public NewSymbolInfoResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
         this.sLowerCase = sLowerCase;
         return this;
@@ -196,42 +164,42 @@ public class NewSymbolInfoResponse extends BaseDTO {
         this.sLowerCase = sLowerCase;
     }
 
-    public NewSymbolInfoResponse unit(@jakarta.annotation.Nullable Long unit) {
-        this.unit = unit;
+    public NewSymbolInfoResponse ps(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
         return this;
     }
 
     /**
-     * Get unit
+     * Get ps
      *
-     * @return unit
+     * @return ps
      */
     @jakarta.annotation.Nullable
-    public Long getUnit() {
-        return unit;
+    public String getPs() {
+        return ps;
     }
 
-    public void setUnit(@jakarta.annotation.Nullable Long unit) {
-        this.unit = unit;
+    public void setPs(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
     }
 
-    public NewSymbolInfoResponse mq(@jakarta.annotation.Nullable String mq) {
-        this.mq = mq;
+    public NewSymbolInfoResponse qa(@jakarta.annotation.Nullable String qa) {
+        this.qa = qa;
         return this;
     }
 
     /**
-     * Get mq
+     * Get qa
      *
-     * @return mq
+     * @return qa
      */
     @jakarta.annotation.Nullable
-    public String getMq() {
-        return mq;
+    public String getQa() {
+        return qa;
     }
 
-    public void setMq(@jakarta.annotation.Nullable String mq) {
-        this.mq = mq;
+    public void setQa(@jakarta.annotation.Nullable String qa) {
+        this.qa = qa;
     }
 
     public NewSymbolInfoResponse dLowerCase(@jakarta.annotation.Nullable String dLowerCase) {
@@ -272,23 +240,80 @@ public class NewSymbolInfoResponse extends BaseDTO {
         this.sp = sp;
     }
 
-    public NewSymbolInfoResponse ed(@jakarta.annotation.Nullable Long ed) {
-        this.ed = ed;
+    public NewSymbolInfoResponse dt(@jakarta.annotation.Nullable Long dt) {
+        this.dt = dt;
         return this;
     }
 
     /**
-     * Get ed
+     * Get dt
      *
-     * @return ed
+     * @return dt
      */
     @jakarta.annotation.Nullable
-    public Long getEd() {
-        return ed;
+    public Long getDt() {
+        return dt;
     }
 
-    public void setEd(@jakarta.annotation.Nullable Long ed) {
-        this.ed = ed;
+    public void setDt(@jakarta.annotation.Nullable Long dt) {
+        this.dt = dt;
+    }
+
+    public NewSymbolInfoResponse uLowerCase(@jakarta.annotation.Nullable Long uLowerCase) {
+        this.uLowerCase = uLowerCase;
+        return this;
+    }
+
+    /**
+     * Get uLowerCase
+     *
+     * @return uLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public Long getuLowerCase() {
+        return uLowerCase;
+    }
+
+    public void setuLowerCase(@jakarta.annotation.Nullable Long uLowerCase) {
+        this.uLowerCase = uLowerCase;
+    }
+
+    public NewSymbolInfoResponse ot(@jakarta.annotation.Nullable Long ot) {
+        this.ot = ot;
+        return this;
+    }
+
+    /**
+     * Get ot
+     *
+     * @return ot
+     */
+    @jakarta.annotation.Nullable
+    public Long getOt() {
+        return ot;
+    }
+
+    public void setOt(@jakarta.annotation.Nullable Long ot) {
+        this.ot = ot;
+    }
+
+    public NewSymbolInfoResponse cs(@jakarta.annotation.Nullable String cs) {
+        this.cs = cs;
+        return this;
+    }
+
+    /**
+     * Get cs
+     *
+     * @return cs
+     */
+    @jakarta.annotation.Nullable
+    public String getCs() {
+        return cs;
+    }
+
+    public void setCs(@jakarta.annotation.Nullable String cs) {
+        this.cs = cs;
     }
 
     @Override
@@ -302,20 +327,21 @@ public class NewSymbolInfoResponse extends BaseDTO {
         NewSymbolInfoResponse newSymbolInfoResponse = (NewSymbolInfoResponse) o;
         return Objects.equals(this.eLowerCase, newSymbolInfoResponse.eLowerCase)
                 && Objects.equals(this.E, newSymbolInfoResponse.E)
-                && Objects.equals(this.uLowerCase, newSymbolInfoResponse.uLowerCase)
-                && Objects.equals(this.qa, newSymbolInfoResponse.qa)
                 && Objects.equals(this.sLowerCase, newSymbolInfoResponse.sLowerCase)
-                && Objects.equals(this.unit, newSymbolInfoResponse.unit)
-                && Objects.equals(this.mq, newSymbolInfoResponse.mq)
+                && Objects.equals(this.ps, newSymbolInfoResponse.ps)
+                && Objects.equals(this.qa, newSymbolInfoResponse.qa)
                 && Objects.equals(this.dLowerCase, newSymbolInfoResponse.dLowerCase)
                 && Objects.equals(this.sp, newSymbolInfoResponse.sp)
-                && Objects.equals(this.ed, newSymbolInfoResponse.ed);
+                && Objects.equals(this.dt, newSymbolInfoResponse.dt)
+                && Objects.equals(this.uLowerCase, newSymbolInfoResponse.uLowerCase)
+                && Objects.equals(this.ot, newSymbolInfoResponse.ot)
+                && Objects.equals(this.cs, newSymbolInfoResponse.cs);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                eLowerCase, E, uLowerCase, qa, sLowerCase, unit, mq, dLowerCase, sp, ed);
+                eLowerCase, E, sLowerCase, ps, qa, dLowerCase, sp, dt, uLowerCase, ot, cs);
     }
 
     @Override
@@ -324,14 +350,15 @@ public class NewSymbolInfoResponse extends BaseDTO {
         sb.append("class NewSymbolInfoResponse {\n");
         sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
-        sb.append("		uLowerCase: ").append(toIndentedString(uLowerCase)).append("\n");
-        sb.append("		qa: ").append(toIndentedString(qa)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
-        sb.append("		unit: ").append(toIndentedString(unit)).append("\n");
-        sb.append("		mq: ").append(toIndentedString(mq)).append("\n");
+        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
+        sb.append("		qa: ").append(toIndentedString(qa)).append("\n");
         sb.append("		dLowerCase: ").append(toIndentedString(dLowerCase)).append("\n");
         sb.append("		sp: ").append(toIndentedString(sp)).append("\n");
-        sb.append("		ed: ").append(toIndentedString(ed)).append("\n");
+        sb.append("		dt: ").append(toIndentedString(dt)).append("\n");
+        sb.append("		uLowerCase: ").append(toIndentedString(uLowerCase)).append("\n");
+        sb.append("		ot: ").append(toIndentedString(ot)).append("\n");
+        sb.append("		cs: ").append(toIndentedString(cs)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -350,30 +377,20 @@ public class NewSymbolInfoResponse extends BaseDTO {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
-        String uLowerCaseValue = getuLowerCase();
-        if (uLowerCaseValue != null) {
-            String uLowerCaseValueAsString = uLowerCaseValue.toString();
-            valMap.put("uLowerCase", uLowerCaseValueAsString);
-        }
-        String qaValue = getQa();
-        if (qaValue != null) {
-            String qaValueAsString = qaValue.toString();
-            valMap.put("qa", qaValueAsString);
-        }
         String sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
-        Long unitValue = getUnit();
-        if (unitValue != null) {
-            String unitValueAsString = unitValue.toString();
-            valMap.put("unit", unitValueAsString);
+        String psValue = getPs();
+        if (psValue != null) {
+            String psValueAsString = psValue.toString();
+            valMap.put("ps", psValueAsString);
         }
-        String mqValue = getMq();
-        if (mqValue != null) {
-            String mqValueAsString = mqValue.toString();
-            valMap.put("mq", mqValueAsString);
+        String qaValue = getQa();
+        if (qaValue != null) {
+            String qaValueAsString = qaValue.toString();
+            valMap.put("qa", qaValueAsString);
         }
         String dLowerCaseValue = getdLowerCase();
         if (dLowerCaseValue != null) {
@@ -385,10 +402,25 @@ public class NewSymbolInfoResponse extends BaseDTO {
             String spValueAsString = spValue.toString();
             valMap.put("sp", spValueAsString);
         }
-        Long edValue = getEd();
-        if (edValue != null) {
-            String edValueAsString = edValue.toString();
-            valMap.put("ed", edValueAsString);
+        Long dtValue = getDt();
+        if (dtValue != null) {
+            String dtValueAsString = dtValue.toString();
+            valMap.put("dt", dtValueAsString);
+        }
+        Long uLowerCaseValue = getuLowerCase();
+        if (uLowerCaseValue != null) {
+            String uLowerCaseValueAsString = uLowerCaseValue.toString();
+            valMap.put("uLowerCase", uLowerCaseValueAsString);
+        }
+        Long otValue = getOt();
+        if (otValue != null) {
+            String otValueAsString = otValue.toString();
+            valMap.put("ot", otValueAsString);
+        }
+        String csValue = getCs();
+        if (csValue != null) {
+            String csValueAsString = csValue.toString();
+            valMap.put("cs", csValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -409,25 +441,17 @@ public class NewSymbolInfoResponse extends BaseDTO {
         if (EValue != null) {
             valMap.put("E", EValue);
         }
-        Object uLowerCaseValue = getuLowerCase();
-        if (uLowerCaseValue != null) {
-            valMap.put("uLowerCase", uLowerCaseValue);
-        }
-        Object qaValue = getQa();
-        if (qaValue != null) {
-            valMap.put("qa", qaValue);
-        }
         Object sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
         }
-        Object unitValue = getUnit();
-        if (unitValue != null) {
-            valMap.put("unit", unitValue);
+        Object psValue = getPs();
+        if (psValue != null) {
+            valMap.put("ps", psValue);
         }
-        Object mqValue = getMq();
-        if (mqValue != null) {
-            valMap.put("mq", mqValue);
+        Object qaValue = getQa();
+        if (qaValue != null) {
+            valMap.put("qa", qaValue);
         }
         Object dLowerCaseValue = getdLowerCase();
         if (dLowerCaseValue != null) {
@@ -437,9 +461,21 @@ public class NewSymbolInfoResponse extends BaseDTO {
         if (spValue != null) {
             valMap.put("sp", spValue);
         }
-        Object edValue = getEd();
-        if (edValue != null) {
-            valMap.put("ed", edValue);
+        Object dtValue = getDt();
+        if (dtValue != null) {
+            valMap.put("dt", dtValue);
+        }
+        Object uLowerCaseValue = getuLowerCase();
+        if (uLowerCaseValue != null) {
+            valMap.put("uLowerCase", uLowerCaseValue);
+        }
+        Object otValue = getOt();
+        if (otValue != null) {
+            valMap.put("ot", otValue);
+        }
+        Object csValue = getCs();
+        if (csValue != null) {
+            valMap.put("cs", csValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -469,14 +505,15 @@ public class NewSymbolInfoResponse extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("e");
         openapiFields.add("E");
-        openapiFields.add("u");
-        openapiFields.add("qa");
         openapiFields.add("s");
-        openapiFields.add("unit");
-        openapiFields.add("mq");
+        openapiFields.add("ps");
+        openapiFields.add("qa");
         openapiFields.add("d");
         openapiFields.add("sp");
-        openapiFields.add("ed");
+        openapiFields.add("dt");
+        openapiFields.add("u");
+        openapiFields.add("ot");
+        openapiFields.add("cs");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -520,22 +557,6 @@ public class NewSymbolInfoResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("e").toString()));
         }
-        if ((jsonObj.get("u") != null && !jsonObj.get("u").isJsonNull())
-                && !jsonObj.get("u").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `u` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("u").toString()));
-        }
-        if ((jsonObj.get("qa") != null && !jsonObj.get("qa").isJsonNull())
-                && !jsonObj.get("qa").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `qa` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("qa").toString()));
-        }
         if ((jsonObj.get("s") != null && !jsonObj.get("s").isJsonNull())
                 && !jsonObj.get("s").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -544,13 +565,21 @@ public class NewSymbolInfoResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("s").toString()));
         }
-        if ((jsonObj.get("mq") != null && !jsonObj.get("mq").isJsonNull())
-                && !jsonObj.get("mq").isJsonPrimitive()) {
+        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
+                && !jsonObj.get("ps").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `mq` to be a primitive type in the JSON string but"
+                            "Expected the field `ps` to be a primitive type in the JSON string but"
                                     + " got `%s`",
-                            jsonObj.get("mq").toString()));
+                            jsonObj.get("ps").toString()));
+        }
+        if ((jsonObj.get("qa") != null && !jsonObj.get("qa").isJsonNull())
+                && !jsonObj.get("qa").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `qa` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("qa").toString()));
         }
         if ((jsonObj.get("d") != null && !jsonObj.get("d").isJsonNull())
                 && !jsonObj.get("d").isJsonPrimitive()) {
@@ -567,6 +596,14 @@ public class NewSymbolInfoResponse extends BaseDTO {
                             "Expected the field `sp` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("sp").toString()));
+        }
+        if ((jsonObj.get("cs") != null && !jsonObj.get("cs").isJsonNull())
+                && !jsonObj.get("cs").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cs` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("cs").toString()));
         }
     }
 

@@ -42,7 +42,7 @@ public class UserDataStreamsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -92,7 +92,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call closeUserDataStreamCall() throws ApiException {
@@ -193,7 +193,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<Void> closeUserDataStream() throws ApiException {
@@ -214,7 +214,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call keepaliveUserDataStreamCall() throws ApiException {
@@ -317,7 +317,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<Void> keepaliveUserDataStream() throws ApiException {
@@ -338,7 +338,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call startUserDataStreamCall() throws ApiException {
@@ -442,7 +442,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<StartUserDataStreamResponse> startUserDataStream() throws ApiException {

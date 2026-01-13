@@ -26,15 +26,13 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_options.rest.model.CheckServerTimeResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceTickerResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OldTradesLookupResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OrderBookResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentBlockTradesListResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentTradesListResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
 import jakarta.validation.constraints.*;
 import okhttp3.Call;
@@ -105,7 +103,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/time", actualRequest.url().encodedPath());
     }
 
@@ -127,7 +126,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exchangeInfo", actualRequest.url().encodedPath());
     }
 
@@ -155,8 +155,33 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exerciseHistory", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Index Price
+     *
+     * <p>Get spot index price for option underlying. Weight: 1
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void indexPriceTest() throws ApiException, CryptoException {
+        String underlying = "";
+        ApiResponse<IndexPriceResponse> response = api.indexPrice(underlying);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/eapi/v1/index", actualRequest.url().encodedPath());
     }
 
     /**
@@ -184,33 +209,10 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/klines", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Old Trades Lookup (MARKET_DATA)
-     *
-     * <p>Get older market historical trades. Weight: 20
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void oldTradesLookupTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long fromId = 1L;
-        Long limit = 100L;
-        ApiResponse<OldTradesLookupResponse> response = api.oldTradesLookup(symbol, fromId, limit);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/historicalTrades", actualRequest.url().encodedPath());
     }
 
     /**
@@ -256,7 +258,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/mark", actualRequest.url().encodedPath());
     }
 
@@ -264,7 +267,7 @@ public class MarketDataApiTest {
      * Order Book
      *
      * <p>Check orderbook depth on specific symbol Weight: limit | weight ------------ |
-     * ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * ------------ 5, 10, 20, 50 | 1 100 | 5 500 | 10 1000 | 20
      *
      * @throws ApiException if the Api call fails
      */
@@ -306,7 +309,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/blockTrades", actualRequest.url().encodedPath());
     }
 
@@ -330,31 +335,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/trades", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Symbol Price Ticker
-     *
-     * <p>Get spot index price for option underlying. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void symbolPriceTickerTest() throws ApiException, CryptoException {
-        String underlying = "";
-        ApiResponse<IndexPriceTickerResponse> response = api.indexPriceTicker(underlying);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/index", actualRequest.url().encodedPath());
     }
 
     /**
@@ -374,7 +357,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/ping", actualRequest.url().encodedPath());
     }
 
@@ -398,7 +382,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/ticker", actualRequest.url().encodedPath());
     }
 }

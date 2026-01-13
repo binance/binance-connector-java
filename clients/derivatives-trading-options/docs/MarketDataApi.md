@@ -7,9 +7,8 @@ All URIs are relative to *https://eapi.binance.com*
 | [**checkServerTime**](MarketDataApi.md#checkServerTime) | **GET** /eapi/v1/time | Check Server Time |
 | [**exchangeInformation**](MarketDataApi.md#exchangeInformation) | **GET** /eapi/v1/exchangeInfo | Exchange Information |
 | [**historicalExerciseRecords**](MarketDataApi.md#historicalExerciseRecords) | **GET** /eapi/v1/exerciseHistory | Historical Exercise Records |
-| [**indexPriceTicker**](MarketDataApi.md#indexPriceTicker) | **GET** /eapi/v1/index | Index Price Ticker |
+| [**indexPrice**](MarketDataApi.md#indexPrice) | **GET** /eapi/v1/index | Index Price |
 | [**klineCandlestickData**](MarketDataApi.md#klineCandlestickData) | **GET** /eapi/v1/klines | Kline/Candlestick Data |
-| [**oldTradesLookup**](MarketDataApi.md#oldTradesLookup) | **GET** /eapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA) |
 | [**openInterest**](MarketDataApi.md#openInterest) | **GET** /eapi/v1/openInterest | Open Interest |
 | [**optionMarkPrice**](MarketDataApi.md#optionMarkPrice) | **GET** /eapi/v1/mark | Option Mark Price |
 | [**orderBook**](MarketDataApi.md#orderBook) | **GET** /eapi/v1/depth | Order Book |
@@ -203,11 +202,11 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Historical Exercise Records |  -  |
 
-<a id="indexPriceTicker"></a>
-# **indexPriceTicker**
-> IndexPriceTickerResponse indexPriceTicker(underlying)
+<a id="indexPrice"></a>
+# **indexPrice**
+> IndexPriceResponse indexPrice(underlying)
 
-Index Price Ticker
+Index Price
 
 Get spot index price for option underlying.  Weight: 1
 
@@ -228,10 +227,10 @@ public class Example {
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String underlying = "underlying_example"; // String | Option underlying, e.g BTCUSDT
     try {
-      IndexPriceTickerResponse result = apiInstance.indexPriceTicker(underlying);
+      IndexPriceResponse result = apiInstance.indexPrice(underlying);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling MarketDataApi#indexPriceTicker");
+      System.err.println("Exception when calling MarketDataApi#indexPrice");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -249,7 +248,7 @@ public class Example {
 
 ### Return type
 
-[**IndexPriceTickerResponse**](IndexPriceTickerResponse.md)
+[**IndexPriceResponse**](IndexPriceResponse.md)
 
 ### Authorization
 
@@ -263,7 +262,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Index Price Ticker |  -  |
+| **200** | Index Price |  -  |
 
 <a id="klineCandlestickData"></a>
 # **klineCandlestickData**
@@ -334,72 +333,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Kline/Candlestick Data |  -  |
-
-<a id="oldTradesLookup"></a>
-# **oldTradesLookup**
-> OldTradesLookupResponse oldTradesLookup(symbol, fromId, limit)
-
-Old Trades Lookup (MARKET_DATA)
-
-Get older market historical trades.  Weight: 20
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://eapi.binance.com");
-
-    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long fromId = 56L; // Long | The UniqueId ID from which to return. The latest deal record is returned by default
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    try {
-      OldTradesLookupResponse result = apiInstance.oldTradesLookup(symbol, fromId, limit);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketDataApi#oldTradesLookup");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **fromId** | **Long**| The UniqueId ID from which to return. The latest deal record is returned by default | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-
-### Return type
-
-[**OldTradesLookupResponse**](OldTradesLookupResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Old Trades Lookup |  -  |
 
 <a id="openInterest"></a>
 # **openInterest**
@@ -533,7 +466,7 @@ No authorization required
 
 Order Book
 
-Check orderbook depth on specific symbol  Weight: limit         | weight ------------  | ------------ 5, 10, 20, 50 | 2 100           | 5 500           | 10 1000          | 20
+Check orderbook depth on specific symbol  Weight: limit         | weight ------------  | ------------ 5, 10, 20, 50 | 1 100           | 5 500           | 10 1000          | 20
 
 ### Example
 ```java

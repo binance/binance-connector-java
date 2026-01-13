@@ -9,15 +9,14 @@
 |------------ | ------------- | ------------- | -------------|
 |**eLowerCase** | **String** |  |  [optional] |
 |**E** | **Long** |  |  [optional] |
+|**T** | **Long** |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
-|**tLowerCase** | **String** |  |  [optional] |
+|**tLowerCase** | **Long** |  |  [optional] |
 |**pLowerCase** | **String** |  |  [optional] |
 |**qLowerCase** | **String** |  |  [optional] |
-|**bLowerCase** | **Long** |  |  [optional] |
-|**aLowerCase** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**S** | **String** |  |  [optional] |
 |**X** | **String** |  |  [optional] |
+|**S** | **String** |  |  [optional] |
+|**mLowerCase** | **Boolean** |  |  [optional] |
 
 
 

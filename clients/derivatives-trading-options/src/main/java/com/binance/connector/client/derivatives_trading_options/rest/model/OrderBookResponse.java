@@ -41,18 +41,6 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class OrderBookResponse {
-    public static final String SERIALIZED_NAME_T = "T";
-
-    @SerializedName(SERIALIZED_NAME_T)
-    @jakarta.annotation.Nullable
-    private Long T;
-
-    public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
-
-    @SerializedName(SERIALIZED_NAME_U_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private Long uLowerCase;
-
     public static final String SERIALIZED_NAME_BIDS = "bids";
 
     @SerializedName(SERIALIZED_NAME_BIDS)
@@ -65,45 +53,19 @@ public class OrderBookResponse {
     @jakarta.annotation.Nullable
     private List<OrderBookResponseAsksItem> asks;
 
+    public static final String SERIALIZED_NAME_T = "T";
+
+    @SerializedName(SERIALIZED_NAME_T)
+    @jakarta.annotation.Nullable
+    private Long T;
+
+    public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
+
+    @SerializedName(SERIALIZED_NAME_LAST_UPDATE_ID)
+    @jakarta.annotation.Nullable
+    private Long lastUpdateId;
+
     public OrderBookResponse() {}
-
-    public OrderBookResponse T(@jakarta.annotation.Nullable Long T) {
-        this.T = T;
-        return this;
-    }
-
-    /**
-     * Get T
-     *
-     * @return T
-     */
-    @jakarta.annotation.Nullable
-    public Long getT() {
-        return T;
-    }
-
-    public void setT(@jakarta.annotation.Nullable Long T) {
-        this.T = T;
-    }
-
-    public OrderBookResponse uLowerCase(@jakarta.annotation.Nullable Long uLowerCase) {
-        this.uLowerCase = uLowerCase;
-        return this;
-    }
-
-    /**
-     * Get uLowerCase
-     *
-     * @return uLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public Long getuLowerCase() {
-        return uLowerCase;
-    }
-
-    public void setuLowerCase(@jakarta.annotation.Nullable Long uLowerCase) {
-        this.uLowerCase = uLowerCase;
-    }
 
     public OrderBookResponse bids(
             @jakarta.annotation.Nullable List<OrderBookResponseBidsItem> bids) {
@@ -163,6 +125,44 @@ public class OrderBookResponse {
         this.asks = asks;
     }
 
+    public OrderBookResponse T(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
+        return this;
+    }
+
+    /**
+     * Get T
+     *
+     * @return T
+     */
+    @jakarta.annotation.Nullable
+    public Long getT() {
+        return T;
+    }
+
+    public void setT(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
+    }
+
+    public OrderBookResponse lastUpdateId(@jakarta.annotation.Nullable Long lastUpdateId) {
+        this.lastUpdateId = lastUpdateId;
+        return this;
+    }
+
+    /**
+     * Get lastUpdateId
+     *
+     * @return lastUpdateId
+     */
+    @jakarta.annotation.Nullable
+    public Long getLastUpdateId() {
+        return lastUpdateId;
+    }
+
+    public void setLastUpdateId(@jakarta.annotation.Nullable Long lastUpdateId) {
+        this.lastUpdateId = lastUpdateId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -172,25 +172,25 @@ public class OrderBookResponse {
             return false;
         }
         OrderBookResponse orderBookResponse = (OrderBookResponse) o;
-        return Objects.equals(this.T, orderBookResponse.T)
-                && Objects.equals(this.uLowerCase, orderBookResponse.uLowerCase)
-                && Objects.equals(this.bids, orderBookResponse.bids)
-                && Objects.equals(this.asks, orderBookResponse.asks);
+        return Objects.equals(this.bids, orderBookResponse.bids)
+                && Objects.equals(this.asks, orderBookResponse.asks)
+                && Objects.equals(this.T, orderBookResponse.T)
+                && Objects.equals(this.lastUpdateId, orderBookResponse.lastUpdateId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(T, uLowerCase, bids, asks);
+        return Objects.hash(bids, asks, T, lastUpdateId);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderBookResponse {\n");
-        sb.append("		T: ").append(toIndentedString(T)).append("\n");
-        sb.append("		uLowerCase: ").append(toIndentedString(uLowerCase)).append("\n");
         sb.append("		bids: ").append(toIndentedString(bids)).append("\n");
         sb.append("		asks: ").append(toIndentedString(asks)).append("\n");
+        sb.append("		T: ").append(toIndentedString(T)).append("\n");
+        sb.append("		lastUpdateId: ").append(toIndentedString(lastUpdateId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -198,14 +198,6 @@ public class OrderBookResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object TValue = getT();
-        String TValueAsString = "";
-        TValueAsString = TValue.toString();
-        sb.append("T=").append(urlEncode(TValueAsString)).append("");
-        Object uLowerCaseValue = getuLowerCase();
-        String uLowerCaseValueAsString = "";
-        uLowerCaseValueAsString = uLowerCaseValue.toString();
-        sb.append("uLowerCase=").append(urlEncode(uLowerCaseValueAsString)).append("");
         Object bidsValue = getBids();
         String bidsValueAsString = "";
         bidsValueAsString =
@@ -220,6 +212,14 @@ public class OrderBookResponse {
                         ((Collection) asksValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("asks=").append(urlEncode(asksValueAsString)).append("");
+        Object TValue = getT();
+        String TValueAsString = "";
+        TValueAsString = TValue.toString();
+        sb.append("T=").append(urlEncode(TValueAsString)).append("");
+        Object lastUpdateIdValue = getLastUpdateId();
+        String lastUpdateIdValueAsString = "";
+        lastUpdateIdValueAsString = lastUpdateIdValue.toString();
+        sb.append("lastUpdateId=").append(urlEncode(lastUpdateIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -248,10 +248,10 @@ public class OrderBookResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("T");
-        openapiFields.add("u");
         openapiFields.add("bids");
         openapiFields.add("asks");
+        openapiFields.add("T");
+        openapiFields.add("lastUpdateId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

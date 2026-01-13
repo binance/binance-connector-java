@@ -66,12 +66,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String executedQty;
 
-    public static final String SERIALIZED_NAME_FEE = "fee";
-
-    @SerializedName(SERIALIZED_NAME_FEE)
-    @jakarta.annotation.Nullable
-    private String fee;
-
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -95,12 +89,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
-
-    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
-
-    @SerializedName(SERIALIZED_NAME_POST_ONLY)
-    @jakarta.annotation.Nullable
-    private Boolean postOnly;
 
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -264,25 +252,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         this.executedQty = executedQty;
     }
 
-    public QueryCurrentOpenOptionOrdersResponseInner fee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-        return this;
-    }
-
-    /**
-     * Get fee
-     *
-     * @return fee
-     */
-    @jakarta.annotation.Nullable
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-    }
-
     public QueryCurrentOpenOptionOrdersResponseInner side(
             @jakarta.annotation.Nullable String side) {
         this.side = side;
@@ -361,26 +330,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
 
     public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
-    }
-
-    public QueryCurrentOpenOptionOrdersResponseInner postOnly(
-            @jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-        return this;
-    }
-
-    /**
-     * Get postOnly
-     *
-     * @return postOnly
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
-        return postOnly;
-    }
-
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
     }
 
     public QueryCurrentOpenOptionOrdersResponseInner createTime(
@@ -598,14 +547,12 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                 && Objects.equals(this.quantity, queryCurrentOpenOptionOrdersResponseInner.quantity)
                 && Objects.equals(
                         this.executedQty, queryCurrentOpenOptionOrdersResponseInner.executedQty)
-                && Objects.equals(this.fee, queryCurrentOpenOptionOrdersResponseInner.fee)
                 && Objects.equals(this.side, queryCurrentOpenOptionOrdersResponseInner.side)
                 && Objects.equals(this.type, queryCurrentOpenOptionOrdersResponseInner.type)
                 && Objects.equals(
                         this.timeInForce, queryCurrentOpenOptionOrdersResponseInner.timeInForce)
                 && Objects.equals(
                         this.reduceOnly, queryCurrentOpenOptionOrdersResponseInner.reduceOnly)
-                && Objects.equals(this.postOnly, queryCurrentOpenOptionOrdersResponseInner.postOnly)
                 && Objects.equals(
                         this.createTime, queryCurrentOpenOptionOrdersResponseInner.createTime)
                 && Objects.equals(
@@ -633,12 +580,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                 price,
                 quantity,
                 executedQty,
-                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
-                postOnly,
                 createTime,
                 updateTime,
                 status,
@@ -660,12 +605,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
@@ -703,10 +646,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
-        Object feeValue = getFee();
-        String feeValueAsString = "";
-        feeValueAsString = feeValue.toString();
-        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -723,10 +662,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object postOnlyValue = getPostOnly();
-        String postOnlyValueAsString = "";
-        postOnlyValueAsString = postOnlyValue.toString();
-        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -800,12 +735,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
-        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
-        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");
@@ -873,14 +806,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
-                && !jsonObj.get("fee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fee` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("fee").toString()));
         }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {

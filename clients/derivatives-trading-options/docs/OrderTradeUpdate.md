@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**E** | **Long** |  |  [optional] |
-|**oLowerCase** | [**List&lt;OrderTradeUpdateOInner&gt;**](OrderTradeUpdateOInner.md) |  |  [optional] |
+|**T** | **Long** |  |  [optional] |
+|**oLowerCase** | [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  |  [optional] |
 
 
 
