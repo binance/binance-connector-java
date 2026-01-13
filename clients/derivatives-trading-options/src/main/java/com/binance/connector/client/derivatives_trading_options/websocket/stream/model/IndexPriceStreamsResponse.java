@@ -12,20 +12,18 @@
 
 package com.binance.connector.client.derivatives_trading_options.websocket.stream.model;
 
-import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
-import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -38,108 +36,8 @@ import org.hibernate.validator.constraints.*;
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class IndexPriceStreamsResponse extends BaseDTO {
-    public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
-
-    @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private String eLowerCase;
-
-    public static final String SERIALIZED_NAME_E = "E";
-
-    @SerializedName(SERIALIZED_NAME_E)
-    @jakarta.annotation.Nullable
-    private Long E;
-
-    public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
-
-    @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private String sLowerCase;
-
-    public static final String SERIALIZED_NAME_P_LOWER_CASE = "p";
-
-    @SerializedName(SERIALIZED_NAME_P_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private String pLowerCase;
-
+public class IndexPriceStreamsResponse extends ArrayList<IndexPriceStreamsResponseInner> {
     public IndexPriceStreamsResponse() {}
-
-    public IndexPriceStreamsResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
-        this.eLowerCase = eLowerCase;
-        return this;
-    }
-
-    /**
-     * Get eLowerCase
-     *
-     * @return eLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public String geteLowerCase() {
-        return eLowerCase;
-    }
-
-    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
-        this.eLowerCase = eLowerCase;
-    }
-
-    public IndexPriceStreamsResponse E(@jakarta.annotation.Nullable Long E) {
-        this.E = E;
-        return this;
-    }
-
-    /**
-     * Get E
-     *
-     * @return E
-     */
-    @jakarta.annotation.Nullable
-    public Long getE() {
-        return E;
-    }
-
-    public void setE(@jakarta.annotation.Nullable Long E) {
-        this.E = E;
-    }
-
-    public IndexPriceStreamsResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
-        this.sLowerCase = sLowerCase;
-        return this;
-    }
-
-    /**
-     * Get sLowerCase
-     *
-     * @return sLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public String getsLowerCase() {
-        return sLowerCase;
-    }
-
-    public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
-        this.sLowerCase = sLowerCase;
-    }
-
-    public IndexPriceStreamsResponse pLowerCase(@jakarta.annotation.Nullable String pLowerCase) {
-        this.pLowerCase = pLowerCase;
-        return this;
-    }
-
-    /**
-     * Get pLowerCase
-     *
-     * @return pLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public String getpLowerCase() {
-        return pLowerCase;
-    }
-
-    public void setpLowerCase(@jakarta.annotation.Nullable String pLowerCase) {
-        this.pLowerCase = pLowerCase;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -149,26 +47,19 @@ public class IndexPriceStreamsResponse extends BaseDTO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        IndexPriceStreamsResponse indexPriceStreamsResponse = (IndexPriceStreamsResponse) o;
-        return Objects.equals(this.eLowerCase, indexPriceStreamsResponse.eLowerCase)
-                && Objects.equals(this.E, indexPriceStreamsResponse.E)
-                && Objects.equals(this.sLowerCase, indexPriceStreamsResponse.sLowerCase)
-                && Objects.equals(this.pLowerCase, indexPriceStreamsResponse.pLowerCase);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, pLowerCase);
+        return Objects.hash(super.hashCode());
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class IndexPriceStreamsResponse {\n");
-        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
-        sb.append("		E: ").append(toIndentedString(E)).append("\n");
-        sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
-        sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
+        sb.append("		").append(toIndentedString(super.toString())).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -176,29 +67,7 @@ public class IndexPriceStreamsResponse extends BaseDTO {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
-        valMap.put("apiKey", getApiKey());
-        String eLowerCaseValue = geteLowerCase();
-        if (eLowerCaseValue != null) {
-            String eLowerCaseValueAsString = eLowerCaseValue.toString();
-            valMap.put("eLowerCase", eLowerCaseValueAsString);
-        }
-        Long EValue = getE();
-        if (EValue != null) {
-            String EValueAsString = EValue.toString();
-            valMap.put("E", EValueAsString);
-        }
-        String sLowerCaseValue = getsLowerCase();
-        if (sLowerCaseValue != null) {
-            String sLowerCaseValueAsString = sLowerCaseValue.toString();
-            valMap.put("sLowerCase", sLowerCaseValueAsString);
-        }
-        String pLowerCaseValue = getpLowerCase();
-        if (pLowerCaseValue != null) {
-            String pLowerCaseValueAsString = pLowerCaseValue.toString();
-            valMap.put("pLowerCase", pLowerCaseValueAsString);
-        }
 
-        valMap.put("timestamp", getTimestamp());
         return asciiEncode(
                 valMap.keySet().stream()
                         .map(key -> key + "=" + valMap.get(key))
@@ -207,25 +76,7 @@ public class IndexPriceStreamsResponse extends BaseDTO {
 
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
-        valMap.put("apiKey", getApiKey());
-        Object eLowerCaseValue = geteLowerCase();
-        if (eLowerCaseValue != null) {
-            valMap.put("eLowerCase", eLowerCaseValue);
-        }
-        Object EValue = getE();
-        if (EValue != null) {
-            valMap.put("E", EValue);
-        }
-        Object sLowerCaseValue = getsLowerCase();
-        if (sLowerCaseValue != null) {
-            valMap.put("sLowerCase", sLowerCaseValue);
-        }
-        Object pLowerCaseValue = getpLowerCase();
-        if (pLowerCaseValue != null) {
-            valMap.put("pLowerCase", pLowerCaseValue);
-        }
 
-        valMap.put("timestamp", getTimestamp());
         return valMap;
     }
 
@@ -250,10 +101,6 @@ public class IndexPriceStreamsResponse extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("e");
-        openapiFields.add("E");
-        openapiFields.add("s");
-        openapiFields.add("p");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -288,31 +135,6 @@ public class IndexPriceStreamsResponse extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("e") != null && !jsonObj.get("e").isJsonNull())
-                && !jsonObj.get("e").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `e` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("e").toString()));
-        }
-        if ((jsonObj.get("s") != null && !jsonObj.get("s").isJsonNull())
-                && !jsonObj.get("s").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `s` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("s").toString()));
-        }
-        if ((jsonObj.get("p") != null && !jsonObj.get("p").isJsonNull())
-                && !jsonObj.get("p").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `p` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("p").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -332,7 +154,7 @@ public class IndexPriceStreamsResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, IndexPriceStreamsResponse value)
                                 throws IOException {
-                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

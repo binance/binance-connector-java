@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
 |**symbol** | **String** |  |  |
 |**interval** | **String** |  |  |
 

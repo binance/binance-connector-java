@@ -66,12 +66,6 @@ public class QuerySingleOrderResponse {
     @jakarta.annotation.Nullable
     private String executedQty;
 
-    public static final String SERIALIZED_NAME_FEE = "fee";
-
-    @SerializedName(SERIALIZED_NAME_FEE)
-    @jakarta.annotation.Nullable
-    private String fee;
-
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -96,12 +90,6 @@ public class QuerySingleOrderResponse {
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
 
-    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
-
-    @SerializedName(SERIALIZED_NAME_POST_ONLY)
-    @jakarta.annotation.Nullable
-    private Boolean postOnly;
-
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
     @SerializedName(SERIALIZED_NAME_CREATE_TIME)
@@ -125,12 +113,6 @@ public class QuerySingleOrderResponse {
     @SerializedName(SERIALIZED_NAME_AVG_PRICE)
     @jakarta.annotation.Nullable
     private String avgPrice;
-
-    public static final String SERIALIZED_NAME_SOURCE = "source";
-
-    @SerializedName(SERIALIZED_NAME_SOURCE)
-    @jakarta.annotation.Nullable
-    private String source;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -265,25 +247,6 @@ public class QuerySingleOrderResponse {
         this.executedQty = executedQty;
     }
 
-    public QuerySingleOrderResponse fee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-        return this;
-    }
-
-    /**
-     * Get fee
-     *
-     * @return fee
-     */
-    @jakarta.annotation.Nullable
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-    }
-
     public QuerySingleOrderResponse side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
@@ -360,25 +323,6 @@ public class QuerySingleOrderResponse {
         this.reduceOnly = reduceOnly;
     }
 
-    public QuerySingleOrderResponse postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-        return this;
-    }
-
-    /**
-     * Get postOnly
-     *
-     * @return postOnly
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
-        return postOnly;
-    }
-
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-    }
-
     public QuerySingleOrderResponse createTime(@jakarta.annotation.Nullable Long createTime) {
         this.createTime = createTime;
         return this;
@@ -453,25 +397,6 @@ public class QuerySingleOrderResponse {
 
     public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
         this.avgPrice = avgPrice;
-    }
-
-    public QuerySingleOrderResponse source(@jakarta.annotation.Nullable String source) {
-        this.source = source;
-        return this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return source
-     */
-    @jakarta.annotation.Nullable
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(@jakarta.annotation.Nullable String source) {
-        this.source = source;
     }
 
     public QuerySingleOrderResponse clientOrderId(
@@ -603,17 +528,14 @@ public class QuerySingleOrderResponse {
                 && Objects.equals(this.price, querySingleOrderResponse.price)
                 && Objects.equals(this.quantity, querySingleOrderResponse.quantity)
                 && Objects.equals(this.executedQty, querySingleOrderResponse.executedQty)
-                && Objects.equals(this.fee, querySingleOrderResponse.fee)
                 && Objects.equals(this.side, querySingleOrderResponse.side)
                 && Objects.equals(this.type, querySingleOrderResponse.type)
                 && Objects.equals(this.timeInForce, querySingleOrderResponse.timeInForce)
                 && Objects.equals(this.reduceOnly, querySingleOrderResponse.reduceOnly)
-                && Objects.equals(this.postOnly, querySingleOrderResponse.postOnly)
                 && Objects.equals(this.createTime, querySingleOrderResponse.createTime)
                 && Objects.equals(this.updateTime, querySingleOrderResponse.updateTime)
                 && Objects.equals(this.status, querySingleOrderResponse.status)
                 && Objects.equals(this.avgPrice, querySingleOrderResponse.avgPrice)
-                && Objects.equals(this.source, querySingleOrderResponse.source)
                 && Objects.equals(this.clientOrderId, querySingleOrderResponse.clientOrderId)
                 && Objects.equals(this.priceScale, querySingleOrderResponse.priceScale)
                 && Objects.equals(this.quantityScale, querySingleOrderResponse.quantityScale)
@@ -630,17 +552,14 @@ public class QuerySingleOrderResponse {
                 price,
                 quantity,
                 executedQty,
-                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
-                postOnly,
                 createTime,
                 updateTime,
                 status,
                 avgPrice,
-                source,
                 clientOrderId,
                 priceScale,
                 quantityScale,
@@ -658,17 +577,14 @@ public class QuerySingleOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
-        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
@@ -702,10 +618,6 @@ public class QuerySingleOrderResponse {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
-        Object feeValue = getFee();
-        String feeValueAsString = "";
-        feeValueAsString = feeValue.toString();
-        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -722,10 +634,6 @@ public class QuerySingleOrderResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object postOnlyValue = getPostOnly();
-        String postOnlyValueAsString = "";
-        postOnlyValueAsString = postOnlyValue.toString();
-        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -742,10 +650,6 @@ public class QuerySingleOrderResponse {
         String avgPriceValueAsString = "";
         avgPriceValueAsString = avgPriceValue.toString();
         sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
-        Object sourceValue = getSource();
-        String sourceValueAsString = "";
-        sourceValueAsString = sourceValue.toString();
-        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         Object clientOrderIdValue = getClientOrderId();
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
@@ -803,17 +707,14 @@ public class QuerySingleOrderResponse {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
-        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
-        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");
         openapiFields.add("avgPrice");
-        openapiFields.add("source");
         openapiFields.add("clientOrderId");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
@@ -875,14 +776,6 @@ public class QuerySingleOrderResponse {
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
         }
-        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
-                && !jsonObj.get("fee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fee` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("fee").toString()));
-        }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -922,14 +815,6 @@ public class QuerySingleOrderResponse {
                             "Expected the field `avgPrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("avgPrice").toString()));
-        }
-        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
-                && !jsonObj.get("source").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `source` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("source").toString()));
         }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {

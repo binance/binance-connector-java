@@ -24,9 +24,6 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AccountFundingFlowResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetDownloadIdForOptionTransactionHistoryResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetOptionTransactionHistoryDownloadLinkByIdResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import jakarta.validation.constraints.*;
 import okhttp3.Call;
@@ -107,114 +104,10 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("currency=&recordId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "currency=&recordId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f0086e9f3895b2783af30133a64c5d01c9b045c0032c9eea19078ecf24771e9d",
-                actualRequest.url().queryParameter("signature"));
+                "f0086e9f3895b2783af30133a64c5d01c9b045c0032c9eea19078ecf24771e9d", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/bill", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Download Id For Option Transaction History (USER_DATA)
-     *
-     * <p>Get download id for option transaction history * Request Limitation is 5 times per month,
-     * shared by &gt; front end download page and rest api * The time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; can not be longer than 1 year Weight: 5
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getDownloadIdForOptionTransactionHistoryTest()
-            throws ApiException, CryptoException {
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetDownloadIdForOptionTransactionHistoryResponse> response =
-                api.getDownloadIdForOptionTransactionHistory(startTime, endTime, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "812caedbe8f349196a4532c2050ff706ed2569fed185039c7b60a78cd84bc718",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/income/asyn", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Option Transaction History Download Link by Id (USER_DATA)
-     *
-     * <p>Get option transaction history download Link by Id * Download link expiration: 24h Weight:
-     * 5
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getOptionTransactionHistoryDownloadLinkByIdTest()
-            throws ApiException, CryptoException {
-        String downloadId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<GetOptionTransactionHistoryDownloadLinkByIdResponse> response =
-                api.getOptionTransactionHistoryDownloadLinkById(downloadId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "downloadId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "4947fe463a17e3ec0b50fc22b21afc2aafddf3da892fa0c8dfd1b9c50af87349",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/income/asyn/id", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Option Account Information(TRADE)
-     *
-     * <p>Get current account information. Weight: 3
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void optionAccountInformationTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
-        ApiResponse<OptionAccountInformationResponse> response =
-                api.optionAccountInformation(recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/account", actualRequest.url().encodedPath());
     }
 
     /**

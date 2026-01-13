@@ -10,8 +10,12 @@ import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceRequest;
@@ -22,8 +26,6 @@ import com.binance.connector.client.derivatives_trading_options.websocket.stream
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourByUnderlyingAssetAndExpirationDataRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourByUnderlyingAssetAndExpirationDataResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsRequest;
@@ -32,83 +34,119 @@ import com.binance.connector.client.derivatives_trading_options.websocket.stream
 import com.google.gson.reflect.TypeToken;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
-    private final StreamConnectionInterface connection;
+    private WebSocketClientConfiguration clientConfiguration;
+    private StreamConnectionInterface connection;
 
-    private WebsocketMarketStreamsApi websocketMarketStreamsApi;
+    private MarketApi marketApi;
+    private PublicApi publicApi;
 
     public DerivativesTradingOptionsWebSocketStreams(WebSocketClientConfiguration configuration) {
-        this(
-                configuration.getUsePool()
-                        ? new StreamConnectionPoolWrapper(configuration, JSON.getGson())
-                        : new StreamConnectionWrapper(configuration, JSON.getGson()));
+        this.clientConfiguration = configuration;
     }
 
-    public DerivativesTradingOptionsWebSocketStreams(StreamConnectionInterface connection) {
-        connection.setUserAgent(USER_AGENT);
-        if (!connection.isConnected()) {
-            connection.connect();
+    public StreamConnectionInterface getConnection() {
+        if (connection == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/private/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/private/stream"));
+            }
+            connection =
+                    clientConfiguration.getUsePool()
+                            ? new StreamConnectionPoolWrapper(clientConfiguration, JSON.getGson())
+                            : new StreamConnectionWrapper(clientConfiguration, JSON.getGson());
         }
-        this.connection = connection;
+        return connection;
+    }
 
-        this.websocketMarketStreamsApi = new WebsocketMarketStreamsApi(connection);
+    public MarketApi getMarketApi() {
+        if (marketApi == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/market/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/market/stream"));
+            }
+            marketApi = new MarketApi(configuration);
+        }
+        return marketApi;
+    }
+
+    public PublicApi getPublicApi() {
+        if (publicApi == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/public/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/public/stream"));
+            }
+            publicApi = new PublicApi(configuration);
+        }
+        return publicApi;
     }
 
     public StreamBlockingQueueWrapper<IndexPriceStreamsResponse> indexPriceStreams(
             IndexPriceStreamsRequest indexPriceStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.indexPriceStreams(indexPriceStreamsRequest);
+        return getMarketApi().indexPriceStreams(indexPriceStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
             KlineCandlestickStreamsRequest klineCandlestickStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.klineCandlestickStreams(klineCandlestickStreamsRequest);
+        return getMarketApi().klineCandlestickStreams(klineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<MarkPriceResponse> markPrice(
             MarkPriceRequest markPriceRequest) throws ApiException {
-        return websocketMarketStreamsApi.markPrice(markPriceRequest);
+        return getMarketApi().markPrice(markPriceRequest);
     }
 
     public StreamBlockingQueueWrapper<NewSymbolInfoResponse> newSymbolInfo(
             NewSymbolInfoRequest newSymbolInfoRequest) throws ApiException {
-        return websocketMarketStreamsApi.newSymbolInfo(newSymbolInfoRequest);
+        return getMarketApi().newSymbolInfo(newSymbolInfoRequest);
     }
 
     public StreamBlockingQueueWrapper<OpenInterestResponse> openInterest(
             OpenInterestRequest openInterestRequest) throws ApiException {
-        return websocketMarketStreamsApi.openInterest(openInterestRequest);
+        return getMarketApi().openInterest(openInterestRequest);
+    }
+
+    public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
+            DiffBookDepthStreamsRequest diffBookDepthStreamsRequest) throws ApiException {
+        return getPublicApi().diffBookDepthStreams(diffBookDepthStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
+            individualSymbolBookTickerStreams(
+                    IndividualSymbolBookTickerStreamsRequest
+                            individualSymbolBookTickerStreamsRequest)
+                    throws ApiException {
+        return getPublicApi()
+                .individualSymbolBookTickerStreams(individualSymbolBookTickerStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
             PartialBookDepthStreamsRequest partialBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.partialBookDepthStreams(partialBookDepthStreamsRequest);
+        return getPublicApi().partialBookDepthStreams(partialBookDepthStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<Ticker24HourResponse> ticker24Hour(
             Ticker24HourRequest ticker24HourRequest) throws ApiException {
-        return websocketMarketStreamsApi.ticker24Hour(ticker24HourRequest);
-    }
-
-    public StreamBlockingQueueWrapper<Ticker24HourByUnderlyingAssetAndExpirationDataResponse>
-            ticker24HourByUnderlyingAssetAndExpirationData(
-                    Ticker24HourByUnderlyingAssetAndExpirationDataRequest
-                            ticker24HourByUnderlyingAssetAndExpirationDataRequest)
-                    throws ApiException {
-        return websocketMarketStreamsApi.ticker24HourByUnderlyingAssetAndExpirationData(
-                ticker24HourByUnderlyingAssetAndExpirationDataRequest);
+        return getPublicApi().ticker24Hour(ticker24HourRequest);
     }
 
     public StreamBlockingQueueWrapper<TradeStreamsResponse> tradeStreams(
             TradeStreamsRequest tradeStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.tradeStreams(tradeStreamsRequest);
+        return getPublicApi().tradeStreams(tradeStreamsRequest);
     }
 
     /**
@@ -125,7 +163,7 @@ public class DerivativesTradingOptionsWebSocketStreams {
                         .params(Collections.singleton(listenKey))
                         .build();
         Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
+                getConnection().subscribe(requestWrapperDTO);
 
         TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
         StreamBlockingQueue<String> queue = queuesMap.get(listenKey);
@@ -133,6 +171,7 @@ public class DerivativesTradingOptionsWebSocketStreams {
     }
 
     public String getRequestID() {
-        return UUID.randomUUID().toString();
+        Random rand = new Random();
+        return Integer.toString(Math.abs(rand.nextInt()));
     }
 }

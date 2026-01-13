@@ -174,7 +174,9 @@ public class OrdersInner {
 
         IOC("IOC"),
 
-        FOK("FOK");
+        FOK("FOK"),
+
+        GTX("GTX");
 
         private String value;
 

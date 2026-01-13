@@ -7,15 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**E** | **Long** |  |  [optional] |
-|**B** | [**List&lt;AccountUpdateBInner&gt;**](AccountUpdateBInner.md) |  |  [optional] |
-|**G** | [**List&lt;AccountUpdateGInner&gt;**](AccountUpdateGInner.md) |  |  [optional] |
-|**P** | [**List&lt;AccountUpdatePInner&gt;**](AccountUpdatePInner.md) |  |  [optional] |
-|**uid** | **Long** |  |  [optional] |
-|**oLowerCase** | [**List&lt;OrderTradeUpdateOInner&gt;**](OrderTradeUpdateOInner.md) |  |  [optional] |
+|**E** | **String** |  |  [optional] |
+|**T** | **Long** |  |  [optional] |
+|**mLowerCase** | **String** |  |  [optional] |
+|**B** | [**List&lt;BalancePositionUpdateBInner&gt;**](BalancePositionUpdateBInner.md) |  |  [optional] |
+|**P** | [**List&lt;BalancePositionUpdatePInner&gt;**](BalancePositionUpdatePInner.md) |  |  [optional] |
+|**G** | [**List&lt;GreekUpdateGInner&gt;**](GreekUpdateGInner.md) |  |  [optional] |
+|**oLowerCase** | [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
 |**mb** | **String** |  |  [optional] |
 |**mm** | **String** |  |  [optional] |
+|**listenKey** | **String** |  |  [optional] |
 
 
 

@@ -4,7 +4,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import org.eclipse.jetty.client.ProxyConfiguration;
 import org.eclipse.jetty.client.api.Authentication;
 
-public class WebSocketClientConfiguration extends ClientConfiguration {
+public class WebSocketClientConfiguration extends ClientConfiguration implements Cloneable {
     /** Base URL */
     protected String url = "wss://ws-api.binance.com:443/ws-api/v3";
 
@@ -104,5 +104,14 @@ public class WebSocketClientConfiguration extends ClientConfiguration {
 
     public void setMessageMaxSize(Long messageMaxSize) {
         this.messageMaxSize = messageMaxSize;
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

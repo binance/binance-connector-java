@@ -33,8 +33,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.NewBl
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryBlockTradeDetailsResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryBlockTradeOrderResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.Side;
-import jakarta.validation.constraints.*;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -43,7 +41,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-/** API tests for MarketMakerBlockTradeApi */
+/** API tests for BlockTradeApi */
 public class MarketMakerBlockTradeApiTest {
 
     private MarketMakerBlockTradeApi api;
@@ -96,7 +94,6 @@ public class MarketMakerBlockTradeApiTest {
     public void acceptBlockTradeOrderTest() throws ApiException, CryptoException {
         AcceptBlockTradeOrderRequest acceptBlockTradeOrderRequest =
                 new AcceptBlockTradeOrderRequest();
-
         acceptBlockTradeOrderRequest.blockOrderMatchingKey("");
 
         ApiResponse<AcceptBlockTradeOrderResponse> response =
@@ -141,13 +138,10 @@ public class MarketMakerBlockTradeApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "933e8ed3a3cfc481c957b452740b714628caeb1ad91262ed96e251eff4b8bd3f",
                 actualRequest.url().queryParameter("signature"));
@@ -176,9 +170,7 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "ae708c39578286d9f327c8abc95624dc3cc9d4999587112e264986264a52088a",
                 actualRequest.url().queryParameter("signature"));
@@ -196,7 +188,6 @@ public class MarketMakerBlockTradeApiTest {
     public void extendBlockTradeOrderTest() throws ApiException, CryptoException {
         ExtendBlockTradeOrderRequest extendBlockTradeOrderRequest =
                 new ExtendBlockTradeOrderRequest();
-
         extendBlockTradeOrderRequest.blockOrderMatchingKey("");
 
         ApiResponse<ExtendBlockTradeOrderResponse> response =
@@ -229,7 +220,6 @@ public class MarketMakerBlockTradeApiTest {
     @Test
     public void newBlockTradeOrderTest() throws ApiException, CryptoException {
         NewBlockTradeOrderRequest newBlockTradeOrderRequest = new NewBlockTradeOrderRequest();
-
         newBlockTradeOrderRequest.liquidity("");
         newBlockTradeOrderRequest.legs(new Legs());
 
@@ -246,12 +236,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000legs=%5B%5D&liquidity=", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000legs=%5B%5D&liquidity=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bfcdb97917945619131835baab3105074db01c428177e5af5122331605bf3cb8",
-                actualRequest.url().queryParameter("signature"));
+                "bfcdb97917945619131835baab3105074db01c428177e5af5122331605bf3cb8", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/create", actualRequest.url().encodedPath());
     }
 
@@ -280,9 +267,7 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "ae708c39578286d9f327c8abc95624dc3cc9d4999587112e264986264a52088a",
                 actualRequest.url().queryParameter("signature"));
@@ -317,9 +302,7 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "blockOrderMatchingKey=&endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=&endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "12052ae669c254b370aeed981dae5ab6e617de9427448d3232d92d0506899440",
                 actualRequest.url().queryParameter("signature"));

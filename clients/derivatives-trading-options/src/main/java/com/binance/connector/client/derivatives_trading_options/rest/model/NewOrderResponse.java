@@ -60,6 +60,12 @@ public class NewOrderResponse {
     @jakarta.annotation.Nullable
     private String quantity;
 
+    public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
+
+    @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
+    @jakarta.annotation.Nullable
+    private String executedQty;
+
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -72,47 +78,17 @@ public class NewOrderResponse {
     @jakarta.annotation.Nullable
     private String type;
 
-    public static final String SERIALIZED_NAME_CREATE_DATE = "createDate";
+    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
-    @SerializedName(SERIALIZED_NAME_CREATE_DATE)
+    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private Long createDate;
+    private String timeInForce;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
-
-    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
-
-    @SerializedName(SERIALIZED_NAME_POST_ONLY)
-    @jakarta.annotation.Nullable
-    private Boolean postOnly;
-
-    public static final String SERIALIZED_NAME_MMP = "mmp";
-
-    @SerializedName(SERIALIZED_NAME_MMP)
-    @jakarta.annotation.Nullable
-    private Boolean mmp;
-
-    public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
-
-    @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
-    @jakarta.annotation.Nullable
-    private String executedQty;
-
-    public static final String SERIALIZED_NAME_FEE = "fee";
-
-    @SerializedName(SERIALIZED_NAME_FEE)
-    @jakarta.annotation.Nullable
-    private String fee;
-
-    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
-
-    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
-    @jakarta.annotation.Nullable
-    private String timeInForce;
 
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -137,6 +113,12 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_AVG_PRICE)
     @jakarta.annotation.Nullable
     private String avgPrice;
+
+    public static final String SERIALIZED_NAME_SOURCE = "source";
+
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    @jakarta.annotation.Nullable
+    private String source;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -167,6 +149,12 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_QUOTE_ASSET)
     @jakarta.annotation.Nullable
     private String quoteAsset;
+
+    public static final String SERIALIZED_NAME_MMP = "mmp";
+
+    @SerializedName(SERIALIZED_NAME_MMP)
+    @jakarta.annotation.Nullable
+    private Boolean mmp;
 
     public NewOrderResponse() {}
 
@@ -246,6 +234,25 @@ public class NewOrderResponse {
         this.quantity = quantity;
     }
 
+    public NewOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
+        this.executedQty = executedQty;
+        return this;
+    }
+
+    /**
+     * Get executedQty
+     *
+     * @return executedQty
+     */
+    @jakarta.annotation.Nullable
+    public String getExecutedQty() {
+        return executedQty;
+    }
+
+    public void setExecutedQty(@jakarta.annotation.Nullable String executedQty) {
+        this.executedQty = executedQty;
+    }
+
     public NewOrderResponse side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
@@ -284,23 +291,23 @@ public class NewOrderResponse {
         this.type = type;
     }
 
-    public NewOrderResponse createDate(@jakarta.annotation.Nullable Long createDate) {
-        this.createDate = createDate;
+    public NewOrderResponse timeInForce(@jakarta.annotation.Nullable String timeInForce) {
+        this.timeInForce = timeInForce;
         return this;
     }
 
     /**
-     * Get createDate
+     * Get timeInForce
      *
-     * @return createDate
+     * @return timeInForce
      */
     @jakarta.annotation.Nullable
-    public Long getCreateDate() {
-        return createDate;
+    public String getTimeInForce() {
+        return timeInForce;
     }
 
-    public void setCreateDate(@jakarta.annotation.Nullable Long createDate) {
-        this.createDate = createDate;
+    public void setTimeInForce(@jakarta.annotation.Nullable String timeInForce) {
+        this.timeInForce = timeInForce;
     }
 
     public NewOrderResponse reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
@@ -320,101 +327,6 @@ public class NewOrderResponse {
 
     public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
-    }
-
-    public NewOrderResponse postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-        return this;
-    }
-
-    /**
-     * Get postOnly
-     *
-     * @return postOnly
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
-        return postOnly;
-    }
-
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-    }
-
-    public NewOrderResponse mmp(@jakarta.annotation.Nullable Boolean mmp) {
-        this.mmp = mmp;
-        return this;
-    }
-
-    /**
-     * Get mmp
-     *
-     * @return mmp
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getMmp() {
-        return mmp;
-    }
-
-    public void setMmp(@jakarta.annotation.Nullable Boolean mmp) {
-        this.mmp = mmp;
-    }
-
-    public NewOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
-        this.executedQty = executedQty;
-        return this;
-    }
-
-    /**
-     * Get executedQty
-     *
-     * @return executedQty
-     */
-    @jakarta.annotation.Nullable
-    public String getExecutedQty() {
-        return executedQty;
-    }
-
-    public void setExecutedQty(@jakarta.annotation.Nullable String executedQty) {
-        this.executedQty = executedQty;
-    }
-
-    public NewOrderResponse fee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-        return this;
-    }
-
-    /**
-     * Get fee
-     *
-     * @return fee
-     */
-    @jakarta.annotation.Nullable
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-    }
-
-    public NewOrderResponse timeInForce(@jakarta.annotation.Nullable String timeInForce) {
-        this.timeInForce = timeInForce;
-        return this;
-    }
-
-    /**
-     * Get timeInForce
-     *
-     * @return timeInForce
-     */
-    @jakarta.annotation.Nullable
-    public String getTimeInForce() {
-        return timeInForce;
-    }
-
-    public void setTimeInForce(@jakarta.annotation.Nullable String timeInForce) {
-        this.timeInForce = timeInForce;
     }
 
     public NewOrderResponse createTime(@jakarta.annotation.Nullable Long createTime) {
@@ -491,6 +403,25 @@ public class NewOrderResponse {
 
     public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
         this.avgPrice = avgPrice;
+    }
+
+    public NewOrderResponse source(@jakarta.annotation.Nullable String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(@jakarta.annotation.Nullable String source) {
+        this.source = source;
     }
 
     public NewOrderResponse clientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
@@ -588,6 +519,25 @@ public class NewOrderResponse {
         this.quoteAsset = quoteAsset;
     }
 
+    public NewOrderResponse mmp(@jakarta.annotation.Nullable Boolean mmp) {
+        this.mmp = mmp;
+        return this;
+    }
+
+    /**
+     * Get mmp
+     *
+     * @return mmp
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getMmp() {
+        return mmp;
+    }
+
+    public void setMmp(@jakarta.annotation.Nullable Boolean mmp) {
+        this.mmp = mmp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -601,24 +551,22 @@ public class NewOrderResponse {
                 && Objects.equals(this.symbol, newOrderResponse.symbol)
                 && Objects.equals(this.price, newOrderResponse.price)
                 && Objects.equals(this.quantity, newOrderResponse.quantity)
+                && Objects.equals(this.executedQty, newOrderResponse.executedQty)
                 && Objects.equals(this.side, newOrderResponse.side)
                 && Objects.equals(this.type, newOrderResponse.type)
-                && Objects.equals(this.createDate, newOrderResponse.createDate)
-                && Objects.equals(this.reduceOnly, newOrderResponse.reduceOnly)
-                && Objects.equals(this.postOnly, newOrderResponse.postOnly)
-                && Objects.equals(this.mmp, newOrderResponse.mmp)
-                && Objects.equals(this.executedQty, newOrderResponse.executedQty)
-                && Objects.equals(this.fee, newOrderResponse.fee)
                 && Objects.equals(this.timeInForce, newOrderResponse.timeInForce)
+                && Objects.equals(this.reduceOnly, newOrderResponse.reduceOnly)
                 && Objects.equals(this.createTime, newOrderResponse.createTime)
                 && Objects.equals(this.updateTime, newOrderResponse.updateTime)
                 && Objects.equals(this.status, newOrderResponse.status)
                 && Objects.equals(this.avgPrice, newOrderResponse.avgPrice)
+                && Objects.equals(this.source, newOrderResponse.source)
                 && Objects.equals(this.clientOrderId, newOrderResponse.clientOrderId)
                 && Objects.equals(this.priceScale, newOrderResponse.priceScale)
                 && Objects.equals(this.quantityScale, newOrderResponse.quantityScale)
                 && Objects.equals(this.optionSide, newOrderResponse.optionSide)
-                && Objects.equals(this.quoteAsset, newOrderResponse.quoteAsset);
+                && Objects.equals(this.quoteAsset, newOrderResponse.quoteAsset)
+                && Objects.equals(this.mmp, newOrderResponse.mmp);
     }
 
     @Override
@@ -628,24 +576,22 @@ public class NewOrderResponse {
                 symbol,
                 price,
                 quantity,
+                executedQty,
                 side,
                 type,
-                createDate,
-                reduceOnly,
-                postOnly,
-                mmp,
-                executedQty,
-                fee,
                 timeInForce,
+                reduceOnly,
                 createTime,
                 updateTime,
                 status,
                 avgPrice,
+                source,
                 clientOrderId,
                 priceScale,
                 quantityScale,
                 optionSide,
-                quoteAsset);
+                quoteAsset,
+                mmp);
     }
 
     @Override
@@ -656,24 +602,22 @@ public class NewOrderResponse {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
+        sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
-        sb.append("		createDate: ").append(toIndentedString(createDate)).append("\n");
-        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
-        sb.append("		mmp: ").append(toIndentedString(mmp)).append("\n");
-        sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
+        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
+        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
+        sb.append("		mmp: ").append(toIndentedString(mmp)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -697,6 +641,10 @@ public class NewOrderResponse {
         String quantityValueAsString = "";
         quantityValueAsString = quantityValue.toString();
         sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
+        Object executedQtyValue = getExecutedQty();
+        String executedQtyValueAsString = "";
+        executedQtyValueAsString = executedQtyValue.toString();
+        sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -705,34 +653,14 @@ public class NewOrderResponse {
         String typeValueAsString = "";
         typeValueAsString = typeValue.toString();
         sb.append("type=").append(urlEncode(typeValueAsString)).append("");
-        Object createDateValue = getCreateDate();
-        String createDateValueAsString = "";
-        createDateValueAsString = createDateValue.toString();
-        sb.append("createDate=").append(urlEncode(createDateValueAsString)).append("");
-        Object reduceOnlyValue = getReduceOnly();
-        String reduceOnlyValueAsString = "";
-        reduceOnlyValueAsString = reduceOnlyValue.toString();
-        sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object postOnlyValue = getPostOnly();
-        String postOnlyValueAsString = "";
-        postOnlyValueAsString = postOnlyValue.toString();
-        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
-        Object mmpValue = getMmp();
-        String mmpValueAsString = "";
-        mmpValueAsString = mmpValue.toString();
-        sb.append("mmp=").append(urlEncode(mmpValueAsString)).append("");
-        Object executedQtyValue = getExecutedQty();
-        String executedQtyValueAsString = "";
-        executedQtyValueAsString = executedQtyValue.toString();
-        sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
-        Object feeValue = getFee();
-        String feeValueAsString = "";
-        feeValueAsString = feeValue.toString();
-        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
         sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
+        Object reduceOnlyValue = getReduceOnly();
+        String reduceOnlyValueAsString = "";
+        reduceOnlyValueAsString = reduceOnlyValue.toString();
+        sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -749,6 +677,10 @@ public class NewOrderResponse {
         String avgPriceValueAsString = "";
         avgPriceValueAsString = avgPriceValue.toString();
         sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
+        Object sourceValue = getSource();
+        String sourceValueAsString = "";
+        sourceValueAsString = sourceValue.toString();
+        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         Object clientOrderIdValue = getClientOrderId();
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
@@ -769,6 +701,10 @@ public class NewOrderResponse {
         String quoteAssetValueAsString = "";
         quoteAssetValueAsString = quoteAssetValue.toString();
         sb.append("quoteAsset=").append(urlEncode(quoteAssetValueAsString)).append("");
+        Object mmpValue = getMmp();
+        String mmpValueAsString = "";
+        mmpValueAsString = mmpValue.toString();
+        sb.append("mmp=").append(urlEncode(mmpValueAsString)).append("");
         return sb.toString();
     }
 
@@ -801,24 +737,22 @@ public class NewOrderResponse {
         openapiFields.add("symbol");
         openapiFields.add("price");
         openapiFields.add("quantity");
+        openapiFields.add("executedQty");
         openapiFields.add("side");
         openapiFields.add("type");
-        openapiFields.add("createDate");
-        openapiFields.add("reduceOnly");
-        openapiFields.add("postOnly");
-        openapiFields.add("mmp");
-        openapiFields.add("executedQty");
-        openapiFields.add("fee");
         openapiFields.add("timeInForce");
+        openapiFields.add("reduceOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");
         openapiFields.add("avgPrice");
+        openapiFields.add("source");
         openapiFields.add("clientOrderId");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
         openapiFields.add("optionSide");
         openapiFields.add("quoteAsset");
+        openapiFields.add("mmp");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -866,6 +800,14 @@ public class NewOrderResponse {
                                     + " string but got `%s`",
                             jsonObj.get("quantity").toString()));
         }
+        if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
+                && !jsonObj.get("executedQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `executedQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("executedQty").toString()));
+        }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -881,22 +823,6 @@ public class NewOrderResponse {
                             "Expected the field `type` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("type").toString()));
-        }
-        if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
-                && !jsonObj.get("executedQty").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `executedQty` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
-                && !jsonObj.get("fee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fee` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("fee").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
@@ -921,6 +847,14 @@ public class NewOrderResponse {
                             "Expected the field `avgPrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("avgPrice").toString()));
+        }
+        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
+                && !jsonObj.get("source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `source` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("source").toString()));
         }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {

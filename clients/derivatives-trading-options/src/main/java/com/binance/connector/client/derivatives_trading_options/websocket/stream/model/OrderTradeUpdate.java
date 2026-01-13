@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_options.websocket.strea
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -28,9 +27,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -49,11 +46,17 @@ public class OrderTradeUpdate extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long E;
 
+    public static final String SERIALIZED_NAME_T = "T";
+
+    @SerializedName(SERIALIZED_NAME_T)
+    @jakarta.annotation.Nullable
+    private Long T;
+
     public static final String SERIALIZED_NAME_O_LOWER_CASE = "o";
 
     @SerializedName(SERIALIZED_NAME_O_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderTradeUpdateOInner> oLowerCase;
+    private OrderTradeUpdateO oLowerCase;
 
     public OrderTradeUpdate() {}
 
@@ -76,17 +79,27 @@ public class OrderTradeUpdate extends BaseDTO {
         this.E = E;
     }
 
-    public OrderTradeUpdate oLowerCase(
-            @jakarta.annotation.Nullable List<@Valid OrderTradeUpdateOInner> oLowerCase) {
-        this.oLowerCase = oLowerCase;
+    public OrderTradeUpdate T(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
         return this;
     }
 
-    public OrderTradeUpdate addOLowerCaseItem(OrderTradeUpdateOInner oLowerCaseItem) {
-        if (this.oLowerCase == null) {
-            this.oLowerCase = new ArrayList<>();
-        }
-        this.oLowerCase.add(oLowerCaseItem);
+    /**
+     * Get T
+     *
+     * @return T
+     */
+    @jakarta.annotation.Nullable
+    public Long getT() {
+        return T;
+    }
+
+    public void setT(@jakarta.annotation.Nullable Long T) {
+        this.T = T;
+    }
+
+    public OrderTradeUpdate oLowerCase(@jakarta.annotation.Nullable OrderTradeUpdateO oLowerCase) {
+        this.oLowerCase = oLowerCase;
         return this;
     }
 
@@ -97,12 +110,11 @@ public class OrderTradeUpdate extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderTradeUpdateOInner> getoLowerCase() {
+    public OrderTradeUpdateO getoLowerCase() {
         return oLowerCase;
     }
 
-    public void setoLowerCase(
-            @jakarta.annotation.Nullable List<@Valid OrderTradeUpdateOInner> oLowerCase) {
+    public void setoLowerCase(@jakarta.annotation.Nullable OrderTradeUpdateO oLowerCase) {
         this.oLowerCase = oLowerCase;
     }
 
@@ -116,12 +128,13 @@ public class OrderTradeUpdate extends BaseDTO {
         }
         OrderTradeUpdate orderTradeUpdate = (OrderTradeUpdate) o;
         return Objects.equals(this.E, orderTradeUpdate.E)
+                && Objects.equals(this.T, orderTradeUpdate.T)
                 && Objects.equals(this.oLowerCase, orderTradeUpdate.oLowerCase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(E, oLowerCase);
+        return Objects.hash(E, T, oLowerCase);
     }
 
     @Override
@@ -129,6 +142,7 @@ public class OrderTradeUpdate extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderTradeUpdate {\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
+        sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		oLowerCase: ").append(toIndentedString(oLowerCase)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -143,7 +157,12 @@ public class OrderTradeUpdate extends BaseDTO {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
-        List<@Valid OrderTradeUpdateOInner> oLowerCaseValue = getoLowerCase();
+        Long TValue = getT();
+        if (TValue != null) {
+            String TValueAsString = TValue.toString();
+            valMap.put("T", TValueAsString);
+        }
+        OrderTradeUpdateO oLowerCaseValue = getoLowerCase();
         if (oLowerCaseValue != null) {
             String oLowerCaseValueAsString = JSON.getGson().toJson(oLowerCaseValue);
             valMap.put("oLowerCase", oLowerCaseValueAsString);
@@ -162,6 +181,10 @@ public class OrderTradeUpdate extends BaseDTO {
         Object EValue = getE();
         if (EValue != null) {
             valMap.put("E", EValue);
+        }
+        Object TValue = getT();
+        if (TValue != null) {
+            valMap.put("T", TValue);
         }
         Object oLowerCaseValue = getoLowerCase();
         if (oLowerCaseValue != null) {
@@ -194,6 +217,7 @@ public class OrderTradeUpdate extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("E");
+        openapiFields.add("T");
         openapiFields.add("o");
 
         // a set of required properties/fields (JSON key names)
@@ -230,24 +254,9 @@ public class OrderTradeUpdate extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `o`
         if (jsonObj.get("o") != null && !jsonObj.get("o").isJsonNull()) {
-            JsonArray jsonArrayoLowerCase = jsonObj.getAsJsonArray("o");
-            if (jsonArrayoLowerCase != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("o").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `o` to be an array in the JSON string but"
-                                            + " got `%s`",
-                                    jsonObj.get("o").toString()));
-                }
-
-                // validate the optional field `o` (array)
-                for (int i = 0; i < jsonArrayoLowerCase.size(); i++) {
-                    OrderTradeUpdateOInner.validateJsonElement(jsonArrayoLowerCase.get(i));
-                }
-                ;
-            }
+            OrderTradeUpdateO.validateJsonElement(jsonObj.get("o"));
         }
     }
 

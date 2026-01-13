@@ -27,7 +27,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.AutoC
 import com.binance.connector.client.derivatives_trading_options.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetAutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetMarketMakerProtectionConfigResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetAutoCancelAllOpenOrdersRequest;
@@ -100,7 +99,6 @@ public class MarketMakerEndpointsApiTest {
     public void autoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
         AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest =
                 new AutoCancelAllOpenOrdersRequest();
-
         autoCancelAllOpenOrdersRequest.underlyings("");
 
         ApiResponse<AutoCancelAllOpenOrdersResponse> response =
@@ -151,8 +149,7 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "b86106356cee58da83b1db58af2ff785ff31edb20e817cebe1782f91df7ddc12",
                 actualRequest.url().queryParameter("signature"));
@@ -183,8 +180,7 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "b86106356cee58da83b1db58af2ff785ff31edb20e817cebe1782f91df7ddc12",
                 actualRequest.url().queryParameter("signature"));
@@ -216,7 +212,8 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
@@ -248,7 +245,6 @@ public class MarketMakerEndpointsApiTest {
     public void setAutoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
         SetAutoCancelAllOpenOrdersRequest setAutoCancelAllOpenOrdersRequest =
                 new SetAutoCancelAllOpenOrdersRequest();
-
         setAutoCancelAllOpenOrdersRequest.underlying("");
         setAutoCancelAllOpenOrdersRequest.countdownTime(0L);
 
@@ -265,8 +261,7 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000countdownTime=0&underlying=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000countdownTime=0&underlying=", signInputCaptor.getValue());
         assertEquals(
                 "3ea20362d32987f98f76e76f49289f7848b16910aefdb250e574f5dd050aad4a",
                 actualRequest.url().queryParameter("signature"));

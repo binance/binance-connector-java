@@ -12,12 +12,10 @@
 |**price** | **String** |  |  [optional] |
 |**quantity** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
-|**fee** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |
-|**postOnly** | **Boolean** |  |  [optional] |
 |**createTime** | **Long** |  |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
 |**status** | **String** |  |  [optional] |

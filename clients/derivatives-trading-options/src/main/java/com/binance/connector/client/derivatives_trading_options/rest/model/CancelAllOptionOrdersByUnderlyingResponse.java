@@ -48,12 +48,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
     @jakarta.annotation.Nullable
     private String msg;
 
-    public static final String SERIALIZED_NAME_DATA = "data";
-
-    @SerializedName(SERIALIZED_NAME_DATA)
-    @jakarta.annotation.Nullable
-    private Long data;
-
     public CancelAllOptionOrdersByUnderlyingResponse() {}
 
     public CancelAllOptionOrdersByUnderlyingResponse code(@jakarta.annotation.Nullable Long code) {
@@ -94,25 +88,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         this.msg = msg;
     }
 
-    public CancelAllOptionOrdersByUnderlyingResponse data(@jakarta.annotation.Nullable Long data) {
-        this.data = data;
-        return this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return data
-     */
-    @jakarta.annotation.Nullable
-    public Long getData() {
-        return data;
-    }
-
-    public void setData(@jakarta.annotation.Nullable Long data) {
-        this.data = data;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -124,13 +99,12 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         CancelAllOptionOrdersByUnderlyingResponse cancelAllOptionOrdersByUnderlyingResponse =
                 (CancelAllOptionOrdersByUnderlyingResponse) o;
         return Objects.equals(this.code, cancelAllOptionOrdersByUnderlyingResponse.code)
-                && Objects.equals(this.msg, cancelAllOptionOrdersByUnderlyingResponse.msg)
-                && Objects.equals(this.data, cancelAllOptionOrdersByUnderlyingResponse.data);
+                && Objects.equals(this.msg, cancelAllOptionOrdersByUnderlyingResponse.msg);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, msg, data);
+        return Objects.hash(code, msg);
     }
 
     @Override
@@ -139,7 +113,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         sb.append("class CancelAllOptionOrdersByUnderlyingResponse {\n");
         sb.append("		code: ").append(toIndentedString(code)).append("\n");
         sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
-        sb.append("		data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -155,10 +128,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         String msgValueAsString = "";
         msgValueAsString = msgValue.toString();
         sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
-        Object dataValue = getData();
-        String dataValueAsString = "";
-        dataValueAsString = dataValue.toString();
-        sb.append("data=").append(urlEncode(dataValueAsString)).append("");
         return sb.toString();
     }
 
@@ -189,7 +158,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("code");
         openapiFields.add("msg");
-        openapiFields.add("data");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
