@@ -17,6 +17,7 @@ Before using the connectors, ensure you have:
 
 ## Available Connectors
 - [binance-algo](clients/algo) - Algo Trading connector
+- [binance-alpha](clients/alpha) - Alpha connector
 - [binance-c2c](clients/c2c) - C2C connector
 - [binance-convert](clients/convert) - Convert connector
 - [binance-copy-trading](clients/copy-trading) - Copy Trading connector
@@ -207,6 +208,8 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 
 ## Examples
 **Algo**: [Rest API](clients/algo/example_rest.md)
+
+**Alpha**: [Rest API](clients/alpha/example_rest.md)
 
 **C2c**: [Rest API](clients/c2c/example_rest.md)
 
