@@ -16,6 +16,7 @@
 
     <modules>
         <module>algo</module>
+        <module>alpha</module>
         <module>c2c</module>
         <module>convert</module>
         <module>copy-trading</module>
