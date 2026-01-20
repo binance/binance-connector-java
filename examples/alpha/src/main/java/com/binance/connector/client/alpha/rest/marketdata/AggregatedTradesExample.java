@@ -27,10 +27,10 @@ public class AggregatedTradesExample {
     public AlphaRestApi getApi() {
         if (api == null) {
             ClientConfiguration clientConfiguration = AlphaRestApiUtil.getClientConfiguration();
-//            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
-//            signatureConfiguration.setApiKey("apiKey");
-//            signatureConfiguration.setPrivateKey("path/to/private.key");
-//            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
             api = new AlphaRestApi(clientConfiguration);
         }
         return api;
@@ -45,17 +45,13 @@ public class AggregatedTradesExample {
      * @throws ApiException if the Api call fails
      */
     public void aggregatedTradesExample() throws ApiException {
-        String symbol = "ALPHA_118USDC";
-        Long fromId = null;
-        Long startTime = null;
-        Long endTime = null;
+        String symbol = "";
+        Long fromId = 1L;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
         Long limit = 500L;
         ApiResponse<AggregatedTradesResponse> response =
                 getApi().aggregatedTrades(symbol, fromId, startTime, endTime, limit);
         System.out.println(response.getData());
-    }
-
-    public static void main(String[] args) {
-        new AggregatedTradesExample().aggregatedTradesExample();
     }
 }
