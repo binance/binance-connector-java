@@ -50,7 +50,7 @@ public class MovePositionForSubAccountExample {
      * if any symbol’s total close position quantity is bigger than the symbol’s current position
      * quantity, all batch orders in the same list will fail simultaneously. * Only support cross
      * margin mode * The price for move position is MarkPrice only. * Not support for MSA. * Not
-     * support for the symbol under Reduce-Only. Weight: 150
+     * support for the symbol under Reduce-Only. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

@@ -133,6 +133,18 @@ public class JSON {
                 new com.binance.connector.client.vip_loan.rest.model
                         .GetLoanableAssetsDataResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanAccruedInterestResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanAccruedInterestResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanInterestRateHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanInterestRateHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

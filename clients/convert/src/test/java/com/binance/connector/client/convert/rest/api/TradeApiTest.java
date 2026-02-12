@@ -31,7 +31,6 @@ import com.binance.connector.client.convert.rest.model.GetConvertTradeHistoryRes
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestResponse;
@@ -267,10 +266,8 @@ public class TradeApiTest {
      */
     @Test
     public void queryLimitOpenOrdersTest() throws ApiException, CryptoException {
-        QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest = new QueryLimitOpenOrdersRequest();
-
         ApiResponse<QueryLimitOpenOrdersResponse> response =
-                api.queryLimitOpenOrders(queryLimitOpenOrdersRequest);
+                api.queryLimitOpenOrders(null);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

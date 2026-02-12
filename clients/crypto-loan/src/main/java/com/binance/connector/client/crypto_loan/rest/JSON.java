@@ -159,6 +159,13 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model
+                        .GetFlexibleLoanInterestRateHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.crypto_loan.rest.model
+                        .GetFlexibleLoanInterestRateHistoryResponseRowsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.crypto_loan.rest.model
                         .GetFlexibleLoanLiquidationHistoryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.crypto_loan.rest.model

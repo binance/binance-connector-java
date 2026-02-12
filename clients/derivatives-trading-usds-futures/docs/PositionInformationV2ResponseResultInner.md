@@ -13,7 +13,7 @@
 |**entryPrice** | **String** |  |  [optional] |
 |**breakEvenPrice** | **String** |  |  [optional] |
 |**markPrice** | **String** |  |  [optional] |
-|**unrealizedProfit** | **String** |  |  [optional] |
+|**unRealizedProfit** | **String** |  |  [optional] |
 |**liquidationPrice** | **String** |  |  [optional] |
 |**isolatedMargin** | **String** |  |  [optional] |
 |**notional** | **String** |  |  [optional] |

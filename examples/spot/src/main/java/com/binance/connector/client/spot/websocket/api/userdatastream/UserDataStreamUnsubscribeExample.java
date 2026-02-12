@@ -45,7 +45,7 @@ public class UserDataStreamUnsubscribeExample {
      *
      * <p>Stop listening to the User Data Stream in the current WebSocket connection. Note that
      * &#x60;session.logout&#x60; will only close the subscription created with
-     * &#x60;userdataStream.subscribe&#x60; but not subscriptions opened with
+     * &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with
      * &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
      */
     public void userDataStreamUnsubscribeExampleAsync() {
@@ -68,7 +68,7 @@ public class UserDataStreamUnsubscribeExample {
      *
      * <p>Stop listening to the User Data Stream in the current WebSocket connection. Note that
      * &#x60;session.logout&#x60; will only close the subscription created with
-     * &#x60;userdataStream.subscribe&#x60; but not subscriptions opened with
+     * &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with
      * &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
      */
     public void userDataStreamUnsubscribeExampleSync() {

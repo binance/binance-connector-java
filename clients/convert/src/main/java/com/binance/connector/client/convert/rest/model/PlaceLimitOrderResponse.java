@@ -36,157 +36,56 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class PlaceLimitOrderResponse {
-    public static final String SERIALIZED_NAME_QUOTE_ID = "quoteId";
+    public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
-    @SerializedName(SERIALIZED_NAME_QUOTE_ID)
+    @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
-    private String quoteId;
+    private Long orderId;
 
-    public static final String SERIALIZED_NAME_RATIO = "ratio";
+    public static final String SERIALIZED_NAME_STATUS = "status";
 
-    @SerializedName(SERIALIZED_NAME_RATIO)
+    @SerializedName(SERIALIZED_NAME_STATUS)
     @jakarta.annotation.Nullable
-    private String ratio;
-
-    public static final String SERIALIZED_NAME_INVERSE_RATIO = "inverseRatio";
-
-    @SerializedName(SERIALIZED_NAME_INVERSE_RATIO)
-    @jakarta.annotation.Nullable
-    private String inverseRatio;
-
-    public static final String SERIALIZED_NAME_VALID_TIMESTAMP = "validTimestamp";
-
-    @SerializedName(SERIALIZED_NAME_VALID_TIMESTAMP)
-    @jakarta.annotation.Nullable
-    private Long validTimestamp;
-
-    public static final String SERIALIZED_NAME_TO_AMOUNT = "toAmount";
-
-    @SerializedName(SERIALIZED_NAME_TO_AMOUNT)
-    @jakarta.annotation.Nullable
-    private String toAmount;
-
-    public static final String SERIALIZED_NAME_FROM_AMOUNT = "fromAmount";
-
-    @SerializedName(SERIALIZED_NAME_FROM_AMOUNT)
-    @jakarta.annotation.Nullable
-    private String fromAmount;
+    private String status;
 
     public PlaceLimitOrderResponse() {}
 
-    public PlaceLimitOrderResponse quoteId(@jakarta.annotation.Nullable String quoteId) {
-        this.quoteId = quoteId;
+    public PlaceLimitOrderResponse orderId(@jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
         return this;
     }
 
     /**
-     * Get quoteId
+     * Get orderId
      *
-     * @return quoteId
+     * @return orderId
      */
     @jakarta.annotation.Nullable
-    public String getQuoteId() {
-        return quoteId;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setQuoteId(@jakarta.annotation.Nullable String quoteId) {
-        this.quoteId = quoteId;
+    public void setOrderId(@jakarta.annotation.Nullable Long orderId) {
+        this.orderId = orderId;
     }
 
-    public PlaceLimitOrderResponse ratio(@jakarta.annotation.Nullable String ratio) {
-        this.ratio = ratio;
+    public PlaceLimitOrderResponse status(@jakarta.annotation.Nullable String status) {
+        this.status = status;
         return this;
     }
 
     /**
-     * Get ratio
+     * Get status
      *
-     * @return ratio
+     * @return status
      */
     @jakarta.annotation.Nullable
-    public String getRatio() {
-        return ratio;
+    public String getStatus() {
+        return status;
     }
 
-    public void setRatio(@jakarta.annotation.Nullable String ratio) {
-        this.ratio = ratio;
-    }
-
-    public PlaceLimitOrderResponse inverseRatio(@jakarta.annotation.Nullable String inverseRatio) {
-        this.inverseRatio = inverseRatio;
-        return this;
-    }
-
-    /**
-     * Get inverseRatio
-     *
-     * @return inverseRatio
-     */
-    @jakarta.annotation.Nullable
-    public String getInverseRatio() {
-        return inverseRatio;
-    }
-
-    public void setInverseRatio(@jakarta.annotation.Nullable String inverseRatio) {
-        this.inverseRatio = inverseRatio;
-    }
-
-    public PlaceLimitOrderResponse validTimestamp(
-            @jakarta.annotation.Nullable Long validTimestamp) {
-        this.validTimestamp = validTimestamp;
-        return this;
-    }
-
-    /**
-     * Get validTimestamp
-     *
-     * @return validTimestamp
-     */
-    @jakarta.annotation.Nullable
-    public Long getValidTimestamp() {
-        return validTimestamp;
-    }
-
-    public void setValidTimestamp(@jakarta.annotation.Nullable Long validTimestamp) {
-        this.validTimestamp = validTimestamp;
-    }
-
-    public PlaceLimitOrderResponse toAmount(@jakarta.annotation.Nullable String toAmount) {
-        this.toAmount = toAmount;
-        return this;
-    }
-
-    /**
-     * Get toAmount
-     *
-     * @return toAmount
-     */
-    @jakarta.annotation.Nullable
-    public String getToAmount() {
-        return toAmount;
-    }
-
-    public void setToAmount(@jakarta.annotation.Nullable String toAmount) {
-        this.toAmount = toAmount;
-    }
-
-    public PlaceLimitOrderResponse fromAmount(@jakarta.annotation.Nullable String fromAmount) {
-        this.fromAmount = fromAmount;
-        return this;
-    }
-
-    /**
-     * Get fromAmount
-     *
-     * @return fromAmount
-     */
-    @jakarta.annotation.Nullable
-    public String getFromAmount() {
-        return fromAmount;
-    }
-
-    public void setFromAmount(@jakarta.annotation.Nullable String fromAmount) {
-        this.fromAmount = fromAmount;
+    public void setStatus(@jakarta.annotation.Nullable String status) {
+        this.status = status;
     }
 
     @Override
@@ -198,29 +97,21 @@ public class PlaceLimitOrderResponse {
             return false;
         }
         PlaceLimitOrderResponse placeLimitOrderResponse = (PlaceLimitOrderResponse) o;
-        return Objects.equals(this.quoteId, placeLimitOrderResponse.quoteId)
-                && Objects.equals(this.ratio, placeLimitOrderResponse.ratio)
-                && Objects.equals(this.inverseRatio, placeLimitOrderResponse.inverseRatio)
-                && Objects.equals(this.validTimestamp, placeLimitOrderResponse.validTimestamp)
-                && Objects.equals(this.toAmount, placeLimitOrderResponse.toAmount)
-                && Objects.equals(this.fromAmount, placeLimitOrderResponse.fromAmount);
+        return Objects.equals(this.orderId, placeLimitOrderResponse.orderId)
+                && Objects.equals(this.status, placeLimitOrderResponse.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quoteId, ratio, inverseRatio, validTimestamp, toAmount, fromAmount);
+        return Objects.hash(orderId, status);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class PlaceLimitOrderResponse {\n");
-        sb.append("		quoteId: ").append(toIndentedString(quoteId)).append("\n");
-        sb.append("		ratio: ").append(toIndentedString(ratio)).append("\n");
-        sb.append("		inverseRatio: ").append(toIndentedString(inverseRatio)).append("\n");
-        sb.append("		validTimestamp: ").append(toIndentedString(validTimestamp)).append("\n");
-        sb.append("		toAmount: ").append(toIndentedString(toAmount)).append("\n");
-        sb.append("		fromAmount: ").append(toIndentedString(fromAmount)).append("\n");
+        sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
+        sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -228,30 +119,14 @@ public class PlaceLimitOrderResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object quoteIdValue = getQuoteId();
-        String quoteIdValueAsString = "";
-        quoteIdValueAsString = quoteIdValue.toString();
-        sb.append("quoteId=").append(urlEncode(quoteIdValueAsString)).append("");
-        Object ratioValue = getRatio();
-        String ratioValueAsString = "";
-        ratioValueAsString = ratioValue.toString();
-        sb.append("ratio=").append(urlEncode(ratioValueAsString)).append("");
-        Object inverseRatioValue = getInverseRatio();
-        String inverseRatioValueAsString = "";
-        inverseRatioValueAsString = inverseRatioValue.toString();
-        sb.append("inverseRatio=").append(urlEncode(inverseRatioValueAsString)).append("");
-        Object validTimestampValue = getValidTimestamp();
-        String validTimestampValueAsString = "";
-        validTimestampValueAsString = validTimestampValue.toString();
-        sb.append("validTimestamp=").append(urlEncode(validTimestampValueAsString)).append("");
-        Object toAmountValue = getToAmount();
-        String toAmountValueAsString = "";
-        toAmountValueAsString = toAmountValue.toString();
-        sb.append("toAmount=").append(urlEncode(toAmountValueAsString)).append("");
-        Object fromAmountValue = getFromAmount();
-        String fromAmountValueAsString = "";
-        fromAmountValueAsString = fromAmountValue.toString();
-        sb.append("fromAmount=").append(urlEncode(fromAmountValueAsString)).append("");
+        Object orderIdValue = getOrderId();
+        String orderIdValueAsString = "";
+        orderIdValueAsString = orderIdValue.toString();
+        sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
+        Object statusValue = getStatus();
+        String statusValueAsString = "";
+        statusValueAsString = statusValue.toString();
+        sb.append("status=").append(urlEncode(statusValueAsString)).append("");
         return sb.toString();
     }
 
@@ -280,12 +155,8 @@ public class PlaceLimitOrderResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("quoteId");
-        openapiFields.add("ratio");
-        openapiFields.add("inverseRatio");
-        openapiFields.add("validTimestamp");
-        openapiFields.add("toAmount");
-        openapiFields.add("fromAmount");
+        openapiFields.add("orderId");
+        openapiFields.add("status");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -309,45 +180,13 @@ public class PlaceLimitOrderResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("quoteId") != null && !jsonObj.get("quoteId").isJsonNull())
-                && !jsonObj.get("quoteId").isJsonPrimitive()) {
+        if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
+                && !jsonObj.get("status").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `quoteId` to be a primitive type in the JSON string"
+                            "Expected the field `status` to be a primitive type in the JSON string"
                                     + " but got `%s`",
-                            jsonObj.get("quoteId").toString()));
-        }
-        if ((jsonObj.get("ratio") != null && !jsonObj.get("ratio").isJsonNull())
-                && !jsonObj.get("ratio").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ratio` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("ratio").toString()));
-        }
-        if ((jsonObj.get("inverseRatio") != null && !jsonObj.get("inverseRatio").isJsonNull())
-                && !jsonObj.get("inverseRatio").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `inverseRatio` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("inverseRatio").toString()));
-        }
-        if ((jsonObj.get("toAmount") != null && !jsonObj.get("toAmount").isJsonNull())
-                && !jsonObj.get("toAmount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `toAmount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("toAmount").toString()));
-        }
-        if ((jsonObj.get("fromAmount") != null && !jsonObj.get("fromAmount").isJsonNull())
-                && !jsonObj.get("fromAmount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fromAmount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("fromAmount").toString()));
+                            jsonObj.get("status").toString()));
         }
     }
 

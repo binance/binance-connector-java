@@ -92,7 +92,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -686,8 +686,8 @@ public class TradeApi {
     /**
      * Build call for cancelAlgoOrder
      *
-     * @param algoid (optional)
-     * @param clientalgoid (optional)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -702,7 +702,7 @@ public class TradeApi {
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
      *     Algo Order (TRADE) Documentation</a>
      */
-    private okhttp3.Call cancelAlgoOrderCall(Long algoid, String clientalgoid, Long recvWindow)
+    private okhttp3.Call cancelAlgoOrderCall(Long algoId, String clientAlgoId, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -728,13 +728,13 @@ public class TradeApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (algoid != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoid", algoid));
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
         }
 
-        if (clientalgoid != null) {
+        if (clientAlgoId != null) {
             localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("clientalgoid", clientalgoid));
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
         }
 
         if (recvWindow != null) {
@@ -773,7 +773,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call cancelAlgoOrderValidateBeforeCall(
-            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -783,7 +783,7 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {algoid, clientalgoid, recvWindow};
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod("cancelAlgoOrder", Long.class, String.class, Long.class);
@@ -791,7 +791,7 @@ public class TradeApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return cancelAlgoOrderCall(algoid, clientalgoid, recvWindow);
+                return cancelAlgoOrderCall(algoId, clientAlgoId, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -805,11 +805,11 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
-     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
+     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
      *
-     * @param algoid (optional)
-     * @param clientalgoid (optional)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;CancelAlgoOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -826,9 +826,9 @@ public class TradeApi {
      *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
-            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
-                cancelAlgoOrderValidateBeforeCall(algoid, clientalgoid, recvWindow);
+                cancelAlgoOrderValidateBeforeCall(algoId, clientAlgoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAlgoOrderResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3492,6 +3492,10 @@ public class TradeApi {
 
         if (newAlgoOrderRequest.getClientAlgoId() != null) {
             localVarFormParams.put("clientAlgoId", newAlgoOrderRequest.getClientAlgoId());
+        }
+
+        if (newAlgoOrderRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", newAlgoOrderRequest.getNewOrderRespType());
         }
 
         if (newAlgoOrderRequest.getSelfTradePreventionMode() != null) {

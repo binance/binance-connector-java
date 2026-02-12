@@ -355,10 +355,10 @@ public class Example {
     String asset = "asset_example"; // String | 
     String symbol = "symbol_example"; // String | isolated margin pair
     String type = "type_example"; // String | Transfer Type: ROLL_IN, ROLL_OUT
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long fromId = 56L; // Long | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long fromId = 56L; // Long | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryCrossIsolatedMarginCapitalFlowResponse result = apiInstance.queryCrossIsolatedMarginCapitalFlow(asset, symbol, type, startTime, endTime, fromId, limit, recvWindow);
@@ -381,10 +381,10 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
 | **type** | **String**| Transfer Type: ROLL_IN, ROLL_OUT | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **fromId** | **Long**| 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **fromId** | **Long**| If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type

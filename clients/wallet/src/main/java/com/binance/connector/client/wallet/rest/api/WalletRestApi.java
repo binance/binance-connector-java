@@ -20,6 +20,10 @@ import com.binance.connector.client.wallet.rest.model.DepositHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
@@ -45,6 +49,8 @@ import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaire
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Request;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Response;
 import com.binance.connector.client.wallet.rest.model.SystemStatusResponse;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestRequest;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse;
@@ -253,6 +259,7 @@ public class WalletRestApi {
      * and other deposit or withdraw details from &#x60;&#x60;GET
      * /sapi/v1/capital/config/getall&#x60;&#x60;. Weight: 1
      *
+     * @param asset (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AssetDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -267,8 +274,9 @@ public class WalletRestApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
      *     (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AssetDetailResponse> assetDetail(Long recvWindow) throws ApiException {
-        return assetApi.assetDetail(recvWindow);
+    public ApiResponse<AssetDetailResponse> assetDetail(String asset, Long recvWindow)
+            throws ApiException {
+        return assetApi.assetDetail(asset, recvWindow);
     }
 
     /**
@@ -300,6 +308,50 @@ public class WalletRestApi {
     }
 
     /**
+     * Dust Convert (USER_DATA) Convert dust assets Weight: 10
+     *
+     * @param dustConvertRequest (required)
+     * @return ApiResponse&lt;DustConvertResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convert">Dust Convert
+     *     (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertResponse> dustConvert(DustConvertRequest dustConvertRequest)
+            throws ApiException {
+        return assetApi.dustConvert(dustConvertRequest);
+    }
+
+    /**
+     * Dust Convertible Assets (USER_DATA) Query dust convertible assets Weight: 1
+     *
+     * @param dustConvertibleAssetsRequest (required)
+     * @return ApiResponse&lt;DustConvertibleAssetsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets">Dust
+     *     Convertible Assets (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertibleAssetsResponse> dustConvertibleAssets(
+            DustConvertibleAssetsRequest dustConvertibleAssetsRequest) throws ApiException {
+        return assetApi.dustConvertibleAssets(dustConvertibleAssetsRequest);
+    }
+
+    /**
      * Dust Transfer (USER_DATA) Convert dust assets to BNB. * You need to open&#x60;Enable Spot
      * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight:
      * 10
@@ -327,6 +379,7 @@ public class WalletRestApi {
      * DustLog(USER_DATA) Dustlog * Only return last 100 records * Only return records after
      * 2020/12/01 Weight: 1
      *
+     * @param accountType &#x60;SPOT&#x60;or&#x60;MARGIN&#x60;,default&#x60;SPOT&#x60; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -343,9 +396,9 @@ public class WalletRestApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
      *     Documentation</a>
      */
-    public ApiResponse<DustlogResponse> dustlog(Long startTime, Long endTime, Long recvWindow)
-            throws ApiException {
-        return assetApi.dustlog(startTime, endTime, recvWindow);
+    public ApiResponse<DustlogResponse> dustlog(
+            String accountType, Long startTime, Long endTime, Long recvWindow) throws ApiException {
+        return assetApi.dustlog(accountType, startTime, endTime, recvWindow);
     }
 
     /**
@@ -461,9 +514,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History *
-     * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests
-     * this endpoint Weight: 60
+     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History
+     * Weight: 60
      *
      * @param email (required)
      * @param startTime (required)
@@ -1171,7 +1223,7 @@ public class WalletRestApi {
      *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositHistoryV2Response> depositHistoryV2(
-            String depositId,
+            Long depositId,
             String txId,
             String network,
             String coin,
@@ -1278,6 +1330,36 @@ public class WalletRestApi {
                     throws ApiException {
         return travelRuleApi.submitDepositQuestionnaireTravelRule(
                 submitDepositQuestionnaireTravelRuleRequest);
+    }
+
+    /**
+     * Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     * network) (USER_DATA) Submit questionnaire for local entities that require travel rule. The
+     * questionnaire is only applies to transactions from unhosted wallets or VASPs that are not yet
+     * onboarded with GTR. * Questionnaire is different for each local entity, please refer * If
+     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
+     * not be blank&#x60;, Weight: 600
+     *
+     * @param submitDepositQuestionnaireV2Request (required)
+     * @return ApiResponse&lt;SubmitDepositQuestionnaireV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Submit Deposit Questionnaire V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2">Submit
+     *     Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<SubmitDepositQuestionnaireV2Response> submitDepositQuestionnaireV2(
+            SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request)
+            throws ApiException {
+        return travelRuleApi.submitDepositQuestionnaireV2(submitDepositQuestionnaireV2Request);
     }
 
     /**

@@ -20,7 +20,7 @@ All URIs are relative to *http://localhost*
 
 Cancel Algo Order (TRADE)
 
-Cancel an active algo order.  * Either &#x60;algoid&#x60; or &#x60;clientalgoid&#x60; must be sent.  Weight: 1
+Cancel an active algo order.  * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.  Weight: 1
 
 ### Example
 ```java

@@ -22,6 +22,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.wallet.rest.model.AssetDetailResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
@@ -64,7 +68,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/3.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,6 +108,7 @@ public class AssetApi {
     /**
      * Build call for assetDetail
      *
+     * @param asset (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -117,7 +122,7 @@ public class AssetApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
      *     (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call assetDetailCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call assetDetailCall(String asset, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -141,6 +146,10 @@ public class AssetApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (asset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("asset", asset));
+        }
 
         if (recvWindow != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
@@ -177,7 +186,8 @@ public class AssetApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call assetDetailValidateBeforeCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call assetDetailValidateBeforeCall(String asset, Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -187,13 +197,13 @@ public class AssetApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("assetDetail", Long.class);
+            Object[] parameterValues = {asset, recvWindow};
+            Method method = this.getClass().getMethod("assetDetail", String.class, Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return assetDetailCall(recvWindow);
+                return assetDetailCall(asset, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -211,6 +221,7 @@ public class AssetApi {
      * and other deposit or withdraw details from &#x60;&#x60;GET
      * /sapi/v1/capital/config/getall&#x60;&#x60;. Weight: 1
      *
+     * @param asset (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AssetDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -225,8 +236,9 @@ public class AssetApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
      *     (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AssetDetailResponse> assetDetail(Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = assetDetailValidateBeforeCall(recvWindow);
+    public ApiResponse<AssetDetailResponse> assetDetail(String asset, Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall = assetDetailValidateBeforeCall(asset, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AssetDetailResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -402,6 +414,303 @@ public class AssetApi {
     }
 
     /**
+     * Build call for dustConvert
+     *
+     * @param dustConvertRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convert">Dust Convert
+     *     (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call dustConvertCall(DustConvertRequest dustConvertRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/asset/dust-convert/convert";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (dustConvertRequest.getAsset() != null) {
+            localVarFormParams.put("asset", dustConvertRequest.getAsset());
+        }
+
+        if (dustConvertRequest.getClientId() != null) {
+            localVarFormParams.put("clientId", dustConvertRequest.getClientId());
+        }
+
+        if (dustConvertRequest.getTargetAsset() != null) {
+            localVarFormParams.put("targetAsset", dustConvertRequest.getTargetAsset());
+        }
+
+        if (dustConvertRequest.getThirdPartyClientId() != null) {
+            localVarFormParams.put(
+                    "thirdPartyClientId", dustConvertRequest.getThirdPartyClientId());
+        }
+
+        if (dustConvertRequest.getDustQuotaAssetToTargetAssetPrice() != null) {
+            localVarFormParams.put(
+                    "dustQuotaAssetToTargetAssetPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(dustConvertRequest.getDustQuotaAssetToTargetAssetPrice()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dustConvertValidateBeforeCall(DustConvertRequest dustConvertRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {dustConvertRequest};
+            Method method = this.getClass().getMethod("dustConvert", DustConvertRequest.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return dustConvertCall(dustConvertRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Dust Convert (USER_DATA) Convert dust assets Weight: 10
+     *
+     * @param dustConvertRequest (required)
+     * @return ApiResponse&lt;DustConvertResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convert">Dust Convert
+     *     (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertResponse> dustConvert(
+            @Valid @NotNull DustConvertRequest dustConvertRequest) throws ApiException {
+        okhttp3.Call localVarCall = dustConvertValidateBeforeCall(dustConvertRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<DustConvertResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for dustConvertibleAssets
+     *
+     * @param dustConvertibleAssetsRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets">Dust
+     *     Convertible Assets (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call dustConvertibleAssetsCall(
+            DustConvertibleAssetsRequest dustConvertibleAssetsRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/asset/dust-convert/query-convertible-assets";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (dustConvertibleAssetsRequest.getTargetAsset() != null) {
+            localVarFormParams.put("targetAsset", dustConvertibleAssetsRequest.getTargetAsset());
+        }
+
+        if (dustConvertibleAssetsRequest.getDustQuotaAssetToTargetAssetPrice() != null) {
+            localVarFormParams.put(
+                    "dustQuotaAssetToTargetAssetPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(
+                                    dustConvertibleAssetsRequest
+                                            .getDustQuotaAssetToTargetAssetPrice()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dustConvertibleAssetsValidateBeforeCall(
+            DustConvertibleAssetsRequest dustConvertibleAssetsRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {dustConvertibleAssetsRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod("dustConvertibleAssets", DustConvertibleAssetsRequest.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return dustConvertibleAssetsCall(dustConvertibleAssetsRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Dust Convertible Assets (USER_DATA) Query dust convertible assets Weight: 1
+     *
+     * @param dustConvertibleAssetsRequest (required)
+     * @return ApiResponse&lt;DustConvertibleAssetsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets">Dust
+     *     Convertible Assets (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertibleAssetsResponse> dustConvertibleAssets(
+            @Valid @NotNull DustConvertibleAssetsRequest dustConvertibleAssetsRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                dustConvertibleAssetsValidateBeforeCall(dustConvertibleAssetsRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<DustConvertibleAssetsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for dustTransfer
      *
      * @param dustTransferRequest (required)
@@ -546,6 +855,7 @@ public class AssetApi {
     /**
      * Build call for dustlog
      *
+     * @param accountType &#x60;SPOT&#x60;or&#x60;MARGIN&#x60;,default&#x60;SPOT&#x60; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -561,8 +871,8 @@ public class AssetApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
      *     Documentation</a>
      */
-    private okhttp3.Call dustlogCall(Long startTime, Long endTime, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call dustlogCall(
+            String accountType, Long startTime, Long endTime, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -586,6 +896,11 @@ public class AssetApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (accountType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("accountType", accountType));
+        }
 
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
@@ -630,8 +945,8 @@ public class AssetApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call dustlogValidateBeforeCall(Long startTime, Long endTime, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call dustlogValidateBeforeCall(
+            String accountType, Long startTime, Long endTime, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -641,14 +956,15 @@ public class AssetApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, recvWindow};
+            Object[] parameterValues = {accountType, startTime, endTime, recvWindow};
             Method method =
-                    this.getClass().getMethod("dustlog", Long.class, Long.class, Long.class);
+                    this.getClass()
+                            .getMethod("dustlog", String.class, Long.class, Long.class, Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return dustlogCall(startTime, endTime, recvWindow);
+                return dustlogCall(accountType, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -665,6 +981,7 @@ public class AssetApi {
      * DustLog(USER_DATA) Dustlog * Only return last 100 records * Only return records after
      * 2020/12/01 Weight: 1
      *
+     * @param accountType &#x60;SPOT&#x60;or&#x60;MARGIN&#x60;,default&#x60;SPOT&#x60; (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -681,9 +998,10 @@ public class AssetApi {
      * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
      *     Documentation</a>
      */
-    public ApiResponse<DustlogResponse> dustlog(Long startTime, Long endTime, Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall = dustlogValidateBeforeCall(startTime, endTime, recvWindow);
+    public ApiResponse<DustlogResponse> dustlog(
+            String accountType, Long startTime, Long endTime, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                dustlogValidateBeforeCall(accountType, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType = new TypeToken<DustlogResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1488,9 +1806,8 @@ public class AssetApi {
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History *
-     * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests
-     * this endpoint Weight: 60
+     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History
+     * Weight: 60
      *
      * @param email (required)
      * @param startTime (required)

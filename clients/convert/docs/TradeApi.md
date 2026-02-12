@@ -9,7 +9,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getConvertTradeHistory**](TradeApi.md#getConvertTradeHistory) | **GET** /sapi/v1/convert/tradeFlow | Get Convert Trade History(USER_DATA) |
 | [**orderStatus**](TradeApi.md#orderStatus) | **GET** /sapi/v1/convert/orderStatus | Order status(USER_DATA) |
 | [**placeLimitOrder**](TradeApi.md#placeLimitOrder) | **POST** /sapi/v1/convert/limit/placeOrder | Place limit order (USER_DATA) |
-| [**queryLimitOpenOrders**](TradeApi.md#queryLimitOpenOrders) | **POST** /sapi/v1/convert/limit/queryOpenOrders | Query limit open orders (USER_DATA) |
+| [**queryLimitOpenOrders**](TradeApi.md#queryLimitOpenOrders) | **GET** /sapi/v1/convert/limit/queryOpenOrders | Query limit open orders (USER_DATA) |
 | [**sendQuoteRequest**](TradeApi.md#sendQuoteRequest) | **POST** /sapi/v1/convert/getQuote | Send Quote Request(USER_DATA) |
 
 
@@ -333,7 +333,7 @@ No authorization required
 
 <a id="queryLimitOpenOrders"></a>
 # **queryLimitOpenOrders**
-> QueryLimitOpenOrdersResponse queryLimitOpenOrders(queryLimitOpenOrdersRequest)
+> QueryLimitOpenOrdersResponse queryLimitOpenOrders(recvWindow)
 
 Query limit open orders (USER_DATA)
 
@@ -354,9 +354,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest = new QueryLimitOpenOrdersRequest(); // QueryLimitOpenOrdersRequest | 
+    Long recvWindow = 56L; // Long | The value cannot be greater than 60000
     try {
-      QueryLimitOpenOrdersResponse result = apiInstance.queryLimitOpenOrders(queryLimitOpenOrdersRequest);
+      QueryLimitOpenOrdersResponse result = apiInstance.queryLimitOpenOrders(recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TradeApi#queryLimitOpenOrders");
@@ -373,7 +373,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryLimitOpenOrdersRequest** | [**QueryLimitOpenOrdersRequest**](QueryLimitOpenOrdersRequest.md)|  | |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 

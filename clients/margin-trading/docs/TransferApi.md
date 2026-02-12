@@ -33,7 +33,7 @@ public class Example {
     TransferApi apiInstance = new TransferApi(defaultClient);
     String asset = "asset_example"; // String | 
     String type = "type_example"; // String | Transfer Type: ROLL_IN, ROLL_OUT
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10 Max:100
@@ -59,7 +59,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
 | **type** | **String**| Transfer Type: ROLL_IN, ROLL_OUT | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
 | **size** | **Long**| Default:10 Max:100 | [optional] |

@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
-|**algoid** | **Long** |  |  [optional] |
-|**clientalgoid** | **String** |  |  [optional] |
+|**algoId** | **Long** |  |  [optional] |
+|**clientAlgoId** | **String** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

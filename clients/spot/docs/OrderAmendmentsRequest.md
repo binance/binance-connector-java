@@ -10,7 +10,7 @@
 |**symbol** | **String** |  |  |
 |**orderId** | **Long** |  |  |
 |**fromExecutionId** | **Long** |  |  [optional] |
-|**limit** | **Integer** |  |  [optional] |
+|**limit** | **Long** |  |  [optional] |
 |**recvWindow** | **Double** |  |  [optional] |
 
 

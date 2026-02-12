@@ -44,7 +44,7 @@ public class GetMovePositionHistoryForSubAccountExample {
      * return records of the last 90 days by default with 1000 maximum limits * If
      * &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of
      * [max(startTime, now-90d), now]. * If &#x60;startTime&#x60; is not sent and
-     * &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime]. Weight: 150
+     * &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime]. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

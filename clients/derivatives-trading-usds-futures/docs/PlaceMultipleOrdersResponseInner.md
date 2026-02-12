@@ -20,6 +20,7 @@
 |**positionSide** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**stopPrice** | **String** |  |  [optional] |
+|**closePosition** | **Boolean** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |

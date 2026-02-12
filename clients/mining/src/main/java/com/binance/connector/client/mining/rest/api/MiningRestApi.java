@@ -204,7 +204,6 @@ public class MiningRestApi {
      * Hashrate Resale Detail(USER_DATA) Hashrate Resale Detail(USER_DATA) Weight: 5
      *
      * @param configId Mining ID 168 (required)
-     * @param userName Mining account test (required)
      * @param pageIndex Page number, empty default first page, starting from 1 (optional)
      * @param pageSize Min 10,Max 200 (optional)
      * @param recvWindow (optional)
@@ -223,9 +222,8 @@ public class MiningRestApi {
      *     Resale Detail(USER_DATA) Documentation</a>
      */
     public ApiResponse<HashrateResaleDetailResponse> hashrateResaleDetail(
-            Long configId, String userName, Long pageIndex, Long pageSize, Long recvWindow)
-            throws ApiException {
-        return miningApi.hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+            Long configId, Long pageIndex, Long pageSize, Long recvWindow) throws ApiException {
+        return miningApi.hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
     }
 
     /**

@@ -114,6 +114,12 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String stopPrice;
 
+    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
+
+    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
+    @jakarta.annotation.Nullable
+    private Boolean closePosition;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -441,6 +447,26 @@ public class PlaceMultipleOrdersResponseInner {
         this.stopPrice = stopPrice;
     }
 
+    public PlaceMultipleOrdersResponseInner closePosition(
+            @jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+        return this;
+    }
+
+    /**
+     * Get closePosition
+     *
+     * @return closePosition
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+    }
+
     public PlaceMultipleOrdersResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
@@ -700,6 +726,8 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.positionSide, placeMultipleOrdersResponseInner.positionSide)
                 && Objects.equals(this.status, placeMultipleOrdersResponseInner.status)
                 && Objects.equals(this.stopPrice, placeMultipleOrdersResponseInner.stopPrice)
+                && Objects.equals(
+                        this.closePosition, placeMultipleOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, placeMultipleOrdersResponseInner.symbol)
                 && Objects.equals(this.timeInForce, placeMultipleOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, placeMultipleOrdersResponseInner.type)
@@ -732,6 +760,7 @@ public class PlaceMultipleOrdersResponseInner {
                 positionSide,
                 status,
                 stopPrice,
+                closePosition,
                 symbol,
                 timeInForce,
                 type,
@@ -763,6 +792,7 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -836,6 +866,10 @@ public class PlaceMultipleOrdersResponseInner {
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object closePositionValue = getClosePosition();
+        String closePositionValueAsString = "";
+        closePositionValueAsString = closePositionValue.toString();
+        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -927,6 +961,7 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
+        openapiFields.add("closePosition");
         openapiFields.add("symbol");
         openapiFields.add("timeInForce");
         openapiFields.add("type");

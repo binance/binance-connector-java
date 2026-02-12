@@ -74,7 +74,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/5.0.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -577,7 +577,7 @@ public class TradeApi {
     /**
      * Build call for getForceLiquidationRecord
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -736,7 +736,7 @@ public class TradeApi {
      * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record * Response in
      * descending order Weight: 1(IP)
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -913,7 +913,7 @@ public class TradeApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
@@ -1053,7 +1053,7 @@ public class TradeApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeHistoryResponse&gt;
@@ -3039,10 +3039,13 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3206,10 +3209,13 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3249,9 +3255,10 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3419,9 +3426,10 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4158,10 +4166,13 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -4334,10 +4345,13 @@ public class TradeApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

@@ -30,6 +30,8 @@ import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaire
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Request;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Response;
 import com.binance.connector.client.wallet.rest.model.VaspListResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response;
@@ -58,7 +60,7 @@ public class TravelRuleApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/3.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -734,7 +736,7 @@ public class TravelRuleApi {
      *     (USER_DATA) Documentation</a>
      */
     private okhttp3.Call depositHistoryV2Call(
-            String depositId,
+            Long depositId,
             String txId,
             String network,
             String coin,
@@ -838,7 +840,7 @@ public class TravelRuleApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call depositHistoryV2ValidateBeforeCall(
-            String depositId,
+            Long depositId,
             String txId,
             String network,
             String coin,
@@ -872,7 +874,7 @@ public class TravelRuleApi {
                     this.getClass()
                             .getMethod(
                                     "depositHistoryV2",
-                                    String.class,
+                                    Long.class,
                                     String.class,
                                     String.class,
                                     String.class,
@@ -941,7 +943,7 @@ public class TravelRuleApi {
      *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositHistoryV2Response> depositHistoryV2(
-            String depositId,
+            Long depositId,
             String txId,
             String network,
             String coin,
@@ -1450,6 +1452,160 @@ public class TravelRuleApi {
                         submitDepositQuestionnaireTravelRuleRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<SubmitDepositQuestionnaireTravelRuleResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for submitDepositQuestionnaireV2
+     *
+     * @param submitDepositQuestionnaireV2Request (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Submit Deposit Questionnaire V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2">Submit
+     *     Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call submitDepositQuestionnaireV2Call(
+            SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/localentity/deposit/provide-info";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (submitDepositQuestionnaireV2Request.getDepositId() != null) {
+            localVarFormParams.put("depositId", submitDepositQuestionnaireV2Request.getDepositId());
+        }
+
+        if (submitDepositQuestionnaireV2Request.getQuestionnaire() != null) {
+            localVarFormParams.put(
+                    "questionnaire", submitDepositQuestionnaireV2Request.getQuestionnaire());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "PUT",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call submitDepositQuestionnaireV2ValidateBeforeCall(
+            SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {submitDepositQuestionnaireV2Request};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "submitDepositQuestionnaireV2",
+                                    SubmitDepositQuestionnaireV2Request.class);
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return submitDepositQuestionnaireV2Call(submitDepositQuestionnaireV2Request);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     * network) (USER_DATA) Submit questionnaire for local entities that require travel rule. The
+     * questionnaire is only applies to transactions from unhosted wallets or VASPs that are not yet
+     * onboarded with GTR. * Questionnaire is different for each local entity, please refer * If
+     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
+     * not be blank&#x60;, Weight: 600
+     *
+     * @param submitDepositQuestionnaireV2Request (required)
+     * @return ApiResponse&lt;SubmitDepositQuestionnaireV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Submit Deposit Questionnaire V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2">Submit
+     *     Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<SubmitDepositQuestionnaireV2Response> submitDepositQuestionnaireV2(
+            @Valid @NotNull SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                submitDepositQuestionnaireV2ValidateBeforeCall(submitDepositQuestionnaireV2Request);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<SubmitDepositQuestionnaireV2Response>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

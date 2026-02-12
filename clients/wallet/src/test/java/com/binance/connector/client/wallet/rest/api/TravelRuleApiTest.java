@@ -242,7 +242,7 @@ public class TravelRuleApiTest {
                 new SubmitDepositQuestionnaireRequest();
 
         submitDepositQuestionnaireRequest.subAccountId("1");
-        submitDepositQuestionnaireRequest.depositId("1");
+        submitDepositQuestionnaireRequest.depositId(1L);
         submitDepositQuestionnaireRequest.questionnaire("");
         submitDepositQuestionnaireRequest.beneficiaryPii("");
         submitDepositQuestionnaireRequest.signature("");

@@ -1,5 +1,21 @@
 # Changelog
 
+## 9.0.0 - 2026-02-12
+
+### Added (1)
+
+#### WebSocket API
+
+- `orderAmendKeepPriority()` (`order.amend.keepPriority` method)
+
+### Changed (1)
+
+#### WebSocket API
+
+- Added parameter `recvWindow`
+  - affected methods:
+    - `userDataStreamSubscribeSignature()` (`userDataStream.subscribe.signature` method)
+
 ## 8.0.0 - 2025-12-31
 
 ### Added (4)

@@ -49,7 +49,7 @@ public class DepositHistoryV2Example {
      * @throws ApiException if the Api call fails
      */
     public void depositHistoryV2Example() throws ApiException {
-        String depositId = "1";
+        Long depositId = 1L;
         String txId = "1";
         String network = "";
         String coin = "";

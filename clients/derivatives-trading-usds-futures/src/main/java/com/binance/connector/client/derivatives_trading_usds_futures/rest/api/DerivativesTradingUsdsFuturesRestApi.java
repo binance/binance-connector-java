@@ -1036,7 +1036,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     /**
      * Get Funding Rate Info Query funding rate info for symbols that had FundingRateCap/
      * FundingRateFloor / fundingIntervalHours adjustment Weight: 0 share 500/5min/IP rate limit
-     * with GET /fapi/v1/fundingInfo
+     * with GET /fapi/v1/fundingRate
      *
      * @return ApiResponse&lt;GetFundingRateInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1887,11 +1887,11 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
-     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
+     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
      *
-     * @param algoid (optional)
-     * @param clientalgoid (optional)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;CancelAlgoOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1908,8 +1908,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
-            Long algoid, String clientalgoid, Long recvWindow) throws ApiException {
-        return tradeApi.cancelAlgoOrder(algoid, clientalgoid, recvWindow);
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        return tradeApi.cancelAlgoOrder(algoId, clientAlgoId, recvWindow);
     }
 
     /**

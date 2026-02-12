@@ -16,7 +16,7 @@
 
 [POST /sapi/v1/convert/limit/placeOrder](https://developers.binance.com/docs/convert/trade/Place-Order) - placeLimitOrder - [PlaceLimitOrderExample.java:50](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/PlaceLimitOrderExample.java#L50)
 
-[POST /sapi/v1/convert/limit/queryOpenOrders](https://developers.binance.com/docs/convert/trade/Query-Order) - queryLimitOpenOrders - [QueryLimitOpenOrdersExample.java:47](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/QueryLimitOpenOrdersExample.java#L47)
+[GET /sapi/v1/convert/limit/queryOpenOrders](https://developers.binance.com/docs/convert/trade/Query-Order) - queryLimitOpenOrders - [QueryLimitOpenOrdersExample.java:46](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/QueryLimitOpenOrdersExample.java#L46)
 
 [POST /sapi/v1/convert/getQuote](https://developers.binance.com/docs/convert/trade/Send-quote-request) - sendQuoteRequest - [SendQuoteRequestExample.java:49](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/SendQuoteRequestExample.java#L49)
 

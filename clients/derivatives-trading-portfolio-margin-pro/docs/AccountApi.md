@@ -9,6 +9,7 @@ All URIs are relative to *https://api.binance.com*
 | [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /sapi/v1/portfolio/auto-collection | Fund Auto-collection(USER_DATA) |
 | [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset(USER_DATA) |
 | [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA) |
+| [**getDeltaModeStatus**](AccountApi.md#getDeltaModeStatus) | **GET** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status(USER_DATA) |
 | [**getPortfolioMarginProAccountBalance**](AccountApi.md#getPortfolioMarginProAccountBalance) | **GET** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance(USER_DATA) |
 | [**getPortfolioMarginProAccountInfo**](AccountApi.md#getPortfolioMarginProAccountInfo) | **GET** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA) |
 | [**getPortfolioMarginProSpanAccountInfo**](AccountApi.md#getPortfolioMarginProSpanAccountInfo) | **GET** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA) |
@@ -18,6 +19,7 @@ All URIs are relative to *https://api.binance.com*
 | [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
 | [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) |
 | [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
+| [**switchDeltaMode**](AccountApi.md#switchDeltaMode) | **POST** /sapi/v1/portfolio/delta-mode | Switch Delta Mode(TRADE) |
 | [**transferLdusdtRwusdForPortfolioMargin**](AccountApi.md#transferLdusdtRwusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) |
 
 
@@ -331,6 +333,68 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Get Auto-repay-futures Status |  -  |
 
+<a id="getDeltaModeStatus"></a>
+# **getDeltaModeStatus**
+> GetDeltaModeStatusResponse getDeltaModeStatus(recvWindow)
+
+Get Delta Mode Status(USER_DATA)
+
+Query the Delta mode status of current account.  Weight: 1500
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      GetDeltaModeStatusResponse result = apiInstance.getDeltaModeStatus(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#getDeltaModeStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**GetDeltaModeStatusResponse**](GetDeltaModeStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Delta Mode Status |  -  |
+
 <a id="getPortfolioMarginProAccountBalance"></a>
 # **getPortfolioMarginProAccountBalance**
 > GetPortfolioMarginProAccountBalanceResponse getPortfolioMarginProAccountBalance(asset, recvWindow)
@@ -591,7 +655,7 @@ No authorization required
 
 Portfolio Margin Pro Bankruptcy Loan Repay
 
-Repay Portfolio Margin Pro Bankruptcy Loan  Weight: 3000
+Repay Portfolio Margin Pro Bankruptcy Loan  * Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this endpoint.  Weight: 3000
 
 ### Example
 ```java
@@ -910,6 +974,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Repay futures Negative Balance |  -  |
+
+<a id="switchDeltaMode"></a>
+# **switchDeltaMode**
+> SwitchDeltaModeResponse switchDeltaMode(switchDeltaModeRequest)
+
+Switch Delta Mode(TRADE)
+
+Switch the Delta mode for existing PM PRO / PM RETAIL accounts.  Weight: 1500
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    SwitchDeltaModeRequest switchDeltaModeRequest = new SwitchDeltaModeRequest(); // SwitchDeltaModeRequest | 
+    try {
+      SwitchDeltaModeResponse result = apiInstance.switchDeltaMode(switchDeltaModeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#switchDeltaMode");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **switchDeltaModeRequest** | [**SwitchDeltaModeRequest**](SwitchDeltaModeRequest.md)|  | |
+
+### Return type
+
+[**SwitchDeltaModeResponse**](SwitchDeltaModeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Switch Delta Mode |  -  |
 
 <a id="transferLdusdtRwusdForPortfolioMargin"></a>
 # **transferLdusdtRwusdForPortfolioMargin**

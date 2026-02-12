@@ -142,9 +142,6 @@ public class JSON {
                 new com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

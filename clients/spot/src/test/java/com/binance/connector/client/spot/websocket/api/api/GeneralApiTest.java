@@ -76,6 +76,7 @@ public class GeneralApiTest {
         ConnectionWrapper connectionWrapper =
                 new ConnectionWrapper(clientConfiguration, webSocketClient);
         connectionSpy = Mockito.spy(connectionWrapper);
+        Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
         GeneralApi accountApi = new GeneralApi(connectionSpy);

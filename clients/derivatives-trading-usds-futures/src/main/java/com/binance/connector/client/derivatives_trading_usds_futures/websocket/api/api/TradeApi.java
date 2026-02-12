@@ -51,8 +51,8 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoid&#x60; or
-     * &#x60;clientalgoid&#x60; must be sent. Weight: 1
+     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
+     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
      *
      * @param cancelAlgoOrderRequest (required)
      * @return CancelAlgoOrderResponse

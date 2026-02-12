@@ -11,6 +11,7 @@ All URIs are relative to *https://api.binance.com*
 | [**fetchAddressVerificationList**](TravelRuleApi.md#fetchAddressVerificationList) | **GET** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA) |
 | [**submitDepositQuestionnaire**](TravelRuleApi.md#submitDepositQuestionnaire) | **PUT** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaireTravelRule**](TravelRuleApi.md#submitDepositQuestionnaireTravelRule) | **PUT** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
+| [**submitDepositQuestionnaireV2**](TravelRuleApi.md#submitDepositQuestionnaireV2) | **PUT** /sapi/v2/localentity/deposit/provide-info | Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**vaspList**](TravelRuleApi.md#vaspList) | **GET** /sapi/v1/localentity/vasp | VASP list (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**withdrawHistoryV1**](TravelRuleApi.md#withdrawHistoryV1) | **GET** /sapi/v1/localentity/withdraw/history | Withdraw History (for local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**withdrawHistoryV2**](TravelRuleApi.md#withdrawHistoryV2) | **GET** /sapi/v2/localentity/withdraw/history | Withdraw History V2 (for local entities that require travel rule) (supporting network) (USER_DATA) |
@@ -246,7 +247,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
-    String depositId = "depositId_example"; // String | Comma(,) separated list of wallet tran Ids.
+    Long depositId = 56L; // Long | Comma(,) separated list of wallet tran Ids.
     String txId = "txId_example"; // String | 
     String network = "network_example"; // String | 
     String coin = "coin_example"; // String | 
@@ -273,7 +274,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **depositId** | **String**| Comma(,) separated list of wallet tran Ids. | [optional] |
+| **depositId** | **Long**| Comma(,) separated list of wallet tran Ids. | [optional] |
 | **txId** | **String**|  | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
@@ -486,6 +487,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Submit Deposit Questionnaire |  -  |
+
+<a id="submitDepositQuestionnaireV2"></a>
+# **submitDepositQuestionnaireV2**
+> SubmitDepositQuestionnaireV2Response submitDepositQuestionnaireV2(submitDepositQuestionnaireV2Request)
+
+Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA)
+
+Submit questionnaire for local entities that require travel rule. The questionnaire is only applies to transactions from unhosted wallets or VASPs that are not yet onboarded with GTR.  * Questionnaire is different for each local entity, please refer * If getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;,  Weight: 600
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request = new SubmitDepositQuestionnaireV2Request(); // SubmitDepositQuestionnaireV2Request | 
+    try {
+      SubmitDepositQuestionnaireV2Response result = apiInstance.submitDepositQuestionnaireV2(submitDepositQuestionnaireV2Request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#submitDepositQuestionnaireV2");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **submitDepositQuestionnaireV2Request** | [**SubmitDepositQuestionnaireV2Request**](SubmitDepositQuestionnaireV2Request.md)|  | |
+
+### Return type
+
+[**SubmitDepositQuestionnaireV2Response**](SubmitDepositQuestionnaireV2Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Submit Deposit Questionnaire V2 |  -  |
 
 <a id="vaspList"></a>
 # **vaspList**

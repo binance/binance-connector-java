@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.0 - 2026-02-12
+
+### Added (2)
+
+#### REST API
+
+- `getDeltaModeStatus()` (`GET /sapi/v1/portfolio/delta-mode`)
+- `switchDeltaMode()` (`POST /sapi/v1/portfolio/delta-mode`)
+
 ## 5.0.0 - 2025-12-16
 
 ### Removed (2)

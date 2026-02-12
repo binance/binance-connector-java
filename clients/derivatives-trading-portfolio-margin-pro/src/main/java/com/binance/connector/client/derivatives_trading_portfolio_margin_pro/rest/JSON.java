@@ -137,6 +137,9 @@ public class JSON {
                         .GetAutoRepayFuturesStatusResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .GetDeltaModeStatusResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .GetPortfolioMarginAssetLeverageResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
@@ -218,6 +221,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .RepayFuturesNegativeBalanceResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .SwitchDeltaModeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .SwitchDeltaModeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .TransferLdusdtRwusdForPortfolioMarginRequest.CustomTypeAdapterFactory());

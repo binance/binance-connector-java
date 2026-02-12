@@ -101,7 +101,7 @@ public class Example {
     BorrowRepayApi apiInstance = new BorrowRepayApi(defaultClient);
     String asset = "asset_example"; // String | 
     String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10 Max:100
@@ -126,7 +126,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
 | **isolatedSymbol** | **String**| isolated symbol | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
 | **size** | **Long**| Default:10 Max:100 | [optional] |
@@ -239,7 +239,7 @@ public class Example {
     String asset = "asset_example"; // String | 
     String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
     Long txId = 56L; // Long | `tranId` in `POST /sapi/v1/margin/loan`
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10 Max:100
@@ -266,7 +266,7 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **isolatedSymbol** | **String**| isolated symbol | [optional] |
 | **txId** | **Long**| &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
 | **size** | **Long**| Default:10 Max:100 | [optional] |
@@ -315,7 +315,7 @@ public class Example {
     BorrowRepayApi apiInstance = new BorrowRepayApi(defaultClient);
     String asset = "asset_example"; // String | 
     Long vipLevel = 56L; // Long | User's current specific margin data will be returned if vipLevel is omitted
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long recvWindow = 56L; // Long | No more than 60000
     try {
@@ -338,7 +338,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | |
 | **vipLevel** | **Long**| User&#39;s current specific margin data will be returned if vipLevel is omitted | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 

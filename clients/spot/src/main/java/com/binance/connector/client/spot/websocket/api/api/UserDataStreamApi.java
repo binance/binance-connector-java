@@ -24,6 +24,7 @@ import com.binance.connector.client.spot.websocket.api.JSON;
 import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
@@ -138,6 +139,7 @@ public class UserDataStreamApi {
     /**
      * WebSocket Subscribe to User Data Stream through signature subscription Weight: 2
      *
+     * @param userDataStreamSubscribeSignatureRequest (optional)
      * @return UserDataStreamSubscribeSignatureResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -153,17 +155,23 @@ public class UserDataStreamApi {
      *     Subscribe to User Data Stream through signature subscription Documentation</a>
      */
     public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
-            userDataStreamSubscribeSignature() throws ApiException {
-        userDataStreamSubscribeSignatureValidateBeforeCall();
+            userDataStreamSubscribeSignature(
+                    UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest)
+                    throws ApiException {
+        userDataStreamSubscribeSignatureValidateBeforeCall(userDataStreamSubscribeSignatureRequest);
         String methodName = "/userDataStream.subscribe.signature".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeSignatureResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                BaseRequestDTO, UserDataStreamSubscribeSignatureResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(new BaseRequestDTO())
-                        .responseType(UserDataStreamSubscribeSignatureResponse.class)
-                        .build();
+        ApiRequestWrapperDTO<
+                        UserDataStreamSubscribeSignatureRequest,
+                        UserDataStreamSubscribeSignatureResponse>
+                build =
+                        new ApiRequestWrapperDTO.Builder<
+                                        UserDataStreamSubscribeSignatureRequest,
+                                        UserDataStreamSubscribeSignatureResponse>()
+                                .id(getRequestID())
+                                .method(methodName)
+                                .params(userDataStreamSubscribeSignatureRequest)
+                                .responseType(UserDataStreamSubscribeSignatureResponse.class)
+                                .build();
 
         try {
             BlockingQueue<String> queue = connection.sendForStream(build);
@@ -179,12 +187,33 @@ public class UserDataStreamApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private void userDataStreamSubscribeSignatureValidateBeforeCall() throws ApiException {}
+    private void userDataStreamSubscribeSignatureValidateBeforeCall(
+            UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<UserDataStreamSubscribeSignatureRequest>> violations =
+                    validator.validate(userDataStreamSubscribeSignatureRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
 
     /**
      * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
      * current WebSocket connection. Note that &#x60;session.logout&#x60; will only close the
-     * subscription created with &#x60;userdataStream.subscribe&#x60; but not subscriptions opened
+     * subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened
      * with &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
      *
      * @param userDataStreamUnsubscribeRequest (optional)

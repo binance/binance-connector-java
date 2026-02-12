@@ -1,5 +1,37 @@
 # Changelog
 
+## 5.0.0 - 2026-02-12
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `strategyType`:
+  - enum added: `LIMIT_MAKER`
+  - affected methods:
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+- Modified response for `queryCurrentCmOpenOrder()` (`GET /papi/v1/cm/openOrder`):
+  - type `object` → `array`
+  - property `price` deleted
+  - property `positionSide` deleted
+  - property `avgPrice` deleted
+  - property `timeInForce` deleted
+  - property `executedQty` deleted
+  - property `updateTime` deleted
+  - property `status` deleted
+  - property `side` deleted
+  - property `clientOrderId` deleted
+  - property `origType` deleted
+  - property `symbol` deleted
+  - property `cumBase` deleted
+  - property `orderId` deleted
+  - property `origQty` deleted
+  - property `type` deleted
+  - property `reduceOnly` deleted
+  - property `time` deleted
+  - property `pair` deleted
+
 ## 4.0.0 - 2025-12-16
 
 ### Changed (1)

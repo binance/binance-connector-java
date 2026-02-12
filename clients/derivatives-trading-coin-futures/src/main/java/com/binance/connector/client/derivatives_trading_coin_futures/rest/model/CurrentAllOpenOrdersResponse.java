@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class CurrentAllOpenOrdersResponse extends ArrayList<CurrentAllOpenOrdersResponseInner> {
+public class CurrentAllOpenOrdersResponse extends ArrayList<AllOrdersResponseInner> {
     public CurrentAllOpenOrdersResponse() {}
 
     @Override
@@ -117,7 +117,7 @@ public class CurrentAllOpenOrdersResponse extends ArrayList<CurrentAllOpenOrders
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            CurrentAllOpenOrdersResponseInner.validateJsonElement(element);
+            AllOrdersResponseInner.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!CurrentAllOpenOrdersResponse.openapiRequiredFields

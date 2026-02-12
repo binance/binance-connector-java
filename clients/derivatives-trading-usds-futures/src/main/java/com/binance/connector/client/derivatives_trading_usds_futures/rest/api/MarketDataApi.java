@@ -77,7 +77,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1473,7 +1473,7 @@ public class MarketDataApi {
     /**
      * Get Funding Rate Info Query funding rate info for symbols that had FundingRateCap/
      * FundingRateFloor / fundingIntervalHours adjustment Weight: 0 share 500/5min/IP rate limit
-     * with GET /fapi/v1/fundingInfo
+     * with GET /fapi/v1/fundingRate
      *
      * @return ApiResponse&lt;GetFundingRateInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

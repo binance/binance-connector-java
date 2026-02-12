@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  |
-|**fromId** | **Integer** |  |  [optional] |
+|**fromId** | **Long** |  |  [optional] |
 |**startTime** | **Long** |  |  [optional] |
 |**endTime** | **Long** |  |  [optional] |
-|**limit** | **Integer** |  |  [optional] |
+|**limit** | **Long** |  |  [optional] |
 
 
 

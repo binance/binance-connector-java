@@ -139,6 +139,12 @@ public class NewAlgoOrderRequest {
     @jakarta.annotation.Nullable
     private String clientAlgoId;
 
+    public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
+
+    @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
+    @jakarta.annotation.Nullable
+    private NewOrderRespType newOrderRespType;
+
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
@@ -498,6 +504,28 @@ public class NewAlgoOrderRequest {
         this.clientAlgoId = clientAlgoId;
     }
 
+    public NewAlgoOrderRequest newOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+        return this;
+    }
+
+    /**
+     * Get newOrderRespType
+     *
+     * @return newOrderRespType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public NewOrderRespType getNewOrderRespType() {
+        return newOrderRespType;
+    }
+
+    public void setNewOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+    }
+
     public NewAlgoOrderRequest selfTradePreventionMode(
             @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
@@ -584,6 +612,7 @@ public class NewAlgoOrderRequest {
                 && Objects.equals(this.activatePrice, newAlgoOrderRequest.activatePrice)
                 && Objects.equals(this.callbackRate, newAlgoOrderRequest.callbackRate)
                 && Objects.equals(this.clientAlgoId, newAlgoOrderRequest.clientAlgoId)
+                && Objects.equals(this.newOrderRespType, newAlgoOrderRequest.newOrderRespType)
                 && Objects.equals(
                         this.selfTradePreventionMode, newAlgoOrderRequest.selfTradePreventionMode)
                 && Objects.equals(this.goodTillDate, newAlgoOrderRequest.goodTillDate)
@@ -610,6 +639,7 @@ public class NewAlgoOrderRequest {
                 activatePrice,
                 callbackRate,
                 clientAlgoId,
+                newOrderRespType,
                 selfTradePreventionMode,
                 goodTillDate,
                 recvWindow);
@@ -636,6 +666,7 @@ public class NewAlgoOrderRequest {
         sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
         sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
         sb.append("		clientAlgoId: ").append(toIndentedString(clientAlgoId)).append("\n");
+        sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
@@ -716,6 +747,10 @@ public class NewAlgoOrderRequest {
         String clientAlgoIdValueAsString = "";
         clientAlgoIdValueAsString = clientAlgoIdValue.toString();
         sb.append("clientAlgoId=").append(urlEncode(clientAlgoIdValueAsString)).append("");
+        Object newOrderRespTypeValue = getNewOrderRespType();
+        String newOrderRespTypeValueAsString = "";
+        newOrderRespTypeValueAsString = newOrderRespTypeValue.toString();
+        sb.append("newOrderRespType=").append(urlEncode(newOrderRespTypeValueAsString)).append("");
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         String selfTradePreventionModeValueAsString = "";
         selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
@@ -775,6 +810,7 @@ public class NewAlgoOrderRequest {
         openapiFields.add("activatePrice");
         openapiFields.add("callbackRate");
         openapiFields.add("clientAlgoId");
+        openapiFields.add("newOrderRespType");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("goodTillDate");
         openapiFields.add("recvWindow");
@@ -885,6 +921,11 @@ public class NewAlgoOrderRequest {
                             "Expected the field `clientAlgoId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("clientAlgoId").toString()));
+        }
+        // validate the optional field `newOrderRespType`
+        if (jsonObj.get("newOrderRespType") != null
+                && !jsonObj.get("newOrderRespType").isJsonNull()) {
+            NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
         }
         // validate the optional field `selfTradePreventionMode`
         if (jsonObj.get("selfTradePreventionMode") != null

@@ -7,11 +7,15 @@ public class DerivativesTradingPortfolioMarginProWebSocketStreamsUtil {
     private static final boolean HAS_TIME_UNIT = false;
 
     public static WebSocketClientConfiguration getClientConfiguration() {
+        return getClientConfiguration("");
+    }
+
+    public static WebSocketClientConfiguration getClientConfiguration(String path) {
         WebSocketClientConfiguration clientConfiguration = new WebSocketClientConfiguration();
         if (!HAS_TIME_UNIT) {
             clientConfiguration.setTimeUnit(null);
         }
-        clientConfiguration.setUrl(BASE_URL + "/stream");
+        clientConfiguration.setUrl(BASE_URL + path + "/stream");
         clientConfiguration.setAutoLogon(false);
         return clientConfiguration;
     }

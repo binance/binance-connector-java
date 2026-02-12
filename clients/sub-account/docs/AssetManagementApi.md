@@ -291,7 +291,7 @@ No authorization required
 
 Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 
-Query move position history  * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime].  Weight: 150
+Query move position history  * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime].  Weight: 1
 
 ### Example
 ```java
@@ -507,7 +507,7 @@ No authorization required
 
 <a id="getSummaryOfSubAccountsFuturesAccount"></a>
 # **getSummaryOfSubAccountsFuturesAccount**
-> GetSummaryOfSubAccountsFuturesAccountResponse getSummaryOfSubAccountsFuturesAccount(recvWindow)
+> GetSummaryOfSubAccountsFuturesAccountResponse getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow)
 
 Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
 
@@ -528,9 +528,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
+    Long page = 56L; // Long | Page
+    Long limit = 56L; // Long | Limit (Max: 500)
     Long recvWindow = 56L; // Long | 
     try {
-      GetSummaryOfSubAccountsFuturesAccountResponse result = apiInstance.getSummaryOfSubAccountsFuturesAccount(recvWindow);
+      GetSummaryOfSubAccountsFuturesAccountResponse result = apiInstance.getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetManagementApi#getSummaryOfSubAccountsFuturesAccount");
@@ -547,6 +549,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **page** | **Long**| Page | |
+| **limit** | **Long**| Limit (Max: 500) | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -765,7 +769,7 @@ No authorization required
 
 Move Position for Sub-account (For Master Account) (USER_DATA)
 
-Move position between sub-master, master-sub, or sub-sub accounts when necessary  * You need to Enable Trading permission for the API Key which requests this endpoint. * This function only support VIP level 7-9. * Only master account can use the function * Quantity should be positive number only * The function support normal account, PM PRO and PM PRO SPAN. * Only support for from account has positions * For all orders in the same orderArgs request, if any symbol’s total close position quantity is bigger than the symbol’s current position quantity, all batch orders in the same list will fail simultaneously. * Only support cross margin mode * The price for move position is MarkPrice only. * Not support for MSA. * Not support for the symbol under Reduce-Only.  Weight: 150
+Move position between sub-master, master-sub, or sub-sub accounts when necessary  * You need to Enable Trading permission for the API Key which requests this endpoint. * This function only support VIP level 7-9. * Only master account can use the function * Quantity should be positive number only * The function support normal account, PM PRO and PM PRO SPAN. * Only support for from account has positions * For all orders in the same orderArgs request, if any symbol’s total close position quantity is bigger than the symbol’s current position quantity, all batch orders in the same list will fail simultaneously. * Only support cross margin mode * The price for move position is MarkPrice only. * Not support for MSA. * Not support for the symbol under Reduce-Only.  Weight: 1
 
 ### Example
 ```java

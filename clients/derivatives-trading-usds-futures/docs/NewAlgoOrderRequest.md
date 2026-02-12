@@ -25,6 +25,7 @@
 |**activatePrice** | **Double** |  |  [optional] |
 |**callbackRate** | **Double** |  |  [optional] |
 |**clientAlgoId** | **String** |  |  [optional] |
+|**newOrderRespType** | **NewOrderRespType** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
 |**goodTillDate** | **Long** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |

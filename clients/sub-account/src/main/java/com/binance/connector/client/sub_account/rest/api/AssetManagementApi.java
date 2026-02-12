@@ -74,7 +74,7 @@ public class AssetManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/4.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -886,7 +886,7 @@ public class AssetManagementApi {
      * of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent
      * and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If
      * &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of
-     * [max(now,endTime-90d), endTime]. Weight: 150
+     * [max(now,endTime-90d), endTime]. Weight: 1
      *
      * @param symbol (required)
      * @param page Page (required)
@@ -1337,6 +1337,8 @@ public class AssetManagementApi {
     /**
      * Build call for getSummaryOfSubAccountsFuturesAccount
      *
+     * @param page Page (required)
+     * @param limit Limit (Max: 500) (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1352,8 +1354,8 @@ public class AssetManagementApi {
      *     Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
-    private okhttp3.Call getSummaryOfSubAccountsFuturesAccountCall(Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call getSummaryOfSubAccountsFuturesAccountCall(
+            Long page, Long limit, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1377,6 +1379,14 @@ public class AssetManagementApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
 
         if (recvWindow != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
@@ -1413,8 +1423,8 @@ public class AssetManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSummaryOfSubAccountsFuturesAccountValidateBeforeCall(Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call getSummaryOfSubAccountsFuturesAccountValidateBeforeCall(
+            Long page, Long limit, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1424,14 +1434,19 @@ public class AssetManagementApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {recvWindow};
+            Object[] parameterValues = {page, limit, recvWindow};
             Method method =
-                    this.getClass().getMethod("getSummaryOfSubAccountsFuturesAccount", Long.class);
+                    this.getClass()
+                            .getMethod(
+                                    "getSummaryOfSubAccountsFuturesAccount",
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
             Set<ConstraintViolation<AssetManagementApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getSummaryOfSubAccountsFuturesAccountCall(recvWindow);
+                return getSummaryOfSubAccountsFuturesAccountCall(page, limit, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1448,6 +1463,8 @@ public class AssetManagementApi {
      * Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA) Get Summary
      * of Sub-account&#39;s Futures Account Weight: 1
      *
+     * @param page Page (required)
+     * @param limit Limit (Max: 500) (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfSubAccountsFuturesAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1465,9 +1482,10 @@ public class AssetManagementApi {
      *     Documentation</a>
      */
     public ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse>
-            getSummaryOfSubAccountsFuturesAccount(Long recvWindow) throws ApiException {
+            getSummaryOfSubAccountsFuturesAccount(
+                    @NotNull Long page, @NotNull Long limit, Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
-                getSummaryOfSubAccountsFuturesAccountValidateBeforeCall(recvWindow);
+                getSummaryOfSubAccountsFuturesAccountValidateBeforeCall(page, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSummaryOfSubAccountsFuturesAccountResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2086,7 +2104,7 @@ public class AssetManagementApi {
      * close position quantity is bigger than the symbol’s current position quantity, all batch
      * orders in the same list will fail simultaneously. * Only support cross margin mode * The
      * price for move position is MarkPrice only. * Not support for MSA. * Not support for the
-     * symbol under Reduce-Only. Weight: 150
+     * symbol under Reduce-Only. Weight: 1
      *
      * @param movePositionForSubAccountRequest (required)
      * @return ApiResponse&lt;MovePositionForSubAccountResponse&gt;
