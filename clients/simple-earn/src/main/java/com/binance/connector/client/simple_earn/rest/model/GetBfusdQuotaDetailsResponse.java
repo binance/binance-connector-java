@@ -50,18 +50,6 @@ public class GetBfusdQuotaDetailsResponse {
     @jakarta.annotation.Nullable
     private GetBfusdQuotaDetailsResponseStandardRedemptionQuota standardRedemptionQuota;
 
-    public static final String SERIALIZED_NAME_SUBSCRIBE_ENABLE = "subscribeEnable";
-
-    @SerializedName(SERIALIZED_NAME_SUBSCRIBE_ENABLE)
-    @jakarta.annotation.Nullable
-    private Boolean subscribeEnable;
-
-    public static final String SERIALIZED_NAME_REDEEM_ENABLE = "redeemEnable";
-
-    @SerializedName(SERIALIZED_NAME_REDEEM_ENABLE)
-    @jakarta.annotation.Nullable
-    private Boolean redeemEnable;
-
     public GetBfusdQuotaDetailsResponse() {}
 
     public GetBfusdQuotaDetailsResponse fastRedemptionQuota(
@@ -112,46 +100,6 @@ public class GetBfusdQuotaDetailsResponse {
         this.standardRedemptionQuota = standardRedemptionQuota;
     }
 
-    public GetBfusdQuotaDetailsResponse subscribeEnable(
-            @jakarta.annotation.Nullable Boolean subscribeEnable) {
-        this.subscribeEnable = subscribeEnable;
-        return this;
-    }
-
-    /**
-     * Get subscribeEnable
-     *
-     * @return subscribeEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getSubscribeEnable() {
-        return subscribeEnable;
-    }
-
-    public void setSubscribeEnable(@jakarta.annotation.Nullable Boolean subscribeEnable) {
-        this.subscribeEnable = subscribeEnable;
-    }
-
-    public GetBfusdQuotaDetailsResponse redeemEnable(
-            @jakarta.annotation.Nullable Boolean redeemEnable) {
-        this.redeemEnable = redeemEnable;
-        return this;
-    }
-
-    /**
-     * Get redeemEnable
-     *
-     * @return redeemEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getRedeemEnable() {
-        return redeemEnable;
-    }
-
-    public void setRedeemEnable(@jakarta.annotation.Nullable Boolean redeemEnable) {
-        this.redeemEnable = redeemEnable;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,16 +114,12 @@ public class GetBfusdQuotaDetailsResponse {
                         this.fastRedemptionQuota, getBfusdQuotaDetailsResponse.fastRedemptionQuota)
                 && Objects.equals(
                         this.standardRedemptionQuota,
-                        getBfusdQuotaDetailsResponse.standardRedemptionQuota)
-                && Objects.equals(
-                        this.subscribeEnable, getBfusdQuotaDetailsResponse.subscribeEnable)
-                && Objects.equals(this.redeemEnable, getBfusdQuotaDetailsResponse.redeemEnable);
+                        getBfusdQuotaDetailsResponse.standardRedemptionQuota);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                fastRedemptionQuota, standardRedemptionQuota, subscribeEnable, redeemEnable);
+        return Objects.hash(fastRedemptionQuota, standardRedemptionQuota);
     }
 
     @Override
@@ -188,8 +132,6 @@ public class GetBfusdQuotaDetailsResponse {
         sb.append("		standardRedemptionQuota: ")
                 .append(toIndentedString(standardRedemptionQuota))
                 .append("\n");
-        sb.append("		subscribeEnable: ").append(toIndentedString(subscribeEnable)).append("\n");
-        sb.append("		redeemEnable: ").append(toIndentedString(redeemEnable)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -209,14 +151,6 @@ public class GetBfusdQuotaDetailsResponse {
         sb.append("standardRedemptionQuota=")
                 .append(urlEncode(standardRedemptionQuotaValueAsString))
                 .append("");
-        Object subscribeEnableValue = getSubscribeEnable();
-        String subscribeEnableValueAsString = "";
-        subscribeEnableValueAsString = subscribeEnableValue.toString();
-        sb.append("subscribeEnable=").append(urlEncode(subscribeEnableValueAsString)).append("");
-        Object redeemEnableValue = getRedeemEnable();
-        String redeemEnableValueAsString = "";
-        redeemEnableValueAsString = redeemEnableValue.toString();
-        sb.append("redeemEnable=").append(urlEncode(redeemEnableValueAsString)).append("");
         return sb.toString();
     }
 
@@ -247,8 +181,6 @@ public class GetBfusdQuotaDetailsResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("fastRedemptionQuota");
         openapiFields.add("standardRedemptionQuota");
-        openapiFields.add("subscribeEnable");
-        openapiFields.add("redeemEnable");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

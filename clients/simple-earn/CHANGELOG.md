@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.0 - 2026-02-12
+
+### Changed (1)
+
+- Modified response for `getBfusdQuotaDetails()` (`GET /sapi/v1/bfusd/quota`):
+  - property `redeemEnable` deleted
+  - property `subscribeEnable` deleted
+
 ## 4.0.0 - 2025-12-16
 
 ### Added (8)
