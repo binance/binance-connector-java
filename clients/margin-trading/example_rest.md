@@ -54,6 +54,8 @@
 
 [GET /sapi/v1/margin/risk-based-liquidation-ratio](https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio) - getMarginAssetRiskBasedLiquidationRatio - [GetMarginAssetRiskBasedLiquidationRatioExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/GetMarginAssetRiskBasedLiquidationRatioExample.java#L47)
 
+[GET /sapi/v1/margin/restricted-asset](https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Restricted-Assets) - getMarginRestrictedAssets - [GetMarginRestrictedAssetsExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/GetMarginRestrictedAssetsExample.java#L47)
+
 [GET /sapi/v1/margin/isolatedMarginTier](https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data) - queryIsolatedMarginTierData - [QueryIsolatedMarginTierDataExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryIsolatedMarginTierDataExample.java#L48)
 
 [GET /sapi/v1/margin/leverageBracket](https://developers.binance.com/docs/margin_trading/market-data/Query-Liability-Coin-Leverage-Bracket-in-Cross-Margin-Pro-Mode) - queryLiabilityCoinLeverageBracketInCrossMarginProMode - [QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample.java#L47)
@@ -115,6 +117,8 @@
 [GET /sapi/v1/margin/order](https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order) - queryMarginAccountsOrder - [QueryMarginAccountsOrderExample.java:49](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsOrderExample.java#L49)
 
 [GET /sapi/v1/margin/myTrades](https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List) - queryMarginAccountsTradeList - [QueryMarginAccountsTradeListExample.java:49](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsTradeListExample.java#L49)
+
+[GET /sapi/v1/margin/myPreventedMatches](https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches) - queryPreventedMatches - [QueryPreventedMatchesExample.java:47](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryPreventedMatchesExample.java#L47)
 
 [GET /sapi/v1/margin/apiKey](https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-of-Low-Latency-Trading) - querySpecialKey - [QuerySpecialKeyExample.java:48](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QuerySpecialKeyExample.java#L48)
 
