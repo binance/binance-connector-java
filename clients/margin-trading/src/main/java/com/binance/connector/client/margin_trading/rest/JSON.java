@@ -215,6 +215,9 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
+                        .GetMarginRestrictedAssetsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
                         .GetSmallLiabilityExchangeCoinListResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
@@ -465,6 +468,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .QueryMaxTransferOutAmountResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .QueryPreventedMatchesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .QueryPreventedMatchesResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .QuerySpecialKeyListResponse.CustomTypeAdapterFactory());
