@@ -12,8 +12,6 @@
 
 package com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api;
 
-import static org.junit.Assert.assertEquals;
-
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -35,18 +33,13 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountBalanceResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProSpanAccountInfoResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.MintBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanAmountResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RedeemBfusdForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
-import jakarta.validation.constraints.*;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -54,6 +47,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertEquals;
 
 /** API tests for AccountApi */
 public class AccountApiTest {

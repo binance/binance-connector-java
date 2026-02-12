@@ -101,6 +101,7 @@ import com.binance.connector.client.spot.websocket.api.model.UiKlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
@@ -111,7 +112,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/8.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -392,8 +393,11 @@ public class SpotWebSocketApi {
     }
 
     public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
-            userDataStreamSubscribeSignature() throws ApiException {
-        return userDataStreamApi.userDataStreamSubscribeSignature();
+            userDataStreamSubscribeSignature(
+                    UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest)
+                    throws ApiException {
+        return userDataStreamApi.userDataStreamSubscribeSignature(
+                userDataStreamSubscribeSignatureRequest);
     }
 
     public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(

@@ -132,6 +132,12 @@ public class CancelMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PAIR = "pair";
+
+    @SerializedName(SERIALIZED_NAME_PAIR)
+    @jakarta.annotation.Nullable
+    private String pair;
+
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
@@ -513,6 +519,25 @@ public class CancelMultipleOrdersResponseInner {
         this.symbol = symbol;
     }
 
+    public CancelMultipleOrdersResponseInner pair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+        return this;
+    }
+
+    /**
+     * Get pair
+     *
+     * @return pair
+     */
+    @jakarta.annotation.Nullable
+    public String getPair() {
+        return pair;
+    }
+
+    public void setPair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+    }
+
     public CancelMultipleOrdersResponseInner timeInForce(
             @jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
@@ -759,6 +784,7 @@ public class CancelMultipleOrdersResponseInner {
                 && Objects.equals(
                         this.closePosition, cancelMultipleOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, cancelMultipleOrdersResponseInner.symbol)
+                && Objects.equals(this.pair, cancelMultipleOrdersResponseInner.pair)
                 && Objects.equals(this.timeInForce, cancelMultipleOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, cancelMultipleOrdersResponseInner.type)
                 && Objects.equals(
@@ -794,6 +820,7 @@ public class CancelMultipleOrdersResponseInner {
                 stopPrice,
                 closePosition,
                 symbol,
+                pair,
                 timeInForce,
                 type,
                 activatePrice,
@@ -827,6 +854,7 @@ public class CancelMultipleOrdersResponseInner {
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
@@ -911,6 +939,10 @@ public class CancelMultipleOrdersResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object pairValue = getPair();
+        String pairValueAsString = "";
+        pairValueAsString = pairValue.toString();
+        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -1001,6 +1033,7 @@ public class CancelMultipleOrdersResponseInner {
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
+        openapiFields.add("pair");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("activatePrice");
@@ -1140,6 +1173,14 @@ public class CancelMultipleOrdersResponseInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pair` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("pair").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {

@@ -22,6 +22,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.vip_loan.rest.model.GetBorrowInterestRateResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetCollateralAssetDataResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanInterestRateHistoryResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -44,7 +45,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/2.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -513,6 +514,192 @@ public class MarketDataApi {
                 getLoanableAssetsDataValidateBeforeCall(loanCoin, vipLevel, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetLoanableAssetsDataResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getVIPLoanInterestRateHistory
+     *
+     * @param coin (required)
+     * @param recvWindow (required)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Interest Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-Rate-History">Get
+     *     VIP Loan Interest Rate History (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getVIPLoanInterestRateHistoryCall(
+            String coin, Long recvWindow, Long startTime, Long endTime, Long current, Long limit)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/loan/vip/interestRateHistory";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (coin != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("coin", coin));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (current != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("current", current));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getVIPLoanInterestRateHistoryValidateBeforeCall(
+            String coin, Long recvWindow, Long startTime, Long endTime, Long current, Long limit)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {coin, recvWindow, startTime, endTime, current, limit};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "getVIPLoanInterestRateHistory",
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<MarketDataApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getVIPLoanInterestRateHistoryCall(
+                        coin, recvWindow, startTime, endTime, current, limit);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get VIP Loan Interest Rate History (USER_DATA) Check VIP Loan flexible interest rate history
+     * * If startTime and endTime are not sent, the recent 90-day data will be returned * The max
+     * interval between startTime and end Time is 180 days. * Time based on UTC+0. Weight: 400
+     *
+     * @param coin (required)
+     * @param recvWindow (required)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @return ApiResponse&lt;GetVIPLoanInterestRateHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Interest Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-Rate-History">Get
+     *     VIP Loan Interest Rate History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanInterestRateHistoryResponse> getVIPLoanInterestRateHistory(
+            @NotNull String coin,
+            @NotNull Long recvWindow,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                getVIPLoanInterestRateHistoryValidateBeforeCall(
+                        coin, recvWindow, startTime, endTime, current, limit);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetVIPLoanInterestRateHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

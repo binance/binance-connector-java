@@ -1,5 +1,109 @@
 # Changelog
 
+## 9.0.0 - 2026-02-12
+
+### Changed (20)
+
+#### REST API
+
+- Added parameter `activatePrice`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- Added parameter `algoId`
+  - affected methods:
+    - `cancelAlgoOrder()` (`DELETE /fapi/v1/algoOrder`)
+- Added parameter `clientAlgoId`
+  - affected methods:
+    - `cancelAlgoOrder()` (`DELETE /fapi/v1/algoOrder`)
+- Added parameter `newOrderRespType`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- Deleted parameter `activationPrice`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- Deleted parameter `algoid`
+  - affected methods:
+    - `cancelAlgoOrder()` (`DELETE /fapi/v1/algoOrder`)
+- Deleted parameter `clientalgoid`
+  - affected methods:
+    - `cancelAlgoOrder()` (`DELETE /fapi/v1/algoOrder`)
+- Modified parameter `batchOrders`:
+  - items: property `stopPrice` added
+  - items: item property `stopPrice` added
+  - affected methods:
+    - `modifyMultipleOrders()` (`PUT /fapi/v1/batchOrders`)
+- Modified response for `placeMultipleOrders()` (`POST /fapi/v1/batchOrders`):
+  - items: property `closePosition` added
+  - items: item property `closePosition` added
+
+- Modified response for `queryOrder()` (`GET /fapi/v1/order`):
+  - property `id` added
+  - property `result` added
+  - property `updateTime` deleted
+  - property `priceRate` deleted
+  - property `orderId` deleted
+  - property `type` deleted
+  - property `goodTillDate` deleted
+  - property `origQty` deleted
+  - property `origType` deleted
+  - property `closePosition` deleted
+  - property `time` deleted
+  - property `timeInForce` deleted
+  - property `priceMatch` deleted
+  - property `workingType` deleted
+  - property `activatePrice` deleted
+  - property `executedQty` deleted
+  - property `selfTradePreventionMode` deleted
+  - property `reduceOnly` deleted
+  - property `side` deleted
+  - property `price` deleted
+  - property `clientOrderId` deleted
+  - property `stopPrice` deleted
+  - property `symbol` deleted
+  - property `cumQuote` deleted
+  - property `priceProtect` deleted
+  - property `avgPrice` deleted
+  - property `positionSide` deleted
+  - `status`: type `string` → `integer`
+
+- Modified response for `symbolConfiguration()` (`GET /fapi/v1/symbolConfig`):
+  - items.`isAutoAddMargin`: type `string` → `boolean`
+  - items.`isAutoAddMargin`: type `string` → `boolean`
+
+#### WebSocket API
+
+- Added parameter `activatePrice`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Added parameter `algoId`
+  - affected methods:
+    - `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- Added parameter `clientAlgoId`
+  - affected methods:
+    - `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- Added parameter `newOrderRespType`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Deleted parameter `activationPrice`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Deleted parameter `algoid`
+  - affected methods:
+    - `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- Deleted parameter `clientalgoid`
+  - affected methods:
+    - `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- Modified response for `positionInformationV2()` (`v2/account.position` method):
+  - `result`.items: property `unRealizedProfit` added
+  - `result`.items: property `unrealizedProfit` deleted
+  - `result`.items: item property `unRealizedProfit` added
+  - `result`.items: item property `unrealizedProfit` deleted
+
+#### WebSocket Streams
+
+- Modified response for `aggregateTradeStreams()` (`<symbol>@aggTrade` stream):
+  - property `nq` added
+
 ## 8.0.0 - 2026-01-06
 
 ### Changed (3)

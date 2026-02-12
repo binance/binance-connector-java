@@ -13,11 +13,13 @@
 package com.binance.connector.client.derivatives_trading_coin_futures.rest.trade;
 
 import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 
 /** API examples for TradeApi */
 public class AutoCancelAllOpenOrdersExample {
@@ -57,6 +59,8 @@ public class AutoCancelAllOpenOrdersExample {
                 new AutoCancelAllOpenOrdersRequest();
         autoCancelAllOpenOrdersRequest.symbol("");
         autoCancelAllOpenOrdersRequest.countdownTime(0L);
-        getApi().autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
+        ApiResponse<AutoCancelAllOpenOrdersResponse> response =
+                getApi().autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
+        System.out.println(response.getData());
     }
 }

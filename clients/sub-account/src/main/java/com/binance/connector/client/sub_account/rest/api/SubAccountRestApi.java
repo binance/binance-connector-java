@@ -495,7 +495,7 @@ public class SubAccountRestApi {
      * of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent
      * and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If
      * &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of
-     * [max(now,endTime-90d), endTime]. Weight: 150
+     * [max(now,endTime-90d), endTime]. Weight: 1
      *
      * @param symbol (required)
      * @param page Page (required)
@@ -608,6 +608,8 @@ public class SubAccountRestApi {
      * Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA) Get Summary
      * of Sub-account&#39;s Futures Account Weight: 1
      *
+     * @param page Page (required)
+     * @param limit Limit (Max: 500) (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfSubAccountsFuturesAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -625,8 +627,9 @@ public class SubAccountRestApi {
      *     Documentation</a>
      */
     public ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse>
-            getSummaryOfSubAccountsFuturesAccount(Long recvWindow) throws ApiException {
-        return assetManagementApi.getSummaryOfSubAccountsFuturesAccount(recvWindow);
+            getSummaryOfSubAccountsFuturesAccount(Long page, Long limit, Long recvWindow)
+                    throws ApiException {
+        return assetManagementApi.getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow);
     }
 
     /**
@@ -720,7 +723,7 @@ public class SubAccountRestApi {
      * close position quantity is bigger than the symbol’s current position quantity, all batch
      * orders in the same list will fail simultaneously. * Only support cross margin mode * The
      * price for move position is MarkPrice only. * Not support for MSA. * Not support for the
-     * symbol under Reduce-Only. Weight: 150
+     * symbol under Reduce-Only. Weight: 1
      *
      * @param movePositionForSubAccountRequest (required)
      * @return ApiResponse&lt;MovePositionForSubAccountResponse&gt;

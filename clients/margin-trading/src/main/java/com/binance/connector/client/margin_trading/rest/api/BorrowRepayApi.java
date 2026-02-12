@@ -49,7 +49,7 @@ public class BorrowRepayApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/5.0.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -236,7 +236,7 @@ public class BorrowRepayApi {
      *
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -414,7 +414,7 @@ public class BorrowRepayApi {
      *
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -617,7 +617,7 @@ public class BorrowRepayApi {
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -813,7 +813,7 @@ public class BorrowRepayApi {
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -866,7 +866,7 @@ public class BorrowRepayApi {
      * @param asset (required)
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
@@ -1007,7 +1007,7 @@ public class BorrowRepayApi {
      * @param asset (required)
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginInterestRateHistoryResponse&gt;

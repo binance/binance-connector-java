@@ -1,5 +1,13 @@
 # Changelog
 
+## 6.0.0 - 2026-02-12
+
+### Added (1)
+
+#### REST API
+
+- `getMarginAssetRiskBasedLiquidationRatio()` (`GET /sapi/v1/margin/risk-based-liquidation-ratio`)
+
 ## 5.0.0 - 2025-12-16
 
 ### Removed (6)

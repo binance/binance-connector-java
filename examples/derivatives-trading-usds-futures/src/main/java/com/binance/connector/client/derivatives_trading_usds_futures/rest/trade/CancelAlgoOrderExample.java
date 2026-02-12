@@ -40,17 +40,17 @@ public class CancelAlgoOrderExample {
     /**
      * Cancel Algo Order (TRADE)
      *
-     * <p>Cancel an active algo order. * Either &#x60;algoid&#x60; or &#x60;clientalgoid&#x60; must
+     * <p>Cancel an active algo order. * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must
      * be sent. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */
     public void cancelAlgoOrderExample() throws ApiException {
-        Long algoid = 0L;
-        String clientalgoid = "";
+        Long algoId = 1L;
+        String clientAlgoId = "1";
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderResponse> response =
-                getApi().cancelAlgoOrder(algoid, clientalgoid, recvWindow);
+                getApi().cancelAlgoOrder(algoId, clientAlgoId, recvWindow);
         System.out.println(response.getData());
     }
 }

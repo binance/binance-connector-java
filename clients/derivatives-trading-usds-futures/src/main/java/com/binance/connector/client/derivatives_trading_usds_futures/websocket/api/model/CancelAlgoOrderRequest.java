@@ -45,17 +45,17 @@ public class CancelAlgoOrderRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private String id;
 
-    public static final String SERIALIZED_NAME_ALGOID = "algoid";
+    public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
-    @SerializedName(SERIALIZED_NAME_ALGOID)
+    @SerializedName(SERIALIZED_NAME_ALGO_ID)
     @jakarta.annotation.Nullable
-    private Long algoid;
+    private Long algoId;
 
-    public static final String SERIALIZED_NAME_CLIENTALGOID = "clientalgoid";
+    public static final String SERIALIZED_NAME_CLIENT_ALGO_ID = "clientAlgoId";
 
-    @SerializedName(SERIALIZED_NAME_CLIENTALGOID)
+    @SerializedName(SERIALIZED_NAME_CLIENT_ALGO_ID)
     @jakarta.annotation.Nullable
-    private String clientalgoid;
+    private String clientAlgoId;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -84,42 +84,42 @@ public class CancelAlgoOrderRequest extends BaseDTO {
         this.id = id;
     }
 
-    public CancelAlgoOrderRequest algoid(@jakarta.annotation.Nullable Long algoid) {
-        this.algoid = algoid;
+    public CancelAlgoOrderRequest algoId(@jakarta.annotation.Nullable Long algoId) {
+        this.algoId = algoId;
         return this;
     }
 
     /**
-     * Get algoid
+     * Get algoId
      *
-     * @return algoid
+     * @return algoId
      */
     @jakarta.annotation.Nullable
-    public Long getAlgoid() {
-        return algoid;
+    public Long getAlgoId() {
+        return algoId;
     }
 
-    public void setAlgoid(@jakarta.annotation.Nullable Long algoid) {
-        this.algoid = algoid;
+    public void setAlgoId(@jakarta.annotation.Nullable Long algoId) {
+        this.algoId = algoId;
     }
 
-    public CancelAlgoOrderRequest clientalgoid(@jakarta.annotation.Nullable String clientalgoid) {
-        this.clientalgoid = clientalgoid;
+    public CancelAlgoOrderRequest clientAlgoId(@jakarta.annotation.Nullable String clientAlgoId) {
+        this.clientAlgoId = clientAlgoId;
         return this;
     }
 
     /**
-     * Get clientalgoid
+     * Get clientAlgoId
      *
-     * @return clientalgoid
+     * @return clientAlgoId
      */
     @jakarta.annotation.Nullable
-    public String getClientalgoid() {
-        return clientalgoid;
+    public String getClientAlgoId() {
+        return clientAlgoId;
     }
 
-    public void setClientalgoid(@jakarta.annotation.Nullable String clientalgoid) {
-        this.clientalgoid = clientalgoid;
+    public void setClientAlgoId(@jakarta.annotation.Nullable String clientAlgoId) {
+        this.clientAlgoId = clientAlgoId;
     }
 
     public CancelAlgoOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
@@ -151,14 +151,14 @@ public class CancelAlgoOrderRequest extends BaseDTO {
         }
         CancelAlgoOrderRequest cancelAlgoOrderRequest = (CancelAlgoOrderRequest) o;
         return Objects.equals(this.id, cancelAlgoOrderRequest.id)
-                && Objects.equals(this.algoid, cancelAlgoOrderRequest.algoid)
-                && Objects.equals(this.clientalgoid, cancelAlgoOrderRequest.clientalgoid)
+                && Objects.equals(this.algoId, cancelAlgoOrderRequest.algoId)
+                && Objects.equals(this.clientAlgoId, cancelAlgoOrderRequest.clientAlgoId)
                 && Objects.equals(this.recvWindow, cancelAlgoOrderRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, algoid, clientalgoid, recvWindow);
+        return Objects.hash(id, algoId, clientAlgoId, recvWindow);
     }
 
     @Override
@@ -166,8 +166,8 @@ public class CancelAlgoOrderRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class CancelAlgoOrderRequest {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		algoid: ").append(toIndentedString(algoid)).append("\n");
-        sb.append("		clientalgoid: ").append(toIndentedString(clientalgoid)).append("\n");
+        sb.append("		algoId: ").append(toIndentedString(algoId)).append("\n");
+        sb.append("		clientAlgoId: ").append(toIndentedString(clientAlgoId)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -182,15 +182,15 @@ public class CancelAlgoOrderRequest extends BaseDTO {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
         }
-        Long algoidValue = getAlgoid();
-        if (algoidValue != null) {
-            String algoidValueAsString = algoidValue.toString();
-            valMap.put("algoid", algoidValueAsString);
+        Long algoIdValue = getAlgoId();
+        if (algoIdValue != null) {
+            String algoIdValueAsString = algoIdValue.toString();
+            valMap.put("algoId", algoIdValueAsString);
         }
-        String clientalgoidValue = getClientalgoid();
-        if (clientalgoidValue != null) {
-            String clientalgoidValueAsString = clientalgoidValue.toString();
-            valMap.put("clientalgoid", clientalgoidValueAsString);
+        String clientAlgoIdValue = getClientAlgoId();
+        if (clientAlgoIdValue != null) {
+            String clientAlgoIdValueAsString = clientAlgoIdValue.toString();
+            valMap.put("clientAlgoId", clientAlgoIdValueAsString);
         }
         Long recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
@@ -212,13 +212,13 @@ public class CancelAlgoOrderRequest extends BaseDTO {
         if (idValue != null) {
             valMap.put("id", idValue);
         }
-        Object algoidValue = getAlgoid();
-        if (algoidValue != null) {
-            valMap.put("algoid", algoidValue);
+        Object algoIdValue = getAlgoId();
+        if (algoIdValue != null) {
+            valMap.put("algoId", algoIdValue);
         }
-        Object clientalgoidValue = getClientalgoid();
-        if (clientalgoidValue != null) {
-            valMap.put("clientalgoid", clientalgoidValue);
+        Object clientAlgoIdValue = getClientAlgoId();
+        if (clientAlgoIdValue != null) {
+            valMap.put("clientAlgoId", clientAlgoIdValue);
         }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
@@ -251,8 +251,8 @@ public class CancelAlgoOrderRequest extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
-        openapiFields.add("algoid");
-        openapiFields.add("clientalgoid");
+        openapiFields.add("algoId");
+        openapiFields.add("clientAlgoId");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -297,13 +297,13 @@ public class CancelAlgoOrderRequest extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
         }
-        if ((jsonObj.get("clientalgoid") != null && !jsonObj.get("clientalgoid").isJsonNull())
-                && !jsonObj.get("clientalgoid").isJsonPrimitive()) {
+        if ((jsonObj.get("clientAlgoId") != null && !jsonObj.get("clientAlgoId").isJsonNull())
+                && !jsonObj.get("clientAlgoId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `clientalgoid` to be a primitive type in the JSON"
+                            "Expected the field `clientAlgoId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
-                            jsonObj.get("clientalgoid").toString()));
+                            jsonObj.get("clientAlgoId").toString()));
         }
     }
 

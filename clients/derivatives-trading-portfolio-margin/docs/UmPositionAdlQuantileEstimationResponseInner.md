@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**adlQuantile** | [**CmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](CmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
+|**adlQuantile** | [**UmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](UmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
 
 
 

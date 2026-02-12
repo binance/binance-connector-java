@@ -54,7 +54,7 @@
 
 [ticker](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#rolling-window-price-change-statistics) - ticker - [TickerExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TickerExample.java#L51)
 
-[ticker.24hr](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#24hr-ticker-price-change-statistics) - ticker24hr - [HrExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/HrExample.java#L54)
+[ticker.24hr](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#24hr-ticker-price-change-statistics) - ticker24hr - [Ticker24hrExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/Ticker24hrExample.java#L54)
 
 [ticker.book](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#symbol-order-book-ticker) - tickerBook - [TickerBookExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TickerBookExample.java#L52)
 

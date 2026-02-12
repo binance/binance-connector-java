@@ -6,6 +6,8 @@
 
 [GET /sapi/v1/loan/vip/loanable/data](https://developers.binance.com/docs/vip_loan/market-data/Get-Loanable-Assets-Data) - getLoanableAssetsData - [GetLoanableAssetsDataExample.java:47](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/marketdata/GetLoanableAssetsDataExample.java#L47)
 
+[GET /sapi/v1/loan/vip/interestRateHistory](https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-Rate-History) - getVIPLoanInterestRateHistory - [GetVIPLoanInterestRateHistoryExample.java:48](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/marketdata/GetVIPLoanInterestRateHistoryExample.java#L48)
+
 ## Trade
 
 [POST /sapi/v1/loan/vip/borrow](https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow) - vipLoanBorrow - [VipLoanBorrowExample.java:49](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/trade/VipLoanBorrowExample.java#L49)
@@ -17,6 +19,8 @@
 ## UserInformation
 
 [GET /sapi/v1/loan/vip/collateral/account](https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account) - checkVIPLoanCollateralAccount - [CheckVIPLoanCollateralAccountExample.java:48](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/userinformation/CheckVIPLoanCollateralAccountExample.java#L48)
+
+[GET /sapi/v1/loan/vip/accruedInterest](https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest) - getVIPLoanAccruedInterest - [GetVIPLoanAccruedInterestExample.java:48](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/userinformation/GetVIPLoanAccruedInterestExample.java#L48)
 
 [GET /sapi/v1/loan/vip/ongoing/orders](https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders) - getVIPLoanOngoingOrders - [GetVIPLoanOngoingOrdersExample.java:46](/examples/vip-loan/src/main/java/com/binance/connector/client/vip_loan/rest/userinformation/GetVIPLoanOngoingOrdersExample.java#L46)
 

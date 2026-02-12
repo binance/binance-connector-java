@@ -11,6 +11,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getDelistSchedule**](MarketDataApi.md#getDelistSchedule) | **GET** /sapi/v1/margin/delist-schedule | Get Delist Schedule (MARKET_DATA) |
 | [**getLimitPricePairs**](MarketDataApi.md#getLimitPricePairs) | **GET** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs(MARKET_DATA) |
 | [**getListSchedule**](MarketDataApi.md#getListSchedule) | **GET** /sapi/v1/margin/list-schedule | Get list Schedule (MARKET_DATA) |
+| [**getMarginAssetRiskBasedLiquidationRatio**](MarketDataApi.md#getMarginAssetRiskBasedLiquidationRatio) | **GET** /sapi/v1/margin/risk-based-liquidation-ratio | Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) |
 | [**queryIsolatedMarginTierData**](MarketDataApi.md#queryIsolatedMarginTierData) | **GET** /sapi/v1/margin/isolatedMarginTier | Query Isolated Margin Tier Data (USER_DATA) |
 | [**queryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataApi.md#queryLiabilityCoinLeverageBracketInCrossMarginProMode) | **GET** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) |
 | [**queryMarginAvailableInventory**](MarketDataApi.md#queryMarginAvailableInventory) | **GET** /sapi/v1/margin/available-inventory | Query Margin Available Inventory(USER_DATA) |
@@ -444,6 +445,64 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get list Schedule |  -  |
+
+<a id="getMarginAssetRiskBasedLiquidationRatio"></a>
+# **getMarginAssetRiskBasedLiquidationRatio**
+> GetMarginAssetRiskBasedLiquidationRatioResponse getMarginAssetRiskBasedLiquidationRatio()
+
+Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
+
+Get Margin Asset Risk-Based Liquidation Ratio  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.margin_trading.ApiClient;
+import com.binance.connector.client.margin_trading.ApiException;
+import com.binance.connector.client.margin_trading.Configuration;
+import com.binance.connector.client.margin_trading.models.*;
+import com.binance.connector.client.margin_trading.rest.api.MarketDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
+    try {
+      GetMarginAssetRiskBasedLiquidationRatioResponse result = apiInstance.getMarginAssetRiskBasedLiquidationRatio();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketDataApi#getMarginAssetRiskBasedLiquidationRatio");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetMarginAssetRiskBasedLiquidationRatioResponse**](GetMarginAssetRiskBasedLiquidationRatioResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Margin Asset Risk-Based Liquidation Ratio |  -  |
 
 <a id="queryIsolatedMarginTierData"></a>
 # **queryIsolatedMarginTierData**

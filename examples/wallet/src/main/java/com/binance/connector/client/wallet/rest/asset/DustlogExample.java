@@ -44,10 +44,12 @@ public class DustlogExample {
      * @throws ApiException if the Api call fails
      */
     public void dustlogExample() throws ApiException {
+        String accountType = "SPOT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
-        ApiResponse<DustlogResponse> response = getApi().dustlog(startTime, endTime, recvWindow);
+        ApiResponse<DustlogResponse> response =
+                getApi().dustlog(accountType, startTime, endTime, recvWindow);
         System.out.println(response.getData());
     }
 }

@@ -14,6 +14,7 @@
 |**quantity** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) |  |  [optional] |
+|**stopPrice** | **String** |  |  [optional] |
 |**recvWindow** | **String** |  |  [optional] |
 
 

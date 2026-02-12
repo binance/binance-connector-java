@@ -10,6 +10,7 @@
 |**orderId** | **Long** |  |  [optional] |
 |**loanCoin** | **String** |  |  [optional] |
 |**totalDebt** | **String** |  |  [optional] |
+|**loanRate** | **String** |  |  [optional] |
 |**residualInterest** | **String** |  |  [optional] |
 |**collateralAccountId** | **String** |  |  [optional] |
 |**collateralCoin** | **String** |  |  [optional] |

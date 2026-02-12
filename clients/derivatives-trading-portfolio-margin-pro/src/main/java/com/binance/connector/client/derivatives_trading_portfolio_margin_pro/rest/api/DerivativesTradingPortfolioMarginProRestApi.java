@@ -14,6 +14,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetAutoRepayFuturesStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetDeltaModeStatusResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginAssetLeverageResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountBalanceResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
@@ -29,6 +30,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
 
@@ -167,6 +170,29 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
+     * Get Delta Mode Status(USER_DATA) Query the Delta mode status of current account. Weight: 1500
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetDeltaModeStatusResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Delta Mode Status </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Delta-Mode-Status">Get
+     *     Delta Mode Status(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetDeltaModeStatusResponse> getDeltaModeStatus(Long recvWindow)
+            throws ApiException {
+        return accountApi.getDeltaModeStatus(recvWindow);
+    }
+
+    /**
      * Get Portfolio Margin Pro Account Balance(USER_DATA) Query Portfolio Margin Pro account
      * balance Weight: 20
      *
@@ -268,8 +294,9 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Portfolio Margin Pro Bankruptcy Loan Repay Repay Portfolio Margin Pro Bankruptcy Loan Weight:
-     * 3000
+     * Portfolio Margin Pro Bankruptcy Loan Repay Repay Portfolio Margin Pro Bankruptcy Loan *
+     * Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this
+     * endpoint. Weight: 3000
      *
      * @param portfolioMarginProBankruptcyLoanRepayRequest (required)
      * @return ApiResponse&lt;PortfolioMarginProBankruptcyLoanRepayResponse&gt;
@@ -409,6 +436,30 @@ public class DerivativesTradingPortfolioMarginProRestApi {
             RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest)
             throws ApiException {
         return accountApi.repayFuturesNegativeBalance(repayFuturesNegativeBalanceRequest);
+    }
+
+    /**
+     * Switch Delta Mode(TRADE) Switch the Delta mode for existing PM PRO / PM RETAIL accounts.
+     * Weight: 1500
+     *
+     * @param switchDeltaModeRequest (required)
+     * @return ApiResponse&lt;SwitchDeltaModeResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Switch Delta Mode </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Switch-Delta-Mode">Switch
+     *     Delta Mode(TRADE) Documentation</a>
+     */
+    public ApiResponse<SwitchDeltaModeResponse> switchDeltaMode(
+            SwitchDeltaModeRequest switchDeltaModeRequest) throws ApiException {
+        return accountApi.switchDeltaMode(switchDeltaModeRequest);
     }
 
     /**

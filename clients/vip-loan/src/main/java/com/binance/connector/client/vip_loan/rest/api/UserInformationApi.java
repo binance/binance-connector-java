@@ -20,6 +20,7 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAccountResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanAccruedInterestResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +45,7 @@ public class UserInformationApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/2.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -240,14 +241,222 @@ public class UserInformationApi {
     }
 
     /**
+     * Build call for getVIPLoanAccruedInterest
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Accrued Interest </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest">Get
+     *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getVIPLoanAccruedInterestCall(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/loan/vip/accruedInterest";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (loanCoin != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loanCoin", loanCoin));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (current != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("current", current));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getVIPLoanAccruedInterestValidateBeforeCall(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {
+                orderId, loanCoin, startTime, endTime, current, limit, recvWindow
+            };
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "getVIPLoanAccruedInterest",
+                                    Long.class,
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<UserInformationApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getVIPLoanAccruedInterestCall(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record * If startTime and
+     * endTime are not sent, the recent 90-day data will be returned. * The max interval between
+     * startTime and endTime is 90 days. Weight: 400
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetVIPLoanAccruedInterestResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Accrued Interest </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest">Get
+     *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanAccruedInterestResponse> getVIPLoanAccruedInterest(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                getVIPLoanAccruedInterestValidateBeforeCall(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetVIPLoanAccruedInterestResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for getVIPLoanOngoingOrders
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -419,8 +628,8 @@ public class UserInformationApi {
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetVIPLoanOngoingOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -462,8 +671,8 @@ public class UserInformationApi {
     /**
      * Build call for queryApplicationStatus
      *
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -583,8 +792,8 @@ public class UserInformationApi {
     /**
      * Query Application Status(USER_DATA) Query Application Status Weight: 400
      *
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryApplicationStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

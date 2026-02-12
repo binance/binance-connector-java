@@ -195,6 +195,12 @@ public class BatchOrdersInner {
     @jakarta.annotation.Nullable
     private PriceMatchEnum priceMatch;
 
+    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
+
+    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
+    @jakarta.annotation.Nullable
+    private String stopPrice;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -337,6 +343,25 @@ public class BatchOrdersInner {
         this.priceMatch = priceMatch;
     }
 
+    public BatchOrdersInner stopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Get stopPrice
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
     public BatchOrdersInner recvWindow(@jakarta.annotation.Nullable String recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -372,13 +397,22 @@ public class BatchOrdersInner {
                 && Objects.equals(this.quantity, batchOrdersInner.quantity)
                 && Objects.equals(this.price, batchOrdersInner.price)
                 && Objects.equals(this.priceMatch, batchOrdersInner.priceMatch)
+                && Objects.equals(this.stopPrice, batchOrdersInner.stopPrice)
                 && Objects.equals(this.recvWindow, batchOrdersInner.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                orderId, origClientOrderId, symbol, side, quantity, price, priceMatch, recvWindow);
+                orderId,
+                origClientOrderId,
+                symbol,
+                side,
+                quantity,
+                price,
+                priceMatch,
+                stopPrice,
+                recvWindow);
     }
 
     @Override
@@ -392,6 +426,7 @@ public class BatchOrdersInner {
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -430,6 +465,10 @@ public class BatchOrdersInner {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object stopPriceValue = getStopPrice();
+        String stopPriceValueAsString = "";
+        stopPriceValueAsString = stopPriceValue.toString();
+        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -469,6 +508,7 @@ public class BatchOrdersInner {
         openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("priceMatch");
+        openapiFields.add("stopPrice");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -557,6 +597,14 @@ public class BatchOrdersInner {
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatchEnum.validateJsonElement(jsonObj.get("priceMatch"));
+        }
+        if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
+                && !jsonObj.get("stopPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `stopPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("stopPrice").toString()));
         }
         if ((jsonObj.get("recvWindow") != null && !jsonObj.get("recvWindow").isJsonNull())
                 && !jsonObj.get("recvWindow").isJsonPrimitive()) {

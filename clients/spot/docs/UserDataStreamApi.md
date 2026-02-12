@@ -128,7 +128,7 @@ No authorization required
 
 <a id="userDataStreamSubscribeSignature"></a>
 # **userDataStreamSubscribeSignature**
-> UserDataStreamSubscribeSignatureResponse userDataStreamSubscribeSignature()
+> UserDataStreamSubscribeSignatureResponse userDataStreamSubscribeSignature(userDataStreamSubscribeSignatureRequest)
 
 WebSocket Subscribe to User Data Stream through signature subscription
 
@@ -149,8 +149,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
+    UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest = new UserDataStreamSubscribeSignatureRequest(); // UserDataStreamSubscribeSignatureRequest | 
     try {
-      UserDataStreamSubscribeSignatureResponse result = apiInstance.userDataStreamSubscribeSignature();
+      UserDataStreamSubscribeSignatureResponse result = apiInstance.userDataStreamSubscribeSignature(userDataStreamSubscribeSignatureRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserDataStreamApi#userDataStreamSubscribeSignature");
@@ -164,7 +165,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userDataStreamSubscribeSignatureRequest** | [**UserDataStreamSubscribeSignatureRequest**](UserDataStreamSubscribeSignatureRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -176,7 +180,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -190,7 +194,7 @@ No authorization required
 
 WebSocket Unsubscribe from User Data Stream
 
-Stop listening to the User Data Stream in the current WebSocket connection.  Note that &#x60;session.logout&#x60; will only close the subscription created with &#x60;userdataStream.subscribe&#x60; but not subscriptions opened with &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
+Stop listening to the User Data Stream in the current WebSocket connection.  Note that &#x60;session.logout&#x60; will only close the subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
 
 ### Example
 ```java

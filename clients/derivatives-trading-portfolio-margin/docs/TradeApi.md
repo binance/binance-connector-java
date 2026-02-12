@@ -2786,7 +2786,7 @@ No authorization required
 
 Query Current UM Open Conditional Order(USER_DATA)
 
-Query Current UM Open Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60;或&#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
+Query Current UM Open Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
 
 ### Example
 ```java

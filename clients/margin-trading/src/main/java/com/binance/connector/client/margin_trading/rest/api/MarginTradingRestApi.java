@@ -25,6 +25,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInt
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
@@ -226,10 +227,13 @@ public class MarginTradingRestApi {
      * @param asset (optional)
      * @param symbol isolated margin pair (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryCrossIsolatedMarginCapitalFlowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -434,7 +438,7 @@ public class MarginTradingRestApi {
      *
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -502,7 +506,7 @@ public class MarginTradingRestApi {
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -544,7 +548,7 @@ public class MarginTradingRestApi {
      * @param asset (required)
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginInterestRateHistoryResponse&gt;
@@ -763,6 +767,29 @@ public class MarginTradingRestApi {
     public ApiResponse<GetListScheduleResponse> getListSchedule(Long recvWindow)
             throws ApiException {
         return marketDataApi.getListSchedule(recvWindow);
+    }
+
+    /**
+     * Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Get Margin Asset Risk-Based
+     * Liquidation Ratio Weight: 1
+     *
+     * @return ApiResponse&lt;GetMarginAssetRiskBasedLiquidationRatioResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Margin Asset Risk-Based Liquidation Ratio </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio">Get
+     *     Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetMarginAssetRiskBasedLiquidationRatioResponse>
+            getMarginAssetRiskBasedLiquidationRatio() throws ApiException {
+        return marketDataApi.getMarginAssetRiskBasedLiquidationRatio();
     }
 
     /**
@@ -1019,7 +1046,7 @@ public class MarginTradingRestApi {
      * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record * Response in
      * descending order Weight: 1(IP)
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -1081,7 +1108,7 @@ public class MarginTradingRestApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeHistoryResponse&gt;
@@ -1394,10 +1421,13 @@ public class MarginTradingRestApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1437,9 +1467,10 @@ public class MarginTradingRestApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1606,10 +1637,13 @@ public class MarginTradingRestApi {
      * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
      *     \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1721,7 +1755,7 @@ public class MarginTradingRestApi {
      *
      * @param asset (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)

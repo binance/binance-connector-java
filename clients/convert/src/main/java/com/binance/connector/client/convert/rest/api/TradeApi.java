@@ -28,7 +28,6 @@ import com.binance.connector.client.convert.rest.model.GetConvertTradeHistoryRes
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestResponse;
@@ -55,7 +54,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-convert/1.2.1 (Java/%s; %s; %s)",
+                    "binance-convert/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -842,7 +841,7 @@ public class TradeApi {
     /**
      * Build call for queryLimitOpenOrders
      *
-     * @param queryLimitOpenOrdersRequest (required)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -855,8 +854,7 @@ public class TradeApi {
      * @see <a href="https://developers.binance.com/docs/convert/trade/Query-Order">Query limit open
      *     orders (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call queryLimitOpenOrdersCall(
-            QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest) throws ApiException {
+    private okhttp3.Call queryLimitOpenOrdersCall(Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -881,8 +879,8 @@ public class TradeApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (queryLimitOpenOrdersRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", queryLimitOpenOrdersRequest.getRecvWindow());
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -905,7 +903,7 @@ public class TradeApi {
         return localVarApiClient.buildCall(
                 basePath,
                 localVarPath,
-                "POST",
+                "GET",
                 localVarQueryParams,
                 localVarCollectionQueryParams,
                 localVarPostBody,
@@ -916,8 +914,8 @@ public class TradeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call queryLimitOpenOrdersValidateBeforeCall(
-            QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest) throws ApiException {
+    private okhttp3.Call queryLimitOpenOrdersValidateBeforeCall(Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -927,15 +925,13 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {queryLimitOpenOrdersRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod("queryLimitOpenOrders", QueryLimitOpenOrdersRequest.class);
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("queryLimitOpenOrders", Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return queryLimitOpenOrdersCall(queryLimitOpenOrdersRequest);
+                return queryLimitOpenOrdersCall(recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -952,7 +948,7 @@ public class TradeApi {
      * Query limit open orders (USER_DATA) Request a quote for the requested token pairs Weight:
      * 3000(UID)
      *
-     * @param queryLimitOpenOrdersRequest (required)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return ApiResponse&lt;QueryLimitOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -966,11 +962,9 @@ public class TradeApi {
      * @see <a href="https://developers.binance.com/docs/convert/trade/Query-Order">Query limit open
      *     orders (USER_DATA) Documentation</a>
      */
-    public ApiResponse<QueryLimitOpenOrdersResponse> queryLimitOpenOrders(
-            @Valid @NotNull QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest)
+    public ApiResponse<QueryLimitOpenOrdersResponse> queryLimitOpenOrders(Long recvWindow)
             throws ApiException {
-        okhttp3.Call localVarCall =
-                queryLimitOpenOrdersValidateBeforeCall(queryLimitOpenOrdersRequest);
+        okhttp3.Call localVarCall = queryLimitOpenOrdersValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryLimitOpenOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

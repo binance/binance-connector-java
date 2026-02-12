@@ -63,7 +63,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_LIMIT)
     @jakarta.annotation.Nullable
-    private Integer limit;
+    private Long limit;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -133,7 +133,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
         this.fromExecutionId = fromExecutionId;
     }
 
-    public OrderAmendmentsRequest limit(@jakarta.annotation.Nullable Integer limit) {
+    public OrderAmendmentsRequest limit(@jakarta.annotation.Nullable Long limit) {
         this.limit = limit;
         return this;
     }
@@ -144,11 +144,11 @@ public class OrderAmendmentsRequest extends BaseDTO {
      * @return limit
      */
     @jakarta.annotation.Nullable
-    public Integer getLimit() {
+    public Long getLimit() {
         return limit;
     }
 
-    public void setLimit(@jakarta.annotation.Nullable Integer limit) {
+    public void setLimit(@jakarta.annotation.Nullable Long limit) {
         this.limit = limit;
     }
 
@@ -225,7 +225,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
             String fromExecutionIdValueAsString = fromExecutionIdValue.toString();
             valMap.put("fromExecutionId", fromExecutionIdValueAsString);
         }
-        Integer limitValue = getLimit();
+        Long limitValue = getLimit();
         if (limitValue != null) {
             String limitValueAsString = limitValue.toString();
             valMap.put("limit", limitValueAsString);

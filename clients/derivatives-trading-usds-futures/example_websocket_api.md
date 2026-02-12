@@ -2,11 +2,11 @@
 
 [account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information) - accountInformation - [AccountInformationExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationExample.java#L49)
 
-[v2/account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2) - accountInformationV2 - [AccountInformationV2ExampleAsync.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationV2ExampleAsync.java#L49)
+[v2/account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2) - accountInformationV2 - [AccountInformationV2Example.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationV2Example.java#L49)
 
 [account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance) - futuresAccountBalance - [FuturesAccountBalanceExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceExample.java#L48)
 
-[v2/account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2) - futuresAccountBalanceV2 - [FuturesAccountBalanceV2ExampleAsync.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceV2ExampleAsync.java#L48)
+[v2/account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2) - futuresAccountBalanceV2 - [FuturesAccountBalanceV2Example.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceV2Example.java#L48)
 
 ## MarketData
 
@@ -30,7 +30,7 @@
 
 [account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Information) - positionInformation - [PositionInformationExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationExample.java#L49)
 
-[v2/account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Info-V2) - positionInformationV2 - [PositionInformationV2ExampleAsync.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationV2ExampleAsync.java#L50)
+[v2/account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Info-V2) - positionInformationV2 - [PositionInformationV2Example.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationV2Example.java#L50)
 
 [order.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Query-Order) - queryOrder - [QueryOrderExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/QueryOrderExample.java#L52)
 

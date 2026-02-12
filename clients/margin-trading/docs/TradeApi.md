@@ -242,7 +242,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
@@ -266,7 +266,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **isolatedSymbol** | **String**| isolated symbol | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
@@ -378,7 +378,7 @@ public class Example {
     TradeApi apiInstance = new TradeApi(defaultClient);
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10, Max:100
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long recvWindow = 56L; // Long | No more than 60000
     try {
@@ -401,7 +401,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | |
 | **size** | **Long**| Default:10, Max:100 | |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
@@ -1034,10 +1034,10 @@ public class Example {
     TradeApi apiInstance = new TradeApi(defaultClient);
     String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
     String symbol = "symbol_example"; // String | isolated margin pair
-    Long fromId = 56L; // Long | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long fromId = 56L; // Long | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsAllOcoResponse result = apiInstance.queryMarginAccountsAllOco(isIsolated, symbol, fromId, startTime, endTime, limit, recvWindow);
@@ -1059,10 +1059,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
-| **fromId** | **Long**| 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **fromId** | **Long**| If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1109,9 +1109,9 @@ public class Example {
     String symbol = "symbol_example"; // String | 
     String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
     Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsAllOrdersResponse result = apiInstance.queryMarginAccountsAllOrders(symbol, isIsolated, orderId, startTime, endTime, limit, recvWindow);
@@ -1134,9 +1134,9 @@ public class Example {
 | **symbol** | **String**|  | |
 | **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1455,10 +1455,10 @@ public class Example {
     String symbol = "symbol_example"; // String | 
     String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
     Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long fromId = 56L; // Long | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long fromId = 56L; // Long | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsTradeListResponse result = apiInstance.queryMarginAccountsTradeList(symbol, isIsolated, orderId, startTime, endTime, fromId, limit, recvWindow);
@@ -1481,10 +1481,10 @@ public class Example {
 | **symbol** | **String**|  | |
 | **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **fromId** | **Long**| 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **fromId** | **Long**| If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
