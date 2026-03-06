@@ -43,17 +43,17 @@ public class MarkPriceRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Integer id;
 
-    public static final String SERIALIZED_NAME_UNDERLYING_ASSET = "underlyingAsset";
+    public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
-    @SerializedName(SERIALIZED_NAME_UNDERLYING_ASSET)
+    @SerializedName(SERIALIZED_NAME_UNDERLYING)
     @jakarta.annotation.Nonnull
-    private String underlyingAsset;
+    private String underlying;
 
     public MarkPriceRequest() {}
 
-    public MarkPriceRequest id(@jakarta.annotation.Nullable String id) {
+    public MarkPriceRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
@@ -64,32 +64,32 @@ public class MarkPriceRequest extends BaseDTO {
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
     }
 
-    public MarkPriceRequest underlyingAsset(@jakarta.annotation.Nonnull String underlyingAsset) {
-        this.underlyingAsset = underlyingAsset;
+    public MarkPriceRequest underlying(@jakarta.annotation.Nonnull String underlying) {
+        this.underlying = underlying;
         return this;
     }
 
     /**
-     * Get underlyingAsset
+     * Get underlying
      *
-     * @return underlyingAsset
+     * @return underlying
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getUnderlyingAsset() {
-        return underlyingAsset;
+    public String getUnderlying() {
+        return underlying;
     }
 
-    public void setUnderlyingAsset(@jakarta.annotation.Nonnull String underlyingAsset) {
-        this.underlyingAsset = underlyingAsset;
+    public void setUnderlying(@jakarta.annotation.Nonnull String underlying) {
+        this.underlying = underlying;
     }
 
     @Override
@@ -102,12 +102,12 @@ public class MarkPriceRequest extends BaseDTO {
         }
         MarkPriceRequest markPriceRequest = (MarkPriceRequest) o;
         return Objects.equals(this.id, markPriceRequest.id)
-                && Objects.equals(this.underlyingAsset, markPriceRequest.underlyingAsset);
+                && Objects.equals(this.underlying, markPriceRequest.underlying);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, underlyingAsset);
+        return Objects.hash(id, underlying);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class MarkPriceRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class MarkPriceRequest {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		underlyingAsset: ").append(toIndentedString(underlyingAsset)).append("\n");
+        sb.append("		underlying: ").append(toIndentedString(underlying)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -124,15 +124,15 @@ public class MarkPriceRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
         }
-        String underlyingAssetValue = getUnderlyingAsset();
-        if (underlyingAssetValue != null) {
-            String underlyingAssetValueAsString = underlyingAssetValue.toString();
-            valMap.put("underlyingAsset", underlyingAssetValueAsString);
+        String underlyingValue = getUnderlying();
+        if (underlyingValue != null) {
+            String underlyingValueAsString = underlyingValue.toString();
+            valMap.put("underlying", underlyingValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -149,9 +149,9 @@ public class MarkPriceRequest extends BaseDTO {
         if (idValue != null) {
             valMap.put("id", idValue);
         }
-        Object underlyingAssetValue = getUnderlyingAsset();
-        if (underlyingAssetValue != null) {
-            valMap.put("underlyingAsset", underlyingAssetValue);
+        Object underlyingValue = getUnderlying();
+        if (underlyingValue != null) {
+            valMap.put("underlying", underlyingValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -180,11 +180,11 @@ public class MarkPriceRequest extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
-        openapiFields.add("underlyingAsset");
+        openapiFields.add("underlying");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("underlyingAsset");
+        openapiRequiredFields.add("underlying");
     }
 
     /**
@@ -227,20 +227,12 @@ public class MarkPriceRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
+        if (!jsonObj.get("underlying").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        if (!jsonObj.get("underlyingAsset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `underlyingAsset` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("underlyingAsset").toString()));
+                            "Expected the field `underlying` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("underlying").toString()));
         }
     }
 

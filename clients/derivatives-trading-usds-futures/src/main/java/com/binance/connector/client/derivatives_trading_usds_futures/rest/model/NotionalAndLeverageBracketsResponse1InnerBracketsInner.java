@@ -71,7 +71,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
 
     @SerializedName(SERIALIZED_NAME_CUM)
     @jakarta.annotation.Nullable
-    private Long cum;
+    private Double cum;
 
     public NotionalAndLeverageBracketsResponse1InnerBracketsInner() {}
 
@@ -177,7 +177,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     public NotionalAndLeverageBracketsResponse1InnerBracketsInner cum(
-            @jakarta.annotation.Nullable Long cum) {
+            @jakarta.annotation.Nullable Double cum) {
         this.cum = cum;
         return this;
     }
@@ -188,11 +188,12 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
      * @return cum
      */
     @jakarta.annotation.Nullable
-    public Long getCum() {
+    @Valid
+    public Double getCum() {
         return cum;
     }
 
-    public void setCum(@jakarta.annotation.Nullable Long cum) {
+    public void setCum(@jakarta.annotation.Nullable Double cum) {
         this.cum = cum;
     }
 

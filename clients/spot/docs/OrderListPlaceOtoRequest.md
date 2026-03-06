@@ -37,7 +37,7 @@
 |**pendingPegOffsetType** | **PendingPegOffsetType** |  |  [optional] |
 |**pendingPegPriceType** | **PendingPegPriceType** |  |  [optional] |
 |**pendingPegOffsetValue** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

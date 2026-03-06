@@ -37,7 +37,7 @@ For Spot (Spot package):
     <dependency>
         <groupId>io.github.binance</groupId>
         <artifactId>binance-spot</artifactId>
-        <version>6.0.0</version>
+        <version>9.0.0</version>
     </dependency>
 ```
 
@@ -79,7 +79,7 @@ import com.binance.connector.futures.client.impl.CMFuturesClientImpl;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 ```
 
-### **Step 4: Update Client Initialization**
+### **Step 3: Update Client Initialization**
 
 The new structure introduces a more modular approach to client initialization.
 
@@ -133,7 +133,7 @@ The new structure introduces a more modular approach to client initialization.
     System.out.println(response.getData());
 ```
 
-### **Step 5: Check for API Differences**
+### **Step 4: Check for API Differences**
 
 Some function names or response structures may have changed. Refer to the modular connector's documentation for details.
 

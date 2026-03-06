@@ -40,7 +40,7 @@ public class GetFiatDepositWithdrawHistoryExample {
      * Get Fiat Deposit/Withdraw History (USER_DATA)
      *
      * <p>Get Fiat Deposit/Withdraw History * If beginTime and endTime are not sent, the recent
-     * 30-day data will be returned. Weight: 90000
+     * 30-day data will be returned. Weight: 45000
      *
      * @throws ApiException if the Api call fails
      */

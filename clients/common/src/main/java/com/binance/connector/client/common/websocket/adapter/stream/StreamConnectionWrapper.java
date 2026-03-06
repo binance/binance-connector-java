@@ -129,7 +129,7 @@ public class StreamConnectionWrapper extends ConnectionWrapper
 
     protected void beforeConnect() {
         // no session, so this is not a reconnect
-        if (this.session == null) {
+        if (this.session == null || !this.session.isOpen()) {
             return;
         }
         RequestWrapperDTO<Object, HashSet<String>> listSubscriptions =

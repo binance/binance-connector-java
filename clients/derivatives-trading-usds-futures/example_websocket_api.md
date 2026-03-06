@@ -2,31 +2,35 @@
 
 [account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information) - accountInformation - [AccountInformationExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationExample.java#L49)
 
-[v2/account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2) - accountInformationV2 - [AccountInformationV2ExampleAsync.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationV2ExampleAsync.java#L49)
+[v2/account.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2) - accountInformationV2 - [AccountInformationV2Example.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/AccountInformationV2Example.java#L49)
 
 [account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance) - futuresAccountBalance - [FuturesAccountBalanceExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceExample.java#L48)
 
-[v2/account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2) - futuresAccountBalanceV2 - [FuturesAccountBalanceV2ExampleAsync.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceV2ExampleAsync.java#L48)
+[v2/account.balance](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2) - futuresAccountBalanceV2 - [FuturesAccountBalanceV2Example.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/account/FuturesAccountBalanceV2Example.java#L48)
 
 ## MarketData
 
-[depth](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Order-Book) - orderBook - [OrderBookExample.java:53](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/marketdata/OrderBookExample.java#L53)
+[depth](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Order-Book) - orderBook - [OrderBookExample.java:54](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/marketdata/OrderBookExample.java#L54)
 
-[ticker.book](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Order-Book-Ticker) - symbolOrderBookTicker - [SymbolOrderBookTickerExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/marketdata/SymbolOrderBookTickerExample.java#L51)
+[ticker.book](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Order-Book-Ticker) - symbolOrderBookTicker - [SymbolOrderBookTickerExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/marketdata/SymbolOrderBookTickerExample.java#L52)
 
 [ticker.price](https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Price-Ticker) - symbolPriceTicker - [SymbolPriceTickerExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/marketdata/SymbolPriceTickerExample.java#L50)
 
 ## Trade
 
+[algoOrder.cancel](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Cancel-Algo-Order) - cancelAlgoOrder - [CancelAlgoOrderExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/CancelAlgoOrderExample.java#L49)
+
 [order.cancel](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Cancel-Order) - cancelOrder - [CancelOrderExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/CancelOrderExample.java#L49)
 
 [order.modify](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Modify-Order) - modifyOrder - [ModifyOrderExample.java:60](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/ModifyOrderExample.java#L60)
+
+[algoOrder.place](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Algo-Order) - newAlgoOrder - [NewAlgoOrderExample.java:78](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/NewAlgoOrderExample.java#L78)
 
 [order.place](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Order) - newOrder - [NewOrderExample.java:81](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/NewOrderExample.java#L81)
 
 [account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Information) - positionInformation - [PositionInformationExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationExample.java#L49)
 
-[v2/account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Info-V2) - positionInformationV2 - [PositionInformationV2ExampleAsync.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationV2ExampleAsync.java#L50)
+[v2/account.position](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Position-Info-V2) - positionInformationV2 - [PositionInformationV2Example.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/PositionInformationV2Example.java#L50)
 
 [order.status](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/Query-Order) - queryOrder - [QueryOrderExample.java:52](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/QueryOrderExample.java#L52)
 

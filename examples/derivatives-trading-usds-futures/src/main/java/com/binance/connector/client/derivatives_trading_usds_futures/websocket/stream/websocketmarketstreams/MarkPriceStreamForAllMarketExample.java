@@ -36,8 +36,9 @@ public class MarkPriceStreamForAllMarketExample {
     /**
      * Mark Price Stream for All market
      *
-     * <p>Mark price and funding rate for all symbols pushed every 3 seconds or every second. Update
-     * Speed: 3000ms or 1000ms
+     * <p>Mark price and funding rate for all symbols pushed every 3 seconds or every second.
+     * **Note**: TradFi symbols will be pushed through a seperate message. Update Speed: 3000ms or
+     * 1000ms
      *
      * @throws ApiException if the Api call fails
      */

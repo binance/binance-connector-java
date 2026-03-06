@@ -137,6 +137,9 @@ public class JSON {
                         .GetAutoRepayFuturesStatusResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .GetDeltaModeStatusResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .GetPortfolioMarginAssetLeverageResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
@@ -162,12 +165,6 @@ public class JSON {
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .GetTransferableEarnAssetBalanceForPortfolioMarginResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .MintBfusdForPortfolioMarginRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .MintBfusdForPortfolioMarginResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .PortfolioMarginCollateralRateResponse.CustomTypeAdapterFactory());
@@ -220,22 +217,22 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .RedeemBfusdForPortfolioMarginRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .RedeemBfusdForPortfolioMarginResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .RepayFuturesNegativeBalanceRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
                         .RepayFuturesNegativeBalanceResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .TransferLdusdtForPortfolioMarginRequest.CustomTypeAdapterFactory());
+                        .SwitchDeltaModeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
-                        .TransferLdusdtForPortfolioMarginResponse.CustomTypeAdapterFactory());
+                        .SwitchDeltaModeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .TransferLdusdtRwusdForPortfolioMarginRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model
+                        .TransferLdusdtRwusdForPortfolioMarginResponse.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

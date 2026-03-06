@@ -45,7 +45,7 @@ public class QuerySubAccountTransactionStatisticsExample {
      * @throws ApiException if the Api call fails
      */
     public void querySubAccountTransactionStatisticsExample() throws ApiException {
-        String email = "sub-account-email@email.com";
+        String email = "";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountTransactionStatisticsResponse> response =
                 getApi().querySubAccountTransactionStatistics(email, recvWindow);

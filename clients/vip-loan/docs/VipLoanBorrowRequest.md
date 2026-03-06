@@ -13,6 +13,7 @@
 |**collateralAccountId** | **Long** |  |  |
 |**collateralCoin** | **String** |  |  |
 |**isFlexibleRate** | **Boolean** |  |  |
+|**loanTerm** | **Long** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

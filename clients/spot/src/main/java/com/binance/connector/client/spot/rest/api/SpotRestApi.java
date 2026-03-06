@@ -25,11 +25,11 @@ import com.binance.connector.client.spot.rest.model.HistoricalTradesResponse;
 import com.binance.connector.client.spot.rest.model.Interval;
 import com.binance.connector.client.spot.rest.model.KlinesResponse;
 import com.binance.connector.client.spot.rest.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.rest.model.MyFiltersResponse;
 import com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.rest.model.MyTradesResponse;
 import com.binance.connector.client.spot.rest.model.NewOrderRequest;
 import com.binance.connector.client.spot.rest.model.NewOrderResponse;
-import com.binance.connector.client.spot.rest.model.NewUserDataStreamResponse;
 import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityRequest;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityResponse;
@@ -38,6 +38,10 @@ import com.binance.connector.client.spot.rest.model.OrderCancelReplaceRequest;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOcoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOtoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtocoRequest;
@@ -47,7 +51,6 @@ import com.binance.connector.client.spot.rest.model.OrderOcoResponse;
 import com.binance.connector.client.spot.rest.model.OrderTestRequest;
 import com.binance.connector.client.spot.rest.model.OrderTestResponse;
 import com.binance.connector.client.spot.rest.model.Permissions;
-import com.binance.connector.client.spot.rest.model.PutUserDataStreamRequest;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
 import com.binance.connector.client.spot.rest.model.SorOrderRequest;
 import com.binance.connector.client.spot.rest.model.SorOrderResponse;
@@ -71,7 +74,6 @@ public class SpotRestApi {
     private final GeneralApi generalApi;
     private final MarketApi marketApi;
     private final TradeApi tradeApi;
-    private final UserDataStreamApi userDataStreamApi;
 
     public SpotRestApi(ClientConfiguration configuration) {
         this(SpotRestApiUtil.getDefaultClient(configuration));
@@ -82,7 +84,6 @@ public class SpotRestApi {
         this.generalApi = new GeneralApi(apiClient);
         this.marketApi = new MarketApi(apiClient);
         this.tradeApi = new TradeApi(apiClient);
-        this.userDataStreamApi = new UserDataStreamApi(apiClient);
     }
 
     /**
@@ -117,7 +118,9 @@ public class SpotRestApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;AllOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -133,7 +136,7 @@ public class SpotRestApi {
      *     all Order lists Documentation</a>
      */
     public ApiResponse<AllOrderListResponse> allOrderList(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
+            Long fromId, Long startTime, Long endTime, Integer limit, Double recvWindow)
             throws ApiException {
         return accountApi.allOrderList(fromId, startTime, endTime, limit, recvWindow);
     }
@@ -146,7 +149,9 @@ public class SpotRestApi {
      * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;AllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -167,7 +172,7 @@ public class SpotRestApi {
             Long startTime,
             Long endTime,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return accountApi.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
     }
@@ -177,7 +182,9 @@ public class SpotRestApi {
      *
      * @param omitZeroBalances When set to &#x60;true&#x60;, emits only the non-zero balances of an
      *     account. &lt;br&gt;Default value: &#x60;false&#x60; (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -192,7 +199,7 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data">Account
      *     information Documentation</a>
      */
-    public ApiResponse<GetAccountResponse> getAccount(Boolean omitZeroBalances, Long recvWindow)
+    public ApiResponse<GetAccountResponse> getAccount(Boolean omitZeroBalances, Double recvWindow)
             throws ApiException {
         return accountApi.getAccount(omitZeroBalances, recvWindow);
     }
@@ -202,7 +209,9 @@ public class SpotRestApi {
      * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
      *
      * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -217,7 +226,7 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data">Current
      *     open orders Documentation</a>
      */
-    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
+    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Double recvWindow)
             throws ApiException {
         return accountApi.getOpenOrders(symbol, recvWindow);
     }
@@ -228,7 +237,9 @@ public class SpotRestApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -244,7 +255,7 @@ public class SpotRestApi {
      *     order Documentation</a>
      */
     public ApiResponse<GetOrderResponse> getOrder(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            String symbol, Long orderId, String origClientOrderId, Double recvWindow)
             throws ApiException {
         return accountApi.getOrder(symbol, orderId, origClientOrderId, recvWindow);
     }
@@ -256,7 +267,9 @@ public class SpotRestApi {
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;GetOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -272,7 +285,7 @@ public class SpotRestApi {
      *     Order list Documentation</a>
      */
     public ApiResponse<GetOrderListResponse> getOrderList(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
+            Long orderListId, String origClientOrderId, Double recvWindow) throws ApiException {
         return accountApi.getOrderList(orderListId, origClientOrderId, recvWindow);
     }
 
@@ -285,7 +298,9 @@ public class SpotRestApi {
      * @param fromAllocationId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
      * @param orderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyAllocationsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -307,10 +322,38 @@ public class SpotRestApi {
             Integer fromAllocationId,
             Integer limit,
             Long orderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return accountApi.myAllocations(
                 symbol, startTime, endTime, fromAllocationId, limit, orderId, recvWindow);
+    }
+
+    /**
+     * Query relevant filters Retrieves the list of [filters](filters.md) relevant to an account on
+     * a given symbol. This is the only endpoint that shows if an account has &#x60;MAX_ASSET&#x60;
+     * filters applied to it. Weight: 40
+     *
+     * @param symbol (required)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
+     * @return ApiResponse&lt;MyFiltersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query relevant filters </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-relevant-filters-user_data">Query
+     *     relevant filters Documentation</a>
+     */
+    public ApiResponse<MyFiltersResponse> myFilters(String symbol, Double recvWindow)
+            throws ApiException {
+        return accountApi.myFilters(symbol, recvWindow);
     }
 
     /**
@@ -327,7 +370,9 @@ public class SpotRestApi {
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyPreventedMatchesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -348,7 +393,7 @@ public class SpotRestApi {
             Long orderId,
             Long fromPreventedMatchId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return accountApi.myPreventedMatches(
                 symbol, preventedMatchId, orderId, fromPreventedMatchId, limit, recvWindow);
@@ -364,7 +409,9 @@ public class SpotRestApi {
      * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
      * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;MyTradesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -386,7 +433,7 @@ public class SpotRestApi {
             Long endTime,
             Long fromId,
             Integer limit,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return accountApi.myTrades(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
     }
@@ -394,7 +441,9 @@ public class SpotRestApi {
     /**
      * Query Open Order lists Weight: 6
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;OpenOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -409,7 +458,7 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data">Query
      *     Open Order lists Documentation</a>
      */
-    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
+    public ApiResponse<OpenOrderListResponse> openOrderList(Double recvWindow) throws ApiException {
         return accountApi.openOrderList(recvWindow);
     }
 
@@ -420,7 +469,9 @@ public class SpotRestApi {
      * @param orderId (required)
      * @param fromExecutionId (optional)
      * @param limit Default:500; Maximum: 1000 (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;OrderAmendmentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -436,7 +487,7 @@ public class SpotRestApi {
      *     Order Amendments Documentation</a>
      */
     public ApiResponse<OrderAmendmentsResponse> orderAmendments(
-            String symbol, Long orderId, Long fromExecutionId, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long fromExecutionId, Long limit, Double recvWindow)
             throws ApiException {
         return accountApi.orderAmendments(symbol, orderId, fromExecutionId, limit, recvWindow);
     }
@@ -445,7 +496,9 @@ public class SpotRestApi {
      * Query Unfilled Order Count Displays the user&#39;s unfilled order count for all intervals.
      * Weight: 40
      *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;RateLimitOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -460,7 +513,8 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data">Query
      *     Unfilled Order Count Documentation</a>
      */
-    public ApiResponse<RateLimitOrderResponse> rateLimitOrder(Long recvWindow) throws ApiException {
+    public ApiResponse<RateLimitOrderResponse> rateLimitOrder(Double recvWindow)
+            throws ApiException {
         return accountApi.rateLimitOrder(recvWindow);
     }
 
@@ -599,6 +653,7 @@ public class SpotRestApi {
      *
      * @param symbol (required)
      * @param limit Default: 500; Maximum: 1000. (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;DepthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -613,8 +668,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book">Order
      *     book Documentation</a>
      */
-    public ApiResponse<DepthResponse> depth(String symbol, Integer limit) throws ApiException {
-        return marketApi.depth(symbol, limit);
+    public ApiResponse<DepthResponse> depth(String symbol, Integer limit, SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.depth(symbol, limit, symbolStatus);
     }
 
     /**
@@ -711,6 +767,7 @@ public class SpotRestApi {
      * @param symbols List of symbols to query (optional)
      * @param windowSize (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -726,9 +783,13 @@ public class SpotRestApi {
      *     window price change statistics Documentation</a>
      */
     public ApiResponse<TickerResponse> ticker(
-            String symbol, Symbols symbols, WindowSize windowSize, TickerType type)
+            String symbol,
+            Symbols symbols,
+            WindowSize windowSize,
+            TickerType type,
+            SymbolStatus symbolStatus)
             throws ApiException {
-        return marketApi.ticker(symbol, symbols, windowSize, type);
+        return marketApi.ticker(symbol, symbols, windowSize, type, symbolStatus);
     }
 
     /**
@@ -748,6 +809,7 @@ public class SpotRestApi {
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;Ticker24hrResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -763,8 +825,9 @@ public class SpotRestApi {
      *     ticker price change statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrResponse> ticker24hr(
-            String symbol, Symbols symbols, TickerType type) throws ApiException {
-        return marketApi.ticker24hr(symbol, symbols, type);
+            String symbol, Symbols symbols, TickerType type, SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.ticker24hr(symbol, symbols, type, symbolStatus);
     }
 
     /**
@@ -778,6 +841,7 @@ public class SpotRestApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerBookTickerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -792,9 +856,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker">Symbol
      *     order book ticker Documentation</a>
      */
-    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(String symbol, Symbols symbols)
-            throws ApiException {
-        return marketApi.tickerBookTicker(symbol, symbols);
+    public ApiResponse<TickerBookTickerResponse> tickerBookTicker(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        return marketApi.tickerBookTicker(symbol, symbols, symbolStatus);
     }
 
     /**
@@ -808,6 +872,7 @@ public class SpotRestApi {
      *
      * @param symbol Symbol to query (optional)
      * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerPriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -822,9 +887,9 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker">Symbol
      *     price ticker Documentation</a>
      */
-    public ApiResponse<TickerPriceResponse> tickerPrice(String symbol, Symbols symbols)
-            throws ApiException {
-        return marketApi.tickerPrice(symbol, symbols);
+    public ApiResponse<TickerPriceResponse> tickerPrice(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        return marketApi.tickerPrice(symbol, symbols, symbolStatus);
     }
 
     /**
@@ -836,6 +901,7 @@ public class SpotRestApi {
      * @param symbols List of symbols to query (optional)
      * @param timeZone Default: 0 (UTC) (optional)
      * @param type (optional)
+     * @param symbolStatus (optional)
      * @return ApiResponse&lt;TickerTradingDayResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -851,8 +917,13 @@ public class SpotRestApi {
      *     Day Ticker Documentation</a>
      */
     public ApiResponse<TickerTradingDayResponse> tickerTradingDay(
-            String symbol, Symbols symbols, String timeZone, TickerType type) throws ApiException {
-        return marketApi.tickerTradingDay(symbol, symbols, timeZone, type);
+            String symbol,
+            Symbols symbols,
+            String timeZone,
+            TickerType type,
+            SymbolStatus symbolStatus)
+            throws ApiException {
+        return marketApi.tickerTradingDay(symbol, symbols, timeZone, type, symbolStatus);
     }
 
     /**
@@ -896,7 +967,9 @@ public class SpotRestApi {
      * orders that are part of an order list. Weight: 1
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -911,7 +984,7 @@ public class SpotRestApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
      *     All Open Orders on a Symbol Documentation</a>
      */
-    public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(String symbol, Long recvWindow)
+    public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(String symbol, Double recvWindow)
             throws ApiException {
         return tradeApi.deleteOpenOrders(symbol, recvWindow);
     }
@@ -926,7 +999,9 @@ public class SpotRestApi {
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
      * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -947,7 +1022,7 @@ public class SpotRestApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return tradeApi.deleteOrder(
                 symbol,
@@ -968,7 +1043,9 @@ public class SpotRestApi {
      * @param newClientOrderId A unique id among open orders. Automatically generated if not
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -988,7 +1065,7 @@ public class SpotRestApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         return tradeApi.deleteOrderList(
                 symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow);
@@ -1107,6 +1184,53 @@ public class SpotRestApi {
     }
 
     /**
+     * New Order List - OPO Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     *
+     * @param orderListOpoRequest (required)
+     * @return ApiResponse&lt;OrderListOpoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
+     *     Order List - OPO Documentation</a>
+     */
+    public ApiResponse<OrderListOpoResponse> orderListOpo(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        return tradeApi.orderListOpo(orderListOpoRequest);
+    }
+
+    /**
+     * New Order List - OPOCO Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     *
+     * @param orderListOpocoRequest (required)
+     * @return ApiResponse&lt;OrderListOpocoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
+     *     Order List - OPOCO Documentation</a>
+     */
+    public ApiResponse<OrderListOpocoResponse> orderListOpoco(
+            OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        return tradeApi.orderListOpoco(orderListOpocoRequest);
+    }
+
+    /**
      * New Order list - OTO Place an OTO. * An OTO (One-Triggers-the-Other) is an order list
      * comprised of 2 orders. * The first order is called the **working order** and must be
      * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the
@@ -1192,6 +1316,7 @@ public class SpotRestApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
      *     OCO - Deprecated Documentation</a>
@@ -1276,74 +1401,5 @@ public class SpotRestApi {
     public ApiResponse<SorOrderTestResponse> sorOrderTest(SorOrderTestRequest sorOrderTestRequest)
             throws ApiException {
         return tradeApi.sorOrderTest(sorOrderTestRequest);
-    }
-
-    /**
-     * Close user data stream Close out a user data stream. Weight: 2
-     *
-     * @param listenKey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#close-user-data-stream-user_stream">Close
-     *     user data stream Documentation</a>
-     */
-    public void deleteUserDataStream(String listenKey) throws ApiException {
-        userDataStreamApi.deleteUserDataStream(listenKey);
-    }
-
-    /**
-     * Start user data stream Start a new user data stream. The stream will close after 60 minutes
-     * unless a keepalive is sent. Weight: 2
-     *
-     * @return ApiResponse&lt;NewUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#start-user-data-stream-user_stream">Start
-     *     user data stream Documentation</a>
-     */
-    public ApiResponse<NewUserDataStreamResponse> newUserDataStream() throws ApiException {
-        return userDataStreamApi.newUserDataStream();
-    }
-
-    /**
-     * Keepalive user data stream Keepalive a user data stream to prevent a time out. User data
-     * streams will close after 60 minutes. It&#39;s recommended to send a ping about every 30
-     * minutes. Weight: 2
-     *
-     * @param putUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/user-data-stream-endpoints---deprecated#keepalive-user-data-stream-user_stream">Keepalive
-     *     user data stream Documentation</a>
-     */
-    public void putUserDataStream(PutUserDataStreamRequest putUserDataStreamRequest)
-            throws ApiException {
-        userDataStreamApi.putUserDataStream(putUserDataStreamRequest);
     }
 }

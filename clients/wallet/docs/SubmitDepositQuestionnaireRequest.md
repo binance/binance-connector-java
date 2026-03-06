@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**subAccountId** | **String** |  |  |
-|**depositId** | **String** |  |  |
+|**depositId** | **Long** |  |  |
 |**questionnaire** | **String** |  |  |
 |**beneficiaryPii** | **String** |  |  |
 |**network** | **String** |  |  [optional] |

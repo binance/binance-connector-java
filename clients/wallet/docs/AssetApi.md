@@ -6,6 +6,8 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**assetDetail**](AssetApi.md#assetDetail) | **GET** /sapi/v1/asset/assetDetail | Asset Detail (USER_DATA) |
 | [**assetDividendRecord**](AssetApi.md#assetDividendRecord) | **GET** /sapi/v1/asset/assetDividend | Asset Dividend Record (USER_DATA) |
+| [**dustConvert**](AssetApi.md#dustConvert) | **POST** /sapi/v1/asset/dust-convert/convert | Dust Convert (USER_DATA) |
+| [**dustConvertibleAssets**](AssetApi.md#dustConvertibleAssets) | **POST** /sapi/v1/asset/dust-convert/query-convertible-assets | Dust Convertible Assets (USER_DATA) |
 | [**dustTransfer**](AssetApi.md#dustTransfer) | **POST** /sapi/v1/asset/dust | Dust Transfer (USER_DATA) |
 | [**dustlog**](AssetApi.md#dustlog) | **GET** /sapi/v1/asset/dribblet | DustLog(USER_DATA) |
 | [**fundingWallet**](AssetApi.md#fundingWallet) | **POST** /sapi/v1/asset/get-funding-asset | Funding Wallet (USER_DATA) |
@@ -23,7 +25,7 @@ All URIs are relative to *https://api.binance.com*
 
 <a id="assetDetail"></a>
 # **assetDetail**
-> AssetDetailResponse assetDetail(recvWindow)
+> AssetDetailResponse assetDetail(asset, recvWindow)
 
 Asset Detail (USER_DATA)
 
@@ -44,9 +46,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetApi apiInstance = new AssetApi(defaultClient);
+    String asset = "asset_example"; // String | 
     Long recvWindow = 56L; // Long | 
     try {
-      AssetDetailResponse result = apiInstance.assetDetail(recvWindow);
+      AssetDetailResponse result = apiInstance.assetDetail(asset, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetApi#assetDetail");
@@ -63,6 +66,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **asset** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -153,6 +157,130 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Asset Dividend Record |  -  |
 
+<a id="dustConvert"></a>
+# **dustConvert**
+> DustConvertResponse dustConvert(dustConvertRequest)
+
+Dust Convert (USER_DATA)
+
+Convert dust assets  Weight: 10
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.AssetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AssetApi apiInstance = new AssetApi(defaultClient);
+    DustConvertRequest dustConvertRequest = new DustConvertRequest(); // DustConvertRequest | 
+    try {
+      DustConvertResponse result = apiInstance.dustConvert(dustConvertRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AssetApi#dustConvert");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dustConvertRequest** | [**DustConvertRequest**](DustConvertRequest.md)|  | |
+
+### Return type
+
+[**DustConvertResponse**](DustConvertResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dust Convert |  -  |
+
+<a id="dustConvertibleAssets"></a>
+# **dustConvertibleAssets**
+> DustConvertibleAssetsResponse dustConvertibleAssets(dustConvertibleAssetsRequest)
+
+Dust Convertible Assets (USER_DATA)
+
+Query dust convertible assets  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.AssetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AssetApi apiInstance = new AssetApi(defaultClient);
+    DustConvertibleAssetsRequest dustConvertibleAssetsRequest = new DustConvertibleAssetsRequest(); // DustConvertibleAssetsRequest | 
+    try {
+      DustConvertibleAssetsResponse result = apiInstance.dustConvertibleAssets(dustConvertibleAssetsRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AssetApi#dustConvertibleAssets");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dustConvertibleAssetsRequest** | [**DustConvertibleAssetsRequest**](DustConvertibleAssetsRequest.md)|  | |
+
+### Return type
+
+[**DustConvertibleAssetsResponse**](DustConvertibleAssetsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dust Convertible Assets |  -  |
+
 <a id="dustTransfer"></a>
 # **dustTransfer**
 > DustTransferResponse dustTransfer(dustTransferRequest)
@@ -217,7 +345,7 @@ No authorization required
 
 <a id="dustlog"></a>
 # **dustlog**
-> DustlogResponse dustlog(startTime, endTime, recvWindow)
+> DustlogResponse dustlog(accountType, startTime, endTime, recvWindow)
 
 DustLog(USER_DATA)
 
@@ -238,11 +366,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetApi apiInstance = new AssetApi(defaultClient);
+    String accountType = "accountType_example"; // String | `SPOT`or`MARGIN`,default`SPOT`
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long recvWindow = 56L; // Long | 
     try {
-      DustlogResponse result = apiInstance.dustlog(startTime, endTime, recvWindow);
+      DustlogResponse result = apiInstance.dustlog(accountType, startTime, endTime, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetApi#dustlog");
@@ -259,6 +388,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **accountType** | **String**| &#x60;SPOT&#x60;or&#x60;MARGIN&#x60;,default&#x60;SPOT&#x60; | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -543,7 +673,7 @@ No authorization required
 
 Query User Delegation History(For Master Account)(USER_DATA)
 
-Query User Delegation History  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint  Weight: 60
+Query User Delegation History  Weight: 60
 
 ### Example
 ```java
@@ -695,7 +825,7 @@ No authorization required
 
 Query User Wallet Balance (USER_DATA)
 
-Query User Wallet Balance   * You need to open Permits Universal Transfer permission for the API Key which requests this endpoint.  Weight: 60
+Query User Wallet Balance  Weight: 60
 
 ### Example
 ```java

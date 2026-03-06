@@ -18,7 +18,6 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.convert.rest.ConvertRestApiUtil;
 import com.binance.connector.client.convert.rest.api.ConvertRestApi;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 
 /** API examples for TradeApi */
@@ -45,9 +44,9 @@ public class QueryLimitOpenOrdersExample {
      * @throws ApiException if the Api call fails
      */
     public void queryLimitOpenOrdersExample() throws ApiException {
-        QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest = new QueryLimitOpenOrdersRequest();
+        Long recvWindow = 5000L;
         ApiResponse<QueryLimitOpenOrdersResponse> response =
-                getApi().queryLimitOpenOrders(queryLimitOpenOrdersRequest);
+                getApi().queryLimitOpenOrders(recvWindow);
         System.out.println(response.getData());
     }
 }

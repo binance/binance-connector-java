@@ -58,6 +58,12 @@ public class Ticker24hrRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private TickerType tickerType;
 
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
+
     public Ticker24hrRequest() {}
 
     public Ticker24hrRequest symbol(@jakarta.annotation.Nullable String symbol) {
@@ -119,6 +125,26 @@ public class Ticker24hrRequest extends BaseDTO {
         this.tickerType = tickerType;
     }
 
+    public Ticker24hrRequest symbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -130,12 +156,13 @@ public class Ticker24hrRequest extends BaseDTO {
         Ticker24hrRequest ticker24hrRequest = (Ticker24hrRequest) o;
         return Objects.equals(this.symbol, ticker24hrRequest.symbol)
                 && Objects.equals(this.symbols, ticker24hrRequest.symbols)
-                && Objects.equals(this.tickerType, ticker24hrRequest.tickerType);
+                && Objects.equals(this.tickerType, ticker24hrRequest.tickerType)
+                && Objects.equals(this.symbolStatus, ticker24hrRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, symbols, tickerType);
+        return Objects.hash(symbol, symbols, tickerType, symbolStatus);
     }
 
     @Override
@@ -145,6 +172,7 @@ public class Ticker24hrRequest extends BaseDTO {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
         sb.append("		tickerType: ").append(toIndentedString(tickerType)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -168,6 +196,11 @@ public class Ticker24hrRequest extends BaseDTO {
             String tickerTypeValueAsString = tickerTypeValue.toString();
             valMap.put("tickerType", tickerTypeValueAsString);
         }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -190,6 +223,10 @@ public class Ticker24hrRequest extends BaseDTO {
         Object tickerTypeValue = getTickerType();
         if (tickerTypeValue != null) {
             valMap.put("tickerType", tickerTypeValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -220,6 +257,7 @@ public class Ticker24hrRequest extends BaseDTO {
         openapiFields.add("symbol");
         openapiFields.add("symbols");
         openapiFields.add("tickerType");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -266,6 +304,10 @@ public class Ticker24hrRequest extends BaseDTO {
         // validate the optional field `tickerType`
         if (jsonObj.get("tickerType") != null && !jsonObj.get("tickerType").isJsonNull()) {
             TickerType.validateJsonElement(jsonObj.get("tickerType"));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 

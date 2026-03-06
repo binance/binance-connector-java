@@ -12,9 +12,11 @@
 
 package com.binance.connector.client.spot.websocket.stream.model;
 
+import com.binance.connector.client.common.AbstractOpenApiSchema;
 import com.binance.connector.client.spot.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -22,120 +24,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.validator.constraints.*;
 
-/** ExchangeFilters */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class ExchangeFilters extends ArrayList<ExchangeFiltersInner> {
-    public ExchangeFilters() {}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode());
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ExchangeFilters {\n");
-        sb.append("		").append(toIndentedString(super.toString())).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    public String toUrlQueryString() {
-        StringBuilder sb = new StringBuilder();
-        Map<String, String> valMap = new TreeMap<String, String>();
-
-        return asciiEncode(
-                valMap.keySet().stream()
-                        .map(key -> key + "=" + valMap.get(key))
-                        .collect(Collectors.joining("&")));
-    }
-
-    public Map<String, Object> toMap() {
-        Map<String, Object> valMap = new TreeMap<String, Object>();
-
-        return valMap;
-    }
-
-    public static String asciiEncode(String s) {
-        return new String(s.getBytes(), StandardCharsets.US_ASCII);
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n		");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ExchangeFilters
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ExchangeFilters.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in ExchangeFilters is not found in the"
-                                        + " empty JSON string",
-                                ExchangeFilters.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeFilters.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ExchangeFilters` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-    }
+public class ExchangeFilters extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(ExchangeFilters.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
@@ -145,25 +45,471 @@ public class ExchangeFilters extends ArrayList<ExchangeFiltersInner> {
                 return null; // this class only serializes 'ExchangeFilters' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ExchangeFilters> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(ExchangeFilters.class));
+            final TypeAdapter<ExchangeMaxNumOrdersFilter> adapterExchangeMaxNumOrdersFilter =
+                    gson.getDelegateAdapter(this, TypeToken.get(ExchangeMaxNumOrdersFilter.class));
+            final TypeAdapter<ExchangeMaxNumAlgoOrdersFilter>
+                    adapterExchangeMaxNumAlgoOrdersFilter =
+                            gson.getDelegateAdapter(
+                                    this, TypeToken.get(ExchangeMaxNumAlgoOrdersFilter.class));
+            final TypeAdapter<ExchangeMaxNumIcebergOrdersFilter>
+                    adapterExchangeMaxNumIcebergOrdersFilter =
+                            gson.getDelegateAdapter(
+                                    this, TypeToken.get(ExchangeMaxNumIcebergOrdersFilter.class));
+            final TypeAdapter<ExchangeMaxNumOrderListsFilter>
+                    adapterExchangeMaxNumOrderListsFilter =
+                            gson.getDelegateAdapter(
+                                    this, TypeToken.get(ExchangeMaxNumOrderListsFilter.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<ExchangeFilters>() {
                         @Override
                         public void write(JsonWriter out, ExchangeFilters value)
                                 throws IOException {
-                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
-                            elementAdapter.write(out, obj);
+                            if (value == null || value.getActualInstance() == null) {
+                                elementAdapter.write(out, null);
+                                return;
+                            }
+
+                            // check if the actual instance is of the type
+                            // `ExchangeMaxNumOrdersFilter`
+                            if (value.getActualInstance() instanceof ExchangeMaxNumOrdersFilter) {
+                                JsonElement element =
+                                        adapterExchangeMaxNumOrdersFilter.toJsonTree(
+                                                (ExchangeMaxNumOrdersFilter)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type
+                            // `ExchangeMaxNumAlgoOrdersFilter`
+                            if (value.getActualInstance()
+                                    instanceof ExchangeMaxNumAlgoOrdersFilter) {
+                                JsonElement element =
+                                        adapterExchangeMaxNumAlgoOrdersFilter.toJsonTree(
+                                                (ExchangeMaxNumAlgoOrdersFilter)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type
+                            // `ExchangeMaxNumIcebergOrdersFilter`
+                            if (value.getActualInstance()
+                                    instanceof ExchangeMaxNumIcebergOrdersFilter) {
+                                JsonElement element =
+                                        adapterExchangeMaxNumIcebergOrdersFilter.toJsonTree(
+                                                (ExchangeMaxNumIcebergOrdersFilter)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type
+                            // `ExchangeMaxNumOrderListsFilter`
+                            if (value.getActualInstance()
+                                    instanceof ExchangeMaxNumOrderListsFilter) {
+                                JsonElement element =
+                                        adapterExchangeMaxNumOrderListsFilter.toJsonTree(
+                                                (ExchangeMaxNumOrderListsFilter)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            throw new IOException(
+                                    "Failed to serialize as the type doesn't match oneOf schemas:"
+                                            + " ExchangeMaxNumAlgoOrdersFilter,"
+                                            + " ExchangeMaxNumIcebergOrdersFilter,"
+                                            + " ExchangeMaxNumOrderListsFilter,"
+                                            + " ExchangeMaxNumOrdersFilter");
                         }
 
                         @Override
                         public ExchangeFilters read(JsonReader in) throws IOException {
+                            Object deserialized = null;
                             JsonElement jsonElement = elementAdapter.read(in);
-                            // validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
+
+                            JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                            // use discriminator value for faster oneOf lookup
+                            ExchangeFilters newExchangeFilters = new ExchangeFilters();
+                            if (jsonObject.get("filterType") == null) {
+                                log.log(
+                                        Level.WARNING,
+                                        "Failed to lookup discriminator value for ExchangeFilters"
+                                            + " as `filterType` was not found in the payload or the"
+                                            + " payload is empty.");
+                            } else {
+                                // look up the discriminator value in the field `filterType`
+                                switch (jsonObject.get("filterType").getAsString()) {
+                                    case "EXCHANGE_MAX_NUM_ALGO_ORDERS":
+                                        deserialized =
+                                                adapterExchangeMaxNumAlgoOrdersFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "EXCHANGE_MAX_NUM_ICEBERG_ORDERS":
+                                        deserialized =
+                                                adapterExchangeMaxNumIcebergOrdersFilter
+                                                        .fromJsonTree(jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "EXCHANGE_MAX_NUM_ORDERS":
+                                        deserialized =
+                                                adapterExchangeMaxNumOrdersFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "EXCHANGE_MAX_NUM_ORDER_LISTS":
+                                        deserialized =
+                                                adapterExchangeMaxNumOrderListsFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "ExchangeMaxNumAlgoOrdersFilter":
+                                        deserialized =
+                                                adapterExchangeMaxNumAlgoOrdersFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "ExchangeMaxNumIcebergOrdersFilter":
+                                        deserialized =
+                                                adapterExchangeMaxNumIcebergOrdersFilter
+                                                        .fromJsonTree(jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "ExchangeMaxNumOrderListsFilter":
+                                        deserialized =
+                                                adapterExchangeMaxNumOrderListsFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    case "ExchangeMaxNumOrdersFilter":
+                                        deserialized =
+                                                adapterExchangeMaxNumOrdersFilter.fromJsonTree(
+                                                        jsonObject);
+                                        newExchangeFilters.setActualInstance(deserialized);
+                                        return newExchangeFilters;
+                                    default:
+                                        newExchangeFilters.setActualInstance(
+                                                jsonElement.toString());
+                                        log.log(
+                                                Level.WARNING,
+                                                String.format(
+                                                        "Failed to lookup discriminator value `%s`"
+                                                            + " for ExchangeFilters. Possible"
+                                                            + " values:"
+                                                            + " EXCHANGE_MAX_NUM_ALGO_ORDERS"
+                                                            + " EXCHANGE_MAX_NUM_ICEBERG_ORDERS"
+                                                            + " EXCHANGE_MAX_NUM_ORDERS"
+                                                            + " EXCHANGE_MAX_NUM_ORDER_LISTS"
+                                                            + " ExchangeMaxNumAlgoOrdersFilter"
+                                                            + " ExchangeMaxNumIcebergOrdersFilter"
+                                                            + " ExchangeMaxNumOrderListsFilter"
+                                                            + " ExchangeMaxNumOrdersFilter. Falling"
+                                                            + " back to String.",
+                                                        jsonObject
+                                                                .get("filterType")
+                                                                .getAsString()));
+                                }
+                            }
+
+                            int match = 0;
+                            ArrayList<String> errorMessages = new ArrayList<>();
+                            TypeAdapter actualAdapter = elementAdapter;
+
+                            // deserialize ExchangeMaxNumOrdersFilter
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExchangeMaxNumOrdersFilter.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExchangeMaxNumOrdersFilter;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'ExchangeMaxNumOrdersFilter'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ExchangeMaxNumOrdersFilter"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'ExchangeMaxNumOrdersFilter'",
+                                        e);
+                            }
+                            // deserialize ExchangeMaxNumAlgoOrdersFilter
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExchangeMaxNumAlgoOrdersFilter.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExchangeMaxNumAlgoOrdersFilter;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema"
+                                                + " 'ExchangeMaxNumAlgoOrdersFilter'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ExchangeMaxNumAlgoOrdersFilter"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'ExchangeMaxNumAlgoOrdersFilter'",
+                                        e);
+                            }
+                            // deserialize ExchangeMaxNumIcebergOrdersFilter
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExchangeMaxNumIcebergOrdersFilter.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExchangeMaxNumIcebergOrdersFilter;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema"
+                                                + " 'ExchangeMaxNumIcebergOrdersFilter'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for"
+                                                    + " ExchangeMaxNumIcebergOrdersFilter failed"
+                                                    + " with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'ExchangeMaxNumIcebergOrdersFilter'",
+                                        e);
+                            }
+                            // deserialize ExchangeMaxNumOrderListsFilter
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExchangeMaxNumOrderListsFilter.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExchangeMaxNumOrderListsFilter;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema"
+                                                + " 'ExchangeMaxNumOrderListsFilter'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ExchangeMaxNumOrderListsFilter"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'ExchangeMaxNumOrderListsFilter'",
+                                        e);
+                            }
+
+                            if (match == 1) {
+                                ExchangeFilters ret = new ExchangeFilters();
+                                ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                                return ret;
+                            }
+
+                            throw new IOException(
+                                    String.format(
+                                            "Failed deserialization for ExchangeFilters: %d classes"
+                                                    + " match result, expected 1. Detailed failure"
+                                                    + " message for oneOf schemas: %s. JSON: %s",
+                                            match, errorMessages, jsonElement.toString()));
                         }
                     }.nullSafe();
+        }
+    }
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+    public ExchangeFilters() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public ExchangeFilters(Object o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("ExchangeMaxNumOrdersFilter", ExchangeMaxNumOrdersFilter.class);
+        schemas.put("ExchangeMaxNumAlgoOrdersFilter", ExchangeMaxNumAlgoOrdersFilter.class);
+        schemas.put("ExchangeMaxNumIcebergOrdersFilter", ExchangeMaxNumIcebergOrdersFilter.class);
+        schemas.put("ExchangeMaxNumOrderListsFilter", ExchangeMaxNumOrderListsFilter.class);
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return ExchangeFilters.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check the instance parameter is valid
+     * against the oneOf child schemas: ExchangeMaxNumAlgoOrdersFilter,
+     * ExchangeMaxNumIcebergOrdersFilter, ExchangeMaxNumOrderListsFilter, ExchangeMaxNumOrdersFilter
+     *
+     * <p>It could be an instance of the 'oneOf' schemas.
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (instance instanceof ExchangeMaxNumOrdersFilter) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ExchangeMaxNumAlgoOrdersFilter) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ExchangeMaxNumIcebergOrdersFilter) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ExchangeMaxNumOrderListsFilter) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException(
+                "Invalid instance type. Must be ExchangeMaxNumAlgoOrdersFilter,"
+                        + " ExchangeMaxNumIcebergOrdersFilter, ExchangeMaxNumOrderListsFilter,"
+                        + " ExchangeMaxNumOrdersFilter");
+    }
+
+    /**
+     * Get the actual instance, which can be the following: ExchangeMaxNumAlgoOrdersFilter,
+     * ExchangeMaxNumIcebergOrdersFilter, ExchangeMaxNumOrderListsFilter, ExchangeMaxNumOrdersFilter
+     *
+     * @return The actual instance (ExchangeMaxNumAlgoOrdersFilter,
+     *     ExchangeMaxNumIcebergOrdersFilter, ExchangeMaxNumOrderListsFilter,
+     *     ExchangeMaxNumOrdersFilter)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ExchangeMaxNumOrdersFilter`. If the actual instance is not
+     * `ExchangeMaxNumOrdersFilter`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExchangeMaxNumOrdersFilter`
+     * @throws ClassCastException if the instance is not `ExchangeMaxNumOrdersFilter`
+     */
+    public ExchangeMaxNumOrdersFilter getExchangeMaxNumOrdersFilter() throws ClassCastException {
+        return (ExchangeMaxNumOrdersFilter) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ExchangeMaxNumAlgoOrdersFilter`. If the actual instance is not
+     * `ExchangeMaxNumAlgoOrdersFilter`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExchangeMaxNumAlgoOrdersFilter`
+     * @throws ClassCastException if the instance is not `ExchangeMaxNumAlgoOrdersFilter`
+     */
+    public ExchangeMaxNumAlgoOrdersFilter getExchangeMaxNumAlgoOrdersFilter()
+            throws ClassCastException {
+        return (ExchangeMaxNumAlgoOrdersFilter) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ExchangeMaxNumIcebergOrdersFilter`. If the actual instance is not
+     * `ExchangeMaxNumIcebergOrdersFilter`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExchangeMaxNumIcebergOrdersFilter`
+     * @throws ClassCastException if the instance is not `ExchangeMaxNumIcebergOrdersFilter`
+     */
+    public ExchangeMaxNumIcebergOrdersFilter getExchangeMaxNumIcebergOrdersFilter()
+            throws ClassCastException {
+        return (ExchangeMaxNumIcebergOrdersFilter) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ExchangeMaxNumOrderListsFilter`. If the actual instance is not
+     * `ExchangeMaxNumOrderListsFilter`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExchangeMaxNumOrderListsFilter`
+     * @throws ClassCastException if the instance is not `ExchangeMaxNumOrderListsFilter`
+     */
+    public ExchangeMaxNumOrderListsFilter getExchangeMaxNumOrderListsFilter()
+            throws ClassCastException {
+        return (ExchangeMaxNumOrderListsFilter) super.getActualInstance();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ExchangeFilters
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // validate oneOf schemas one by one
+        int validCount = 0;
+        ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with ExchangeMaxNumOrdersFilter
+        try {
+            ExchangeMaxNumOrdersFilter.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExchangeMaxNumOrdersFilter failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ExchangeMaxNumAlgoOrdersFilter
+        try {
+            ExchangeMaxNumAlgoOrdersFilter.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExchangeMaxNumAlgoOrdersFilter failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ExchangeMaxNumIcebergOrdersFilter
+        try {
+            ExchangeMaxNumIcebergOrdersFilter.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExchangeMaxNumIcebergOrdersFilter failed with"
+                                    + " `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ExchangeMaxNumOrderListsFilter
+        try {
+            ExchangeMaxNumOrderListsFilter.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExchangeMaxNumOrderListsFilter failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        if (validCount != 1) {
+            throw new IOException(
+                    String.format(
+                            "The JSON string is invalid for ExchangeFilters with oneOf schemas:"
+                                + " ExchangeMaxNumAlgoOrdersFilter,"
+                                + " ExchangeMaxNumIcebergOrdersFilter,"
+                                + " ExchangeMaxNumOrderListsFilter, ExchangeMaxNumOrdersFilter. %d"
+                                + " class(es) match the result, expected 1. Detailed failure"
+                                + " message for oneOf schemas: %s. JSON: %s",
+                            validCount, errorMessages, jsonElement.toString()));
         }
     }
 

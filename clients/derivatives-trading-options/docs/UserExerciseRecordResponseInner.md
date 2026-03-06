@@ -11,7 +11,6 @@
 |**currency** | **String** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**exercisePrice** | **String** |  |  [optional] |
-|**markPrice** | **String** |  |  [optional] |
 |**quantity** | **String** |  |  [optional] |
 |**amount** | **String** |  |  [optional] |
 |**fee** | **String** |  |  [optional] |

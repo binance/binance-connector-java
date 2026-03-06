@@ -7,41 +7,34 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**addressRegex** | **String** |  |  [optional] |
-|**coin** | **String** |  |  [optional] |
-|**depositDesc** | **String** |  |  [optional] |
-|**depositEnable** | **Boolean** |  |  [optional] |
-|**isDefault** | **Boolean** |  |  [optional] |
-|**memoRegex** | **String** |  |  [optional] |
-|**minConfirm** | **Long** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
 |**network** | **String** |  |  [optional] |
-|**specialTips** | **String** |  |  [optional] |
-|**unLockConfirm** | **Long** |  |  [optional] |
-|**withdrawDesc** | **String** |  |  [optional] |
-|**withdrawEnable** | **Boolean** |  |  [optional] |
-|**withdrawFee** | **String** |  |  [optional] |
+|**coin** | **String** |  |  [optional] |
 |**withdrawIntegerMultiple** | **String** |  |  [optional] |
-|**withdrawMax** | **String** |  |  [optional] |
+|**isDefault** | **Boolean** |  |  [optional] |
+|**depositEnable** | **Boolean** |  |  [optional] |
+|**withdrawEnable** | **Boolean** |  |  [optional] |
+|**depositDesc** | **String** |  |  [optional] |
+|**withdrawDesc** | **String** |  |  [optional] |
+|**specialTips** | **String** |  |  [optional] |
+|**specialWithdrawTips** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**resetAddressStatus** | **Boolean** |  |  [optional] |
+|**addressRegex** | **String** |  |  [optional] |
+|**memoRegex** | **String** |  |  [optional] |
+|**withdrawFee** | **String** |  |  [optional] |
 |**withdrawMin** | **String** |  |  [optional] |
+|**withdrawMax** | **String** |  |  [optional] |
 |**withdrawInternalMin** | **String** |  |  [optional] |
+|**depositDust** | **String** |  |  [optional] |
+|**minConfirm** | **Long** |  |  [optional] |
+|**unLockConfirm** | **Long** |  |  [optional] |
 |**sameAddress** | **Boolean** |  |  [optional] |
+|**withdrawTag** | **Boolean** |  |  [optional] |
 |**estimatedArrivalTime** | **Long** |  |  [optional] |
 |**busy** | **Boolean** |  |  [optional] |
 |**contractAddressUrl** | **String** |  |  [optional] |
 |**contractAddress** | **String** |  |  [optional] |
-|**depositAllEnable** | **Boolean** |  |  [optional] |
-|**withdrawAllEnable** | **Boolean** |  |  [optional] |
-|**free** | **String** |  |  [optional] |
-|**locked** | **String** |  |  [optional] |
-|**freeze** | **String** |  |  [optional] |
-|**withdrawing** | **String** |  |  [optional] |
-|**ipoing** | **String** |  |  [optional] |
-|**ipoable** | **String** |  |  [optional] |
-|**storage** | **String** |  |  [optional] |
-|**isLegalMoney** | **Boolean** |  |  [optional] |
-|**trading** | **Boolean** |  |  [optional] |
-|**networkList** | [**List&lt;AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner&gt;**](AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner.md) |  |  [optional] |
+|**denomination** | **Long** |  |  [optional] |
 
 
 

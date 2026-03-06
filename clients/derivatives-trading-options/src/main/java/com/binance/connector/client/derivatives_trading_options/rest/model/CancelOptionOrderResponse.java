@@ -66,12 +66,6 @@ public class CancelOptionOrderResponse {
     @jakarta.annotation.Nullable
     private String executedQty;
 
-    public static final String SERIALIZED_NAME_FEE = "fee";
-
-    @SerializedName(SERIALIZED_NAME_FEE)
-    @jakarta.annotation.Nullable
-    private String fee;
-
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -95,12 +89,6 @@ public class CancelOptionOrderResponse {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
-
-    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
-
-    @SerializedName(SERIALIZED_NAME_POST_ONLY)
-    @jakarta.annotation.Nullable
-    private Boolean postOnly;
 
     public static final String SERIALIZED_NAME_CREATE_DATE = "createDate";
 
@@ -265,25 +253,6 @@ public class CancelOptionOrderResponse {
         this.executedQty = executedQty;
     }
 
-    public CancelOptionOrderResponse fee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-        return this;
-    }
-
-    /**
-     * Get fee
-     *
-     * @return fee
-     */
-    @jakarta.annotation.Nullable
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-    }
-
     public CancelOptionOrderResponse side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
@@ -358,25 +327,6 @@ public class CancelOptionOrderResponse {
 
     public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
-    }
-
-    public CancelOptionOrderResponse postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-        return this;
-    }
-
-    /**
-     * Get postOnly
-     *
-     * @return postOnly
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
-        return postOnly;
-    }
-
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
     }
 
     public CancelOptionOrderResponse createDate(@jakarta.annotation.Nullable Long createDate) {
@@ -604,12 +554,10 @@ public class CancelOptionOrderResponse {
                 && Objects.equals(this.price, cancelOptionOrderResponse.price)
                 && Objects.equals(this.quantity, cancelOptionOrderResponse.quantity)
                 && Objects.equals(this.executedQty, cancelOptionOrderResponse.executedQty)
-                && Objects.equals(this.fee, cancelOptionOrderResponse.fee)
                 && Objects.equals(this.side, cancelOptionOrderResponse.side)
                 && Objects.equals(this.type, cancelOptionOrderResponse.type)
                 && Objects.equals(this.timeInForce, cancelOptionOrderResponse.timeInForce)
                 && Objects.equals(this.reduceOnly, cancelOptionOrderResponse.reduceOnly)
-                && Objects.equals(this.postOnly, cancelOptionOrderResponse.postOnly)
                 && Objects.equals(this.createDate, cancelOptionOrderResponse.createDate)
                 && Objects.equals(this.updateTime, cancelOptionOrderResponse.updateTime)
                 && Objects.equals(this.status, cancelOptionOrderResponse.status)
@@ -631,12 +579,10 @@ public class CancelOptionOrderResponse {
                 price,
                 quantity,
                 executedQty,
-                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
-                postOnly,
                 createDate,
                 updateTime,
                 status,
@@ -659,12 +605,10 @@ public class CancelOptionOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createDate: ").append(toIndentedString(createDate)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
@@ -703,10 +647,6 @@ public class CancelOptionOrderResponse {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
-        Object feeValue = getFee();
-        String feeValueAsString = "";
-        feeValueAsString = feeValue.toString();
-        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -723,10 +663,6 @@ public class CancelOptionOrderResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object postOnlyValue = getPostOnly();
-        String postOnlyValueAsString = "";
-        postOnlyValueAsString = postOnlyValue.toString();
-        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createDateValue = getCreateDate();
         String createDateValueAsString = "";
         createDateValueAsString = createDateValue.toString();
@@ -804,12 +740,10 @@ public class CancelOptionOrderResponse {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
-        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
-        openapiFields.add("postOnly");
         openapiFields.add("createDate");
         openapiFields.add("updateTime");
         openapiFields.add("status");
@@ -875,14 +809,6 @@ public class CancelOptionOrderResponse {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
-                && !jsonObj.get("fee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fee` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("fee").toString()));
         }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {

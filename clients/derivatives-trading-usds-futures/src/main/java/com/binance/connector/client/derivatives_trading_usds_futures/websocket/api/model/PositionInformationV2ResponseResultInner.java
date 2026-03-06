@@ -75,11 +75,11 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String markPrice;
 
-    public static final String SERIALIZED_NAME_UNREALIZED_PROFIT = "unrealizedProfit";
+    public static final String SERIALIZED_NAME_UN_REALIZED_PROFIT = "unRealizedProfit";
 
-    @SerializedName(SERIALIZED_NAME_UNREALIZED_PROFIT)
+    @SerializedName(SERIALIZED_NAME_UN_REALIZED_PROFIT)
     @jakarta.annotation.Nullable
-    private String unrealizedProfit;
+    private String unRealizedProfit;
 
     public static final String SERIALIZED_NAME_LIQUIDATION_PRICE = "liquidationPrice";
 
@@ -281,24 +281,24 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
         this.markPrice = markPrice;
     }
 
-    public PositionInformationV2ResponseResultInner unrealizedProfit(
-            @jakarta.annotation.Nullable String unrealizedProfit) {
-        this.unrealizedProfit = unrealizedProfit;
+    public PositionInformationV2ResponseResultInner unRealizedProfit(
+            @jakarta.annotation.Nullable String unRealizedProfit) {
+        this.unRealizedProfit = unRealizedProfit;
         return this;
     }
 
     /**
-     * Get unrealizedProfit
+     * Get unRealizedProfit
      *
-     * @return unrealizedProfit
+     * @return unRealizedProfit
      */
     @jakarta.annotation.Nullable
-    public String getUnrealizedProfit() {
-        return unrealizedProfit;
+    public String getUnRealizedProfit() {
+        return unRealizedProfit;
     }
 
-    public void setUnrealizedProfit(@jakarta.annotation.Nullable String unrealizedProfit) {
-        this.unrealizedProfit = unrealizedProfit;
+    public void setUnRealizedProfit(@jakarta.annotation.Nullable String unRealizedProfit) {
+        this.unRealizedProfit = unRealizedProfit;
     }
 
     public PositionInformationV2ResponseResultInner liquidationPrice(
@@ -585,8 +585,8 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
                 && Objects.equals(
                         this.markPrice, positionInformationV2ResponseResultInner.markPrice)
                 && Objects.equals(
-                        this.unrealizedProfit,
-                        positionInformationV2ResponseResultInner.unrealizedProfit)
+                        this.unRealizedProfit,
+                        positionInformationV2ResponseResultInner.unRealizedProfit)
                 && Objects.equals(
                         this.liquidationPrice,
                         positionInformationV2ResponseResultInner.liquidationPrice)
@@ -627,7 +627,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
                 entryPrice,
                 breakEvenPrice,
                 markPrice,
-                unrealizedProfit,
+                unRealizedProfit,
                 liquidationPrice,
                 isolatedMargin,
                 notional,
@@ -653,7 +653,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
         sb.append("		entryPrice: ").append(toIndentedString(entryPrice)).append("\n");
         sb.append("		breakEvenPrice: ").append(toIndentedString(breakEvenPrice)).append("\n");
         sb.append("		markPrice: ").append(toIndentedString(markPrice)).append("\n");
-        sb.append("		unrealizedProfit: ").append(toIndentedString(unrealizedProfit)).append("\n");
+        sb.append("		unRealizedProfit: ").append(toIndentedString(unRealizedProfit)).append("\n");
         sb.append("		liquidationPrice: ").append(toIndentedString(liquidationPrice)).append("\n");
         sb.append("		isolatedMargin: ").append(toIndentedString(isolatedMargin)).append("\n");
         sb.append("		notional: ").append(toIndentedString(notional)).append("\n");
@@ -709,10 +709,10 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
             String markPriceValueAsString = markPriceValue.toString();
             valMap.put("markPrice", markPriceValueAsString);
         }
-        String unrealizedProfitValue = getUnrealizedProfit();
-        if (unrealizedProfitValue != null) {
-            String unrealizedProfitValueAsString = unrealizedProfitValue.toString();
-            valMap.put("unrealizedProfit", unrealizedProfitValueAsString);
+        String unRealizedProfitValue = getUnRealizedProfit();
+        if (unRealizedProfitValue != null) {
+            String unRealizedProfitValueAsString = unRealizedProfitValue.toString();
+            valMap.put("unRealizedProfit", unRealizedProfitValueAsString);
         }
         String liquidationPriceValue = getLiquidationPrice();
         if (liquidationPriceValue != null) {
@@ -814,9 +814,9 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
         if (markPriceValue != null) {
             valMap.put("markPrice", markPriceValue);
         }
-        Object unrealizedProfitValue = getUnrealizedProfit();
-        if (unrealizedProfitValue != null) {
-            valMap.put("unrealizedProfit", unrealizedProfitValue);
+        Object unRealizedProfitValue = getUnRealizedProfit();
+        if (unRealizedProfitValue != null) {
+            valMap.put("unRealizedProfit", unRealizedProfitValue);
         }
         Object liquidationPriceValue = getLiquidationPrice();
         if (liquidationPriceValue != null) {
@@ -902,7 +902,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
         openapiFields.add("entryPrice");
         openapiFields.add("breakEvenPrice");
         openapiFields.add("markPrice");
-        openapiFields.add("unrealizedProfit");
+        openapiFields.add("unRealizedProfit");
         openapiFields.add("liquidationPrice");
         openapiFields.add("isolatedMargin");
         openapiFields.add("notional");
@@ -1003,14 +1003,14 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
                                     + " string but got `%s`",
                             jsonObj.get("markPrice").toString()));
         }
-        if ((jsonObj.get("unrealizedProfit") != null
-                        && !jsonObj.get("unrealizedProfit").isJsonNull())
-                && !jsonObj.get("unrealizedProfit").isJsonPrimitive()) {
+        if ((jsonObj.get("unRealizedProfit") != null
+                        && !jsonObj.get("unRealizedProfit").isJsonNull())
+                && !jsonObj.get("unRealizedProfit").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `unrealizedProfit` to be a primitive type in the"
+                            "Expected the field `unRealizedProfit` to be a primitive type in the"
                                     + " JSON string but got `%s`",
-                            jsonObj.get("unrealizedProfit").toString()));
+                            jsonObj.get("unRealizedProfit").toString()));
         }
         if ((jsonObj.get("liquidationPrice") != null
                         && !jsonObj.get("liquidationPrice").isJsonNull())

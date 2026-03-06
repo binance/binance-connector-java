@@ -52,7 +52,7 @@ public class SymbolConfigurationResponseInner {
 
     @SerializedName(SERIALIZED_NAME_IS_AUTO_ADD_MARGIN)
     @jakarta.annotation.Nullable
-    private String isAutoAddMargin;
+    private Boolean isAutoAddMargin;
 
     public static final String SERIALIZED_NAME_LEVERAGE = "leverage";
 
@@ -108,7 +108,7 @@ public class SymbolConfigurationResponseInner {
     }
 
     public SymbolConfigurationResponseInner isAutoAddMargin(
-            @jakarta.annotation.Nullable String isAutoAddMargin) {
+            @jakarta.annotation.Nullable Boolean isAutoAddMargin) {
         this.isAutoAddMargin = isAutoAddMargin;
         return this;
     }
@@ -119,11 +119,11 @@ public class SymbolConfigurationResponseInner {
      * @return isAutoAddMargin
      */
     @jakarta.annotation.Nullable
-    public String getIsAutoAddMargin() {
+    public Boolean getIsAutoAddMargin() {
         return isAutoAddMargin;
     }
 
-    public void setIsAutoAddMargin(@jakarta.annotation.Nullable String isAutoAddMargin) {
+    public void setIsAutoAddMargin(@jakarta.annotation.Nullable Boolean isAutoAddMargin) {
         this.isAutoAddMargin = isAutoAddMargin;
     }
 
@@ -298,14 +298,6 @@ public class SymbolConfigurationResponseInner {
                             "Expected the field `marginType` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("marginType").toString()));
-        }
-        if ((jsonObj.get("isAutoAddMargin") != null && !jsonObj.get("isAutoAddMargin").isJsonNull())
-                && !jsonObj.get("isAutoAddMargin").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isAutoAddMargin` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("isAutoAddMargin").toString()));
         }
         if ((jsonObj.get("maxNotionalValue") != null
                         && !jsonObj.get("maxNotionalValue").isJsonNull())

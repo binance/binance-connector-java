@@ -54,6 +54,12 @@ public class UserCommissionRateResponse {
     @jakarta.annotation.Nullable
     private String takerCommissionRate;
 
+    public static final String SERIALIZED_NAME_RPI_COMMISSION_RATE = "rpiCommissionRate";
+
+    @SerializedName(SERIALIZED_NAME_RPI_COMMISSION_RATE)
+    @jakarta.annotation.Nullable
+    private String rpiCommissionRate;
+
     public UserCommissionRateResponse() {}
 
     public UserCommissionRateResponse symbol(@jakarta.annotation.Nullable String symbol) {
@@ -115,6 +121,26 @@ public class UserCommissionRateResponse {
         this.takerCommissionRate = takerCommissionRate;
     }
 
+    public UserCommissionRateResponse rpiCommissionRate(
+            @jakarta.annotation.Nullable String rpiCommissionRate) {
+        this.rpiCommissionRate = rpiCommissionRate;
+        return this;
+    }
+
+    /**
+     * Get rpiCommissionRate
+     *
+     * @return rpiCommissionRate
+     */
+    @jakarta.annotation.Nullable
+    public String getRpiCommissionRate() {
+        return rpiCommissionRate;
+    }
+
+    public void setRpiCommissionRate(@jakarta.annotation.Nullable String rpiCommissionRate) {
+        this.rpiCommissionRate = rpiCommissionRate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,12 +154,14 @@ public class UserCommissionRateResponse {
                 && Objects.equals(
                         this.makerCommissionRate, userCommissionRateResponse.makerCommissionRate)
                 && Objects.equals(
-                        this.takerCommissionRate, userCommissionRateResponse.takerCommissionRate);
+                        this.takerCommissionRate, userCommissionRateResponse.takerCommissionRate)
+                && Objects.equals(
+                        this.rpiCommissionRate, userCommissionRateResponse.rpiCommissionRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, makerCommissionRate, takerCommissionRate);
+        return Objects.hash(symbol, makerCommissionRate, takerCommissionRate, rpiCommissionRate);
     }
 
     @Override
@@ -147,6 +175,7 @@ public class UserCommissionRateResponse {
         sb.append("		takerCommissionRate: ")
                 .append(toIndentedString(takerCommissionRate))
                 .append("\n");
+        sb.append("		rpiCommissionRate: ").append(toIndentedString(rpiCommissionRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -169,6 +198,12 @@ public class UserCommissionRateResponse {
         takerCommissionRateValueAsString = takerCommissionRateValue.toString();
         sb.append("takerCommissionRate=")
                 .append(urlEncode(takerCommissionRateValueAsString))
+                .append("");
+        Object rpiCommissionRateValue = getRpiCommissionRate();
+        String rpiCommissionRateValueAsString = "";
+        rpiCommissionRateValueAsString = rpiCommissionRateValue.toString();
+        sb.append("rpiCommissionRate=")
+                .append(urlEncode(rpiCommissionRateValueAsString))
                 .append("");
         return sb.toString();
     }
@@ -201,6 +236,7 @@ public class UserCommissionRateResponse {
         openapiFields.add("symbol");
         openapiFields.add("makerCommissionRate");
         openapiFields.add("takerCommissionRate");
+        openapiFields.add("rpiCommissionRate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -249,6 +285,15 @@ public class UserCommissionRateResponse {
                             "Expected the field `takerCommissionRate` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("takerCommissionRate").toString()));
+        }
+        if ((jsonObj.get("rpiCommissionRate") != null
+                        && !jsonObj.get("rpiCommissionRate").isJsonNull())
+                && !jsonObj.get("rpiCommissionRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `rpiCommissionRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("rpiCommissionRate").toString()));
         }
     }
 

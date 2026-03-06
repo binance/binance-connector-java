@@ -11,12 +11,12 @@
 |**T** | **Long** |  |  [optional] |
 |**ac** | [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  |  [optional] |
 |**ai** | [**AccountConfigUpdateAi**](AccountConfigUpdateAi.md) |  |  [optional] |
+|**oLowerCase** | [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  |  [optional] |
 |**aLowerCase** | [**AccountUpdateA**](AccountUpdateA.md) |  |  [optional] |
 |**or** | [**ConditionalOrderTriggerRejectOr**](ConditionalOrderTriggerRejectOr.md) |  |  [optional] |
 |**gu** | [**GridUpdateGu**](GridUpdateGu.md) |  |  [optional] |
 |**cw** | **String** |  |  [optional] |
 |**pLowerCase** | **String** |  |  [optional] |
-|**oLowerCase** | [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  |  [optional] |
 |**su** | [**StrategyUpdateSu**](StrategyUpdateSu.md) |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
 |**qLowerCase** | **String** |  |  [optional] |

@@ -44,7 +44,7 @@ public class OpenOrderListExample {
      * @throws ApiException if the Api call fails
      */
     public void openOrderListExample() throws ApiException {
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<OpenOrderListResponse> response = getApi().openOrderList(recvWindow);
         System.out.println(response.getData());
     }

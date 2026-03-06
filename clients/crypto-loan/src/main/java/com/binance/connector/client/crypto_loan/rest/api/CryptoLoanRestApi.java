@@ -17,6 +17,7 @@ import com.binance.connector.client.crypto_loan.rest.model.GetCryptoLoansIncomeH
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanAssetsDataResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanBorrowHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanCollateralAssetsDataResponse;
+import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanInterestRateHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanLiquidationHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanLtvAdjustmentHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanOngoingOrdersResponse;
@@ -225,6 +226,44 @@ public class CryptoLoanRestApi {
             getFlexibleLoanCollateralAssetsData(String collateralCoin, Long recvWindow)
                     throws ApiException {
         return flexibleRateApi.getFlexibleLoanCollateralAssetsData(collateralCoin, recvWindow);
+    }
+
+    /**
+     * Get Flexible Loan Interest Rate History (USER_DATA) Check Flexible Loan interest rate history
+     * * If startTime and endTime are not sent, the recent 90-day data will be returned * The max
+     * interval between startTime and endTime is 90 days. * Time based on UTC+0. Weight: 400
+     *
+     * @param coin (required)
+     * @param recvWindow (required)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @return ApiResponse&lt;GetFlexibleLoanInterestRateHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Flexible Loan Interest Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Interest-Rate-History">Get
+     *     Flexible Loan Interest Rate History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetFlexibleLoanInterestRateHistoryResponse>
+            getFlexibleLoanInterestRateHistory(
+                    String coin,
+                    Long recvWindow,
+                    Long startTime,
+                    Long endTime,
+                    Long current,
+                    Long limit)
+                    throws ApiException {
+        return flexibleRateApi.getFlexibleLoanInterestRateHistory(
+                coin, recvWindow, startTime, endTime, current, limit);
     }
 
     /**

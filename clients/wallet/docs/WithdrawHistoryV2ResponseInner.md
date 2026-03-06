@@ -15,7 +15,6 @@
 |**withdrawalStatus** | **Long** |  |  [optional] |
 |**travelRuleStatus** | **Long** |  |  [optional] |
 |**address** | **String** |  |  [optional] |
-|**addressTag** | **String** |  |  [optional] |
 |**txId** | **String** |  |  [optional] |
 |**applyTime** | **String** |  |  [optional] |
 |**network** | **String** |  |  [optional] |

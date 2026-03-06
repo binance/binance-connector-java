@@ -54,12 +54,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     @jakarta.annotation.Nullable
     private String binanceId;
 
-    public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
-
-    @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-    @jakarta.annotation.Nullable
-    private String accountId;
-
     public GetPayTradeHistoryResponseDataInnerPayerInfo() {}
 
     public GetPayTradeHistoryResponseDataInnerPayerInfo name(
@@ -122,26 +116,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         this.binanceId = binanceId;
     }
 
-    public GetPayTradeHistoryResponseDataInnerPayerInfo accountId(
-            @jakarta.annotation.Nullable String accountId) {
-        this.accountId = accountId;
-        return this;
-    }
-
-    /**
-     * Get accountId
-     *
-     * @return accountId
-     */
-    @jakarta.annotation.Nullable
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(@jakarta.annotation.Nullable String accountId) {
-        this.accountId = accountId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -155,14 +129,12 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         return Objects.equals(this.name, getPayTradeHistoryResponseDataInnerPayerInfo.name)
                 && Objects.equals(this.type, getPayTradeHistoryResponseDataInnerPayerInfo.type)
                 && Objects.equals(
-                        this.binanceId, getPayTradeHistoryResponseDataInnerPayerInfo.binanceId)
-                && Objects.equals(
-                        this.accountId, getPayTradeHistoryResponseDataInnerPayerInfo.accountId);
+                        this.binanceId, getPayTradeHistoryResponseDataInnerPayerInfo.binanceId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, binanceId, accountId);
+        return Objects.hash(name, type, binanceId);
     }
 
     @Override
@@ -172,7 +144,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         sb.append("		name: ").append(toIndentedString(name)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		binanceId: ").append(toIndentedString(binanceId)).append("\n");
-        sb.append("		accountId: ").append(toIndentedString(accountId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -192,10 +163,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         String binanceIdValueAsString = "";
         binanceIdValueAsString = binanceIdValue.toString();
         sb.append("binanceId=").append(urlEncode(binanceIdValueAsString)).append("");
-        Object accountIdValue = getAccountId();
-        String accountIdValueAsString = "";
-        accountIdValueAsString = accountIdValue.toString();
-        sb.append("accountId=").append(urlEncode(accountIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -227,7 +194,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         openapiFields.add("name");
         openapiFields.add("type");
         openapiFields.add("binanceId");
-        openapiFields.add("accountId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -277,14 +243,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
                             "Expected the field `binanceId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("binanceId").toString()));
-        }
-        if ((jsonObj.get("accountId") != null && !jsonObj.get("accountId").isJsonNull())
-                && !jsonObj.get("accountId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `accountId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("accountId").toString()));
         }
     }
 

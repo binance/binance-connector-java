@@ -193,7 +193,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderCancelReplaceRequest() {}
 
@@ -696,7 +696,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         this.pegOffsetType = pegOffsetType;
     }
 
-    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -707,11 +707,12 @@ public class OrderCancelReplaceRequest extends BaseDTO {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -963,9 +964,10 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             String pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
             valMap.put("pegOffsetType", pegOffsetTypeValueAsString);
         }
-        Long recvWindowValue = getRecvWindow();
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 

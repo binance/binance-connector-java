@@ -13,6 +13,7 @@
 |**quoteQty** | **String** |  |  [optional] |
 |**time** | **Long** |  |  [optional] |
 |**isBuyerMaker** | **Boolean** |  |  [optional] |
+|**isRPITrade** | **Boolean** |  |  [optional] |
 
 
 

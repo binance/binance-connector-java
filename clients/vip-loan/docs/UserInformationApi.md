@@ -5,6 +5,7 @@ All URIs are relative to *https://api.binance.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**checkVIPLoanCollateralAccount**](UserInformationApi.md#checkVIPLoanCollateralAccount) | **GET** /sapi/v1/loan/vip/collateral/account | Check VIP Loan Collateral Account (USER_DATA) |
+| [**getVIPLoanAccruedInterest**](UserInformationApi.md#getVIPLoanAccruedInterest) | **GET** /sapi/v1/loan/vip/accruedInterest | Get VIP Loan Accrued Interest (USER_DATA) |
 | [**getVIPLoanOngoingOrders**](UserInformationApi.md#getVIPLoanOngoingOrders) | **GET** /sapi/v1/loan/vip/ongoing/orders | Get VIP Loan Ongoing Orders(USER_DATA) |
 | [**queryApplicationStatus**](UserInformationApi.md#queryApplicationStatus) | **GET** /sapi/v1/loan/vip/request/data | Query Application Status(USER_DATA) |
 
@@ -75,6 +76,80 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Check VIP Loan Collateral Account |  -  |
 
+<a id="getVIPLoanAccruedInterest"></a>
+# **getVIPLoanAccruedInterest**
+> GetVIPLoanAccruedInterestResponse getVIPLoanAccruedInterest(orderId, loanCoin, startTime, endTime, current, limit, recvWindow)
+
+Get VIP Loan Accrued Interest (USER_DATA)
+
+Check VIP Loan interest record  * If startTime and endTime are not sent, the recent 90-day data will be returned. * The max interval between startTime and endTime is 90 days.  Weight: 400
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.vip_loan.ApiClient;
+import com.binance.connector.client.vip_loan.ApiException;
+import com.binance.connector.client.vip_loan.Configuration;
+import com.binance.connector.client.vip_loan.models.*;
+import com.binance.connector.client.vip_loan.rest.api.UserInformationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    UserInformationApi apiInstance = new UserInformationApi(defaultClient);
+    Long orderId = 56L; // Long | 
+    String loanCoin = "loanCoin_example"; // String | 
+    Long startTime = 56L; // Long | 
+    Long endTime = 56L; // Long | 
+    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
+    Long limit = 56L; // Long | Default: 10; max: 100
+    Long recvWindow = 56L; // Long | 
+    try {
+      GetVIPLoanAccruedInterestResponse result = apiInstance.getVIPLoanAccruedInterest(orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserInformationApi#getVIPLoanAccruedInterest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **Long**|  | [optional] |
+| **loanCoin** | **String**|  | [optional] |
+| **startTime** | **Long**|  | [optional] |
+| **endTime** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
+| **limit** | **Long**| Default: 10; max: 100 | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**GetVIPLoanAccruedInterestResponse**](GetVIPLoanAccruedInterestResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get VIP Loan Accrued Interest |  -  |
+
 <a id="getVIPLoanOngoingOrders"></a>
 # **getVIPLoanOngoingOrders**
 > GetVIPLoanOngoingOrdersResponse getVIPLoanOngoingOrders(orderId, collateralAccountId, loanCoin, collateralCoin, current, limit, recvWindow)
@@ -102,8 +177,8 @@ public class Example {
     Long collateralAccountId = 56L; // Long | 
     String loanCoin = "loanCoin_example"; // String | 
     String collateralCoin = "collateralCoin_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Start from 1, Default:1, Max: 1000.
-    Long limit = 56L; // Long | Default: 10, Max: 100
+    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
+    Long limit = 56L; // Long | Default: 10; max: 100
     Long recvWindow = 56L; // Long | 
     try {
       GetVIPLoanOngoingOrdersResponse result = apiInstance.getVIPLoanOngoingOrders(orderId, collateralAccountId, loanCoin, collateralCoin, current, limit, recvWindow);
@@ -127,8 +202,8 @@ public class Example {
 | **collateralAccountId** | **Long**|  | [optional] |
 | **loanCoin** | **String**|  | [optional] |
 | **collateralCoin** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1, Default:1, Max: 1000. | [optional] |
-| **limit** | **Long**| Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
+| **limit** | **Long**| Default: 10; max: 100 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -172,8 +247,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     UserInformationApi apiInstance = new UserInformationApi(defaultClient);
-    Long current = 56L; // Long | Currently querying page. Start from 1, Default:1, Max: 1000.
-    Long limit = 56L; // Long | Default: 10, Max: 100
+    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
+    Long limit = 56L; // Long | Default: 10; max: 100
     Long recvWindow = 56L; // Long | 
     try {
       QueryApplicationStatusResponse result = apiInstance.queryApplicationStatus(current, limit, recvWindow);
@@ -193,8 +268,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **current** | **Long**| Currently querying page. Start from 1, Default:1, Max: 1000. | [optional] |
-| **limit** | **Long**| Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
+| **limit** | **Long**| Default: 10; max: 100 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

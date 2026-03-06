@@ -13,7 +13,7 @@
 |**endTime** | **Long** |  |  [optional] |
 |**fromId** | **Integer** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

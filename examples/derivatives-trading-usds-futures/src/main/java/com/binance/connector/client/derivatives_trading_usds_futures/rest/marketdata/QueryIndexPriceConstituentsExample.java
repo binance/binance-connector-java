@@ -40,7 +40,8 @@ public class QueryIndexPriceConstituentsExample {
     /**
      * Query Index Price Constituents
      *
-     * <p>Query index price constituents Weight: 2
+     * <p>Query index price constituents **Note**: Prices from constituents of TradFi perps will be
+     * hiden and displayed as -1. Weight: 2
      *
      * @throws ApiException if the Api call fails
      */

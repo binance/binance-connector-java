@@ -84,12 +84,6 @@ public class WithdrawHistoryV2ResponseInner {
     @jakarta.annotation.Nullable
     private String address;
 
-    public static final String SERIALIZED_NAME_ADDRESS_TAG = "addressTag";
-
-    @SerializedName(SERIALIZED_NAME_ADDRESS_TAG)
-    @jakarta.annotation.Nullable
-    private String addressTag;
-
     public static final String SERIALIZED_NAME_TX_ID = "txId";
 
     @SerializedName(SERIALIZED_NAME_TX_ID)
@@ -311,26 +305,6 @@ public class WithdrawHistoryV2ResponseInner {
 
     public void setAddress(@jakarta.annotation.Nullable String address) {
         this.address = address;
-    }
-
-    public WithdrawHistoryV2ResponseInner addressTag(
-            @jakarta.annotation.Nullable String addressTag) {
-        this.addressTag = addressTag;
-        return this;
-    }
-
-    /**
-     * Get addressTag
-     *
-     * @return addressTag
-     */
-    @jakarta.annotation.Nullable
-    public String getAddressTag() {
-        return addressTag;
-    }
-
-    public void setAddressTag(@jakarta.annotation.Nullable String addressTag) {
-        this.addressTag = addressTag;
     }
 
     public WithdrawHistoryV2ResponseInner txId(@jakarta.annotation.Nullable String txId) {
@@ -567,7 +541,6 @@ public class WithdrawHistoryV2ResponseInner {
                 && Objects.equals(
                         this.travelRuleStatus, withdrawHistoryV2ResponseInner.travelRuleStatus)
                 && Objects.equals(this.address, withdrawHistoryV2ResponseInner.address)
-                && Objects.equals(this.addressTag, withdrawHistoryV2ResponseInner.addressTag)
                 && Objects.equals(this.txId, withdrawHistoryV2ResponseInner.txId)
                 && Objects.equals(this.applyTime, withdrawHistoryV2ResponseInner.applyTime)
                 && Objects.equals(this.network, withdrawHistoryV2ResponseInner.network)
@@ -593,7 +566,6 @@ public class WithdrawHistoryV2ResponseInner {
                 withdrawalStatus,
                 travelRuleStatus,
                 address,
-                addressTag,
                 txId,
                 applyTime,
                 network,
@@ -619,7 +591,6 @@ public class WithdrawHistoryV2ResponseInner {
         sb.append("		withdrawalStatus: ").append(toIndentedString(withdrawalStatus)).append("\n");
         sb.append("		travelRuleStatus: ").append(toIndentedString(travelRuleStatus)).append("\n");
         sb.append("		address: ").append(toIndentedString(address)).append("\n");
-        sb.append("		addressTag: ").append(toIndentedString(addressTag)).append("\n");
         sb.append("		txId: ").append(toIndentedString(txId)).append("\n");
         sb.append("		applyTime: ").append(toIndentedString(applyTime)).append("\n");
         sb.append("		network: ").append(toIndentedString(network)).append("\n");
@@ -670,10 +641,6 @@ public class WithdrawHistoryV2ResponseInner {
         String addressValueAsString = "";
         addressValueAsString = addressValue.toString();
         sb.append("address=").append(urlEncode(addressValueAsString)).append("");
-        Object addressTagValue = getAddressTag();
-        String addressTagValueAsString = "";
-        addressTagValueAsString = addressTagValue.toString();
-        sb.append("addressTag=").append(urlEncode(addressTagValueAsString)).append("");
         Object txIdValue = getTxId();
         String txIdValueAsString = "";
         txIdValueAsString = txIdValue.toString();
@@ -754,7 +721,6 @@ public class WithdrawHistoryV2ResponseInner {
         openapiFields.add("withdrawalStatus");
         openapiFields.add("travelRuleStatus");
         openapiFields.add("address");
-        openapiFields.add("addressTag");
         openapiFields.add("txId");
         openapiFields.add("applyTime");
         openapiFields.add("network");
@@ -829,14 +795,6 @@ public class WithdrawHistoryV2ResponseInner {
                             "Expected the field `address` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("address").toString()));
-        }
-        if ((jsonObj.get("addressTag") != null && !jsonObj.get("addressTag").isJsonNull())
-                && !jsonObj.get("addressTag").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `addressTag` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("addressTag").toString()));
         }
         if ((jsonObj.get("txId") != null && !jsonObj.get("txId").isJsonNull())
                 && !jsonObj.get("txId").isJsonPrimitive()) {

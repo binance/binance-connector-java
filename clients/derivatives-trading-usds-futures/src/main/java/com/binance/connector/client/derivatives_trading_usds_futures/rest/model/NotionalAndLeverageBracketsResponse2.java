@@ -58,7 +58,7 @@ public class NotionalAndLeverageBracketsResponse2 {
 
     @SerializedName(SERIALIZED_NAME_BRACKETS)
     @jakarta.annotation.Nullable
-    private List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets;
+    private List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets;
 
     public NotionalAndLeverageBracketsResponse2() {}
 
@@ -104,13 +104,13 @@ public class NotionalAndLeverageBracketsResponse2 {
 
     public NotionalAndLeverageBracketsResponse2 brackets(
             @jakarta.annotation.Nullable
-                    List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets) {
+                    List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets) {
         this.brackets = brackets;
         return this;
     }
 
     public NotionalAndLeverageBracketsResponse2 addBracketsItem(
-            NotionalAndLeverageBracketsResponse1InnerBracketsInner bracketsItem) {
+            NotionalAndLeverageBracketsResponse2BracketsInner bracketsItem) {
         if (this.brackets == null) {
             this.brackets = new ArrayList<>();
         }
@@ -125,13 +125,13 @@ public class NotionalAndLeverageBracketsResponse2 {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> getBrackets() {
+    public List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> getBrackets() {
         return brackets;
     }
 
     public void setBrackets(
             @jakarta.annotation.Nullable
-                    List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets) {
+                    List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets) {
         this.brackets = brackets;
     }
 
@@ -263,7 +263,7 @@ public class NotionalAndLeverageBracketsResponse2 {
 
                 // validate the optional field `brackets` (array)
                 for (int i = 0; i < jsonArraybrackets.size(); i++) {
-                    NotionalAndLeverageBracketsResponse1InnerBracketsInner.validateJsonElement(
+                    NotionalAndLeverageBracketsResponse2BracketsInner.validateJsonElement(
                             jsonArraybrackets.get(i));
                 }
                 ;

@@ -50,7 +50,7 @@ public class DeleteOrderExample {
         String origClientOrderId = "";
         String newClientOrderId = "";
         CancelRestrictions cancelRestrictions = CancelRestrictions.ONLY_NEW;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<DeleteOrderResponse> response =
                 getApi().deleteOrder(
                                 symbol,

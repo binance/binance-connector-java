@@ -30,6 +30,7 @@ import com.binance.connector.client.spot.rest.model.GetTradesResponse;
 import com.binance.connector.client.spot.rest.model.HistoricalTradesResponse;
 import com.binance.connector.client.spot.rest.model.Interval;
 import com.binance.connector.client.spot.rest.model.KlinesResponse;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.Ticker24hrResponse;
 import com.binance.connector.client.spot.rest.model.TickerBookTickerResponse;
@@ -154,7 +155,8 @@ public class MarketApiTest {
     public void depthTest() throws ApiException, CryptoException {
         String symbol = "BNBUSDT";
         Integer limit = 500;
-        ApiResponse<DepthResponse> response = api.depth(symbol, limit);
+        SymbolStatus symbolStatus = null;
+        ApiResponse<DepthResponse> response = api.depth(symbol, limit, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -262,7 +264,8 @@ public class MarketApiTest {
         Symbols symbols = null;
         WindowSize windowSize = WindowSize.WINDOW_SIZE_1m;
         TickerType type = TickerType.FULL;
-        ApiResponse<TickerResponse> response = api.ticker(symbol, symbols, windowSize, type);
+        SymbolStatus symbolStatus = null;
+        ApiResponse<TickerResponse> response = api.ticker(symbol, symbols, windowSize, type, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -297,7 +300,8 @@ public class MarketApiTest {
         String symbol = "BNBUSDT";
         Symbols symbols = null;
         TickerType type = TickerType.FULL;
-        ApiResponse<Ticker24hrResponse> response = api.ticker24hr(symbol, symbols, type);
+        SymbolStatus symbolStatus = null;
+        ApiResponse<Ticker24hrResponse> response = api.ticker24hr(symbol, symbols, type, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -327,7 +331,8 @@ public class MarketApiTest {
     public void tickerBookTickerTest() throws ApiException, CryptoException {
         String symbol = "BNBUSDT";
         Symbols symbols = null;
-        ApiResponse<TickerBookTickerResponse> response = api.tickerBookTicker(symbol, symbols);
+        SymbolStatus symbolStatus = null;
+        ApiResponse<TickerBookTickerResponse> response = api.tickerBookTicker(symbol, symbols, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -357,7 +362,8 @@ public class MarketApiTest {
     public void tickerPriceTest() throws ApiException, CryptoException {
         String symbol = "BNBUSDT";
         Symbols symbols = null;
-        ApiResponse<TickerPriceResponse> response = api.tickerPrice(symbol, symbols);
+        SymbolStatus symbolStatus = null;
+        ApiResponse<TickerPriceResponse> response = api.tickerPrice(symbol, symbols, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -385,8 +391,9 @@ public class MarketApiTest {
         Symbols symbols = null;
         String timeZone = "";
         TickerType type = TickerType.FULL;
+        SymbolStatus symbolStatus = null;
         ApiResponse<TickerTradingDayResponse> response =
-                api.tickerTradingDay(symbol, symbols, timeZone, type);
+                api.tickerTradingDay(symbol, symbols, timeZone, type, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

@@ -39,13 +39,15 @@ public class FetchAddressVerificationListExample {
     /**
      * Fetch address verification list (USER_DATA)
      *
-     * <p>Fetch address verification list Weight: 10
+     * <p>Fetch address verification list for user to check on status and other details for the
+     * addresses stored in Address Book. Weight: 1
      *
      * @throws ApiException if the Api call fails
      */
     public void fetchAddressVerificationListExample() throws ApiException {
+        Long recvWindow = 5000L;
         ApiResponse<FetchAddressVerificationListResponse> response =
-                getApi().fetchAddressVerificationList();
+                getApi().fetchAddressVerificationList(recvWindow);
         System.out.println(response.getData());
     }
 }

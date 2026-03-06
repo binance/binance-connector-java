@@ -106,7 +106,7 @@ public class AssetApiTest {
     @Test
     public void assetDetailTest() throws ApiException, CryptoException {
         Long recvWindow = 5000L;
-        ApiResponse<AssetDetailResponse> response = api.assetDetail(recvWindow);
+        ApiResponse<AssetDetailResponse> response = api.assetDetail("BTCUSDT", recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -118,9 +118,9 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("asset=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                "016fc03fd04451f16c6eba4bd92c9769396a6229a5fb8ca539d2ba74e3038a25",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/assetDetail", actualRequest.url().encodedPath());
     }
@@ -207,7 +207,7 @@ public class AssetApiTest {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
-        ApiResponse<DustlogResponse> response = api.dustlog(startTime, endTime, recvWindow);
+        ApiResponse<DustlogResponse> response = api.dustlog("", startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -220,10 +220,10 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
+                "accountType=&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "812caedbe8f349196a4532c2050ff706ed2569fed185039c7b60a78cd84bc718",
+                "80bec9d0114cf17ecc91114a2fa12987d44598afe1067a64d0a4641af84b67bc",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/dribblet", actualRequest.url().encodedPath());
     }

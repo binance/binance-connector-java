@@ -75,6 +75,12 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String qLowerCase;
 
+    public static final String SERIALIZED_NAME_NQ = "nq";
+
+    @SerializedName(SERIALIZED_NAME_NQ)
+    @jakarta.annotation.Nullable
+    private String nq;
+
     public static final String SERIALIZED_NAME_F_LOWER_CASE = "f";
 
     @SerializedName(SERIALIZED_NAME_F_LOWER_CASE)
@@ -219,6 +225,25 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         this.qLowerCase = qLowerCase;
     }
 
+    public AggregateTradeStreamsResponse nq(@jakarta.annotation.Nullable String nq) {
+        this.nq = nq;
+        return this;
+    }
+
+    /**
+     * Get nq
+     *
+     * @return nq
+     */
+    @jakarta.annotation.Nullable
+    public String getNq() {
+        return nq;
+    }
+
+    public void setNq(@jakarta.annotation.Nullable String nq) {
+        this.nq = nq;
+    }
+
     public AggregateTradeStreamsResponse fLowerCase(@jakarta.annotation.Nullable Long fLowerCase) {
         this.fLowerCase = fLowerCase;
         return this;
@@ -312,6 +337,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
                 && Objects.equals(this.aLowerCase, aggregateTradeStreamsResponse.aLowerCase)
                 && Objects.equals(this.pLowerCase, aggregateTradeStreamsResponse.pLowerCase)
                 && Objects.equals(this.qLowerCase, aggregateTradeStreamsResponse.qLowerCase)
+                && Objects.equals(this.nq, aggregateTradeStreamsResponse.nq)
                 && Objects.equals(this.fLowerCase, aggregateTradeStreamsResponse.fLowerCase)
                 && Objects.equals(this.lLowerCase, aggregateTradeStreamsResponse.lLowerCase)
                 && Objects.equals(this.T, aggregateTradeStreamsResponse.T)
@@ -327,6 +353,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
                 aLowerCase,
                 pLowerCase,
                 qLowerCase,
+                nq,
                 fLowerCase,
                 lLowerCase,
                 T,
@@ -343,6 +370,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
         sb.append("		qLowerCase: ").append(toIndentedString(qLowerCase)).append("\n");
+        sb.append("		nq: ").append(toIndentedString(nq)).append("\n");
         sb.append("		fLowerCase: ").append(toIndentedString(fLowerCase)).append("\n");
         sb.append("		lLowerCase: ").append(toIndentedString(lLowerCase)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
@@ -384,6 +412,11 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         if (qLowerCaseValue != null) {
             String qLowerCaseValueAsString = qLowerCaseValue.toString();
             valMap.put("qLowerCase", qLowerCaseValueAsString);
+        }
+        String nqValue = getNq();
+        if (nqValue != null) {
+            String nqValueAsString = nqValue.toString();
+            valMap.put("nq", nqValueAsString);
         }
         Long fLowerCaseValue = getfLowerCase();
         if (fLowerCaseValue != null) {
@@ -440,6 +473,10 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         if (qLowerCaseValue != null) {
             valMap.put("qLowerCase", qLowerCaseValue);
         }
+        Object nqValue = getNq();
+        if (nqValue != null) {
+            valMap.put("nq", nqValue);
+        }
         Object fLowerCaseValue = getfLowerCase();
         if (fLowerCaseValue != null) {
             valMap.put("fLowerCase", fLowerCaseValue);
@@ -488,6 +525,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         openapiFields.add("a");
         openapiFields.add("p");
         openapiFields.add("q");
+        openapiFields.add("nq");
         openapiFields.add("f");
         openapiFields.add("l");
         openapiFields.add("T");
@@ -559,6 +597,14 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
                             "Expected the field `q` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("q").toString()));
+        }
+        if ((jsonObj.get("nq") != null && !jsonObj.get("nq").isJsonNull())
+                && !jsonObj.get("nq").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `nq` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("nq").toString()));
         }
     }
 

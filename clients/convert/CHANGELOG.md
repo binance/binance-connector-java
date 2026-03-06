@@ -1,6 +1,21 @@
 # Changelog
 
+## 2.0.0 - 2026-02-12
+
+### Changed (1)
+
+- Modified response for `placeLimitOrder()` (`POST /sapi/v1/convert/limit/placeOrder`):
+  - property `orderId` added
+  - property `status` added
+  - property `inverseRatio` deleted
+  - property `quoteId` deleted
+  - property `ratio` deleted
+  - property `toAmount` deleted
+  - property `validTimestamp` deleted
+  - property `fromAmount` deleted
+
 ## 1.2.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

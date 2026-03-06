@@ -17,7 +17,7 @@ Before using the connectors, ensure you have:
 
 ## Available Connectors
 - [binance-algo](clients/algo) - Algo Trading connector
-- **Deprecated**: ~~[binance-auto-invest](clients/auto-invest) - Auto Invest connector~~
+- [binance-alpha](clients/alpha) - Alpha connector
 - [binance-c2c](clients/c2c) - C2C connector
 - [binance-convert](clients/convert) - Convert connector
 - [binance-copy-trading](clients/copy-trading) - Copy Trading connector
@@ -54,7 +54,7 @@ Each connector is published as a separate maven dependency. For example:
 <dependency>
   <groupId>io.github.binance</groupId>
   <artifactId>binance-spot</artifactId>
-  <version>6.0.0</version>
+  <version>9.0.0</version>
 </dependency>
 ```
 
@@ -208,6 +208,8 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 
 ## Examples
 **Algo**: [Rest API](clients/algo/example_rest.md)
+
+**Alpha**: [Rest API](clients/alpha/example_rest.md)
 
 **C2c**: [Rest API](clients/c2c/example_rest.md)
 

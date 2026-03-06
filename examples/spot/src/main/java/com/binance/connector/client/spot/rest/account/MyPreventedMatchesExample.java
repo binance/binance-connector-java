@@ -55,7 +55,7 @@ public class MyPreventedMatchesExample {
         Long orderId = 1L;
         Long fromPreventedMatchId = 1L;
         Integer limit = 500;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<MyPreventedMatchesResponse> response =
                 getApi().myPreventedMatches(
                                 symbol,

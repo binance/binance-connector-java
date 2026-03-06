@@ -20,6 +20,10 @@
 
 [GET /sapi/v1/asset/assetDividend](https://developers.binance.com/docs/wallet/asset/assets-divided-record) - assetDividendRecord - [AssetDividendRecordExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/AssetDividendRecordExample.java#L47)
 
+[POST /sapi/v1/asset/dust-convert/convert](https://developers.binance.com/docs/wallet/asset/Dust-Convert) - dustConvert - [DustConvertExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/DustConvertExample.java#L47)
+
+[POST /sapi/v1/asset/dust-convert/query-convertible-assets](https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets) - dustConvertibleAssets - [DustConvertibleAssetsExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/DustConvertibleAssetsExample.java#L47)
+
 [POST /sapi/v1/asset/dust](https://developers.binance.com/docs/wallet/asset/Dust-Transfer) - dustTransfer - [DustTransferExample.java:48](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/DustTransferExample.java#L48)
 
 [GET /sapi/v1/asset/dribblet](https://developers.binance.com/docs/wallet/asset/dust-log) - dustlog - [DustlogExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/DustlogExample.java#L46)
@@ -32,11 +36,11 @@
 
 [GET /sapi/v1/spot/open-symbol-list](https://developers.binance.com/docs/wallet/asset/open-symbol-list) - getOpenSymbolList - [GetOpenSymbolListExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/GetOpenSymbolListExample.java#L47)
 
-[GET /sapi/v1/asset/custody/transfer-history](https://developers.binance.com/docs/wallet/asset/query-user-delegation) - queryUserDelegationHistory - [QueryUserDelegationHistoryExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserDelegationHistoryExample.java#L47)
+[GET /sapi/v1/asset/custody/transfer-history](https://developers.binance.com/docs/wallet/asset/query-user-delegation) - queryUserDelegationHistory - [QueryUserDelegationHistoryExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserDelegationHistoryExample.java#L46)
 
 [GET /sapi/v1/asset/transfer](https://developers.binance.com/docs/wallet/asset/query-user-universal-transfer) - queryUserUniversalTransferHistory - [QueryUserUniversalTransferHistoryExample.java:50](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserUniversalTransferHistoryExample.java#L50)
 
-[GET /sapi/v1/asset/wallet/balance](https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance) - queryUserWalletBalance - [QueryUserWalletBalanceExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserWalletBalanceExample.java#L47)
+[GET /sapi/v1/asset/wallet/balance](https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance) - queryUserWalletBalance - [QueryUserWalletBalanceExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserWalletBalanceExample.java#L46)
 
 [POST /sapi/v1/bnbBurn](https://developers.binance.com/docs/wallet/asset/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest) - toggleBnbBurnOnSpotTradeAndMarginInterest - [ToggleBnbBurnOnSpotTradeAndMarginInterestExample.java:48](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/ToggleBnbBurnOnSpotTradeAndMarginInterestExample.java#L48)
 
@@ -62,7 +66,7 @@
 
 [POST /sapi/v1/capital/deposit/credit-apply](https://developers.binance.com/docs/wallet/capital/one-click-arrival-deposite-apply) - oneClickArrivalDepositApply - [OneClickArrivalDepositApplyExample.java:48](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/capital/OneClickArrivalDepositApplyExample.java#L48)
 
-[POST /sapi/v1/capital/withdraw/apply](https://developers.binance.com/docs/wallet/capital/Withdraw) - withdraw - [WithdrawExample.java:50](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/capital/WithdrawExample.java#L50)
+[POST /sapi/v1/capital/withdraw/apply](https://developers.binance.com/docs/wallet/capital/Withdraw) - withdraw - [WithdrawExample.java:55](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/capital/WithdrawExample.java#L55)
 
 [GET /sapi/v1/capital/withdraw/history](https://developers.binance.com/docs/wallet/capital/Withdraw-History) - withdrawHistory - [WithdrawHistoryExample.java:54](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/capital/WithdrawHistoryExample.java#L54)
 
@@ -76,19 +80,25 @@
 
 [POST /sapi/v1/localentity/broker/withdraw/apply](https://developers.binance.com/docs/wallet/travel-rule/Broker-Withdraw) - brokerWithdraw - [BrokerWithdrawExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/BrokerWithdrawExample.java#L52)
 
+[GET /sapi/v1/localentity/questionnaire-requirements](https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements) - checkQuestionnaireRequirements - [CheckQuestionnaireRequirementsExample.java:48](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/CheckQuestionnaireRequirementsExample.java#L48)
+
 [GET /sapi/v1/localentity/deposit/history](https://developers.binance.com/docs/wallet/travel-rule/Deposit-History) - depositHistoryTravelRule - [DepositHistoryTravelRuleExample.java:51](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/DepositHistoryTravelRuleExample.java#L51)
 
-[GET /sapi/v1/addressVerify/list](https://developers.binance.com/docs/wallet/travel-rule/address-verification-list) - fetchAddressVerificationList - [FetchAddressVerificationListExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/FetchAddressVerificationListExample.java#L46)
+[GET /sapi/v2/localentity/deposit/history](https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2) - depositHistoryV2 - [DepositHistoryV2Example.java:51](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/DepositHistoryV2Example.java#L51)
 
-[GET /sapi/v1/localentity/vasp](https://developers.binance.com/docs/wallet/travel-rule/Onboarded-VASP-list) - onboardedVaspList - [OnboardedVaspListExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/OnboardedVaspListExample.java#L52)
+[GET /sapi/v1/addressVerify/list](https://developers.binance.com/docs/wallet/travel-rule/address-verification-list) - fetchAddressVerificationList - [FetchAddressVerificationListExample.java:47](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/FetchAddressVerificationListExample.java#L47)
 
 [PUT /sapi/v1/localentity/broker/deposit/provide-info](https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info) - submitDepositQuestionnaire - [SubmitDepositQuestionnaireExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireExample.java#L52)
 
 [PUT /sapi/v1/localentity/deposit/provide-info](https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info) - submitDepositQuestionnaireTravelRule - [SubmitDepositQuestionnaireTravelRuleExample.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireTravelRuleExample.java#L52)
 
-[GET /sapi/v1/localentity/withdraw/history](https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History) - withdrawHistoryV1 - [WithdrawHistoryV1Example.java:55](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/WithdrawHistoryV1Example.java#L55)
+[PUT /sapi/v2/localentity/deposit/provide-info](https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2) - submitDepositQuestionnaireV2 - [SubmitDepositQuestionnaireV2Example.java:52](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireV2Example.java#L52)
 
-[GET /sapi/v2/localentity/withdraw/history](https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History-V2) - withdrawHistoryV2 - [WithdrawHistoryV2Example.java:61](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/WithdrawHistoryV2Example.java#L61)
+[GET /sapi/v1/localentity/vasp](https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list) - vaspList - [VaspListExample.java:46](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/VaspListExample.java#L46)
+
+[GET /sapi/v1/localentity/withdraw/history](https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History) - withdrawHistoryV1 - [WithdrawHistoryV1Example.java:51](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/WithdrawHistoryV1Example.java#L51)
+
+[GET /sapi/v2/localentity/withdraw/history](https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History-V2) - withdrawHistoryV2 - [WithdrawHistoryV2Example.java:56](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/WithdrawHistoryV2Example.java#L56)
 
 [POST /sapi/v1/localentity/withdraw/apply](https://developers.binance.com/docs/wallet/travel-rule/Withdraw) - withdrawTravelRule - [WithdrawTravelRuleExample.java:53](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/WithdrawTravelRuleExample.java#L53)
 

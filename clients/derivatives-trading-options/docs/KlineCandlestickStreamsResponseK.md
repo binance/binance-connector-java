@@ -11,7 +11,7 @@
 |**T** | **Long** |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
 |**iLowerCase** | **String** |  |  [optional] |
-|**F** | **Long** |  |  [optional] |
+|**fLowerCase** | **Long** |  |  [optional] |
 |**L** | **Long** |  |  [optional] |
 |**oLowerCase** | **String** |  |  [optional] |
 |**cLowerCase** | **String** |  |  [optional] |

@@ -46,7 +46,7 @@ public class DeleteOpenOrdersExample {
      */
     public void deleteOpenOrdersExample() throws ApiException {
         String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<DeleteOpenOrdersResponse> response =
                 getApi().deleteOpenOrders(symbol, recvWindow);
         System.out.println(response.getData());

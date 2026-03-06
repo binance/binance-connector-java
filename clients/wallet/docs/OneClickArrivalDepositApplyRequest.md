@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**depositId** | **String** |  |  [optional] |
+|**depositId** | **Long** |  |  [optional] |
 |**txId** | **String** |  |  [optional] |
 |**subAccountId** | **String** |  |  [optional] |
 |**subUserId** | **Long** |  |  [optional] |

@@ -114,6 +114,12 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String stopPrice;
 
+    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
+
+    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
+    @jakarta.annotation.Nullable
+    private Boolean closePosition;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -137,18 +143,6 @@ public class PlaceMultipleOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_ORIG_TYPE)
     @jakarta.annotation.Nullable
     private String origType;
-
-    public static final String SERIALIZED_NAME_ACTIVATE_PRICE = "activatePrice";
-
-    @SerializedName(SERIALIZED_NAME_ACTIVATE_PRICE)
-    @jakarta.annotation.Nullable
-    private String activatePrice;
-
-    public static final String SERIALIZED_NAME_PRICE_RATE = "priceRate";
-
-    @SerializedName(SERIALIZED_NAME_PRICE_RATE)
-    @jakarta.annotation.Nullable
-    private String priceRate;
 
     public static final String SERIALIZED_NAME_UPDATE_TIME = "updateTime";
 
@@ -453,6 +447,26 @@ public class PlaceMultipleOrdersResponseInner {
         this.stopPrice = stopPrice;
     }
 
+    public PlaceMultipleOrdersResponseInner closePosition(
+            @jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+        return this;
+    }
+
+    /**
+     * Get closePosition
+     *
+     * @return closePosition
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+    }
+
     public PlaceMultipleOrdersResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
@@ -528,46 +542,6 @@ public class PlaceMultipleOrdersResponseInner {
 
     public void setOrigType(@jakarta.annotation.Nullable String origType) {
         this.origType = origType;
-    }
-
-    public PlaceMultipleOrdersResponseInner activatePrice(
-            @jakarta.annotation.Nullable String activatePrice) {
-        this.activatePrice = activatePrice;
-        return this;
-    }
-
-    /**
-     * Get activatePrice
-     *
-     * @return activatePrice
-     */
-    @jakarta.annotation.Nullable
-    public String getActivatePrice() {
-        return activatePrice;
-    }
-
-    public void setActivatePrice(@jakarta.annotation.Nullable String activatePrice) {
-        this.activatePrice = activatePrice;
-    }
-
-    public PlaceMultipleOrdersResponseInner priceRate(
-            @jakarta.annotation.Nullable String priceRate) {
-        this.priceRate = priceRate;
-        return this;
-    }
-
-    /**
-     * Get priceRate
-     *
-     * @return priceRate
-     */
-    @jakarta.annotation.Nullable
-    public String getPriceRate() {
-        return priceRate;
-    }
-
-    public void setPriceRate(@jakarta.annotation.Nullable String priceRate) {
-        this.priceRate = priceRate;
     }
 
     public PlaceMultipleOrdersResponseInner updateTime(
@@ -752,13 +726,12 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.positionSide, placeMultipleOrdersResponseInner.positionSide)
                 && Objects.equals(this.status, placeMultipleOrdersResponseInner.status)
                 && Objects.equals(this.stopPrice, placeMultipleOrdersResponseInner.stopPrice)
+                && Objects.equals(
+                        this.closePosition, placeMultipleOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, placeMultipleOrdersResponseInner.symbol)
                 && Objects.equals(this.timeInForce, placeMultipleOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, placeMultipleOrdersResponseInner.type)
                 && Objects.equals(this.origType, placeMultipleOrdersResponseInner.origType)
-                && Objects.equals(
-                        this.activatePrice, placeMultipleOrdersResponseInner.activatePrice)
-                && Objects.equals(this.priceRate, placeMultipleOrdersResponseInner.priceRate)
                 && Objects.equals(this.updateTime, placeMultipleOrdersResponseInner.updateTime)
                 && Objects.equals(this.workingType, placeMultipleOrdersResponseInner.workingType)
                 && Objects.equals(this.priceProtect, placeMultipleOrdersResponseInner.priceProtect)
@@ -787,12 +760,11 @@ public class PlaceMultipleOrdersResponseInner {
                 positionSide,
                 status,
                 stopPrice,
+                closePosition,
                 symbol,
                 timeInForce,
                 type,
                 origType,
-                activatePrice,
-                priceRate,
                 updateTime,
                 workingType,
                 priceProtect,
@@ -820,12 +792,11 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
-        sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
-        sb.append("		priceRate: ").append(toIndentedString(priceRate)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
@@ -895,6 +866,10 @@ public class PlaceMultipleOrdersResponseInner {
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object closePositionValue = getClosePosition();
+        String closePositionValueAsString = "";
+        closePositionValueAsString = closePositionValue.toString();
+        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -911,14 +886,6 @@ public class PlaceMultipleOrdersResponseInner {
         String origTypeValueAsString = "";
         origTypeValueAsString = origTypeValue.toString();
         sb.append("origType=").append(urlEncode(origTypeValueAsString)).append("");
-        Object activatePriceValue = getActivatePrice();
-        String activatePriceValueAsString = "";
-        activatePriceValueAsString = activatePriceValue.toString();
-        sb.append("activatePrice=").append(urlEncode(activatePriceValueAsString)).append("");
-        Object priceRateValue = getPriceRate();
-        String priceRateValueAsString = "";
-        priceRateValueAsString = priceRateValue.toString();
-        sb.append("priceRate=").append(urlEncode(priceRateValueAsString)).append("");
         Object updateTimeValue = getUpdateTime();
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
@@ -994,12 +961,11 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
+        openapiFields.add("closePosition");
         openapiFields.add("symbol");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("origType");
-        openapiFields.add("activatePrice");
-        openapiFields.add("priceRate");
         openapiFields.add("updateTime");
         openapiFields.add("workingType");
         openapiFields.add("priceProtect");
@@ -1151,22 +1117,6 @@ public class PlaceMultipleOrdersResponseInner {
                             "Expected the field `origType` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("origType").toString()));
-        }
-        if ((jsonObj.get("activatePrice") != null && !jsonObj.get("activatePrice").isJsonNull())
-                && !jsonObj.get("activatePrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `activatePrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("activatePrice").toString()));
-        }
-        if ((jsonObj.get("priceRate") != null && !jsonObj.get("priceRate").isJsonNull())
-                && !jsonObj.get("priceRate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceRate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceRate").toString()));
         }
         if ((jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull())
                 && !jsonObj.get("workingType").isJsonPrimitive()) {

@@ -43,7 +43,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/3.0.1 (Java/%s; %s; %s)",
+                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -85,7 +85,7 @@ public class TransferApi {
      *
      * @param asset (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -261,7 +261,7 @@ public class TransferApi {
      *
      * @param asset (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)

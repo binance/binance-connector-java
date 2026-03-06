@@ -20,7 +20,6 @@
 |**availableBalance** | **String** |  |  [optional] |
 |**maxWithdrawAmount** | **String** |  |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
-|**marginAvailable** | **Boolean** |  |  [optional] |
 
 
 
