@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**underlyingAsset** | **String** |  |  |
+|**id** | **Integer** |  |  [optional] |
+|**underlying** | **String** |  |  |
 
 
 

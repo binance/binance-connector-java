@@ -73,6 +73,12 @@ public class VipLoanBorrowRequest {
     @jakarta.annotation.Nonnull
     private Boolean isFlexibleRate;
 
+    public static final String SERIALIZED_NAME_LOAN_TERM = "loanTerm";
+
+    @SerializedName(SERIALIZED_NAME_LOAN_TERM)
+    @jakarta.annotation.Nullable
+    private Long loanTerm;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -203,6 +209,25 @@ public class VipLoanBorrowRequest {
         this.isFlexibleRate = isFlexibleRate;
     }
 
+    public VipLoanBorrowRequest loanTerm(@jakarta.annotation.Nullable Long loanTerm) {
+        this.loanTerm = loanTerm;
+        return this;
+    }
+
+    /**
+     * Get loanTerm
+     *
+     * @return loanTerm
+     */
+    @jakarta.annotation.Nullable
+    public Long getLoanTerm() {
+        return loanTerm;
+    }
+
+    public void setLoanTerm(@jakarta.annotation.Nullable Long loanTerm) {
+        this.loanTerm = loanTerm;
+    }
+
     public VipLoanBorrowRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -238,6 +263,7 @@ public class VipLoanBorrowRequest {
                         this.collateralAccountId, vipLoanBorrowRequest.collateralAccountId)
                 && Objects.equals(this.collateralCoin, vipLoanBorrowRequest.collateralCoin)
                 && Objects.equals(this.isFlexibleRate, vipLoanBorrowRequest.isFlexibleRate)
+                && Objects.equals(this.loanTerm, vipLoanBorrowRequest.loanTerm)
                 && Objects.equals(this.recvWindow, vipLoanBorrowRequest.recvWindow);
     }
 
@@ -250,6 +276,7 @@ public class VipLoanBorrowRequest {
                 collateralAccountId,
                 collateralCoin,
                 isFlexibleRate,
+                loanTerm,
                 recvWindow);
     }
 
@@ -265,6 +292,7 @@ public class VipLoanBorrowRequest {
                 .append("\n");
         sb.append("		collateralCoin: ").append(toIndentedString(collateralCoin)).append("\n");
         sb.append("		isFlexibleRate: ").append(toIndentedString(isFlexibleRate)).append("\n");
+        sb.append("		loanTerm: ").append(toIndentedString(loanTerm)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -299,6 +327,10 @@ public class VipLoanBorrowRequest {
         String isFlexibleRateValueAsString = "";
         isFlexibleRateValueAsString = isFlexibleRateValue.toString();
         sb.append("isFlexibleRate=").append(urlEncode(isFlexibleRateValueAsString)).append("");
+        Object loanTermValue = getLoanTerm();
+        String loanTermValueAsString = "";
+        loanTermValueAsString = loanTermValue.toString();
+        sb.append("loanTerm=").append(urlEncode(loanTermValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -337,6 +369,7 @@ public class VipLoanBorrowRequest {
         openapiFields.add("collateralAccountId");
         openapiFields.add("collateralCoin");
         openapiFields.add("isFlexibleRate");
+        openapiFields.add("loanTerm");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

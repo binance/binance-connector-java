@@ -487,7 +487,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
+    String email = "email_example"; // String | Managed sub-account email
     Long recvWindow = 56L; // Long | 
     try {
       QuerySubAccountTransactionStatisticsResponse result = apiInstance.querySubAccountTransactionStatistics(email, recvWindow);
@@ -507,7 +507,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**| Managed sub-account email | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

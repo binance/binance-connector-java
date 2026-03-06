@@ -11,6 +11,7 @@
 |**symbols** | **Symbols** |  |  [optional] |
 |**timeZone** | **String** |  |  [optional] |
 |**tickerType** | **TickerType** |  |  [optional] |
+|**symbolStatus** | **SymbolStatus** |  |  [optional] |
 
 
 

@@ -19,7 +19,7 @@
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
-|**marginBuyBorrowAmount** | **Long** |  |  [optional] |
+|**marginBuyBorrowAmount** | **String** |  |  [optional] |
 |**marginBuyBorrowAsset** | **String** |  |  [optional] |
 |**fills** | [**List&lt;NewMarginOrderResponseFillsInner&gt;**](NewMarginOrderResponseFillsInner.md) |  |  [optional] |
 

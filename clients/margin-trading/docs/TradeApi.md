@@ -26,6 +26,7 @@ All URIs are relative to *https://api.binance.com*
 | [**queryMarginAccountsOpenOrders**](TradeApi.md#queryMarginAccountsOpenOrders) | **GET** /sapi/v1/margin/openOrders | Query Margin Account&#39;s Open Orders (USER_DATA) |
 | [**queryMarginAccountsOrder**](TradeApi.md#queryMarginAccountsOrder) | **GET** /sapi/v1/margin/order | Query Margin Account&#39;s Order (USER_DATA) |
 | [**queryMarginAccountsTradeList**](TradeApi.md#queryMarginAccountsTradeList) | **GET** /sapi/v1/margin/myTrades | Query Margin Account&#39;s Trade List (USER_DATA) |
+| [**queryPreventedMatches**](TradeApi.md#queryPreventedMatches) | **GET** /sapi/v1/margin/myPreventedMatches | Query Prevented Matches(USER_DATA) |
 | [**querySpecialKey**](TradeApi.md#querySpecialKey) | **GET** /sapi/v1/margin/apiKey | Query Special key(Low Latency Trading)(TRADE) |
 | [**querySpecialKeyList**](TradeApi.md#querySpecialKeyList) | **GET** /sapi/v1/margin/api-key-list | Query Special key List(Low Latency Trading)(TRADE) |
 | [**smallLiabilityExchange**](TradeApi.md#smallLiabilityExchange) | **POST** /sapi/v1/margin/exchange-small-liability | Small Liability Exchange (MARGIN) |
@@ -37,7 +38,7 @@ All URIs are relative to *https://api.binance.com*
 
 Create Special Key(Low-Latency Trading)(TRADE)
 
-**Binance Margin offers low-latency trading through a [special key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e), available exclusively to users with VIP level 4 or higher. **  **If you are VIP level 3 or below, please contact your VIP manager for eligibility criterias.**  We support several types of API keys:  * Ed25519 (recommended) * HMAC * RSA  We recommend to **use Ed25519 API keys** as it should provide the best performance and security out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on Binance. Please refer to the document below [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db) .  Read [REST API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#signed-trade-and-user_data-endpoint-security) or [WebSocket API](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md#request-security) documentation to learn how to use different API keys  You need to enable Permits “Enable Spot &amp; Margin Trading” option for the API Key which requests this endpoint.  Weight: 1(UID)
+- Binance Margin offers low-latency trading through a [special key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e), available exclusively to users with VIP level 4 or higher. - If you are VIP level 3 or below, please contact your VIP manager for eligibility criterias.**  **Supported Products:**  - Cross Margin - Isolated Margin - Portfolio Margin Pro - Cross Margin Pro (Additional agreement required and subject to meeting eligibility criteria)  **Unsupported Products:**  - Portfolio Margin  We support several types of API keys:  * Ed25519 (recommended) * HMAC * RSA  We recommend to **use Ed25519 API keys** as it should provide the best performance and security out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on Binance. Please refer to the document below [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db) .  Weight: 1(UID)
 
 ### Example
 ```java
@@ -242,7 +243,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
@@ -266,7 +267,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **isolatedSymbol** | **String**| isolated symbol | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
@@ -378,7 +379,7 @@ public class Example {
     TradeApi apiInstance = new TradeApi(defaultClient);
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10, Max:100
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
     Long recvWindow = 56L; // Long | No more than 60000
     try {
@@ -401,7 +402,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | |
 | **size** | **Long**| Default:10, Max:100 | |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
@@ -447,7 +448,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       MarginAccountCancelAllOpenOrdersOnASymbolResponse result = apiInstance.marginAccountCancelAllOpenOrdersOnASymbol(symbol, isIsolated, recvWindow);
@@ -468,7 +469,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -513,7 +514,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long orderListId = 56L; // Long | Either `orderListId` or `listClientOrderId` must be provided
     String listClientOrderId = "listClientOrderId_example"; // String | Either `orderListId` or `listClientOrderId` must be provided
     String newClientOrderId = "newClientOrderId_example"; // String | Used to uniquely identify this cancel. Automatically generated by default
@@ -537,7 +538,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **orderListId** | **Long**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
 | **listClientOrderId** | **String**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
 | **newClientOrderId** | **String**| Used to uniquely identify this cancel. Automatically generated by default | [optional] |
@@ -585,7 +586,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long orderId = 56L; // Long | 
     String origClientOrderId = "origClientOrderId_example"; // String | 
     String newClientOrderId = "newClientOrderId_example"; // String | Used to uniquely identify this cancel. Automatically generated by default
@@ -609,7 +610,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **newClientOrderId** | **String**| Used to uniquely identify this cancel. Automatically generated by default | [optional] |
@@ -966,7 +967,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     String symbol = "symbol_example"; // String | isolated margin pair
     Long recvWindow = 56L; // Long | No more than 60000
     try {
@@ -987,7 +988,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
@@ -1032,12 +1033,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     String symbol = "symbol_example"; // String | isolated margin pair
-    Long fromId = 56L; // Long | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long fromId = 56L; // Long | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsAllOcoResponse result = apiInstance.queryMarginAccountsAllOco(isIsolated, symbol, fromId, startTime, endTime, limit, recvWindow);
@@ -1057,12 +1058,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
-| **fromId** | **Long**| 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **fromId** | **Long**| If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1107,11 +1108,11 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsAllOrdersResponse result = apiInstance.queryMarginAccountsAllOrders(symbol, isIsolated, orderId, startTime, endTime, limit, recvWindow);
@@ -1132,11 +1133,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1180,7 +1181,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     String symbol = "symbol_example"; // String | isolated margin pair
     Long orderListId = 56L; // Long | Either `orderListId` or `listClientOrderId` must be provided
     String origClientOrderId = "origClientOrderId_example"; // String | 
@@ -1203,7 +1204,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
 | **orderListId** | **Long**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
@@ -1250,7 +1251,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     String symbol = "symbol_example"; // String | isolated margin pair
     Long recvWindow = 56L; // Long | No more than 60000
     try {
@@ -1271,7 +1272,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **symbol** | **String**| isolated margin pair | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
@@ -1317,7 +1318,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | isolated margin pair
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsOpenOrdersResponse result = apiInstance.queryMarginAccountsOpenOrders(symbol, isIsolated, recvWindow);
@@ -1338,7 +1339,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**| isolated margin pair | [optional] |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1383,7 +1384,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long orderId = 56L; // Long | 
     String origClientOrderId = "origClientOrderId_example"; // String | 
     Long recvWindow = 56L; // Long | No more than 60000
@@ -1406,7 +1407,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
@@ -1453,12 +1454,12 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String isIsolated = "isIsolated_example"; // String | for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
     Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
+    Long startTime = 56L; // Long | Only supports querying data from the past 90 days.
     Long endTime = 56L; // Long | 
-    Long fromId = 56L; // Long | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-    Long limit = 56L; // Long | Default Value: 500; Max Value: 1000
+    Long fromId = 56L; // Long | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+    Long limit = 56L; // Long | Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
     Long recvWindow = 56L; // Long | No more than 60000
     try {
       QueryMarginAccountsTradeListResponse result = apiInstance.queryMarginAccountsTradeList(symbol, isIsolated, orderId, startTime, endTime, fromId, limit, recvWindow);
@@ -1479,12 +1480,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | **String**| for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default \&quot;FALSE\&quot; | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
 | **orderId** | **Long**|  | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **startTime** | **Long**| Only supports querying data from the past 90 days. | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **fromId** | **Long**| 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | [optional] |
-| **limit** | **Long**| Default Value: 500; Max Value: 1000 | [optional] |
+| **fromId** | **Long**| If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | [optional] |
+| **limit** | **Long**| Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | [optional] |
 | **recvWindow** | **Long**| No more than 60000 | [optional] |
 
 ### Return type
@@ -1504,6 +1505,78 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Margin Account&#39;s Trade List |  -  |
+
+<a id="queryPreventedMatches"></a>
+# **queryPreventedMatches**
+> QueryPreventedMatchesResponse queryPreventedMatches(symbol, preventedMatchId, orderId, fromPreventedMatchId, recvWindow, isIsolated)
+
+Query Prevented Matches(USER_DATA)
+
+ Weight: 10(IP)
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.margin_trading.ApiClient;
+import com.binance.connector.client.margin_trading.ApiException;
+import com.binance.connector.client.margin_trading.Configuration;
+import com.binance.connector.client.margin_trading.models.*;
+import com.binance.connector.client.margin_trading.rest.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    String symbol = "symbol_example"; // String | 
+    Long preventedMatchId = 56L; // Long | 
+    Long orderId = 56L; // Long | 
+    Long fromPreventedMatchId = 56L; // Long | 
+    Long recvWindow = 56L; // Long | No more than 60000
+    String isIsolated = "isIsolated_example"; // String | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+    try {
+      QueryPreventedMatchesResponse result = apiInstance.queryPreventedMatches(symbol, preventedMatchId, orderId, fromPreventedMatchId, recvWindow, isIsolated);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#queryPreventedMatches");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **symbol** | **String**|  | |
+| **preventedMatchId** | **Long**|  | [optional] |
+| **orderId** | **Long**|  | [optional] |
+| **fromPreventedMatchId** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **isIsolated** | **String**| For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | [optional] |
+
+### Return type
+
+[**QueryPreventedMatchesResponse**](QueryPreventedMatchesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Prevented Matches |  -  |
 
 <a id="querySpecialKey"></a>
 # **querySpecialKey**

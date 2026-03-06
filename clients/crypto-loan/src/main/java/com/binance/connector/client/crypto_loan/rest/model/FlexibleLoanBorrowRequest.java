@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -42,11 +43,23 @@ public class FlexibleLoanBorrowRequest {
     @jakarta.annotation.Nonnull
     private String loanCoin;
 
+    public static final String SERIALIZED_NAME_LOAN_AMOUNT = "loanAmount";
+
+    @SerializedName(SERIALIZED_NAME_LOAN_AMOUNT)
+    @jakarta.annotation.Nullable
+    private Double loanAmount;
+
     public static final String SERIALIZED_NAME_COLLATERAL_COIN = "collateralCoin";
 
     @SerializedName(SERIALIZED_NAME_COLLATERAL_COIN)
     @jakarta.annotation.Nonnull
     private String collateralCoin;
+
+    public static final String SERIALIZED_NAME_COLLATERAL_AMOUNT = "collateralAmount";
+
+    @SerializedName(SERIALIZED_NAME_COLLATERAL_AMOUNT)
+    @jakarta.annotation.Nullable
+    private Double collateralAmount;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -76,6 +89,26 @@ public class FlexibleLoanBorrowRequest {
         this.loanCoin = loanCoin;
     }
 
+    public FlexibleLoanBorrowRequest loanAmount(@jakarta.annotation.Nullable Double loanAmount) {
+        this.loanAmount = loanAmount;
+        return this;
+    }
+
+    /**
+     * Get loanAmount
+     *
+     * @return loanAmount
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(@jakarta.annotation.Nullable Double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
     public FlexibleLoanBorrowRequest collateralCoin(
             @jakarta.annotation.Nonnull String collateralCoin) {
         this.collateralCoin = collateralCoin;
@@ -95,6 +128,27 @@ public class FlexibleLoanBorrowRequest {
 
     public void setCollateralCoin(@jakarta.annotation.Nonnull String collateralCoin) {
         this.collateralCoin = collateralCoin;
+    }
+
+    public FlexibleLoanBorrowRequest collateralAmount(
+            @jakarta.annotation.Nullable Double collateralAmount) {
+        this.collateralAmount = collateralAmount;
+        return this;
+    }
+
+    /**
+     * Get collateralAmount
+     *
+     * @return collateralAmount
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getCollateralAmount() {
+        return collateralAmount;
+    }
+
+    public void setCollateralAmount(@jakarta.annotation.Nullable Double collateralAmount) {
+        this.collateralAmount = collateralAmount;
     }
 
     public FlexibleLoanBorrowRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
@@ -126,13 +180,15 @@ public class FlexibleLoanBorrowRequest {
         }
         FlexibleLoanBorrowRequest flexibleLoanBorrowRequest = (FlexibleLoanBorrowRequest) o;
         return Objects.equals(this.loanCoin, flexibleLoanBorrowRequest.loanCoin)
+                && Objects.equals(this.loanAmount, flexibleLoanBorrowRequest.loanAmount)
                 && Objects.equals(this.collateralCoin, flexibleLoanBorrowRequest.collateralCoin)
+                && Objects.equals(this.collateralAmount, flexibleLoanBorrowRequest.collateralAmount)
                 && Objects.equals(this.recvWindow, flexibleLoanBorrowRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(loanCoin, collateralCoin, recvWindow);
+        return Objects.hash(loanCoin, loanAmount, collateralCoin, collateralAmount, recvWindow);
     }
 
     @Override
@@ -140,7 +196,9 @@ public class FlexibleLoanBorrowRequest {
         StringBuilder sb = new StringBuilder();
         sb.append("class FlexibleLoanBorrowRequest {\n");
         sb.append("		loanCoin: ").append(toIndentedString(loanCoin)).append("\n");
+        sb.append("		loanAmount: ").append(toIndentedString(loanAmount)).append("\n");
         sb.append("		collateralCoin: ").append(toIndentedString(collateralCoin)).append("\n");
+        sb.append("		collateralAmount: ").append(toIndentedString(collateralAmount)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -153,10 +211,18 @@ public class FlexibleLoanBorrowRequest {
         String loanCoinValueAsString = "";
         loanCoinValueAsString = loanCoinValue.toString();
         sb.append("loanCoin=").append(urlEncode(loanCoinValueAsString)).append("");
+        Object loanAmountValue = getLoanAmount();
+        String loanAmountValueAsString = "";
+        loanAmountValueAsString = loanAmountValue.toString();
+        sb.append("loanAmount=").append(urlEncode(loanAmountValueAsString)).append("");
         Object collateralCoinValue = getCollateralCoin();
         String collateralCoinValueAsString = "";
         collateralCoinValueAsString = collateralCoinValue.toString();
         sb.append("collateralCoin=").append(urlEncode(collateralCoinValueAsString)).append("");
+        Object collateralAmountValue = getCollateralAmount();
+        String collateralAmountValueAsString = "";
+        collateralAmountValueAsString = collateralAmountValue.toString();
+        sb.append("collateralAmount=").append(urlEncode(collateralAmountValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -190,7 +256,9 @@ public class FlexibleLoanBorrowRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("loanCoin");
+        openapiFields.add("loanAmount");
         openapiFields.add("collateralCoin");
+        openapiFields.add("collateralAmount");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

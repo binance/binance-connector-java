@@ -17,7 +17,7 @@
 |**limit** | **Long** |  |  [optional] |
 |**multiplierUp** | **String** |  |  [optional] |
 |**multiplierDown** | **String** |  |  [optional] |
-|**multiplierDecimal** | **Long** |  |  [optional] |
+|**multiplierDecimal** | **String** |  |  [optional] |
 
 
 

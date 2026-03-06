@@ -14,6 +14,8 @@
 
 [GET /sapi/v2/loan/flexible/collateral/data](https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Collateral-Assets-Data) - getFlexibleLoanCollateralAssetsData - [GetFlexibleLoanCollateralAssetsDataExample.java:48](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/GetFlexibleLoanCollateralAssetsDataExample.java#L48)
 
+[GET /sapi/v2/loan/interestRateHistory](https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Interest-Rate-History) - getFlexibleLoanInterestRateHistory - [GetFlexibleLoanInterestRateHistoryExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/GetFlexibleLoanInterestRateHistoryExample.java#L49)
+
 [GET /sapi/v2/loan/flexible/liquidation/history](https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Liquidation-History) - getFlexibleLoanLiquidationHistory - [GetFlexibleLoanLiquidationHistoryExample.java:47](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/GetFlexibleLoanLiquidationHistoryExample.java#L47)
 
 [GET /sapi/v2/loan/flexible/ltv/adjustment/history](https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-LTV-Adjustment-History) - getFlexibleLoanLtvAdjustmentHistory - [GetFlexibleLoanLtvAdjustmentHistoryExample.java:49](/examples/crypto-loan/src/main/java/com/binance/connector/client/crypto_loan/rest/flexiblerate/GetFlexibleLoanLtvAdjustmentHistoryExample.java#L49)

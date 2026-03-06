@@ -292,12 +292,11 @@ public class MiningApiTest {
     @Test
     public void hashrateResaleDetailTest() throws ApiException, CryptoException {
         Long configId = 1L;
-        String userName = "";
         Long pageIndex = 1L;
         Long pageSize = 0L;
         Long recvWindow = 5000L;
         ApiResponse<HashrateResaleDetailResponse> response =
-                api.hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+                api.hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -310,10 +309,10 @@ public class MiningApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "configId=1&userName=&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
+                "configId=1&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "b103a00035916bdb8dda3e3a55f6af838e11a6a38aab27a2dd32367be83b547b",
+                "9c805c6c53b91db70e29b00b8a524eefa85aa8a2df6112589da273da49ebb200",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/mining/hash-transfer/profit/details", actualRequest.url().encodedPath());

@@ -14,7 +14,6 @@ package com.binance.connector.client.wallet.rest.model;
 
 import com.binance.connector.client.wallet.rest.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -23,18 +22,13 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** AllCoinsInformationResponseInnerNetworkListInner */
@@ -42,89 +36,17 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class AllCoinsInformationResponseInnerNetworkListInner {
-    public static final String SERIALIZED_NAME_ADDRESS_REGEX = "addressRegex";
-
-    @SerializedName(SERIALIZED_NAME_ADDRESS_REGEX)
-    @jakarta.annotation.Nullable
-    private String addressRegex;
-
-    public static final String SERIALIZED_NAME_COIN = "coin";
-
-    @SerializedName(SERIALIZED_NAME_COIN)
-    @jakarta.annotation.Nullable
-    private String coin;
-
-    public static final String SERIALIZED_NAME_DEPOSIT_DESC = "depositDesc";
-
-    @SerializedName(SERIALIZED_NAME_DEPOSIT_DESC)
-    @jakarta.annotation.Nullable
-    private String depositDesc;
-
-    public static final String SERIALIZED_NAME_DEPOSIT_ENABLE = "depositEnable";
-
-    @SerializedName(SERIALIZED_NAME_DEPOSIT_ENABLE)
-    @jakarta.annotation.Nullable
-    private Boolean depositEnable;
-
-    public static final String SERIALIZED_NAME_IS_DEFAULT = "isDefault";
-
-    @SerializedName(SERIALIZED_NAME_IS_DEFAULT)
-    @jakarta.annotation.Nullable
-    private Boolean isDefault;
-
-    public static final String SERIALIZED_NAME_MEMO_REGEX = "memoRegex";
-
-    @SerializedName(SERIALIZED_NAME_MEMO_REGEX)
-    @jakarta.annotation.Nullable
-    private String memoRegex;
-
-    public static final String SERIALIZED_NAME_MIN_CONFIRM = "minConfirm";
-
-    @SerializedName(SERIALIZED_NAME_MIN_CONFIRM)
-    @jakarta.annotation.Nullable
-    private Long minConfirm;
-
-    public static final String SERIALIZED_NAME_NAME = "name";
-
-    @SerializedName(SERIALIZED_NAME_NAME)
-    @jakarta.annotation.Nullable
-    private String name;
-
     public static final String SERIALIZED_NAME_NETWORK = "network";
 
     @SerializedName(SERIALIZED_NAME_NETWORK)
     @jakarta.annotation.Nullable
     private String network;
 
-    public static final String SERIALIZED_NAME_SPECIAL_TIPS = "specialTips";
+    public static final String SERIALIZED_NAME_COIN = "coin";
 
-    @SerializedName(SERIALIZED_NAME_SPECIAL_TIPS)
+    @SerializedName(SERIALIZED_NAME_COIN)
     @jakarta.annotation.Nullable
-    private String specialTips;
-
-    public static final String SERIALIZED_NAME_UN_LOCK_CONFIRM = "unLockConfirm";
-
-    @SerializedName(SERIALIZED_NAME_UN_LOCK_CONFIRM)
-    @jakarta.annotation.Nullable
-    private Long unLockConfirm;
-
-    public static final String SERIALIZED_NAME_WITHDRAW_DESC = "withdrawDesc";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_DESC)
-    @jakarta.annotation.Nullable
-    private String withdrawDesc;
-
-    public static final String SERIALIZED_NAME_WITHDRAW_ENABLE = "withdrawEnable";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_ENABLE)
-    @jakarta.annotation.Nullable
-    private Boolean withdrawEnable;
-
-    public static final String SERIALIZED_NAME_WITHDRAW_FEE = "withdrawFee";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_FEE)
-    @jakarta.annotation.Nullable
-    private String withdrawFee;
+    private String coin;
 
     public static final String SERIALIZED_NAME_WITHDRAW_INTEGER_MULTIPLE =
             "withdrawIntegerMultiple";
@@ -133,11 +55,77 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
     @jakarta.annotation.Nullable
     private String withdrawIntegerMultiple;
 
-    public static final String SERIALIZED_NAME_WITHDRAW_MAX = "withdrawMax";
+    public static final String SERIALIZED_NAME_IS_DEFAULT = "isDefault";
 
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_MAX)
+    @SerializedName(SERIALIZED_NAME_IS_DEFAULT)
     @jakarta.annotation.Nullable
-    private String withdrawMax;
+    private Boolean isDefault;
+
+    public static final String SERIALIZED_NAME_DEPOSIT_ENABLE = "depositEnable";
+
+    @SerializedName(SERIALIZED_NAME_DEPOSIT_ENABLE)
+    @jakarta.annotation.Nullable
+    private Boolean depositEnable;
+
+    public static final String SERIALIZED_NAME_WITHDRAW_ENABLE = "withdrawEnable";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_ENABLE)
+    @jakarta.annotation.Nullable
+    private Boolean withdrawEnable;
+
+    public static final String SERIALIZED_NAME_DEPOSIT_DESC = "depositDesc";
+
+    @SerializedName(SERIALIZED_NAME_DEPOSIT_DESC)
+    @jakarta.annotation.Nullable
+    private String depositDesc;
+
+    public static final String SERIALIZED_NAME_WITHDRAW_DESC = "withdrawDesc";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_DESC)
+    @jakarta.annotation.Nullable
+    private String withdrawDesc;
+
+    public static final String SERIALIZED_NAME_SPECIAL_TIPS = "specialTips";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_TIPS)
+    @jakarta.annotation.Nullable
+    private String specialTips;
+
+    public static final String SERIALIZED_NAME_SPECIAL_WITHDRAW_TIPS = "specialWithdrawTips";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_WITHDRAW_TIPS)
+    @jakarta.annotation.Nullable
+    private String specialWithdrawTips;
+
+    public static final String SERIALIZED_NAME_NAME = "name";
+
+    @SerializedName(SERIALIZED_NAME_NAME)
+    @jakarta.annotation.Nullable
+    private String name;
+
+    public static final String SERIALIZED_NAME_RESET_ADDRESS_STATUS = "resetAddressStatus";
+
+    @SerializedName(SERIALIZED_NAME_RESET_ADDRESS_STATUS)
+    @jakarta.annotation.Nullable
+    private Boolean resetAddressStatus;
+
+    public static final String SERIALIZED_NAME_ADDRESS_REGEX = "addressRegex";
+
+    @SerializedName(SERIALIZED_NAME_ADDRESS_REGEX)
+    @jakarta.annotation.Nullable
+    private String addressRegex;
+
+    public static final String SERIALIZED_NAME_MEMO_REGEX = "memoRegex";
+
+    @SerializedName(SERIALIZED_NAME_MEMO_REGEX)
+    @jakarta.annotation.Nullable
+    private String memoRegex;
+
+    public static final String SERIALIZED_NAME_WITHDRAW_FEE = "withdrawFee";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_FEE)
+    @jakarta.annotation.Nullable
+    private String withdrawFee;
 
     public static final String SERIALIZED_NAME_WITHDRAW_MIN = "withdrawMin";
 
@@ -145,17 +133,47 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
     @jakarta.annotation.Nullable
     private String withdrawMin;
 
+    public static final String SERIALIZED_NAME_WITHDRAW_MAX = "withdrawMax";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_MAX)
+    @jakarta.annotation.Nullable
+    private String withdrawMax;
+
     public static final String SERIALIZED_NAME_WITHDRAW_INTERNAL_MIN = "withdrawInternalMin";
 
     @SerializedName(SERIALIZED_NAME_WITHDRAW_INTERNAL_MIN)
     @jakarta.annotation.Nullable
     private String withdrawInternalMin;
 
+    public static final String SERIALIZED_NAME_DEPOSIT_DUST = "depositDust";
+
+    @SerializedName(SERIALIZED_NAME_DEPOSIT_DUST)
+    @jakarta.annotation.Nullable
+    private String depositDust;
+
+    public static final String SERIALIZED_NAME_MIN_CONFIRM = "minConfirm";
+
+    @SerializedName(SERIALIZED_NAME_MIN_CONFIRM)
+    @jakarta.annotation.Nullable
+    private Long minConfirm;
+
+    public static final String SERIALIZED_NAME_UN_LOCK_CONFIRM = "unLockConfirm";
+
+    @SerializedName(SERIALIZED_NAME_UN_LOCK_CONFIRM)
+    @jakarta.annotation.Nullable
+    private Long unLockConfirm;
+
     public static final String SERIALIZED_NAME_SAME_ADDRESS = "sameAddress";
 
     @SerializedName(SERIALIZED_NAME_SAME_ADDRESS)
     @jakarta.annotation.Nullable
     private Boolean sameAddress;
+
+    public static final String SERIALIZED_NAME_WITHDRAW_TAG = "withdrawTag";
+
+    @SerializedName(SERIALIZED_NAME_WITHDRAW_TAG)
+    @jakarta.annotation.Nullable
+    private Boolean withdrawTag;
 
     public static final String SERIALIZED_NAME_ESTIMATED_ARRIVAL_TIME = "estimatedArrivalTime";
 
@@ -181,240 +199,13 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
     @jakarta.annotation.Nullable
     private String contractAddress;
 
-    public static final String SERIALIZED_NAME_DEPOSIT_ALL_ENABLE = "depositAllEnable";
+    public static final String SERIALIZED_NAME_DENOMINATION = "denomination";
 
-    @SerializedName(SERIALIZED_NAME_DEPOSIT_ALL_ENABLE)
+    @SerializedName(SERIALIZED_NAME_DENOMINATION)
     @jakarta.annotation.Nullable
-    private Boolean depositAllEnable;
-
-    public static final String SERIALIZED_NAME_WITHDRAW_ALL_ENABLE = "withdrawAllEnable";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAW_ALL_ENABLE)
-    @jakarta.annotation.Nullable
-    private Boolean withdrawAllEnable;
-
-    public static final String SERIALIZED_NAME_FREE = "free";
-
-    @SerializedName(SERIALIZED_NAME_FREE)
-    @jakarta.annotation.Nullable
-    private String free;
-
-    public static final String SERIALIZED_NAME_LOCKED = "locked";
-
-    @SerializedName(SERIALIZED_NAME_LOCKED)
-    @jakarta.annotation.Nullable
-    private String locked;
-
-    public static final String SERIALIZED_NAME_FREEZE = "freeze";
-
-    @SerializedName(SERIALIZED_NAME_FREEZE)
-    @jakarta.annotation.Nullable
-    private String freeze;
-
-    public static final String SERIALIZED_NAME_WITHDRAWING = "withdrawing";
-
-    @SerializedName(SERIALIZED_NAME_WITHDRAWING)
-    @jakarta.annotation.Nullable
-    private String withdrawing;
-
-    public static final String SERIALIZED_NAME_IPOING = "ipoing";
-
-    @SerializedName(SERIALIZED_NAME_IPOING)
-    @jakarta.annotation.Nullable
-    private String ipoing;
-
-    public static final String SERIALIZED_NAME_IPOABLE = "ipoable";
-
-    @SerializedName(SERIALIZED_NAME_IPOABLE)
-    @jakarta.annotation.Nullable
-    private String ipoable;
-
-    public static final String SERIALIZED_NAME_STORAGE = "storage";
-
-    @SerializedName(SERIALIZED_NAME_STORAGE)
-    @jakarta.annotation.Nullable
-    private String storage;
-
-    public static final String SERIALIZED_NAME_IS_LEGAL_MONEY = "isLegalMoney";
-
-    @SerializedName(SERIALIZED_NAME_IS_LEGAL_MONEY)
-    @jakarta.annotation.Nullable
-    private Boolean isLegalMoney;
-
-    public static final String SERIALIZED_NAME_TRADING = "trading";
-
-    @SerializedName(SERIALIZED_NAME_TRADING)
-    @jakarta.annotation.Nullable
-    private Boolean trading;
-
-    public static final String SERIALIZED_NAME_NETWORK_LIST = "networkList";
-
-    @SerializedName(SERIALIZED_NAME_NETWORK_LIST)
-    @jakarta.annotation.Nullable
-    private List<@Valid AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner>
-            networkList;
+    private Long denomination;
 
     public AllCoinsInformationResponseInnerNetworkListInner() {}
-
-    public AllCoinsInformationResponseInnerNetworkListInner addressRegex(
-            @jakarta.annotation.Nullable String addressRegex) {
-        this.addressRegex = addressRegex;
-        return this;
-    }
-
-    /**
-     * Get addressRegex
-     *
-     * @return addressRegex
-     */
-    @jakarta.annotation.Nullable
-    public String getAddressRegex() {
-        return addressRegex;
-    }
-
-    public void setAddressRegex(@jakarta.annotation.Nullable String addressRegex) {
-        this.addressRegex = addressRegex;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner coin(
-            @jakarta.annotation.Nullable String coin) {
-        this.coin = coin;
-        return this;
-    }
-
-    /**
-     * Get coin
-     *
-     * @return coin
-     */
-    @jakarta.annotation.Nullable
-    public String getCoin() {
-        return coin;
-    }
-
-    public void setCoin(@jakarta.annotation.Nullable String coin) {
-        this.coin = coin;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner depositDesc(
-            @jakarta.annotation.Nullable String depositDesc) {
-        this.depositDesc = depositDesc;
-        return this;
-    }
-
-    /**
-     * Get depositDesc
-     *
-     * @return depositDesc
-     */
-    @jakarta.annotation.Nullable
-    public String getDepositDesc() {
-        return depositDesc;
-    }
-
-    public void setDepositDesc(@jakarta.annotation.Nullable String depositDesc) {
-        this.depositDesc = depositDesc;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner depositEnable(
-            @jakarta.annotation.Nullable Boolean depositEnable) {
-        this.depositEnable = depositEnable;
-        return this;
-    }
-
-    /**
-     * Get depositEnable
-     *
-     * @return depositEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getDepositEnable() {
-        return depositEnable;
-    }
-
-    public void setDepositEnable(@jakarta.annotation.Nullable Boolean depositEnable) {
-        this.depositEnable = depositEnable;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner isDefault(
-            @jakarta.annotation.Nullable Boolean isDefault) {
-        this.isDefault = isDefault;
-        return this;
-    }
-
-    /**
-     * Get isDefault
-     *
-     * @return isDefault
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getIsDefault() {
-        return isDefault;
-    }
-
-    public void setIsDefault(@jakarta.annotation.Nullable Boolean isDefault) {
-        this.isDefault = isDefault;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner memoRegex(
-            @jakarta.annotation.Nullable String memoRegex) {
-        this.memoRegex = memoRegex;
-        return this;
-    }
-
-    /**
-     * Get memoRegex
-     *
-     * @return memoRegex
-     */
-    @jakarta.annotation.Nullable
-    public String getMemoRegex() {
-        return memoRegex;
-    }
-
-    public void setMemoRegex(@jakarta.annotation.Nullable String memoRegex) {
-        this.memoRegex = memoRegex;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner minConfirm(
-            @jakarta.annotation.Nullable Long minConfirm) {
-        this.minConfirm = minConfirm;
-        return this;
-    }
-
-    /**
-     * Get minConfirm
-     *
-     * @return minConfirm
-     */
-    @jakarta.annotation.Nullable
-    public Long getMinConfirm() {
-        return minConfirm;
-    }
-
-    public void setMinConfirm(@jakarta.annotation.Nullable Long minConfirm) {
-        this.minConfirm = minConfirm;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner name(
-            @jakarta.annotation.Nullable String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    @jakarta.annotation.Nullable
-    public String getName() {
-        return name;
-    }
-
-    public void setName(@jakarta.annotation.Nullable String name) {
-        this.name = name;
-    }
 
     public AllCoinsInformationResponseInnerNetworkListInner network(
             @jakarta.annotation.Nullable String network) {
@@ -436,104 +227,24 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         this.network = network;
     }
 
-    public AllCoinsInformationResponseInnerNetworkListInner specialTips(
-            @jakarta.annotation.Nullable String specialTips) {
-        this.specialTips = specialTips;
+    public AllCoinsInformationResponseInnerNetworkListInner coin(
+            @jakarta.annotation.Nullable String coin) {
+        this.coin = coin;
         return this;
     }
 
     /**
-     * Get specialTips
+     * Get coin
      *
-     * @return specialTips
+     * @return coin
      */
     @jakarta.annotation.Nullable
-    public String getSpecialTips() {
-        return specialTips;
+    public String getCoin() {
+        return coin;
     }
 
-    public void setSpecialTips(@jakarta.annotation.Nullable String specialTips) {
-        this.specialTips = specialTips;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner unLockConfirm(
-            @jakarta.annotation.Nullable Long unLockConfirm) {
-        this.unLockConfirm = unLockConfirm;
-        return this;
-    }
-
-    /**
-     * Get unLockConfirm
-     *
-     * @return unLockConfirm
-     */
-    @jakarta.annotation.Nullable
-    public Long getUnLockConfirm() {
-        return unLockConfirm;
-    }
-
-    public void setUnLockConfirm(@jakarta.annotation.Nullable Long unLockConfirm) {
-        this.unLockConfirm = unLockConfirm;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawDesc(
-            @jakarta.annotation.Nullable String withdrawDesc) {
-        this.withdrawDesc = withdrawDesc;
-        return this;
-    }
-
-    /**
-     * Get withdrawDesc
-     *
-     * @return withdrawDesc
-     */
-    @jakarta.annotation.Nullable
-    public String getWithdrawDesc() {
-        return withdrawDesc;
-    }
-
-    public void setWithdrawDesc(@jakarta.annotation.Nullable String withdrawDesc) {
-        this.withdrawDesc = withdrawDesc;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawEnable(
-            @jakarta.annotation.Nullable Boolean withdrawEnable) {
-        this.withdrawEnable = withdrawEnable;
-        return this;
-    }
-
-    /**
-     * Get withdrawEnable
-     *
-     * @return withdrawEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getWithdrawEnable() {
-        return withdrawEnable;
-    }
-
-    public void setWithdrawEnable(@jakarta.annotation.Nullable Boolean withdrawEnable) {
-        this.withdrawEnable = withdrawEnable;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawFee(
-            @jakarta.annotation.Nullable String withdrawFee) {
-        this.withdrawFee = withdrawFee;
-        return this;
-    }
-
-    /**
-     * Get withdrawFee
-     *
-     * @return withdrawFee
-     */
-    @jakarta.annotation.Nullable
-    public String getWithdrawFee() {
-        return withdrawFee;
-    }
-
-    public void setWithdrawFee(@jakarta.annotation.Nullable String withdrawFee) {
-        this.withdrawFee = withdrawFee;
+    public void setCoin(@jakarta.annotation.Nullable String coin) {
+        this.coin = coin;
     }
 
     public AllCoinsInformationResponseInnerNetworkListInner withdrawIntegerMultiple(
@@ -557,24 +268,244 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         this.withdrawIntegerMultiple = withdrawIntegerMultiple;
     }
 
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawMax(
-            @jakarta.annotation.Nullable String withdrawMax) {
-        this.withdrawMax = withdrawMax;
+    public AllCoinsInformationResponseInnerNetworkListInner isDefault(
+            @jakarta.annotation.Nullable Boolean isDefault) {
+        this.isDefault = isDefault;
         return this;
     }
 
     /**
-     * Get withdrawMax
+     * Get isDefault
      *
-     * @return withdrawMax
+     * @return isDefault
      */
     @jakarta.annotation.Nullable
-    public String getWithdrawMax() {
-        return withdrawMax;
+    public Boolean getIsDefault() {
+        return isDefault;
     }
 
-    public void setWithdrawMax(@jakarta.annotation.Nullable String withdrawMax) {
-        this.withdrawMax = withdrawMax;
+    public void setIsDefault(@jakarta.annotation.Nullable Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner depositEnable(
+            @jakarta.annotation.Nullable Boolean depositEnable) {
+        this.depositEnable = depositEnable;
+        return this;
+    }
+
+    /**
+     * Get depositEnable
+     *
+     * @return depositEnable
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getDepositEnable() {
+        return depositEnable;
+    }
+
+    public void setDepositEnable(@jakarta.annotation.Nullable Boolean depositEnable) {
+        this.depositEnable = depositEnable;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner withdrawEnable(
+            @jakarta.annotation.Nullable Boolean withdrawEnable) {
+        this.withdrawEnable = withdrawEnable;
+        return this;
+    }
+
+    /**
+     * Get withdrawEnable
+     *
+     * @return withdrawEnable
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getWithdrawEnable() {
+        return withdrawEnable;
+    }
+
+    public void setWithdrawEnable(@jakarta.annotation.Nullable Boolean withdrawEnable) {
+        this.withdrawEnable = withdrawEnable;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner depositDesc(
+            @jakarta.annotation.Nullable String depositDesc) {
+        this.depositDesc = depositDesc;
+        return this;
+    }
+
+    /**
+     * Get depositDesc
+     *
+     * @return depositDesc
+     */
+    @jakarta.annotation.Nullable
+    public String getDepositDesc() {
+        return depositDesc;
+    }
+
+    public void setDepositDesc(@jakarta.annotation.Nullable String depositDesc) {
+        this.depositDesc = depositDesc;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner withdrawDesc(
+            @jakarta.annotation.Nullable String withdrawDesc) {
+        this.withdrawDesc = withdrawDesc;
+        return this;
+    }
+
+    /**
+     * Get withdrawDesc
+     *
+     * @return withdrawDesc
+     */
+    @jakarta.annotation.Nullable
+    public String getWithdrawDesc() {
+        return withdrawDesc;
+    }
+
+    public void setWithdrawDesc(@jakarta.annotation.Nullable String withdrawDesc) {
+        this.withdrawDesc = withdrawDesc;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner specialTips(
+            @jakarta.annotation.Nullable String specialTips) {
+        this.specialTips = specialTips;
+        return this;
+    }
+
+    /**
+     * Get specialTips
+     *
+     * @return specialTips
+     */
+    @jakarta.annotation.Nullable
+    public String getSpecialTips() {
+        return specialTips;
+    }
+
+    public void setSpecialTips(@jakarta.annotation.Nullable String specialTips) {
+        this.specialTips = specialTips;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner specialWithdrawTips(
+            @jakarta.annotation.Nullable String specialWithdrawTips) {
+        this.specialWithdrawTips = specialWithdrawTips;
+        return this;
+    }
+
+    /**
+     * Get specialWithdrawTips
+     *
+     * @return specialWithdrawTips
+     */
+    @jakarta.annotation.Nullable
+    public String getSpecialWithdrawTips() {
+        return specialWithdrawTips;
+    }
+
+    public void setSpecialWithdrawTips(@jakarta.annotation.Nullable String specialWithdrawTips) {
+        this.specialWithdrawTips = specialWithdrawTips;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner name(
+            @jakarta.annotation.Nullable String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@jakarta.annotation.Nullable String name) {
+        this.name = name;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner resetAddressStatus(
+            @jakarta.annotation.Nullable Boolean resetAddressStatus) {
+        this.resetAddressStatus = resetAddressStatus;
+        return this;
+    }
+
+    /**
+     * Get resetAddressStatus
+     *
+     * @return resetAddressStatus
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getResetAddressStatus() {
+        return resetAddressStatus;
+    }
+
+    public void setResetAddressStatus(@jakarta.annotation.Nullable Boolean resetAddressStatus) {
+        this.resetAddressStatus = resetAddressStatus;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner addressRegex(
+            @jakarta.annotation.Nullable String addressRegex) {
+        this.addressRegex = addressRegex;
+        return this;
+    }
+
+    /**
+     * Get addressRegex
+     *
+     * @return addressRegex
+     */
+    @jakarta.annotation.Nullable
+    public String getAddressRegex() {
+        return addressRegex;
+    }
+
+    public void setAddressRegex(@jakarta.annotation.Nullable String addressRegex) {
+        this.addressRegex = addressRegex;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner memoRegex(
+            @jakarta.annotation.Nullable String memoRegex) {
+        this.memoRegex = memoRegex;
+        return this;
+    }
+
+    /**
+     * Get memoRegex
+     *
+     * @return memoRegex
+     */
+    @jakarta.annotation.Nullable
+    public String getMemoRegex() {
+        return memoRegex;
+    }
+
+    public void setMemoRegex(@jakarta.annotation.Nullable String memoRegex) {
+        this.memoRegex = memoRegex;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner withdrawFee(
+            @jakarta.annotation.Nullable String withdrawFee) {
+        this.withdrawFee = withdrawFee;
+        return this;
+    }
+
+    /**
+     * Get withdrawFee
+     *
+     * @return withdrawFee
+     */
+    @jakarta.annotation.Nullable
+    public String getWithdrawFee() {
+        return withdrawFee;
+    }
+
+    public void setWithdrawFee(@jakarta.annotation.Nullable String withdrawFee) {
+        this.withdrawFee = withdrawFee;
     }
 
     public AllCoinsInformationResponseInnerNetworkListInner withdrawMin(
@@ -597,6 +528,26 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         this.withdrawMin = withdrawMin;
     }
 
+    public AllCoinsInformationResponseInnerNetworkListInner withdrawMax(
+            @jakarta.annotation.Nullable String withdrawMax) {
+        this.withdrawMax = withdrawMax;
+        return this;
+    }
+
+    /**
+     * Get withdrawMax
+     *
+     * @return withdrawMax
+     */
+    @jakarta.annotation.Nullable
+    public String getWithdrawMax() {
+        return withdrawMax;
+    }
+
+    public void setWithdrawMax(@jakarta.annotation.Nullable String withdrawMax) {
+        this.withdrawMax = withdrawMax;
+    }
+
     public AllCoinsInformationResponseInnerNetworkListInner withdrawInternalMin(
             @jakarta.annotation.Nullable String withdrawInternalMin) {
         this.withdrawInternalMin = withdrawInternalMin;
@@ -617,6 +568,66 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         this.withdrawInternalMin = withdrawInternalMin;
     }
 
+    public AllCoinsInformationResponseInnerNetworkListInner depositDust(
+            @jakarta.annotation.Nullable String depositDust) {
+        this.depositDust = depositDust;
+        return this;
+    }
+
+    /**
+     * Get depositDust
+     *
+     * @return depositDust
+     */
+    @jakarta.annotation.Nullable
+    public String getDepositDust() {
+        return depositDust;
+    }
+
+    public void setDepositDust(@jakarta.annotation.Nullable String depositDust) {
+        this.depositDust = depositDust;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner minConfirm(
+            @jakarta.annotation.Nullable Long minConfirm) {
+        this.minConfirm = minConfirm;
+        return this;
+    }
+
+    /**
+     * Get minConfirm
+     *
+     * @return minConfirm
+     */
+    @jakarta.annotation.Nullable
+    public Long getMinConfirm() {
+        return minConfirm;
+    }
+
+    public void setMinConfirm(@jakarta.annotation.Nullable Long minConfirm) {
+        this.minConfirm = minConfirm;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner unLockConfirm(
+            @jakarta.annotation.Nullable Long unLockConfirm) {
+        this.unLockConfirm = unLockConfirm;
+        return this;
+    }
+
+    /**
+     * Get unLockConfirm
+     *
+     * @return unLockConfirm
+     */
+    @jakarta.annotation.Nullable
+    public Long getUnLockConfirm() {
+        return unLockConfirm;
+    }
+
+    public void setUnLockConfirm(@jakarta.annotation.Nullable Long unLockConfirm) {
+        this.unLockConfirm = unLockConfirm;
+    }
+
     public AllCoinsInformationResponseInnerNetworkListInner sameAddress(
             @jakarta.annotation.Nullable Boolean sameAddress) {
         this.sameAddress = sameAddress;
@@ -635,6 +646,26 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
 
     public void setSameAddress(@jakarta.annotation.Nullable Boolean sameAddress) {
         this.sameAddress = sameAddress;
+    }
+
+    public AllCoinsInformationResponseInnerNetworkListInner withdrawTag(
+            @jakarta.annotation.Nullable Boolean withdrawTag) {
+        this.withdrawTag = withdrawTag;
+        return this;
+    }
+
+    /**
+     * Get withdrawTag
+     *
+     * @return withdrawTag
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getWithdrawTag() {
+        return withdrawTag;
+    }
+
+    public void setWithdrawTag(@jakarta.annotation.Nullable Boolean withdrawTag) {
+        this.withdrawTag = withdrawTag;
     }
 
     public AllCoinsInformationResponseInnerNetworkListInner estimatedArrivalTime(
@@ -717,260 +748,24 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         this.contractAddress = contractAddress;
     }
 
-    public AllCoinsInformationResponseInnerNetworkListInner depositAllEnable(
-            @jakarta.annotation.Nullable Boolean depositAllEnable) {
-        this.depositAllEnable = depositAllEnable;
+    public AllCoinsInformationResponseInnerNetworkListInner denomination(
+            @jakarta.annotation.Nullable Long denomination) {
+        this.denomination = denomination;
         return this;
     }
 
     /**
-     * Get depositAllEnable
+     * Get denomination
      *
-     * @return depositAllEnable
+     * @return denomination
      */
     @jakarta.annotation.Nullable
-    public Boolean getDepositAllEnable() {
-        return depositAllEnable;
+    public Long getDenomination() {
+        return denomination;
     }
 
-    public void setDepositAllEnable(@jakarta.annotation.Nullable Boolean depositAllEnable) {
-        this.depositAllEnable = depositAllEnable;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawAllEnable(
-            @jakarta.annotation.Nullable Boolean withdrawAllEnable) {
-        this.withdrawAllEnable = withdrawAllEnable;
-        return this;
-    }
-
-    /**
-     * Get withdrawAllEnable
-     *
-     * @return withdrawAllEnable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getWithdrawAllEnable() {
-        return withdrawAllEnable;
-    }
-
-    public void setWithdrawAllEnable(@jakarta.annotation.Nullable Boolean withdrawAllEnable) {
-        this.withdrawAllEnable = withdrawAllEnable;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner free(
-            @jakarta.annotation.Nullable String free) {
-        this.free = free;
-        return this;
-    }
-
-    /**
-     * Get free
-     *
-     * @return free
-     */
-    @jakarta.annotation.Nullable
-    public String getFree() {
-        return free;
-    }
-
-    public void setFree(@jakarta.annotation.Nullable String free) {
-        this.free = free;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner locked(
-            @jakarta.annotation.Nullable String locked) {
-        this.locked = locked;
-        return this;
-    }
-
-    /**
-     * Get locked
-     *
-     * @return locked
-     */
-    @jakarta.annotation.Nullable
-    public String getLocked() {
-        return locked;
-    }
-
-    public void setLocked(@jakarta.annotation.Nullable String locked) {
-        this.locked = locked;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner freeze(
-            @jakarta.annotation.Nullable String freeze) {
-        this.freeze = freeze;
-        return this;
-    }
-
-    /**
-     * Get freeze
-     *
-     * @return freeze
-     */
-    @jakarta.annotation.Nullable
-    public String getFreeze() {
-        return freeze;
-    }
-
-    public void setFreeze(@jakarta.annotation.Nullable String freeze) {
-        this.freeze = freeze;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner withdrawing(
-            @jakarta.annotation.Nullable String withdrawing) {
-        this.withdrawing = withdrawing;
-        return this;
-    }
-
-    /**
-     * Get withdrawing
-     *
-     * @return withdrawing
-     */
-    @jakarta.annotation.Nullable
-    public String getWithdrawing() {
-        return withdrawing;
-    }
-
-    public void setWithdrawing(@jakarta.annotation.Nullable String withdrawing) {
-        this.withdrawing = withdrawing;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner ipoing(
-            @jakarta.annotation.Nullable String ipoing) {
-        this.ipoing = ipoing;
-        return this;
-    }
-
-    /**
-     * Get ipoing
-     *
-     * @return ipoing
-     */
-    @jakarta.annotation.Nullable
-    public String getIpoing() {
-        return ipoing;
-    }
-
-    public void setIpoing(@jakarta.annotation.Nullable String ipoing) {
-        this.ipoing = ipoing;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner ipoable(
-            @jakarta.annotation.Nullable String ipoable) {
-        this.ipoable = ipoable;
-        return this;
-    }
-
-    /**
-     * Get ipoable
-     *
-     * @return ipoable
-     */
-    @jakarta.annotation.Nullable
-    public String getIpoable() {
-        return ipoable;
-    }
-
-    public void setIpoable(@jakarta.annotation.Nullable String ipoable) {
-        this.ipoable = ipoable;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner storage(
-            @jakarta.annotation.Nullable String storage) {
-        this.storage = storage;
-        return this;
-    }
-
-    /**
-     * Get storage
-     *
-     * @return storage
-     */
-    @jakarta.annotation.Nullable
-    public String getStorage() {
-        return storage;
-    }
-
-    public void setStorage(@jakarta.annotation.Nullable String storage) {
-        this.storage = storage;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner isLegalMoney(
-            @jakarta.annotation.Nullable Boolean isLegalMoney) {
-        this.isLegalMoney = isLegalMoney;
-        return this;
-    }
-
-    /**
-     * Get isLegalMoney
-     *
-     * @return isLegalMoney
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getIsLegalMoney() {
-        return isLegalMoney;
-    }
-
-    public void setIsLegalMoney(@jakarta.annotation.Nullable Boolean isLegalMoney) {
-        this.isLegalMoney = isLegalMoney;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner trading(
-            @jakarta.annotation.Nullable Boolean trading) {
-        this.trading = trading;
-        return this;
-    }
-
-    /**
-     * Get trading
-     *
-     * @return trading
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getTrading() {
-        return trading;
-    }
-
-    public void setTrading(@jakarta.annotation.Nullable Boolean trading) {
-        this.trading = trading;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner networkList(
-            @jakarta.annotation.Nullable
-                    List<@Valid AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner>
-                            networkList) {
-        this.networkList = networkList;
-        return this;
-    }
-
-    public AllCoinsInformationResponseInnerNetworkListInner addNetworkListItem(
-            AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner networkListItem) {
-        if (this.networkList == null) {
-            this.networkList = new ArrayList<>();
-        }
-        this.networkList.add(networkListItem);
-        return this;
-    }
-
-    /**
-     * Get networkList
-     *
-     * @return networkList
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public List<@Valid AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner>
-            getNetworkList() {
-        return networkList;
-    }
-
-    public void setNetworkList(
-            @jakarta.annotation.Nullable
-                    List<@Valid AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner>
-                            networkList) {
-        this.networkList = networkList;
+    public void setDenomination(@jakarta.annotation.Nullable Long denomination) {
+        this.denomination = denomination;
     }
 
     @Override
@@ -985,55 +780,67 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                 allCoinsInformationResponseInnerNetworkListInner =
                         (AllCoinsInformationResponseInnerNetworkListInner) o;
         return Objects.equals(
-                        this.addressRegex,
-                        allCoinsInformationResponseInnerNetworkListInner.addressRegex)
-                && Objects.equals(this.coin, allCoinsInformationResponseInnerNetworkListInner.coin)
-                && Objects.equals(
-                        this.depositDesc,
-                        allCoinsInformationResponseInnerNetworkListInner.depositDesc)
-                && Objects.equals(
-                        this.depositEnable,
-                        allCoinsInformationResponseInnerNetworkListInner.depositEnable)
-                && Objects.equals(
-                        this.isDefault, allCoinsInformationResponseInnerNetworkListInner.isDefault)
-                && Objects.equals(
-                        this.memoRegex, allCoinsInformationResponseInnerNetworkListInner.memoRegex)
-                && Objects.equals(
-                        this.minConfirm,
-                        allCoinsInformationResponseInnerNetworkListInner.minConfirm)
-                && Objects.equals(this.name, allCoinsInformationResponseInnerNetworkListInner.name)
-                && Objects.equals(
                         this.network, allCoinsInformationResponseInnerNetworkListInner.network)
-                && Objects.equals(
-                        this.specialTips,
-                        allCoinsInformationResponseInnerNetworkListInner.specialTips)
-                && Objects.equals(
-                        this.unLockConfirm,
-                        allCoinsInformationResponseInnerNetworkListInner.unLockConfirm)
-                && Objects.equals(
-                        this.withdrawDesc,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawDesc)
-                && Objects.equals(
-                        this.withdrawEnable,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawEnable)
-                && Objects.equals(
-                        this.withdrawFee,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawFee)
+                && Objects.equals(this.coin, allCoinsInformationResponseInnerNetworkListInner.coin)
                 && Objects.equals(
                         this.withdrawIntegerMultiple,
                         allCoinsInformationResponseInnerNetworkListInner.withdrawIntegerMultiple)
                 && Objects.equals(
-                        this.withdrawMax,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawMax)
+                        this.isDefault, allCoinsInformationResponseInnerNetworkListInner.isDefault)
+                && Objects.equals(
+                        this.depositEnable,
+                        allCoinsInformationResponseInnerNetworkListInner.depositEnable)
+                && Objects.equals(
+                        this.withdrawEnable,
+                        allCoinsInformationResponseInnerNetworkListInner.withdrawEnable)
+                && Objects.equals(
+                        this.depositDesc,
+                        allCoinsInformationResponseInnerNetworkListInner.depositDesc)
+                && Objects.equals(
+                        this.withdrawDesc,
+                        allCoinsInformationResponseInnerNetworkListInner.withdrawDesc)
+                && Objects.equals(
+                        this.specialTips,
+                        allCoinsInformationResponseInnerNetworkListInner.specialTips)
+                && Objects.equals(
+                        this.specialWithdrawTips,
+                        allCoinsInformationResponseInnerNetworkListInner.specialWithdrawTips)
+                && Objects.equals(this.name, allCoinsInformationResponseInnerNetworkListInner.name)
+                && Objects.equals(
+                        this.resetAddressStatus,
+                        allCoinsInformationResponseInnerNetworkListInner.resetAddressStatus)
+                && Objects.equals(
+                        this.addressRegex,
+                        allCoinsInformationResponseInnerNetworkListInner.addressRegex)
+                && Objects.equals(
+                        this.memoRegex, allCoinsInformationResponseInnerNetworkListInner.memoRegex)
+                && Objects.equals(
+                        this.withdrawFee,
+                        allCoinsInformationResponseInnerNetworkListInner.withdrawFee)
                 && Objects.equals(
                         this.withdrawMin,
                         allCoinsInformationResponseInnerNetworkListInner.withdrawMin)
                 && Objects.equals(
+                        this.withdrawMax,
+                        allCoinsInformationResponseInnerNetworkListInner.withdrawMax)
+                && Objects.equals(
                         this.withdrawInternalMin,
                         allCoinsInformationResponseInnerNetworkListInner.withdrawInternalMin)
                 && Objects.equals(
+                        this.depositDust,
+                        allCoinsInformationResponseInnerNetworkListInner.depositDust)
+                && Objects.equals(
+                        this.minConfirm,
+                        allCoinsInformationResponseInnerNetworkListInner.minConfirm)
+                && Objects.equals(
+                        this.unLockConfirm,
+                        allCoinsInformationResponseInnerNetworkListInner.unLockConfirm)
+                && Objects.equals(
                         this.sameAddress,
                         allCoinsInformationResponseInnerNetworkListInner.sameAddress)
+                && Objects.equals(
+                        this.withdrawTag,
+                        allCoinsInformationResponseInnerNetworkListInner.withdrawTag)
                 && Objects.equals(
                         this.estimatedArrivalTime,
                         allCoinsInformationResponseInnerNetworkListInner.estimatedArrivalTime)
@@ -1045,102 +852,78 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                         this.contractAddress,
                         allCoinsInformationResponseInnerNetworkListInner.contractAddress)
                 && Objects.equals(
-                        this.depositAllEnable,
-                        allCoinsInformationResponseInnerNetworkListInner.depositAllEnable)
-                && Objects.equals(
-                        this.withdrawAllEnable,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawAllEnable)
-                && Objects.equals(this.free, allCoinsInformationResponseInnerNetworkListInner.free)
-                && Objects.equals(
-                        this.locked, allCoinsInformationResponseInnerNetworkListInner.locked)
-                && Objects.equals(
-                        this.freeze, allCoinsInformationResponseInnerNetworkListInner.freeze)
-                && Objects.equals(
-                        this.withdrawing,
-                        allCoinsInformationResponseInnerNetworkListInner.withdrawing)
-                && Objects.equals(
-                        this.ipoing, allCoinsInformationResponseInnerNetworkListInner.ipoing)
-                && Objects.equals(
-                        this.ipoable, allCoinsInformationResponseInnerNetworkListInner.ipoable)
-                && Objects.equals(
-                        this.storage, allCoinsInformationResponseInnerNetworkListInner.storage)
-                && Objects.equals(
-                        this.isLegalMoney,
-                        allCoinsInformationResponseInnerNetworkListInner.isLegalMoney)
-                && Objects.equals(
-                        this.trading, allCoinsInformationResponseInnerNetworkListInner.trading)
-                && Objects.equals(
-                        this.networkList,
-                        allCoinsInformationResponseInnerNetworkListInner.networkList);
+                        this.denomination,
+                        allCoinsInformationResponseInnerNetworkListInner.denomination);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                addressRegex,
-                coin,
-                depositDesc,
-                depositEnable,
-                isDefault,
-                memoRegex,
-                minConfirm,
-                name,
                 network,
-                specialTips,
-                unLockConfirm,
-                withdrawDesc,
-                withdrawEnable,
-                withdrawFee,
+                coin,
                 withdrawIntegerMultiple,
-                withdrawMax,
+                isDefault,
+                depositEnable,
+                withdrawEnable,
+                depositDesc,
+                withdrawDesc,
+                specialTips,
+                specialWithdrawTips,
+                name,
+                resetAddressStatus,
+                addressRegex,
+                memoRegex,
+                withdrawFee,
                 withdrawMin,
+                withdrawMax,
                 withdrawInternalMin,
+                depositDust,
+                minConfirm,
+                unLockConfirm,
                 sameAddress,
+                withdrawTag,
                 estimatedArrivalTime,
                 busy,
                 contractAddressUrl,
                 contractAddress,
-                depositAllEnable,
-                withdrawAllEnable,
-                free,
-                locked,
-                freeze,
-                withdrawing,
-                ipoing,
-                ipoable,
-                storage,
-                isLegalMoney,
-                trading,
-                networkList);
+                denomination);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class AllCoinsInformationResponseInnerNetworkListInner {\n");
-        sb.append("		addressRegex: ").append(toIndentedString(addressRegex)).append("\n");
-        sb.append("		coin: ").append(toIndentedString(coin)).append("\n");
-        sb.append("		depositDesc: ").append(toIndentedString(depositDesc)).append("\n");
-        sb.append("		depositEnable: ").append(toIndentedString(depositEnable)).append("\n");
-        sb.append("		isDefault: ").append(toIndentedString(isDefault)).append("\n");
-        sb.append("		memoRegex: ").append(toIndentedString(memoRegex)).append("\n");
-        sb.append("		minConfirm: ").append(toIndentedString(minConfirm)).append("\n");
-        sb.append("		name: ").append(toIndentedString(name)).append("\n");
         sb.append("		network: ").append(toIndentedString(network)).append("\n");
-        sb.append("		specialTips: ").append(toIndentedString(specialTips)).append("\n");
-        sb.append("		unLockConfirm: ").append(toIndentedString(unLockConfirm)).append("\n");
-        sb.append("		withdrawDesc: ").append(toIndentedString(withdrawDesc)).append("\n");
-        sb.append("		withdrawEnable: ").append(toIndentedString(withdrawEnable)).append("\n");
-        sb.append("		withdrawFee: ").append(toIndentedString(withdrawFee)).append("\n");
+        sb.append("		coin: ").append(toIndentedString(coin)).append("\n");
         sb.append("		withdrawIntegerMultiple: ")
                 .append(toIndentedString(withdrawIntegerMultiple))
                 .append("\n");
-        sb.append("		withdrawMax: ").append(toIndentedString(withdrawMax)).append("\n");
+        sb.append("		isDefault: ").append(toIndentedString(isDefault)).append("\n");
+        sb.append("		depositEnable: ").append(toIndentedString(depositEnable)).append("\n");
+        sb.append("		withdrawEnable: ").append(toIndentedString(withdrawEnable)).append("\n");
+        sb.append("		depositDesc: ").append(toIndentedString(depositDesc)).append("\n");
+        sb.append("		withdrawDesc: ").append(toIndentedString(withdrawDesc)).append("\n");
+        sb.append("		specialTips: ").append(toIndentedString(specialTips)).append("\n");
+        sb.append("		specialWithdrawTips: ")
+                .append(toIndentedString(specialWithdrawTips))
+                .append("\n");
+        sb.append("		name: ").append(toIndentedString(name)).append("\n");
+        sb.append("		resetAddressStatus: ")
+                .append(toIndentedString(resetAddressStatus))
+                .append("\n");
+        sb.append("		addressRegex: ").append(toIndentedString(addressRegex)).append("\n");
+        sb.append("		memoRegex: ").append(toIndentedString(memoRegex)).append("\n");
+        sb.append("		withdrawFee: ").append(toIndentedString(withdrawFee)).append("\n");
         sb.append("		withdrawMin: ").append(toIndentedString(withdrawMin)).append("\n");
+        sb.append("		withdrawMax: ").append(toIndentedString(withdrawMax)).append("\n");
         sb.append("		withdrawInternalMin: ")
                 .append(toIndentedString(withdrawInternalMin))
                 .append("\n");
+        sb.append("		depositDust: ").append(toIndentedString(depositDust)).append("\n");
+        sb.append("		minConfirm: ").append(toIndentedString(minConfirm)).append("\n");
+        sb.append("		unLockConfirm: ").append(toIndentedString(unLockConfirm)).append("\n");
         sb.append("		sameAddress: ").append(toIndentedString(sameAddress)).append("\n");
+        sb.append("		withdrawTag: ").append(toIndentedString(withdrawTag)).append("\n");
         sb.append("		estimatedArrivalTime: ")
                 .append(toIndentedString(estimatedArrivalTime))
                 .append("\n");
@@ -1149,18 +932,7 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                 .append(toIndentedString(contractAddressUrl))
                 .append("\n");
         sb.append("		contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
-        sb.append("		depositAllEnable: ").append(toIndentedString(depositAllEnable)).append("\n");
-        sb.append("		withdrawAllEnable: ").append(toIndentedString(withdrawAllEnable)).append("\n");
-        sb.append("		free: ").append(toIndentedString(free)).append("\n");
-        sb.append("		locked: ").append(toIndentedString(locked)).append("\n");
-        sb.append("		freeze: ").append(toIndentedString(freeze)).append("\n");
-        sb.append("		withdrawing: ").append(toIndentedString(withdrawing)).append("\n");
-        sb.append("		ipoing: ").append(toIndentedString(ipoing)).append("\n");
-        sb.append("		ipoable: ").append(toIndentedString(ipoable)).append("\n");
-        sb.append("		storage: ").append(toIndentedString(storage)).append("\n");
-        sb.append("		isLegalMoney: ").append(toIndentedString(isLegalMoney)).append("\n");
-        sb.append("		trading: ").append(toIndentedString(trading)).append("\n");
-        sb.append("		networkList: ").append(toIndentedString(networkList)).append("\n");
+        sb.append("		denomination: ").append(toIndentedString(denomination)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1168,86 +940,106 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object addressRegexValue = getAddressRegex();
-        String addressRegexValueAsString = "";
-        addressRegexValueAsString = addressRegexValue.toString();
-        sb.append("addressRegex=").append(urlEncode(addressRegexValueAsString)).append("");
-        Object coinValue = getCoin();
-        String coinValueAsString = "";
-        coinValueAsString = coinValue.toString();
-        sb.append("coin=").append(urlEncode(coinValueAsString)).append("");
-        Object depositDescValue = getDepositDesc();
-        String depositDescValueAsString = "";
-        depositDescValueAsString = depositDescValue.toString();
-        sb.append("depositDesc=").append(urlEncode(depositDescValueAsString)).append("");
-        Object depositEnableValue = getDepositEnable();
-        String depositEnableValueAsString = "";
-        depositEnableValueAsString = depositEnableValue.toString();
-        sb.append("depositEnable=").append(urlEncode(depositEnableValueAsString)).append("");
-        Object isDefaultValue = getIsDefault();
-        String isDefaultValueAsString = "";
-        isDefaultValueAsString = isDefaultValue.toString();
-        sb.append("isDefault=").append(urlEncode(isDefaultValueAsString)).append("");
-        Object memoRegexValue = getMemoRegex();
-        String memoRegexValueAsString = "";
-        memoRegexValueAsString = memoRegexValue.toString();
-        sb.append("memoRegex=").append(urlEncode(memoRegexValueAsString)).append("");
-        Object minConfirmValue = getMinConfirm();
-        String minConfirmValueAsString = "";
-        minConfirmValueAsString = minConfirmValue.toString();
-        sb.append("minConfirm=").append(urlEncode(minConfirmValueAsString)).append("");
-        Object nameValue = getName();
-        String nameValueAsString = "";
-        nameValueAsString = nameValue.toString();
-        sb.append("name=").append(urlEncode(nameValueAsString)).append("");
         Object networkValue = getNetwork();
         String networkValueAsString = "";
         networkValueAsString = networkValue.toString();
         sb.append("network=").append(urlEncode(networkValueAsString)).append("");
-        Object specialTipsValue = getSpecialTips();
-        String specialTipsValueAsString = "";
-        specialTipsValueAsString = specialTipsValue.toString();
-        sb.append("specialTips=").append(urlEncode(specialTipsValueAsString)).append("");
-        Object unLockConfirmValue = getUnLockConfirm();
-        String unLockConfirmValueAsString = "";
-        unLockConfirmValueAsString = unLockConfirmValue.toString();
-        sb.append("unLockConfirm=").append(urlEncode(unLockConfirmValueAsString)).append("");
-        Object withdrawDescValue = getWithdrawDesc();
-        String withdrawDescValueAsString = "";
-        withdrawDescValueAsString = withdrawDescValue.toString();
-        sb.append("withdrawDesc=").append(urlEncode(withdrawDescValueAsString)).append("");
-        Object withdrawEnableValue = getWithdrawEnable();
-        String withdrawEnableValueAsString = "";
-        withdrawEnableValueAsString = withdrawEnableValue.toString();
-        sb.append("withdrawEnable=").append(urlEncode(withdrawEnableValueAsString)).append("");
-        Object withdrawFeeValue = getWithdrawFee();
-        String withdrawFeeValueAsString = "";
-        withdrawFeeValueAsString = withdrawFeeValue.toString();
-        sb.append("withdrawFee=").append(urlEncode(withdrawFeeValueAsString)).append("");
+        Object coinValue = getCoin();
+        String coinValueAsString = "";
+        coinValueAsString = coinValue.toString();
+        sb.append("coin=").append(urlEncode(coinValueAsString)).append("");
         Object withdrawIntegerMultipleValue = getWithdrawIntegerMultiple();
         String withdrawIntegerMultipleValueAsString = "";
         withdrawIntegerMultipleValueAsString = withdrawIntegerMultipleValue.toString();
         sb.append("withdrawIntegerMultiple=")
                 .append(urlEncode(withdrawIntegerMultipleValueAsString))
                 .append("");
-        Object withdrawMaxValue = getWithdrawMax();
-        String withdrawMaxValueAsString = "";
-        withdrawMaxValueAsString = withdrawMaxValue.toString();
-        sb.append("withdrawMax=").append(urlEncode(withdrawMaxValueAsString)).append("");
+        Object isDefaultValue = getIsDefault();
+        String isDefaultValueAsString = "";
+        isDefaultValueAsString = isDefaultValue.toString();
+        sb.append("isDefault=").append(urlEncode(isDefaultValueAsString)).append("");
+        Object depositEnableValue = getDepositEnable();
+        String depositEnableValueAsString = "";
+        depositEnableValueAsString = depositEnableValue.toString();
+        sb.append("depositEnable=").append(urlEncode(depositEnableValueAsString)).append("");
+        Object withdrawEnableValue = getWithdrawEnable();
+        String withdrawEnableValueAsString = "";
+        withdrawEnableValueAsString = withdrawEnableValue.toString();
+        sb.append("withdrawEnable=").append(urlEncode(withdrawEnableValueAsString)).append("");
+        Object depositDescValue = getDepositDesc();
+        String depositDescValueAsString = "";
+        depositDescValueAsString = depositDescValue.toString();
+        sb.append("depositDesc=").append(urlEncode(depositDescValueAsString)).append("");
+        Object withdrawDescValue = getWithdrawDesc();
+        String withdrawDescValueAsString = "";
+        withdrawDescValueAsString = withdrawDescValue.toString();
+        sb.append("withdrawDesc=").append(urlEncode(withdrawDescValueAsString)).append("");
+        Object specialTipsValue = getSpecialTips();
+        String specialTipsValueAsString = "";
+        specialTipsValueAsString = specialTipsValue.toString();
+        sb.append("specialTips=").append(urlEncode(specialTipsValueAsString)).append("");
+        Object specialWithdrawTipsValue = getSpecialWithdrawTips();
+        String specialWithdrawTipsValueAsString = "";
+        specialWithdrawTipsValueAsString = specialWithdrawTipsValue.toString();
+        sb.append("specialWithdrawTips=")
+                .append(urlEncode(specialWithdrawTipsValueAsString))
+                .append("");
+        Object nameValue = getName();
+        String nameValueAsString = "";
+        nameValueAsString = nameValue.toString();
+        sb.append("name=").append(urlEncode(nameValueAsString)).append("");
+        Object resetAddressStatusValue = getResetAddressStatus();
+        String resetAddressStatusValueAsString = "";
+        resetAddressStatusValueAsString = resetAddressStatusValue.toString();
+        sb.append("resetAddressStatus=")
+                .append(urlEncode(resetAddressStatusValueAsString))
+                .append("");
+        Object addressRegexValue = getAddressRegex();
+        String addressRegexValueAsString = "";
+        addressRegexValueAsString = addressRegexValue.toString();
+        sb.append("addressRegex=").append(urlEncode(addressRegexValueAsString)).append("");
+        Object memoRegexValue = getMemoRegex();
+        String memoRegexValueAsString = "";
+        memoRegexValueAsString = memoRegexValue.toString();
+        sb.append("memoRegex=").append(urlEncode(memoRegexValueAsString)).append("");
+        Object withdrawFeeValue = getWithdrawFee();
+        String withdrawFeeValueAsString = "";
+        withdrawFeeValueAsString = withdrawFeeValue.toString();
+        sb.append("withdrawFee=").append(urlEncode(withdrawFeeValueAsString)).append("");
         Object withdrawMinValue = getWithdrawMin();
         String withdrawMinValueAsString = "";
         withdrawMinValueAsString = withdrawMinValue.toString();
         sb.append("withdrawMin=").append(urlEncode(withdrawMinValueAsString)).append("");
+        Object withdrawMaxValue = getWithdrawMax();
+        String withdrawMaxValueAsString = "";
+        withdrawMaxValueAsString = withdrawMaxValue.toString();
+        sb.append("withdrawMax=").append(urlEncode(withdrawMaxValueAsString)).append("");
         Object withdrawInternalMinValue = getWithdrawInternalMin();
         String withdrawInternalMinValueAsString = "";
         withdrawInternalMinValueAsString = withdrawInternalMinValue.toString();
         sb.append("withdrawInternalMin=")
                 .append(urlEncode(withdrawInternalMinValueAsString))
                 .append("");
+        Object depositDustValue = getDepositDust();
+        String depositDustValueAsString = "";
+        depositDustValueAsString = depositDustValue.toString();
+        sb.append("depositDust=").append(urlEncode(depositDustValueAsString)).append("");
+        Object minConfirmValue = getMinConfirm();
+        String minConfirmValueAsString = "";
+        minConfirmValueAsString = minConfirmValue.toString();
+        sb.append("minConfirm=").append(urlEncode(minConfirmValueAsString)).append("");
+        Object unLockConfirmValue = getUnLockConfirm();
+        String unLockConfirmValueAsString = "";
+        unLockConfirmValueAsString = unLockConfirmValue.toString();
+        sb.append("unLockConfirm=").append(urlEncode(unLockConfirmValueAsString)).append("");
         Object sameAddressValue = getSameAddress();
         String sameAddressValueAsString = "";
         sameAddressValueAsString = sameAddressValue.toString();
         sb.append("sameAddress=").append(urlEncode(sameAddressValueAsString)).append("");
+        Object withdrawTagValue = getWithdrawTag();
+        String withdrawTagValueAsString = "";
+        withdrawTagValueAsString = withdrawTagValue.toString();
+        sb.append("withdrawTag=").append(urlEncode(withdrawTagValueAsString)).append("");
         Object estimatedArrivalTimeValue = getEstimatedArrivalTime();
         String estimatedArrivalTimeValueAsString = "";
         estimatedArrivalTimeValueAsString = estimatedArrivalTimeValue.toString();
@@ -1268,59 +1060,10 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
         String contractAddressValueAsString = "";
         contractAddressValueAsString = contractAddressValue.toString();
         sb.append("contractAddress=").append(urlEncode(contractAddressValueAsString)).append("");
-        Object depositAllEnableValue = getDepositAllEnable();
-        String depositAllEnableValueAsString = "";
-        depositAllEnableValueAsString = depositAllEnableValue.toString();
-        sb.append("depositAllEnable=").append(urlEncode(depositAllEnableValueAsString)).append("");
-        Object withdrawAllEnableValue = getWithdrawAllEnable();
-        String withdrawAllEnableValueAsString = "";
-        withdrawAllEnableValueAsString = withdrawAllEnableValue.toString();
-        sb.append("withdrawAllEnable=")
-                .append(urlEncode(withdrawAllEnableValueAsString))
-                .append("");
-        Object freeValue = getFree();
-        String freeValueAsString = "";
-        freeValueAsString = freeValue.toString();
-        sb.append("free=").append(urlEncode(freeValueAsString)).append("");
-        Object lockedValue = getLocked();
-        String lockedValueAsString = "";
-        lockedValueAsString = lockedValue.toString();
-        sb.append("locked=").append(urlEncode(lockedValueAsString)).append("");
-        Object freezeValue = getFreeze();
-        String freezeValueAsString = "";
-        freezeValueAsString = freezeValue.toString();
-        sb.append("freeze=").append(urlEncode(freezeValueAsString)).append("");
-        Object withdrawingValue = getWithdrawing();
-        String withdrawingValueAsString = "";
-        withdrawingValueAsString = withdrawingValue.toString();
-        sb.append("withdrawing=").append(urlEncode(withdrawingValueAsString)).append("");
-        Object ipoingValue = getIpoing();
-        String ipoingValueAsString = "";
-        ipoingValueAsString = ipoingValue.toString();
-        sb.append("ipoing=").append(urlEncode(ipoingValueAsString)).append("");
-        Object ipoableValue = getIpoable();
-        String ipoableValueAsString = "";
-        ipoableValueAsString = ipoableValue.toString();
-        sb.append("ipoable=").append(urlEncode(ipoableValueAsString)).append("");
-        Object storageValue = getStorage();
-        String storageValueAsString = "";
-        storageValueAsString = storageValue.toString();
-        sb.append("storage=").append(urlEncode(storageValueAsString)).append("");
-        Object isLegalMoneyValue = getIsLegalMoney();
-        String isLegalMoneyValueAsString = "";
-        isLegalMoneyValueAsString = isLegalMoneyValue.toString();
-        sb.append("isLegalMoney=").append(urlEncode(isLegalMoneyValueAsString)).append("");
-        Object tradingValue = getTrading();
-        String tradingValueAsString = "";
-        tradingValueAsString = tradingValue.toString();
-        sb.append("trading=").append(urlEncode(tradingValueAsString)).append("");
-        Object networkListValue = getNetworkList();
-        String networkListValueAsString = "";
-        networkListValueAsString =
-                (String)
-                        ((Collection) networkListValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
-        sb.append("networkList=").append(urlEncode(networkListValueAsString)).append("");
+        Object denominationValue = getDenomination();
+        String denominationValueAsString = "";
+        denominationValueAsString = denominationValue.toString();
+        sb.append("denomination=").append(urlEncode(denominationValueAsString)).append("");
         return sb.toString();
     }
 
@@ -1349,41 +1092,34 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("addressRegex");
-        openapiFields.add("coin");
-        openapiFields.add("depositDesc");
-        openapiFields.add("depositEnable");
-        openapiFields.add("isDefault");
-        openapiFields.add("memoRegex");
-        openapiFields.add("minConfirm");
-        openapiFields.add("name");
         openapiFields.add("network");
-        openapiFields.add("specialTips");
-        openapiFields.add("unLockConfirm");
-        openapiFields.add("withdrawDesc");
-        openapiFields.add("withdrawEnable");
-        openapiFields.add("withdrawFee");
+        openapiFields.add("coin");
         openapiFields.add("withdrawIntegerMultiple");
-        openapiFields.add("withdrawMax");
+        openapiFields.add("isDefault");
+        openapiFields.add("depositEnable");
+        openapiFields.add("withdrawEnable");
+        openapiFields.add("depositDesc");
+        openapiFields.add("withdrawDesc");
+        openapiFields.add("specialTips");
+        openapiFields.add("specialWithdrawTips");
+        openapiFields.add("name");
+        openapiFields.add("resetAddressStatus");
+        openapiFields.add("addressRegex");
+        openapiFields.add("memoRegex");
+        openapiFields.add("withdrawFee");
         openapiFields.add("withdrawMin");
+        openapiFields.add("withdrawMax");
         openapiFields.add("withdrawInternalMin");
+        openapiFields.add("depositDust");
+        openapiFields.add("minConfirm");
+        openapiFields.add("unLockConfirm");
         openapiFields.add("sameAddress");
+        openapiFields.add("withdrawTag");
         openapiFields.add("estimatedArrivalTime");
         openapiFields.add("busy");
         openapiFields.add("contractAddressUrl");
         openapiFields.add("contractAddress");
-        openapiFields.add("depositAllEnable");
-        openapiFields.add("withdrawAllEnable");
-        openapiFields.add("free");
-        openapiFields.add("locked");
-        openapiFields.add("freeze");
-        openapiFields.add("withdrawing");
-        openapiFields.add("ipoing");
-        openapiFields.add("ipoable");
-        openapiFields.add("storage");
-        openapiFields.add("isLegalMoney");
-        openapiFields.add("trading");
-        openapiFields.add("networkList");
+        openapiFields.add("denomination");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1411,46 +1147,6 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("addressRegex") != null && !jsonObj.get("addressRegex").isJsonNull())
-                && !jsonObj.get("addressRegex").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `addressRegex` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("addressRegex").toString()));
-        }
-        if ((jsonObj.get("coin") != null && !jsonObj.get("coin").isJsonNull())
-                && !jsonObj.get("coin").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `coin` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("coin").toString()));
-        }
-        if ((jsonObj.get("depositDesc") != null && !jsonObj.get("depositDesc").isJsonNull())
-                && !jsonObj.get("depositDesc").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `depositDesc` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("depositDesc").toString()));
-        }
-        if ((jsonObj.get("memoRegex") != null && !jsonObj.get("memoRegex").isJsonNull())
-                && !jsonObj.get("memoRegex").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `memoRegex` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("memoRegex").toString()));
-        }
-        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
-                && !jsonObj.get("name").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `name` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("name").toString()));
-        }
         if ((jsonObj.get("network") != null && !jsonObj.get("network").isJsonNull())
                 && !jsonObj.get("network").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1459,29 +1155,13 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                                     + " but got `%s`",
                             jsonObj.get("network").toString()));
         }
-        if ((jsonObj.get("specialTips") != null && !jsonObj.get("specialTips").isJsonNull())
-                && !jsonObj.get("specialTips").isJsonPrimitive()) {
+        if ((jsonObj.get("coin") != null && !jsonObj.get("coin").isJsonNull())
+                && !jsonObj.get("coin").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `specialTips` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("specialTips").toString()));
-        }
-        if ((jsonObj.get("withdrawDesc") != null && !jsonObj.get("withdrawDesc").isJsonNull())
-                && !jsonObj.get("withdrawDesc").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `withdrawDesc` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("withdrawDesc").toString()));
-        }
-        if ((jsonObj.get("withdrawFee") != null && !jsonObj.get("withdrawFee").isJsonNull())
-                && !jsonObj.get("withdrawFee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `withdrawFee` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("withdrawFee").toString()));
+                            "Expected the field `coin` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("coin").toString()));
         }
         if ((jsonObj.get("withdrawIntegerMultiple") != null
                         && !jsonObj.get("withdrawIntegerMultiple").isJsonNull())
@@ -1492,13 +1172,70 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("withdrawIntegerMultiple").toString()));
         }
-        if ((jsonObj.get("withdrawMax") != null && !jsonObj.get("withdrawMax").isJsonNull())
-                && !jsonObj.get("withdrawMax").isJsonPrimitive()) {
+        if ((jsonObj.get("depositDesc") != null && !jsonObj.get("depositDesc").isJsonNull())
+                && !jsonObj.get("depositDesc").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `withdrawMax` to be a primitive type in the JSON"
+                            "Expected the field `depositDesc` to be a primitive type in the JSON"
                                     + " string but got `%s`",
-                            jsonObj.get("withdrawMax").toString()));
+                            jsonObj.get("depositDesc").toString()));
+        }
+        if ((jsonObj.get("withdrawDesc") != null && !jsonObj.get("withdrawDesc").isJsonNull())
+                && !jsonObj.get("withdrawDesc").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `withdrawDesc` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("withdrawDesc").toString()));
+        }
+        if ((jsonObj.get("specialTips") != null && !jsonObj.get("specialTips").isJsonNull())
+                && !jsonObj.get("specialTips").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `specialTips` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("specialTips").toString()));
+        }
+        if ((jsonObj.get("specialWithdrawTips") != null
+                        && !jsonObj.get("specialWithdrawTips").isJsonNull())
+                && !jsonObj.get("specialWithdrawTips").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `specialWithdrawTips` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("specialWithdrawTips").toString()));
+        }
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+                && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `name` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("name").toString()));
+        }
+        if ((jsonObj.get("addressRegex") != null && !jsonObj.get("addressRegex").isJsonNull())
+                && !jsonObj.get("addressRegex").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `addressRegex` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("addressRegex").toString()));
+        }
+        if ((jsonObj.get("memoRegex") != null && !jsonObj.get("memoRegex").isJsonNull())
+                && !jsonObj.get("memoRegex").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `memoRegex` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("memoRegex").toString()));
+        }
+        if ((jsonObj.get("withdrawFee") != null && !jsonObj.get("withdrawFee").isJsonNull())
+                && !jsonObj.get("withdrawFee").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `withdrawFee` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("withdrawFee").toString()));
         }
         if ((jsonObj.get("withdrawMin") != null && !jsonObj.get("withdrawMin").isJsonNull())
                 && !jsonObj.get("withdrawMin").isJsonPrimitive()) {
@@ -1508,6 +1245,14 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                                     + " string but got `%s`",
                             jsonObj.get("withdrawMin").toString()));
         }
+        if ((jsonObj.get("withdrawMax") != null && !jsonObj.get("withdrawMax").isJsonNull())
+                && !jsonObj.get("withdrawMax").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `withdrawMax` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("withdrawMax").toString()));
+        }
         if ((jsonObj.get("withdrawInternalMin") != null
                         && !jsonObj.get("withdrawInternalMin").isJsonNull())
                 && !jsonObj.get("withdrawInternalMin").isJsonPrimitive()) {
@@ -1516,6 +1261,14 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                             "Expected the field `withdrawInternalMin` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("withdrawInternalMin").toString()));
+        }
+        if ((jsonObj.get("depositDust") != null && !jsonObj.get("depositDust").isJsonNull())
+                && !jsonObj.get("depositDust").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `depositDust` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("depositDust").toString()));
         }
         if ((jsonObj.get("contractAddressUrl") != null
                         && !jsonObj.get("contractAddressUrl").isJsonNull())
@@ -1533,82 +1286,6 @@ public class AllCoinsInformationResponseInnerNetworkListInner {
                             "Expected the field `contractAddress` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("contractAddress").toString()));
-        }
-        if ((jsonObj.get("free") != null && !jsonObj.get("free").isJsonNull())
-                && !jsonObj.get("free").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `free` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("free").toString()));
-        }
-        if ((jsonObj.get("locked") != null && !jsonObj.get("locked").isJsonNull())
-                && !jsonObj.get("locked").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `locked` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("locked").toString()));
-        }
-        if ((jsonObj.get("freeze") != null && !jsonObj.get("freeze").isJsonNull())
-                && !jsonObj.get("freeze").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `freeze` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("freeze").toString()));
-        }
-        if ((jsonObj.get("withdrawing") != null && !jsonObj.get("withdrawing").isJsonNull())
-                && !jsonObj.get("withdrawing").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `withdrawing` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("withdrawing").toString()));
-        }
-        if ((jsonObj.get("ipoing") != null && !jsonObj.get("ipoing").isJsonNull())
-                && !jsonObj.get("ipoing").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ipoing` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("ipoing").toString()));
-        }
-        if ((jsonObj.get("ipoable") != null && !jsonObj.get("ipoable").isJsonNull())
-                && !jsonObj.get("ipoable").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ipoable` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("ipoable").toString()));
-        }
-        if ((jsonObj.get("storage") != null && !jsonObj.get("storage").isJsonNull())
-                && !jsonObj.get("storage").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `storage` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("storage").toString()));
-        }
-        if (jsonObj.get("networkList") != null && !jsonObj.get("networkList").isJsonNull()) {
-            JsonArray jsonArraynetworkList = jsonObj.getAsJsonArray("networkList");
-            if (jsonArraynetworkList != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("networkList").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `networkList` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("networkList").toString()));
-                }
-
-                // validate the optional field `networkList` (array)
-                for (int i = 0; i < jsonArraynetworkList.size(); i++) {
-                    AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner
-                            .validateJsonElement(jsonArraynetworkList.get(i));
-                }
-                ;
-            }
         }
     }
 

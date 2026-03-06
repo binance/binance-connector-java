@@ -54,6 +54,12 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
     @jakarta.annotation.Nullable
     private String totalDebt;
 
+    public static final String SERIALIZED_NAME_LOAN_RATE = "loanRate";
+
+    @SerializedName(SERIALIZED_NAME_LOAN_RATE)
+    @jakarta.annotation.Nullable
+    private String loanRate;
+
     public static final String SERIALIZED_NAME_RESIDUAL_INTEREST = "residualInterest";
 
     @SerializedName(SERIALIZED_NAME_RESIDUAL_INTEREST)
@@ -169,6 +175,26 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
 
     public void setTotalDebt(@jakarta.annotation.Nullable String totalDebt) {
         this.totalDebt = totalDebt;
+    }
+
+    public GetVIPLoanOngoingOrdersResponseRowsInner loanRate(
+            @jakarta.annotation.Nullable String loanRate) {
+        this.loanRate = loanRate;
+        return this;
+    }
+
+    /**
+     * Get loanRate
+     *
+     * @return loanRate
+     */
+    @jakarta.annotation.Nullable
+    public String getLoanRate() {
+        return loanRate;
+    }
+
+    public void setLoanRate(@jakarta.annotation.Nullable String loanRate) {
+        this.loanRate = loanRate;
     }
 
     public GetVIPLoanOngoingOrdersResponseRowsInner residualInterest(
@@ -367,6 +393,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
                 && Objects.equals(this.loanCoin, getVIPLoanOngoingOrdersResponseRowsInner.loanCoin)
                 && Objects.equals(
                         this.totalDebt, getVIPLoanOngoingOrdersResponseRowsInner.totalDebt)
+                && Objects.equals(this.loanRate, getVIPLoanOngoingOrdersResponseRowsInner.loanRate)
                 && Objects.equals(
                         this.residualInterest,
                         getVIPLoanOngoingOrdersResponseRowsInner.residualInterest)
@@ -397,6 +424,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
                 orderId,
                 loanCoin,
                 totalDebt,
+                loanRate,
                 residualInterest,
                 collateralAccountId,
                 collateralCoin,
@@ -415,6 +443,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		loanCoin: ").append(toIndentedString(loanCoin)).append("\n");
         sb.append("		totalDebt: ").append(toIndentedString(totalDebt)).append("\n");
+        sb.append("		loanRate: ").append(toIndentedString(loanRate)).append("\n");
         sb.append("		residualInterest: ").append(toIndentedString(residualInterest)).append("\n");
         sb.append("		collateralAccountId: ")
                 .append(toIndentedString(collateralAccountId))
@@ -449,6 +478,10 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
         String totalDebtValueAsString = "";
         totalDebtValueAsString = totalDebtValue.toString();
         sb.append("totalDebt=").append(urlEncode(totalDebtValueAsString)).append("");
+        Object loanRateValue = getLoanRate();
+        String loanRateValueAsString = "";
+        loanRateValueAsString = loanRateValue.toString();
+        sb.append("loanRate=").append(urlEncode(loanRateValueAsString)).append("");
         Object residualInterestValue = getResidualInterest();
         String residualInterestValueAsString = "";
         residualInterestValueAsString = residualInterestValue.toString();
@@ -523,6 +556,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
         openapiFields.add("orderId");
         openapiFields.add("loanCoin");
         openapiFields.add("totalDebt");
+        openapiFields.add("loanRate");
         openapiFields.add("residualInterest");
         openapiFields.add("collateralAccountId");
         openapiFields.add("collateralCoin");
@@ -573,6 +607,14 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
                             "Expected the field `totalDebt` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("totalDebt").toString()));
+        }
+        if ((jsonObj.get("loanRate") != null && !jsonObj.get("loanRate").isJsonNull())
+                && !jsonObj.get("loanRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `loanRate` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("loanRate").toString()));
         }
         if ((jsonObj.get("residualInterest") != null
                         && !jsonObj.get("residualInterest").isJsonNull())

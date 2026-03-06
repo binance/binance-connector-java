@@ -15,6 +15,7 @@ All URIs are relative to *https://eapi.binance.com*
 | [**queryCurrentOpenOptionOrders**](TradeApi.md#queryCurrentOpenOptionOrders) | **GET** /eapi/v1/openOrders | Query Current Open Option Orders (USER_DATA) |
 | [**queryOptionOrderHistory**](TradeApi.md#queryOptionOrderHistory) | **GET** /eapi/v1/historyOrders | Query Option Order History (TRADE) |
 | [**querySingleOrder**](TradeApi.md#querySingleOrder) | **GET** /eapi/v1/order | Query Single Order (TRADE) |
+| [**userCommission**](TradeApi.md#userCommission) | **GET** /eapi/v1/commission | User Commission (USER_DATA) |
 | [**userExerciseRecord**](TradeApi.md#userExerciseRecord) | **GET** /eapi/v1/exerciseRecord | User Exercise Record (USER_DATA) |
 
 
@@ -42,7 +43,7 @@ public class Example {
 
     TradeApi apiInstance = new TradeApi(defaultClient);
     String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long fromId = 56L; // Long | The UniqueId ID from which to return. The latest deal record is returned by default
+    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376
     Long startTime = 56L; // Long | Start Time, e.g 1593511200000
     Long endTime = 56L; // Long | End Time, e.g 1593512200000
     Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
@@ -66,7 +67,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
-| **fromId** | **Long**| The UniqueId ID from which to return. The latest deal record is returned by default | [optional] |
+| **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
 | **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
@@ -160,7 +161,7 @@ No authorization required
 
 Cancel all Option orders on specific symbol (TRADE)
 
-Cancel all active order on a symbol.  Weight: 1
+Cancel all active order on a symbol.  Weight: 5
 
 ### Example
 ```java
@@ -544,7 +545,7 @@ No authorization required
 
 <a id="queryCurrentOpenOptionOrders"></a>
 # **queryCurrentOpenOptionOrders**
-> QueryCurrentOpenOptionOrdersResponse queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, limit, recvWindow)
+> QueryCurrentOpenOptionOrdersResponse queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow)
 
 Query Current Open Option Orders (USER_DATA)
 
@@ -569,10 +570,9 @@ public class Example {
     Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
     Long startTime = 56L; // Long | Start Time, e.g 1593511200000
     Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
     Long recvWindow = 56L; // Long | 
     try {
-      QueryCurrentOpenOptionOrdersResponse result = apiInstance.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
+      QueryCurrentOpenOptionOrdersResponse result = apiInstance.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TradeApi#queryCurrentOpenOptionOrders");
@@ -593,7 +593,6 @@ public class Example {
 | **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -753,6 +752,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Single Order |  -  |
+
+<a id="userCommission"></a>
+# **userCommission**
+> UserCommissionResponse userCommission(recvWindow)
+
+User Commission (USER_DATA)
+
+Get account commission.  Weight: 5
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.rest.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://eapi.binance.com");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      UserCommissionResponse result = apiInstance.userCommission(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#userCommission");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**UserCommissionResponse**](UserCommissionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User Commission |  -  |
 
 <a id="userExerciseRecord"></a>
 # **userExerciseRecord**

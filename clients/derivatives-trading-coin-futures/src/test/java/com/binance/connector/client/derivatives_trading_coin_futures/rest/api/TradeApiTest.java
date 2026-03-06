@@ -228,7 +228,7 @@ public class TradeApiTest {
         api.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture());
+        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());

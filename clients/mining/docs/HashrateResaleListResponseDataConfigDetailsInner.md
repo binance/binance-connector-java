@@ -15,6 +15,7 @@
 |**startDay** | **Long** |  |  [optional] |
 |**endDay** | **Long** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
+|**type** | **Long** |  |  [optional] |
 
 
 

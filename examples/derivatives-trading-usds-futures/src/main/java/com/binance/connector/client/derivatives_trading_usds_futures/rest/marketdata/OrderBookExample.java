@@ -40,7 +40,8 @@ public class OrderBookExample {
     /**
      * Order Book
      *
-     * <p>Query symbol orderbook Weight: Adjusted based on the limit: | Limit | Weight | |
+     * <p>Query symbol orderbook Retail Price Improvement(RPI) orders are not visible and excluded
+     * in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
      * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @throws ApiException if the Api call fails

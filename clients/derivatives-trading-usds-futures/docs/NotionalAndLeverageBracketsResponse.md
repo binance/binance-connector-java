@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**notionalCoef** | **Double** |  |  [optional] |
-|**brackets** | [**List&lt;NotionalAndLeverageBracketsResponse1InnerBracketsInner&gt;**](NotionalAndLeverageBracketsResponse1InnerBracketsInner.md) |  |  [optional] |
+|**brackets** | [**List&lt;NotionalAndLeverageBracketsResponse2BracketsInner&gt;**](NotionalAndLeverageBracketsResponse2BracketsInner.md) |  |  [optional] |
 
 
 

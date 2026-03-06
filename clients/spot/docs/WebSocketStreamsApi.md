@@ -7,7 +7,6 @@ All URIs are relative to *http://localhost*
 | [**aggTrade**](WebSocketStreamsApi.md#aggTrade) | **POST** /&lt;symbol&gt;@aggTrade | WebSocket Aggregate Trade Streams |
 | [**allMarketRollingWindowTicker**](WebSocketStreamsApi.md#allMarketRollingWindowTicker) | **POST** /!ticker_&lt;windowSize&gt;@arr | WebSocket All Market Rolling Window Statistics Streams |
 | [**allMiniTicker**](WebSocketStreamsApi.md#allMiniTicker) | **POST** /!miniTicker@arr | WebSocket All Market Mini Tickers Stream |
-| [**allTicker**](WebSocketStreamsApi.md#allTicker) | **POST** /!ticker@arr | WebSocket All Market Tickers Stream |
 | [**avgPrice**](WebSocketStreamsApi.md#avgPrice) | **POST** /&lt;symbol&gt;@avgPrice | WebSocket Average Price |
 | [**bookTicker**](WebSocketStreamsApi.md#bookTicker) | **POST** /&lt;symbol&gt;@bookTicker | WebSocket Individual Symbol Book Ticker Streams |
 | [**diffBookDepth**](WebSocketStreamsApi.md#diffBookDepth) | **POST** /&lt;symbol&gt;@depth@&lt;updateSpeed&gt; | WebSocket Diff. Depth Stream |
@@ -201,64 +200,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | All Market Mini Tickers Stream |  -  |
-
-<a id="allTicker"></a>
-# **allTicker**
-> AllTickerResponse allTicker()
-
-WebSocket All Market Tickers Stream
-
-24hr rolling window ticker statistics for all symbols that changed in an array. These are NOT the statistics of the UTC day, but a 24hr rolling window for the previous 24hrs. Note that only tickers that have changed will be present in the array.
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.spot.ApiClient;
-import com.binance.connector.client.spot.ApiException;
-import com.binance.connector.client.spot.Configuration;
-import com.binance.connector.client.spot.models.*;
-import com.binance.connector.client.spot.websocket.stream.api.WebSocketStreamsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    WebSocketStreamsApi apiInstance = new WebSocketStreamsApi(defaultClient);
-    try {
-      AllTickerResponse result = apiInstance.allTicker();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling WebSocketStreamsApi#allTicker");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**AllTickerResponse**](AllTickerResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | All Market Tickers Stream |  -  |
 
 <a id="avgPrice"></a>
 # **avgPrice**

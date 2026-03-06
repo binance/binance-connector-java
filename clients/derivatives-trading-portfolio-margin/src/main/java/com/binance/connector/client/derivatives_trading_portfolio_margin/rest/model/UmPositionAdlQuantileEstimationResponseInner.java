@@ -47,7 +47,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
 
     @SerializedName(SERIALIZED_NAME_ADL_QUANTILE)
     @jakarta.annotation.Nullable
-    private CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile;
+    private UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile;
 
     public UmPositionAdlQuantileEstimationResponseInner() {}
 
@@ -73,7 +73,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
 
     public UmPositionAdlQuantileEstimationResponseInner adlQuantile(
             @jakarta.annotation.Nullable
-                    CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
+                    UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
         this.adlQuantile = adlQuantile;
         return this;
     }
@@ -85,13 +85,13 @@ public class UmPositionAdlQuantileEstimationResponseInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public CmPositionAdlQuantileEstimationResponseInnerAdlQuantile getAdlQuantile() {
+    public UmPositionAdlQuantileEstimationResponseInnerAdlQuantile getAdlQuantile() {
         return adlQuantile;
     }
 
     public void setAdlQuantile(
             @jakarta.annotation.Nullable
-                    CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
+                    UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
         this.adlQuantile = adlQuantile;
     }
 
@@ -202,7 +202,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
         }
         // validate the optional field `adlQuantile`
         if (jsonObj.get("adlQuantile") != null && !jsonObj.get("adlQuantile").isJsonNull()) {
-            CmPositionAdlQuantileEstimationResponseInnerAdlQuantile.validateJsonElement(
+            UmPositionAdlQuantileEstimationResponseInnerAdlQuantile.validateJsonElement(
                     jsonObj.get("adlQuantile"));
         }
     }

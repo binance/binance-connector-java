@@ -10,7 +10,7 @@
 |**symbol** | **String** |  |  |
 |**orderId** | **Long** |  |  [optional] |
 |**origClientOrderId** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

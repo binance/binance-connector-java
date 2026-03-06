@@ -45,9 +45,11 @@ public class GetSummaryOfSubAccountsFuturesAccountExample {
      * @throws ApiException if the Api call fails
      */
     public void getSummaryOfSubAccountsFuturesAccountExample() throws ApiException {
+        Long page = 0L;
+        Long limit = 0L;
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse> response =
-                getApi().getSummaryOfSubAccountsFuturesAccount(recvWindow);
+                getApi().getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow);
         System.out.println(response.getData());
     }
 }

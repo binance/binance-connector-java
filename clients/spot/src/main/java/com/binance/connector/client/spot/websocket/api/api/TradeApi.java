@@ -28,6 +28,10 @@ import com.binance.connector.client.spot.websocket.api.model.OrderListCancelRequ
 import com.binance.connector.client.spot.websocket.api.model.OrderListCancelResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtocoRequest;
@@ -393,10 +397,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Place new OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#place-new-oco---deprecated-trade">WebSocket
      *     Place new OCO - Deprecated Documentation</a>
      */
+    @Deprecated
     public CompletableFuture<OrderListPlaceResponse> orderListPlace(
             OrderListPlaceRequest orderListPlaceRequest) throws ApiException {
         orderListPlaceValidateBeforeCall(orderListPlaceRequest);
@@ -417,6 +423,7 @@ public class TradeApi {
         return build.getResponseCallback();
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private void orderListPlaceValidateBeforeCall(OrderListPlaceRequest orderListPlaceRequest)
             throws ApiException {
@@ -505,6 +512,131 @@ public class TradeApi {
 
             Set<ConstraintViolation<OrderListPlaceOcoRequest>> violations =
                     validator.validate(orderListPlaceOcoRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket OPO Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     *
+     * @param orderListPlaceOpoRequest (required)
+     * @return OrderListPlaceOpoResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#opo-trade">WebSocket
+     *     OPO Documentation</a>
+     */
+    public CompletableFuture<OrderListPlaceOpoResponse> orderListPlaceOpo(
+            OrderListPlaceOpoRequest orderListPlaceOpoRequest) throws ApiException {
+        orderListPlaceOpoValidateBeforeCall(orderListPlaceOpoRequest);
+        String methodName = "/orderList.place.opo".substring(1);
+        ApiRequestWrapperDTO<OrderListPlaceOpoRequest, OrderListPlaceOpoResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                OrderListPlaceOpoRequest, OrderListPlaceOpoResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(orderListPlaceOpoRequest)
+                        .responseType(OrderListPlaceOpoResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void orderListPlaceOpoValidateBeforeCall(
+            OrderListPlaceOpoRequest orderListPlaceOpoRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OrderListPlaceOpoRequest>> violations =
+                    validator.validate(orderListPlaceOpoRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket OPOCO Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     *
+     * @param orderListPlaceOpocoRequest (required)
+     * @return OrderListPlaceOpocoResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#opoco-trade">WebSocket
+     *     OPOCO Documentation</a>
+     */
+    public CompletableFuture<OrderListPlaceOpocoResponse> orderListPlaceOpoco(
+            OrderListPlaceOpocoRequest orderListPlaceOpocoRequest) throws ApiException {
+        orderListPlaceOpocoValidateBeforeCall(orderListPlaceOpocoRequest);
+        String methodName = "/orderList.place.opoco".substring(1);
+        ApiRequestWrapperDTO<OrderListPlaceOpocoRequest, OrderListPlaceOpocoResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                OrderListPlaceOpocoRequest, OrderListPlaceOpocoResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(orderListPlaceOpocoRequest)
+                        .responseType(OrderListPlaceOpocoResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void orderListPlaceOpocoValidateBeforeCall(
+            OrderListPlaceOpocoRequest orderListPlaceOpocoRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OrderListPlaceOpocoRequest>> violations =
+                    validator.validate(orderListPlaceOpocoRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

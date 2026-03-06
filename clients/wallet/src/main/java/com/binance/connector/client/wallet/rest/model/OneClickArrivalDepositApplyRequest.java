@@ -40,7 +40,7 @@ public class OneClickArrivalDepositApplyRequest {
 
     @SerializedName(SERIALIZED_NAME_DEPOSIT_ID)
     @jakarta.annotation.Nullable
-    private String depositId;
+    private Long depositId;
 
     public static final String SERIALIZED_NAME_TX_ID = "txId";
 
@@ -63,7 +63,7 @@ public class OneClickArrivalDepositApplyRequest {
     public OneClickArrivalDepositApplyRequest() {}
 
     public OneClickArrivalDepositApplyRequest depositId(
-            @jakarta.annotation.Nullable String depositId) {
+            @jakarta.annotation.Nullable Long depositId) {
         this.depositId = depositId;
         return this;
     }
@@ -74,11 +74,11 @@ public class OneClickArrivalDepositApplyRequest {
      * @return depositId
      */
     @jakarta.annotation.Nullable
-    public String getDepositId() {
+    public Long getDepositId() {
         return depositId;
     }
 
-    public void setDepositId(@jakarta.annotation.Nullable String depositId) {
+    public void setDepositId(@jakarta.annotation.Nullable Long depositId) {
         this.depositId = depositId;
     }
 
@@ -251,14 +251,6 @@ public class OneClickArrivalDepositApplyRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("depositId") != null && !jsonObj.get("depositId").isJsonNull())
-                && !jsonObj.get("depositId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `depositId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("depositId").toString()));
-        }
         if ((jsonObj.get("txId") != null && !jsonObj.get("txId").isJsonNull())
                 && !jsonObj.get("txId").isJsonPrimitive()) {
             throw new IllegalArgumentException(

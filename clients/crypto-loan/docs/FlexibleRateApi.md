@@ -11,6 +11,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getFlexibleLoanAssetsData**](FlexibleRateApi.md#getFlexibleLoanAssetsData) | **GET** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data(USER_DATA) |
 | [**getFlexibleLoanBorrowHistory**](FlexibleRateApi.md#getFlexibleLoanBorrowHistory) | **GET** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History(USER_DATA) |
 | [**getFlexibleLoanCollateralAssetsData**](FlexibleRateApi.md#getFlexibleLoanCollateralAssetsData) | **GET** /sapi/v2/loan/flexible/collateral/data | Get Flexible Loan Collateral Assets Data(USER_DATA) |
+| [**getFlexibleLoanInterestRateHistory**](FlexibleRateApi.md#getFlexibleLoanInterestRateHistory) | **GET** /sapi/v2/loan/interestRateHistory | Get Flexible Loan Interest Rate History (USER_DATA) |
 | [**getFlexibleLoanLiquidationHistory**](FlexibleRateApi.md#getFlexibleLoanLiquidationHistory) | **GET** /sapi/v2/loan/flexible/liquidation/history | Get Flexible Loan Liquidation History (USER_DATA) |
 | [**getFlexibleLoanLtvAdjustmentHistory**](FlexibleRateApi.md#getFlexibleLoanLtvAdjustmentHistory) | **GET** /sapi/v2/loan/flexible/ltv/adjustment/history | Get Flexible Loan LTV Adjustment History(USER_DATA) |
 | [**getFlexibleLoanOngoingOrders**](FlexibleRateApi.md#getFlexibleLoanOngoingOrders) | **GET** /sapi/v2/loan/flexible/ongoing/orders | Get Flexible Loan Ongoing Orders(USER_DATA) |
@@ -470,6 +471,78 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get Flexible Loan Collateral Assets Data |  -  |
+
+<a id="getFlexibleLoanInterestRateHistory"></a>
+# **getFlexibleLoanInterestRateHistory**
+> GetFlexibleLoanInterestRateHistoryResponse getFlexibleLoanInterestRateHistory(coin, recvWindow, startTime, endTime, current, limit)
+
+Get Flexible Loan Interest Rate History (USER_DATA)
+
+Check Flexible Loan interest rate history  * If startTime and endTime are not sent, the recent 90-day data will be returned * The max interval between startTime and endTime is 90 days. * Time based on UTC+0.  Weight: 400
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.crypto_loan.ApiClient;
+import com.binance.connector.client.crypto_loan.ApiException;
+import com.binance.connector.client.crypto_loan.Configuration;
+import com.binance.connector.client.crypto_loan.models.*;
+import com.binance.connector.client.crypto_loan.rest.api.FlexibleRateApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
+    String coin = "coin_example"; // String | 
+    Long recvWindow = 56L; // Long | 
+    Long startTime = 56L; // Long | 
+    Long endTime = 56L; // Long | 
+    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
+    Long limit = 56L; // Long | Default: 10; max: 100
+    try {
+      GetFlexibleLoanInterestRateHistoryResponse result = apiInstance.getFlexibleLoanInterestRateHistory(coin, recvWindow, startTime, endTime, current, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FlexibleRateApi#getFlexibleLoanInterestRateHistory");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **coin** | **String**|  | |
+| **recvWindow** | **Long**|  | |
+| **startTime** | **Long**|  | [optional] |
+| **endTime** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
+| **limit** | **Long**| Default: 10; max: 100 | [optional] |
+
+### Return type
+
+[**GetFlexibleLoanInterestRateHistoryResponse**](GetFlexibleLoanInterestRateHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Flexible Loan Interest Rate History |  -  |
 
 <a id="getFlexibleLoanLiquidationHistory"></a>
 # **getFlexibleLoanLiquidationHistory**

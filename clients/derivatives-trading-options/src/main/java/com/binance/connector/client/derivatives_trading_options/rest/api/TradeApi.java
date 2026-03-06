@@ -36,6 +36,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Place
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryCurrentOpenOptionOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryOptionOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QuerySingleOrderResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.UserCommissionResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.UserExerciseRecordResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -60,7 +61,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -101,8 +102,8 @@ public class TradeApi {
      * Build call for accountTradeList
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
-     * @param fromId The UniqueId ID from which to return. The latest deal record is returned by
-     *     default (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades, e.g
+     *     4611875134427365376 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param limit Number of result sets returned Default:100 Max:1000 (optional)
@@ -117,7 +118,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Account-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountTradeListCall(
@@ -246,8 +247,8 @@ public class TradeApi {
      * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
-     * @param fromId The UniqueId ID from which to return. The latest deal record is returned by
-     *     default (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades, e.g
+     *     4611875134427365376 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param limit Number of result sets returned Default:100 Max:1000 (optional)
@@ -263,7 +264,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Account-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountTradeListResponse> accountTradeList(
@@ -292,7 +293,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
      *     All Option Orders By Underlying (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAllOptionOrdersByUnderlyingCall(String underlying, Long recvWindow)
@@ -410,7 +411,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
      *     All Option Orders By Underlying (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOptionOrdersByUnderlyingResponse> cancelAllOptionOrdersByUnderlying(
@@ -437,7 +438,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
      *     all Option orders on specific symbol (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAllOptionOrdersOnSpecificSymbolCall(String symbol, Long recvWindow)
@@ -542,7 +543,7 @@ public class TradeApi {
 
     /**
      * Cancel all Option orders on specific symbol (TRADE) Cancel all active order on a symbol.
-     * Weight: 1
+     * Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param recvWindow (optional)
@@ -557,7 +558,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
      *     all Option orders on specific symbol (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOptionOrdersOnSpecificSymbolResponse>
@@ -588,7 +589,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Multiple-Option-Orders">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Multiple-Option-Orders">Cancel
      *     Multiple Option Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelMultipleOptionOrdersCall(
@@ -725,7 +726,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Multiple-Option-Orders">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Multiple-Option-Orders">Cancel
      *     Multiple Option Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelMultipleOptionOrdersResponse> cancelMultipleOptionOrders(
@@ -759,7 +760,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Option-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Option-Order">Cancel
      *     Option Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelOptionOrderCall(
@@ -894,7 +895,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Option-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Option-Order">Cancel
      *     Option Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelOptionOrderResponse> cancelOptionOrder(
@@ -920,7 +921,8 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New Order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/derivatives/option/trade/New-Order">New
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/New-Order">New
      *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call newOrderCall(NewOrderRequest newOrderRequest) throws ApiException {
@@ -1074,7 +1076,8 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New Order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/derivatives/option/trade/New-Order">New
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/New-Order">New
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(@Valid @NotNull NewOrderRequest newOrderRequest)
@@ -1099,7 +1102,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Option-Position-Information">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Option-Position-Information">Option
      *     Position Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call optionPositionInformationCall(String symbol, Long recvWindow)
@@ -1215,7 +1218,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Option-Position-Information">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Option-Position-Information">Option
      *     Position Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<OptionPositionInformationResponse> optionPositionInformation(
@@ -1240,7 +1243,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Place-Multiple-Orders">Place
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Place-Multiple-Orders">Place
      *     Multiple Orders(TRADE) Documentation</a>
      */
     private okhttp3.Call placeMultipleOrdersCall(
@@ -1358,7 +1361,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Place-Multiple-Orders">Place
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Place-Multiple-Orders">Place
      *     Multiple Orders(TRADE) Documentation</a>
      */
     public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
@@ -1378,7 +1381,6 @@ public class TradeApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1390,11 +1392,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Current-Open-Option-Orders">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Current-Open-Option-Orders">Query
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCurrentOpenOptionOrdersCall(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1436,10 +1438,6 @@ public class TradeApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
         }
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
         if (recvWindow != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
@@ -1476,7 +1474,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryCurrentOpenOptionOrdersValidateBeforeCall(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1487,13 +1485,12 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, orderId, startTime, endTime, limit, recvWindow};
+            Object[] parameterValues = {symbol, orderId, startTime, endTime, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "queryCurrentOpenOptionOrders",
                                     String.class,
-                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1503,7 +1500,7 @@ public class TradeApi {
 
             if (violations.size() == 0) {
                 return queryCurrentOpenOptionOrdersCall(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                        symbol, orderId, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1524,7 +1521,6 @@ public class TradeApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentOpenOptionOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1537,15 +1533,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Current-Open-Option-Orders">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Current-Open-Option-Orders">Query
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOptionOrdersResponse> queryCurrentOpenOptionOrders(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryCurrentOpenOptionOrdersValidateBeforeCall(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                        symbol, orderId, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryCurrentOpenOptionOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1570,7 +1566,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Option-Order-History">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Option-Order-History">Query
      *     Option Order History (TRADE) Documentation</a>
      */
     private okhttp3.Call queryOptionOrderHistoryCall(
@@ -1717,7 +1713,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Option-Order-History">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Option-Order-History">Query
      *     Option Order History (TRADE) Documentation</a>
      */
     public ApiResponse<QueryOptionOrderHistoryResponse> queryOptionOrderHistory(
@@ -1753,7 +1749,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Single-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Single-Order">Query
      *     Single Order (TRADE) Documentation</a>
      */
     private okhttp3.Call querySingleOrderCall(
@@ -1890,7 +1886,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Single-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Single-Order">Query
      *     Single Order (TRADE) Documentation</a>
      */
     public ApiResponse<QuerySingleOrderResponse> querySingleOrder(
@@ -1900,6 +1896,137 @@ public class TradeApi {
                 querySingleOrderValidateBeforeCall(symbol, orderId, clientOrderId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QuerySingleOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for userCommission
+     *
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> User Commission </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Commission">User
+     *     Commission (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call userCommissionCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/eapi/v1/commission";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call userCommissionValidateBeforeCall(Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("userCommission", Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return userCommissionCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * User Commission (USER_DATA) Get account commission. Weight: 5
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;UserCommissionResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> User Commission </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Commission">User
+     *     Commission (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<UserCommissionResponse> userCommission(Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = userCommissionValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<UserCommissionResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1921,7 +2048,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/User-Exercise-Record">User
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Exercise-Record">User
      *     Exercise Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call userExerciseRecordCall(
@@ -2060,7 +2187,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/User-Exercise-Record">User
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Exercise-Record">User
      *     Exercise Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserExerciseRecordResponse> userExerciseRecord(

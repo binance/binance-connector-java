@@ -12,16 +12,21 @@
 |**price** | **String** |  |  [optional] |
 |**quantity** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
-|**fee** | **Long** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
+|**reduceOnly** | **Boolean** |  |  [optional] |
 |**createTime** | **Long** |  |  [optional] |
+|**updateTime** | **Long** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**avgPrice** | **String** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
+|**source** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**priceScale** | **Long** |  |  [optional] |
+|**quantityScale** | **Long** |  |  [optional] |
+|**optionSide** | **String** |  |  [optional] |
+|**quoteAsset** | **String** |  |  [optional] |
+|**mmp** | **Boolean** |  |  [optional] |
 
 
 

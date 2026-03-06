@@ -14,7 +14,6 @@ import com.binance.connector.client.convert.rest.model.ListAllConvertPairsRespon
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 import com.binance.connector.client.convert.rest.model.QueryOrderQuantityPrecisionPerAssetResponse;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestRequest;
@@ -207,7 +206,7 @@ public class ConvertRestApi {
      * Query limit open orders (USER_DATA) Request a quote for the requested token pairs Weight:
      * 3000(UID)
      *
-     * @param queryLimitOpenOrdersRequest (required)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return ApiResponse&lt;QueryLimitOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -221,9 +220,9 @@ public class ConvertRestApi {
      * @see <a href="https://developers.binance.com/docs/convert/trade/Query-Order">Query limit open
      *     orders (USER_DATA) Documentation</a>
      */
-    public ApiResponse<QueryLimitOpenOrdersResponse> queryLimitOpenOrders(
-            QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest) throws ApiException {
-        return tradeApi.queryLimitOpenOrders(queryLimitOpenOrdersRequest);
+    public ApiResponse<QueryLimitOpenOrdersResponse> queryLimitOpenOrders(Long recvWindow)
+            throws ApiException {
+        return tradeApi.queryLimitOpenOrders(recvWindow);
     }
 
     /**

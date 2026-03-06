@@ -19,7 +19,7 @@
 |**strategyId** | **Long** |  |  [optional] |
 |**strategyType** | **Integer** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**TickerPriceResponse1Result**](TickerPriceResponse1Result.md) |  |  [optional] |
-|**rateLimits** | **RateLimits** |  |  [optional] |
+|**rateLimits** | [**List&lt;RateLimits&gt;**](RateLimits.md) |  |  [optional] |
 
 
 

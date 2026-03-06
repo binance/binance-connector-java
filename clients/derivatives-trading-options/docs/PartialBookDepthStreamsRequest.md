@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
 |**symbol** | **String** |  |  |
-|**levels** | **Long** |  |  |
+|**level** | **String** |  |  |
 |**updateSpeed** | **String** |  |  [optional] |
 
 

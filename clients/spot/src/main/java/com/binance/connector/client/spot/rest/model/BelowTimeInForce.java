@@ -24,11 +24,11 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets belowTimeInForce */
 @JsonAdapter(BelowTimeInForce.Adapter.class)
 public enum BelowTimeInForce {
-    belowType("belowType"),
+    GTC("GTC"),
 
-    STOP_LOSS_LIMIT("STOP_LOSS_LIMIT"),
+    IOC("IOC"),
 
-    TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT");
+    FOK("FOK");
 
     private String value;
 

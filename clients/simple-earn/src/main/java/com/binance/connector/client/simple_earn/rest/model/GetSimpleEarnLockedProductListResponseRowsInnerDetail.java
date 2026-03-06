@@ -82,7 +82,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
 
     @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_START_TIME)
     @jakarta.annotation.Nullable
-    private String subscriptionStartTime;
+    private Long subscriptionStartTime;
 
     public static final String SERIALIZED_NAME_EXTRA_REWARD_ASSET = "extraRewardAsset";
 
@@ -112,7 +112,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
 
     @SerializedName(SERIALIZED_NAME_BOOST_END_TIME)
     @jakarta.annotation.Nullable
-    private String boostEndTime;
+    private Long boostEndTime;
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail() {}
 
@@ -257,7 +257,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
     }
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail subscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+            @jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
         return this;
     }
@@ -268,12 +268,11 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
      * @return subscriptionStartTime
      */
     @jakarta.annotation.Nullable
-    public String getSubscriptionStartTime() {
+    public Long getSubscriptionStartTime() {
         return subscriptionStartTime;
     }
 
-    public void setSubscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+    public void setSubscriptionStartTime(@jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
     }
 
@@ -358,7 +357,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
     }
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail boostEndTime(
-            @jakarta.annotation.Nullable String boostEndTime) {
+            @jakarta.annotation.Nullable Long boostEndTime) {
         this.boostEndTime = boostEndTime;
         return this;
     }
@@ -369,11 +368,11 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
      * @return boostEndTime
      */
     @jakarta.annotation.Nullable
-    public String getBoostEndTime() {
+    public Long getBoostEndTime() {
         return boostEndTime;
     }
 
-    public void setBoostEndTime(@jakarta.annotation.Nullable String boostEndTime) {
+    public void setBoostEndTime(@jakarta.annotation.Nullable Long boostEndTime) {
         this.boostEndTime = boostEndTime;
     }
 
@@ -624,15 +623,6 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                                     + " but got `%s`",
                             jsonObj.get("status").toString()));
         }
-        if ((jsonObj.get("subscriptionStartTime") != null
-                        && !jsonObj.get("subscriptionStartTime").isJsonNull())
-                && !jsonObj.get("subscriptionStartTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `subscriptionStartTime` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("subscriptionStartTime").toString()));
-        }
         if ((jsonObj.get("extraRewardAsset") != null
                         && !jsonObj.get("extraRewardAsset").isJsonNull())
                 && !jsonObj.get("extraRewardAsset").isJsonPrimitive()) {
@@ -666,14 +656,6 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                             "Expected the field `boostApr` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("boostApr").toString()));
-        }
-        if ((jsonObj.get("boostEndTime") != null && !jsonObj.get("boostEndTime").isJsonNull())
-                && !jsonObj.get("boostEndTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `boostEndTime` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("boostEndTime").toString()));
         }
     }
 

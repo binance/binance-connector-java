@@ -43,7 +43,7 @@ public class Ticker24HourRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Integer id;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -53,7 +53,7 @@ public class Ticker24HourRequest extends BaseDTO {
 
     public Ticker24HourRequest() {}
 
-    public Ticker24HourRequest id(@jakarta.annotation.Nullable String id) {
+    public Ticker24HourRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
@@ -64,11 +64,11 @@ public class Ticker24HourRequest extends BaseDTO {
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
     }
 
@@ -124,7 +124,7 @@ public class Ticker24HourRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
@@ -227,14 +227,6 @@ public class Ticker24HourRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

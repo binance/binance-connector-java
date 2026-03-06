@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Double** |  |  [optional] |
-|**borrowLimit** | **Long** |  |  [optional] |
+|**amount** | **String** |  |  [optional] |
+|**borrowLimit** | **String** |  |  [optional] |
 
 
 

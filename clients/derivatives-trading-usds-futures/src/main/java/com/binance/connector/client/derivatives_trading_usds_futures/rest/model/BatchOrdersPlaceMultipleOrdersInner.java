@@ -23,7 +23,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -177,7 +176,9 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
         GTX("GTX"),
 
-        GTD("GTD");
+        GTD("GTD"),
+
+        RPI("RPI");
 
         private String value;
 
@@ -233,7 +234,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
-    private Double quantity;
+    private String quantity;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
@@ -245,94 +246,13 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
-    private Double price;
+    private String price;
 
     public static final String SERIALIZED_NAME_NEW_CLIENT_ORDER_ID = "newClientOrderId";
 
     @SerializedName(SERIALIZED_NAME_NEW_CLIENT_ORDER_ID)
     @jakarta.annotation.Nullable
     private String newClientOrderId;
-
-    public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
-
-    @SerializedName(SERIALIZED_NAME_STOP_PRICE)
-    @jakarta.annotation.Nullable
-    private Double stopPrice;
-
-    public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
-
-    @SerializedName(SERIALIZED_NAME_ACTIVATION_PRICE)
-    @jakarta.annotation.Nullable
-    private Double activationPrice;
-
-    public static final String SERIALIZED_NAME_CALLBACK_RATE = "callbackRate";
-
-    @SerializedName(SERIALIZED_NAME_CALLBACK_RATE)
-    @jakarta.annotation.Nullable
-    private Double callbackRate;
-
-    /** Gets or Sets workingType */
-    @JsonAdapter(WorkingTypeEnum.Adapter.class)
-    public enum WorkingTypeEnum {
-        MARK_PRICE("MARK_PRICE"),
-
-        CONTRACT_PRICE("CONTRACT_PRICE");
-
-        private String value;
-
-        WorkingTypeEnum(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static WorkingTypeEnum fromValue(String value) {
-            for (WorkingTypeEnum b : WorkingTypeEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public static class Adapter extends TypeAdapter<WorkingTypeEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final WorkingTypeEnum enumeration)
-                    throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public WorkingTypeEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return WorkingTypeEnum.fromValue(value);
-            }
-        }
-
-        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-            String value = jsonElement.getAsString();
-            WorkingTypeEnum.fromValue(value);
-        }
-    }
-
-    public static final String SERIALIZED_NAME_WORKING_TYPE = "workingType";
-
-    @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
-    @jakarta.annotation.Nullable
-    private WorkingTypeEnum workingType;
-
-    public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
-
-    @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
-    @jakarta.annotation.Nullable
-    private String priceProtect;
 
     /** Gets or Sets newOrderRespType */
     @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
@@ -528,7 +448,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
     @jakarta.annotation.Nullable
-    private Long goodTillDate;
+    private String goodTillDate;
 
     public BatchOrdersPlaceMultipleOrdersInner() {}
 
@@ -630,7 +550,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
     }
 
     public BatchOrdersPlaceMultipleOrdersInner quantity(
-            @jakarta.annotation.Nullable Double quantity) {
+            @jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -641,12 +561,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return quantity
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
+    public void setQuantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
     }
 
@@ -670,7 +589,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         this.reduceOnly = reduceOnly;
     }
 
-    public BatchOrdersPlaceMultipleOrdersInner price(@jakarta.annotation.Nullable Double price) {
+    public BatchOrdersPlaceMultipleOrdersInner price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
@@ -681,12 +600,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return price
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(@jakarta.annotation.Nullable Double price) {
+    public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
     }
 
@@ -708,109 +626,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
 
     public void setNewClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
         this.newClientOrderId = newClientOrderId;
-    }
-
-    public BatchOrdersPlaceMultipleOrdersInner stopPrice(
-            @jakarta.annotation.Nullable Double stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable Double stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
-    public BatchOrdersPlaceMultipleOrdersInner activationPrice(
-            @jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
-        return this;
-    }
-
-    /**
-     * Get activationPrice
-     *
-     * @return activationPrice
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getActivationPrice() {
-        return activationPrice;
-    }
-
-    public void setActivationPrice(@jakarta.annotation.Nullable Double activationPrice) {
-        this.activationPrice = activationPrice;
-    }
-
-    public BatchOrdersPlaceMultipleOrdersInner callbackRate(
-            @jakarta.annotation.Nullable Double callbackRate) {
-        this.callbackRate = callbackRate;
-        return this;
-    }
-
-    /**
-     * Get callbackRate
-     *
-     * @return callbackRate
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public Double getCallbackRate() {
-        return callbackRate;
-    }
-
-    public void setCallbackRate(@jakarta.annotation.Nullable Double callbackRate) {
-        this.callbackRate = callbackRate;
-    }
-
-    public BatchOrdersPlaceMultipleOrdersInner workingType(
-            @jakarta.annotation.Nullable WorkingTypeEnum workingType) {
-        this.workingType = workingType;
-        return this;
-    }
-
-    /**
-     * Get workingType
-     *
-     * @return workingType
-     */
-    @jakarta.annotation.Nullable
-    public WorkingTypeEnum getWorkingType() {
-        return workingType;
-    }
-
-    public void setWorkingType(@jakarta.annotation.Nullable WorkingTypeEnum workingType) {
-        this.workingType = workingType;
-    }
-
-    public BatchOrdersPlaceMultipleOrdersInner priceProtect(
-            @jakarta.annotation.Nullable String priceProtect) {
-        this.priceProtect = priceProtect;
-        return this;
-    }
-
-    /**
-     * Get priceProtect
-     *
-     * @return priceProtect
-     */
-    @jakarta.annotation.Nullable
-    public String getPriceProtect() {
-        return priceProtect;
-    }
-
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
-        this.priceProtect = priceProtect;
     }
 
     public BatchOrdersPlaceMultipleOrdersInner newOrderRespType(
@@ -876,7 +691,7 @@ public class BatchOrdersPlaceMultipleOrdersInner {
     }
 
     public BatchOrdersPlaceMultipleOrdersInner goodTillDate(
-            @jakarta.annotation.Nullable Long goodTillDate) {
+            @jakarta.annotation.Nullable String goodTillDate) {
         this.goodTillDate = goodTillDate;
         return this;
     }
@@ -887,11 +702,11 @@ public class BatchOrdersPlaceMultipleOrdersInner {
      * @return goodTillDate
      */
     @jakarta.annotation.Nullable
-    public Long getGoodTillDate() {
+    public String getGoodTillDate() {
         return goodTillDate;
     }
 
-    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+    public void setGoodTillDate(@jakarta.annotation.Nullable String goodTillDate) {
         this.goodTillDate = goodTillDate;
     }
 
@@ -916,14 +731,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                 && Objects.equals(this.price, batchOrdersPlaceMultipleOrdersInner.price)
                 && Objects.equals(
                         this.newClientOrderId, batchOrdersPlaceMultipleOrdersInner.newClientOrderId)
-                && Objects.equals(this.stopPrice, batchOrdersPlaceMultipleOrdersInner.stopPrice)
-                && Objects.equals(
-                        this.activationPrice, batchOrdersPlaceMultipleOrdersInner.activationPrice)
-                && Objects.equals(
-                        this.callbackRate, batchOrdersPlaceMultipleOrdersInner.callbackRate)
-                && Objects.equals(this.workingType, batchOrdersPlaceMultipleOrdersInner.workingType)
-                && Objects.equals(
-                        this.priceProtect, batchOrdersPlaceMultipleOrdersInner.priceProtect)
                 && Objects.equals(
                         this.newOrderRespType, batchOrdersPlaceMultipleOrdersInner.newOrderRespType)
                 && Objects.equals(this.priceMatch, batchOrdersPlaceMultipleOrdersInner.priceMatch)
@@ -946,11 +753,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                 reduceOnly,
                 price,
                 newClientOrderId,
-                stopPrice,
-                activationPrice,
-                callbackRate,
-                workingType,
-                priceProtect,
                 newOrderRespType,
                 priceMatch,
                 selfTradePreventionMode,
@@ -970,11 +772,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
-        sb.append("		activationPrice: ").append(toIndentedString(activationPrice)).append("\n");
-        sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
-        sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
-        sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
         sb.append("		selfTradePreventionMode: ")
@@ -1024,26 +821,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         String newClientOrderIdValueAsString = "";
         newClientOrderIdValueAsString = newClientOrderIdValue.toString();
         sb.append("newClientOrderId=").append(urlEncode(newClientOrderIdValueAsString)).append("");
-        Object stopPriceValue = getStopPrice();
-        String stopPriceValueAsString = "";
-        stopPriceValueAsString = stopPriceValue.toString();
-        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
-        Object activationPriceValue = getActivationPrice();
-        String activationPriceValueAsString = "";
-        activationPriceValueAsString = activationPriceValue.toString();
-        sb.append("activationPrice=").append(urlEncode(activationPriceValueAsString)).append("");
-        Object callbackRateValue = getCallbackRate();
-        String callbackRateValueAsString = "";
-        callbackRateValueAsString = callbackRateValue.toString();
-        sb.append("callbackRate=").append(urlEncode(callbackRateValueAsString)).append("");
-        Object workingTypeValue = getWorkingType();
-        String workingTypeValueAsString = "";
-        workingTypeValueAsString = workingTypeValue.toString();
-        sb.append("workingType=").append(urlEncode(workingTypeValueAsString)).append("");
-        Object priceProtectValue = getPriceProtect();
-        String priceProtectValueAsString = "";
-        priceProtectValueAsString = priceProtectValue.toString();
-        sb.append("priceProtect=").append(urlEncode(priceProtectValueAsString)).append("");
         Object newOrderRespTypeValue = getNewOrderRespType();
         String newOrderRespTypeValueAsString = "";
         newOrderRespTypeValueAsString = newOrderRespTypeValue.toString();
@@ -1099,11 +876,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         openapiFields.add("reduceOnly");
         openapiFields.add("price");
         openapiFields.add("newClientOrderId");
-        openapiFields.add("stopPrice");
-        openapiFields.add("activationPrice");
-        openapiFields.add("callbackRate");
-        openapiFields.add("workingType");
-        openapiFields.add("priceProtect");
         openapiFields.add("newOrderRespType");
         openapiFields.add("priceMatch");
         openapiFields.add("selfTradePreventionMode");
@@ -1185,6 +957,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForceEnum.validateJsonElement(jsonObj.get("timeInForce"));
         }
+        if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
+                && !jsonObj.get("quantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quantity").toString()));
+        }
         if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
                 && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1192,6 +972,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                             "Expected the field `reduceOnly` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("reduceOnly").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())
@@ -1201,26 +989,6 @@ public class BatchOrdersPlaceMultipleOrdersInner {
                             "Expected the field `newClientOrderId` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("newClientOrderId").toString()));
-        }
-        if ((jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull())
-                && !jsonObj.get("workingType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `workingType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("workingType").toString()));
-        }
-        // validate the optional field `workingType`
-        if (jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull()) {
-            WorkingTypeEnum.validateJsonElement(jsonObj.get("workingType"));
-        }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
         }
         if ((jsonObj.get("newOrderRespType") != null
                         && !jsonObj.get("newOrderRespType").isJsonNull())
@@ -1261,6 +1029,14 @@ public class BatchOrdersPlaceMultipleOrdersInner {
         if (jsonObj.get("selfTradePreventionMode") != null
                 && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
             SelfTradePreventionModeEnum.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
+        }
+        if ((jsonObj.get("goodTillDate") != null && !jsonObj.get("goodTillDate").isJsonNull())
+                && !jsonObj.get("goodTillDate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `goodTillDate` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("goodTillDate").toString()));
         }
     }
 

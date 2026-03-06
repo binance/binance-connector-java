@@ -60,12 +60,6 @@ public class UserExerciseRecordResponseInner {
     @jakarta.annotation.Nullable
     private String exercisePrice;
 
-    public static final String SERIALIZED_NAME_MARK_PRICE = "markPrice";
-
-    @SerializedName(SERIALIZED_NAME_MARK_PRICE)
-    @jakarta.annotation.Nullable
-    private String markPrice;
-
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
@@ -197,26 +191,6 @@ public class UserExerciseRecordResponseInner {
 
     public void setExercisePrice(@jakarta.annotation.Nullable String exercisePrice) {
         this.exercisePrice = exercisePrice;
-    }
-
-    public UserExerciseRecordResponseInner markPrice(
-            @jakarta.annotation.Nullable String markPrice) {
-        this.markPrice = markPrice;
-        return this;
-    }
-
-    /**
-     * Get markPrice
-     *
-     * @return markPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getMarkPrice() {
-        return markPrice;
-    }
-
-    public void setMarkPrice(@jakarta.annotation.Nullable String markPrice) {
-        this.markPrice = markPrice;
     }
 
     public UserExerciseRecordResponseInner quantity(@jakarta.annotation.Nullable String quantity) {
@@ -410,7 +384,6 @@ public class UserExerciseRecordResponseInner {
                 && Objects.equals(this.currency, userExerciseRecordResponseInner.currency)
                 && Objects.equals(this.symbol, userExerciseRecordResponseInner.symbol)
                 && Objects.equals(this.exercisePrice, userExerciseRecordResponseInner.exercisePrice)
-                && Objects.equals(this.markPrice, userExerciseRecordResponseInner.markPrice)
                 && Objects.equals(this.quantity, userExerciseRecordResponseInner.quantity)
                 && Objects.equals(this.amount, userExerciseRecordResponseInner.amount)
                 && Objects.equals(this.fee, userExerciseRecordResponseInner.fee)
@@ -429,7 +402,6 @@ public class UserExerciseRecordResponseInner {
                 currency,
                 symbol,
                 exercisePrice,
-                markPrice,
                 quantity,
                 amount,
                 fee,
@@ -449,7 +421,6 @@ public class UserExerciseRecordResponseInner {
         sb.append("		currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		exercisePrice: ").append(toIndentedString(exercisePrice)).append("\n");
-        sb.append("		markPrice: ").append(toIndentedString(markPrice)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
         sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
@@ -482,10 +453,6 @@ public class UserExerciseRecordResponseInner {
         String exercisePriceValueAsString = "";
         exercisePriceValueAsString = exercisePriceValue.toString();
         sb.append("exercisePrice=").append(urlEncode(exercisePriceValueAsString)).append("");
-        Object markPriceValue = getMarkPrice();
-        String markPriceValueAsString = "";
-        markPriceValueAsString = markPriceValue.toString();
-        sb.append("markPrice=").append(urlEncode(markPriceValueAsString)).append("");
         Object quantityValue = getQuantity();
         String quantityValueAsString = "";
         quantityValueAsString = quantityValue.toString();
@@ -554,7 +521,6 @@ public class UserExerciseRecordResponseInner {
         openapiFields.add("currency");
         openapiFields.add("symbol");
         openapiFields.add("exercisePrice");
-        openapiFields.add("markPrice");
         openapiFields.add("quantity");
         openapiFields.add("amount");
         openapiFields.add("fee");
@@ -619,14 +585,6 @@ public class UserExerciseRecordResponseInner {
                             "Expected the field `exercisePrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("exercisePrice").toString()));
-        }
-        if ((jsonObj.get("markPrice") != null && !jsonObj.get("markPrice").isJsonNull())
-                && !jsonObj.get("markPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `markPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("markPrice").toString()));
         }
         if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
                 && !jsonObj.get("quantity").isJsonPrimitive()) {

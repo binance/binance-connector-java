@@ -682,6 +682,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model
                         .UmPositionAdlQuantileEstimationResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model
+                        .UmPositionAdlQuantileEstimationResponseInnerAdlQuantile
+                        .CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

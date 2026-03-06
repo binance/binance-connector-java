@@ -9,6 +9,8 @@ import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAc
 import com.binance.connector.client.vip_loan.rest.model.GetBorrowInterestRateResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetCollateralAssetDataResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanAccruedInterestResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanInterestRateHistoryResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest;
@@ -106,6 +108,38 @@ public class VipLoanRestApi {
     public ApiResponse<GetLoanableAssetsDataResponse> getLoanableAssetsData(
             String loanCoin, Long vipLevel, Long recvWindow) throws ApiException {
         return marketDataApi.getLoanableAssetsData(loanCoin, vipLevel, recvWindow);
+    }
+
+    /**
+     * Get VIP Loan Interest Rate History (USER_DATA) Check VIP Loan flexible interest rate history
+     * * If startTime and endTime are not sent, the recent 90-day data will be returned * The max
+     * interval between startTime and end Time is 180 days. * Time based on UTC+0. Weight: 400
+     *
+     * @param coin (required)
+     * @param recvWindow (required)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @return ApiResponse&lt;GetVIPLoanInterestRateHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Interest Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-Rate-History">Get
+     *     VIP Loan Interest Rate History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanInterestRateHistoryResponse> getVIPLoanInterestRateHistory(
+            String coin, Long recvWindow, Long startTime, Long endTime, Long current, Long limit)
+            throws ApiException {
+        return marketDataApi.getVIPLoanInterestRateHistory(
+                coin, recvWindow, startTime, endTime, current, limit);
     }
 
     /**
@@ -207,14 +241,53 @@ public class VipLoanRestApi {
     }
 
     /**
+     * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record * If startTime and
+     * endTime are not sent, the recent 90-day data will be returned. * The max interval between
+     * startTime and endTime is 90 days. Weight: 400
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime (optional)
+     * @param endTime (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetVIPLoanAccruedInterestResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Accrued Interest </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest">Get
+     *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanAccruedInterestResponse> getVIPLoanAccruedInterest(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        return userInformationApi.getVIPLoanAccruedInterest(
+                orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+    }
+
+    /**
      * Get VIP Loan Ongoing Orders(USER_DATA) VIP loan is available for VIP users only. Weight: 400
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetVIPLoanOngoingOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -246,8 +319,8 @@ public class VipLoanRestApi {
     /**
      * Query Application Status(USER_DATA) Query Application Status Weight: 400
      *
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
+     * @param limit Default: 10; max: 100 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryApplicationStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

@@ -19,6 +19,7 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KeepaliveUserDataStreamResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.StartUserDataStreamResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -42,7 +43,7 @@ public class UserDataStreamsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -210,7 +211,7 @@ public class UserDataStreamsApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Keepalive User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
@@ -305,23 +306,26 @@ public class UserDataStreamsApi {
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * User data streams will close after 60 minutes. Weight: 1
      *
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;KeepaliveUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Keepalive User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Keepalive-User-Data-Stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
-    public ApiResponse<Void> keepaliveUserDataStream() throws ApiException {
+    public ApiResponse<KeepaliveUserDataStreamResponse> keepaliveUserDataStream()
+            throws ApiException {
         okhttp3.Call localVarCall = keepaliveUserDataStreamValidateBeforeCall();
-        return localVarApiClient.execute(localVarCall);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<KeepaliveUserDataStreamResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**

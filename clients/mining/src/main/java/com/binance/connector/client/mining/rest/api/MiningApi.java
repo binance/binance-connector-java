@@ -57,7 +57,7 @@ public class MiningApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-mining/2.1.1 (Java/%s; %s; %s)",
+                    "binance-mining/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1077,7 +1077,6 @@ public class MiningApi {
      * Build call for hashrateResaleDetail
      *
      * @param configId Mining ID 168 (required)
-     * @param userName Mining account test (required)
      * @param pageIndex Page number, empty default first page, starting from 1 (optional)
      * @param pageSize Min 10,Max 200 (optional)
      * @param recvWindow (optional)
@@ -1095,8 +1094,7 @@ public class MiningApi {
      *     Resale Detail(USER_DATA) Documentation</a>
      */
     private okhttp3.Call hashrateResaleDetailCall(
-            Long configId, String userName, Long pageIndex, Long pageSize, Long recvWindow)
-            throws ApiException {
+            Long configId, Long pageIndex, Long pageSize, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1123,10 +1121,6 @@ public class MiningApi {
 
         if (configId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("configId", configId));
-        }
-
-        if (userName != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("userName", userName));
         }
 
         if (pageIndex != null) {
@@ -1173,8 +1167,7 @@ public class MiningApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call hashrateResaleDetailValidateBeforeCall(
-            Long configId, String userName, Long pageIndex, Long pageSize, Long recvWindow)
-            throws ApiException {
+            Long configId, Long pageIndex, Long pageSize, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1184,13 +1177,12 @@ public class MiningApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {configId, userName, pageIndex, pageSize, recvWindow};
+            Object[] parameterValues = {configId, pageIndex, pageSize, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "hashrateResaleDetail",
                                     Long.class,
-                                    String.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -1198,8 +1190,7 @@ public class MiningApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return hashrateResaleDetailCall(
-                        configId, userName, pageIndex, pageSize, recvWindow);
+                return hashrateResaleDetailCall(configId, pageIndex, pageSize, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1216,7 +1207,6 @@ public class MiningApi {
      * Hashrate Resale Detail(USER_DATA) Hashrate Resale Detail(USER_DATA) Weight: 5
      *
      * @param configId Mining ID 168 (required)
-     * @param userName Mining account test (required)
      * @param pageIndex Page number, empty default first page, starting from 1 (optional)
      * @param pageSize Min 10,Max 200 (optional)
      * @param recvWindow (optional)
@@ -1235,15 +1225,10 @@ public class MiningApi {
      *     Resale Detail(USER_DATA) Documentation</a>
      */
     public ApiResponse<HashrateResaleDetailResponse> hashrateResaleDetail(
-            @NotNull Long configId,
-            @NotNull String userName,
-            Long pageIndex,
-            Long pageSize,
-            Long recvWindow)
+            @NotNull Long configId, Long pageIndex, Long pageSize, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
-                hashrateResaleDetailValidateBeforeCall(
-                        configId, userName, pageIndex, pageSize, recvWindow);
+                hashrateResaleDetailValidateBeforeCall(configId, pageIndex, pageSize, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<HashrateResaleDetailResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

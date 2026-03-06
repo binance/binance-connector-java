@@ -23,6 +23,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KeepaliveUserDataStreamResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.StartUserDataStreamResponse;
 import jakarta.validation.constraints.*;
 import okhttp3.Call;
@@ -106,10 +107,10 @@ public class UserDataStreamsApiTest {
      */
     @Test
     public void keepaliveUserDataStreamTest() throws ApiException, CryptoException {
-        api.keepaliveUserDataStream();
+        ApiResponse<KeepaliveUserDataStreamResponse> keepaliveUserDataStreamResponseApiResponse = api.keepaliveUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture());
+        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

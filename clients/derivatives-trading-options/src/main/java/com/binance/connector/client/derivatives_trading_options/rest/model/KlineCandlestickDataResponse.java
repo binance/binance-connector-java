@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class KlineCandlestickDataResponse extends ArrayList<KlineCandlestickDataResponseInner> {
+public class KlineCandlestickDataResponse extends ArrayList<KlineCandlestickDataResponseItem> {
     public KlineCandlestickDataResponse() {}
 
     @Override
@@ -117,7 +117,7 @@ public class KlineCandlestickDataResponse extends ArrayList<KlineCandlestickData
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            KlineCandlestickDataResponseInner.validateJsonElement(element);
+            KlineCandlestickDataResponseItem.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!KlineCandlestickDataResponse.openapiRequiredFields

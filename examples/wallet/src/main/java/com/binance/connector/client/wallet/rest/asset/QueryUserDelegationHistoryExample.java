@@ -39,8 +39,7 @@ public class QueryUserDelegationHistoryExample {
     /**
      * Query User Delegation History(For Master Account)(USER_DATA)
      *
-     * <p>Query User Delegation History * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint Weight: 60
+     * <p>Query User Delegation History Weight: 60
      *
      * @throws ApiException if the Api call fails
      */

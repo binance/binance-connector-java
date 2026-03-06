@@ -101,7 +101,7 @@ public class OrderListOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_ABOVE_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private Double aboveTimeInForce;
+    private AboveTimeInForce aboveTimeInForce;
 
     public static final String SERIALIZED_NAME_ABOVE_STRATEGY_ID = "aboveStrategyId";
 
@@ -222,7 +222,7 @@ public class OrderListOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderListOcoRequest() {}
 
@@ -429,7 +429,7 @@ public class OrderListOcoRequest {
     }
 
     public OrderListOcoRequest aboveTimeInForce(
-            @jakarta.annotation.Nullable Double aboveTimeInForce) {
+            @jakarta.annotation.Nullable AboveTimeInForce aboveTimeInForce) {
         this.aboveTimeInForce = aboveTimeInForce;
         return this;
     }
@@ -441,11 +441,12 @@ public class OrderListOcoRequest {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getAboveTimeInForce() {
+    public AboveTimeInForce getAboveTimeInForce() {
         return aboveTimeInForce;
     }
 
-    public void setAboveTimeInForce(@jakarta.annotation.Nullable Double aboveTimeInForce) {
+    public void setAboveTimeInForce(
+            @jakarta.annotation.Nullable AboveTimeInForce aboveTimeInForce) {
         this.aboveTimeInForce = aboveTimeInForce;
     }
 
@@ -841,7 +842,7 @@ public class OrderListOcoRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderListOcoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderListOcoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
@@ -852,11 +853,12 @@ public class OrderListOcoRequest {
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -1276,6 +1278,11 @@ public class OrderListOcoRequest {
                             "Expected the field `aboveClientOrderId` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("aboveClientOrderId").toString()));
+        }
+        // validate the optional field `aboveTimeInForce`
+        if (jsonObj.get("aboveTimeInForce") != null
+                && !jsonObj.get("aboveTimeInForce").isJsonNull()) {
+            AboveTimeInForce.validateJsonElement(jsonObj.get("aboveTimeInForce"));
         }
         // validate the optional field `abovePegPriceType`
         if (jsonObj.get("abovePegPriceType") != null

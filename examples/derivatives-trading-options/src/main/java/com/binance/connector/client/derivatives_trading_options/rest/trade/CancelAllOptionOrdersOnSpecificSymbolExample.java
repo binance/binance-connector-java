@@ -40,7 +40,7 @@ public class CancelAllOptionOrdersOnSpecificSymbolExample {
     /**
      * Cancel all Option orders on specific symbol (TRADE)
      *
-     * <p>Cancel all active order on a symbol. Weight: 1
+     * <p>Cancel all active order on a symbol. Weight: 5
      *
      * @throws ApiException if the Api call fails
      */

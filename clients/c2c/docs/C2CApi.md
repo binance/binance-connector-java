@@ -9,11 +9,11 @@ All URIs are relative to *https://api.binance.com*
 
 <a id="getC2CTradeHistory"></a>
 # **getC2CTradeHistory**
-> GetC2CTradeHistoryResponse getC2CTradeHistory(startTime, endTime, page, recvWindow)
+> GetC2CTradeHistoryResponse getC2CTradeHistory(tradeType, startTimestamp, endTimestamp, page, rows, recvWindow)
 
 Get C2C Trade History (USER_DATA)
 
-Get C2C Trade History  * The max interval between startTime and endTime is 30 days. * If startTime and endTime are not sent, the recent 7 days&#39; data will be returned. * The earliest startTime is supported on June 10, 2020 * Return up to 200 records per request.  Weight: 1
+Get C2C Trade History  * The max interval between startTimestamp and endTimestamp is 30 days. * If startTimestamp and endTimestamp are not sent, the recent 30 days&#39; data will be returned. * You can only view data from the past 6 months. To see all C2C orders, please check https://c2c.binance.com/en/fiatOrder  Weight: 1
 
 ### Example
 ```java
@@ -30,12 +30,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     C2CApi apiInstance = new C2CApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
+    String tradeType = "tradeType_example"; // String | BUY, SELL
+    Long startTimestamp = 56L; // Long | 
+    Long endTimestamp = 56L; // Long | 
     Long page = 56L; // Long | Default 1
+    Long rows = 56L; // Long | default 100, max 100
     Long recvWindow = 56L; // Long | 
     try {
-      GetC2CTradeHistoryResponse result = apiInstance.getC2CTradeHistory(startTime, endTime, page, recvWindow);
+      GetC2CTradeHistoryResponse result = apiInstance.getC2CTradeHistory(tradeType, startTimestamp, endTimestamp, page, rows, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling C2CApi#getC2CTradeHistory");
@@ -52,9 +54,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
+| **tradeType** | **String**| BUY, SELL | [optional] |
+| **startTimestamp** | **Long**|  | [optional] |
+| **endTimestamp** | **Long**|  | [optional] |
 | **page** | **Long**| Default 1 | [optional] |
+| **rows** | **Long**| default 100, max 100 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

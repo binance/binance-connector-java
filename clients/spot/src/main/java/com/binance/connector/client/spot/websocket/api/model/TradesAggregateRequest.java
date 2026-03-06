@@ -49,7 +49,7 @@ public class TradesAggregateRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_FROM_ID)
     @jakarta.annotation.Nullable
-    private Integer fromId;
+    private Long fromId;
 
     public static final String SERIALIZED_NAME_START_TIME = "startTime";
 
@@ -67,7 +67,7 @@ public class TradesAggregateRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_LIMIT)
     @jakarta.annotation.Nullable
-    private Integer limit;
+    private Long limit;
 
     public TradesAggregateRequest() {}
 
@@ -91,7 +91,7 @@ public class TradesAggregateRequest extends BaseDTO {
         this.symbol = symbol;
     }
 
-    public TradesAggregateRequest fromId(@jakarta.annotation.Nullable Integer fromId) {
+    public TradesAggregateRequest fromId(@jakarta.annotation.Nullable Long fromId) {
         this.fromId = fromId;
         return this;
     }
@@ -102,11 +102,11 @@ public class TradesAggregateRequest extends BaseDTO {
      * @return fromId
      */
     @jakarta.annotation.Nullable
-    public Integer getFromId() {
+    public Long getFromId() {
         return fromId;
     }
 
-    public void setFromId(@jakarta.annotation.Nullable Integer fromId) {
+    public void setFromId(@jakarta.annotation.Nullable Long fromId) {
         this.fromId = fromId;
     }
 
@@ -148,7 +148,7 @@ public class TradesAggregateRequest extends BaseDTO {
         this.endTime = endTime;
     }
 
-    public TradesAggregateRequest limit(@jakarta.annotation.Nullable Integer limit) {
+    public TradesAggregateRequest limit(@jakarta.annotation.Nullable Long limit) {
         this.limit = limit;
         return this;
     }
@@ -159,11 +159,11 @@ public class TradesAggregateRequest extends BaseDTO {
      * @return limit
      */
     @jakarta.annotation.Nullable
-    public Integer getLimit() {
+    public Long getLimit() {
         return limit;
     }
 
-    public void setLimit(@jakarta.annotation.Nullable Integer limit) {
+    public void setLimit(@jakarta.annotation.Nullable Long limit) {
         this.limit = limit;
     }
 
@@ -210,7 +210,7 @@ public class TradesAggregateRequest extends BaseDTO {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
         }
-        Integer fromIdValue = getFromId();
+        Long fromIdValue = getFromId();
         if (fromIdValue != null) {
             String fromIdValueAsString = fromIdValue.toString();
             valMap.put("fromId", fromIdValueAsString);
@@ -225,7 +225,7 @@ public class TradesAggregateRequest extends BaseDTO {
             String endTimeValueAsString = endTimeValue.toString();
             valMap.put("endTime", endTimeValueAsString);
         }
-        Integer limitValue = getLimit();
+        Long limitValue = getLimit();
         if (limitValue != null) {
             String limitValueAsString = limitValue.toString();
             valMap.put("limit", limitValueAsString);

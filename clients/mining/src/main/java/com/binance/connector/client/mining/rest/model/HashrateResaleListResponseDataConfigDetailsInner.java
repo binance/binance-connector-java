@@ -84,6 +84,12 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     @jakarta.annotation.Nullable
     private Long status;
 
+    public static final String SERIALIZED_NAME_TYPE = "type";
+
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    @jakarta.annotation.Nullable
+    private Long type;
+
     public HashrateResaleListResponseDataConfigDetailsInner() {}
 
     public HashrateResaleListResponseDataConfigDetailsInner configId(
@@ -246,6 +252,26 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         this.status = status;
     }
 
+    public HashrateResaleListResponseDataConfigDetailsInner type(
+            @jakarta.annotation.Nullable Long type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nullable
+    public Long getType() {
+        return type;
+    }
+
+    public void setType(@jakarta.annotation.Nullable Long type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -274,7 +300,8 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                 && Objects.equals(
                         this.endDay, hashrateResaleListResponseDataConfigDetailsInner.endDay)
                 && Objects.equals(
-                        this.status, hashrateResaleListResponseDataConfigDetailsInner.status);
+                        this.status, hashrateResaleListResponseDataConfigDetailsInner.status)
+                && Objects.equals(this.type, hashrateResaleListResponseDataConfigDetailsInner.type);
     }
 
     @Override
@@ -287,7 +314,8 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                 hashRate,
                 startDay,
                 endDay,
-                status);
+                status,
+                type);
     }
 
     @Override
@@ -302,6 +330,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         sb.append("		startDay: ").append(toIndentedString(startDay)).append("\n");
         sb.append("		endDay: ").append(toIndentedString(endDay)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
+        sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -341,6 +370,10 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
         sb.append("status=").append(urlEncode(statusValueAsString)).append("");
+        Object typeValue = getType();
+        String typeValueAsString = "";
+        typeValueAsString = typeValue.toString();
+        sb.append("type=").append(urlEncode(typeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -377,6 +410,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         openapiFields.add("startDay");
         openapiFields.add("endDay");
         openapiFields.add("status");
+        openapiFields.add("type");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

@@ -17,7 +17,7 @@
 |**abovePrice** | **Double** |  |  [optional] |
 |**aboveStopPrice** | **Double** |  |  [optional] |
 |**aboveTrailingDelta** | **Long** |  |  [optional] |
-|**aboveTimeInForce** | **Double** |  |  [optional] |
+|**aboveTimeInForce** | **AboveTimeInForce** |  |  [optional] |
 |**aboveStrategyId** | **Long** |  |  [optional] |
 |**aboveStrategyType** | **Integer** |  |  [optional] |
 |**abovePegPriceType** | **AbovePegPriceType** |  |  [optional] |
@@ -37,7 +37,7 @@
 |**belowPegOffsetValue** | **Integer** |  |  [optional] |
 |**newOrderRespType** | **NewOrderRespType** |  |  [optional] |
 |**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

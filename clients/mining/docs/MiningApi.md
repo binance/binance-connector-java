@@ -417,7 +417,7 @@ No authorization required
 
 <a id="hashrateResaleDetail"></a>
 # **hashrateResaleDetail**
-> HashrateResaleDetailResponse hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow)
+> HashrateResaleDetailResponse hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow)
 
 Hashrate Resale Detail(USER_DATA)
 
@@ -439,12 +439,11 @@ public class Example {
 
     MiningApi apiInstance = new MiningApi(defaultClient);
     Long configId = 56L; // Long | Mining ID 168
-    String userName = "userName_example"; // String | Mining account test
     Long pageIndex = 56L; // Long | Page number, empty default first page, starting from 1 
     Long pageSize = 56L; // Long | Min 10,Max 200 
     Long recvWindow = 56L; // Long | 
     try {
-      HashrateResaleDetailResponse result = apiInstance.hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+      HashrateResaleDetailResponse result = apiInstance.hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MiningApi#hashrateResaleDetail");
@@ -462,7 +461,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **configId** | **Long**| Mining ID 168 | |
-| **userName** | **String**| Mining account test | |
 | **pageIndex** | **Long**| Page number, empty default first page, starting from 1  | [optional] |
 | **pageSize** | **Long**| Min 10,Max 200  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
