@@ -18,6 +18,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.TickerBookTickerResponse;
 
@@ -53,7 +54,9 @@ public class TickerBookTickerExample {
     public void tickerBookTickerExample() throws ApiException {
         String symbol = "BNBUSDT";
         Symbols symbols = null;
-        ApiResponse<TickerBookTickerResponse> response = getApi().tickerBookTicker(symbol, symbols);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<TickerBookTickerResponse> response =
+                getApi().tickerBookTicker(symbol, symbols, symbolStatus);
         System.out.println(response.getData());
     }
 }

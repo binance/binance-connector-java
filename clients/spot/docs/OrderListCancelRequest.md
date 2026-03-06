@@ -11,7 +11,7 @@
 |**orderListId** | **Integer** |  |  [optional] |
 |**listClientOrderId** | **String** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

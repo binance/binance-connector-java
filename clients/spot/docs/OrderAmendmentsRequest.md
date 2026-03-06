@@ -10,8 +10,8 @@
 |**symbol** | **String** |  |  |
 |**orderId** | **Long** |  |  |
 |**fromExecutionId** | **Long** |  |  [optional] |
-|**limit** | **Integer** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**limit** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

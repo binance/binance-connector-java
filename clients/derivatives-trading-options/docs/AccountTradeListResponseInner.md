@@ -17,13 +17,12 @@
 |**realizedProfit** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
-|**volatility** | **String** |  |  [optional] |
 |**liquidity** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
 |**time** | **Long** |  |  [optional] |
 |**priceScale** | **Long** |  |  [optional] |
 |**quantityScale** | **Long** |  |  [optional] |
 |**optionSide** | **String** |  |  [optional] |
+|**quoteAsset** | **String** |  |  [optional] |
 
 
 

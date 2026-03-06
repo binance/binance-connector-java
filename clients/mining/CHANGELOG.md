@@ -1,6 +1,18 @@
 # Changelog
 
+## 3.0.0 - 2026-02-12
+
+### Changed (2)
+
+- Deleted parameter `userName`
+  - affected methods:
+    - `hashrateResaleDetail()` (`GET /sapi/v1/mining/hash-transfer/profit/details`)
+- Modified response for `hashrateResaleList()` (`GET /sapi/v1/mining/hash-transfer/config/details/list`):
+  - `data`.`configDetails`.items: property `type` added
+  - `data`.`configDetails`.items: item property `type` added
+
 ## 2.1.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

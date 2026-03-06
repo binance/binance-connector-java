@@ -47,7 +47,7 @@ public class GetOrderExample {
         String symbol = "BNBUSDT";
         Long orderId = 1L;
         String origClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<GetOrderResponse> response =
                 getApi().getOrder(symbol, orderId, origClientOrderId, recvWindow);
         System.out.println(response.getData());

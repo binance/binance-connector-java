@@ -42,7 +42,6 @@
 |**I** | **Long** |  |  [optional] |
 |**wLowerCase** | **Boolean** |  |  [optional] |
 |**mLowerCase** | **String** |  |  [optional] |
-|**M** | **Boolean** |  |  [optional] |
 |**O** | [**List&lt;OpenorderlossOInner&gt;**](OpenorderlossOInner.md) |  |  [optional] |
 |**Z** | **String** |  |  [optional] |
 |**Y** | **String** |  |  [optional] |

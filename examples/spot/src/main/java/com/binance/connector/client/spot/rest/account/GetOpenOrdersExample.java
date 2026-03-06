@@ -46,7 +46,7 @@ public class GetOpenOrdersExample {
      */
     public void getOpenOrdersExample() throws ApiException {
         String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<GetOpenOrdersResponse> response = getApi().getOpenOrders(symbol, recvWindow);
         System.out.println(response.getData());
     }

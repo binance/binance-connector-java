@@ -61,7 +61,6 @@
 |**gOT** | **String** |  |  [optional] |
 |**gOV** | **Long** |  |  [optional] |
 |**gp** | **String** |  |  [optional] |
-|**listenKey** | **String** |  |  [optional] |
 
 
 

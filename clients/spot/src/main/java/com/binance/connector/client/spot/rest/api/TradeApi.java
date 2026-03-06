@@ -32,6 +32,10 @@ import com.binance.connector.client.spot.rest.model.OrderCancelReplaceRequest;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOcoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOtoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtocoRequest;
@@ -67,7 +71,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/6.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -108,7 +112,9 @@ public class TradeApi {
      * Build call for deleteOpenOrders
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -122,7 +128,8 @@ public class TradeApi {
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
      *     All Open Orders on a Symbol Documentation</a>
      */
-    private okhttp3.Call deleteOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
+    private okhttp3.Call deleteOpenOrdersCall(String symbol, Double recvWindow)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -152,7 +159,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -186,7 +195,7 @@ public class TradeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -198,7 +207,8 @@ public class TradeApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {symbol, recvWindow};
-            Method method = this.getClass().getMethod("deleteOpenOrders", String.class, Long.class);
+            Method method =
+                    this.getClass().getMethod("deleteOpenOrders", String.class, Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -221,7 +231,9 @@ public class TradeApi {
      * orders that are part of an order list. Weight: 1
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -237,7 +249,7 @@ public class TradeApi {
      *     All Open Orders on a Symbol Documentation</a>
      */
     public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall = deleteOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<DeleteOpenOrdersResponse>() {}.getType();
@@ -254,7 +266,9 @@ public class TradeApi {
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
      * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -274,7 +288,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -324,7 +338,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -364,7 +380,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -387,7 +403,7 @@ public class TradeApi {
                                     String.class,
                                     String.class,
                                     CancelRestrictions.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -421,7 +437,9 @@ public class TradeApi {
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
      * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -442,7 +460,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderValidateBeforeCall(
@@ -467,7 +485,9 @@ public class TradeApi {
      * @param newClientOrderId A unique id among open orders. Automatically generated if not
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -486,7 +506,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -532,7 +552,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -571,7 +593,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -593,7 +615,7 @@ public class TradeApi {
                                     Long.class,
                                     String.class,
                                     String.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -622,7 +644,9 @@ public class TradeApi {
      * @param newClientOrderId A unique id among open orders. Automatically generated if not
      *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
      *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
+     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     *     specified. (optional)
      * @return ApiResponse&lt;DeleteOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -642,7 +666,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderListValidateBeforeCall(
@@ -777,7 +801,9 @@ public class TradeApi {
         }
 
         if (newOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", newOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(newOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -936,7 +962,10 @@ public class TradeApi {
         }
 
         if (orderAmendKeepPriorityRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderAmendKeepPriorityRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderAmendKeepPriorityRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1199,7 +1228,10 @@ public class TradeApi {
         }
 
         if (orderCancelReplaceRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderCancelReplaceRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderCancelReplaceRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1389,10 +1421,7 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getAboveTimeInForce() != null) {
-            localVarFormParams.put(
-                    "aboveTimeInForce",
-                    DecimalFormatter.getFormatter()
-                            .format(orderListOcoRequest.getAboveTimeInForce()));
+            localVarFormParams.put("aboveTimeInForce", orderListOcoRequest.getAboveTimeInForce());
         }
 
         if (orderListOcoRequest.getAboveStrategyId() != null) {
@@ -1484,7 +1513,9 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1584,6 +1615,658 @@ public class TradeApi {
         okhttp3.Call localVarCall = orderListOcoValidateBeforeCall(orderListOcoRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<OrderListOcoResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for orderListOpo
+     *
+     * @param orderListOpoRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
+     *     Order List - OPO Documentation</a>
+     */
+    private okhttp3.Call orderListOpoCall(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/orderList/opo";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderListOpoRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderListOpoRequest.getSymbol());
+        }
+
+        if (orderListOpoRequest.getListClientOrderId() != null) {
+            localVarFormParams.put("listClientOrderId", orderListOpoRequest.getListClientOrderId());
+        }
+
+        if (orderListOpoRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderListOpoRequest.getNewOrderRespType());
+        }
+
+        if (orderListOpoRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderListOpoRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderListOpoRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", orderListOpoRequest.getWorkingType());
+        }
+
+        if (orderListOpoRequest.getWorkingSide() != null) {
+            localVarFormParams.put("workingSide", orderListOpoRequest.getWorkingSide());
+        }
+
+        if (orderListOpoRequest.getWorkingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "workingClientOrderId", orderListOpoRequest.getWorkingClientOrderId());
+        }
+
+        if (orderListOpoRequest.getWorkingPrice() != null) {
+            localVarFormParams.put(
+                    "workingPrice",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getWorkingPrice()));
+        }
+
+        if (orderListOpoRequest.getWorkingQuantity() != null) {
+            localVarFormParams.put(
+                    "workingQuantity",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getWorkingQuantity()));
+        }
+
+        if (orderListOpoRequest.getWorkingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "workingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getWorkingIcebergQty()));
+        }
+
+        if (orderListOpoRequest.getWorkingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "workingTimeInForce", orderListOpoRequest.getWorkingTimeInForce());
+        }
+
+        if (orderListOpoRequest.getWorkingStrategyId() != null) {
+            localVarFormParams.put("workingStrategyId", orderListOpoRequest.getWorkingStrategyId());
+        }
+
+        if (orderListOpoRequest.getWorkingStrategyType() != null) {
+            localVarFormParams.put(
+                    "workingStrategyType", orderListOpoRequest.getWorkingStrategyType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOpoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOpoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOpoRequest.getWorkingPegOffsetValue());
+        }
+
+        if (orderListOpoRequest.getPendingType() != null) {
+            localVarFormParams.put("pendingType", orderListOpoRequest.getPendingType());
+        }
+
+        if (orderListOpoRequest.getPendingSide() != null) {
+            localVarFormParams.put("pendingSide", orderListOpoRequest.getPendingSide());
+        }
+
+        if (orderListOpoRequest.getPendingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingClientOrderId", orderListOpoRequest.getPendingClientOrderId());
+        }
+
+        if (orderListOpoRequest.getPendingPrice() != null) {
+            localVarFormParams.put(
+                    "pendingPrice",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getPendingPrice()));
+        }
+
+        if (orderListOpoRequest.getPendingStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingStopPrice()));
+        }
+
+        if (orderListOpoRequest.getPendingTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingTrailingDelta()));
+        }
+
+        if (orderListOpoRequest.getPendingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingIcebergQty()));
+        }
+
+        if (orderListOpoRequest.getPendingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingTimeInForce", orderListOpoRequest.getPendingTimeInForce());
+        }
+
+        if (orderListOpoRequest.getPendingStrategyId() != null) {
+            localVarFormParams.put("pendingStrategyId", orderListOpoRequest.getPendingStrategyId());
+        }
+
+        if (orderListOpoRequest.getPendingStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingStrategyType", orderListOpoRequest.getPendingStrategyType());
+        }
+
+        if (orderListOpoRequest.getPendingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingPegPriceType", orderListOpoRequest.getPendingPegPriceType());
+        }
+
+        if (orderListOpoRequest.getPendingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetType", orderListOpoRequest.getPendingPegOffsetType());
+        }
+
+        if (orderListOpoRequest.getPendingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetValue", orderListOpoRequest.getPendingPegOffsetValue());
+        }
+
+        if (orderListOpoRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getRecvWindow()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call orderListOpoValidateBeforeCall(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderListOpoRequest};
+            Method method = this.getClass().getMethod("orderListOpo", OrderListOpoRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return orderListOpoCall(orderListOpoRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Order List - OPO Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     *
+     * @param orderListOpoRequest (required)
+     * @return ApiResponse&lt;OrderListOpoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
+     *     Order List - OPO Documentation</a>
+     */
+    public ApiResponse<OrderListOpoResponse> orderListOpo(
+            @Valid @NotNull OrderListOpoRequest orderListOpoRequest) throws ApiException {
+        okhttp3.Call localVarCall = orderListOpoValidateBeforeCall(orderListOpoRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<OrderListOpoResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for orderListOpoco
+     *
+     * @param orderListOpocoRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
+     *     Order List - OPOCO Documentation</a>
+     */
+    private okhttp3.Call orderListOpocoCall(OrderListOpocoRequest orderListOpocoRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/orderList/opoco";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderListOpocoRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderListOpocoRequest.getSymbol());
+        }
+
+        if (orderListOpocoRequest.getListClientOrderId() != null) {
+            localVarFormParams.put(
+                    "listClientOrderId", orderListOpocoRequest.getListClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderListOpocoRequest.getNewOrderRespType());
+        }
+
+        if (orderListOpocoRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderListOpocoRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderListOpocoRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", orderListOpocoRequest.getWorkingType());
+        }
+
+        if (orderListOpocoRequest.getWorkingSide() != null) {
+            localVarFormParams.put("workingSide", orderListOpocoRequest.getWorkingSide());
+        }
+
+        if (orderListOpocoRequest.getWorkingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "workingClientOrderId", orderListOpocoRequest.getWorkingClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getWorkingPrice() != null) {
+            localVarFormParams.put(
+                    "workingPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingPrice()));
+        }
+
+        if (orderListOpocoRequest.getWorkingQuantity() != null) {
+            localVarFormParams.put(
+                    "workingQuantity",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingQuantity()));
+        }
+
+        if (orderListOpocoRequest.getWorkingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "workingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getWorkingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "workingTimeInForce", orderListOpocoRequest.getWorkingTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getWorkingStrategyId() != null) {
+            localVarFormParams.put(
+                    "workingStrategyId", orderListOpocoRequest.getWorkingStrategyId());
+        }
+
+        if (orderListOpocoRequest.getWorkingStrategyType() != null) {
+            localVarFormParams.put(
+                    "workingStrategyType", orderListOpocoRequest.getWorkingStrategyType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOpocoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOpocoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOpocoRequest.getWorkingPegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getPendingSide() != null) {
+            localVarFormParams.put("pendingSide", orderListOpocoRequest.getPendingSide());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveType() != null) {
+            localVarFormParams.put("pendingAboveType", orderListOpocoRequest.getPendingAboveType());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingAboveClientOrderId",
+                    orderListOpocoRequest.getPendingAboveClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePrice() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAbovePrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveStopPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingAboveTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveTrailingDelta()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingAboveIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingAboveTimeInForce", orderListOpocoRequest.getPendingAboveTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStrategyId() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStrategyId", orderListOpocoRequest.getPendingAboveStrategyId());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStrategyType",
+                    orderListOpocoRequest.getPendingAboveStrategyType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegPriceType",
+                    orderListOpocoRequest.getPendingAbovePegPriceType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetType",
+                    orderListOpocoRequest.getPendingAbovePegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetValue",
+                    orderListOpocoRequest.getPendingAbovePegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowType() != null) {
+            localVarFormParams.put("pendingBelowType", orderListOpocoRequest.getPendingBelowType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingBelowClientOrderId",
+                    orderListOpocoRequest.getPendingBelowClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPrice() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowStopPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingBelowTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowTrailingDelta()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingBelowIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingBelowTimeInForce", orderListOpocoRequest.getPendingBelowTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStrategyId() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStrategyId", orderListOpocoRequest.getPendingBelowStrategyId());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStrategyType",
+                    orderListOpocoRequest.getPendingBelowStrategyType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegPriceType",
+                    orderListOpocoRequest.getPendingBelowPegPriceType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetType",
+                    orderListOpocoRequest.getPendingBelowPegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetValue",
+                    orderListOpocoRequest.getPendingBelowPegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOpocoRequest.getRecvWindow()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call orderListOpocoValidateBeforeCall(
+            OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderListOpocoRequest};
+            Method method =
+                    this.getClass().getMethod("orderListOpoco", OrderListOpocoRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return orderListOpocoCall(orderListOpocoRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Order List - OPOCO Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     *
+     * @param orderListOpocoRequest (required)
+     * @return ApiResponse&lt;OrderListOpocoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
+     *     Order List - OPOCO Documentation</a>
+     */
+    public ApiResponse<OrderListOpocoResponse> orderListOpoco(
+            @Valid @NotNull OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        okhttp3.Call localVarCall = orderListOpocoValidateBeforeCall(orderListOpocoRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<OrderListOpocoResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1786,7 +2469,9 @@ public class TradeApi {
         }
 
         if (orderListOtoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2169,7 +2854,9 @@ public class TradeApi {
         }
 
         if (orderListOtocoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtocoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtocoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2282,10 +2969,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
      *     OCO - Deprecated Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call orderOcoCall(OrderOcoRequest orderOcoRequest) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -2401,7 +3090,9 @@ public class TradeApi {
         }
 
         if (orderOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2434,6 +3125,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call orderOcoValidateBeforeCall(OrderOcoRequest orderOcoRequest)
             throws ApiException {
@@ -2484,10 +3176,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
      *     OCO - Deprecated Documentation</a>
      */
+    @Deprecated
     public ApiResponse<OrderOcoResponse> orderOco(@Valid @NotNull OrderOcoRequest orderOcoRequest)
             throws ApiException {
         okhttp3.Call localVarCall = orderOcoValidateBeforeCall(orderOcoRequest);
@@ -2625,7 +3319,9 @@ public class TradeApi {
         }
 
         if (orderTestRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderTestRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2814,7 +3510,9 @@ public class TradeApi {
         }
 
         if (sorOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", sorOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -3009,7 +3707,9 @@ public class TradeApi {
         }
 
         if (sorOrderTestRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", sorOrderTestRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};

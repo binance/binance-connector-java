@@ -20,12 +20,11 @@
 |**positionSide** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**stopPrice** | **String** |  |  [optional] |
+|**closePosition** | **Boolean** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**origType** | **String** |  |  [optional] |
-|**activatePrice** | **String** |  |  [optional] |
-|**priceRate** | **String** |  |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
 |**workingType** | **String** |  |  [optional] |
 |**priceProtect** | **Boolean** |  |  [optional] |

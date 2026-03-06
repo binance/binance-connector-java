@@ -64,6 +64,12 @@ public class TickerRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private WindowSize windowSize;
 
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
+
     public TickerRequest() {}
 
     public TickerRequest symbol(@jakarta.annotation.Nullable String symbol) {
@@ -145,6 +151,26 @@ public class TickerRequest extends BaseDTO {
         this.windowSize = windowSize;
     }
 
+    public TickerRequest symbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -157,12 +183,13 @@ public class TickerRequest extends BaseDTO {
         return Objects.equals(this.symbol, tickerRequest.symbol)
                 && Objects.equals(this.symbols, tickerRequest.symbols)
                 && Objects.equals(this.tickerType, tickerRequest.tickerType)
-                && Objects.equals(this.windowSize, tickerRequest.windowSize);
+                && Objects.equals(this.windowSize, tickerRequest.windowSize)
+                && Objects.equals(this.symbolStatus, tickerRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, symbols, tickerType, windowSize);
+        return Objects.hash(symbol, symbols, tickerType, windowSize, symbolStatus);
     }
 
     @Override
@@ -173,6 +200,7 @@ public class TickerRequest extends BaseDTO {
         sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
         sb.append("		tickerType: ").append(toIndentedString(tickerType)).append("\n");
         sb.append("		windowSize: ").append(toIndentedString(windowSize)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -201,6 +229,11 @@ public class TickerRequest extends BaseDTO {
             String windowSizeValueAsString = windowSizeValue.toString();
             valMap.put("windowSize", windowSizeValueAsString);
         }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -227,6 +260,10 @@ public class TickerRequest extends BaseDTO {
         Object windowSizeValue = getWindowSize();
         if (windowSizeValue != null) {
             valMap.put("windowSize", windowSizeValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -258,6 +295,7 @@ public class TickerRequest extends BaseDTO {
         openapiFields.add("symbols");
         openapiFields.add("tickerType");
         openapiFields.add("windowSize");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -308,6 +346,10 @@ public class TickerRequest extends BaseDTO {
         // validate the optional field `windowSize`
         if (jsonObj.get("windowSize") != null && !jsonObj.get("windowSize").isJsonNull()) {
             WindowSize.validateJsonElement(jsonObj.get("windowSize"));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 

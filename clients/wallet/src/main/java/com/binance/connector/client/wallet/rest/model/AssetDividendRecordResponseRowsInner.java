@@ -72,6 +72,12 @@ public class AssetDividendRecordResponseRowsInner {
     @jakarta.annotation.Nullable
     private Long tranId;
 
+    public static final String SERIALIZED_NAME_DIRECTION = "direction";
+
+    @SerializedName(SERIALIZED_NAME_DIRECTION)
+    @jakarta.annotation.Nullable
+    private Long direction;
+
     public AssetDividendRecordResponseRowsInner() {}
 
     public AssetDividendRecordResponseRowsInner id(@jakarta.annotation.Nullable Long id) {
@@ -188,6 +194,26 @@ public class AssetDividendRecordResponseRowsInner {
         this.tranId = tranId;
     }
 
+    public AssetDividendRecordResponseRowsInner direction(
+            @jakarta.annotation.Nullable Long direction) {
+        this.direction = direction;
+        return this;
+    }
+
+    /**
+     * Get direction
+     *
+     * @return direction
+     */
+    @jakarta.annotation.Nullable
+    public Long getDirection() {
+        return direction;
+    }
+
+    public void setDirection(@jakarta.annotation.Nullable Long direction) {
+        this.direction = direction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -203,12 +229,13 @@ public class AssetDividendRecordResponseRowsInner {
                 && Objects.equals(this.asset, assetDividendRecordResponseRowsInner.asset)
                 && Objects.equals(this.divTime, assetDividendRecordResponseRowsInner.divTime)
                 && Objects.equals(this.enInfo, assetDividendRecordResponseRowsInner.enInfo)
-                && Objects.equals(this.tranId, assetDividendRecordResponseRowsInner.tranId);
+                && Objects.equals(this.tranId, assetDividendRecordResponseRowsInner.tranId)
+                && Objects.equals(this.direction, assetDividendRecordResponseRowsInner.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, amount, asset, divTime, enInfo, tranId);
+        return Objects.hash(id, amount, asset, divTime, enInfo, tranId, direction);
     }
 
     @Override
@@ -221,6 +248,7 @@ public class AssetDividendRecordResponseRowsInner {
         sb.append("		divTime: ").append(toIndentedString(divTime)).append("\n");
         sb.append("		enInfo: ").append(toIndentedString(enInfo)).append("\n");
         sb.append("		tranId: ").append(toIndentedString(tranId)).append("\n");
+        sb.append("		direction: ").append(toIndentedString(direction)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -252,6 +280,10 @@ public class AssetDividendRecordResponseRowsInner {
         String tranIdValueAsString = "";
         tranIdValueAsString = tranIdValue.toString();
         sb.append("tranId=").append(urlEncode(tranIdValueAsString)).append("");
+        Object directionValue = getDirection();
+        String directionValueAsString = "";
+        directionValueAsString = directionValue.toString();
+        sb.append("direction=").append(urlEncode(directionValueAsString)).append("");
         return sb.toString();
     }
 
@@ -286,6 +318,7 @@ public class AssetDividendRecordResponseRowsInner {
         openapiFields.add("divTime");
         openapiFields.add("enInfo");
         openapiFields.add("tranId");
+        openapiFields.add("direction");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

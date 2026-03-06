@@ -50,7 +50,7 @@ public class MyAllocationsExample {
         Integer fromAllocationId = 1;
         Integer limit = 500;
         Long orderId = 1L;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<MyAllocationsResponse> response =
                 getApi().myAllocations(
                                 symbol,

@@ -135,10 +135,6 @@ public class JSON {
                         .AllCoinsInformationResponseInnerNetworkListInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model
-                        .AllCoinsInformationResponseInnerNetworkListInnerNetworkListInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.AssetDetailResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -159,6 +155,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .CheckQuestionnaireRequirementsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.DailyAccountSnapshotResponse
                         .CustomTypeAdapterFactory());
@@ -201,8 +200,35 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model
                         .DepositHistoryTravelRuleResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DepositHistoryV2ResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .DepositHistoryV2ResponseInnerQuestionnaire.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DustConvertRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DustConvertResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .DustConvertResponseTransferResultInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .DustConvertibleAssetsResponseDetailsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.DustTransferRequest
                         .CustomTypeAdapterFactory());
@@ -299,12 +325,6 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model
                         .GetSymbolsDelistScheduleForSpotResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponseInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model
                         .OneClickArrivalDepositApplyRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -342,6 +362,12 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model
                         .SubmitDepositQuestionnaireTravelRuleResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .SubmitDepositQuestionnaireV2Request.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .SubmitDepositQuestionnaireV2Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.SystemStatusResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -372,6 +398,12 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.UserUniversalTransferResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.VaspListResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.VaspListResponseInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.WithdrawHistoryResponse

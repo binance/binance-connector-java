@@ -48,7 +48,7 @@ public class ChangeAutoRepayFuturesStatusExample {
     public void changeAutoRepayFuturesStatusExample() throws ApiException {
         ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest =
                 new ChangeAutoRepayFuturesStatusRequest();
-        changeAutoRepayFuturesStatusRequest.autoRepay("");
+        changeAutoRepayFuturesStatusRequest.autoRepay("true");
         ApiResponse<ChangeAutoRepayFuturesStatusResponse> response =
                 getApi().changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest);
         System.out.println(response.getData());

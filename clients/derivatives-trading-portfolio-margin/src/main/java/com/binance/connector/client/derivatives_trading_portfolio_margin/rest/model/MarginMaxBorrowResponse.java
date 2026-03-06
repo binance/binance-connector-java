@@ -22,7 +22,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -41,17 +40,17 @@ public class MarginMaxBorrowResponse {
 
     @SerializedName(SERIALIZED_NAME_AMOUNT)
     @jakarta.annotation.Nullable
-    private Double amount;
+    private String amount;
 
     public static final String SERIALIZED_NAME_BORROW_LIMIT = "borrowLimit";
 
     @SerializedName(SERIALIZED_NAME_BORROW_LIMIT)
     @jakarta.annotation.Nullable
-    private Long borrowLimit;
+    private String borrowLimit;
 
     public MarginMaxBorrowResponse() {}
 
-    public MarginMaxBorrowResponse amount(@jakarta.annotation.Nullable Double amount) {
+    public MarginMaxBorrowResponse amount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
         return this;
     }
@@ -62,16 +61,15 @@ public class MarginMaxBorrowResponse {
      * @return amount
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(@jakarta.annotation.Nullable Double amount) {
+    public void setAmount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
     }
 
-    public MarginMaxBorrowResponse borrowLimit(@jakarta.annotation.Nullable Long borrowLimit) {
+    public MarginMaxBorrowResponse borrowLimit(@jakarta.annotation.Nullable String borrowLimit) {
         this.borrowLimit = borrowLimit;
         return this;
     }
@@ -82,11 +80,11 @@ public class MarginMaxBorrowResponse {
      * @return borrowLimit
      */
     @jakarta.annotation.Nullable
-    public Long getBorrowLimit() {
+    public String getBorrowLimit() {
         return borrowLimit;
     }
 
-    public void setBorrowLimit(@jakarta.annotation.Nullable Long borrowLimit) {
+    public void setBorrowLimit(@jakarta.annotation.Nullable String borrowLimit) {
         this.borrowLimit = borrowLimit;
     }
 
@@ -182,6 +180,22 @@ public class MarginMaxBorrowResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull())
+                && !jsonObj.get("amount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `amount` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("amount").toString()));
+        }
+        if ((jsonObj.get("borrowLimit") != null && !jsonObj.get("borrowLimit").isJsonNull())
+                && !jsonObj.get("borrowLimit").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `borrowLimit` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("borrowLimit").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

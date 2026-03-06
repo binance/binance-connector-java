@@ -213,6 +213,18 @@ public class JSON {
                         .GetOnChainYieldsLockedSubscriptionRecordResponseRowsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.staking.rest.model
+                        .GetSoftStakingProductListResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.staking.rest.model
+                        .GetSoftStakingProductListResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.staking.rest.model
+                        .GetSoftStakingRewardsHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.staking.rest.model
+                        .GetSoftStakingRewardsHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.staking.rest.model.GetSolRedemptionHistoryResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -291,6 +303,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.staking.rest.model
                         .SetOnChainYieldsLockedProductRedeemOptionResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.staking.rest.model.SetSoftStakingResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.staking.rest.model.SolStakingAccountResponse

@@ -22,18 +22,15 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Excha
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetAutoCancelAllOpenOrdersResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetDownloadIdForOptionTransactionHistoryResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetMarketMakerProtectionConfigResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.GetOptionTransactionHistoryDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewOrderResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OldTradesLookupResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionPositionInformationResponse;
@@ -55,8 +52,8 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.SetAu
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.StartUserDataStreamResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.UserCommissionResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.UserExerciseRecordResponse;
 
 public class DerivativesTradingOptionsRestApi {
@@ -102,7 +99,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Account-Funding-Flow">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow">Account
      *     Funding Flow (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountFundingFlowResponse> accountFundingFlow(
@@ -118,81 +115,26 @@ public class DerivativesTradingOptionsRestApi {
     }
 
     /**
-     * Get Download Id For Option Transaction History (USER_DATA) Get download id for option
-     * transaction history * Request Limitation is 5 times per month, shared by &gt; front end
-     * download page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * can not be longer than 1 year Weight: 5
+     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
      *
-     * @param startTime Timestamp in ms (required)
-     * @param endTime Timestamp in ms (required)
      * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetDownloadIdForOptionTransactionHistoryResponse&gt;
+     * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Download Id For Option Transaction History </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Download-Id-For-Option-Transaction-History">Get
-     *     Download Id For Option Transaction History (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information">Option
+     *     Margin Account Information (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetDownloadIdForOptionTransactionHistoryResponse>
-            getDownloadIdForOptionTransactionHistory(Long startTime, Long endTime, Long recvWindow)
-                    throws ApiException {
-        return accountApi.getDownloadIdForOptionTransactionHistory(startTime, endTime, recvWindow);
-    }
-
-    /**
-     * Get Option Transaction History Download Link by Id (USER_DATA) Get option transaction history
-     * download Link by Id * Download link expiration: 24h Weight: 5
-     *
-     * @param downloadId get by download id api (required)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetOptionTransactionHistoryDownloadLinkByIdResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Option Transaction History Download Link by Id </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Get-Option-Transaction-History-Download-Link-by-Id">Get
-     *     Option Transaction History Download Link by Id (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetOptionTransactionHistoryDownloadLinkByIdResponse>
-            getOptionTransactionHistoryDownloadLinkById(String downloadId, Long recvWindow)
-                    throws ApiException {
-        return accountApi.getOptionTransactionHistoryDownloadLinkById(downloadId, recvWindow);
-    }
-
-    /**
-     * Option Account Information(TRADE) Get current account information. Weight: 3
-     *
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;OptionAccountInformationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/account/Option-Account-Information">Option
-     *     Account Information(TRADE) Documentation</a>
-     */
-    public ApiResponse<OptionAccountInformationResponse> optionAccountInformation(Long recvWindow)
-            throws ApiException {
-        return accountApi.optionAccountInformation(recvWindow);
+    public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(
+            Long recvWindow) throws ApiException {
+        return accountApi.optionMarginAccountInformation(recvWindow);
     }
 
     /**
@@ -210,7 +152,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Check-Server-Time">Check
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Check-Server-Time">Check
      *     Server Time Documentation</a>
      */
     public ApiResponse<CheckServerTimeResponse> checkServerTime() throws ApiException {
@@ -231,7 +173,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Exchange-Information">Exchange
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Exchange-Information">Exchange
      *     Information Documentation</a>
      */
     public ApiResponse<ExchangeInformationResponse> exchangeInformation() throws ApiException {
@@ -257,12 +199,34 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Historical-Exercise-Records">Historical
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Historical-Exercise-Records">Historical
      *     Exercise Records Documentation</a>
      */
     public ApiResponse<HistoricalExerciseRecordsResponse> historicalExerciseRecords(
             String underlying, Long startTime, Long endTime, Long limit) throws ApiException {
         return marketDataApi.historicalExerciseRecords(underlying, startTime, endTime, limit);
+    }
+
+    /**
+     * Index Price Get spot index price for option underlying. Weight: 1
+     *
+     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @return ApiResponse&lt;IndexPriceResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Index Price </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Symbol-Price-Ticker">Index
+     *     Price Documentation</a>
+     */
+    public ApiResponse<IndexPriceResponse> indexPrice(String underlying) throws ApiException {
+        return marketDataApi.indexPrice(underlying);
     }
 
     /**
@@ -286,39 +250,13 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Kline-Candlestick-Data">Kline/Candlestick
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Kline-Candlestick-Data">Kline/Candlestick
      *     Data Documentation</a>
      */
     public ApiResponse<KlineCandlestickDataResponse> klineCandlestickData(
             String symbol, String interval, Long startTime, Long endTime, Long limit)
             throws ApiException {
         return marketDataApi.klineCandlestickData(symbol, interval, startTime, endTime, limit);
-    }
-
-    /**
-     * Old Trades Lookup (MARKET_DATA) Get older market historical trades. Weight: 20
-     *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
-     * @param fromId The UniqueId ID from which to return. The latest deal record is returned by
-     *     default (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
-     * @return ApiResponse&lt;OldTradesLookupResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Old Trades Lookup </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Old-Trades-Lookup">Old
-     *     Trades Lookup (MARKET_DATA) Documentation</a>
-     */
-    public ApiResponse<OldTradesLookupResponse> oldTradesLookup(
-            String symbol, Long fromId, Long limit) throws ApiException {
-        return marketDataApi.oldTradesLookup(symbol, fromId, limit);
     }
 
     /**
@@ -338,7 +276,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Open-Interest">Open
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Open-Interest">Open
      *     Interest Documentation</a>
      */
     public ApiResponse<OpenInterestResponse> openInterest(String underlyingAsset, String expiration)
@@ -361,7 +299,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Option-Mark-Price">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Option-Mark-Price">Option
      *     Mark Price Documentation</a>
      */
     public ApiResponse<OptionMarkPriceResponse> optionMarkPrice(String symbol) throws ApiException {
@@ -370,7 +308,7 @@ public class DerivativesTradingOptionsRestApi {
 
     /**
      * Order Book Check orderbook depth on specific symbol Weight: limit | weight ------------ |
-     * ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * ------------ 5, 10, 20, 50 | 1 100 | 5 500 | 10 1000 | 20
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param limit Number of result sets returned Default:100 Max:1000 (optional)
@@ -385,7 +323,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Order-Book">Order
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Order-Book">Order
      *     Book Documentation</a>
      */
     public ApiResponse<OrderBookResponse> orderBook(String symbol, Long limit) throws ApiException {
@@ -408,7 +346,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Recent-Block-Trade-List">Recent
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Block-Trade-List">Recent
      *     Block Trades List Documentation</a>
      */
     public ApiResponse<RecentBlockTradesListResponse> recentBlockTradesList(
@@ -432,35 +370,12 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Recent-Trades-List">Recent
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Trades-List">Recent
      *     Trades List Documentation</a>
      */
     public ApiResponse<RecentTradesListResponse> recentTradesList(String symbol, Long limit)
             throws ApiException {
         return marketDataApi.recentTradesList(symbol, limit);
-    }
-
-    /**
-     * Symbol Price Ticker Get spot index price for option underlying. Weight: 1
-     *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
-     * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Symbol Price Ticker </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Symbol-Price-Ticker">Symbol
-     *     Price Ticker Documentation</a>
-     */
-    public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String underlying)
-            throws ApiException {
-        return marketDataApi.symbolPriceTicker(underlying);
     }
 
     /**
@@ -477,7 +392,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/Test-Connectivity">Test
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Test-Connectivity">Test
      *     Connectivity Documentation</a>
      */
     public void testConnectivity() throws ApiException {
@@ -499,7 +414,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-data/24hr-Ticker-Price-Change-Statistics">24hr
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/24hr-Ticker-Price-Change-Statistics">24hr
      *     Ticker Price Change Statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrPriceChangeStatisticsResponse> ticker24hrPriceChangeStatistics(
@@ -522,7 +437,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Accept-Block-Trade-Order">Accept
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Accept-Block-Trade-Order">Accept
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<AcceptBlockTradeOrderResponse> acceptBlockTradeOrder(
@@ -548,7 +463,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Account-Block-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Account-Block-Trade-List">Account
      *     Block Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountBlockTradeListResponse> accountBlockTradeList(
@@ -573,7 +488,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public void cancelBlockTradeOrder(String blockOrderMatchingKey, Long recvWindow)
@@ -597,7 +512,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order">Extend
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Extend-Block-Trade-Order">Extend
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<ExtendBlockTradeOrderResponse> extendBlockTradeOrder(
@@ -620,7 +535,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order">New
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/New-Block-Trade-Order">New
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewBlockTradeOrderResponse> newBlockTradeOrder(
@@ -645,7 +560,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Detail">Query
      *     Block Trade Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeDetailsResponse> queryBlockTradeDetails(
@@ -673,7 +588,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Order">Query
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeOrderResponse> queryBlockTradeOrder(
@@ -707,7 +622,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
      *     All Open Orders (Kill-Switch) Heartbeat (TRADE) Documentation</a>
      */
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
@@ -735,7 +650,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetAutoCancelAllOpenOrdersResponse> getAutoCancelAllOpenOrders(
@@ -759,35 +674,12 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetMarketMakerProtectionConfigResponse> getMarketMakerProtectionConfig(
             String underlying, Long recvWindow) throws ApiException {
         return marketMakerEndpointsApi.getMarketMakerProtectionConfig(underlying, recvWindow);
-    }
-
-    /**
-     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
-     *
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Option Margin Account Information </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Option-Margin-Account-Information">Option
-     *     Margin Account Information (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(
-            Long recvWindow) throws ApiException {
-        return marketMakerEndpointsApi.optionMarginAccountInformation(recvWindow);
     }
 
     /**
@@ -805,7 +697,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<ResetMarketMakerProtectionConfigResponse> resetMarketMakerProtectionConfig(
@@ -844,7 +736,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetAutoCancelAllOpenOrdersResponse> setAutoCancelAllOpenOrders(
@@ -874,7 +766,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetMarketMakerProtectionConfigResponse> setMarketMakerProtectionConfig(
@@ -888,8 +780,8 @@ public class DerivativesTradingOptionsRestApi {
      * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
-     * @param fromId The UniqueId ID from which to return. The latest deal record is returned by
-     *     default (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades, e.g
+     *     4611875134427365376 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param limit Number of result sets returned Default:100 Max:1000 (optional)
@@ -905,7 +797,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Account-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountTradeListResponse> accountTradeList(
@@ -931,7 +823,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-All-Option-Orders-By-Underlying">Cancel
      *     All Option Orders By Underlying (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOptionOrdersByUnderlyingResponse> cancelAllOptionOrdersByUnderlying(
@@ -941,7 +833,7 @@ public class DerivativesTradingOptionsRestApi {
 
     /**
      * Cancel all Option orders on specific symbol (TRADE) Cancel all active order on a symbol.
-     * Weight: 1
+     * Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
      * @param recvWindow (optional)
@@ -956,7 +848,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-all-Option-orders-on-specific-symbol">Cancel
      *     all Option orders on specific symbol (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOptionOrdersOnSpecificSymbolResponse>
@@ -985,7 +877,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Multiple-Option-Orders">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Multiple-Option-Orders">Cancel
      *     Multiple Option Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelMultipleOptionOrdersResponse> cancelMultipleOptionOrders(
@@ -1013,7 +905,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Cancel-Option-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Option-Order">Cancel
      *     Option Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelOptionOrderResponse> cancelOptionOrder(
@@ -1036,7 +928,8 @@ public class DerivativesTradingOptionsRestApi {
      * <tr><td> 200 </td><td> New Order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/derivatives/option/trade/New-Order">New
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/New-Order">New
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(NewOrderRequest newOrderRequest)
@@ -1060,7 +953,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Option-Position-Information">Option
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Option-Position-Information">Option
      *     Position Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<OptionPositionInformationResponse> optionPositionInformation(
@@ -1085,7 +978,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Place-Multiple-Orders">Place
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Place-Multiple-Orders">Place
      *     Multiple Orders(TRADE) Documentation</a>
      */
     public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
@@ -1101,7 +994,6 @@ public class DerivativesTradingOptionsRestApi {
      * @param orderId Order ID, e.g 4611875134427365377 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentOpenOptionOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1114,14 +1006,14 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Current-Open-Option-Orders">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Current-Open-Option-Orders">Query
      *     Current Open Option Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOptionOrdersResponse> queryCurrentOpenOptionOrders(
-            String symbol, Long orderId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String symbol, Long orderId, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         return tradeApi.queryCurrentOpenOptionOrders(
-                symbol, orderId, startTime, endTime, limit, recvWindow);
+                symbol, orderId, startTime, endTime, recvWindow);
     }
 
     /**
@@ -1145,7 +1037,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Option-Order-History">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Option-Order-History">Query
      *     Option Order History (TRADE) Documentation</a>
      */
     public ApiResponse<QueryOptionOrderHistoryResponse> queryOptionOrderHistory(
@@ -1176,13 +1068,35 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/Query-Single-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Single-Order">Query
      *     Single Order (TRADE) Documentation</a>
      */
     public ApiResponse<QuerySingleOrderResponse> querySingleOrder(
             String symbol, Long orderId, String clientOrderId, Long recvWindow)
             throws ApiException {
         return tradeApi.querySingleOrder(symbol, orderId, clientOrderId, recvWindow);
+    }
+
+    /**
+     * User Commission (USER_DATA) Get account commission. Weight: 5
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;UserCommissionResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> User Commission </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Commission">User
+     *     Commission (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<UserCommissionResponse> userCommission(Long recvWindow) throws ApiException {
+        return tradeApi.userCommission(recvWindow);
     }
 
     /**
@@ -1204,7 +1118,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/trade/User-Exercise-Record">User
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/trade/User-Exercise-Record">User
      *     Exercise Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserExerciseRecordResponse> userExerciseRecord(
@@ -1227,7 +1141,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public void closeUserDataStream() throws ApiException {
@@ -1250,7 +1164,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public void keepaliveUserDataStream() throws ApiException {
@@ -1274,7 +1188,7 @@ public class DerivativesTradingOptionsRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<StartUserDataStreamResponse> startUserDataStream() throws ApiException {

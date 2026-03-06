@@ -7,7 +7,6 @@ All URIs are relative to *https://eapi.binance.com*
 | [**autoCancelAllOpenOrders**](MarketMakerEndpointsApi.md#autoCancelAllOpenOrders) | **POST** /eapi/v1/countdownCancelAllHeartBeat | Auto-Cancel All Open Orders (Kill-Switch) Heartbeat (TRADE) |
 | [**getAutoCancelAllOpenOrders**](MarketMakerEndpointsApi.md#getAutoCancelAllOpenOrders) | **GET** /eapi/v1/countdownCancelAll | Get Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) |
 | [**getMarketMakerProtectionConfig**](MarketMakerEndpointsApi.md#getMarketMakerProtectionConfig) | **GET** /eapi/v1/mmp | Get Market Maker Protection Config (TRADE) |
-| [**optionMarginAccountInformation**](MarketMakerEndpointsApi.md#optionMarginAccountInformation) | **GET** /eapi/v1/marginAccount | Option Margin Account Information (USER_DATA) |
 | [**resetMarketMakerProtectionConfig**](MarketMakerEndpointsApi.md#resetMarketMakerProtectionConfig) | **POST** /eapi/v1/mmpReset | Reset Market Maker Protection Config (TRADE) |
 | [**setAutoCancelAllOpenOrders**](MarketMakerEndpointsApi.md#setAutoCancelAllOpenOrders) | **POST** /eapi/v1/countdownCancelAll | Set Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) |
 | [**setMarketMakerProtectionConfig**](MarketMakerEndpointsApi.md#setMarketMakerProtectionConfig) | **POST** /eapi/v1/mmpSet | Set Market Maker Protection Config (TRADE) |
@@ -202,68 +201,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get Market Maker Protection Config |  -  |
-
-<a id="optionMarginAccountInformation"></a>
-# **optionMarginAccountInformation**
-> OptionMarginAccountInformationResponse optionMarginAccountInformation(recvWindow)
-
-Option Margin Account Information (USER_DATA)
-
-Get current account information.  Weight: 3
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.rest.api.MarketMakerEndpointsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://eapi.binance.com");
-
-    MarketMakerEndpointsApi apiInstance = new MarketMakerEndpointsApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
-    try {
-      OptionMarginAccountInformationResponse result = apiInstance.optionMarginAccountInformation(recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketMakerEndpointsApi#optionMarginAccountInformation");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**OptionMarginAccountInformationResponse**](OptionMarginAccountInformationResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Option Margin Account Information |  -  |
 
 <a id="resetMarketMakerProtectionConfig"></a>
 # **resetMarketMakerProtectionConfig**

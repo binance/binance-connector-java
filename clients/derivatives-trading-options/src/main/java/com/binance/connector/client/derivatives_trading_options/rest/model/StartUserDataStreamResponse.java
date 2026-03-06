@@ -42,6 +42,12 @@ public class StartUserDataStreamResponse {
     @jakarta.annotation.Nullable
     private String listenKey;
 
+    public static final String SERIALIZED_NAME_EXPIRATION = "expiration";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRATION)
+    @jakarta.annotation.Nullable
+    private Long expiration;
+
     public StartUserDataStreamResponse() {}
 
     public StartUserDataStreamResponse listenKey(@jakarta.annotation.Nullable String listenKey) {
@@ -63,6 +69,25 @@ public class StartUserDataStreamResponse {
         this.listenKey = listenKey;
     }
 
+    public StartUserDataStreamResponse expiration(@jakarta.annotation.Nullable Long expiration) {
+        this.expiration = expiration;
+        return this;
+    }
+
+    /**
+     * Get expiration
+     *
+     * @return expiration
+     */
+    @jakarta.annotation.Nullable
+    public Long getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(@jakarta.annotation.Nullable Long expiration) {
+        this.expiration = expiration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -72,12 +97,13 @@ public class StartUserDataStreamResponse {
             return false;
         }
         StartUserDataStreamResponse startUserDataStreamResponse = (StartUserDataStreamResponse) o;
-        return Objects.equals(this.listenKey, startUserDataStreamResponse.listenKey);
+        return Objects.equals(this.listenKey, startUserDataStreamResponse.listenKey)
+                && Objects.equals(this.expiration, startUserDataStreamResponse.expiration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listenKey);
+        return Objects.hash(listenKey, expiration);
     }
 
     @Override
@@ -85,6 +111,7 @@ public class StartUserDataStreamResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class StartUserDataStreamResponse {\n");
         sb.append("		listenKey: ").append(toIndentedString(listenKey)).append("\n");
+        sb.append("		expiration: ").append(toIndentedString(expiration)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -96,6 +123,10 @@ public class StartUserDataStreamResponse {
         String listenKeyValueAsString = "";
         listenKeyValueAsString = listenKeyValue.toString();
         sb.append("listenKey=").append(urlEncode(listenKeyValueAsString)).append("");
+        Object expirationValue = getExpiration();
+        String expirationValueAsString = "";
+        expirationValueAsString = expirationValue.toString();
+        sb.append("expiration=").append(urlEncode(expirationValueAsString)).append("");
         return sb.toString();
     }
 
@@ -125,6 +156,7 @@ public class StartUserDataStreamResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("listenKey");
+        openapiFields.add("expiration");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

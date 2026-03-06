@@ -48,6 +48,7 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccount
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOrdersResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOrderResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsTradeListResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryPreventedMatchesResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
@@ -74,7 +75,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/3.0.1 (Java/%s; %s; %s)",
+                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -241,22 +242,19 @@ public class TradeApi {
     }
 
     /**
-     * Create Special Key(Low-Latency Trading)(TRADE) **Binance Margin offers low-latency trading
+     * Create Special Key(Low-Latency Trading)(TRADE) - Binance Margin offers low-latency trading
      * through a [special
      * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 4 or higher. ** **If you are VIP level 3 or
-     * below, please contact your VIP manager for eligibility criterias.** We support several types
-     * of API keys: * Ed25519 (recommended) * HMAC * RSA We recommend to **use Ed25519 API keys** as
-     * it should provide the best performance and security out of all supported key types. We accept
-     * PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on
-     * Binance. Please refer to the document below
+     * available exclusively to users with VIP level 4 or higher. - If you are VIP level 3 or below,
+     * please contact your VIP manager for eligibility criterias.** **Supported Products:** - Cross
+     * Margin - Isolated Margin - Portfolio Margin Pro - Cross Margin Pro (Additional agreement
+     * required and subject to meeting eligibility criteria) **Unsupported Products:** - Portfolio
+     * Margin We support several types of API keys: * Ed25519 (recommended) * HMAC * RSA We
+     * recommend to **use Ed25519 API keys** as it should provide the best performance and security
+     * out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an
+     * RSA key pair to send API requests on Binance. Please refer to the document below
      * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . Read [REST
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#signed-trade-and-user_data-endpoint-security)
-     * or [WebSocket
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md#request-security)
-     * documentation to learn how to use different API keys You need to enable Permits “Enable Spot
-     * &amp; Margin Trading” option for the API Key which requests this endpoint. Weight: 1(UID)
+     * . Weight: 1(UID)
      *
      * @param createSpecialKeyRequest (required)
      * @return ApiResponse&lt;CreateSpecialKeyResponse&gt;
@@ -580,7 +578,7 @@ public class TradeApi {
     /**
      * Build call for getForceLiquidationRecord
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -739,7 +737,7 @@ public class TradeApi {
      * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record * Response in
      * descending order Weight: 1(IP)
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -916,7 +914,7 @@ public class TradeApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
@@ -1056,7 +1054,7 @@ public class TradeApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeHistoryResponse&gt;
@@ -1092,8 +1090,8 @@ public class TradeApi {
      * Build call for marginAccountCancelAllOpenOrdersOnASymbol
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1219,8 +1217,8 @@ public class TradeApi {
      * symbol for margin account.&lt;br&gt;&lt;/br&gt; This includes OCO orders. Weight: 1
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1252,8 +1250,8 @@ public class TradeApi {
      * Build call for marginAccountCancelOco
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
@@ -1422,8 +1420,8 @@ public class TradeApi {
      * Canceling an individual leg will cancel the entire OCO Weight: 1(UID)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
@@ -1470,8 +1468,8 @@ public class TradeApi {
      * Build call for marginAccountCancelOrder
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
@@ -1637,8 +1635,8 @@ public class TradeApi {
      * orderId or origClientOrderId must be sent. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
@@ -2883,8 +2881,8 @@ public class TradeApi {
     /**
      * Build call for queryCurrentMarginOrderCountUsage
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
@@ -3009,8 +3007,8 @@ public class TradeApi {
      * Query Current Margin Order Count Usage (TRADE) Displays the user&#39;s current margin order
      * count usage for all intervals. Weight: 20(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryCurrentMarginOrderCountUsageResponse&gt;
@@ -3039,13 +3037,16 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsAllOco
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3206,13 +3207,16 @@ public class TradeApi {
      * Query Margin Account&#39;s all OCO (USER_DATA) Retrieves all OCO for a specific margin
      * account based on provided optional parameters Weight: 200(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3249,12 +3253,13 @@ public class TradeApi {
      * Build call for queryMarginAccountsAllOrders
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3419,12 +3424,13 @@ public class TradeApi {
      * Weight: 200(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3460,8 +3466,8 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOco
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
@@ -3614,8 +3620,8 @@ public class TradeApi {
      * Query Margin Account&#39;s OCO (USER_DATA) Retrieves a specific OCO based on provided
      * optional parameters Weight: 10(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
@@ -3653,8 +3659,8 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOpenOco
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
@@ -3779,8 +3785,8 @@ public class TradeApi {
      * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO Weight:
      * 10(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOcoResponse&gt;
@@ -3810,8 +3816,8 @@ public class TradeApi {
      * Build call for queryMarginAccountsOpenOrders
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3939,8 +3945,8 @@ public class TradeApi {
      * &#x3D;\&quot;TRUE\&quot;, symbol must be sent. Weight: 10(IP)
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3969,8 +3975,8 @@ public class TradeApi {
      * Build call for queryMarginAccountsOrder
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow No more than 60000 (optional)
@@ -4120,8 +4126,8 @@ public class TradeApi {
      * will be &lt; 0, meaning the data is not available at this time. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow No more than 60000 (optional)
@@ -4158,13 +4164,16 @@ public class TradeApi {
      * Build call for queryMarginAccountsTradeList
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -4334,13 +4343,16 @@ public class TradeApi {
      * hours are returned. * Less than 24 hours between startTime and endTime. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4371,6 +4383,217 @@ public class TradeApi {
                         symbol, isIsolated, orderId, startTime, endTime, fromId, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryMarginAccountsTradeListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for queryPreventedMatches
+     *
+     * @param symbol (required)
+     * @param preventedMatchId (optional)
+     * @param orderId (optional)
+     * @param fromPreventedMatchId (optional)
+     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Prevented Matches </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches">Query
+     *     Prevented Matches(USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryPreventedMatchesCall(
+            String symbol,
+            Long preventedMatchId,
+            Long orderId,
+            Long fromPreventedMatchId,
+            Long recvWindow,
+            String isIsolated)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/myPreventedMatches";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (preventedMatchId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("preventedMatchId", preventedMatchId));
+        }
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (fromPreventedMatchId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "fromPreventedMatchId", fromPreventedMatchId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        if (isIsolated != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("isIsolated", isIsolated));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryPreventedMatchesValidateBeforeCall(
+            String symbol,
+            Long preventedMatchId,
+            Long orderId,
+            Long fromPreventedMatchId,
+            Long recvWindow,
+            String isIsolated)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {
+                symbol, preventedMatchId, orderId, fromPreventedMatchId, recvWindow, isIsolated
+            };
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryPreventedMatches",
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    String.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryPreventedMatchesCall(
+                        symbol,
+                        preventedMatchId,
+                        orderId,
+                        fromPreventedMatchId,
+                        recvWindow,
+                        isIsolated);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Prevented Matches(USER_DATA) Weight: 10(IP)
+     *
+     * @param symbol (required)
+     * @param preventedMatchId (optional)
+     * @param orderId (optional)
+     * @param fromPreventedMatchId (optional)
+     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
+     * @return ApiResponse&lt;QueryPreventedMatchesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Prevented Matches </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches">Query
+     *     Prevented Matches(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryPreventedMatchesResponse> queryPreventedMatches(
+            @NotNull String symbol,
+            Long preventedMatchId,
+            Long orderId,
+            Long fromPreventedMatchId,
+            Long recvWindow,
+            String isIsolated)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                queryPreventedMatchesValidateBeforeCall(
+                        symbol,
+                        preventedMatchId,
+                        orderId,
+                        fromPreventedMatchId,
+                        recvWindow,
+                        isIsolated);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryPreventedMatchesResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

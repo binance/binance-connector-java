@@ -47,7 +47,7 @@ public class SubmitDepositQuestionnaireRequest {
 
     @SerializedName(SERIALIZED_NAME_DEPOSIT_ID)
     @jakarta.annotation.Nonnull
-    private String depositId;
+    private Long depositId;
 
     public static final String SERIALIZED_NAME_QUESTIONNAIRE = "questionnaire";
 
@@ -120,8 +120,7 @@ public class SubmitDepositQuestionnaireRequest {
         this.subAccountId = subAccountId;
     }
 
-    public SubmitDepositQuestionnaireRequest depositId(
-            @jakarta.annotation.Nonnull String depositId) {
+    public SubmitDepositQuestionnaireRequest depositId(@jakarta.annotation.Nonnull Long depositId) {
         this.depositId = depositId;
         return this;
     }
@@ -133,11 +132,11 @@ public class SubmitDepositQuestionnaireRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getDepositId() {
+    public Long getDepositId() {
         return depositId;
     }
 
-    public void setDepositId(@jakarta.annotation.Nonnull String depositId) {
+    public void setDepositId(@jakarta.annotation.Nonnull Long depositId) {
         this.depositId = depositId;
     }
 
@@ -485,13 +484,6 @@ public class SubmitDepositQuestionnaireRequest {
                             "Expected the field `subAccountId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("subAccountId").toString()));
-        }
-        if (!jsonObj.get("depositId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `depositId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("depositId").toString()));
         }
         if (!jsonObj.get("questionnaire").isJsonPrimitive()) {
             throw new IllegalArgumentException(

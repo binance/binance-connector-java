@@ -12,7 +12,7 @@
 |**origClientOrderId** | **String** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
 |**cancelRestrictions** | **CancelRestrictions** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Double** |  |  [optional] |
 
 
 

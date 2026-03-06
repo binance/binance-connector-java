@@ -39,18 +39,6 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class MarkPriceResponseInner extends BaseDTO {
-    public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
-
-    @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
-    @jakarta.annotation.Nullable
-    private String eLowerCase;
-
-    public static final String SERIALIZED_NAME_E = "E";
-
-    @SerializedName(SERIALIZED_NAME_E)
-    @jakarta.annotation.Nullable
-    private Long E;
-
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
@@ -63,45 +51,115 @@ public class MarkPriceResponseInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String mp;
 
+    public static final String SERIALIZED_NAME_E = "E";
+
+    @SerializedName(SERIALIZED_NAME_E)
+    @jakarta.annotation.Nullable
+    private Long E;
+
+    public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
+
+    @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String eLowerCase;
+
+    public static final String SERIALIZED_NAME_I_LOWER_CASE = "i";
+
+    @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String iLowerCase;
+
+    public static final String SERIALIZED_NAME_P = "P";
+
+    @SerializedName(SERIALIZED_NAME_P)
+    @jakarta.annotation.Nullable
+    private String P;
+
+    public static final String SERIALIZED_NAME_BO = "bo";
+
+    @SerializedName(SERIALIZED_NAME_BO)
+    @jakarta.annotation.Nullable
+    private String bo;
+
+    public static final String SERIALIZED_NAME_AO = "ao";
+
+    @SerializedName(SERIALIZED_NAME_AO)
+    @jakarta.annotation.Nullable
+    private String ao;
+
+    public static final String SERIALIZED_NAME_BQ = "bq";
+
+    @SerializedName(SERIALIZED_NAME_BQ)
+    @jakarta.annotation.Nullable
+    private String bq;
+
+    public static final String SERIALIZED_NAME_AQ = "aq";
+
+    @SerializedName(SERIALIZED_NAME_AQ)
+    @jakarta.annotation.Nullable
+    private String aq;
+
+    public static final String SERIALIZED_NAME_B_LOWER_CASE = "b";
+
+    @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String bLowerCase;
+
+    public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
+
+    @SerializedName(SERIALIZED_NAME_A_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String aLowerCase;
+
+    public static final String SERIALIZED_NAME_HL = "hl";
+
+    @SerializedName(SERIALIZED_NAME_HL)
+    @jakarta.annotation.Nullable
+    private String hl;
+
+    public static final String SERIALIZED_NAME_LL = "ll";
+
+    @SerializedName(SERIALIZED_NAME_LL)
+    @jakarta.annotation.Nullable
+    private String ll;
+
+    public static final String SERIALIZED_NAME_VO = "vo";
+
+    @SerializedName(SERIALIZED_NAME_VO)
+    @jakarta.annotation.Nullable
+    private String vo;
+
+    public static final String SERIALIZED_NAME_RF = "rf";
+
+    @SerializedName(SERIALIZED_NAME_RF)
+    @jakarta.annotation.Nullable
+    private String rf;
+
+    public static final String SERIALIZED_NAME_D_LOWER_CASE = "d";
+
+    @SerializedName(SERIALIZED_NAME_D_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String dLowerCase;
+
+    public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
+
+    @SerializedName(SERIALIZED_NAME_T_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String tLowerCase;
+
+    public static final String SERIALIZED_NAME_G_LOWER_CASE = "g";
+
+    @SerializedName(SERIALIZED_NAME_G_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String gLowerCase;
+
+    public static final String SERIALIZED_NAME_V_LOWER_CASE = "v";
+
+    @SerializedName(SERIALIZED_NAME_V_LOWER_CASE)
+    @jakarta.annotation.Nullable
+    private String vLowerCase;
+
     public MarkPriceResponseInner() {}
-
-    public MarkPriceResponseInner eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
-        this.eLowerCase = eLowerCase;
-        return this;
-    }
-
-    /**
-     * Get eLowerCase
-     *
-     * @return eLowerCase
-     */
-    @jakarta.annotation.Nullable
-    public String geteLowerCase() {
-        return eLowerCase;
-    }
-
-    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
-        this.eLowerCase = eLowerCase;
-    }
-
-    public MarkPriceResponseInner E(@jakarta.annotation.Nullable Long E) {
-        this.E = E;
-        return this;
-    }
-
-    /**
-     * Get E
-     *
-     * @return E
-     */
-    @jakarta.annotation.Nullable
-    public Long getE() {
-        return E;
-    }
-
-    public void setE(@jakarta.annotation.Nullable Long E) {
-        this.E = E;
-    }
 
     public MarkPriceResponseInner sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
         this.sLowerCase = sLowerCase;
@@ -141,6 +199,348 @@ public class MarkPriceResponseInner extends BaseDTO {
         this.mp = mp;
     }
 
+    public MarkPriceResponseInner E(@jakarta.annotation.Nullable Long E) {
+        this.E = E;
+        return this;
+    }
+
+    /**
+     * Get E
+     *
+     * @return E
+     */
+    @jakarta.annotation.Nullable
+    public Long getE() {
+        return E;
+    }
+
+    public void setE(@jakarta.annotation.Nullable Long E) {
+        this.E = E;
+    }
+
+    public MarkPriceResponseInner eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
+        return this;
+    }
+
+    /**
+     * Get eLowerCase
+     *
+     * @return eLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String geteLowerCase() {
+        return eLowerCase;
+    }
+
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
+    }
+
+    public MarkPriceResponseInner iLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
+        this.iLowerCase = iLowerCase;
+        return this;
+    }
+
+    /**
+     * Get iLowerCase
+     *
+     * @return iLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getiLowerCase() {
+        return iLowerCase;
+    }
+
+    public void setiLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
+        this.iLowerCase = iLowerCase;
+    }
+
+    public MarkPriceResponseInner P(@jakarta.annotation.Nullable String P) {
+        this.P = P;
+        return this;
+    }
+
+    /**
+     * Get P
+     *
+     * @return P
+     */
+    @jakarta.annotation.Nullable
+    public String getP() {
+        return P;
+    }
+
+    public void setP(@jakarta.annotation.Nullable String P) {
+        this.P = P;
+    }
+
+    public MarkPriceResponseInner bo(@jakarta.annotation.Nullable String bo) {
+        this.bo = bo;
+        return this;
+    }
+
+    /**
+     * Get bo
+     *
+     * @return bo
+     */
+    @jakarta.annotation.Nullable
+    public String getBo() {
+        return bo;
+    }
+
+    public void setBo(@jakarta.annotation.Nullable String bo) {
+        this.bo = bo;
+    }
+
+    public MarkPriceResponseInner ao(@jakarta.annotation.Nullable String ao) {
+        this.ao = ao;
+        return this;
+    }
+
+    /**
+     * Get ao
+     *
+     * @return ao
+     */
+    @jakarta.annotation.Nullable
+    public String getAo() {
+        return ao;
+    }
+
+    public void setAo(@jakarta.annotation.Nullable String ao) {
+        this.ao = ao;
+    }
+
+    public MarkPriceResponseInner bq(@jakarta.annotation.Nullable String bq) {
+        this.bq = bq;
+        return this;
+    }
+
+    /**
+     * Get bq
+     *
+     * @return bq
+     */
+    @jakarta.annotation.Nullable
+    public String getBq() {
+        return bq;
+    }
+
+    public void setBq(@jakarta.annotation.Nullable String bq) {
+        this.bq = bq;
+    }
+
+    public MarkPriceResponseInner aq(@jakarta.annotation.Nullable String aq) {
+        this.aq = aq;
+        return this;
+    }
+
+    /**
+     * Get aq
+     *
+     * @return aq
+     */
+    @jakarta.annotation.Nullable
+    public String getAq() {
+        return aq;
+    }
+
+    public void setAq(@jakarta.annotation.Nullable String aq) {
+        this.aq = aq;
+    }
+
+    public MarkPriceResponseInner bLowerCase(@jakarta.annotation.Nullable String bLowerCase) {
+        this.bLowerCase = bLowerCase;
+        return this;
+    }
+
+    /**
+     * Get bLowerCase
+     *
+     * @return bLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getbLowerCase() {
+        return bLowerCase;
+    }
+
+    public void setbLowerCase(@jakarta.annotation.Nullable String bLowerCase) {
+        this.bLowerCase = bLowerCase;
+    }
+
+    public MarkPriceResponseInner aLowerCase(@jakarta.annotation.Nullable String aLowerCase) {
+        this.aLowerCase = aLowerCase;
+        return this;
+    }
+
+    /**
+     * Get aLowerCase
+     *
+     * @return aLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getaLowerCase() {
+        return aLowerCase;
+    }
+
+    public void setaLowerCase(@jakarta.annotation.Nullable String aLowerCase) {
+        this.aLowerCase = aLowerCase;
+    }
+
+    public MarkPriceResponseInner hl(@jakarta.annotation.Nullable String hl) {
+        this.hl = hl;
+        return this;
+    }
+
+    /**
+     * Get hl
+     *
+     * @return hl
+     */
+    @jakarta.annotation.Nullable
+    public String getHl() {
+        return hl;
+    }
+
+    public void setHl(@jakarta.annotation.Nullable String hl) {
+        this.hl = hl;
+    }
+
+    public MarkPriceResponseInner ll(@jakarta.annotation.Nullable String ll) {
+        this.ll = ll;
+        return this;
+    }
+
+    /**
+     * Get ll
+     *
+     * @return ll
+     */
+    @jakarta.annotation.Nullable
+    public String getLl() {
+        return ll;
+    }
+
+    public void setLl(@jakarta.annotation.Nullable String ll) {
+        this.ll = ll;
+    }
+
+    public MarkPriceResponseInner vo(@jakarta.annotation.Nullable String vo) {
+        this.vo = vo;
+        return this;
+    }
+
+    /**
+     * Get vo
+     *
+     * @return vo
+     */
+    @jakarta.annotation.Nullable
+    public String getVo() {
+        return vo;
+    }
+
+    public void setVo(@jakarta.annotation.Nullable String vo) {
+        this.vo = vo;
+    }
+
+    public MarkPriceResponseInner rf(@jakarta.annotation.Nullable String rf) {
+        this.rf = rf;
+        return this;
+    }
+
+    /**
+     * Get rf
+     *
+     * @return rf
+     */
+    @jakarta.annotation.Nullable
+    public String getRf() {
+        return rf;
+    }
+
+    public void setRf(@jakarta.annotation.Nullable String rf) {
+        this.rf = rf;
+    }
+
+    public MarkPriceResponseInner dLowerCase(@jakarta.annotation.Nullable String dLowerCase) {
+        this.dLowerCase = dLowerCase;
+        return this;
+    }
+
+    /**
+     * Get dLowerCase
+     *
+     * @return dLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getdLowerCase() {
+        return dLowerCase;
+    }
+
+    public void setdLowerCase(@jakarta.annotation.Nullable String dLowerCase) {
+        this.dLowerCase = dLowerCase;
+    }
+
+    public MarkPriceResponseInner tLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
+        this.tLowerCase = tLowerCase;
+        return this;
+    }
+
+    /**
+     * Get tLowerCase
+     *
+     * @return tLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String gettLowerCase() {
+        return tLowerCase;
+    }
+
+    public void settLowerCase(@jakarta.annotation.Nullable String tLowerCase) {
+        this.tLowerCase = tLowerCase;
+    }
+
+    public MarkPriceResponseInner gLowerCase(@jakarta.annotation.Nullable String gLowerCase) {
+        this.gLowerCase = gLowerCase;
+        return this;
+    }
+
+    /**
+     * Get gLowerCase
+     *
+     * @return gLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getgLowerCase() {
+        return gLowerCase;
+    }
+
+    public void setgLowerCase(@jakarta.annotation.Nullable String gLowerCase) {
+        this.gLowerCase = gLowerCase;
+    }
+
+    public MarkPriceResponseInner vLowerCase(@jakarta.annotation.Nullable String vLowerCase) {
+        this.vLowerCase = vLowerCase;
+        return this;
+    }
+
+    /**
+     * Get vLowerCase
+     *
+     * @return vLowerCase
+     */
+    @jakarta.annotation.Nullable
+    public String getvLowerCase() {
+        return vLowerCase;
+    }
+
+    public void setvLowerCase(@jakarta.annotation.Nullable String vLowerCase) {
+        this.vLowerCase = vLowerCase;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -150,25 +550,77 @@ public class MarkPriceResponseInner extends BaseDTO {
             return false;
         }
         MarkPriceResponseInner markPriceResponseInner = (MarkPriceResponseInner) o;
-        return Objects.equals(this.eLowerCase, markPriceResponseInner.eLowerCase)
+        return Objects.equals(this.sLowerCase, markPriceResponseInner.sLowerCase)
+                && Objects.equals(this.mp, markPriceResponseInner.mp)
                 && Objects.equals(this.E, markPriceResponseInner.E)
-                && Objects.equals(this.sLowerCase, markPriceResponseInner.sLowerCase)
-                && Objects.equals(this.mp, markPriceResponseInner.mp);
+                && Objects.equals(this.eLowerCase, markPriceResponseInner.eLowerCase)
+                && Objects.equals(this.iLowerCase, markPriceResponseInner.iLowerCase)
+                && Objects.equals(this.P, markPriceResponseInner.P)
+                && Objects.equals(this.bo, markPriceResponseInner.bo)
+                && Objects.equals(this.ao, markPriceResponseInner.ao)
+                && Objects.equals(this.bq, markPriceResponseInner.bq)
+                && Objects.equals(this.aq, markPriceResponseInner.aq)
+                && Objects.equals(this.bLowerCase, markPriceResponseInner.bLowerCase)
+                && Objects.equals(this.aLowerCase, markPriceResponseInner.aLowerCase)
+                && Objects.equals(this.hl, markPriceResponseInner.hl)
+                && Objects.equals(this.ll, markPriceResponseInner.ll)
+                && Objects.equals(this.vo, markPriceResponseInner.vo)
+                && Objects.equals(this.rf, markPriceResponseInner.rf)
+                && Objects.equals(this.dLowerCase, markPriceResponseInner.dLowerCase)
+                && Objects.equals(this.tLowerCase, markPriceResponseInner.tLowerCase)
+                && Objects.equals(this.gLowerCase, markPriceResponseInner.gLowerCase)
+                && Objects.equals(this.vLowerCase, markPriceResponseInner.vLowerCase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, mp);
+        return Objects.hash(
+                sLowerCase,
+                mp,
+                E,
+                eLowerCase,
+                iLowerCase,
+                P,
+                bo,
+                ao,
+                bq,
+                aq,
+                bLowerCase,
+                aLowerCase,
+                hl,
+                ll,
+                vo,
+                rf,
+                dLowerCase,
+                tLowerCase,
+                gLowerCase,
+                vLowerCase);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class MarkPriceResponseInner {\n");
-        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
-        sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		mp: ").append(toIndentedString(mp)).append("\n");
+        sb.append("		E: ").append(toIndentedString(E)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
+        sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
+        sb.append("		P: ").append(toIndentedString(P)).append("\n");
+        sb.append("		bo: ").append(toIndentedString(bo)).append("\n");
+        sb.append("		ao: ").append(toIndentedString(ao)).append("\n");
+        sb.append("		bq: ").append(toIndentedString(bq)).append("\n");
+        sb.append("		aq: ").append(toIndentedString(aq)).append("\n");
+        sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
+        sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
+        sb.append("		hl: ").append(toIndentedString(hl)).append("\n");
+        sb.append("		ll: ").append(toIndentedString(ll)).append("\n");
+        sb.append("		vo: ").append(toIndentedString(vo)).append("\n");
+        sb.append("		rf: ").append(toIndentedString(rf)).append("\n");
+        sb.append("		dLowerCase: ").append(toIndentedString(dLowerCase)).append("\n");
+        sb.append("		tLowerCase: ").append(toIndentedString(tLowerCase)).append("\n");
+        sb.append("		gLowerCase: ").append(toIndentedString(gLowerCase)).append("\n");
+        sb.append("		vLowerCase: ").append(toIndentedString(vLowerCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -177,16 +629,6 @@ public class MarkPriceResponseInner extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String eLowerCaseValue = geteLowerCase();
-        if (eLowerCaseValue != null) {
-            String eLowerCaseValueAsString = eLowerCaseValue.toString();
-            valMap.put("eLowerCase", eLowerCaseValueAsString);
-        }
-        Long EValue = getE();
-        if (EValue != null) {
-            String EValueAsString = EValue.toString();
-            valMap.put("E", EValueAsString);
-        }
         String sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
@@ -196,6 +638,96 @@ public class MarkPriceResponseInner extends BaseDTO {
         if (mpValue != null) {
             String mpValueAsString = mpValue.toString();
             valMap.put("mp", mpValueAsString);
+        }
+        Long EValue = getE();
+        if (EValue != null) {
+            String EValueAsString = EValue.toString();
+            valMap.put("E", EValueAsString);
+        }
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
+        }
+        String iLowerCaseValue = getiLowerCase();
+        if (iLowerCaseValue != null) {
+            String iLowerCaseValueAsString = iLowerCaseValue.toString();
+            valMap.put("iLowerCase", iLowerCaseValueAsString);
+        }
+        String PValue = getP();
+        if (PValue != null) {
+            String PValueAsString = PValue.toString();
+            valMap.put("P", PValueAsString);
+        }
+        String boValue = getBo();
+        if (boValue != null) {
+            String boValueAsString = boValue.toString();
+            valMap.put("bo", boValueAsString);
+        }
+        String aoValue = getAo();
+        if (aoValue != null) {
+            String aoValueAsString = aoValue.toString();
+            valMap.put("ao", aoValueAsString);
+        }
+        String bqValue = getBq();
+        if (bqValue != null) {
+            String bqValueAsString = bqValue.toString();
+            valMap.put("bq", bqValueAsString);
+        }
+        String aqValue = getAq();
+        if (aqValue != null) {
+            String aqValueAsString = aqValue.toString();
+            valMap.put("aq", aqValueAsString);
+        }
+        String bLowerCaseValue = getbLowerCase();
+        if (bLowerCaseValue != null) {
+            String bLowerCaseValueAsString = bLowerCaseValue.toString();
+            valMap.put("bLowerCase", bLowerCaseValueAsString);
+        }
+        String aLowerCaseValue = getaLowerCase();
+        if (aLowerCaseValue != null) {
+            String aLowerCaseValueAsString = aLowerCaseValue.toString();
+            valMap.put("aLowerCase", aLowerCaseValueAsString);
+        }
+        String hlValue = getHl();
+        if (hlValue != null) {
+            String hlValueAsString = hlValue.toString();
+            valMap.put("hl", hlValueAsString);
+        }
+        String llValue = getLl();
+        if (llValue != null) {
+            String llValueAsString = llValue.toString();
+            valMap.put("ll", llValueAsString);
+        }
+        String voValue = getVo();
+        if (voValue != null) {
+            String voValueAsString = voValue.toString();
+            valMap.put("vo", voValueAsString);
+        }
+        String rfValue = getRf();
+        if (rfValue != null) {
+            String rfValueAsString = rfValue.toString();
+            valMap.put("rf", rfValueAsString);
+        }
+        String dLowerCaseValue = getdLowerCase();
+        if (dLowerCaseValue != null) {
+            String dLowerCaseValueAsString = dLowerCaseValue.toString();
+            valMap.put("dLowerCase", dLowerCaseValueAsString);
+        }
+        String tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            String tLowerCaseValueAsString = tLowerCaseValue.toString();
+            valMap.put("tLowerCase", tLowerCaseValueAsString);
+        }
+        String gLowerCaseValue = getgLowerCase();
+        if (gLowerCaseValue != null) {
+            String gLowerCaseValueAsString = gLowerCaseValue.toString();
+            valMap.put("gLowerCase", gLowerCaseValueAsString);
+        }
+        String vLowerCaseValue = getvLowerCase();
+        if (vLowerCaseValue != null) {
+            String vLowerCaseValueAsString = vLowerCaseValue.toString();
+            valMap.put("vLowerCase", vLowerCaseValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -208,14 +740,6 @@ public class MarkPriceResponseInner extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object eLowerCaseValue = geteLowerCase();
-        if (eLowerCaseValue != null) {
-            valMap.put("eLowerCase", eLowerCaseValue);
-        }
-        Object EValue = getE();
-        if (EValue != null) {
-            valMap.put("E", EValue);
-        }
         Object sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
@@ -223,6 +747,78 @@ public class MarkPriceResponseInner extends BaseDTO {
         Object mpValue = getMp();
         if (mpValue != null) {
             valMap.put("mp", mpValue);
+        }
+        Object EValue = getE();
+        if (EValue != null) {
+            valMap.put("E", EValue);
+        }
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
+        }
+        Object iLowerCaseValue = getiLowerCase();
+        if (iLowerCaseValue != null) {
+            valMap.put("iLowerCase", iLowerCaseValue);
+        }
+        Object PValue = getP();
+        if (PValue != null) {
+            valMap.put("P", PValue);
+        }
+        Object boValue = getBo();
+        if (boValue != null) {
+            valMap.put("bo", boValue);
+        }
+        Object aoValue = getAo();
+        if (aoValue != null) {
+            valMap.put("ao", aoValue);
+        }
+        Object bqValue = getBq();
+        if (bqValue != null) {
+            valMap.put("bq", bqValue);
+        }
+        Object aqValue = getAq();
+        if (aqValue != null) {
+            valMap.put("aq", aqValue);
+        }
+        Object bLowerCaseValue = getbLowerCase();
+        if (bLowerCaseValue != null) {
+            valMap.put("bLowerCase", bLowerCaseValue);
+        }
+        Object aLowerCaseValue = getaLowerCase();
+        if (aLowerCaseValue != null) {
+            valMap.put("aLowerCase", aLowerCaseValue);
+        }
+        Object hlValue = getHl();
+        if (hlValue != null) {
+            valMap.put("hl", hlValue);
+        }
+        Object llValue = getLl();
+        if (llValue != null) {
+            valMap.put("ll", llValue);
+        }
+        Object voValue = getVo();
+        if (voValue != null) {
+            valMap.put("vo", voValue);
+        }
+        Object rfValue = getRf();
+        if (rfValue != null) {
+            valMap.put("rf", rfValue);
+        }
+        Object dLowerCaseValue = getdLowerCase();
+        if (dLowerCaseValue != null) {
+            valMap.put("dLowerCase", dLowerCaseValue);
+        }
+        Object tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            valMap.put("tLowerCase", tLowerCaseValue);
+        }
+        Object gLowerCaseValue = getgLowerCase();
+        if (gLowerCaseValue != null) {
+            valMap.put("gLowerCase", gLowerCaseValue);
+        }
+        Object vLowerCaseValue = getvLowerCase();
+        if (vLowerCaseValue != null) {
+            valMap.put("vLowerCase", vLowerCaseValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -250,10 +846,26 @@ public class MarkPriceResponseInner extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("e");
-        openapiFields.add("E");
         openapiFields.add("s");
         openapiFields.add("mp");
+        openapiFields.add("E");
+        openapiFields.add("e");
+        openapiFields.add("i");
+        openapiFields.add("P");
+        openapiFields.add("bo");
+        openapiFields.add("ao");
+        openapiFields.add("bq");
+        openapiFields.add("aq");
+        openapiFields.add("b");
+        openapiFields.add("a");
+        openapiFields.add("hl");
+        openapiFields.add("ll");
+        openapiFields.add("vo");
+        openapiFields.add("rf");
+        openapiFields.add("d");
+        openapiFields.add("t");
+        openapiFields.add("g");
+        openapiFields.add("v");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -289,14 +901,6 @@ public class MarkPriceResponseInner extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("e") != null && !jsonObj.get("e").isJsonNull())
-                && !jsonObj.get("e").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `e` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("e").toString()));
-        }
         if ((jsonObj.get("s") != null && !jsonObj.get("s").isJsonNull())
                 && !jsonObj.get("s").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -312,6 +916,142 @@ public class MarkPriceResponseInner extends BaseDTO {
                             "Expected the field `mp` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("mp").toString()));
+        }
+        if ((jsonObj.get("e") != null && !jsonObj.get("e").isJsonNull())
+                && !jsonObj.get("e").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `e` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("e").toString()));
+        }
+        if ((jsonObj.get("i") != null && !jsonObj.get("i").isJsonNull())
+                && !jsonObj.get("i").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `i` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("i").toString()));
+        }
+        if ((jsonObj.get("P") != null && !jsonObj.get("P").isJsonNull())
+                && !jsonObj.get("P").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `P` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("P").toString()));
+        }
+        if ((jsonObj.get("bo") != null && !jsonObj.get("bo").isJsonNull())
+                && !jsonObj.get("bo").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bo` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("bo").toString()));
+        }
+        if ((jsonObj.get("ao") != null && !jsonObj.get("ao").isJsonNull())
+                && !jsonObj.get("ao").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ao` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ao").toString()));
+        }
+        if ((jsonObj.get("bq") != null && !jsonObj.get("bq").isJsonNull())
+                && !jsonObj.get("bq").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bq` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("bq").toString()));
+        }
+        if ((jsonObj.get("aq") != null && !jsonObj.get("aq").isJsonNull())
+                && !jsonObj.get("aq").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `aq` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("aq").toString()));
+        }
+        if ((jsonObj.get("b") != null && !jsonObj.get("b").isJsonNull())
+                && !jsonObj.get("b").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `b` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("b").toString()));
+        }
+        if ((jsonObj.get("a") != null && !jsonObj.get("a").isJsonNull())
+                && !jsonObj.get("a").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `a` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("a").toString()));
+        }
+        if ((jsonObj.get("hl") != null && !jsonObj.get("hl").isJsonNull())
+                && !jsonObj.get("hl").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `hl` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("hl").toString()));
+        }
+        if ((jsonObj.get("ll") != null && !jsonObj.get("ll").isJsonNull())
+                && !jsonObj.get("ll").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ll` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ll").toString()));
+        }
+        if ((jsonObj.get("vo") != null && !jsonObj.get("vo").isJsonNull())
+                && !jsonObj.get("vo").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `vo` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("vo").toString()));
+        }
+        if ((jsonObj.get("rf") != null && !jsonObj.get("rf").isJsonNull())
+                && !jsonObj.get("rf").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `rf` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("rf").toString()));
+        }
+        if ((jsonObj.get("d") != null && !jsonObj.get("d").isJsonNull())
+                && !jsonObj.get("d").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `d` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("d").toString()));
+        }
+        if ((jsonObj.get("t") != null && !jsonObj.get("t").isJsonNull())
+                && !jsonObj.get("t").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `t` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("t").toString()));
+        }
+        if ((jsonObj.get("g") != null && !jsonObj.get("g").isJsonNull())
+                && !jsonObj.get("g").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `g` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("g").toString()));
+        }
+        if ((jsonObj.get("v") != null && !jsonObj.get("v").isJsonNull())
+                && !jsonObj.get("v").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `v` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("v").toString()));
         }
     }
 

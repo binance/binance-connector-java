@@ -11,6 +11,7 @@
 |**E** | **Long** |  |  [optional] |
 |**T** | **Long** |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
+|**U** | **Long** |  |  [optional] |
 |**uLowerCase** | **Long** |  |  [optional] |
 |**pu** | **Long** |  |  [optional] |
 |**bLowerCase** | **List&lt;PartialBookDepthStreamsResponseBItem&gt;** |  |  [optional] |

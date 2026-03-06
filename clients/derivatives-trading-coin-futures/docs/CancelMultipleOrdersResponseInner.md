@@ -23,6 +23,7 @@
 |**stopPrice** | **String** |  |  [optional] |
 |**closePosition** | **Boolean** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
+|**pair** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**activatePrice** | **String** |  |  [optional] |

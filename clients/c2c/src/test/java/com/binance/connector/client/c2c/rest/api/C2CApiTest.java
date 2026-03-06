@@ -87,12 +87,14 @@ public class C2CApiTest {
      */
     @Test
     public void getC2CTradeHistoryTest() throws ApiException, CryptoException {
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+        String tradeType = "BUY";
+        Long startTimestamp = 1623319461670L;
+        Long endTimestamp = 1641782889000L;
         Long page = 1L;
+        Long rows = 100L;
         Long recvWindow = 5000L;
         ApiResponse<GetC2CTradeHistoryResponse> response =
-                api.getC2CTradeHistory(startTime, endTime, page, recvWindow);
+                api.getC2CTradeHistory(tradeType, startTimestamp, endTimestamp, page, rows, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -105,10 +107,10 @@ public class C2CApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&page=1&recvWindow=5000&timestamp=1736393892000",
+                "tradeType=BUY&startTimestamp=1623319461670&endTimestamp=1641782889000&page=1&rows=100&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "d8669595398c3478db78736dbf4210642841e9920062e47dd9e504f877e947a8",
+                "b832525dad5bec73a86b8ad4a5bda7aaa6e4708aeb1c6f85d37ef00a5aefc693",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/c2c/orderMatch/listUserOrderHistory", actualRequest.url().encodedPath());

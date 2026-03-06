@@ -1,6 +1,39 @@
 # Changelog
 
+## 6.0.0 - 2026-02-12
+
+### Added (2)
+
+#### REST API
+
+- `getDeltaModeStatus()` (`GET /sapi/v1/portfolio/delta-mode`)
+- `switchDeltaMode()` (`POST /sapi/v1/portfolio/delta-mode`)
+
+## 5.0.0 - 2025-12-16
+
+### Removed (2)
+
+#### REST API
+
+- `mintBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/mint`)
+- `redeemBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/redeem`)
+
+## 4.0.0 - 2025-10-21
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `mintBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/mint`):
+  - property `mintRate` added
+  - property `rate` deleted
+
+- Modified response for `redeemBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/redeem`):
+  - property `redeemRate` added
+  - property `rate` deleted
+
 ## 3.0.1 - 2025-08-07
+
 - Update `binance/common` module to version `2.0.0`.
 - Add `Content-Type` header only if there is a body.
 

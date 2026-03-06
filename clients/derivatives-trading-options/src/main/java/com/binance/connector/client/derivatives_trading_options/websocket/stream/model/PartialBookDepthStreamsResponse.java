@@ -66,6 +66,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String sLowerCase;
 
+    public static final String SERIALIZED_NAME_U = "U";
+
+    @SerializedName(SERIALIZED_NAME_U)
+    @jakarta.annotation.Nullable
+    private Long U;
+
     public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
 
     @SerializedName(SERIALIZED_NAME_U_LOWER_CASE)
@@ -168,6 +174,25 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
 
     public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
         this.sLowerCase = sLowerCase;
+    }
+
+    public PartialBookDepthStreamsResponse U(@jakarta.annotation.Nullable Long U) {
+        this.U = U;
+        return this;
+    }
+
+    /**
+     * Get U
+     *
+     * @return U
+     */
+    @jakarta.annotation.Nullable
+    public Long getU() {
+        return U;
+    }
+
+    public void setU(@jakarta.annotation.Nullable Long U) {
+        this.U = U;
     }
 
     public PartialBookDepthStreamsResponse uLowerCase(
@@ -285,6 +310,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
                 && Objects.equals(this.E, partialBookDepthStreamsResponse.E)
                 && Objects.equals(this.T, partialBookDepthStreamsResponse.T)
                 && Objects.equals(this.sLowerCase, partialBookDepthStreamsResponse.sLowerCase)
+                && Objects.equals(this.U, partialBookDepthStreamsResponse.U)
                 && Objects.equals(this.uLowerCase, partialBookDepthStreamsResponse.uLowerCase)
                 && Objects.equals(this.pu, partialBookDepthStreamsResponse.pu)
                 && Objects.equals(this.bLowerCase, partialBookDepthStreamsResponse.bLowerCase)
@@ -293,7 +319,8 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, T, sLowerCase, uLowerCase, pu, bLowerCase, aLowerCase);
+        return Objects.hash(
+                eLowerCase, E, T, sLowerCase, U, uLowerCase, pu, bLowerCase, aLowerCase);
     }
 
     @Override
@@ -304,6 +331,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
+        sb.append("		U: ").append(toIndentedString(U)).append("\n");
         sb.append("		uLowerCase: ").append(toIndentedString(uLowerCase)).append("\n");
         sb.append("		pu: ").append(toIndentedString(pu)).append("\n");
         sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
@@ -335,6 +363,11 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         if (sLowerCaseValue != null) {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
+        }
+        Long UValue = getU();
+        if (UValue != null) {
+            String UValueAsString = UValue.toString();
+            valMap.put("U", UValueAsString);
         }
         Long uLowerCaseValue = getuLowerCase();
         if (uLowerCaseValue != null) {
@@ -383,6 +416,10 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
         }
+        Object UValue = getU();
+        if (UValue != null) {
+            valMap.put("U", UValue);
+        }
         Object uLowerCaseValue = getuLowerCase();
         if (uLowerCaseValue != null) {
             valMap.put("uLowerCase", uLowerCaseValue);
@@ -429,6 +466,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         openapiFields.add("E");
         openapiFields.add("T");
         openapiFields.add("s");
+        openapiFields.add("U");
         openapiFields.add("u");
         openapiFields.add("pu");
         openapiFields.add("b");

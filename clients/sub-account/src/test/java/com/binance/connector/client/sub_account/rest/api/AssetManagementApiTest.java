@@ -377,7 +377,7 @@ public class AssetManagementApiTest {
     public void getSummaryOfSubAccountsFuturesAccountTest() throws ApiException, CryptoException {
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse> response =
-                api.getSummaryOfSubAccountsFuturesAccount(recvWindow);
+                api.getSummaryOfSubAccountsFuturesAccount(1L, 100L, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -389,9 +389,9 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("page=1&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                "896f98aeecf7fd75f5b6757aac79503b77ce8681d684a02de1677275f4e3217e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/accountSummary", actualRequest.url().encodedPath());

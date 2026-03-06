@@ -45,12 +45,11 @@ public class HashrateResaleDetailExample {
      */
     public void hashrateResaleDetailExample() throws ApiException {
         Long configId = 1L;
-        String userName = "";
         Long pageIndex = 1L;
         Long pageSize = 0L;
         Long recvWindow = 5000L;
         ApiResponse<HashrateResaleDetailResponse> response =
-                getApi().hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+                getApi().hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
         System.out.println(response.getData());
     }
 }

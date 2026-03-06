@@ -40,7 +40,13 @@ public class RecentTradesListResponseInner {
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Long id;
+
+    public static final String SERIALIZED_NAME_TRADE_ID = "tradeId";
+
+    @SerializedName(SERIALIZED_NAME_TRADE_ID)
+    @jakarta.annotation.Nullable
+    private Long tradeId;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -80,7 +86,7 @@ public class RecentTradesListResponseInner {
 
     public RecentTradesListResponseInner() {}
 
-    public RecentTradesListResponseInner id(@jakarta.annotation.Nullable String id) {
+    public RecentTradesListResponseInner id(@jakarta.annotation.Nullable Long id) {
         this.id = id;
         return this;
     }
@@ -91,12 +97,31 @@ public class RecentTradesListResponseInner {
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Long id) {
         this.id = id;
+    }
+
+    public RecentTradesListResponseInner tradeId(@jakarta.annotation.Nullable Long tradeId) {
+        this.tradeId = tradeId;
+        return this;
+    }
+
+    /**
+     * Get tradeId
+     *
+     * @return tradeId
+     */
+    @jakarta.annotation.Nullable
+    public Long getTradeId() {
+        return tradeId;
+    }
+
+    public void setTradeId(@jakarta.annotation.Nullable Long tradeId) {
+        this.tradeId = tradeId;
     }
 
     public RecentTradesListResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
@@ -224,6 +249,7 @@ public class RecentTradesListResponseInner {
         RecentTradesListResponseInner recentTradesListResponseInner =
                 (RecentTradesListResponseInner) o;
         return Objects.equals(this.id, recentTradesListResponseInner.id)
+                && Objects.equals(this.tradeId, recentTradesListResponseInner.tradeId)
                 && Objects.equals(this.symbol, recentTradesListResponseInner.symbol)
                 && Objects.equals(this.price, recentTradesListResponseInner.price)
                 && Objects.equals(this.qty, recentTradesListResponseInner.qty)
@@ -234,7 +260,7 @@ public class RecentTradesListResponseInner {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, symbol, price, qty, quoteQty, side, time);
+        return Objects.hash(id, tradeId, symbol, price, qty, quoteQty, side, time);
     }
 
     @Override
@@ -242,6 +268,7 @@ public class RecentTradesListResponseInner {
         StringBuilder sb = new StringBuilder();
         sb.append("class RecentTradesListResponseInner {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
+        sb.append("		tradeId: ").append(toIndentedString(tradeId)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		qty: ").append(toIndentedString(qty)).append("\n");
@@ -259,6 +286,10 @@ public class RecentTradesListResponseInner {
         String idValueAsString = "";
         idValueAsString = idValue.toString();
         sb.append("id=").append(urlEncode(idValueAsString)).append("");
+        Object tradeIdValue = getTradeId();
+        String tradeIdValueAsString = "";
+        tradeIdValueAsString = tradeIdValue.toString();
+        sb.append("tradeId=").append(urlEncode(tradeIdValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -312,6 +343,7 @@ public class RecentTradesListResponseInner {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
+        openapiFields.add("tradeId");
         openapiFields.add("symbol");
         openapiFields.add("price");
         openapiFields.add("qty");
@@ -342,14 +374,6 @@ public class RecentTradesListResponseInner {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(

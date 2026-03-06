@@ -48,7 +48,7 @@ public class OrderAmendmentsExample {
         Long orderId = 1L;
         Long fromExecutionId = 1L;
         Long limit = 500L;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000.0d;
         ApiResponse<OrderAmendmentsResponse> response =
                 getApi().orderAmendments(symbol, orderId, fromExecutionId, limit, recvWindow);
         System.out.println(response.getData());

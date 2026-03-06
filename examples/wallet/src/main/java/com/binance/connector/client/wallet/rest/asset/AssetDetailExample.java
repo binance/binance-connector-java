@@ -45,8 +45,9 @@ public class AssetDetailExample {
      * @throws ApiException if the Api call fails
      */
     public void assetDetailExample() throws ApiException {
+        String asset = "";
         Long recvWindow = 5000L;
-        ApiResponse<AssetDetailResponse> response = getApi().assetDetail(recvWindow);
+        ApiResponse<AssetDetailResponse> response = getApi().assetDetail(asset, recvWindow);
         System.out.println(response.getData());
     }
 }

@@ -12,7 +12,7 @@
 |**notionalCap** | **Long** |  |  [optional] |
 |**notionalFloor** | **Long** |  |  [optional] |
 |**maintMarginRatio** | **Double** |  |  [optional] |
-|**cum** | **Long** |  |  [optional] |
+|**cum** | **Double** |  |  [optional] |
 
 
 

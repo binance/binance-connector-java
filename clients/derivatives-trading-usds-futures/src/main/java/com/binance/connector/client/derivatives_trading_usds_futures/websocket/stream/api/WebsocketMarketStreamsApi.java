@@ -13,11 +13,16 @@
 package com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.api;
 
 import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.common.websocket.adapter.stream.StreamConnectionInterface;
+import com.binance.connector.client.common.websocket.adapter.stream.StreamConnectionPoolWrapper;
+import com.binance.connector.client.common.websocket.adapter.stream.StreamConnectionWrapper;
+import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.JSON;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllBookTickersStreamRequest;
@@ -54,6 +59,10 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.RpiDiffBookDepthStreamsRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.RpiDiffBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -66,11 +75,27 @@ import java.util.UUID;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
 public class WebsocketMarketStreamsApi {
+    private static final String USER_AGENT =
+            String.format(
+                    "binance-derivatives-trading-usds-futures/9.0.0 (Java/%s; %s; %s)",
+                    SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
     private StreamConnectionInterface connection;
 
     public WebsocketMarketStreamsApi() {}
 
+    public WebsocketMarketStreamsApi(WebSocketClientConfiguration configuration) {
+        this(
+                configuration.getUsePool()
+                        ? new StreamConnectionPoolWrapper(configuration, JSON.getGson())
+                        : new StreamConnectionWrapper(configuration, JSON.getGson()));
+    }
+
     public WebsocketMarketStreamsApi(StreamConnectionInterface connection) {
+        connection.setUserAgent(USER_AGENT);
+        if (!connection.isConnected()) {
+            connection.connect();
+        }
         this.connection = connection;
     }
 
@@ -78,7 +103,8 @@ public class WebsocketMarketStreamsApi {
      * Aggregate Trade Streams The Aggregate Trade Streams push market trade information that is
      * aggregated for fills with same price and taking side every 100 milliseconds. Only market
      * trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be
-     * aggregated. Update Speed: 100ms
+     * aggregated. Retail Price Improvement(RPI) orders are aggregated into field &#x60;q&#x60; and
+     * without special tags to be distinguished. Update Speed: 100ms
      *
      * @param aggregateTradeStreamsRequest (required)
      * @return AggregateTradeStreamsResponse
@@ -162,7 +188,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * All Book Tickers Stream Pushes any update to the best bid or ask&#39;s price or quantity in
-     * real-time for all symbols. Update Speed: 5s
+     * real-time for all symbols. Retail Price Improvement(RPI) orders are not visible and excluded
+     * in the response message. Update Speed: 5s
      *
      * @param allBookTickersStreamRequest (required)
      * @return AllBookTickersStreamResponse
@@ -786,7 +813,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Diff. Book Depth Streams Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100
-     * milliseconds (if existing) Update Speed: 250ms, 500ms, 100ms
+     * milliseconds (if existing) Retail Price Improvement(RPI) orders are not visible and excluded
+     * in the response message. Update Speed: 250ms, 500ms, 100ms
      *
      * @param diffBookDepthStreamsRequest (required)
      * @return DiffBookDepthStreamsResponse
@@ -875,7 +903,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Individual Symbol Book Ticker Streams Pushes any update to the best bid or ask&#39;s price or
-     * quantity in real-time for a specified symbol. Update Speed: Real-time
+     * quantity in real-time for a specified symbol. Retail Price Improvement(RPI) orders are not
+     * visible and excluded in the response message. Update Speed: Real-time
      *
      * @param individualSymbolBookTickerStreamsRequest (required)
      * @return IndividualSymbolBookTickerStreamsResponse
@@ -1419,7 +1448,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Mark Price Stream for All market Mark price and funding rate for all symbols pushed every 3
-     * seconds or every second. Update Speed: 3000ms or 1000ms
+     * seconds or every second. **Note**: TradFi symbols will be pushed through a seperate message.
+     * Update Speed: 3000ms or 1000ms
      *
      * @param markPriceStreamForAllMarketRequest (required)
      * @return MarkPriceStreamForAllMarketResponse
@@ -1589,7 +1619,8 @@ public class WebsocketMarketStreamsApi {
 
     /**
      * Partial Book Depth Streams Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;**
-     * are 5, 10, or 20. Update Speed: 250ms, 500ms or 100ms
+     * are 5, 10, or 20. Retail Price Improvement(RPI) orders are not visible and excluded in the
+     * response message. Update Speed: 250ms, 500ms or 100ms
      *
      * @param partialBookDepthStreamsRequest (required)
      * @return PartialBookDepthStreamsResponse
@@ -1672,6 +1703,178 @@ public class WebsocketMarketStreamsApi {
 
             Set<ConstraintViolation<PartialBookDepthStreamsRequest>> violations =
                     validator.validate(partialBookDepthStreamsRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * RPI Diff. Book Depth Streams Bids and asks including RPI orders, pushed every 500
+     * milliseconds RPI(Retail Price Improvement) orders are included and aggreated in the response
+     * message. When the quantity of a price level to be updated is equal to 0, it means either all
+     * quotations for this price have been filled/canceled, or the quantity of crossed RPI orders
+     * for this price are hidden Update Speed: 500ms
+     *
+     * @param rpiDiffBookDepthStreamsRequest (required)
+     * @return RpiDiffBookDepthStreamsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> RPI Diff. Book Depth Streams </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams-RPI">RPI
+     *     Diff. Book Depth Streams Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<RpiDiffBookDepthStreamsResponse> rpiDiffBookDepthStreams(
+            RpiDiffBookDepthStreamsRequest rpiDiffBookDepthStreamsRequest) throws ApiException {
+        StreamBlockingQueue<String> queue =
+                rpiDiffBookDepthStreamsRaw(rpiDiffBookDepthStreamsRequest);
+
+        TypeToken<RpiDiffBookDepthStreamsResponse> typeToken =
+                new TypeToken<RpiDiffBookDepthStreamsResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> rpiDiffBookDepthStreamsRaw(
+            RpiDiffBookDepthStreamsRequest rpiDiffBookDepthStreamsRequest) throws ApiException {
+        rpiDiffBookDepthStreamsValidateBeforeCall(rpiDiffBookDepthStreamsRequest);
+
+        String methodName =
+                "/<symbol>@rpiDepth@500ms"
+                        .substring(1)
+                        .replace(
+                                "<id>",
+                                rpiDiffBookDepthStreamsRequest.getId() != null
+                                        ? rpiDiffBookDepthStreamsRequest.getId().toString()
+                                        : "")
+                        .replace(
+                                "<symbol>",
+                                rpiDiffBookDepthStreamsRequest.getSymbol() != null
+                                        ? rpiDiffBookDepthStreamsRequest.getSymbol().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void rpiDiffBookDepthStreamsValidateBeforeCall(
+            RpiDiffBookDepthStreamsRequest rpiDiffBookDepthStreamsRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<RpiDiffBookDepthStreamsRequest>> violations =
+                    validator.validate(rpiDiffBookDepthStreamsRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Trading Session Stream Trading session information for the underlying assets of TradFi
+     * Perpetual contracts—covering the U.S. equity market and the commodity market—is updated every
+     * second. Trading session information for different underlying markets is pushed in separate
+     * messages. Session types for the equity market include \&quot;PRE_MARKET\&quot;,
+     * \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and
+     * \&quot;NO_TRADING\&quot;. Session types for the commodity market include
+     * \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Update Speed: 1s
+     *
+     * @param tradingSessionStreamRequest (required)
+     * @return TradingSessionStreamResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Trading Session Stream </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Trading-Session-Stream">Trading
+     *     Session Stream Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(
+            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
+        StreamBlockingQueue<String> queue = tradingSessionStreamRaw(tradingSessionStreamRequest);
+
+        TypeToken<TradingSessionStreamResponse> typeToken =
+                new TypeToken<TradingSessionStreamResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> tradingSessionStreamRaw(
+            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
+        tradingSessionStreamValidateBeforeCall(tradingSessionStreamRequest);
+
+        String methodName =
+                "/tradingSession"
+                        .substring(1)
+                        .replace(
+                                "<id>",
+                                tradingSessionStreamRequest.getId() != null
+                                        ? tradingSessionStreamRequest.getId().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void tradingSessionStreamValidateBeforeCall(
+            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<TradingSessionStreamRequest>> violations =
+                    validator.validate(tradingSessionStreamRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

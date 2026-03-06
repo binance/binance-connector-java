@@ -90,6 +90,11 @@ public class JSON {
                                                         .derivatives_trading_usds_futures.websocket
                                                         .stream.model.AccountUpdate.class);
                                         classByDiscriminatorValue.put(
+                                                "ALGO_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_usds_futures.websocket
+                                                        .stream.model.AlgoUpdate.class);
+                                        classByDiscriminatorValue.put(
                                                 "CONDITIONAL_ORDER_TRIGGER_REJECT",
                                                 com.binance.connector.client
                                                         .derivatives_trading_usds_futures.websocket
@@ -135,6 +140,11 @@ public class JSON {
                                                 com.binance.connector.client
                                                         .derivatives_trading_usds_futures.websocket
                                                         .stream.model.AccountUpdate.class);
+                                        classByDiscriminatorValue.put(
+                                                "algoUpdate",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_usds_futures.websocket
+                                                        .stream.model.AlgoUpdate.class);
                                         classByDiscriminatorValue.put(
                                                 "conditionalOrderTriggerReject",
                                                 com.binance.connector.client
@@ -258,6 +268,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
                         .model.AggregateTradeStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.AlgoUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.AlgoUpdateO.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
                         .model.AllBookTickersStreamRequest.CustomTypeAdapterFactory());
@@ -436,6 +452,18 @@ public class JSON {
                         .model.PartialBookDepthStreamsResponseBItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.RpiDiffBookDepthStreamsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.RpiDiffBookDepthStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.RpiDiffBookDepthStreamsResponseAItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.RpiDiffBookDepthStreamsResponseBItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
                         .model.StrategyUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
@@ -443,6 +471,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
                         .model.TradeLite.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.TradingSessionStreamRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
+                        .model.TradingSessionStreamResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream
                         .model.UserDataStreamEventsResponse.CustomTypeAdapterFactory());

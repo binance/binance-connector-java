@@ -10,14 +10,14 @@
 |**symbol** | **String** |  |  [optional] |
 |**side** | [**SideEnum**](#SideEnum) |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
-|**quantity** | **Double** |  |  [optional] |
-|**price** | **Double** |  |  [optional] |
+|**quantity** | **String** |  |  [optional] |
+|**price** | **String** |  |  [optional] |
 |**timeInForce** | [**TimeInForceEnum**](#TimeInForceEnum) |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**postOnly** | **Boolean** |  |  [optional] |
+|**reduceOnly** | **String** |  |  [optional] |
+|**postOnly** | **String** |  |  [optional] |
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
-|**isMmp** | **Boolean** |  |  [optional] |
+|**isMmp** | **String** |  |  [optional] |
 
 
 
@@ -45,6 +45,7 @@
 | GTC | &quot;GTC&quot; |
 | IOC | &quot;IOC&quot; |
 | FOK | &quot;FOK&quot; |
+| GTX | &quot;GTX&quot; |
 
 
 

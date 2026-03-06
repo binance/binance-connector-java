@@ -41,7 +41,8 @@ public class PortfolioMarginProBankruptcyLoanRepayExample {
     /**
      * Portfolio Margin Pro Bankruptcy Loan Repay
      *
-     * <p>Repay Portfolio Margin Pro Bankruptcy Loan Weight: 3000
+     * <p>Repay Portfolio Margin Pro Bankruptcy Loan * Please note that the API Key has enabled Spot
+     * &amp; Margin Trading permissions to access this endpoint. Weight: 3000
      *
      * @throws ApiException if the Api call fails
      */

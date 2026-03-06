@@ -24,6 +24,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AccountTradeListResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AllOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CancelMultipleOrdersResponse;
@@ -47,6 +48,8 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OrderIdList;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OrigClientOrderIdList;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PlaceMultipleOrdersRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PlaceMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PositionAdlQuantileEstimationResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PositionInformationResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.QueryCurrentOpenOrderResponse;
@@ -76,7 +79,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -557,7 +560,7 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Auto-Cancel All Open Orders </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
@@ -681,26 +684,28 @@ public class TradeApi {
      * with an countdownTime of 0, the countdown timer will be stopped. Weight: 10
      *
      * @param autoCancelAllOpenOrdersRequest (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;AutoCancelAllOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Auto-Cancel All Open Orders </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders">Auto-Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
-    public ApiResponse<Void> autoCancelAllOpenOrders(
+    public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
             @Valid @NotNull AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 autoCancelAllOpenOrdersValidateBeforeCall(autoCancelAllOpenOrdersRequest);
-        return localVarApiClient.execute(localVarCall);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<AutoCancelAllOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -2905,6 +2910,152 @@ public class TradeApi {
             throws ApiException {
         okhttp3.Call localVarCall = newOrderValidateBeforeCall(newOrderRequest);
         java.lang.reflect.Type localVarReturnType = new TypeToken<NewOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for placeMultipleOrders
+     *
+     * @param placeMultipleOrdersRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Place Multiple Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
+     *     Multiple Orders(TRADE) Documentation</a>
+     */
+    private okhttp3.Call placeMultipleOrdersCall(
+            PlaceMultipleOrdersRequest placeMultipleOrdersRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/dapi/v1/batchOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (placeMultipleOrdersRequest.getBatchOrders() != null) {
+            String json = JSON.getGson().toJson(placeMultipleOrdersRequest.getBatchOrders());
+            localVarFormParams.put("batchOrders", json);
+        }
+
+        if (placeMultipleOrdersRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", placeMultipleOrdersRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call placeMultipleOrdersValidateBeforeCall(
+            PlaceMultipleOrdersRequest placeMultipleOrdersRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {placeMultipleOrdersRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod("placeMultipleOrders", PlaceMultipleOrdersRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return placeMultipleOrdersCall(placeMultipleOrdersRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Place Multiple Orders(TRADE) Place multiple orders * Parameter rules are same with &#x60;New
+     * Order&#x60; * Batch orders are processed concurrently, and the order of matching is not
+     * guaranteed. * The order of returned contents for batch orders is the same as the order of the
+     * order list. Weight: 5
+     *
+     * @param placeMultipleOrdersRequest (required)
+     * @return ApiResponse&lt;PlaceMultipleOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Place Multiple Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
+     *     Multiple Orders(TRADE) Documentation</a>
+     */
+    public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
+            @Valid @NotNull PlaceMultipleOrdersRequest placeMultipleOrdersRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                placeMultipleOrdersValidateBeforeCall(placeMultipleOrdersRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<PlaceMultipleOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

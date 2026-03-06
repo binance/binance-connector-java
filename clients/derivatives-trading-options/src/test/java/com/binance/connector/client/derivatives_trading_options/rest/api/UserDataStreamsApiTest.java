@@ -92,7 +92,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
@@ -114,7 +115,9 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
@@ -138,7 +141,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 }

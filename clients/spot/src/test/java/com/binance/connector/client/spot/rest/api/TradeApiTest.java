@@ -123,7 +123,7 @@ public class TradeApiTest {
     @Test
     public void deleteOpenOrdersTest() throws ApiException, CryptoException {
         String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOpenOrdersResponse> response = api.deleteOpenOrders(symbol, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -159,7 +159,7 @@ public class TradeApiTest {
         String origClientOrderId = "";
         String newClientOrderId = "";
         CancelRestrictions cancelRestrictions = CancelRestrictions.ONLY_NEW;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOrderResponse> response =
                 api.deleteOrder(
                         symbol,
@@ -201,7 +201,7 @@ public class TradeApiTest {
         Long orderListId = 1L;
         String listClientOrderId = "";
         String newClientOrderId = "";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOrderListResponse> response =
                 api.deleteOrderList(
                         symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow);

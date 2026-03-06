@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AccountTradeListResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AllOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.BasisResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CancelAllOpenOrdersResponse;
@@ -43,6 +44,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IndexPriceAndMarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IndexPriceKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Interval;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KeepaliveUserDataStreamResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.LongShortRatioResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.MarkPriceKlineCandlestickDataResponse;
@@ -63,6 +65,8 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OrderIdList;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OrigClientOrderIdList;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PlaceMultipleOrdersRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PlaceMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PositionAdlQuantileEstimationResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PositionInformationResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PremiumIndexKlineDataResponse;
@@ -1384,23 +1388,23 @@ public class DerivativesTradingCoinFuturesRestApi {
      * with an countdownTime of 0, the countdown timer will be stopped. Weight: 10
      *
      * @param autoCancelAllOpenOrdersRequest (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;AutoCancelAllOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Auto-Cancel All Open Orders </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders">Auto-Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
-    public void autoCancelAllOpenOrders(
+    public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
             AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest) throws ApiException {
-        tradeApi.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
+        return tradeApi.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
     }
 
     /**
@@ -1804,6 +1808,32 @@ public class DerivativesTradingCoinFuturesRestApi {
     }
 
     /**
+     * Place Multiple Orders(TRADE) Place multiple orders * Parameter rules are same with &#x60;New
+     * Order&#x60; * Batch orders are processed concurrently, and the order of matching is not
+     * guaranteed. * The order of returned contents for batch orders is the same as the order of the
+     * order list. Weight: 5
+     *
+     * @param placeMultipleOrdersRequest (required)
+     * @return ApiResponse&lt;PlaceMultipleOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Place Multiple Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
+     *     Multiple Orders(TRADE) Documentation</a>
+     */
+    public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
+            PlaceMultipleOrdersRequest placeMultipleOrdersRequest) throws ApiException {
+        return tradeApi.placeMultipleOrders(placeMultipleOrdersRequest);
+    }
+
+    /**
      * Position ADL Quantile Estimation(USER_DATA) Query position ADL quantile estimation * Values
      * update every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from
      * low to high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge
@@ -1989,22 +2019,23 @@ public class DerivativesTradingCoinFuturesRestApi {
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * User data streams will close after 60 minutes. Weight: 1
      *
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;KeepaliveUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Keepalive User Data Stream </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Keepalive-User-Data-Stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
-    public void keepaliveUserDataStream() throws ApiException {
-        userDataStreamsApi.keepaliveUserDataStream();
+    public ApiResponse<KeepaliveUserDataStreamResponse> keepaliveUserDataStream()
+            throws ApiException {
+        return userDataStreamsApi.keepaliveUserDataStream();
     }
 
     /**

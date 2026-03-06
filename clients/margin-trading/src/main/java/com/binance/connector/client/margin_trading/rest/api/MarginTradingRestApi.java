@@ -23,12 +23,13 @@ import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleR
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetMarginRestrictedAssetsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
-import com.binance.connector.client.margin_trading.rest.model.KeepaliveIsolatedMarginUserDataStreamRequest;
-import com.binance.connector.client.margin_trading.rest.model.KeepaliveMarginUserDataStreamRequest;
 import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayResponse;
@@ -67,12 +68,10 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMarginInteres
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginPriceindexResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxBorrowResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOutAmountResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryPreventedMatchesResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
-import com.binance.connector.client.margin_trading.rest.model.StartIsolatedMarginUserDataStreamRequest;
-import com.binance.connector.client.margin_trading.rest.model.StartIsolatedMarginUserDataStreamResponse;
-import com.binance.connector.client.margin_trading.rest.model.StartMarginUserDataStreamResponse;
 import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamResponse;
 
 public class MarginTradingRestApi {
@@ -82,7 +81,6 @@ public class MarginTradingRestApi {
     private final MarketDataApi marketDataApi;
     private final RiskDataStreamApi riskDataStreamApi;
     private final TradeApi tradeApi;
-    private final TradeDataStreamApi tradeDataStreamApi;
     private final TransferApi transferApi;
 
     public MarginTradingRestApi(ClientConfiguration configuration) {
@@ -95,7 +93,6 @@ public class MarginTradingRestApi {
         this.marketDataApi = new MarketDataApi(apiClient);
         this.riskDataStreamApi = new RiskDataStreamApi(apiClient);
         this.tradeApi = new TradeApi(apiClient);
-        this.tradeDataStreamApi = new TradeDataStreamApi(apiClient);
         this.transferApi = new TransferApi(apiClient);
     }
 
@@ -232,10 +229,13 @@ public class MarginTradingRestApi {
      * @param asset (optional)
      * @param symbol isolated margin pair (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryCrossIsolatedMarginCapitalFlowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -440,7 +440,7 @@ public class MarginTradingRestApi {
      *
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -508,7 +508,7 @@ public class MarginTradingRestApi {
      * @param asset (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)
@@ -550,7 +550,7 @@ public class MarginTradingRestApi {
      * @param asset (required)
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginInterestRateHistoryResponse&gt;
@@ -718,6 +718,36 @@ public class MarginTradingRestApi {
     }
 
     /**
+     * Get Limit Price Pairs(MARKET_DATA) Query trading pairs with restriction on limit price range.
+     * In margin trading, you can place orders with limit price. Limit price should be within (-15%,
+     * 15%) of current index price for a list of margin trading pairs. This rule only impacts limit
+     * sell orders with limit price that is lower than current index price and limit buy orders with
+     * limit price that is higher than current index price. - Buy order: Your order will be rejected
+     * with an error message notification if the limit price is 15% above the index price. - Sell
+     * order: Your order will be rejected with an error message notification if the limit price is
+     * 15% below the index price. Please review the limit price order placing strategy, backtest and
+     * calibrate the planned order size with the trading volume and order book depth to prevent
+     * trading loss. Weight: 1
+     *
+     * @return ApiResponse&lt;GetLimitPricePairsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Limit Price Pairs </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
+     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetLimitPricePairsResponse> getLimitPricePairs() throws ApiException {
+        return marketDataApi.getLimitPricePairs();
+    }
+
+    /**
      * Get list Schedule (MARKET_DATA) Get the upcoming tokens or symbols listing schedule for Cross
      * Margin and Isolated Margin. Weight: 100
      *
@@ -739,6 +769,51 @@ public class MarginTradingRestApi {
     public ApiResponse<GetListScheduleResponse> getListSchedule(Long recvWindow)
             throws ApiException {
         return marketDataApi.getListSchedule(recvWindow);
+    }
+
+    /**
+     * Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Get Margin Asset Risk-Based
+     * Liquidation Ratio Weight: 1
+     *
+     * @return ApiResponse&lt;GetMarginAssetRiskBasedLiquidationRatioResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Margin Asset Risk-Based Liquidation Ratio </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio">Get
+     *     Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetMarginAssetRiskBasedLiquidationRatioResponse>
+            getMarginAssetRiskBasedLiquidationRatio() throws ApiException {
+        return marketDataApi.getMarginAssetRiskBasedLiquidationRatio();
+    }
+
+    /**
+     * Get Margin Restricted Assets (MARKET_DATA) Get Margin Restricted Assets Weight: 1
+     *
+     * @return ApiResponse&lt;GetMarginRestrictedAssetsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Margin Restricted Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Restricted-Assets">Get
+     *     Margin Restricted Assets (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetMarginRestrictedAssetsResponse> getMarginRestrictedAssets()
+            throws ApiException {
+        return marketDataApi.getMarginRestrictedAssets();
     }
 
     /**
@@ -903,22 +978,19 @@ public class MarginTradingRestApi {
     }
 
     /**
-     * Create Special Key(Low-Latency Trading)(TRADE) **Binance Margin offers low-latency trading
+     * Create Special Key(Low-Latency Trading)(TRADE) - Binance Margin offers low-latency trading
      * through a [special
      * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 4 or higher. ** **If you are VIP level 3 or
-     * below, please contact your VIP manager for eligibility criterias.** We support several types
-     * of API keys: * Ed25519 (recommended) * HMAC * RSA We recommend to **use Ed25519 API keys** as
-     * it should provide the best performance and security out of all supported key types. We accept
-     * PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on
-     * Binance. Please refer to the document below
+     * available exclusively to users with VIP level 4 or higher. - If you are VIP level 3 or below,
+     * please contact your VIP manager for eligibility criterias.** **Supported Products:** - Cross
+     * Margin - Isolated Margin - Portfolio Margin Pro - Cross Margin Pro (Additional agreement
+     * required and subject to meeting eligibility criteria) **Unsupported Products:** - Portfolio
+     * Margin We support several types of API keys: * Ed25519 (recommended) * HMAC * RSA We
+     * recommend to **use Ed25519 API keys** as it should provide the best performance and security
+     * out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an
+     * RSA key pair to send API requests on Binance. Please refer to the document below
      * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . Read [REST
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#signed-trade-and-user_data-endpoint-security)
-     * or [WebSocket
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md#request-security)
-     * documentation to learn how to use different API keys You need to enable Permits “Enable Spot
-     * &amp; Margin Trading” option for the API Key which requests this endpoint. Weight: 1(UID)
+     * . Weight: 1(UID)
      *
      * @param createSpecialKeyRequest (required)
      * @return ApiResponse&lt;CreateSpecialKeyResponse&gt;
@@ -998,7 +1070,7 @@ public class MarginTradingRestApi {
      * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record * Response in
      * descending order Weight: 1(IP)
      *
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param isolatedSymbol isolated symbol (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -1060,7 +1132,7 @@ public class MarginTradingRestApi {
      *
      * @param current Currently querying page. Start from 1. Default:1 (required)
      * @param size Default:10, Max:100 (required)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeHistoryResponse&gt;
@@ -1089,8 +1161,8 @@ public class MarginTradingRestApi {
      * symbol for margin account.&lt;br&gt;&lt;/br&gt; This includes OCO orders. Weight: 1
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1117,8 +1189,8 @@ public class MarginTradingRestApi {
      * Canceling an individual leg will cancel the entire OCO Weight: 1(UID)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
      * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
@@ -1157,8 +1229,8 @@ public class MarginTradingRestApi {
      * orderId or origClientOrderId must be sent. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
@@ -1343,8 +1415,8 @@ public class MarginTradingRestApi {
      * Query Current Margin Order Count Usage (TRADE) Displays the user&#39;s current margin order
      * count usage for all intervals. Weight: 20(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryCurrentMarginOrderCountUsageResponse&gt;
@@ -1370,13 +1442,16 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s all OCO (USER_DATA) Retrieves all OCO for a specific margin
      * account based on provided optional parameters Weight: 200(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1413,12 +1488,13 @@ public class MarginTradingRestApi {
      * Weight: 200(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1451,8 +1527,8 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s OCO (USER_DATA) Retrieves a specific OCO based on provided
      * optional parameters Weight: 10(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
@@ -1487,8 +1563,8 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO Weight:
      * 10(IP)
      *
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param symbol isolated margin pair (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOcoResponse&gt;
@@ -1518,8 +1594,8 @@ public class MarginTradingRestApi {
      * &#x3D;\&quot;TRUE\&quot;, symbol must be sent. Weight: 10(IP)
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1546,8 +1622,8 @@ public class MarginTradingRestApi {
      * will be &lt; 0, meaning the data is not available at this time. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow No more than 60000 (optional)
@@ -1582,13 +1658,16 @@ public class MarginTradingRestApi {
      * hours are returned. * Less than 24 hours between startTime and endTime. Weight: 10(IP)
      *
      * @param symbol (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;，default
-     *     \&quot;FALSE\&quot; (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
      * @param orderId (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryMarginAccountsTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1616,6 +1695,42 @@ public class MarginTradingRestApi {
             throws ApiException {
         return tradeApi.queryMarginAccountsTradeList(
                 symbol, isIsolated, orderId, startTime, endTime, fromId, limit, recvWindow);
+    }
+
+    /**
+     * Query Prevented Matches(USER_DATA) Weight: 10(IP)
+     *
+     * @param symbol (required)
+     * @param preventedMatchId (optional)
+     * @param orderId (optional)
+     * @param fromPreventedMatchId (optional)
+     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
+     *     default \&quot;FALSE\&quot; (optional)
+     * @return ApiResponse&lt;QueryPreventedMatchesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Prevented Matches </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches">Query
+     *     Prevented Matches(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryPreventedMatchesResponse> queryPreventedMatches(
+            String symbol,
+            Long preventedMatchId,
+            Long orderId,
+            Long fromPreventedMatchId,
+            Long recvWindow,
+            String isIsolated)
+            throws ApiException {
+        return tradeApi.queryPreventedMatches(
+                symbol, preventedMatchId, orderId, fromPreventedMatchId, recvWindow, isIsolated);
     }
 
     /**
@@ -1694,165 +1809,13 @@ public class MarginTradingRestApi {
     }
 
     /**
-     * Close Isolated Margin User Data Stream (USER_STREAM) Close out a isolated margin user data
-     * stream. Weight: 3000
-     *
-     * @param symbol (required)
-     * @param listenkey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Isolated-Margin-User-Data-Stream">Close
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void closeIsolatedMarginUserDataStream(String symbol, String listenkey)
-            throws ApiException {
-        tradeDataStreamApi.closeIsolatedMarginUserDataStream(symbol, listenkey);
-    }
-
-    /**
-     * Close Margin User Data Stream (USER_STREAM) Close out a Margin user data stream. Weight: 3000
-     *
-     * @param listenkey (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Close-Margin-User-Data-Stream">Close
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void closeMarginUserDataStream(String listenkey) throws ApiException {
-        tradeDataStreamApi.closeMarginUserDataStream(listenkey);
-    }
-
-    /**
-     * Keepalive Isolated Margin User Data Stream (USER_STREAM) Keepalive an isolated margin user
-     * data stream to prevent a time out. Weight: 1
-     *
-     * @param keepaliveIsolatedMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Isolated-Margin-User-Data-Stream">Keepalive
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void keepaliveIsolatedMarginUserDataStream(
-            KeepaliveIsolatedMarginUserDataStreamRequest
-                    keepaliveIsolatedMarginUserDataStreamRequest)
-            throws ApiException {
-        tradeDataStreamApi.keepaliveIsolatedMarginUserDataStream(
-                keepaliveIsolatedMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Keepalive Margin User Data Stream (USER_STREAM) Keepalive a margin user data stream to
-     * prevent a time out. Weight: 1
-     *
-     * @param keepaliveMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Keepalive-Margin-User-Data-Stream">Keepalive
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public void keepaliveMarginUserDataStream(
-            KeepaliveMarginUserDataStreamRequest keepaliveMarginUserDataStreamRequest)
-            throws ApiException {
-        tradeDataStreamApi.keepaliveMarginUserDataStream(keepaliveMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Start Isolated Margin User Data Stream (USER_STREAM) Start a new isolated margin user data
-     * stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has
-     * an active listenKey, that listenKey will be returned and its validity will be extended for 60
-     * minutes. Weight: 1
-     *
-     * @param startIsolatedMarginUserDataStreamRequest (required)
-     * @return ApiResponse&lt;StartIsolatedMarginUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start Isolated Margin User Data Stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Isolated-Margin-User-Data-Stream">Start
-     *     Isolated Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public ApiResponse<StartIsolatedMarginUserDataStreamResponse> startIsolatedMarginUserDataStream(
-            StartIsolatedMarginUserDataStreamRequest startIsolatedMarginUserDataStreamRequest)
-            throws ApiException {
-        return tradeDataStreamApi.startIsolatedMarginUserDataStream(
-                startIsolatedMarginUserDataStreamRequest);
-    }
-
-    /**
-     * Start Margin User Data Stream (USER_STREAM) Start a new margin user data stream. The stream
-     * will close after 60 minutes unless a keepalive is sent. If the account has an active
-     * listenKey, that listenKey will be returned and its validity will be extended for 60 minutes.
-     * Weight: 1
-     *
-     * @return ApiResponse&lt;StartMarginUserDataStreamResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start Margin User Data Stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade-data-stream/Start-Margin-User-Data-Stream">Start
-     *     Margin User Data Stream (USER_STREAM) Documentation</a>
-     */
-    public ApiResponse<StartMarginUserDataStreamResponse> startMarginUserDataStream()
-            throws ApiException {
-        return tradeDataStreamApi.startMarginUserDataStream();
-    }
-
-    /**
      * Get Cross Margin Transfer History (USER_DATA) Get Cross Margin Transfer History * Response in
      * descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is
      * 30 days. * Returns data for last 7 days by default Weight: 1(IP)
      *
      * @param asset (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
      * @param size Default:10 Max:100 (optional)

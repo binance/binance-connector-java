@@ -5,11 +5,11 @@
 ## Enum
 
 
-* `belowType` (value: `"belowType"`)
+* `GTC` (value: `"GTC"`)
 
-* `STOP_LOSS_LIMIT` (value: `"STOP_LOSS_LIMIT"`)
+* `IOC` (value: `"IOC"`)
 
-* `TAKE_PROFIT_LIMIT` (value: `"TAKE_PROFIT_LIMIT"`)
+* `FOK` (value: `"FOK"`)
 
 
 

@@ -60,23 +60,11 @@ public class OptionPositionInformationResponseInner {
     @jakarta.annotation.Nullable
     private String quantity;
 
-    public static final String SERIALIZED_NAME_REDUCIBLE_QTY = "reducibleQty";
-
-    @SerializedName(SERIALIZED_NAME_REDUCIBLE_QTY)
-    @jakarta.annotation.Nullable
-    private String reducibleQty;
-
     public static final String SERIALIZED_NAME_MARK_VALUE = "markValue";
 
     @SerializedName(SERIALIZED_NAME_MARK_VALUE)
     @jakarta.annotation.Nullable
     private String markValue;
-
-    public static final String SERIALIZED_NAME_ROR = "ror";
-
-    @SerializedName(SERIALIZED_NAME_ROR)
-    @jakarta.annotation.Nullable
-    private String ror;
 
     public static final String SERIALIZED_NAME_UNREALIZED_P_N_L = "unrealizedPNL";
 
@@ -95,12 +83,6 @@ public class OptionPositionInformationResponseInner {
     @SerializedName(SERIALIZED_NAME_STRIKE_PRICE)
     @jakarta.annotation.Nullable
     private String strikePrice;
-
-    public static final String SERIALIZED_NAME_POSITION_COST = "positionCost";
-
-    @SerializedName(SERIALIZED_NAME_POSITION_COST)
-    @jakarta.annotation.Nullable
-    private String positionCost;
 
     public static final String SERIALIZED_NAME_EXPIRY_DATE = "expiryDate";
 
@@ -131,6 +113,24 @@ public class OptionPositionInformationResponseInner {
     @SerializedName(SERIALIZED_NAME_QUOTE_ASSET)
     @jakarta.annotation.Nullable
     private String quoteAsset;
+
+    public static final String SERIALIZED_NAME_TIME = "time";
+
+    @SerializedName(SERIALIZED_NAME_TIME)
+    @jakarta.annotation.Nullable
+    private Long time;
+
+    public static final String SERIALIZED_NAME_BID_QUANTITY = "bidQuantity";
+
+    @SerializedName(SERIALIZED_NAME_BID_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String bidQuantity;
+
+    public static final String SERIALIZED_NAME_ASK_QUANTITY = "askQuantity";
+
+    @SerializedName(SERIALIZED_NAME_ASK_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String askQuantity;
 
     public OptionPositionInformationResponseInner() {}
 
@@ -213,26 +213,6 @@ public class OptionPositionInformationResponseInner {
         this.quantity = quantity;
     }
 
-    public OptionPositionInformationResponseInner reducibleQty(
-            @jakarta.annotation.Nullable String reducibleQty) {
-        this.reducibleQty = reducibleQty;
-        return this;
-    }
-
-    /**
-     * Get reducibleQty
-     *
-     * @return reducibleQty
-     */
-    @jakarta.annotation.Nullable
-    public String getReducibleQty() {
-        return reducibleQty;
-    }
-
-    public void setReducibleQty(@jakarta.annotation.Nullable String reducibleQty) {
-        this.reducibleQty = reducibleQty;
-    }
-
     public OptionPositionInformationResponseInner markValue(
             @jakarta.annotation.Nullable String markValue) {
         this.markValue = markValue;
@@ -251,25 +231,6 @@ public class OptionPositionInformationResponseInner {
 
     public void setMarkValue(@jakarta.annotation.Nullable String markValue) {
         this.markValue = markValue;
-    }
-
-    public OptionPositionInformationResponseInner ror(@jakarta.annotation.Nullable String ror) {
-        this.ror = ror;
-        return this;
-    }
-
-    /**
-     * Get ror
-     *
-     * @return ror
-     */
-    @jakarta.annotation.Nullable
-    public String getRor() {
-        return ror;
-    }
-
-    public void setRor(@jakarta.annotation.Nullable String ror) {
-        this.ror = ror;
     }
 
     public OptionPositionInformationResponseInner unrealizedPNL(
@@ -330,26 +291,6 @@ public class OptionPositionInformationResponseInner {
 
     public void setStrikePrice(@jakarta.annotation.Nullable String strikePrice) {
         this.strikePrice = strikePrice;
-    }
-
-    public OptionPositionInformationResponseInner positionCost(
-            @jakarta.annotation.Nullable String positionCost) {
-        this.positionCost = positionCost;
-        return this;
-    }
-
-    /**
-     * Get positionCost
-     *
-     * @return positionCost
-     */
-    @jakarta.annotation.Nullable
-    public String getPositionCost() {
-        return positionCost;
-    }
-
-    public void setPositionCost(@jakarta.annotation.Nullable String positionCost) {
-        this.positionCost = positionCost;
     }
 
     public OptionPositionInformationResponseInner expiryDate(
@@ -452,6 +393,65 @@ public class OptionPositionInformationResponseInner {
         this.quoteAsset = quoteAsset;
     }
 
+    public OptionPositionInformationResponseInner time(@jakarta.annotation.Nullable Long time) {
+        this.time = time;
+        return this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return time
+     */
+    @jakarta.annotation.Nullable
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(@jakarta.annotation.Nullable Long time) {
+        this.time = time;
+    }
+
+    public OptionPositionInformationResponseInner bidQuantity(
+            @jakarta.annotation.Nullable String bidQuantity) {
+        this.bidQuantity = bidQuantity;
+        return this;
+    }
+
+    /**
+     * Get bidQuantity
+     *
+     * @return bidQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getBidQuantity() {
+        return bidQuantity;
+    }
+
+    public void setBidQuantity(@jakarta.annotation.Nullable String bidQuantity) {
+        this.bidQuantity = bidQuantity;
+    }
+
+    public OptionPositionInformationResponseInner askQuantity(
+            @jakarta.annotation.Nullable String askQuantity) {
+        this.askQuantity = askQuantity;
+        return this;
+    }
+
+    /**
+     * Get askQuantity
+     *
+     * @return askQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getAskQuantity() {
+        return askQuantity;
+    }
+
+    public void setAskQuantity(@jakarta.annotation.Nullable String askQuantity) {
+        this.askQuantity = askQuantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -466,17 +466,12 @@ public class OptionPositionInformationResponseInner {
                 && Objects.equals(this.symbol, optionPositionInformationResponseInner.symbol)
                 && Objects.equals(this.side, optionPositionInformationResponseInner.side)
                 && Objects.equals(this.quantity, optionPositionInformationResponseInner.quantity)
-                && Objects.equals(
-                        this.reducibleQty, optionPositionInformationResponseInner.reducibleQty)
                 && Objects.equals(this.markValue, optionPositionInformationResponseInner.markValue)
-                && Objects.equals(this.ror, optionPositionInformationResponseInner.ror)
                 && Objects.equals(
                         this.unrealizedPNL, optionPositionInformationResponseInner.unrealizedPNL)
                 && Objects.equals(this.markPrice, optionPositionInformationResponseInner.markPrice)
                 && Objects.equals(
                         this.strikePrice, optionPositionInformationResponseInner.strikePrice)
-                && Objects.equals(
-                        this.positionCost, optionPositionInformationResponseInner.positionCost)
                 && Objects.equals(
                         this.expiryDate, optionPositionInformationResponseInner.expiryDate)
                 && Objects.equals(
@@ -486,7 +481,12 @@ public class OptionPositionInformationResponseInner {
                 && Objects.equals(
                         this.optionSide, optionPositionInformationResponseInner.optionSide)
                 && Objects.equals(
-                        this.quoteAsset, optionPositionInformationResponseInner.quoteAsset);
+                        this.quoteAsset, optionPositionInformationResponseInner.quoteAsset)
+                && Objects.equals(this.time, optionPositionInformationResponseInner.time)
+                && Objects.equals(
+                        this.bidQuantity, optionPositionInformationResponseInner.bidQuantity)
+                && Objects.equals(
+                        this.askQuantity, optionPositionInformationResponseInner.askQuantity);
     }
 
     @Override
@@ -496,18 +496,18 @@ public class OptionPositionInformationResponseInner {
                 symbol,
                 side,
                 quantity,
-                reducibleQty,
                 markValue,
-                ror,
                 unrealizedPNL,
                 markPrice,
                 strikePrice,
-                positionCost,
                 expiryDate,
                 priceScale,
                 quantityScale,
                 optionSide,
-                quoteAsset);
+                quoteAsset,
+                time,
+                bidQuantity,
+                askQuantity);
     }
 
     @Override
@@ -518,18 +518,18 @@ public class OptionPositionInformationResponseInner {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
-        sb.append("		reducibleQty: ").append(toIndentedString(reducibleQty)).append("\n");
         sb.append("		markValue: ").append(toIndentedString(markValue)).append("\n");
-        sb.append("		ror: ").append(toIndentedString(ror)).append("\n");
         sb.append("		unrealizedPNL: ").append(toIndentedString(unrealizedPNL)).append("\n");
         sb.append("		markPrice: ").append(toIndentedString(markPrice)).append("\n");
         sb.append("		strikePrice: ").append(toIndentedString(strikePrice)).append("\n");
-        sb.append("		positionCost: ").append(toIndentedString(positionCost)).append("\n");
         sb.append("		expiryDate: ").append(toIndentedString(expiryDate)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
+        sb.append("		time: ").append(toIndentedString(time)).append("\n");
+        sb.append("		bidQuantity: ").append(toIndentedString(bidQuantity)).append("\n");
+        sb.append("		askQuantity: ").append(toIndentedString(askQuantity)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -553,18 +553,10 @@ public class OptionPositionInformationResponseInner {
         String quantityValueAsString = "";
         quantityValueAsString = quantityValue.toString();
         sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
-        Object reducibleQtyValue = getReducibleQty();
-        String reducibleQtyValueAsString = "";
-        reducibleQtyValueAsString = reducibleQtyValue.toString();
-        sb.append("reducibleQty=").append(urlEncode(reducibleQtyValueAsString)).append("");
         Object markValueValue = getMarkValue();
         String markValueValueAsString = "";
         markValueValueAsString = markValueValue.toString();
         sb.append("markValue=").append(urlEncode(markValueValueAsString)).append("");
-        Object rorValue = getRor();
-        String rorValueAsString = "";
-        rorValueAsString = rorValue.toString();
-        sb.append("ror=").append(urlEncode(rorValueAsString)).append("");
         Object unrealizedPNLValue = getUnrealizedPNL();
         String unrealizedPNLValueAsString = "";
         unrealizedPNLValueAsString = unrealizedPNLValue.toString();
@@ -577,10 +569,6 @@ public class OptionPositionInformationResponseInner {
         String strikePriceValueAsString = "";
         strikePriceValueAsString = strikePriceValue.toString();
         sb.append("strikePrice=").append(urlEncode(strikePriceValueAsString)).append("");
-        Object positionCostValue = getPositionCost();
-        String positionCostValueAsString = "";
-        positionCostValueAsString = positionCostValue.toString();
-        sb.append("positionCost=").append(urlEncode(positionCostValueAsString)).append("");
         Object expiryDateValue = getExpiryDate();
         String expiryDateValueAsString = "";
         expiryDateValueAsString = expiryDateValue.toString();
@@ -601,6 +589,18 @@ public class OptionPositionInformationResponseInner {
         String quoteAssetValueAsString = "";
         quoteAssetValueAsString = quoteAssetValue.toString();
         sb.append("quoteAsset=").append(urlEncode(quoteAssetValueAsString)).append("");
+        Object timeValue = getTime();
+        String timeValueAsString = "";
+        timeValueAsString = timeValue.toString();
+        sb.append("time=").append(urlEncode(timeValueAsString)).append("");
+        Object bidQuantityValue = getBidQuantity();
+        String bidQuantityValueAsString = "";
+        bidQuantityValueAsString = bidQuantityValue.toString();
+        sb.append("bidQuantity=").append(urlEncode(bidQuantityValueAsString)).append("");
+        Object askQuantityValue = getAskQuantity();
+        String askQuantityValueAsString = "";
+        askQuantityValueAsString = askQuantityValue.toString();
+        sb.append("askQuantity=").append(urlEncode(askQuantityValueAsString)).append("");
         return sb.toString();
     }
 
@@ -633,18 +633,18 @@ public class OptionPositionInformationResponseInner {
         openapiFields.add("symbol");
         openapiFields.add("side");
         openapiFields.add("quantity");
-        openapiFields.add("reducibleQty");
         openapiFields.add("markValue");
-        openapiFields.add("ror");
         openapiFields.add("unrealizedPNL");
         openapiFields.add("markPrice");
         openapiFields.add("strikePrice");
-        openapiFields.add("positionCost");
         openapiFields.add("expiryDate");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
         openapiFields.add("optionSide");
         openapiFields.add("quoteAsset");
+        openapiFields.add("time");
+        openapiFields.add("bidQuantity");
+        openapiFields.add("askQuantity");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -702,14 +702,6 @@ public class OptionPositionInformationResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("quantity").toString()));
         }
-        if ((jsonObj.get("reducibleQty") != null && !jsonObj.get("reducibleQty").isJsonNull())
-                && !jsonObj.get("reducibleQty").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reducibleQty` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reducibleQty").toString()));
-        }
         if ((jsonObj.get("markValue") != null && !jsonObj.get("markValue").isJsonNull())
                 && !jsonObj.get("markValue").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -717,14 +709,6 @@ public class OptionPositionInformationResponseInner {
                             "Expected the field `markValue` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("markValue").toString()));
-        }
-        if ((jsonObj.get("ror") != null && !jsonObj.get("ror").isJsonNull())
-                && !jsonObj.get("ror").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ror` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ror").toString()));
         }
         if ((jsonObj.get("unrealizedPNL") != null && !jsonObj.get("unrealizedPNL").isJsonNull())
                 && !jsonObj.get("unrealizedPNL").isJsonPrimitive()) {
@@ -750,14 +734,6 @@ public class OptionPositionInformationResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("strikePrice").toString()));
         }
-        if ((jsonObj.get("positionCost") != null && !jsonObj.get("positionCost").isJsonNull())
-                && !jsonObj.get("positionCost").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `positionCost` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("positionCost").toString()));
-        }
         if ((jsonObj.get("optionSide") != null && !jsonObj.get("optionSide").isJsonNull())
                 && !jsonObj.get("optionSide").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -773,6 +749,22 @@ public class OptionPositionInformationResponseInner {
                             "Expected the field `quoteAsset` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
+        }
+        if ((jsonObj.get("bidQuantity") != null && !jsonObj.get("bidQuantity").isJsonNull())
+                && !jsonObj.get("bidQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bidQuantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("bidQuantity").toString()));
+        }
+        if ((jsonObj.get("askQuantity") != null && !jsonObj.get("askQuantity").isJsonNull())
+                && !jsonObj.get("askQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `askQuantity` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("askQuantity").toString()));
         }
     }
 

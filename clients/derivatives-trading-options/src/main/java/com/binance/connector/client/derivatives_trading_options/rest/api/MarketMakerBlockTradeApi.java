@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_options.rest.api;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
-import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.JSON;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
@@ -53,7 +52,7 @@ public class MarketMakerBlockTradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/2.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +103,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Accept-Block-Trade-Order">Accept
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Accept-Block-Trade-Order">Accept
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call acceptBlockTradeOrderCall(
@@ -221,7 +220,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Accept-Block-Trade-Order">Accept
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Accept-Block-Trade-Order">Accept
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<AcceptBlockTradeOrderResponse> acceptBlockTradeOrder(
@@ -251,7 +250,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Account-Block-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Account-Block-Trade-List">Account
      *     Block Trade List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountBlockTradeListCall(
@@ -382,7 +381,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Account-Block-Trade-List">Account
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Account-Block-Trade-List">Account
      *     Block Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountBlockTradeListResponse> accountBlockTradeList(
@@ -409,7 +408,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelBlockTradeOrderCall(String blockOrderMatchingKey, Long recvWindow)
@@ -526,7 +525,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<Void> cancelBlockTradeOrder(
@@ -550,7 +549,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order">Extend
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Extend-Block-Trade-Order">Extend
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call extendBlockTradeOrderCall(
@@ -668,7 +667,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order">Extend
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Extend-Block-Trade-Order">Extend
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<ExtendBlockTradeOrderResponse> extendBlockTradeOrder(
@@ -695,7 +694,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order">New
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/New-Block-Trade-Order">New
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call newBlockTradeOrderCall(NewBlockTradeOrderRequest newBlockTradeOrderRequest)
@@ -731,27 +730,6 @@ public class MarketMakerBlockTradeApi {
         if (newBlockTradeOrderRequest.getLegs() != null) {
             String json = JSON.getGson().toJson(newBlockTradeOrderRequest.getLegs());
             localVarFormParams.put("legs", json);
-        }
-
-        if (newBlockTradeOrderRequest.getSymbol() != null) {
-            localVarFormParams.put("symbol", newBlockTradeOrderRequest.getSymbol());
-        }
-
-        if (newBlockTradeOrderRequest.getSide() != null) {
-            localVarFormParams.put("side", newBlockTradeOrderRequest.getSide());
-        }
-
-        if (newBlockTradeOrderRequest.getPrice() != null) {
-            localVarFormParams.put(
-                    "price",
-                    DecimalFormatter.getFormatter().format(newBlockTradeOrderRequest.getPrice()));
-        }
-
-        if (newBlockTradeOrderRequest.getQuantity() != null) {
-            localVarFormParams.put(
-                    "quantity",
-                    DecimalFormatter.getFormatter()
-                            .format(newBlockTradeOrderRequest.getQuantity()));
         }
 
         if (newBlockTradeOrderRequest.getRecvWindow() != null) {
@@ -836,7 +814,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order">New
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/New-Block-Trade-Order">New
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewBlockTradeOrderResponse> newBlockTradeOrder(
@@ -863,7 +841,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Detail">Query
      *     Block Trade Details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryBlockTradeDetailsCall(String blockOrderMatchingKey, Long recvWindow)
@@ -981,7 +959,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Detail">Query
      *     Block Trade Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeDetailsResponse> queryBlockTradeDetails(
@@ -1012,7 +990,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Order">Query
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call queryBlockTradeOrderCall(
@@ -1165,7 +1143,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Order">Query
+     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Order">Query
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeOrderResponse> queryBlockTradeOrder(

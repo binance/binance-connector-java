@@ -7,6 +7,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getBorrowInterestRate**](MarketDataApi.md#getBorrowInterestRate) | **GET** /sapi/v1/loan/vip/request/interestRate | Get Borrow Interest Rate(USER_DATA) |
 | [**getCollateralAssetData**](MarketDataApi.md#getCollateralAssetData) | **GET** /sapi/v1/loan/vip/collateral/data | Get Collateral Asset Data(USER_DATA) |
 | [**getLoanableAssetsData**](MarketDataApi.md#getLoanableAssetsData) | **GET** /sapi/v1/loan/vip/loanable/data | Get Loanable Assets Data(USER_DATA) |
+| [**getVIPLoanInterestRateHistory**](MarketDataApi.md#getVIPLoanInterestRateHistory) | **GET** /sapi/v1/loan/vip/interestRateHistory | Get VIP Loan Interest Rate History (USER_DATA) |
 
 
 <a id="getBorrowInterestRate"></a>
@@ -202,4 +203,76 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get Loanable Assets Data |  -  |
+
+<a id="getVIPLoanInterestRateHistory"></a>
+# **getVIPLoanInterestRateHistory**
+> GetVIPLoanInterestRateHistoryResponse getVIPLoanInterestRateHistory(coin, recvWindow, startTime, endTime, current, limit)
+
+Get VIP Loan Interest Rate History (USER_DATA)
+
+Check VIP Loan flexible interest rate history  * If startTime and endTime are not sent, the recent 90-day data will be returned * The max interval between startTime and end Time is 180 days. * Time based on UTC+0.  Weight: 400
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.vip_loan.ApiClient;
+import com.binance.connector.client.vip_loan.ApiException;
+import com.binance.connector.client.vip_loan.Configuration;
+import com.binance.connector.client.vip_loan.models.*;
+import com.binance.connector.client.vip_loan.rest.api.MarketDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
+    String coin = "coin_example"; // String | 
+    Long recvWindow = 56L; // Long | 
+    Long startTime = 56L; // Long | 
+    Long endTime = 56L; // Long | 
+    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
+    Long limit = 56L; // Long | Default: 10; max: 100
+    try {
+      GetVIPLoanInterestRateHistoryResponse result = apiInstance.getVIPLoanInterestRateHistory(coin, recvWindow, startTime, endTime, current, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketDataApi#getVIPLoanInterestRateHistory");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **coin** | **String**|  | |
+| **recvWindow** | **Long**|  | |
+| **startTime** | **Long**|  | [optional] |
+| **endTime** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
+| **limit** | **Long**| Default: 10; max: 100 | [optional] |
+
+### Return type
+
+[**GetVIPLoanInterestRateHistoryResponse**](GetVIPLoanInterestRateHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get VIP Loan Interest Rate History |  -  |
 

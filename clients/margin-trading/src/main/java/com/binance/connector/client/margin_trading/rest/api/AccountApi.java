@@ -55,7 +55,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/3.0.1 (Java/%s; %s; %s)",
+                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -804,10 +804,13 @@ public class AccountApi {
      * @param asset (optional)
      * @param symbol isolated margin pair (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -978,10 +981,13 @@ public class AccountApi {
      * @param asset (optional)
      * @param symbol isolated margin pair (optional)
      * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
+     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
+     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
+     *     (optional)
+     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
+     *     1000. (optional)
      * @param recvWindow No more than 60000 (optional)
      * @return ApiResponse&lt;QueryCrossIsolatedMarginCapitalFlowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

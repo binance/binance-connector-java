@@ -41,7 +41,7 @@ public class OrderBookExample {
      * Order Book
      *
      * <p>Check orderbook depth on specific symbol Weight: limit | weight ------------ |
-     * ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * ------------ 5, 10, 20, 50 | 1 100 | 5 500 | 10 1000 | 20
      *
      * @throws ApiException if the Api call fails
      */

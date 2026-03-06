@@ -90,7 +90,7 @@
 
 [GET /dapi/v1/allOrders](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/All-Orders) - allOrders - [AllOrdersExample.java:55](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/AllOrdersExample.java#L55)
 
-[POST /dapi/v1/countdownCancelAll](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders) - autoCancelAllOpenOrders - [AutoCancelAllOpenOrdersExample.java:55](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/AutoCancelAllOpenOrdersExample.java#L55)
+[POST /dapi/v1/countdownCancelAll](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders) - autoCancelAllOpenOrders - [AutoCancelAllOpenOrdersExample.java:57](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/AutoCancelAllOpenOrdersExample.java#L57)
 
 [DELETE /dapi/v1/allOpenOrders](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Cancel-All-Open-Orders) - cancelAllOpenOrders - [CancelAllOpenOrdersExample.java:47](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/CancelAllOpenOrdersExample.java#L47)
 
@@ -118,6 +118,8 @@
 
 [POST /dapi/v1/order](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/New-Order) - newOrder - [NewOrderExample.java:85](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/NewOrderExample.java#L85)
 
+[POST /dapi/v1/batchOrders](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Place-Multiple-Orders) - placeMultipleOrders - [PlaceMultipleOrdersExample.java:51](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/PlaceMultipleOrdersExample.java#L51)
+
 [GET /dapi/v1/adlQuantile](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation) - positionAdlQuantileEstimation - [PositionAdlQuantileEstimationExample.java:55](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/PositionAdlQuantileEstimationExample.java#L55)
 
 [GET /dapi/v1/positionRisk](https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/rest-api/Position-Information) - positionInformation - [PositionInformationExample.java:52](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/PositionInformationExample.java#L52)
@@ -132,7 +134,7 @@
 
 [DELETE /dapi/v1/listenKey](https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Close-User-Data-Stream) - closeUserDataStream - [CloseUserDataStreamExample.java:45](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/userdatastreams/CloseUserDataStreamExample.java#L45)
 
-[PUT /dapi/v1/listenKey](https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Keepalive-User-Data-Stream) - keepaliveUserDataStream - [KeepaliveUserDataStreamExample.java:46](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/userdatastreams/KeepaliveUserDataStreamExample.java#L46)
+[PUT /dapi/v1/listenKey](https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Keepalive-User-Data-Stream) - keepaliveUserDataStream - [KeepaliveUserDataStreamExample.java:48](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/userdatastreams/KeepaliveUserDataStreamExample.java#L48)
 
 [POST /dapi/v1/listenKey](https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Start-User-Data-Stream) - startUserDataStream - [StartUserDataStreamExample.java:49](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/userdatastreams/StartUserDataStreamExample.java#L49)
 

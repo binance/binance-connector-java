@@ -11,24 +11,22 @@
 |**symbol** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**quantity** | **String** |  |  [optional] |
+|**executedQty** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
-|**createDate** | **Long** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**postOnly** | **Boolean** |  |  [optional] |
-|**mmp** | **Boolean** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**fee** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
+|**reduceOnly** | **Boolean** |  |  [optional] |
 |**createTime** | **Long** |  |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**avgPrice** | **String** |  |  [optional] |
+|**source** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**priceScale** | **Long** |  |  [optional] |
 |**quantityScale** | **Long** |  |  [optional] |
 |**optionSide** | **String** |  |  [optional] |
 |**quoteAsset** | **String** |  |  [optional] |
+|**mmp** | **Boolean** |  |  [optional] |
 
 
 
