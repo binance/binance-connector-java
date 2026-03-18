@@ -16,6 +16,7 @@ import com.binance.connector.client.spot.rest.model.DeleteOrderListResponse;
 import com.binance.connector.client.spot.rest.model.DeleteOrderResponse;
 import com.binance.connector.client.spot.rest.model.DepthResponse;
 import com.binance.connector.client.spot.rest.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.rest.model.ExecutionRulesResponse;
 import com.binance.connector.client.spot.rest.model.GetAccountResponse;
 import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
 import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
@@ -52,6 +53,8 @@ import com.binance.connector.client.spot.rest.model.OrderTestRequest;
 import com.binance.connector.client.spot.rest.model.OrderTestResponse;
 import com.binance.connector.client.spot.rest.model.Permissions;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
+import com.binance.connector.client.spot.rest.model.ReferencePriceCalculationResponse;
+import com.binance.connector.client.spot.rest.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.rest.model.SorOrderRequest;
 import com.binance.connector.client.spot.rest.model.SorOrderResponse;
 import com.binance.connector.client.spot.rest.model.SorOrderTestRequest;
@@ -553,6 +556,33 @@ public class SpotRestApi {
     }
 
     /**
+     * Query Execution Rules Weight: Parameter | Weight| --- | --- &#x60;symbol&#x60; | 2
+     * &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max of 40|
+     * &#x60;symbolStatus&#x60; |40| None |40|
+     *
+     * @param symbol Symbol to query (optional)
+     * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
+     * @return ApiResponse&lt;ExecutionRulesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules">Query
+     *     Execution Rules Documentation</a>
+     */
+    public ApiResponse<ExecutionRulesResponse> executionRules(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        return generalApi.executionRules(symbol, symbols, symbolStatus);
+    }
+
+    /**
      * Test connectivity Test connectivity to the Rest API. Weight: 1
      *
      * @return ApiResponse&lt;Void&gt;
@@ -755,6 +785,53 @@ public class SpotRestApi {
             Integer limit)
             throws ApiException {
         return marketApi.klines(symbol, interval, startTime, endTime, timeZone, limit);
+    }
+
+    /**
+     * Query Reference Price Weight: 2
+     *
+     * @param symbol (required)
+     * @return ApiResponse&lt;ReferencePriceResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Reference Price </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price">Query
+     *     Reference Price Documentation</a>
+     */
+    public ApiResponse<ReferencePriceResponse> referencePrice(String symbol) throws ApiException {
+        return marketApi.referencePrice(symbol);
+    }
+
+    /**
+     * Query Reference Price Calculation Describes how reference price is calculated for a given
+     * symbol. Weight: 2
+     *
+     * @param symbol (required)
+     * @param symbolStatus (optional)
+     * @return ApiResponse&lt;ReferencePriceCalculationResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Reference Price Calculation </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price-calculation">Query
+     *     Reference Price Calculation Documentation</a>
+     */
+    public ApiResponse<ReferencePriceCalculationResponse> referencePriceCalculation(
+            String symbol, SymbolStatus symbolStatus) throws ApiException {
+        return marketApi.referencePriceCalculation(symbol, symbolStatus);
     }
 
     /**
@@ -1121,11 +1198,12 @@ public class SpotRestApi {
     }
 
     /**
-     * Cancel an Existing Order and Send a New Order Cancels an existing order and places a new
-     * order on the same symbol. Filters and Order Count are evaluated before the processing of the
-     * cancellation and order placement occurs. A new order that was not attempted (i.e. when
+     * Cancel an Existing Order and Send a New Order * Cancels an existing order and places a new
+     * order on the same symbol. * Filters and Order Count are evaluated before the processing of
+     * the cancellation and order placement occurs. * A new order that was not attempted (i.e. when
      * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. Weight: 1
+     * 1. * You can only cancel an individual order from an orderList using this endpoint, but the
+     * result is the same as canceling the entire orderList. Weight: 1
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;

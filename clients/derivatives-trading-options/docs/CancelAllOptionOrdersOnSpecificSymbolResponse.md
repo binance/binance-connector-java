@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**code** | **Long** |  |  [optional] |
+|**code** | **String** |  |  [optional] |
 |**msg** | **String** |  |  [optional] |
 
 

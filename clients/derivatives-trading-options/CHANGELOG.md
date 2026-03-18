@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.0 - 2026-03-18
+
+### Changed (1)
+
+#### REST API
+
+- Modified response for `cancelAllOptionOrdersOnSpecificSymbol()` (`DELETE /eapi/v1/allOpenOrders`):
+  - `code`: type `integer` → `string`
+
 ## 5.0.0 - 2025-12-16
 
 ### Changed (2)

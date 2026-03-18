@@ -20,6 +20,8 @@
 
 [<symbol>@depth<levels>@<updateSpeed>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#partial-book-depth-streams) - partialBookDepth - [PartialBookDepthExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/PartialBookDepthExample.java#L45)
 
+[<symbol>@referencePrice](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#reference-price-streams) - referencePrice - [ReferencePriceExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/ReferencePriceExample.java#L41)
+
 [<symbol>@ticker_<windowSize>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-rolling-window-statistics-streams) - rollingWindowTicker - [RollingWindowTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/RollingWindowTickerExample.java#L44)
 
 [<symbol>@ticker](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-ticker-streams) - ticker - [TickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/TickerExample.java#L44)

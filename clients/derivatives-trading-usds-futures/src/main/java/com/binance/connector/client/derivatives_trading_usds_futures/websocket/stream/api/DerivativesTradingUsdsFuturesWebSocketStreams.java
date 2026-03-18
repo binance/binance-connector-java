@@ -60,60 +60,85 @@ import java.util.UUID;
 public class DerivativesTradingUsdsFuturesWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/9.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
-    private final StreamConnectionInterface connection;
+    private WebSocketClientConfiguration clientConfiguration;
+    private StreamConnectionInterface connection;
 
-    private WebsocketMarketStreamsApi websocketMarketStreamsApi;
+    private MarketApi marketApi;
+    private PublicApi publicApi;
 
     public DerivativesTradingUsdsFuturesWebSocketStreams(
             WebSocketClientConfiguration configuration) {
-        this(
-                configuration.getUsePool()
-                        ? new StreamConnectionPoolWrapper(configuration, JSON.getGson())
-                        : new StreamConnectionWrapper(configuration, JSON.getGson()));
+        this.clientConfiguration = configuration;
     }
 
-    public DerivativesTradingUsdsFuturesWebSocketStreams(StreamConnectionInterface connection) {
-        connection.setUserAgent(USER_AGENT);
-        if (!connection.isConnected()) {
-            connection.connect();
+    public StreamConnectionInterface getConnection() {
+        if (connection == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/private/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/private/stream"));
+            }
+            connection =
+                    clientConfiguration.getUsePool()
+                            ? new StreamConnectionPoolWrapper(clientConfiguration, JSON.getGson())
+                            : new StreamConnectionWrapper(clientConfiguration, JSON.getGson());
         }
-        this.connection = connection;
+        return connection;
+    }
 
-        this.websocketMarketStreamsApi = new WebsocketMarketStreamsApi(connection);
+    public MarketApi getMarketApi() {
+        if (marketApi == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/market/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/market/stream"));
+            }
+            marketApi = new MarketApi(configuration);
+        }
+        return marketApi;
+    }
+
+    public PublicApi getPublicApi() {
+        if (publicApi == null) {
+            WebSocketClientConfiguration configuration =
+                    (WebSocketClientConfiguration) clientConfiguration.clone();
+            if (configuration.getUrl().endsWith("/stream")
+                    && !configuration.getUrl().endsWith("/public/stream")) {
+                configuration.setUrl(configuration.getUrl().replace("/stream", "/public/stream"));
+            }
+            publicApi = new PublicApi(configuration);
+        }
+        return publicApi;
     }
 
     public StreamBlockingQueueWrapper<AggregateTradeStreamsResponse> aggregateTradeStreams(
             AggregateTradeStreamsRequest aggregateTradeStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.aggregateTradeStreams(aggregateTradeStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<AllBookTickersStreamResponse> allBookTickersStream(
-            AllBookTickersStreamRequest allBookTickersStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.allBookTickersStream(allBookTickersStreamRequest);
+        return getMarketApi().aggregateTradeStreams(aggregateTradeStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketLiquidationOrderStreamsResponse>
             allMarketLiquidationOrderStreams(
                     AllMarketLiquidationOrderStreamsRequest allMarketLiquidationOrderStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.allMarketLiquidationOrderStreams(
-                allMarketLiquidationOrderStreamsRequest);
+        return getMarketApi()
+                .allMarketLiquidationOrderStreams(allMarketLiquidationOrderStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketMiniTickersStreamResponse>
             allMarketMiniTickersStream(
                     AllMarketMiniTickersStreamRequest allMarketMiniTickersStreamRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.allMarketMiniTickersStream(
-                allMarketMiniTickersStreamRequest);
+        return getMarketApi().allMarketMiniTickersStream(allMarketMiniTickersStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketTickersStreamsResponse> allMarketTickersStreams(
             AllMarketTickersStreamsRequest allMarketTickersStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.allMarketTickersStreams(allMarketTickersStreamsRequest);
+        return getMarketApi().allMarketTickersStreams(allMarketTickersStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<CompositeIndexSymbolInformationStreamsResponse>
@@ -121,8 +146,9 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                     CompositeIndexSymbolInformationStreamsRequest
                             compositeIndexSymbolInformationStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.compositeIndexSymbolInformationStreams(
-                compositeIndexSymbolInformationStreamsRequest);
+        return getMarketApi()
+                .compositeIndexSymbolInformationStreams(
+                        compositeIndexSymbolInformationStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse>
@@ -130,18 +156,71 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                     ContinuousContractKlineCandlestickStreamsRequest
                             continuousContractKlineCandlestickStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.continuousContractKlineCandlestickStreams(
-                continuousContractKlineCandlestickStreamsRequest);
+        return getMarketApi()
+                .continuousContractKlineCandlestickStreams(
+                        continuousContractKlineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<ContractInfoStreamResponse> contractInfoStream(
             ContractInfoStreamRequest contractInfoStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.contractInfoStream(contractInfoStreamRequest);
+        return getMarketApi().contractInfoStream(contractInfoStreamRequest);
+    }
+
+    public StreamBlockingQueueWrapper<IndividualSymbolMiniTickerStreamResponse>
+            individualSymbolMiniTickerStream(
+                    IndividualSymbolMiniTickerStreamRequest individualSymbolMiniTickerStreamRequest)
+                    throws ApiException {
+        return getMarketApi()
+                .individualSymbolMiniTickerStream(individualSymbolMiniTickerStreamRequest);
+    }
+
+    public StreamBlockingQueueWrapper<IndividualSymbolTickerStreamsResponse>
+            individualSymbolTickerStreams(
+                    IndividualSymbolTickerStreamsRequest individualSymbolTickerStreamsRequest)
+                    throws ApiException {
+        return getMarketApi().individualSymbolTickerStreams(individualSymbolTickerStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
+            KlineCandlestickStreamsRequest klineCandlestickStreamsRequest) throws ApiException {
+        return getMarketApi().klineCandlestickStreams(klineCandlestickStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> liquidationOrderStreams(
+            LiquidationOrderStreamsRequest liquidationOrderStreamsRequest) throws ApiException {
+        return getMarketApi().liquidationOrderStreams(liquidationOrderStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<MarkPriceStreamResponse> markPriceStream(
+            MarkPriceStreamRequest markPriceStreamRequest) throws ApiException {
+        return getMarketApi().markPriceStream(markPriceStreamRequest);
+    }
+
+    public StreamBlockingQueueWrapper<MarkPriceStreamForAllMarketResponse>
+            markPriceStreamForAllMarket(
+                    MarkPriceStreamForAllMarketRequest markPriceStreamForAllMarketRequest)
+                    throws ApiException {
+        return getMarketApi().markPriceStreamForAllMarket(markPriceStreamForAllMarketRequest);
+    }
+
+    public StreamBlockingQueueWrapper<MultiAssetsModeAssetIndexResponse> multiAssetsModeAssetIndex(
+            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
+        return getMarketApi().multiAssetsModeAssetIndex(multiAssetsModeAssetIndexRequest);
+    }
+
+    public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(
+            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
+        return getMarketApi().tradingSessionStream(tradingSessionStreamRequest);
+    }
+
+    public StreamBlockingQueueWrapper<AllBookTickersStreamResponse> allBookTickersStream(
+            AllBookTickersStreamRequest allBookTickersStreamRequest) throws ApiException {
+        return getPublicApi().allBookTickersStream(allBookTickersStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
             DiffBookDepthStreamsRequest diffBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.diffBookDepthStreams(diffBookDepthStreamsRequest);
+        return getPublicApi().diffBookDepthStreams(diffBookDepthStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
@@ -149,68 +228,18 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                     IndividualSymbolBookTickerStreamsRequest
                             individualSymbolBookTickerStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolBookTickerStreams(
-                individualSymbolBookTickerStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<IndividualSymbolMiniTickerStreamResponse>
-            individualSymbolMiniTickerStream(
-                    IndividualSymbolMiniTickerStreamRequest individualSymbolMiniTickerStreamRequest)
-                    throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolMiniTickerStream(
-                individualSymbolMiniTickerStreamRequest);
-    }
-
-    public StreamBlockingQueueWrapper<IndividualSymbolTickerStreamsResponse>
-            individualSymbolTickerStreams(
-                    IndividualSymbolTickerStreamsRequest individualSymbolTickerStreamsRequest)
-                    throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolTickerStreams(
-                individualSymbolTickerStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
-            KlineCandlestickStreamsRequest klineCandlestickStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.klineCandlestickStreams(klineCandlestickStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> liquidationOrderStreams(
-            LiquidationOrderStreamsRequest liquidationOrderStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.liquidationOrderStreams(liquidationOrderStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<MarkPriceStreamResponse> markPriceStream(
-            MarkPriceStreamRequest markPriceStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.markPriceStream(markPriceStreamRequest);
-    }
-
-    public StreamBlockingQueueWrapper<MarkPriceStreamForAllMarketResponse>
-            markPriceStreamForAllMarket(
-                    MarkPriceStreamForAllMarketRequest markPriceStreamForAllMarketRequest)
-                    throws ApiException {
-        return websocketMarketStreamsApi.markPriceStreamForAllMarket(
-                markPriceStreamForAllMarketRequest);
-    }
-
-    public StreamBlockingQueueWrapper<MultiAssetsModeAssetIndexResponse> multiAssetsModeAssetIndex(
-            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
-        return websocketMarketStreamsApi.multiAssetsModeAssetIndex(
-                multiAssetsModeAssetIndexRequest);
+        return getPublicApi()
+                .individualSymbolBookTickerStreams(individualSymbolBookTickerStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
             PartialBookDepthStreamsRequest partialBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.partialBookDepthStreams(partialBookDepthStreamsRequest);
+        return getPublicApi().partialBookDepthStreams(partialBookDepthStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<RpiDiffBookDepthStreamsResponse> rpiDiffBookDepthStreams(
             RpiDiffBookDepthStreamsRequest rpiDiffBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.rpiDiffBookDepthStreams(rpiDiffBookDepthStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(
-            TradingSessionStreamRequest tradingSessionStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.tradingSessionStream(tradingSessionStreamRequest);
+        return getPublicApi().rpiDiffBookDepthStreams(rpiDiffBookDepthStreamsRequest);
     }
 
     /**
@@ -227,7 +256,7 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                         .params(Collections.singleton(listenKey))
                         .build();
         Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
+                getConnection().subscribe(requestWrapperDTO);
 
         TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
         StreamBlockingQueue<String> queue = queuesMap.get(listenKey);

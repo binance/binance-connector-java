@@ -1,5 +1,25 @@
 # Changelog
 
+## 10.0.0 - 2026-03-18
+
+### Added (7)
+
+#### REST API
+
+- `executionRules()` (`GET /api/v3/executionRules`)
+- `referencePrice()` (`GET /api/v3/referencePrice`)
+- `referencePriceCalculation()` (`GET /api/v3/referencePrice/calculation`)
+
+#### WebSocket API
+
+- `executionRules()` (`executionRules` method)
+- `referencePrice()` (`referencePrice` method)
+- `referencePriceCalculation()` (`referencePrice.calculation` method)
+
+#### WebSocket Streams
+
+- `referencePrice()` (`<symbol>@referencePrice` stream)
+
 ## 9.0.0 - 2026-02-12
 
 ### Added (1)

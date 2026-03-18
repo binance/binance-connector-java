@@ -363,6 +363,12 @@ public class ExecutionReport extends BaseDTO {
     @jakarta.annotation.Nullable
     private String gp;
 
+    public static final String SERIALIZED_NAME_E_R = "eR";
+
+    @SerializedName(SERIALIZED_NAME_E_R)
+    @jakarta.annotation.Nullable
+    private String eR;
+
     public ExecutionReport() {}
 
     public ExecutionReport E(@jakarta.annotation.Nullable Long E) {
@@ -1391,6 +1397,25 @@ public class ExecutionReport extends BaseDTO {
         this.gp = gp;
     }
 
+    public ExecutionReport eR(@jakarta.annotation.Nullable String eR) {
+        this.eR = eR;
+        return this;
+    }
+
+    /**
+     * Get eR
+     *
+     * @return eR
+     */
+    @jakarta.annotation.Nullable
+    public String geteR() {
+        return eR;
+    }
+
+    public void seteR(@jakarta.annotation.Nullable String eR) {
+        this.eR = eR;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -1453,7 +1478,8 @@ public class ExecutionReport extends BaseDTO {
                 && Objects.equals(this.gP, executionReport.gP)
                 && Objects.equals(this.gOT, executionReport.gOT)
                 && Objects.equals(this.gOV, executionReport.gOV)
-                && Objects.equals(this.gp, executionReport.gp);
+                && Objects.equals(this.gp, executionReport.gp)
+                && Objects.equals(this.eR, executionReport.eR);
     }
 
     @Override
@@ -1512,7 +1538,8 @@ public class ExecutionReport extends BaseDTO {
                 gP,
                 gOT,
                 gOV,
-                gp);
+                gp,
+                eR);
     }
 
     @Override
@@ -1573,6 +1600,7 @@ public class ExecutionReport extends BaseDTO {
         sb.append("		gOT: ").append(toIndentedString(gOT)).append("\n");
         sb.append("		gOV: ").append(toIndentedString(gOV)).append("\n");
         sb.append("		gp: ").append(toIndentedString(gp)).append("\n");
+        sb.append("		eR: ").append(toIndentedString(eR)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1851,6 +1879,11 @@ public class ExecutionReport extends BaseDTO {
             String gpValueAsString = gpValue.toString();
             valMap.put("gp", gpValueAsString);
         }
+        String eRValue = geteR();
+        if (eRValue != null) {
+            String eRValueAsString = eRValue.toString();
+            valMap.put("eR", eRValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -2078,6 +2111,10 @@ public class ExecutionReport extends BaseDTO {
         if (gpValue != null) {
             valMap.put("gp", gpValue);
         }
+        Object eRValue = geteR();
+        if (eRValue != null) {
+            valMap.put("eR", eRValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -2158,6 +2195,7 @@ public class ExecutionReport extends BaseDTO {
         openapiFields.add("gOT");
         openapiFields.add("gOV");
         openapiFields.add("gp");
+        openapiFields.add("eR");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -2456,6 +2494,14 @@ public class ExecutionReport extends BaseDTO {
                             "Expected the field `gp` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("gp").toString()));
+        }
+        if ((jsonObj.get("eR") != null && !jsonObj.get("eR").isJsonNull())
+                && !jsonObj.get("eR").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `eR` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("eR").toString()));
         }
     }
 

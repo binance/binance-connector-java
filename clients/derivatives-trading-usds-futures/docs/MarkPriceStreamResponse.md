@@ -11,6 +11,7 @@
 |**E** | **Long** |  |  [optional] |
 |**sLowerCase** | **String** |  |  [optional] |
 |**pLowerCase** | **String** |  |  [optional] |
+|**ap** | **String** |  |  [optional] |
 |**iLowerCase** | **String** |  |  [optional] |
 |**P** | **String** |  |  [optional] |
 |**rLowerCase** | **String** |  |  [optional] |

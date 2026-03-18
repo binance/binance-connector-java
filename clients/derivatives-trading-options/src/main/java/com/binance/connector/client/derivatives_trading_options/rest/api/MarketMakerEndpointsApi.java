@@ -53,7 +53,7 @@ public class MarketMakerEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -816,7 +816,7 @@ public class MarketMakerEndpointsApi {
      * corresponding countdownCancelAllHeartBeat endpoint is not called within 10 seconds with the
      * specified underlying symbol, all open orders of the specified symbol will be automatically
      * canceled. If this endpoint is called with an countdownTime of 0, the countdown timer will be
-     * stopped. * The system will check all countdowns approximately every 1000 milliseconds,
+     * stopped. * The system will check all countdowns approximately every 100 milliseconds,
      * **please note that sufficient redundancy should be considered when using this function**. We
      * do not recommend setting the countdown time to be too precise or too small. Weight: 1
      *

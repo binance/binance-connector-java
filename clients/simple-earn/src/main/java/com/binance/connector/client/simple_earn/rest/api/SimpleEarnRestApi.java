@@ -96,8 +96,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including fast redemption quota
-     * and standard redemption quota. Weight: 150
+     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including subscription quota,
+     * fast redemption quota and standard redemption quota. Weight: 150
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;
@@ -408,7 +408,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Flexible Redemption Record(USER_DATA) Get Flexible Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -453,7 +453,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Flexible Rewards History(USER_DATA) Get Flexible Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -524,7 +524,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Flexible Subscription Record(USER_DATA) Get Flexible Subscription Record * The time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -628,7 +628,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Locked Redemption Record(USER_DATA) Get Locked Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -673,7 +673,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Locked Rewards History(USER_DATA) Get Locked Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -744,7 +744,7 @@ public class SimpleEarnRestApi {
 
     /**
      * Get Locked Subscription Record(USER_DATA) Get Locked Subscription Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If

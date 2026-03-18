@@ -162,11 +162,11 @@ public class ExchangeInformationResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private List<@Valid ExchangeInformationResponseSymbolsInnerFiltersInner> filters;
 
-    public static final String SERIALIZED_NAME_ORDER_TYPE = "OrderType";
+    public static final String SERIALIZED_NAME_ORDER_TYPES = "orderTypes";
 
-    @SerializedName(SERIALIZED_NAME_ORDER_TYPE)
+    @SerializedName(SERIALIZED_NAME_ORDER_TYPES)
     @jakarta.annotation.Nullable
-    private List<String> orderType;
+    private List<String> orderTypes;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -610,32 +610,32 @@ public class ExchangeInformationResponseSymbolsInner {
         this.filters = filters;
     }
 
-    public ExchangeInformationResponseSymbolsInner orderType(
-            @jakarta.annotation.Nullable List<String> orderType) {
-        this.orderType = orderType;
+    public ExchangeInformationResponseSymbolsInner orderTypes(
+            @jakarta.annotation.Nullable List<String> orderTypes) {
+        this.orderTypes = orderTypes;
         return this;
     }
 
-    public ExchangeInformationResponseSymbolsInner addOrderTypeItem(String orderTypeItem) {
-        if (this.orderType == null) {
-            this.orderType = new ArrayList<>();
+    public ExchangeInformationResponseSymbolsInner addOrderTypesItem(String orderTypesItem) {
+        if (this.orderTypes == null) {
+            this.orderTypes = new ArrayList<>();
         }
-        this.orderType.add(orderTypeItem);
+        this.orderTypes.add(orderTypesItem);
         return this;
     }
 
     /**
-     * Get orderType
+     * Get orderTypes
      *
-     * @return orderType
+     * @return orderTypes
      */
     @jakarta.annotation.Nullable
-    public List<String> getOrderType() {
-        return orderType;
+    public List<String> getOrderTypes() {
+        return orderTypes;
     }
 
-    public void setOrderType(@jakarta.annotation.Nullable List<String> orderType) {
-        this.orderType = orderType;
+    public void setOrderTypes(@jakarta.annotation.Nullable List<String> orderTypes) {
+        this.orderTypes = orderTypes;
     }
 
     public ExchangeInformationResponseSymbolsInner timeInForce(
@@ -756,7 +756,8 @@ public class ExchangeInformationResponseSymbolsInner {
                 && Objects.equals(
                         this.triggerProtect, exchangeInformationResponseSymbolsInner.triggerProtect)
                 && Objects.equals(this.filters, exchangeInformationResponseSymbolsInner.filters)
-                && Objects.equals(this.orderType, exchangeInformationResponseSymbolsInner.orderType)
+                && Objects.equals(
+                        this.orderTypes, exchangeInformationResponseSymbolsInner.orderTypes)
                 && Objects.equals(
                         this.timeInForce, exchangeInformationResponseSymbolsInner.timeInForce)
                 && Objects.equals(
@@ -789,7 +790,7 @@ public class ExchangeInformationResponseSymbolsInner {
                 settlePlan,
                 triggerProtect,
                 filters,
-                orderType,
+                orderTypes,
                 timeInForce,
                 liquidationFee,
                 marketTakeBound);
@@ -825,7 +826,7 @@ public class ExchangeInformationResponseSymbolsInner {
         sb.append("		settlePlan: ").append(toIndentedString(settlePlan)).append("\n");
         sb.append("		triggerProtect: ").append(toIndentedString(triggerProtect)).append("\n");
         sb.append("		filters: ").append(toIndentedString(filters)).append("\n");
-        sb.append("		orderType: ").append(toIndentedString(orderType)).append("\n");
+        sb.append("		orderTypes: ").append(toIndentedString(orderTypes)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		liquidationFee: ").append(toIndentedString(liquidationFee)).append("\n");
         sb.append("		marketTakeBound: ").append(toIndentedString(marketTakeBound)).append("\n");
@@ -932,13 +933,13 @@ public class ExchangeInformationResponseSymbolsInner {
                         ((Collection) filtersValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("filters=").append(urlEncode(filtersValueAsString)).append("");
-        Object orderTypeValue = getOrderType();
-        String orderTypeValueAsString = "";
-        orderTypeValueAsString =
+        Object orderTypesValue = getOrderTypes();
+        String orderTypesValueAsString = "";
+        orderTypesValueAsString =
                 (String)
-                        ((Collection) orderTypeValue)
+                        ((Collection) orderTypesValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
-        sb.append("orderType=").append(urlEncode(orderTypeValueAsString)).append("");
+        sb.append("orderTypes=").append(urlEncode(orderTypesValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString =
@@ -1002,7 +1003,7 @@ public class ExchangeInformationResponseSymbolsInner {
         openapiFields.add("settlePlan");
         openapiFields.add("triggerProtect");
         openapiFields.add("filters");
-        openapiFields.add("OrderType");
+        openapiFields.add("orderTypes");
         openapiFields.add("timeInForce");
         openapiFields.add("liquidationFee");
         openapiFields.add("marketTakeBound");
@@ -1153,14 +1154,14 @@ public class ExchangeInformationResponseSymbolsInner {
             }
         }
         // ensure the optional json data is an array if present
-        if (jsonObj.get("OrderType") != null
-                && !jsonObj.get("OrderType").isJsonNull()
-                && !jsonObj.get("OrderType").isJsonArray()) {
+        if (jsonObj.get("orderTypes") != null
+                && !jsonObj.get("orderTypes").isJsonNull()
+                && !jsonObj.get("orderTypes").isJsonArray()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `OrderType` to be an array in the JSON string but"
+                            "Expected the field `orderTypes` to be an array in the JSON string but"
                                     + " got `%s`",
-                            jsonObj.get("OrderType").toString()));
+                            jsonObj.get("orderTypes").toString()));
         }
         // ensure the optional json data is an array if present
         if (jsonObj.get("timeInForce") != null
