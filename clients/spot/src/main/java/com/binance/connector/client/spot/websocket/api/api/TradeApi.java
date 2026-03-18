@@ -254,10 +254,11 @@ public class TradeApi {
     }
 
     /**
-     * WebSocket Cancel and replace order Cancel an existing order and immediately place a new order
-     * instead of the canceled one. A new order that was not attempted (i.e. when
+     * WebSocket Cancel and replace order * Cancel an existing order and immediately place a new
+     * order instead of the canceled one. * A new order that was not attempted (i.e. when
      * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. Weight: 1
+     * 1. * You can only cancel an individual order from an orderList using this method, but the
+     * result is the same as canceling the entire orderList. Weight: 1
      *
      * @param orderCancelReplaceRequest (required)
      * @return OrderCancelReplaceResponse

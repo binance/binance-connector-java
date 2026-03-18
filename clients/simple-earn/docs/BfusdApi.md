@@ -82,7 +82,7 @@ No authorization required
 
 Get BFUSD Quota Details (USER_DATA)
 
-Get BFUSD quota details including fast redemption quota and standard redemption quota.  Weight: 150
+Get BFUSD quota details including subscription quota, fast redemption quota and standard redemption quota.  Weight: 150
 
 ### Example
 ```java

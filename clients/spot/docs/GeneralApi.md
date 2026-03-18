@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**exchangeInfo**](GeneralApi.md#exchangeInfo) | **POST** /exchangeInfo | WebSocket Exchange information |
+| [**executionRules**](GeneralApi.md#executionRules) | **POST** /executionRules | WebSocket Query Execution Rules |
 | [**ping**](GeneralApi.md#ping) | **POST** /ping | WebSocket Test connectivity |
 | [**time**](GeneralApi.md#time) | **POST** /time | WebSocket Check server time |
 
@@ -70,6 +71,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Exchange information |  -  |
+
+<a id="executionRules"></a>
+# **executionRules**
+> ExecutionRulesResponse executionRules(executionRulesRequest)
+
+WebSocket Query Execution Rules
+
+ Weight: Parameter | Weight| ---        | --- &#x60;symbol&#x60;  | 2 &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max of 40| &#x60;symbolStatus&#x60; |40| None            |40|
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.GeneralApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    GeneralApi apiInstance = new GeneralApi(defaultClient);
+    ExecutionRulesRequest executionRulesRequest = new ExecutionRulesRequest(); // ExecutionRulesRequest | 
+    try {
+      ExecutionRulesResponse result = apiInstance.executionRules(executionRulesRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GeneralApi#executionRules");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **executionRulesRequest** | [**ExecutionRulesRequest**](ExecutionRulesRequest.md)|  | [optional] |
+
+### Return type
+
+[**ExecutionRulesResponse**](ExecutionRulesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query Execution Rules |  -  |
 
 <a id="ping"></a>
 # **ping**

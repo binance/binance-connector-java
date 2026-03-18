@@ -40,7 +40,7 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
 
     @SerializedName(SERIALIZED_NAME_CODE)
     @jakarta.annotation.Nullable
-    private Long code;
+    private String code;
 
     public static final String SERIALIZED_NAME_MSG = "msg";
 
@@ -51,7 +51,7 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
     public CancelAllOptionOrdersOnSpecificSymbolResponse() {}
 
     public CancelAllOptionOrdersOnSpecificSymbolResponse code(
-            @jakarta.annotation.Nullable Long code) {
+            @jakarta.annotation.Nullable String code) {
         this.code = code;
         return this;
     }
@@ -62,11 +62,11 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
      * @return code
      */
     @jakarta.annotation.Nullable
-    public Long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(@jakarta.annotation.Nullable Long code) {
+    public void setCode(@jakarta.annotation.Nullable String code) {
         this.code = code;
     }
 
@@ -187,6 +187,14 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull())
+                && !jsonObj.get("code").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `code` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("code").toString()));
+        }
         if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
                 && !jsonObj.get("msg").isJsonPrimitive()) {
             throw new IllegalArgumentException(

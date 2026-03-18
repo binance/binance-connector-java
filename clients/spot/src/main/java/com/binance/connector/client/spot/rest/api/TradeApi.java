@@ -71,7 +71,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -1298,11 +1298,12 @@ public class TradeApi {
     }
 
     /**
-     * Cancel an Existing Order and Send a New Order Cancels an existing order and places a new
-     * order on the same symbol. Filters and Order Count are evaluated before the processing of the
-     * cancellation and order placement occurs. A new order that was not attempted (i.e. when
+     * Cancel an Existing Order and Send a New Order * Cancels an existing order and places a new
+     * order on the same symbol. * Filters and Order Count are evaluated before the processing of
+     * the cancellation and order placement occurs. * A new order that was not attempted (i.e. when
      * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. Weight: 1
+     * 1. * You can only cancel an individual order from an orderList using this endpoint, but the
+     * result is the same as canceling the entire orderList. Weight: 1
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;

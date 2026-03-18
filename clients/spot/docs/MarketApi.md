@@ -7,6 +7,8 @@ All URIs are relative to *http://localhost*
 | [**avgPrice**](MarketApi.md#avgPrice) | **POST** /avgPrice | WebSocket Current average price |
 | [**depth**](MarketApi.md#depth) | **POST** /depth | WebSocket Order book |
 | [**klines**](MarketApi.md#klines) | **POST** /klines | WebSocket Klines |
+| [**referencePrice**](MarketApi.md#referencePrice) | **POST** /referencePrice | WebSocket Query Reference Price |
+| [**referencePriceCalculation**](MarketApi.md#referencePriceCalculation) | **POST** /referencePrice.calculation | WebSocket Query Reference Price Calculation |
 | [**ticker**](MarketApi.md#ticker) | **POST** /ticker | WebSocket Rolling window price change statistics |
 | [**ticker24hr**](MarketApi.md#ticker24hr) | **POST** /ticker.24hr | WebSocket 24hr ticker price change statistics |
 | [**tickerBook**](MarketApi.md#tickerBook) | **POST** /ticker.book | WebSocket Symbol order book ticker |
@@ -203,6 +205,130 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Klines |  -  |
+
+<a id="referencePrice"></a>
+# **referencePrice**
+> ReferencePriceResponse referencePrice(referencePriceRequest)
+
+WebSocket Query Reference Price
+
+ Weight: 2
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.MarketApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    MarketApi apiInstance = new MarketApi(defaultClient);
+    ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest(); // ReferencePriceRequest | 
+    try {
+      ReferencePriceResponse result = apiInstance.referencePrice(referencePriceRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketApi#referencePrice");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **referencePriceRequest** | [**ReferencePriceRequest**](ReferencePriceRequest.md)|  | |
+
+### Return type
+
+[**ReferencePriceResponse**](ReferencePriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query Reference Price |  -  |
+
+<a id="referencePriceCalculation"></a>
+# **referencePriceCalculation**
+> ReferencePriceCalculationResponse referencePriceCalculation(referencePriceCalculationRequest)
+
+WebSocket Query Reference Price Calculation
+
+Describes how reference price is calculated for a given symbol. Weight: 2
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.MarketApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    MarketApi apiInstance = new MarketApi(defaultClient);
+    ReferencePriceCalculationRequest referencePriceCalculationRequest = new ReferencePriceCalculationRequest(); // ReferencePriceCalculationRequest | 
+    try {
+      ReferencePriceCalculationResponse result = apiInstance.referencePriceCalculation(referencePriceCalculationRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketApi#referencePriceCalculation");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **referencePriceCalculationRequest** | [**ReferencePriceCalculationRequest**](ReferencePriceCalculationRequest.md)|  | |
+
+### Return type
+
+[**ReferencePriceCalculationResponse**](ReferencePriceCalculationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query Reference Price Calculation |  -  |
 
 <a id="ticker"></a>
 # **ticker**

@@ -22,6 +22,10 @@ import com.binance.connector.client.spot.websocket.api.model.DepthRequest;
 import com.binance.connector.client.spot.websocket.api.model.DepthResponse;
 import com.binance.connector.client.spot.websocket.api.model.KlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.KlinesResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.websocket.api.model.Ticker24hrRequest;
 import com.binance.connector.client.spot.websocket.api.model.Ticker24hrResponse;
 import com.binance.connector.client.spot.websocket.api.model.TickerBookRequest;
@@ -239,6 +243,134 @@ public class MarketApi {
                             .getValidator();
 
             Set<ConstraintViolation<KlinesRequest>> violations = validator.validate(klinesRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket Query Reference Price Weight: 2
+     *
+     * @param referencePriceRequest (required)
+     * @return ReferencePriceResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Reference Price </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price">WebSocket
+     *     Query Reference Price Documentation</a>
+     */
+    public CompletableFuture<ReferencePriceResponse> referencePrice(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        referencePriceValidateBeforeCall(referencePriceRequest);
+        String methodName = "/referencePrice".substring(1);
+        ApiRequestWrapperDTO<ReferencePriceRequest, ReferencePriceResponse> build =
+                new ApiRequestWrapperDTO.Builder<ReferencePriceRequest, ReferencePriceResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(referencePriceRequest)
+                        .responseType(ReferencePriceResponse.class)
+                        .signed(false)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void referencePriceValidateBeforeCall(ReferencePriceRequest referencePriceRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<ReferencePriceRequest>> violations =
+                    validator.validate(referencePriceRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket Query Reference Price Calculation Describes how reference price is calculated for a
+     * given symbol. Weight: 2
+     *
+     * @param referencePriceCalculationRequest (required)
+     * @return ReferencePriceCalculationResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Reference Price Calculation </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price-calculation">WebSocket
+     *     Query Reference Price Calculation Documentation</a>
+     */
+    public CompletableFuture<ReferencePriceCalculationResponse> referencePriceCalculation(
+            ReferencePriceCalculationRequest referencePriceCalculationRequest) throws ApiException {
+        referencePriceCalculationValidateBeforeCall(referencePriceCalculationRequest);
+        String methodName = "/referencePrice.calculation".substring(1);
+        ApiRequestWrapperDTO<ReferencePriceCalculationRequest, ReferencePriceCalculationResponse>
+                build =
+                        new ApiRequestWrapperDTO.Builder<
+                                        ReferencePriceCalculationRequest,
+                                        ReferencePriceCalculationResponse>()
+                                .id(getRequestID())
+                                .method(methodName)
+                                .params(referencePriceCalculationRequest)
+                                .responseType(ReferencePriceCalculationResponse.class)
+                                .signed(false)
+                                .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void referencePriceCalculationValidateBeforeCall(
+            ReferencePriceCalculationRequest referencePriceCalculationRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<ReferencePriceCalculationRequest>> violations =
+                    validator.validate(referencePriceCalculationRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

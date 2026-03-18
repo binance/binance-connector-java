@@ -95,6 +95,11 @@ public class StreamConnectionWrapper extends ConnectionWrapper
         try {
             JsonElement root = JsonParser.parseString(message);
             JsonObject obj = root.getAsJsonObject();
+
+            if (handleShutdownMessage(obj)) {
+                return;
+            }
+
             // Response to subscribe
             JsonElement id = obj.get("id");
             if (id != null) {

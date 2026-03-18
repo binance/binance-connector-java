@@ -84,6 +84,12 @@ public class CancelOrderResponse {
     @jakarta.annotation.Nullable
     private String price;
 
+    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
+
+    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
+    @jakarta.annotation.Nullable
+    private String avgPrice;
+
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
@@ -339,6 +345,25 @@ public class CancelOrderResponse {
 
     public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
+    }
+
+    public CancelOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
+        this.avgPrice = avgPrice;
+        return this;
+    }
+
+    /**
+     * Get avgPrice
+     *
+     * @return avgPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getAvgPrice() {
+        return avgPrice;
+    }
+
+    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
+        this.avgPrice = avgPrice;
     }
 
     public CancelOrderResponse reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
@@ -683,6 +708,7 @@ public class CancelOrderResponse {
                 && Objects.equals(this.origQty, cancelOrderResponse.origQty)
                 && Objects.equals(this.origType, cancelOrderResponse.origType)
                 && Objects.equals(this.price, cancelOrderResponse.price)
+                && Objects.equals(this.avgPrice, cancelOrderResponse.avgPrice)
                 && Objects.equals(this.reduceOnly, cancelOrderResponse.reduceOnly)
                 && Objects.equals(this.side, cancelOrderResponse.side)
                 && Objects.equals(this.positionSide, cancelOrderResponse.positionSide)
@@ -714,6 +740,7 @@ public class CancelOrderResponse {
                 origQty,
                 origType,
                 price,
+                avgPrice,
                 reduceOnly,
                 side,
                 positionSide,
@@ -745,6 +772,7 @@ public class CancelOrderResponse {
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
+        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
@@ -803,6 +831,10 @@ public class CancelOrderResponse {
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
+        Object avgPriceValue = getAvgPrice();
+        String avgPriceValueAsString = "";
+        avgPriceValueAsString = avgPriceValue.toString();
+        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object reduceOnlyValue = getReduceOnly();
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
@@ -909,6 +941,7 @@ public class CancelOrderResponse {
         openapiFields.add("origQty");
         openapiFields.add("origType");
         openapiFields.add("price");
+        openapiFields.add("avgPrice");
         openapiFields.add("reduceOnly");
         openapiFields.add("side");
         openapiFields.add("positionSide");
@@ -1004,6 +1037,14 @@ public class CancelOrderResponse {
                             "Expected the field `price` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
+        }
+        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
+                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `avgPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("avgPrice").toString()));
         }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {

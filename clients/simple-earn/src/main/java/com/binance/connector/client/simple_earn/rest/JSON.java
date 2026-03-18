@@ -123,6 +123,9 @@ public class JSON {
                         .GetBfusdQuotaDetailsResponseStandardRedemptionQuota
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetBfusdQuotaDetailsResponseSubscriptionQuota.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
