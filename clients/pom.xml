@@ -390,7 +390,7 @@
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-jetty-client</artifactId>
-            <version>11.0.25</version>
+            <version>${jetty-websocket.version}</version>
         </dependency>
     </dependencies>
     <properties>
