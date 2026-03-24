@@ -74,7 +74,7 @@ public class FlexibleLockedApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/5.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -800,7 +800,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Flexible Redemption Record(USER_DATA) Get Flexible Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -1023,7 +1023,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Flexible Rewards History(USER_DATA) Get Flexible Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -1409,7 +1409,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Flexible Subscription Record(USER_DATA) Get Flexible Subscription Record * The time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -1975,7 +1975,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Locked Redemption Record(USER_DATA) Get Locked Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -2189,7 +2189,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Locked Rewards History(USER_DATA) Get Locked Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
@@ -2572,7 +2572,7 @@ public class FlexibleLockedApi {
 
     /**
      * Get Locked Subscription Record(USER_DATA) Get Locked Subscription Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
      * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
      * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If

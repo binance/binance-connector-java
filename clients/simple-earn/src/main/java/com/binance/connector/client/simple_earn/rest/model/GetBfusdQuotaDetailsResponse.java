@@ -37,6 +37,12 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class GetBfusdQuotaDetailsResponse {
+    public static final String SERIALIZED_NAME_SUBSCRIPTION_QUOTA = "subscriptionQuota";
+
+    @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_QUOTA)
+    @jakarta.annotation.Nullable
+    private GetBfusdQuotaDetailsResponseSubscriptionQuota subscriptionQuota;
+
     public static final String SERIALIZED_NAME_FAST_REDEMPTION_QUOTA = "fastRedemptionQuota";
 
     @SerializedName(SERIALIZED_NAME_FAST_REDEMPTION_QUOTA)
@@ -51,6 +57,30 @@ public class GetBfusdQuotaDetailsResponse {
     private GetBfusdQuotaDetailsResponseStandardRedemptionQuota standardRedemptionQuota;
 
     public GetBfusdQuotaDetailsResponse() {}
+
+    public GetBfusdQuotaDetailsResponse subscriptionQuota(
+            @jakarta.annotation.Nullable
+                    GetBfusdQuotaDetailsResponseSubscriptionQuota subscriptionQuota) {
+        this.subscriptionQuota = subscriptionQuota;
+        return this;
+    }
+
+    /**
+     * Get subscriptionQuota
+     *
+     * @return subscriptionQuota
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public GetBfusdQuotaDetailsResponseSubscriptionQuota getSubscriptionQuota() {
+        return subscriptionQuota;
+    }
+
+    public void setSubscriptionQuota(
+            @jakarta.annotation.Nullable
+                    GetBfusdQuotaDetailsResponseSubscriptionQuota subscriptionQuota) {
+        this.subscriptionQuota = subscriptionQuota;
+    }
 
     public GetBfusdQuotaDetailsResponse fastRedemptionQuota(
             @jakarta.annotation.Nullable
@@ -111,6 +141,8 @@ public class GetBfusdQuotaDetailsResponse {
         GetBfusdQuotaDetailsResponse getBfusdQuotaDetailsResponse =
                 (GetBfusdQuotaDetailsResponse) o;
         return Objects.equals(
+                        this.subscriptionQuota, getBfusdQuotaDetailsResponse.subscriptionQuota)
+                && Objects.equals(
                         this.fastRedemptionQuota, getBfusdQuotaDetailsResponse.fastRedemptionQuota)
                 && Objects.equals(
                         this.standardRedemptionQuota,
@@ -119,13 +151,14 @@ public class GetBfusdQuotaDetailsResponse {
 
     @Override
     public int hashCode() {
-        return Objects.hash(fastRedemptionQuota, standardRedemptionQuota);
+        return Objects.hash(subscriptionQuota, fastRedemptionQuota, standardRedemptionQuota);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class GetBfusdQuotaDetailsResponse {\n");
+        sb.append("		subscriptionQuota: ").append(toIndentedString(subscriptionQuota)).append("\n");
         sb.append("		fastRedemptionQuota: ")
                 .append(toIndentedString(fastRedemptionQuota))
                 .append("\n");
@@ -139,6 +172,12 @@ public class GetBfusdQuotaDetailsResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
+        Object subscriptionQuotaValue = getSubscriptionQuota();
+        String subscriptionQuotaValueAsString = "";
+        subscriptionQuotaValueAsString = subscriptionQuotaValue.toString();
+        sb.append("subscriptionQuota=")
+                .append(urlEncode(subscriptionQuotaValueAsString))
+                .append("");
         Object fastRedemptionQuotaValue = getFastRedemptionQuota();
         String fastRedemptionQuotaValueAsString = "";
         fastRedemptionQuotaValueAsString = fastRedemptionQuotaValue.toString();
@@ -179,6 +218,7 @@ public class GetBfusdQuotaDetailsResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("subscriptionQuota");
         openapiFields.add("fastRedemptionQuota");
         openapiFields.add("standardRedemptionQuota");
 
@@ -205,6 +245,12 @@ public class GetBfusdQuotaDetailsResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `subscriptionQuota`
+        if (jsonObj.get("subscriptionQuota") != null
+                && !jsonObj.get("subscriptionQuota").isJsonNull()) {
+            GetBfusdQuotaDetailsResponseSubscriptionQuota.validateJsonElement(
+                    jsonObj.get("subscriptionQuota"));
+        }
         // validate the optional field `fastRedemptionQuota`
         if (jsonObj.get("fastRedemptionQuota") != null
                 && !jsonObj.get("fastRedemptionQuota").isJsonNull()) {

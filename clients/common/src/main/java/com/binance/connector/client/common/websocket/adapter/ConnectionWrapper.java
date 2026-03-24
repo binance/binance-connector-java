@@ -447,6 +447,11 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         try {
             JsonElement root = JsonParser.parseString(message);
             JsonObject obj = root.getAsJsonObject();
+
+            if (handleShutdownMessage(obj)) {
+                return;
+            }
+
             JsonElement idElem = obj.get("id");
             String id = idElem == null ? null : idElem.getAsString();
             RequestWrapperDTO requestWrapperDTO = null;
@@ -455,8 +460,8 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
             }
 
             if (requestWrapperDTO == null) {
+                JsonElement eventElem = obj.get("event");
                 for (BlockingQueue<String> streamQueue : streamQueues) {
-                    JsonElement eventElem = obj.get("event");
                     streamQueue.offer(eventElem != null ? eventElem.toString() : message);
                 }
                 return;
@@ -491,6 +496,23 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
 
     public boolean canReconnect() {
         return isReady && pendingRequest.isEmpty();
+    }
+
+    protected boolean handleShutdownMessage(JsonObject jsonObj) {
+        JsonElement eventElem = jsonObj.get("event");
+        if (eventElem != null) {
+            JsonObject eventElemObj = eventElem.getAsJsonObject();
+            JsonElement eElement = eventElemObj.get("e");
+            if (eElement != null && "serverShutdown".equals(eElement.getAsString())) {
+                if (canReconnect()) {
+                    connect();
+                } else {
+                    pendingReconnect = true;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     protected void beforeConnect() {

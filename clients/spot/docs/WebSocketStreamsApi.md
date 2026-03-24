@@ -14,6 +14,7 @@ All URIs are relative to *http://localhost*
 | [**klineOffset**](WebSocketStreamsApi.md#klineOffset) | **POST** /&lt;symbol&gt;@kline_&lt;interval&gt;@+08:00 | WebSocket Kline/Candlestick Streams with timezone offset |
 | [**miniTicker**](WebSocketStreamsApi.md#miniTicker) | **POST** /&lt;symbol&gt;@miniTicker | WebSocket Individual Symbol Mini Ticker Stream |
 | [**partialBookDepth**](WebSocketStreamsApi.md#partialBookDepth) | **POST** /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | WebSocket Partial Book Depth Streams |
+| [**referencePrice**](WebSocketStreamsApi.md#referencePrice) | **POST** /&lt;symbol&gt;@referencePrice | WebSocket Reference Price Streams |
 | [**rollingWindowTicker**](WebSocketStreamsApi.md#rollingWindowTicker) | **POST** /&lt;symbol&gt;@ticker_&lt;windowSize&gt; | WebSocket Individual Symbol Rolling Window Statistics Streams |
 | [**ticker**](WebSocketStreamsApi.md#ticker) | **POST** /&lt;symbol&gt;@ticker | WebSocket Individual Symbol Ticker Streams |
 | [**trade**](WebSocketStreamsApi.md#trade) | **POST** /&lt;symbol&gt;@trade | WebSocket Trade Streams |
@@ -634,6 +635,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Partial Book Depth Streams |  -  |
+
+<a id="referencePrice"></a>
+# **referencePrice**
+> ReferencePriceResponse referencePrice(referencePriceRequest)
+
+WebSocket Reference Price Streams
+
+
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.stream.api.WebSocketStreamsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    WebSocketStreamsApi apiInstance = new WebSocketStreamsApi(defaultClient);
+    ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest(); // ReferencePriceRequest | 
+    try {
+      ReferencePriceResponse result = apiInstance.referencePrice(referencePriceRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling WebSocketStreamsApi#referencePrice");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **referencePriceRequest** | [**ReferencePriceRequest**](ReferencePriceRequest.md)|  | |
+
+### Return type
+
+[**ReferencePriceResponse**](ReferencePriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reference Price Streams |  -  |
 
 <a id="rollingWindowTicker"></a>
 # **rollingWindowTicker**
