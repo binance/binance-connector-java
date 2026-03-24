@@ -32,6 +32,8 @@
 
 [GET /api/v3/exchangeInfo](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#exchange-information) - exchangeInfo - [ExchangeInfoExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/general/ExchangeInfoExample.java#L49)
 
+[GET /api/v3/executionRules](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules) - executionRules - [ExecutionRulesExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/general/ExecutionRulesExample.java#L49)
+
 [GET /api/v3/ping](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#test-connectivity) - ping - [PingExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/general/PingExample.java#L44)
 
 [GET /api/v3/time](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#check-server-time) - time - [TimeExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/general/TimeExample.java#L46)
@@ -49,6 +51,10 @@
 [GET /api/v3/historicalTrades](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#old-trade-lookup) - historicalTrades - [HistoricalTradesExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/HistoricalTradesExample.java#L46)
 
 [GET /api/v3/klines](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#klinecandlestick-data) - klines - [KlinesExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/KlinesExample.java#L48)
+
+[GET /api/v3/referencePrice](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price) - referencePrice - [ReferencePriceExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/ReferencePriceExample.java#L46)
+
+[GET /api/v3/referencePrice/calculation](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price-calculation) - referencePriceCalculation - [ReferencePriceCalculationExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/ReferencePriceCalculationExample.java#L47)
 
 [GET /api/v3/ticker](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics) - ticker - [TickerExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/market/TickerExample.java#L52)
 
@@ -74,7 +80,7 @@
 
 [PUT /api/v3/order/amend/keepPriority](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderAmendKeepPriorityExample.java#L49)
 
-[POST /api/v3/order/cancelReplace](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade) - orderCancelReplace - [OrderCancelReplaceExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderCancelReplaceExample.java#L53)
+[POST /api/v3/order/cancelReplace](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade) - orderCancelReplace - [OrderCancelReplaceExample.java:55](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderCancelReplaceExample.java#L55)
 
 [POST /api/v3/orderList/oco](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade) - orderListOco - [OrderListOcoExample.java:62](/examples/spot/src/main/java/com/binance/connector/client/spot/rest/trade/OrderListOcoExample.java#L62)
 

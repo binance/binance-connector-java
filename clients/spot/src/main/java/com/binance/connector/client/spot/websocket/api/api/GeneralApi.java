@@ -19,6 +19,8 @@ import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesRequest;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesResponse;
 import com.binance.connector.client.spot.websocket.api.model.PingResponse;
 import com.binance.connector.client.spot.websocket.api.model.TimeResponse;
 import jakarta.validation.ConstraintViolation;
@@ -92,6 +94,70 @@ public class GeneralApi {
 
             Set<ConstraintViolation<ExchangeInfoRequest>> violations =
                     validator.validate(exchangeInfoRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket Query Execution Rules Weight: Parameter | Weight| --- | --- &#x60;symbol&#x60; | 2
+     * &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max of 40|
+     * &#x60;symbolStatus&#x60; |40| None |40|
+     *
+     * @param executionRulesRequest (optional)
+     * @return ExecutionRulesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#query-execution-rules">WebSocket
+     *     Query Execution Rules Documentation</a>
+     */
+    public CompletableFuture<ExecutionRulesResponse> executionRules(
+            ExecutionRulesRequest executionRulesRequest) throws ApiException {
+        executionRulesValidateBeforeCall(executionRulesRequest);
+        String methodName = "/executionRules".substring(1);
+        ApiRequestWrapperDTO<ExecutionRulesRequest, ExecutionRulesResponse> build =
+                new ApiRequestWrapperDTO.Builder<ExecutionRulesRequest, ExecutionRulesResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(executionRulesRequest)
+                        .responseType(ExecutionRulesResponse.class)
+                        .signed(false)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void executionRulesValidateBeforeCall(ExecutionRulesRequest executionRulesRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<ExecutionRulesRequest>> violations =
+                    validator.validate(executionRulesRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

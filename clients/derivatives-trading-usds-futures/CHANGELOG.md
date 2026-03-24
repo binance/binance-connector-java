@@ -1,5 +1,56 @@
 # Changelog
 
+## 10.0.0 - 2026-03-18
+
+### Changed (5)
+
+#### REST API
+
+- Modified response for `exchangeInformation()` (`GET /fapi/v1/exchangeInfo`):
+  - `symbols`.items: property `orderTypes` added
+  - `symbols`.items: property `OrderType` deleted
+  - `symbols`.items: item property `orderTypes` added
+  - `symbols`.items: item property `OrderType` deleted
+
+- Modified response for `cancelOrder()` (`DELETE /fapi/v1/order`):
+  - property `avgPrice` added
+
+- Modified response for `queryOrder()` (`GET /fapi/v1/order`):
+  - property `executedQty` added
+  - property `priceProtect` added
+  - property `priceRate` added
+  - property `type` added
+  - property `workingType` added
+  - property `side` added
+  - property `time` added
+  - property `timeInForce` added
+  - property `clientOrderId` added
+  - property `stopPrice` added
+  - property `reduceOnly` added
+  - property `cumQuote` added
+  - property `price` added
+  - property `closePosition` added
+  - property `symbol` added
+  - property `positionSide` added
+  - property `origType` added
+  - property `avgPrice` added
+  - property `origQty` added
+  - property `updateTime` added
+  - property `activatePrice` added
+  - property `orderId` added
+  - property `result` deleted
+  - property `id` deleted
+  - `status`: type `integer` → `string`
+
+#### WebSocket Streams
+
+- Modified response for `markPriceStreamForAllMarket()` (`!markPrice@arr@<updateSpeed>` stream):
+  - items: property `ap` added
+  - items: item property `ap` added
+
+- Modified response for `markPriceStream()` (`<symbol>@markPrice@<updateSpeed>` stream):
+  - property `ap` added
+
 ## 9.0.0 - 2026-02-12
 
 ### Changed (20)

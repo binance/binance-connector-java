@@ -27,7 +27,7 @@
 |**settlePlan** | **Long** |  |  [optional] |
 |**triggerProtect** | **String** |  |  [optional] |
 |**filters** | [**List&lt;ExchangeInformationResponseSymbolsInnerFiltersInner&gt;**](ExchangeInformationResponseSymbolsInnerFiltersInner.md) |  |  [optional] |
-|**orderType** | **List&lt;String&gt;** |  |  [optional] |
+|**orderTypes** | **List&lt;String&gt;** |  |  [optional] |
 |**timeInForce** | **List&lt;String&gt;** |  |  [optional] |
 |**liquidationFee** | **String** |  |  [optional] |
 |**marketTakeBound** | **String** |  |  [optional] |

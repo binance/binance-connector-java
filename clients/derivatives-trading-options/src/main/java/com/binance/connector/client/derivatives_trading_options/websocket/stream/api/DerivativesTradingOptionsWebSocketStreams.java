@@ -40,7 +40,7 @@ import java.util.Set;
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebSocketClientConfiguration clientConfiguration;

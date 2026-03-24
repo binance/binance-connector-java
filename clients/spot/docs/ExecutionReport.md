@@ -61,6 +61,7 @@
 |**gOT** | **String** |  |  [optional] |
 |**gOV** | **Long** |  |  [optional] |
 |**gp** | **String** |  |  [optional] |
+|**eR** | **String** |  |  [optional] |
 
 
 

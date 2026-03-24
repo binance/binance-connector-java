@@ -21,6 +21,7 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.spot.rest.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.rest.model.ExecutionRulesResponse;
 import com.binance.connector.client.spot.rest.model.Permissions;
 import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
@@ -47,7 +48,7 @@ public class GeneralApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -272,6 +273,161 @@ public class GeneralApi {
                         symbol, symbols, permissions, showPermissionSets, symbolStatus);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<ExchangeInfoResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for executionRules
+     *
+     * @param symbol Symbol to query (optional)
+     * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules">Query
+     *     Execution Rules Documentation</a>
+     */
+    private okhttp3.Call executionRulesCall(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/executionRules";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (symbols != null) {
+            String json = JSON.getGson().toJson(symbols);
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbols", json));
+        }
+
+        if (symbolStatus != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("symbolStatus", symbolStatus));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call executionRulesValidateBeforeCall(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, symbols, symbolStatus};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "executionRules",
+                                    String.class,
+                                    Symbols.class,
+                                    SymbolStatus.class);
+            Set<ConstraintViolation<GeneralApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return executionRulesCall(symbol, symbols, symbolStatus);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Execution Rules Weight: Parameter | Weight| --- | --- &#x60;symbol&#x60; | 2
+     * &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max of 40|
+     * &#x60;symbolStatus&#x60; |40| None |40|
+     *
+     * @param symbol Symbol to query (optional)
+     * @param symbols List of symbols to query (optional)
+     * @param symbolStatus (optional)
+     * @return ApiResponse&lt;ExecutionRulesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules">Query
+     *     Execution Rules Documentation</a>
+     */
+    public ApiResponse<ExecutionRulesResponse> executionRules(
+            String symbol, Symbols symbols, SymbolStatus symbolStatus) throws ApiException {
+        okhttp3.Call localVarCall = executionRulesValidateBeforeCall(symbol, symbols, symbolStatus);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<ExecutionRulesResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 

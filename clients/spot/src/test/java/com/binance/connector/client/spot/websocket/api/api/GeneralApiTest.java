@@ -17,9 +17,11 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
 
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseResponseDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
+import com.binance.connector.client.spot.websocket.api.JSON;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
 import com.binance.connector.client.spot.websocket.api.model.Permissions;
@@ -35,6 +37,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WriteCallback;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -167,5 +170,69 @@ public class GeneralApiTest {
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
 
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
+    }
+
+    @Test
+    public void serverShutdownTest() {
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        // Should call connect 2 times, one for the initial connect + one for reconnect
+        Mockito.verify(connectionSpy, Mockito.times(2)).connect();
+    }
+
+    @Test
+    public void serverShutdownAnyEventTest() {
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"blablabla\",\"E\":1770123456789}}");
+        // Connect only once for initial commit
+        Mockito.verify(connectionSpy, Mockito.times(1)).connect();
+    }
+
+    @Test
+    public void serverShutdownPendingMessagesTest() {
+        api.time();
+        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<WriteCallback> writeCallbackArgumentCaptor = ArgumentCaptor.forClass(WriteCallback.class);
+        RemoteEndpoint remote = sessionMock.getRemote();
+
+        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), writeCallbackArgumentCaptor.capture());
+        writeCallbackArgumentCaptor.getValue().writeSuccess();
+
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        // Should call connect only once for initial connect, reconnect should be pending as there is a pending request
+        Mockito.verify(connectionSpy, Mockito.times(1)).connect();
+
+        ApiRequestWrapperDTO requestWrapperDTO = JSON.getGson().fromJson(sendArgumentCaptor.getValue(), ApiRequestWrapperDTO.class);
+        connectionSpy.onWebSocketText("{\"id\":\"" + requestWrapperDTO.getId() + "\",\"status\":200,\"result\":{\"serverTime\":1773288442504},\"rateLimits\":[{\"rateLimitType\":\"REQUEST_WEIGHT\",\"interval\":\"MINUTE\",\"intervalNum\":1,\"limit\":6000,\"count\":3}]}");
+        // Should be called a second time, as there is no more pending request
+        Mockito.verify(connectionSpy, Mockito.times(2)).connect();
+    }
+
+    @Test
+    public void multipleServerShutdownPendingMessagesTest() {
+        api.time();
+        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<WriteCallback> writeCallbackArgumentCaptor = ArgumentCaptor.forClass(WriteCallback.class);
+        RemoteEndpoint remote = sessionMock.getRemote();
+
+        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), writeCallbackArgumentCaptor.capture());
+        writeCallbackArgumentCaptor.getValue().writeSuccess();
+
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        // Should call connect only once for initial connect, reconnect should be pending as there is a pending request
+        Mockito.verify(connectionSpy, Mockito.times(1)).connect();
+
+        ApiRequestWrapperDTO requestWrapperDTO = JSON.getGson().fromJson(sendArgumentCaptor.getValue(), ApiRequestWrapperDTO.class);
+        connectionSpy.onWebSocketText("{\"id\":\"" + requestWrapperDTO.getId() + "\",\"status\":200,\"result\":{\"serverTime\":1773288442504},\"rateLimits\":[{\"rateLimitType\":\"REQUEST_WEIGHT\",\"interval\":\"MINUTE\",\"intervalNum\":1,\"limit\":6000,\"count\":3}]}");
+        // Should be called a second time, as there is no more pending request
+        Mockito.verify(connectionSpy, Mockito.times(2)).connect();
+    }
+
+    @Test
+    public void serverShutdownReconnectNotReadyTest() {
+        connectionSpy.setReady(false);
+        connectionSpy.onWebSocketText("{\"event\":{\"e\":\"serverShutdown\",\"E\":1770123456789}}");
+        // Should call connect 1 times, should not reconnect as connection is not ready
+        Mockito.verify(connectionSpy, Mockito.times(1)).connect();
     }
 }

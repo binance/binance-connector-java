@@ -40,6 +40,8 @@
 
 [exchangeInfo](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#exchange-information) - exchangeInfo - [ExchangeInfoExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/general/ExchangeInfoExample.java#L48)
 
+[executionRules](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#query-execution-rules) - executionRules - [ExecutionRulesExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/general/ExecutionRulesExample.java#L49)
+
 [ping](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#test-connectivity) - ping - [PingExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/general/PingExample.java#L47)
 
 [time](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#check-server-time) - time - [TimeExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/general/TimeExample.java#L47)
@@ -51,6 +53,10 @@
 [depth](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#order-book) - depth - [DepthExample.java:54](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/DepthExample.java#L54)
 
 [klines](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#klines) - klines - [KlinesExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/KlinesExample.java#L53)
+
+[referencePrice](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price) - referencePrice - [ReferencePriceExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/ReferencePriceExample.java#L48)
+
+[referencePrice.calculation](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price-calculation) - referencePriceCalculation - [ReferencePriceCalculationExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/ReferencePriceCalculationExample.java#L48)
 
 [ticker](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#rolling-window-price-change-statistics) - ticker - [TickerExample.java:51](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TickerExample.java#L51)
 
@@ -78,7 +84,7 @@
 
 [order.cancel](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-order-trade) - orderCancel - [OrderCancelExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelExample.java#L48)
 
-[order.cancelReplace](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-and-replace-order-trade) - orderCancelReplace - [OrderCancelReplaceExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelReplaceExample.java#L53)
+[order.cancelReplace](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-and-replace-order-trade) - orderCancelReplace - [OrderCancelReplaceExample.java:55](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelReplaceExample.java#L55)
 
 [orderList.cancel](https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-order-list-trade) - orderListCancel - [OrderListCancelExample.java:48](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListCancelExample.java#L48)
 

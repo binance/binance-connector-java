@@ -490,6 +490,12 @@ public class JSON {
                 new com.binance.connector.client.spot.websocket.stream.model.RateLimits
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.stream.model.ReferencePriceRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.websocket.stream.model.ReferencePriceResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.websocket.stream.model
                         .RollingWindowTickerRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

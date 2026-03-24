@@ -63,6 +63,12 @@ public class MarkPriceStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String pLowerCase;
 
+    public static final String SERIALIZED_NAME_AP = "ap";
+
+    @SerializedName(SERIALIZED_NAME_AP)
+    @jakarta.annotation.Nullable
+    private String ap;
+
     public static final String SERIALIZED_NAME_I_LOWER_CASE = "i";
 
     @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
@@ -165,6 +171,25 @@ public class MarkPriceStreamResponse extends BaseDTO {
         this.pLowerCase = pLowerCase;
     }
 
+    public MarkPriceStreamResponse ap(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+        return this;
+    }
+
+    /**
+     * Get ap
+     *
+     * @return ap
+     */
+    @jakarta.annotation.Nullable
+    public String getAp() {
+        return ap;
+    }
+
+    public void setAp(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+    }
+
     public MarkPriceStreamResponse iLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
         this.iLowerCase = iLowerCase;
         return this;
@@ -254,6 +279,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
                 && Objects.equals(this.E, markPriceStreamResponse.E)
                 && Objects.equals(this.sLowerCase, markPriceStreamResponse.sLowerCase)
                 && Objects.equals(this.pLowerCase, markPriceStreamResponse.pLowerCase)
+                && Objects.equals(this.ap, markPriceStreamResponse.ap)
                 && Objects.equals(this.iLowerCase, markPriceStreamResponse.iLowerCase)
                 && Objects.equals(this.P, markPriceStreamResponse.P)
                 && Objects.equals(this.rLowerCase, markPriceStreamResponse.rLowerCase)
@@ -262,7 +288,8 @@ public class MarkPriceStreamResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, pLowerCase, iLowerCase, P, rLowerCase, T);
+        return Objects.hash(
+                eLowerCase, E, sLowerCase, pLowerCase, ap, iLowerCase, P, rLowerCase, T);
     }
 
     @Override
@@ -273,6 +300,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
+        sb.append("		ap: ").append(toIndentedString(ap)).append("\n");
         sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
         sb.append("		P: ").append(toIndentedString(P)).append("\n");
         sb.append("		rLowerCase: ").append(toIndentedString(rLowerCase)).append("\n");
@@ -304,6 +332,11 @@ public class MarkPriceStreamResponse extends BaseDTO {
         if (pLowerCaseValue != null) {
             String pLowerCaseValueAsString = pLowerCaseValue.toString();
             valMap.put("pLowerCase", pLowerCaseValueAsString);
+        }
+        String apValue = getAp();
+        if (apValue != null) {
+            String apValueAsString = apValue.toString();
+            valMap.put("ap", apValueAsString);
         }
         String iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
@@ -352,6 +385,10 @@ public class MarkPriceStreamResponse extends BaseDTO {
         if (pLowerCaseValue != null) {
             valMap.put("pLowerCase", pLowerCaseValue);
         }
+        Object apValue = getAp();
+        if (apValue != null) {
+            valMap.put("ap", apValue);
+        }
         Object iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
             valMap.put("iLowerCase", iLowerCaseValue);
@@ -398,6 +435,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
         openapiFields.add("E");
         openapiFields.add("s");
         openapiFields.add("p");
+        openapiFields.add("ap");
         openapiFields.add("i");
         openapiFields.add("P");
         openapiFields.add("r");
@@ -460,6 +498,14 @@ public class MarkPriceStreamResponse extends BaseDTO {
                             "Expected the field `p` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("p").toString()));
+        }
+        if ((jsonObj.get("ap") != null && !jsonObj.get("ap").isJsonNull())
+                && !jsonObj.get("ap").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ap` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ap").toString()));
         }
         if ((jsonObj.get("i") != null && !jsonObj.get("i").isJsonNull())
                 && !jsonObj.get("i").isJsonPrimitive()) {
