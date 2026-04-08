@@ -41,7 +41,7 @@ public class GetFlexibleRedemptionRecordExample {
      * Get Flexible Redemption Record(USER_DATA)
      *
      * <p>Get Flexible Redemption Record * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and
      * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
      * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
      * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but

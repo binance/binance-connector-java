@@ -24,6 +24,8 @@ import com.binance.connector.client.spot.websocket.api.model.DepthRequest;
 import com.binance.connector.client.spot.websocket.api.model.DepthResponse;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesRequest;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesResponse;
 import com.binance.connector.client.spot.websocket.api.model.KlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.KlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsRequest;
@@ -71,6 +73,10 @@ import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse
 import com.binance.connector.client.spot.websocket.api.model.OrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestResponse;
 import com.binance.connector.client.spot.websocket.api.model.PingResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonRequest;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogoutResponse;
@@ -112,7 +118,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private AccountApi accountApi;
@@ -240,6 +246,11 @@ public class SpotWebSocketApi {
         return generalApi.exchangeInfo(exchangeInfoRequest);
     }
 
+    public CompletableFuture<ExecutionRulesResponse> executionRules(
+            ExecutionRulesRequest executionRulesRequest) throws ApiException {
+        return generalApi.executionRules(executionRulesRequest);
+    }
+
     public CompletableFuture<PingResponse> ping() throws ApiException {
         return generalApi.ping();
     }
@@ -260,6 +271,16 @@ public class SpotWebSocketApi {
     public CompletableFuture<KlinesResponse> klines(KlinesRequest klinesRequest)
             throws ApiException {
         return marketApi.klines(klinesRequest);
+    }
+
+    public CompletableFuture<ReferencePriceResponse> referencePrice(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        return marketApi.referencePrice(referencePriceRequest);
+    }
+
+    public CompletableFuture<ReferencePriceCalculationResponse> referencePriceCalculation(
+            ReferencePriceCalculationRequest referencePriceCalculationRequest) throws ApiException {
+        return marketApi.referencePriceCalculation(referencePriceCalculationRequest);
     }
 
     public CompletableFuture<TickerResponse> ticker(TickerRequest tickerRequest)

@@ -42,6 +42,8 @@ import com.binance.connector.client.spot.websocket.stream.model.MiniTickerReques
 import com.binance.connector.client.spot.websocket.stream.model.MiniTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthRequest;
 import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthResponse;
+import com.binance.connector.client.spot.websocket.stream.model.ReferencePriceRequest;
+import com.binance.connector.client.spot.websocket.stream.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.TickerRequest;
@@ -62,7 +64,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class WebSocketStreamsApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -859,6 +861,83 @@ public class WebSocketStreamsApi {
 
             Set<ConstraintViolation<PartialBookDepthRequest>> violations =
                     validator.validate(partialBookDepthRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * WebSocket Reference Price Streams
+     *
+     * @param referencePriceRequest (required)
+     * @return ReferencePriceResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Reference Price Streams </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#reference-price-streams">WebSocket
+     *     Reference Price Streams Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<ReferencePriceResponse> referencePrice(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        StreamBlockingQueue<String> queue = referencePriceRaw(referencePriceRequest);
+
+        TypeToken<ReferencePriceResponse> typeToken = new TypeToken<ReferencePriceResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> referencePriceRaw(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        referencePriceValidateBeforeCall(referencePriceRequest);
+
+        String methodName =
+                "/<symbol>@referencePrice"
+                        .substring(1)
+                        .replace(
+                                "<symbol>",
+                                referencePriceRequest.getSymbol() != null
+                                        ? referencePriceRequest.getSymbol().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void referencePriceValidateBeforeCall(ReferencePriceRequest referencePriceRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<ReferencePriceRequest>> violations =
+                    validator.validate(referencePriceRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

@@ -53,7 +53,7 @@ public class BfusdApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/5.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -328,8 +328,8 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including fast redemption quota
-     * and standard redemption quota. Weight: 150
+     * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including subscription quota,
+     * fast redemption quota and standard redemption quota. Weight: 150
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;

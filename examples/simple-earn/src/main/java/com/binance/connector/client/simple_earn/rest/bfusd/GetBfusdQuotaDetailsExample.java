@@ -40,8 +40,8 @@ public class GetBfusdQuotaDetailsExample {
     /**
      * Get BFUSD Quota Details (USER_DATA)
      *
-     * <p>Get BFUSD quota details including fast redemption quota and standard redemption quota.
-     * Weight: 150
+     * <p>Get BFUSD quota details including subscription quota, fast redemption quota and standard
+     * redemption quota. Weight: 150
      *
      * @throws ApiException if the Api call fails
      */

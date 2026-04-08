@@ -27,6 +27,8 @@ import com.binance.connector.client.spot.websocket.stream.model.MiniTickerReques
 import com.binance.connector.client.spot.websocket.stream.model.MiniTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthRequest;
 import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthResponse;
+import com.binance.connector.client.spot.websocket.stream.model.ReferencePriceRequest;
+import com.binance.connector.client.spot.websocket.stream.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerRequest;
 import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerResponse;
 import com.binance.connector.client.spot.websocket.stream.model.TickerRequest;
@@ -38,7 +40,7 @@ import java.util.UUID;
 public class SpotWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/9.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -112,6 +114,11 @@ public class SpotWebSocketStreams {
     public StreamBlockingQueueWrapper<PartialBookDepthResponse> partialBookDepth(
             PartialBookDepthRequest partialBookDepthRequest) throws ApiException {
         return webSocketStreamsApi.partialBookDepth(partialBookDepthRequest);
+    }
+
+    public StreamBlockingQueueWrapper<ReferencePriceResponse> referencePrice(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        return webSocketStreamsApi.referencePrice(referencePriceRequest);
     }
 
     public StreamBlockingQueueWrapper<RollingWindowTickerResponse> rollingWindowTicker(

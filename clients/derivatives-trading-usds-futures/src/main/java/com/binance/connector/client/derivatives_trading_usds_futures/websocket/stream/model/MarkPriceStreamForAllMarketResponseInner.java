@@ -63,6 +63,12 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String pLowerCase;
 
+    public static final String SERIALIZED_NAME_AP = "ap";
+
+    @SerializedName(SERIALIZED_NAME_AP)
+    @jakarta.annotation.Nullable
+    private String ap;
+
     public static final String SERIALIZED_NAME_I_LOWER_CASE = "i";
 
     @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
@@ -168,6 +174,25 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
         this.pLowerCase = pLowerCase;
     }
 
+    public MarkPriceStreamForAllMarketResponseInner ap(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+        return this;
+    }
+
+    /**
+     * Get ap
+     *
+     * @return ap
+     */
+    @jakarta.annotation.Nullable
+    public String getAp() {
+        return ap;
+    }
+
+    public void setAp(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+    }
+
     public MarkPriceStreamForAllMarketResponseInner iLowerCase(
             @jakarta.annotation.Nullable String iLowerCase) {
         this.iLowerCase = iLowerCase;
@@ -262,6 +287,7 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
                         this.sLowerCase, markPriceStreamForAllMarketResponseInner.sLowerCase)
                 && Objects.equals(
                         this.pLowerCase, markPriceStreamForAllMarketResponseInner.pLowerCase)
+                && Objects.equals(this.ap, markPriceStreamForAllMarketResponseInner.ap)
                 && Objects.equals(
                         this.iLowerCase, markPriceStreamForAllMarketResponseInner.iLowerCase)
                 && Objects.equals(this.P, markPriceStreamForAllMarketResponseInner.P)
@@ -272,7 +298,8 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, pLowerCase, iLowerCase, P, rLowerCase, T);
+        return Objects.hash(
+                eLowerCase, E, sLowerCase, pLowerCase, ap, iLowerCase, P, rLowerCase, T);
     }
 
     @Override
@@ -283,6 +310,7 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
+        sb.append("		ap: ").append(toIndentedString(ap)).append("\n");
         sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
         sb.append("		P: ").append(toIndentedString(P)).append("\n");
         sb.append("		rLowerCase: ").append(toIndentedString(rLowerCase)).append("\n");
@@ -314,6 +342,11 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
         if (pLowerCaseValue != null) {
             String pLowerCaseValueAsString = pLowerCaseValue.toString();
             valMap.put("pLowerCase", pLowerCaseValueAsString);
+        }
+        String apValue = getAp();
+        if (apValue != null) {
+            String apValueAsString = apValue.toString();
+            valMap.put("ap", apValueAsString);
         }
         String iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
@@ -362,6 +395,10 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
         if (pLowerCaseValue != null) {
             valMap.put("pLowerCase", pLowerCaseValue);
         }
+        Object apValue = getAp();
+        if (apValue != null) {
+            valMap.put("ap", apValue);
+        }
         Object iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
             valMap.put("iLowerCase", iLowerCaseValue);
@@ -408,6 +445,7 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
         openapiFields.add("E");
         openapiFields.add("s");
         openapiFields.add("p");
+        openapiFields.add("ap");
         openapiFields.add("i");
         openapiFields.add("P");
         openapiFields.add("r");
@@ -474,6 +512,14 @@ public class MarkPriceStreamForAllMarketResponseInner extends BaseDTO {
                             "Expected the field `p` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("p").toString()));
+        }
+        if ((jsonObj.get("ap") != null && !jsonObj.get("ap").isJsonNull())
+                && !jsonObj.get("ap").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ap` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ap").toString()));
         }
         if ((jsonObj.get("i") != null && !jsonObj.get("i").isJsonNull())
                 && !jsonObj.get("i").isJsonPrimitive()) {
