@@ -5,7 +5,7 @@
     <artifactId>binance-connector-java-clients</artifactId>
     <packaging>pom</packaging>
     <name>binance-connector-java-clients</name>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <url>https://github.com/binance/binance-connector-java</url>
     <description>Java connector to Binance APIs</description>
 
@@ -385,12 +385,12 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk18on</artifactId>
-            <version>1.80</version>
+            <version>1.84</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-jetty-client</artifactId>
-            <version>11.0.25</version>
+            <version>11.0.26</version>
         </dependency>
     </dependencies>
     <properties>
