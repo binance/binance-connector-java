@@ -6,6 +6,7 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.PrivateKey;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class SignatureGeneratorFactory {
             byte[] privateKeyContent;
             // check if it is the private key content, or path to private key
             if (hasPrivateKeyHeader(privateKeyConfig)) {
-                privateKeyContent = privateKeyConfig.getBytes();
+                privateKeyContent = privateKeyConfig.getBytes(StandardCharsets.UTF_8);
             } else {
                 Path path = Paths.get(privateKeyConfig);
                 try {

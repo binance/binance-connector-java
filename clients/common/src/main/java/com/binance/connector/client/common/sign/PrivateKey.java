@@ -2,6 +2,7 @@ package com.binance.connector.client.common.sign;
 
 import com.binance.connector.client.common.ApiException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.Security;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
@@ -62,7 +63,7 @@ public class PrivateKey implements SignatureGenerator {
         try {
             Security.addProvider(new BouncyCastleProvider());
             PKCS8EncryptedPrivateKeyInfo pkcs8EncryptedPrivateKeyInfo =
-                    new PKCS8EncryptedPrivateKeyInfo(Base64.getDecoder().decode(s.getBytes()));
+                    new PKCS8EncryptedPrivateKeyInfo(Base64.getDecoder().decode(s.getBytes(StandardCharsets.UTF_8)));
             // Decrypt encrypted key
             JcaPEMKeyConverter jcaPEMKeyConverter = new JcaPEMKeyConverter();
             InputDecryptorProvider inputDecryptorProvider =
@@ -84,17 +85,17 @@ public class PrivateKey implements SignatureGenerator {
     }
 
     public byte[] sign(String input) throws CryptoException {
-        return sign(input.getBytes());
+        return sign(input.getBytes(StandardCharsets.UTF_8));
     }
 
-    public byte[] sign(byte[] input) throws CryptoException {
+    public synchronized byte[] sign(byte[] input) throws CryptoException {
         signer.update(input, 0, input.length);
         byte[] generateSignature = signer.generateSignature();
         return Base64.getEncoder().encode(generateSignature);
     }
 
     public String signAsString(String input) throws CryptoException {
-        return signAsString(input.getBytes());
+        return signAsString(input.getBytes(StandardCharsets.UTF_8));
     }
 
     public String signAsString(byte[] input) throws CryptoException {
