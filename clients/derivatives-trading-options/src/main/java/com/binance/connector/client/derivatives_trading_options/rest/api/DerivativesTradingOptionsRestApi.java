@@ -79,7 +79,8 @@ public class DerivativesTradingOptionsRestApi {
     }
 
     /**
-     * Account Funding Flow (USER_DATA) Query account funding flows. Weight: 1
+     * Account Funding Flow (USER_DATA) Query account funding flows. * Only support querying data in
+     * the past 3 months Weight: 1
      *
      * @param currency Asset type, only support USDT as of now (required)
      * @param recordId Return the recordId and subsequent data, the latest data is returned by
@@ -777,7 +778,8 @@ public class DerivativesTradingOptionsRestApi {
     }
 
     /**
-     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight: 5
+     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. * Only support
+     * querying trades in the past 3 months Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
      * @param fromId Trade id to fetch from. Default gets most recent trades, e.g

@@ -19,7 +19,7 @@ import java.util.UUID;
 public class DerivativesTradingPortfolioMarginProWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin-pro/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin-pro/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -39,6 +39,12 @@ public class DerivativesTradingPortfolioMarginProWebSocketStreams {
             connection.connect();
         }
         this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     /**

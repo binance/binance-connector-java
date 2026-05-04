@@ -50,6 +50,10 @@ public class TradeApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
      * &#x60;clientAlgoId&#x60; must be sent. Weight: 1

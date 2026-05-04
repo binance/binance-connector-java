@@ -118,8 +118,10 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final ConnectionInterface connection;
 
     private AccountApi accountApi;
     private AuthApi authApi;
@@ -156,6 +158,14 @@ public class SpotWebSocketApi {
         this.marketApi = new MarketApi(connection);
         this.tradeApi = new TradeApi(connection);
         this.userDataStreamApi = new UserDataStreamApi(connection);
+
+        this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public CompletableFuture<AccountCommissionResponse> accountCommission(

@@ -40,7 +40,7 @@ import java.util.Set;
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebSocketClientConfiguration clientConfiguration;
@@ -67,6 +67,20 @@ public class DerivativesTradingOptionsWebSocketStreams {
                             : new StreamConnectionWrapper(clientConfiguration, JSON.getGson());
         }
         return connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
+
+        if (marketApi != null && marketApi.getConnection().isConnected()) {
+            marketApi.getConnection().stop();
+        }
+
+        if (publicApi != null && publicApi.getConnection().isConnected()) {
+            publicApi.getConnection().stop();
+        }
     }
 
     public MarketApi getMarketApi() {

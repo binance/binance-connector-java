@@ -126,6 +126,7 @@ public class StakingRestApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -146,9 +147,10 @@ public class StakingRestApi {
      *     ETH redemption history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthRedemptionHistoryResponse> getEthRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
-        return ethStakingApi.getEthRedemptionHistory(startTime, endTime, current, size, recvWindow);
+        return ethStakingApi.getEthRedemptionHistory(
+                redeemId, startTime, endTime, current, size, recvWindow);
     }
 
     /**
@@ -160,6 +162,7 @@ public class StakingRestApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -180,9 +183,10 @@ public class StakingRestApi {
      *     ETH staking history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthStakingHistoryResponse> getEthStakingHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
-        return ethStakingApi.getEthStakingHistory(startTime, endTime, current, size, recvWindow);
+        return ethStakingApi.getEthStakingHistory(
+                purchaseId, startTime, endTime, current, size, recvWindow);
     }
 
     /**
@@ -1006,6 +1010,7 @@ public class StakingRestApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -1026,9 +1031,10 @@ public class StakingRestApi {
      *     SOL redemption history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolRedemptionHistoryResponse> getSolRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
-        return solStakingApi.getSolRedemptionHistory(startTime, endTime, current, size, recvWindow);
+        return solStakingApi.getSolRedemptionHistory(
+                redeemId, startTime, endTime, current, size, recvWindow);
     }
 
     /**
@@ -1040,6 +1046,7 @@ public class StakingRestApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -1060,9 +1067,10 @@ public class StakingRestApi {
      *     SOL staking history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolStakingHistoryResponse> getSolStakingHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
-        return solStakingApi.getSolStakingHistory(startTime, endTime, current, size, recvWindow);
+        return solStakingApi.getSolStakingHistory(
+                purchaseId, startTime, endTime, current, size, recvWindow);
     }
 
     /**

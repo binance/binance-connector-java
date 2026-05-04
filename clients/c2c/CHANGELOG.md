@@ -1,6 +1,36 @@
 # Changelog
 
+## 3.0.0 - 2026-05-04
+
+### Changed (1)
+
+- Modified response for `getC2CTradeHistory()` (`GET /sapi/v1/c2c/orderMatch/listUserOrderHistory`):
+  - property `unitPrice` added
+  - property `payMethodName` added
+  - property `fiatSymbol` added
+  - property `fiat` added
+  - property `commission` added
+  - property `takerCommissionRate` added
+  - property `orderStatus` added
+  - property `takerAmount` added
+  - property `additionalKycVerify` added
+  - property `counterPartNickName` added
+  - property `createTime` added
+  - property `advNo` added
+  - property `asset` added
+  - property `totalPrice` added
+  - property `tradeType` added
+  - property `takerCommission` added
+  - property `amount` added
+  - property `orderNumber` added
+  - property `code` deleted
+  - property `data` deleted
+  - property `message` deleted
+  - property `success` deleted
+  - property `total` deleted
+
 ## 2.0.1 - 2026-04-30
+
 - Update `binance/common` module to version `2.4.2`.
 
 ## 2.0.0 - 2025-12-16

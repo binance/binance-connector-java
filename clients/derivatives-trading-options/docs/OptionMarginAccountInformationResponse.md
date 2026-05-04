@@ -14,6 +14,7 @@
 |**canDeposit** | **Boolean** |  |  [optional] |
 |**canWithdraw** | **Boolean** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |
+|**tradeGroupId** | **Long** |  |  [optional] |
 
 
 

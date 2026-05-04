@@ -75,7 +75,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class WebsocketMarketStreamsApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/7.1.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -95,6 +95,10 @@ public class WebsocketMarketStreamsApi {
             connection.connect();
         }
         this.connection = connection;
+    }
+
+    public StreamConnectionInterface getConnection() {
+        return connection;
     }
 
     /**

@@ -40,7 +40,7 @@ public class AccountFundingFlowExample {
     /**
      * Account Funding Flow (USER_DATA)
      *
-     * <p>Query account funding flows. Weight: 1
+     * <p>Query account funding flows. * Only support querying data in the past 3 months Weight: 1
      *
      * @throws ApiException if the Api call fails
      */

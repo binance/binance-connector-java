@@ -156,6 +156,13 @@ public class CancelOptionOrderResponse {
     @jakarta.annotation.Nullable
     private Boolean mmp;
 
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private String selfTradePreventionMode;
+
     public CancelOptionOrderResponse() {}
 
     public CancelOptionOrderResponse orderId(@jakarta.annotation.Nullable Long orderId) {
@@ -540,6 +547,27 @@ public class CancelOptionOrderResponse {
         this.mmp = mmp;
     }
 
+    public CancelOptionOrderResponse selfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    public String getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -568,7 +596,10 @@ public class CancelOptionOrderResponse {
                 && Objects.equals(this.quantityScale, cancelOptionOrderResponse.quantityScale)
                 && Objects.equals(this.optionSide, cancelOptionOrderResponse.optionSide)
                 && Objects.equals(this.quoteAsset, cancelOptionOrderResponse.quoteAsset)
-                && Objects.equals(this.mmp, cancelOptionOrderResponse.mmp);
+                && Objects.equals(this.mmp, cancelOptionOrderResponse.mmp)
+                && Objects.equals(
+                        this.selfTradePreventionMode,
+                        cancelOptionOrderResponse.selfTradePreventionMode);
     }
 
     @Override
@@ -593,7 +624,8 @@ public class CancelOptionOrderResponse {
                 quantityScale,
                 optionSide,
                 quoteAsset,
-                mmp);
+                mmp,
+                selfTradePreventionMode);
     }
 
     @Override
@@ -620,6 +652,9 @@ public class CancelOptionOrderResponse {
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
         sb.append("		mmp: ").append(toIndentedString(mmp)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -707,6 +742,12 @@ public class CancelOptionOrderResponse {
         String mmpValueAsString = "";
         mmpValueAsString = mmpValue.toString();
         sb.append("mmp=").append(urlEncode(mmpValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
         return sb.toString();
     }
 
@@ -755,6 +796,7 @@ public class CancelOptionOrderResponse {
         openapiFields.add("optionSide");
         openapiFields.add("quoteAsset");
         openapiFields.add("mmp");
+        openapiFields.add("selfTradePreventionMode");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -881,6 +923,15 @@ public class CancelOptionOrderResponse {
                             "Expected the field `quoteAsset` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
+        }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
         }
     }
 

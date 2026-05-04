@@ -54,12 +54,10 @@ public class QueryAllAlgoOrdersExample {
         Long algoId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
         Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryAllAlgoOrdersResponse> response =
-                getApi().queryAllAlgoOrders(
-                                symbol, algoId, startTime, endTime, page, limit, recvWindow);
+                getApi().queryAllAlgoOrders(symbol, algoId, startTime, endTime, limit, recvWindow);
         System.out.println(response.getData());
     }
 }

@@ -42,6 +42,10 @@ public class AccountApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Account Information(USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.

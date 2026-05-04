@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Binance Derivatives Trading Portfolio Margin REST API
+ * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-package com.binance.connector.client.derivatives_trading_usds_futures.rest.model;
+package com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model;
 
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.JSON;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,61 +31,37 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** FuturesTradfiPerpsContractResponse */
+/** FuturesTradfiPerpsContractRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class FuturesTradfiPerpsContractResponse {
-    public static final String SERIALIZED_NAME_CODE = "code";
+public class FuturesTradfiPerpsContractRequest {
+    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
-    @SerializedName(SERIALIZED_NAME_CODE)
+    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long code;
+    private Long recvWindow;
 
-    public static final String SERIALIZED_NAME_MSG = "msg";
+    public FuturesTradfiPerpsContractRequest() {}
 
-    @SerializedName(SERIALIZED_NAME_MSG)
-    @jakarta.annotation.Nullable
-    private String msg;
-
-    public FuturesTradfiPerpsContractResponse() {}
-
-    public FuturesTradfiPerpsContractResponse code(@jakarta.annotation.Nullable Long code) {
-        this.code = code;
+    public FuturesTradfiPerpsContractRequest recvWindow(
+            @jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get code
+     * Get recvWindow
      *
-     * @return code
+     * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getCode() {
-        return code;
+    public Long getRecvWindow() {
+        return recvWindow;
     }
 
-    public void setCode(@jakarta.annotation.Nullable Long code) {
-        this.code = code;
-    }
-
-    public FuturesTradfiPerpsContractResponse msg(@jakarta.annotation.Nullable String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    /**
-     * Get msg
-     *
-     * @return msg
-     */
-    @jakarta.annotation.Nullable
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(@jakarta.annotation.Nullable String msg) {
-        this.msg = msg;
+    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+        this.recvWindow = recvWindow;
     }
 
     @Override
@@ -96,23 +72,21 @@ public class FuturesTradfiPerpsContractResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FuturesTradfiPerpsContractResponse futuresTradfiPerpsContractResponse =
-                (FuturesTradfiPerpsContractResponse) o;
-        return Objects.equals(this.code, futuresTradfiPerpsContractResponse.code)
-                && Objects.equals(this.msg, futuresTradfiPerpsContractResponse.msg);
+        FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest =
+                (FuturesTradfiPerpsContractRequest) o;
+        return Objects.equals(this.recvWindow, futuresTradfiPerpsContractRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, msg);
+        return Objects.hash(recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class FuturesTradfiPerpsContractResponse {\n");
-        sb.append("		code: ").append(toIndentedString(code)).append("\n");
-        sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
+        sb.append("class FuturesTradfiPerpsContractRequest {\n");
+        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -120,14 +94,10 @@ public class FuturesTradfiPerpsContractResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object codeValue = getCode();
-        String codeValueAsString = "";
-        codeValueAsString = codeValue.toString();
-        sb.append("code=").append(urlEncode(codeValueAsString)).append("");
-        Object msgValue = getMsg();
-        String msgValueAsString = "";
-        msgValueAsString = msgValue.toString();
-        sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
+        Object recvWindowValue = getRecvWindow();
+        String recvWindowValueAsString = "";
+        recvWindowValueAsString = recvWindowValue.toString();
+        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         return sb.toString();
     }
 
@@ -156,8 +126,7 @@ public class FuturesTradfiPerpsContractResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("code");
-        openapiFields.add("msg");
+        openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -168,55 +137,47 @@ public class FuturesTradfiPerpsContractResponse {
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     FuturesTradfiPerpsContractResponse
+     *     FuturesTradfiPerpsContractRequest
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!FuturesTradfiPerpsContractResponse.openapiRequiredFields
+            if (!FuturesTradfiPerpsContractRequest.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
-                                "The required field(s) %s in FuturesTradfiPerpsContractResponse is"
+                                "The required field(s) %s in FuturesTradfiPerpsContractRequest is"
                                         + " not found in the empty JSON string",
-                                FuturesTradfiPerpsContractResponse.openapiRequiredFields
+                                FuturesTradfiPerpsContractRequest.openapiRequiredFields
                                         .toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
-                && !jsonObj.get("msg").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `msg` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("msg").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!FuturesTradfiPerpsContractResponse.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'FuturesTradfiPerpsContractResponse' and
+            if (!FuturesTradfiPerpsContractRequest.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'FuturesTradfiPerpsContractRequest' and
                 // its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<FuturesTradfiPerpsContractResponse> thisAdapter =
+            final TypeAdapter<FuturesTradfiPerpsContractRequest> thisAdapter =
                     gson.getDelegateAdapter(
-                            this, TypeToken.get(FuturesTradfiPerpsContractResponse.class));
+                            this, TypeToken.get(FuturesTradfiPerpsContractRequest.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<FuturesTradfiPerpsContractResponse>() {
+                    new TypeAdapter<FuturesTradfiPerpsContractRequest>() {
                         @Override
-                        public void write(JsonWriter out, FuturesTradfiPerpsContractResponse value)
+                        public void write(JsonWriter out, FuturesTradfiPerpsContractRequest value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public FuturesTradfiPerpsContractResponse read(JsonReader in)
+                        public FuturesTradfiPerpsContractRequest read(JsonReader in)
                                 throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
@@ -227,20 +188,19 @@ public class FuturesTradfiPerpsContractResponse {
     }
 
     /**
-     * Create an instance of FuturesTradfiPerpsContractResponse given an JSON string
+     * Create an instance of FuturesTradfiPerpsContractRequest given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of FuturesTradfiPerpsContractResponse
+     * @return An instance of FuturesTradfiPerpsContractRequest
      * @throws IOException if the JSON string is invalid with respect to
-     *     FuturesTradfiPerpsContractResponse
+     *     FuturesTradfiPerpsContractRequest
      */
-    public static FuturesTradfiPerpsContractResponse fromJson(String jsonString)
-            throws IOException {
-        return JSON.getGson().fromJson(jsonString, FuturesTradfiPerpsContractResponse.class);
+    public static FuturesTradfiPerpsContractRequest fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, FuturesTradfiPerpsContractRequest.class);
     }
 
     /**
-     * Convert an instance of FuturesTradfiPerpsContractResponse to an JSON string
+     * Convert an instance of FuturesTradfiPerpsContractRequest to an JSON string
      *
      * @return JSON string
      */

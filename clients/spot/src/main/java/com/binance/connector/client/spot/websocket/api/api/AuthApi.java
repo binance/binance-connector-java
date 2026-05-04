@@ -39,6 +39,10 @@ public class AuthApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Log in with API key Authenticate WebSocket connection using the provided API key.
      * After calling &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and

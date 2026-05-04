@@ -156,7 +156,7 @@
 
 [GET /fapi/v1/openOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders) - currentAllOpenOrders - [CurrentAllOpenOrdersExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/CurrentAllOpenOrdersExample.java#L49)
 
-[POST /fapi/v1/stock/contract](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract) - futuresTradfiPerpsContract - [FuturesTradfiPerpsContractExample.java:48](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/FuturesTradfiPerpsContractExample.java#L48)
+[POST /fapi/v1/stock/contract](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract) - futuresTradfiPerpsContract - [FuturesTradfiPerpsContractExample.java:46](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/FuturesTradfiPerpsContractExample.java#L46)
 
 [GET /fapi/v1/orderAmendment](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History) - getOrderModifyHistory - [GetOrderModifyHistoryExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/GetOrderModifyHistoryExample.java#L49)
 
@@ -190,7 +190,7 @@
 
 [POST /fapi/v1/order/test](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test) - testOrder - [TestOrderExample.java:86](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/TestOrderExample.java#L86)
 
-[GET /fapi/v1/forceOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders) - usersForceOrders - [UsersForceOrdersExample.java:50](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/UsersForceOrdersExample.java#L50)
+[GET /fapi/v1/forceOrders](https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders) - usersForceOrders - [UsersForceOrdersExample.java:51](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/trade/UsersForceOrdersExample.java#L51)
 
 ## UserDataStreams
 

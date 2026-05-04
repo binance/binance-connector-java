@@ -50,7 +50,7 @@ public class MarkPriceKlineCandlestickDataExample {
      */
     public void markPriceKlineCandlestickDataExample() throws ApiException {
         String symbol = "";
-        Interval interval = Interval.INTERVAL_1m;
+        Interval interval = Interval.INTERVAL_1s;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 100L;

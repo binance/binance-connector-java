@@ -54,6 +54,12 @@ public class SubscribeEthStakingResponse {
     @jakarta.annotation.Nullable
     private String conversionRatio;
 
+    public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
+
+    @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
+    @jakarta.annotation.Nullable
+    private Long purchaseId;
+
     public SubscribeEthStakingResponse() {}
 
     public SubscribeEthStakingResponse success(@jakarta.annotation.Nullable Boolean success) {
@@ -115,6 +121,25 @@ public class SubscribeEthStakingResponse {
         this.conversionRatio = conversionRatio;
     }
 
+    public SubscribeEthStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -126,13 +151,13 @@ public class SubscribeEthStakingResponse {
         SubscribeEthStakingResponse subscribeEthStakingResponse = (SubscribeEthStakingResponse) o;
         return Objects.equals(this.success, subscribeEthStakingResponse.success)
                 && Objects.equals(this.wbethAmount, subscribeEthStakingResponse.wbethAmount)
-                && Objects.equals(
-                        this.conversionRatio, subscribeEthStakingResponse.conversionRatio);
+                && Objects.equals(this.conversionRatio, subscribeEthStakingResponse.conversionRatio)
+                && Objects.equals(this.purchaseId, subscribeEthStakingResponse.purchaseId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, wbethAmount, conversionRatio);
+        return Objects.hash(success, wbethAmount, conversionRatio, purchaseId);
     }
 
     @Override
@@ -142,6 +167,7 @@ public class SubscribeEthStakingResponse {
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		wbethAmount: ").append(toIndentedString(wbethAmount)).append("\n");
         sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
+        sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -161,6 +187,10 @@ public class SubscribeEthStakingResponse {
         String conversionRatioValueAsString = "";
         conversionRatioValueAsString = conversionRatioValue.toString();
         sb.append("conversionRatio=").append(urlEncode(conversionRatioValueAsString)).append("");
+        Object purchaseIdValue = getPurchaseId();
+        String purchaseIdValueAsString = "";
+        purchaseIdValueAsString = purchaseIdValue.toString();
+        sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -192,6 +222,7 @@ public class SubscribeEthStakingResponse {
         openapiFields.add("success");
         openapiFields.add("wbethAmount");
         openapiFields.add("conversionRatio");
+        openapiFields.add("purchaseId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

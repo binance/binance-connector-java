@@ -48,7 +48,7 @@
 
 [GET /papi/v1/um/trade/asyn/id](https://developers.binance.com/docs/derivatives/portfolio-margin/account/Get-UM-Futures-Trade-Download-Link-by-Id) - getUmFuturesTradeDownloadLinkById - [GetUmFuturesTradeDownloadLinkByIdExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/account/GetUmFuturesTradeDownloadLinkByIdExample.java#L47)
 
-[GET /papi/v1/um/income/asyn/id](https://developers.binance.com/docs/derivatives/portfolio-margin/account/Get-UM-Futures-Transaction-Download-Link-by-Id) - getUmFuturesTransactionDownloadLinkById - [GetUmFuturesTransactionDownloadLinkByIdExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/account/GetUmFuturesTransactionDownloadLinkByIdExample.java#L47)
+[GET /papi/v1/um/income/asyn/id](https://developers.binance.com/docs/derivatives/portfolio-margin/account/Get-UM-Futures-Transaction-Download-Link-by-Id) - getUmFuturesTransactionDownloadLinkById - [GetUmFuturesTransactionDownloadLinkByIdExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/account/GetUmFuturesTransactionDownloadLinkByIdExample.java#L48)
 
 [GET /papi/v1/um/income](https://developers.binance.com/docs/derivatives/portfolio-margin/account/Get-UM-Income-History) - getUmIncomeHistory - [GetUmIncomeHistoryExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/account/GetUmIncomeHistoryExample.java#L50)
 
@@ -94,6 +94,8 @@
 
 [DELETE /papi/v1/cm/allOpenOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-CM-Open-Orders) - cancelAllCmOpenOrders - [CancelAllCmOpenOrdersExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelAllCmOpenOrdersExample.java#L47)
 
+[DELETE /papi/v1/um/algo/allOpenOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Algo-Open-Orders) - cancelAllUmAlgoOpenOrders - [CancelAllUmAlgoOpenOrdersExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelAllUmAlgoOpenOrdersExample.java#L47)
+
 [DELETE /papi/v1/um/conditional/allOpenOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Conditional-Orders) - cancelAllUmOpenConditionalOrders - [CancelAllUmOpenConditionalOrdersExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelAllUmOpenConditionalOrdersExample.java#L47)
 
 [DELETE /papi/v1/um/allOpenOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Orders) - cancelAllUmOpenOrders - [CancelAllUmOpenOrdersExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelAllUmOpenOrdersExample.java#L47)
@@ -108,6 +110,8 @@
 
 [DELETE /papi/v1/margin/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-Margin-Account-Order) - cancelMarginAccountOrder - [CancelMarginAccountOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelMarginAccountOrderExample.java#L48)
 
+[DELETE /papi/v1/um/algo/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Algo-Order) - cancelUmAlgoOrder - [CancelUmAlgoOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelUmAlgoOrderExample.java#L48)
+
 [DELETE /papi/v1/um/conditional/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Conditional-Order) - cancelUmConditionalOrder - [CancelUmConditionalOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelUmConditionalOrderExample.java#L48)
 
 [DELETE /papi/v1/um/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Order) - cancelUmOrder - [CancelUmOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CancelUmOrderExample.java#L48)
@@ -115,6 +119,8 @@
 [GET /papi/v1/cm/userTrades](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Account-Trade-List) - cmAccountTradeList - [CmAccountTradeListExample.java:55](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CmAccountTradeListExample.java#L55)
 
 [GET /papi/v1/cm/adlQuantile](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Position-ADL-Quantile-Estimation) - cmPositionAdlQuantileEstimation - [CmPositionAdlQuantileEstimationExample.java:55](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/CmPositionAdlQuantileEstimationExample.java#L55)
+
+[POST /papi/v1/um/stock/contract](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Futures-TradFi-Perps-Contract) - futuresTradfiPerpsContract - [FuturesTradfiPerpsContractExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/FuturesTradfiPerpsContractExample.java#L48)
 
 [GET /papi/v1/um/feeBurn](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Get-UM-Futures-BNB-Burn-Status) - getUmFuturesBnbBurnStatus - [GetUmFuturesBnbBurnStatusExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/GetUmFuturesBnbBurnStatusExample.java#L48)
 
@@ -138,6 +144,8 @@
 
 [POST /papi/v1/margin/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-Margin-Order) - newMarginOrder - [NewMarginOrderExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/NewMarginOrderExample.java#L50)
 
+[POST /papi/v1/um/algo/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Algo-Order) - newUmAlgoOrder - [NewUmAlgoOrderExample.java:82](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/NewUmAlgoOrderExample.java#L82)
+
 [POST /papi/v1/um/conditional/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Conditional-Order) - newUmConditionalOrder - [NewUmConditionalOrderExample.java:80](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/NewUmConditionalOrderExample.java#L80)
 
 [POST /papi/v1/um/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Order) - newUmOrder - [NewUmOrderExample.java:56](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/NewUmOrderExample.java#L56)
@@ -149,6 +157,8 @@
 [GET /papi/v1/cm/conditional/openOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-CM-Open-Conditional-Orders) - queryAllCurrentCmOpenConditionalOrders - [QueryAllCurrentCmOpenConditionalOrdersExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryAllCurrentCmOpenConditionalOrdersExample.java#L49)
 
 [GET /papi/v1/cm/openOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-CM-Open-Orders) - queryAllCurrentCmOpenOrders - [QueryAllCurrentCmOpenOrdersExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryAllCurrentCmOpenOrdersExample.java#L49)
+
+[GET /papi/v1/um/algo/openAlgoOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Algo-Orders) - queryAllCurrentUmOpenAlgoOrders - [QueryAllCurrentUmOpenAlgoOrdersExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryAllCurrentUmOpenAlgoOrdersExample.java#L49)
 
 [GET /papi/v1/um/conditional/openOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Conditional-Orders) - queryAllCurrentUmOpenConditionalOrders - [QueryAllCurrentUmOpenConditionalOrdersExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryAllCurrentUmOpenConditionalOrdersExample.java#L49)
 
@@ -172,6 +182,8 @@
 
 [GET /papi/v1/margin/openOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-Margin-Open-Order) - queryCurrentMarginOpenOrder - [QueryCurrentMarginOpenOrderExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryCurrentMarginOpenOrderExample.java#L47)
 
+[GET /papi/v1/um/algo/algoOrder](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Algo-Order) - queryCurrentUmOpenAlgoOrder - [QueryCurrentUmOpenAlgoOrderExample.java:51](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryCurrentUmOpenAlgoOrderExample.java#L51)
+
 [GET /papi/v1/um/conditional/openOrder](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Conditional-Order) - queryCurrentUmOpenConditionalOrder - [QueryCurrentUmOpenConditionalOrderExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryCurrentUmOpenConditionalOrderExample.java#L50)
 
 [GET /papi/v1/um/openOrder](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Order) - queryCurrentUmOpenOrder - [QueryCurrentUmOpenOrderExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryCurrentUmOpenOrderExample.java#L49)
@@ -184,17 +196,19 @@
 
 [GET /papi/v1/margin/openOrderList](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Margin-Account-Open-OCO) - queryMarginAccountsOpenOco - [QueryMarginAccountsOpenOcoExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryMarginAccountsOpenOcoExample.java#L47)
 
+[GET /papi/v1/um/algo/allAlgoOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Algo-Order-History) - queryUmAlgoOrderHistory - [QueryUmAlgoOrderHistoryExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUmAlgoOrderHistoryExample.java#L50)
+
 [GET /papi/v1/um/conditional/orderHistory](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Conditional-Order-History) - queryUmConditionalOrderHistory - [QueryUmConditionalOrderHistoryExample.java:51](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUmConditionalOrderHistoryExample.java#L51)
 
 [GET /papi/v1/um/orderAmendment](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Modify-Order-History) - queryUmModifyOrderHistory - [QueryUmModifyOrderHistoryExample.java:49](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUmModifyOrderHistoryExample.java#L49)
 
 [GET /papi/v1/um/order](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Order) - queryUmOrder - [QueryUmOrderExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUmOrderExample.java#L50)
 
-[GET /papi/v1/cm/forceOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-CM-Force-Orders) - queryUsersCmForceOrders - [QueryUsersCmForceOrdersExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersCmForceOrdersExample.java#L50)
+[GET /papi/v1/cm/forceOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-CM-Force-Orders) - queryUsersCmForceOrders - [QueryUsersCmForceOrdersExample.java:51](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersCmForceOrdersExample.java#L51)
 
 [GET /papi/v1/margin/forceOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-Margin-Force-Orders) - queryUsersMarginForceOrders - [QueryUsersMarginForceOrdersExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersMarginForceOrdersExample.java#L47)
 
-[GET /papi/v1/um/forceOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-UM-Force-Orders) - queryUsersUmForceOrders - [QueryUsersUmForceOrdersExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersUmForceOrdersExample.java#L50)
+[GET /papi/v1/um/forceOrders](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-UM-Force-Orders) - queryUsersUmForceOrders - [QueryUsersUmForceOrdersExample.java:51](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersUmForceOrdersExample.java#L51)
 
 [POST /papi/v1/um/feeBurn](https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Toggle-BNB-Burn-On-UM-Futures-Trade) - toggleBnbBurnOnUmFuturesTrade - [ToggleBnbBurnOnUmFuturesTradeExample.java:50](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/ToggleBnbBurnOnUmFuturesTradeExample.java#L50)
 

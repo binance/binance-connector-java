@@ -1,6 +1,19 @@
 # Changelog
 
+## 10.1.1 - 2026-05-04
+
+- Added stop method for WebSocket
+
+### Changed (1)
+
+#### WebSocket API
+
+- Modified response for `referencePrice()` (`referencePrice` method):
+  - `result`: property `code` added
+  - `result`: property `msg` added
+
 ## 10.0.1 - 2026-04-30
+
 - Update `binance/common` module to version `2.4.2`.
 
 ## 10.0.0 - 2026-03-18

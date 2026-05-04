@@ -38,7 +38,7 @@ public class QueryUmConditionalOrderHistoryExample {
     }
 
     /**
-     * Query UM Conditional Order History(USER_DATA)
+     * Query UM Conditional Order History
      *
      * <p>Query UM Conditional Order History * Either &#x60;strategyId&#x60; or
      * &#x60;newClientStrategyId&#x60; must be sent. * &#x60;NEW&#x60; orders will not be found. *

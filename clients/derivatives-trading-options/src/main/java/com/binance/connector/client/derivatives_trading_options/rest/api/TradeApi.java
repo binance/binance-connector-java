@@ -61,7 +61,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -244,7 +244,8 @@ public class TradeApi {
     }
 
     /**
-     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight: 5
+     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. * Only support
+     * querying trades in the past 3 months Weight: 5
      *
      * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
      * @param fromId Trade id to fetch from. Default gets most recent trades, e.g
@@ -995,6 +996,11 @@ public class TradeApi {
 
         if (newOrderRequest.getIsMmp() != null) {
             localVarFormParams.put("isMmp", newOrderRequest.getIsMmp());
+        }
+
+        if (newOrderRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", newOrderRequest.getSelfTradePreventionMode());
         }
 
         if (newOrderRequest.getRecvWindow() != null) {

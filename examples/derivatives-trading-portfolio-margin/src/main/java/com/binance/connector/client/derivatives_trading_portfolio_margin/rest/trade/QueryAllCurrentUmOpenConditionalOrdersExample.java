@@ -38,7 +38,7 @@ public class QueryAllCurrentUmOpenConditionalOrdersExample {
     }
 
     /**
-     * Query All Current UM Open Conditional Orders(USER_DATA)
+     * Query All Current UM Open Conditional Orders
      *
      * <p>Get all open conditional orders on a symbol. * If the symbol is not sent, orders for all
      * symbols will be returned in an array. Weight: 1 for a single symbol; 40 when the symbol

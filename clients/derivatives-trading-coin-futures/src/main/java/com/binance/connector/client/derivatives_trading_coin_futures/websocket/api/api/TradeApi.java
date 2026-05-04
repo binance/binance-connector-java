@@ -44,6 +44,10 @@ public class TradeApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Cancel Order (TRADE) Cancel an active order. * Either &#x60;orderId&#x60; or
      * &#x60;origClientOrderId&#x60; must be sent. Weight: 1
