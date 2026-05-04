@@ -285,6 +285,36 @@ public class Executionreport extends BaseDTO {
     @jakarta.annotation.Nullable
     private String B;
 
+    public static final String SERIALIZED_NAME_CS = "Cs";
+
+    @SerializedName(SERIALIZED_NAME_CS)
+    @jakarta.annotation.Nullable
+    private String cs;
+
+    public static final String SERIALIZED_NAME_PL = "pl";
+
+    @SerializedName(SERIALIZED_NAME_PL)
+    @jakarta.annotation.Nullable
+    private String pl;
+
+    public static final String SERIALIZED_NAME_P_L = "pL";
+
+    @SerializedName(SERIALIZED_NAME_P_L)
+    @jakarta.annotation.Nullable
+    private String pL;
+
+    public static final String SERIALIZED_NAME_P_Y = "pY";
+
+    @SerializedName(SERIALIZED_NAME_P_Y)
+    @jakarta.annotation.Nullable
+    private String pY;
+
+    public static final String SERIALIZED_NAME_E_R = "eR";
+
+    @SerializedName(SERIALIZED_NAME_E_R)
+    @jakarta.annotation.Nullable
+    private String eR;
+
     public Executionreport() {}
 
     public Executionreport E(@jakarta.annotation.Nullable Long E) {
@@ -1066,6 +1096,101 @@ public class Executionreport extends BaseDTO {
         this.B = B;
     }
 
+    public Executionreport cs(@jakarta.annotation.Nullable String cs) {
+        this.cs = cs;
+        return this;
+    }
+
+    /**
+     * Get cs
+     *
+     * @return cs
+     */
+    @jakarta.annotation.Nullable
+    public String getCs() {
+        return cs;
+    }
+
+    public void setCs(@jakarta.annotation.Nullable String cs) {
+        this.cs = cs;
+    }
+
+    public Executionreport pl(@jakarta.annotation.Nullable String pl) {
+        this.pl = pl;
+        return this;
+    }
+
+    /**
+     * Get pl
+     *
+     * @return pl
+     */
+    @jakarta.annotation.Nullable
+    public String getPl() {
+        return pl;
+    }
+
+    public void setPl(@jakarta.annotation.Nullable String pl) {
+        this.pl = pl;
+    }
+
+    public Executionreport pL(@jakarta.annotation.Nullable String pL) {
+        this.pL = pL;
+        return this;
+    }
+
+    /**
+     * Get pL
+     *
+     * @return pL
+     */
+    @jakarta.annotation.Nullable
+    public String getpL() {
+        return pL;
+    }
+
+    public void setpL(@jakarta.annotation.Nullable String pL) {
+        this.pL = pL;
+    }
+
+    public Executionreport pY(@jakarta.annotation.Nullable String pY) {
+        this.pY = pY;
+        return this;
+    }
+
+    /**
+     * Get pY
+     *
+     * @return pY
+     */
+    @jakarta.annotation.Nullable
+    public String getpY() {
+        return pY;
+    }
+
+    public void setpY(@jakarta.annotation.Nullable String pY) {
+        this.pY = pY;
+    }
+
+    public Executionreport eR(@jakarta.annotation.Nullable String eR) {
+        this.eR = eR;
+        return this;
+    }
+
+    /**
+     * Get eR
+     *
+     * @return eR
+     */
+    @jakarta.annotation.Nullable
+    public String geteR() {
+        return eR;
+    }
+
+    public void seteR(@jakarta.annotation.Nullable String eR) {
+        this.eR = eR;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -1115,7 +1240,12 @@ public class Executionreport extends BaseDTO {
                 && Objects.equals(this.uLowerCase, executionreport.uLowerCase)
                 && Objects.equals(this.U, executionreport.U)
                 && Objects.equals(this.A, executionreport.A)
-                && Objects.equals(this.B, executionreport.B);
+                && Objects.equals(this.B, executionreport.B)
+                && Objects.equals(this.cs, executionreport.cs)
+                && Objects.equals(this.pl, executionreport.pl)
+                && Objects.equals(this.pL, executionreport.pL)
+                && Objects.equals(this.pY, executionreport.pY)
+                && Objects.equals(this.eR, executionreport.eR);
     }
 
     @Override
@@ -1161,7 +1291,12 @@ public class Executionreport extends BaseDTO {
                 uLowerCase,
                 U,
                 A,
-                B);
+                B,
+                cs,
+                pl,
+                pL,
+                pY,
+                eR);
     }
 
     @Override
@@ -1209,6 +1344,11 @@ public class Executionreport extends BaseDTO {
         sb.append("		U: ").append(toIndentedString(U)).append("\n");
         sb.append("		A: ").append(toIndentedString(A)).append("\n");
         sb.append("		B: ").append(toIndentedString(B)).append("\n");
+        sb.append("		cs: ").append(toIndentedString(cs)).append("\n");
+        sb.append("		pl: ").append(toIndentedString(pl)).append("\n");
+        sb.append("		pL: ").append(toIndentedString(pL)).append("\n");
+        sb.append("		pY: ").append(toIndentedString(pY)).append("\n");
+        sb.append("		eR: ").append(toIndentedString(eR)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1422,6 +1562,31 @@ public class Executionreport extends BaseDTO {
             String BValueAsString = BValue.toString();
             valMap.put("B", BValueAsString);
         }
+        String csValue = getCs();
+        if (csValue != null) {
+            String csValueAsString = csValue.toString();
+            valMap.put("cs", csValueAsString);
+        }
+        String plValue = getPl();
+        if (plValue != null) {
+            String plValueAsString = plValue.toString();
+            valMap.put("pl", plValueAsString);
+        }
+        String pLValue = getpL();
+        if (pLValue != null) {
+            String pLValueAsString = pLValue.toString();
+            valMap.put("pL", pLValueAsString);
+        }
+        String pYValue = getpY();
+        if (pYValue != null) {
+            String pYValueAsString = pYValue.toString();
+            valMap.put("pY", pYValueAsString);
+        }
+        String eRValue = geteR();
+        if (eRValue != null) {
+            String eRValueAsString = eRValue.toString();
+            valMap.put("eR", eRValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -1597,6 +1762,26 @@ public class Executionreport extends BaseDTO {
         if (BValue != null) {
             valMap.put("B", BValue);
         }
+        Object csValue = getCs();
+        if (csValue != null) {
+            valMap.put("cs", csValue);
+        }
+        Object plValue = getPl();
+        if (plValue != null) {
+            valMap.put("pl", plValue);
+        }
+        Object pLValue = getpL();
+        if (pLValue != null) {
+            valMap.put("pL", pLValue);
+        }
+        Object pYValue = getpY();
+        if (pYValue != null) {
+            valMap.put("pY", pYValue);
+        }
+        Object eRValue = geteR();
+        if (eRValue != null) {
+            valMap.put("eR", eRValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -1664,6 +1849,11 @@ public class Executionreport extends BaseDTO {
         openapiFields.add("U");
         openapiFields.add("A");
         openapiFields.add("B");
+        openapiFields.add("Cs");
+        openapiFields.add("pl");
+        openapiFields.add("pL");
+        openapiFields.add("pY");
+        openapiFields.add("eR");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1890,6 +2080,46 @@ public class Executionreport extends BaseDTO {
                             "Expected the field `B` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("B").toString()));
+        }
+        if ((jsonObj.get("Cs") != null && !jsonObj.get("Cs").isJsonNull())
+                && !jsonObj.get("Cs").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Cs` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Cs").toString()));
+        }
+        if ((jsonObj.get("pl") != null && !jsonObj.get("pl").isJsonNull())
+                && !jsonObj.get("pl").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pl` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("pl").toString()));
+        }
+        if ((jsonObj.get("pL") != null && !jsonObj.get("pL").isJsonNull())
+                && !jsonObj.get("pL").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pL` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("pL").toString()));
+        }
+        if ((jsonObj.get("pY") != null && !jsonObj.get("pY").isJsonNull())
+                && !jsonObj.get("pY").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pY` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("pY").toString()));
+        }
+        if ((jsonObj.get("eR") != null && !jsonObj.get("eR").isJsonNull())
+                && !jsonObj.get("eR").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `eR` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("eR").toString()));
         }
     }
 

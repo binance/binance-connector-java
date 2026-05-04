@@ -31,11 +31,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner */
+/** GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
-public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner {
+public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost {
     public static final String SERIALIZED_NAME_1 = "1";
 
     @SerializedName(SERIALIZED_NAME_1)
@@ -48,9 +48,9 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
     @jakarta.annotation.Nullable
     private String _2;
 
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner() {}
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost() {}
 
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner _1(
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost _1(
             @jakarta.annotation.Nullable String _1) {
         this._1 = _1;
         return this;
@@ -70,7 +70,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
         this._1 = _1;
     }
 
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner _2(
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost _2(
             @jakarta.annotation.Nullable String _2) {
         this._2 = _2;
         return this;
@@ -98,15 +98,15 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner =
-                        (GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner) o;
+        GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
+                getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost =
+                        (GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost) o;
         return Objects.equals(
                         this._1,
-                        getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner._1)
+                        getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost._1)
                 && Objects.equals(
                         this._2,
-                        getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner._2);
+                        getPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost._2);
     }
 
     @Override
@@ -117,9 +117,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(
-                "class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner"
-                        + " {\n");
+        sb.append("class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost {\n");
         sb.append("		_1: ").append(toIndentedString(_1)).append("\n");
         sb.append("		_2: ").append(toIndentedString(_2)).append("\n");
         sb.append("}");
@@ -177,19 +175,19 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+     *     GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+            if (!GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                     .openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
                                 "The required field(s) %s in"
-                                    + " GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner"
+                                    + " GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost"
                                     + " is not found in the empty JSON string",
-                                GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+                                GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                                         .openapiRequiredFields
                                         .toString()));
             }
@@ -217,29 +215,28 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner.class
+            if (!GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.class
                     .isAssignableFrom(type.getRawType())) {
                 return null; // this class only serializes
-                // 'GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner' and its
-                // subtypes
+                // 'GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost'
+                // and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<
-                            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
+            final TypeAdapter<GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost>
                     thisAdapter =
                             gson.getDelegateAdapter(
                                     this,
                                     TypeToken.get(
-                                            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+                                            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                                                     .class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<
-                            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>() {
+                            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost>() {
                         @Override
                         public void write(
                                 JsonWriter out,
-                                GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+                                GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                                         value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
@@ -247,8 +244,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
                         }
 
                         @Override
-                        public
-                        GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+                        public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                                 read(JsonReader in) throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
@@ -259,27 +255,25 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostI
     }
 
     /**
-     * Create an instance of GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+     * Create an instance of GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
      * given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of
-     *     GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+     * @return An instance of GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
      * @throws IOException if the JSON string is invalid with respect to
-     *     GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+     *     GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
      */
-    public static GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner fromJson(
+    public static GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost fromJson(
             String jsonString) throws IOException {
         return JSON.getGson()
                 .fromJson(
                         jsonString,
-                        GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                                .class);
+                        GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.class);
     }
 
     /**
-     * Convert an instance of
-     * GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner to an JSON string
+     * Convert an instance of GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost to
+     * an JSON string
      *
      * @return JSON string
      */

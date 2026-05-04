@@ -183,6 +183,12 @@ public class OrderTradeUpdateO extends BaseDTO {
     @jakarta.annotation.Nullable
     private String rp;
 
+    public static final String SERIALIZED_NAME_V = "V";
+
+    @SerializedName(SERIALIZED_NAME_V)
+    @jakarta.annotation.Nullable
+    private String V;
+
     public OrderTradeUpdateO() {}
 
     public OrderTradeUpdateO sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
@@ -641,6 +647,25 @@ public class OrderTradeUpdateO extends BaseDTO {
         this.rp = rp;
     }
 
+    public OrderTradeUpdateO V(@jakarta.annotation.Nullable String V) {
+        this.V = V;
+        return this;
+    }
+
+    /**
+     * Get V
+     *
+     * @return V
+     */
+    @jakarta.annotation.Nullable
+    public String getV() {
+        return V;
+    }
+
+    public void setV(@jakarta.annotation.Nullable String V) {
+        this.V = V;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -673,7 +698,8 @@ public class OrderTradeUpdateO extends BaseDTO {
                 && Objects.equals(this.mLowerCase, orderTradeUpdateO.mLowerCase)
                 && Objects.equals(this.R, orderTradeUpdateO.R)
                 && Objects.equals(this.ot, orderTradeUpdateO.ot)
-                && Objects.equals(this.rp, orderTradeUpdateO.rp);
+                && Objects.equals(this.rp, orderTradeUpdateO.rp)
+                && Objects.equals(this.V, orderTradeUpdateO.V);
     }
 
     @Override
@@ -702,7 +728,8 @@ public class OrderTradeUpdateO extends BaseDTO {
                 mLowerCase,
                 R,
                 ot,
-                rp);
+                rp,
+                V);
     }
 
     @Override
@@ -733,6 +760,7 @@ public class OrderTradeUpdateO extends BaseDTO {
         sb.append("		R: ").append(toIndentedString(R)).append("\n");
         sb.append("		ot: ").append(toIndentedString(ot)).append("\n");
         sb.append("		rp: ").append(toIndentedString(rp)).append("\n");
+        sb.append("		V: ").append(toIndentedString(V)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -861,6 +889,11 @@ public class OrderTradeUpdateO extends BaseDTO {
             String rpValueAsString = rpValue.toString();
             valMap.put("rp", rpValueAsString);
         }
+        String VValue = getV();
+        if (VValue != null) {
+            String VValueAsString = VValue.toString();
+            valMap.put("V", VValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -968,6 +1001,10 @@ public class OrderTradeUpdateO extends BaseDTO {
         if (rpValue != null) {
             valMap.put("rp", rpValue);
         }
+        Object VValue = getV();
+        if (VValue != null) {
+            valMap.put("V", VValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -1018,6 +1055,7 @@ public class OrderTradeUpdateO extends BaseDTO {
         openapiFields.add("R");
         openapiFields.add("ot");
         openapiFields.add("rp");
+        openapiFields.add("V");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1204,6 +1242,14 @@ public class OrderTradeUpdateO extends BaseDTO {
                             "Expected the field `rp` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("rp").toString()));
+        }
+        if ((jsonObj.get("V") != null && !jsonObj.get("V").isJsonNull())
+                && !jsonObj.get("V").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `V` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("V").toString()));
         }
     }
 

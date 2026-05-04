@@ -18,6 +18,7 @@
 |**newOrderRespType** | **NewOrderRespType** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**isMmp** | **Boolean** |  |  [optional] |
+|**selfTradePreventionMode** | **SelfTradePreventionMode** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

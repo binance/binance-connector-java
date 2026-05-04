@@ -81,10 +81,22 @@ public class JSON {
                                         Map<String, Class> classByDiscriminatorValue =
                                                 new HashMap<String, Class>();
                                         classByDiscriminatorValue.put(
+                                                "PM_PRO_ACCOUNT_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_portfolio_margin_pro
+                                                        .websocket.stream.model.PmProAccountUpdate
+                                                        .class);
+                                        classByDiscriminatorValue.put(
                                                 "riskLevelChange",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin_pro
                                                         .websocket.stream.model.Risklevelchange
+                                                        .class);
+                                        classByDiscriminatorValue.put(
+                                                "pmProAccountUpdate",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_portfolio_margin_pro
+                                                        .websocket.stream.model.PmProAccountUpdate
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "risklevelchange",
@@ -152,6 +164,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.websocket
+                        .stream.model.PmProAccountUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin_pro.websocket
                         .stream.model.Risklevelchange.CustomTypeAdapterFactory());

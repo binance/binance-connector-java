@@ -94,7 +94,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -3542,7 +3542,7 @@ public class AccountApi {
 
     /**
      * Get UM Futures Order Download Link by Id(USER_DATA) Get UM futures order download link by Id
-     * * Download link expiration: 24h Weight: 10
+     * * Download link expiration: 7 days Weight: 10
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -3687,7 +3687,7 @@ public class AccountApi {
 
     /**
      * Get UM Futures Trade Download Link by Id(USER_DATA) Get UM futures trade download link by Id
-     * * Download link expiration: 24h Weight: 10
+     * * Download link expiration: 7 days Weight: 10
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -3834,7 +3834,7 @@ public class AccountApi {
 
     /**
      * Get UM Futures Transaction Download Link by Id(USER_DATA) Get UM futures Transaction download
-     * link by Id * Download link expiration: 24h Weight: 10
+     * link by Id * Download link expiration: 7 days Weight: 10
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)

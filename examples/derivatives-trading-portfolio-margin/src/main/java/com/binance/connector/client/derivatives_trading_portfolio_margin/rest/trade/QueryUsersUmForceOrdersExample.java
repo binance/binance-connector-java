@@ -43,7 +43,8 @@ public class QueryUsersUmForceOrdersExample {
      *
      * <p>Query User&#39;s UM Force Orders * If &#x60;autoCloseType&#x60; is not sent, orders with
      * both of the types will be returned * If &#x60;startTime&#x60; is not sent, data within 7 days
-     * before &#x60;endTime&#x60; can be queried Weight: 20 with symbol, 50 without symbol
+     * before &#x60;endTime&#x60; can be queried * Only support querying data in the past 90 days
+     * Weight: 20 with symbol, 50 without symbol
      *
      * @throws ApiException if the Api call fails
      */

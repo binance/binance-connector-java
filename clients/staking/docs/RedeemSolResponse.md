@@ -11,6 +11,7 @@
 |**solAmount** | **String** |  |  [optional] |
 |**exchangeRate** | **String** |  |  [optional] |
 |**arrivalTime** | **Long** |  |  [optional] |
+|**redeemId** | **Long** |  |  [optional] |
 
 
 

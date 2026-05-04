@@ -38,7 +38,7 @@ public class CancelAllUmOpenConditionalOrdersExample {
     }
 
     /**
-     * Cancel All UM Open Conditional Orders (TRADE)
+     * Cancel All UM Open Conditional Orders
      *
      * <p>Cancel All UM Open Conditional Orders Weight: 1
      *

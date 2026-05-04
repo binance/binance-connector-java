@@ -57,7 +57,7 @@ public class EthStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/4.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -362,6 +362,7 @@ public class EthStakingApi {
     /**
      * Build call for getEthRedemptionHistory
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -381,7 +382,7 @@ public class EthStakingApi {
      *     ETH redemption history(USER_DATA) Documentation</a>
      */
     private okhttp3.Call getEthRedemptionHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -406,6 +407,10 @@ public class EthStakingApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (redeemId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("redeemId", redeemId));
+        }
 
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
@@ -459,7 +464,7 @@ public class EthStakingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEthRedemptionHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -470,11 +475,12 @@ public class EthStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {redeemId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getEthRedemptionHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -484,7 +490,8 @@ public class EthStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getEthRedemptionHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getEthRedemptionHistoryCall(
+                        redeemId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -506,6 +513,7 @@ public class EthStakingApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -526,11 +534,11 @@ public class EthStakingApi {
      *     ETH redemption history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthRedemptionHistoryResponse> getEthRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getEthRedemptionHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        redeemId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetEthRedemptionHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -539,6 +547,7 @@ public class EthStakingApi {
     /**
      * Build call for getEthStakingHistory
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -558,7 +567,7 @@ public class EthStakingApi {
      *     ETH staking history(USER_DATA) Documentation</a>
      */
     private okhttp3.Call getEthStakingHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -583,6 +592,10 @@ public class EthStakingApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (purchaseId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("purchaseId", purchaseId));
+        }
 
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
@@ -636,7 +649,7 @@ public class EthStakingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEthStakingHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -647,11 +660,12 @@ public class EthStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {purchaseId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getEthStakingHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -661,7 +675,8 @@ public class EthStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getEthStakingHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getEthStakingHistoryCall(
+                        purchaseId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -683,6 +698,7 @@ public class EthStakingApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -703,11 +719,11 @@ public class EthStakingApi {
      *     ETH staking history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthStakingHistoryResponse> getEthStakingHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getEthStakingHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        purchaseId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetEthStakingHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

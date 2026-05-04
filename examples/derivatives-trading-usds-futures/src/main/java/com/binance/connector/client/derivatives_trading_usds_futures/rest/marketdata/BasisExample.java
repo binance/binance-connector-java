@@ -51,7 +51,7 @@ public class BasisExample {
         String pair = "";
         ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
-        Long limit = 30L;
+        Long limit = 100L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<BasisResponse> response =

@@ -25,7 +25,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Account Trade List (USER_DATA)
 
-Get trades for a specific account and symbol.  Weight: 5
+Get trades for a specific account and symbol.  * Only support querying trades in the past 3 months  Weight: 5
 
 ### Example
 ```java

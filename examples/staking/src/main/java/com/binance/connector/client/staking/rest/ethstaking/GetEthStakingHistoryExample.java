@@ -50,13 +50,15 @@ public class GetEthStakingHistoryExample {
      * @throws ApiException if the Api call fails
      */
     public void getEthStakingHistoryExample() throws ApiException {
+        Long purchaseId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetEthStakingHistoryResponse> response =
-                getApi().getEthStakingHistory(startTime, endTime, current, size, recvWindow);
+                getApi().getEthStakingHistory(
+                                purchaseId, startTime, endTime, current, size, recvWindow);
         System.out.println(response.getData());
     }
 }

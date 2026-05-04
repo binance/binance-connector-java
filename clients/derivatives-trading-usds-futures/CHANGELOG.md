@@ -1,6 +1,31 @@
 # Changelog
 
+## 11.0.0 - 2026-05-04
+
+- Added stop method for WebSocket
+
+### Changed (3)
+
+#### REST API
+
+- Deleted parameter `page`
+  - affected methods:
+    - `queryAllAlgoOrders()` (`GET /fapi/v1/allAlgoOrders`)
+- Modified parameter `interval`:
+  - enum added: `1s`
+  - affected methods:
+    - `continuousContractKlineCandlestickData()` (`GET /fapi/v1/continuousKlines`)
+    - `indexPriceKlineCandlestickData()` (`GET /fapi/v1/indexPriceKlines`)
+    - `klineCandlestickData()` (`GET /fapi/v1/klines`)
+    - `markPriceKlineCandlestickData()` (`GET /fapi/v1/markPriceKlines`)
+    - `premiumIndexKlineData()` (`GET /fapi/v1/premiumIndexKlines`)
+- Modified parameter `limit`:
+  - required: `true` → `false`
+  - affected methods:
+    - `basis()` (`GET /futures/data/basis`)
+
 ## 10.0.1 - 2026-04-30
+
 - Update `binance/common` module to version `2.4.2`.
 
 ## 10.0.0 - 2026-03-18

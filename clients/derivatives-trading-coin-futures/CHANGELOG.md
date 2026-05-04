@@ -1,6 +1,11 @@
 # Changelog
 
+## 7.1.1 - 2026-05-04
+
+- Added stop method for WebSocket
+
 ## 7.0.1 - 2026-04-30
+
 - Update `binance/common` module to version `2.4.2`.
 
 ## 7.0.0 - 2026-03-18

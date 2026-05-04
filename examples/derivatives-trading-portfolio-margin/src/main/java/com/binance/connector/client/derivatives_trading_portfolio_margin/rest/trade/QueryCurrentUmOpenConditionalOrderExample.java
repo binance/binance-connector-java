@@ -38,7 +38,7 @@ public class QueryCurrentUmOpenConditionalOrderExample {
     }
 
     /**
-     * Query Current UM Open Conditional Order(USER_DATA)
+     * Query Current UM Open Conditional Order
      *
      * <p>Query Current UM Open Conditional Order * Either &#x60;strategyId&#x60; or
      * &#x60;newClientStrategyId&#x60; must be sent. * If the queried order has been

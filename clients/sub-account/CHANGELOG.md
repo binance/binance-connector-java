@@ -1,6 +1,7 @@
 # Changelog
 
 ## 5.0.1 - 2026-04-30
+
 - Update `binance/common` module to version `2.4.2`.
 
 ## 5.0.0 - 2026-02-12

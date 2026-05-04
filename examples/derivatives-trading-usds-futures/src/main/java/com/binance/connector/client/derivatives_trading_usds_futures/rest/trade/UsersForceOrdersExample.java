@@ -43,7 +43,8 @@ public class UsersForceOrdersExample {
      *
      * <p>Query user&#39;s Force Orders * If \&quot;autoCloseType\&quot; is not sent, orders with
      * both of the types will be returned * If \&quot;startTime\&quot; is not sent, data within 7
-     * days before \&quot;endTime\&quot; can be queried Weight: 20 with symbol, 50 without symbol
+     * days before \&quot;endTime\&quot; can be queried * Only support querying data in the past 90
+     * days Weight: 20 with symbol, 50 without symbol
      *
      * @throws ApiException if the Api call fails
      */
