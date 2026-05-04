@@ -1,6 +1,6 @@
 
 
-# GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+# GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
 
 
 ## Properties

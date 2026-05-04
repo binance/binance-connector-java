@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**currency** | **String** |  |  [optional] |
 |**amount** | **String** |  |  [optional] |
-|**walletAssetCost** | [**List&lt;GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner&gt;**](GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner.md) |  |  [optional] |
+|**walletAssetCost** | [**GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost**](GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.md) |  |  [optional] |
 
 
 
