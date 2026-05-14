@@ -64,7 +64,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class WebSocketStreamsApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -84,6 +84,10 @@ public class WebSocketStreamsApi {
             connection.connect();
         }
         this.connection = connection;
+    }
+
+    public StreamConnectionInterface getConnection() {
+        return connection;
     }
 
     /**

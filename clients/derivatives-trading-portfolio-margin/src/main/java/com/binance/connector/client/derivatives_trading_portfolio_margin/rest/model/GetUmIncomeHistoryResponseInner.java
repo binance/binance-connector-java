@@ -76,7 +76,7 @@ public class GetUmIncomeHistoryResponseInner {
 
     @SerializedName(SERIALIZED_NAME_TRAN_ID)
     @jakarta.annotation.Nullable
-    private String tranId;
+    private Long tranId;
 
     public static final String SERIALIZED_NAME_TRADE_ID = "tradeId";
 
@@ -201,7 +201,7 @@ public class GetUmIncomeHistoryResponseInner {
         this.time = time;
     }
 
-    public GetUmIncomeHistoryResponseInner tranId(@jakarta.annotation.Nullable String tranId) {
+    public GetUmIncomeHistoryResponseInner tranId(@jakarta.annotation.Nullable Long tranId) {
         this.tranId = tranId;
         return this;
     }
@@ -212,11 +212,11 @@ public class GetUmIncomeHistoryResponseInner {
      * @return tranId
      */
     @jakarta.annotation.Nullable
-    public String getTranId() {
+    public Long getTranId() {
         return tranId;
     }
 
-    public void setTranId(@jakarta.annotation.Nullable String tranId) {
+    public void setTranId(@jakarta.annotation.Nullable Long tranId) {
         this.tranId = tranId;
     }
 
@@ -414,14 +414,6 @@ public class GetUmIncomeHistoryResponseInner {
                             "Expected the field `info` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("info").toString()));
-        }
-        if ((jsonObj.get("tranId") != null && !jsonObj.get("tranId").isJsonNull())
-                && !jsonObj.get("tranId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `tranId` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("tranId").toString()));
         }
         if ((jsonObj.get("tradeId") != null && !jsonObj.get("tradeId").isJsonNull())
                 && !jsonObj.get("tradeId").isJsonPrimitive()) {

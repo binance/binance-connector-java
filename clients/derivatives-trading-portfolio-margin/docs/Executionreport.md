@@ -48,6 +48,11 @@
 |**U** | **Long** |  |  [optional] |
 |**A** | **String** |  |  [optional] |
 |**B** | **String** |  |  [optional] |
+|**cs** | **String** |  |  [optional] |
+|**pl** | **String** |  |  [optional] |
+|**pL** | **String** |  |  [optional] |
+|**pY** | **String** |  |  [optional] |
+|**eR** | **String** |  |  [optional] |
 
 
 

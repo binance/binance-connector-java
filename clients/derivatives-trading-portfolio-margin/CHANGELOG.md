@@ -1,5 +1,41 @@
 # Changelog
 
+## 6.0.0 - 2026-05-04
+
+- Added stop method for WebSocket
+
+### Added (7)
+
+#### REST API
+
+- `cancelAllUmAlgoOpenOrders()` (`DELETE /papi/v1/um/algo/allOpenOrders`)
+- `cancelUmAlgoOrder()` (`DELETE /papi/v1/um/algo/order`)
+- `futuresTradfiPerpsContract()` (`POST /papi/v1/um/stock/contract`)
+- `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+- `queryAllCurrentUmOpenAlgoOrders()` (`GET /papi/v1/um/algo/openAlgoOrders`)
+- `queryCurrentUmOpenAlgoOrder()` (`GET /papi/v1/um/algo/algoOrder`)
+- `queryUmAlgoOrderHistory()` (`GET /papi/v1/um/algo/allAlgoOrders`)
+
+### Changed (8)
+
+#### REST API
+
+- Modified response for `getUmIncomeHistory()` (`GET /papi/v1/um/income`):
+  - items.`tranId`: type `string` → `integer`
+  - items.`tranId`: type `string` → `integer`
+
+- Marked `cancelAllUmOpenConditionalOrders()` (`DELETE /papi/v1/um/conditional/allOpenOrders`) as deprecated.
+- Marked `cancelUmConditionalOrder()` (`DELETE /papi/v1/um/conditional/order`) as deprecated.
+- Marked `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`) as deprecated.
+- Marked `queryAllCurrentUmOpenConditionalOrders()` (`GET /papi/v1/um/conditional/openOrders`) as deprecated.
+- Marked `queryAllUmConditionalOrders()` (`GET /papi/v1/um/conditional/allOrders`) as deprecated.
+- Marked `queryCurrentUmOpenConditionalOrder()` (`GET /papi/v1/um/conditional/openOrder`) as deprecated.
+- Marked `queryUmConditionalOrderHistory()` (`GET /papi/v1/um/conditional/orderHistory`) as deprecated.
+
+## 5.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
 ## 5.0.0 - 2026-02-12
 
 ### Changed (2)

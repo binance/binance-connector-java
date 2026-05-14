@@ -4,6 +4,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
 
+import java.nio.charset.StandardCharsets;
+
 public final class HmacSignatureGenerator {
     private static final String HMAC_SHA256 = "HmacSHA256";
     private final String apiSecret;
@@ -16,10 +18,10 @@ public final class HmacSignatureGenerator {
     public String getSignature(String data) {
         byte[] hmacSha256;
         try {
-            SecretKeySpec secretKeySpec = new SecretKeySpec(apiSecret.getBytes(), HMAC_SHA256);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(apiSecret.getBytes(StandardCharsets.UTF_8), HMAC_SHA256);
             Mac mac = Mac.getInstance(HMAC_SHA256);
             mac.init(secretKeySpec);
-            hmacSha256 = mac.doFinal(data.getBytes());
+            hmacSha256 = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new RuntimeException("Failed to calculate hmac-sha256", e);
         }

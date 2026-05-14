@@ -40,7 +40,7 @@ public class GetUmFuturesOrderDownloadLinkByIdExample {
     /**
      * Get UM Futures Order Download Link by Id(USER_DATA)
      *
-     * <p>Get UM futures order download link by Id * Download link expiration: 24h Weight: 10
+     * <p>Get UM futures order download link by Id * Download link expiration: 7 days Weight: 10
      *
      * @throws ApiException if the Api call fails
      */

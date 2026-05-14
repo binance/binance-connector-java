@@ -5,6 +5,8 @@
 ## Enum
 
 
+* `INTERVAL_1s` (value: `"1s"`)
+
 * `INTERVAL_1m` (value: `"1m"`)
 
 * `INTERVAL_3m` (value: `"3m"`)

@@ -10,6 +10,7 @@
 |**T** | **Long** |  |  [optional] |
 |**E** | **Long** |  |  [optional] |
 |**fs** | **String** |  |  [optional] |
+|**ao** | [**AlgoUpdateAo**](AlgoUpdateAo.md) |  |  [optional] |
 |**so** | [**ConditionalOrderTradeUpdateSo**](ConditionalOrderTradeUpdateSo.md) |  |  [optional] |
 |**ac** | [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  |  [optional] |
 |**iLowerCase** | **Long** |  |  [optional] |
@@ -52,6 +53,11 @@
 |**W** | **Long** |  |  [optional] |
 |**V** | **String** |  |  [optional] |
 |**A** | **String** |  |  [optional] |
+|**cs** | **String** |  |  [optional] |
+|**pl** | **String** |  |  [optional] |
+|**pL** | **String** |  |  [optional] |
+|**pY** | **String** |  |  [optional] |
+|**eR** | **String** |  |  [optional] |
 |**eq** | **String** |  |  [optional] |
 |**ae** | **String** |  |  [optional] |
 

@@ -27,6 +27,7 @@
 |**optionSide** | **String** |  |  [optional] |
 |**quoteAsset** | **String** |  |  [optional] |
 |**mmp** | **Boolean** |  |  [optional] |
+|**selfTradePreventionMode** | **String** |  |  [optional] |
 
 
 

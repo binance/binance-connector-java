@@ -47,6 +47,8 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PmProAccountUpdate> adapterPmProAccountUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(PmProAccountUpdate.class));
             final TypeAdapter<Risklevelchange> adapterRisklevelchange =
                     gson.getDelegateAdapter(this, TypeToken.get(Risklevelchange.class));
 
@@ -60,6 +62,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
+                            // check if the actual instance is of the type `PmProAccountUpdate`
+                            if (value.getActualInstance() instanceof PmProAccountUpdate) {
+                                JsonElement element =
+                                        adapterPmProAccountUpdate.toJsonTree(
+                                                (PmProAccountUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
                             // check if the actual instance is of the type `Risklevelchange`
                             if (value.getActualInstance() instanceof Risklevelchange) {
                                 JsonElement element =
@@ -70,7 +80,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             }
                             throw new IOException(
                                     "Failed to serialize as the type doesn't match oneOf schemas:"
-                                            + " Risklevelchange");
+                                            + " PmProAccountUpdate, Risklevelchange");
                         }
 
                         @Override
@@ -92,9 +102,21 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             } else {
                                 // look up the discriminator value in the field `e`
                                 switch (jsonObject.get("e").getAsString()) {
+                                    case "PM_PRO_ACCOUNT_UPDATE":
+                                        deserialized =
+                                                adapterPmProAccountUpdate.fromJsonTree(jsonObject);
+                                        newUserDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newUserDataStreamEventsResponse;
                                     case "riskLevelChange":
                                         deserialized =
                                                 adapterRisklevelchange.fromJsonTree(jsonObject);
+                                        newUserDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newUserDataStreamEventsResponse;
+                                    case "pmProAccountUpdate":
+                                        deserialized =
+                                                adapterPmProAccountUpdate.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
@@ -112,7 +134,9 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                 String.format(
                                                         "Failed to lookup discriminator value `%s`"
                                                             + " for UserDataStreamEventsResponse."
-                                                            + " Possible values: riskLevelChange"
+                                                            + " Possible values:"
+                                                            + " PM_PRO_ACCOUNT_UPDATE"
+                                                            + " riskLevelChange pmProAccountUpdate"
                                                             + " risklevelchange. Falling back to"
                                                             + " String.",
                                                         jsonObject.get("e").getAsString()));
@@ -123,6 +147,27 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
+                            // deserialize PmProAccountUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                PmProAccountUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterPmProAccountUpdate;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'PmProAccountUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for PmProAccountUpdate failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'PmProAccountUpdate'",
+                                        e);
+                            }
                             // deserialize Risklevelchange
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -175,6 +220,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
+        schemas.put("PmProAccountUpdate", PmProAccountUpdate.class);
         schemas.put("Risklevelchange", Risklevelchange.class);
     }
 
@@ -185,29 +231,46 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
 
     /**
      * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-     * against the oneOf child schemas: Risklevelchange
+     * against the oneOf child schemas: PmProAccountUpdate, Risklevelchange
      *
      * <p>It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance instanceof PmProAccountUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof Risklevelchange) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be Risklevelchange");
+        throw new RuntimeException(
+                "Invalid instance type. Must be PmProAccountUpdate, Risklevelchange");
     }
 
     /**
-     * Get the actual instance, which can be the following: Risklevelchange
+     * Get the actual instance, which can be the following: PmProAccountUpdate, Risklevelchange
      *
-     * @return The actual instance (Risklevelchange)
+     * @return The actual instance (PmProAccountUpdate, Risklevelchange)
      */
     @SuppressWarnings("unchecked")
     @Override
     public Object getActualInstance() {
         return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `PmProAccountUpdate`. If the actual instance is not
+     * `PmProAccountUpdate`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `PmProAccountUpdate`
+     * @throws ClassCastException if the instance is not `PmProAccountUpdate`
+     */
+    public PmProAccountUpdate getPmProAccountUpdate() throws ClassCastException {
+        return (PmProAccountUpdate) super.getActualInstance();
     }
 
     /**
@@ -232,6 +295,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with PmProAccountUpdate
+        try {
+            PmProAccountUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for PmProAccountUpdate failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with Risklevelchange
         try {
             Risklevelchange.validateJsonElement(jsonElement);
@@ -247,9 +321,9 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             throw new IOException(
                     String.format(
                             "The JSON string is invalid for UserDataStreamEventsResponse with oneOf"
-                                    + " schemas: Risklevelchange. %d class(es) match the result,"
-                                    + " expected 1. Detailed failure message for oneOf schemas: %s."
-                                    + " JSON: %s",
+                                    + " schemas: PmProAccountUpdate, Risklevelchange. %d class(es)"
+                                    + " match the result, expected 1. Detailed failure message for"
+                                    + " oneOf schemas: %s. JSON: %s",
                             validCount, errorMessages, jsonElement.toString()));
         }
     }

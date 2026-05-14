@@ -111,9 +111,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.c2c.rest.model.GetC2CTradeHistoryResponse
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.c2c.rest.model.GetC2CTradeHistoryResponseDataInner
-                        .CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

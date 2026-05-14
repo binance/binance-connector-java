@@ -38,7 +38,7 @@ public class QueryAllUmConditionalOrdersExample {
     }
 
     /**
-     * Query All UM Conditional Orders(USER_DATA)
+     * Query All UM Conditional Orders
      *
      * <p>Query All UM Conditional Orders * These orders will not be found: * order strategyStatus
      * is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND**

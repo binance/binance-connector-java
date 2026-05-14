@@ -5,6 +5,8 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.crypto.CryptoException;
 
+import java.nio.charset.StandardCharsets;
+
 public class HmacSignatureGenerator implements SignatureGenerator {
     private static final String HMAC_SHA256 = "HmacSHA256";
     private final String apiSecret;
@@ -16,14 +18,14 @@ public class HmacSignatureGenerator implements SignatureGenerator {
 
     @Override
     public byte[] sign(String input) throws CryptoException {
-        return sign(input.getBytes());
+        return sign(input.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override
     public byte[] sign(byte[] input) throws CryptoException {
         byte[] hmacSha256;
         try {
-            SecretKeySpec secretKeySpec = new SecretKeySpec(apiSecret.getBytes(), HMAC_SHA256);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(apiSecret.getBytes(StandardCharsets.UTF_8), HMAC_SHA256);
             Mac mac = Mac.getInstance(HMAC_SHA256);
             mac.init(secretKeySpec);
             hmacSha256 = mac.doFinal(input);
@@ -35,7 +37,7 @@ public class HmacSignatureGenerator implements SignatureGenerator {
 
     @Override
     public String signAsString(String input) throws CryptoException {
-        return signAsString(input.getBytes());
+        return signAsString(input.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override

@@ -60,7 +60,7 @@ import java.util.UUID;
 public class DerivativesTradingUsdsFuturesWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/10.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebSocketClientConfiguration clientConfiguration;
@@ -88,6 +88,20 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                             : new StreamConnectionWrapper(clientConfiguration, JSON.getGson());
         }
         return connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
+
+        if (marketApi != null && marketApi.getConnection().isConnected()) {
+            marketApi.getConnection().stop();
+        }
+
+        if (publicApi != null && publicApi.getConnection().isConnected()) {
+            publicApi.getConnection().stop();
+        }
     }
 
     public MarketApi getMarketApi() {

@@ -62,6 +62,10 @@ public class MarketApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Current average price Get current average price for a symbol. Weight: 2
      *

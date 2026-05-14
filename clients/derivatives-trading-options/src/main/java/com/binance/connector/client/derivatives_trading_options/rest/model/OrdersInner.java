@@ -309,6 +309,68 @@ public class OrdersInner {
     @jakarta.annotation.Nullable
     private String isMmp;
 
+    /** Gets or Sets selfTradePreventionMode */
+    @JsonAdapter(SelfTradePreventionModeEnum.Adapter.class)
+    public enum SelfTradePreventionModeEnum {
+        EXPIRE_TAKER("EXPIRE_TAKER"),
+
+        EXPIRE_BOTH("EXPIRE_BOTH"),
+
+        EXPIRE_MAKER("EXPIRE_MAKER");
+
+        private String value;
+
+        SelfTradePreventionModeEnum(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        public static SelfTradePreventionModeEnum fromValue(String value) {
+            for (SelfTradePreventionModeEnum b : SelfTradePreventionModeEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+
+        public static class Adapter extends TypeAdapter<SelfTradePreventionModeEnum> {
+            @Override
+            public void write(
+                    final JsonWriter jsonWriter, final SelfTradePreventionModeEnum enumeration)
+                    throws IOException {
+                jsonWriter.value(enumeration.getValue());
+            }
+
+            @Override
+            public SelfTradePreventionModeEnum read(final JsonReader jsonReader)
+                    throws IOException {
+                String value = jsonReader.nextString();
+                return SelfTradePreventionModeEnum.fromValue(value);
+            }
+        }
+
+        public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+            String value = jsonElement.getAsString();
+            SelfTradePreventionModeEnum.fromValue(value);
+        }
+    }
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private SelfTradePreventionModeEnum selfTradePreventionMode;
+
     public OrdersInner() {}
 
     public OrdersInner symbol(@jakarta.annotation.Nullable String symbol) {
@@ -522,6 +584,27 @@ public class OrdersInner {
         this.isMmp = isMmp;
     }
 
+    public OrdersInner selfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionModeEnum selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    public SelfTradePreventionModeEnum getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionModeEnum selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -541,7 +624,9 @@ public class OrdersInner {
                 && Objects.equals(this.postOnly, ordersInner.postOnly)
                 && Objects.equals(this.newOrderRespType, ordersInner.newOrderRespType)
                 && Objects.equals(this.clientOrderId, ordersInner.clientOrderId)
-                && Objects.equals(this.isMmp, ordersInner.isMmp);
+                && Objects.equals(this.isMmp, ordersInner.isMmp)
+                && Objects.equals(
+                        this.selfTradePreventionMode, ordersInner.selfTradePreventionMode);
     }
 
     @Override
@@ -557,7 +642,8 @@ public class OrdersInner {
                 postOnly,
                 newOrderRespType,
                 clientOrderId,
-                isMmp);
+                isMmp,
+                selfTradePreventionMode);
     }
 
     @Override
@@ -575,6 +661,9 @@ public class OrdersInner {
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		isMmp: ").append(toIndentedString(isMmp)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -626,6 +715,12 @@ public class OrdersInner {
         String isMmpValueAsString = "";
         isMmpValueAsString = isMmpValue.toString();
         sb.append("isMmp=").append(urlEncode(isMmpValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
         return sb.toString();
     }
 
@@ -665,6 +760,7 @@ public class OrdersInner {
         openapiFields.add("newOrderRespType");
         openapiFields.add("clientOrderId");
         openapiFields.add("isMmp");
+        openapiFields.add("selfTradePreventionMode");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -793,6 +889,20 @@ public class OrdersInner {
                             "Expected the field `isMmp` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("isMmp").toString()));
+        }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionModeEnum.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 

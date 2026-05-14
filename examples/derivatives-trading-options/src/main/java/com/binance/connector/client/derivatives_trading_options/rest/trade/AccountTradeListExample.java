@@ -40,7 +40,8 @@ public class AccountTradeListExample {
     /**
      * Account Trade List (USER_DATA)
      *
-     * <p>Get trades for a specific account and symbol. Weight: 5
+     * <p>Get trades for a specific account and symbol. * Only support querying trades in the past 3
+     * months Weight: 5
      *
      * @throws ApiException if the Api call fails
      */

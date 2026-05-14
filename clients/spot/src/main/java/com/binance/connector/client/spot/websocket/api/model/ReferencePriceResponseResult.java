@@ -57,6 +57,18 @@ public class ReferencePriceResponseResult extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long timestamp;
 
+    public static final String SERIALIZED_NAME_CODE = "code";
+
+    @SerializedName(SERIALIZED_NAME_CODE)
+    @jakarta.annotation.Nullable
+    private Long code;
+
+    public static final String SERIALIZED_NAME_MSG = "msg";
+
+    @SerializedName(SERIALIZED_NAME_MSG)
+    @jakarta.annotation.Nullable
+    private String msg;
+
     public ReferencePriceResponseResult() {}
 
     public ReferencePriceResponseResult symbol(@jakarta.annotation.Nullable String symbol) {
@@ -117,6 +129,44 @@ public class ReferencePriceResponseResult extends BaseDTO {
         this.timestamp = timestamp;
     }
 
+    public ReferencePriceResponseResult code(@jakarta.annotation.Nullable Long code) {
+        this.code = code;
+        return this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return code
+     */
+    @jakarta.annotation.Nullable
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(@jakarta.annotation.Nullable Long code) {
+        this.code = code;
+    }
+
+    public ReferencePriceResponseResult msg(@jakarta.annotation.Nullable String msg) {
+        this.msg = msg;
+        return this;
+    }
+
+    /**
+     * Get msg
+     *
+     * @return msg
+     */
+    @jakarta.annotation.Nullable
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(@jakarta.annotation.Nullable String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -129,12 +179,14 @@ public class ReferencePriceResponseResult extends BaseDTO {
                 (ReferencePriceResponseResult) o;
         return Objects.equals(this.symbol, referencePriceResponseResult.symbol)
                 && Objects.equals(this.referencePrice, referencePriceResponseResult.referencePrice)
-                && Objects.equals(this.timestamp, referencePriceResponseResult.timestamp);
+                && Objects.equals(this.timestamp, referencePriceResponseResult.timestamp)
+                && Objects.equals(this.code, referencePriceResponseResult.code)
+                && Objects.equals(this.msg, referencePriceResponseResult.msg);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, referencePrice, timestamp);
+        return Objects.hash(symbol, referencePrice, timestamp, code, msg);
     }
 
     @Override
@@ -144,6 +196,8 @@ public class ReferencePriceResponseResult extends BaseDTO {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		referencePrice: ").append(toIndentedString(referencePrice)).append("\n");
         sb.append("		timestamp: ").append(toIndentedString(timestamp)).append("\n");
+        sb.append("		code: ").append(toIndentedString(code)).append("\n");
+        sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -167,7 +221,18 @@ public class ReferencePriceResponseResult extends BaseDTO {
             String timestampValueAsString = timestampValue.toString();
             valMap.put("timestamp", timestampValueAsString);
         }
-        
+        Long codeValue = getCode();
+        if (codeValue != null) {
+            String codeValueAsString = codeValue.toString();
+            valMap.put("code", codeValueAsString);
+        }
+        String msgValue = getMsg();
+        if (msgValue != null) {
+            String msgValueAsString = msgValue.toString();
+            valMap.put("msg", msgValueAsString);
+        }
+
+        valMap.put("timestamp", getTimestamp());
         return asciiEncode(
                 valMap.keySet().stream()
                         .map(key -> key + "=" + valMap.get(key))
@@ -188,6 +253,14 @@ public class ReferencePriceResponseResult extends BaseDTO {
         Object timestampValue = getTimestamp();
         if (timestampValue != null) {
             valMap.put("timestamp", timestampValue);
+        }
+        Object codeValue = getCode();
+        if (codeValue != null) {
+            valMap.put("code", codeValue);
+        }
+        Object msgValue = getMsg();
+        if (msgValue != null) {
+            valMap.put("msg", msgValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -218,6 +291,8 @@ public class ReferencePriceResponseResult extends BaseDTO {
         openapiFields.add("symbol");
         openapiFields.add("referencePrice");
         openapiFields.add("timestamp");
+        openapiFields.add("code");
+        openapiFields.add("msg");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -269,6 +344,14 @@ public class ReferencePriceResponseResult extends BaseDTO {
                             "Expected the field `referencePrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("referencePrice").toString()));
+        }
+        if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
+                && !jsonObj.get("msg").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `msg` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("msg").toString()));
         }
     }
 

@@ -48,6 +48,7 @@ public class UserDataStreamSubscribeSignatureExample {
      * <p>Weight: 2
      */
     public void userDataStreamSubscribeSignatureExampleStream() throws InterruptedException {
+
         StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
                 resp = getApi().userDataStreamSubscribeSignature(new UserDataStreamSubscribeSignatureRequest());
         resp.getResponse()

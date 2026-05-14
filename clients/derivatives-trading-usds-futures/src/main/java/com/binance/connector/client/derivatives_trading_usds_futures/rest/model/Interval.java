@@ -24,6 +24,8 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets interval */
 @JsonAdapter(Interval.Adapter.class)
 public enum Interval {
+    INTERVAL_1s("1s"),
+
     INTERVAL_1m("1m"),
 
     INTERVAL_3m("3m"),

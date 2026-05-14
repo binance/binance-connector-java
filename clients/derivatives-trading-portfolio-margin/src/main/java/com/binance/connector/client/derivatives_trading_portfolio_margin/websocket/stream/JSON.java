@@ -92,6 +92,11 @@ public class JSON {
                                                         .websocket.stream.model.AccountUpdate
                                                         .class);
                                         classByDiscriminatorValue.put(
+                                                "ALGO_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_portfolio_margin
+                                                        .websocket.stream.model.AlgoUpdate.class);
+                                        classByDiscriminatorValue.put(
                                                 "CONDITIONAL_ORDER_TRADE_UPDATE",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
@@ -157,6 +162,11 @@ public class JSON {
                                                         .derivatives_trading_portfolio_margin
                                                         .websocket.stream.model.AccountUpdate
                                                         .class);
+                                        classByDiscriminatorValue.put(
+                                                "algoUpdate",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_portfolio_margin
+                                                        .websocket.stream.model.AlgoUpdate.class);
                                         classByDiscriminatorValue.put(
                                                 "balanceupdate",
                                                 com.binance.connector.client
@@ -289,6 +299,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
                         .stream.model.AccountUpdateAPInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
+                        .stream.model.AlgoUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
+                        .stream.model.AlgoUpdateAo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
                         .stream.model.Balanceupdate.CustomTypeAdapterFactory());

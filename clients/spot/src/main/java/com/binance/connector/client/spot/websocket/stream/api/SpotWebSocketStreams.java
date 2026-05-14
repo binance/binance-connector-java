@@ -40,7 +40,7 @@ import java.util.UUID;
 public class SpotWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -62,6 +62,12 @@ public class SpotWebSocketStreams {
         this.connection = connection;
 
         this.webSocketStreamsApi = new WebSocketStreamsApi(connection);
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public StreamBlockingQueueWrapper<AggTradeResponse> aggTrade(AggTradeRequest aggTradeRequest)

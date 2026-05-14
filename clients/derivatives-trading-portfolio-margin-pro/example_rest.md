@@ -4,6 +4,8 @@
 
 [POST /sapi/v1/portfolio/repay-futures-switch](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Change-Auto-repay-futures-Status) - changeAutoRepayFuturesStatus - [ChangeAutoRepayFuturesStatusExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/ChangeAutoRepayFuturesStatusExample.java#L48)
 
+[DELETE /sapi/v1/portfolio/margin-call-level](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Delete-Margin-Call-Level) - deleteMarginCallLevel - [DeleteMarginCallLevelExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/DeleteMarginCallLevelExample.java#L47)
+
 [POST /sapi/v1/portfolio/auto-collection](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Auto-collection) - fundAutoCollection - [FundAutoCollectionExample.java:50](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/FundAutoCollectionExample.java#L50)
 
 [POST /sapi/v1/portfolio/asset-collection](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Collection-by-Asset) - fundCollectionByAsset - [FundCollectionByAssetExample.java:49](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/FundCollectionByAssetExample.java#L49)
@@ -11,6 +13,8 @@
 [GET /sapi/v1/portfolio/repay-futures-switch](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Auto-repay-futures-Status) - getAutoRepayFuturesStatus - [GetAutoRepayFuturesStatusExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/GetAutoRepayFuturesStatusExample.java#L47)
 
 [GET /sapi/v1/portfolio/delta-mode](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Delta-Mode-Status) - getDeltaModeStatus - [GetDeltaModeStatusExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/GetDeltaModeStatusExample.java#L47)
+
+[GET /sapi/v1/portfolio/margin-call-level](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Margin-Call-Level) - getMarginCallLevel - [GetMarginCallLevelExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/GetMarginCallLevelExample.java#L47)
 
 [GET /sapi/v1/portfolio/balance](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Balance-Info) - getPortfolioMarginProAccountBalance - [GetPortfolioMarginProAccountBalanceExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/GetPortfolioMarginProAccountBalanceExample.java#L47)
 
@@ -29,6 +33,8 @@
 [GET /sapi/v1/portfolio/interest-history](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History) - queryPortfolioMarginProNegativeBalanceInterestHistory - [QueryPortfolioMarginProNegativeBalanceInterestHistoryExample.java:47](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/QueryPortfolioMarginProNegativeBalanceInterestHistoryExample.java#L47)
 
 [POST /sapi/v1/portfolio/repay-futures-negative-balance](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance) - repayFuturesNegativeBalance - [RepayFuturesNegativeBalanceExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/RepayFuturesNegativeBalanceExample.java#L48)
+
+[POST /sapi/v1/portfolio/margin-call-level](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Set-Margin-Call-Level) - setMarginCallLevel - [SetMarginCallLevelExample.java:49](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/SetMarginCallLevelExample.java#L49)
 
 [POST /sapi/v1/portfolio/delta-mode](https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Switch-Delta-Mode) - switchDeltaMode - [SwitchDeltaModeExample.java:48](/examples/derivatives-trading-portfolio-margin-pro/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin_pro/rest/account/SwitchDeltaModeExample.java#L48)
 

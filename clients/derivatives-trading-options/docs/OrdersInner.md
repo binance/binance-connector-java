@@ -18,6 +18,7 @@
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**isMmp** | **String** |  |  [optional] |
+|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) |  |  [optional] |
 
 
 
@@ -55,6 +56,16 @@
 |---- | -----|
 | ACK | &quot;ACK&quot; |
 | RESULT | &quot;RESULT&quot; |
+
+
+
+## Enum: SelfTradePreventionModeEnum
+
+| Name | Value |
+|---- | -----|
+| EXPIRE_TAKER | &quot;EXPIRE_TAKER&quot; |
+| EXPIRE_BOTH | &quot;EXPIRE_BOTH&quot; |
+| EXPIRE_MAKER | &quot;EXPIRE_MAKER&quot; |
 
 
 

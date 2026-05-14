@@ -13,7 +13,7 @@
 |**asset** | **String** |  |  [optional] |
 |**info** | **String** |  |  [optional] |
 |**time** | **Long** |  |  [optional] |
-|**tranId** | **String** |  |  [optional] |
+|**tranId** | **Long** |  |  [optional] |
 |**tradeId** | **String** |  |  [optional] |
 
 
