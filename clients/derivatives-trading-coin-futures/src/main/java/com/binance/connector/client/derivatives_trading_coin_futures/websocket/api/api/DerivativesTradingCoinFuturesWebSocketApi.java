@@ -34,8 +34,10 @@ import java.util.concurrent.CompletableFuture;
 public class DerivativesTradingCoinFuturesWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/7.1.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final ConnectionInterface connection;
 
     private AccountApi accountApi;
     private TradeApi tradeApi;
@@ -62,6 +64,14 @@ public class DerivativesTradingCoinFuturesWebSocketApi {
         this.accountApi = new AccountApi(connection);
         this.tradeApi = new TradeApi(connection);
         this.userDataStreamsApi = new UserDataStreamsApi(connection);
+
+        this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public CompletableFuture<AccountInformationResponse> accountInformation(

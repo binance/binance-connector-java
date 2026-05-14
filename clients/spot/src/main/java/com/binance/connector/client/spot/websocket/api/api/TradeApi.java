@@ -64,6 +64,10 @@ public class TradeApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Cancel open orders Cancel all open orders on a symbol. This includes orders that
      * are part of an order list. Weight: 1

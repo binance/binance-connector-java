@@ -10,6 +10,7 @@
 |**success** | **Boolean** |  |  [optional] |
 |**wbethAmount** | **String** |  |  [optional] |
 |**conversionRatio** | **String** |  |  [optional] |
+|**purchaseId** | **Long** |  |  [optional] |
 
 
 

@@ -293,7 +293,7 @@ No authorization required
 
 <a id="getSolRedemptionHistory"></a>
 # **getSolRedemptionHistory**
-> GetSolRedemptionHistoryResponse getSolRedemptionHistory(startTime, endTime, current, size, recvWindow)
+> GetSolRedemptionHistoryResponse getSolRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow)
 
 Get SOL redemption history(USER_DATA)
 
@@ -314,13 +314,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
+    Long redeemId = 56L; // Long | 
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10, Max:100
     Long recvWindow = 56L; // Long | 
     try {
-      GetSolRedemptionHistoryResponse result = apiInstance.getSolRedemptionHistory(startTime, endTime, current, size, recvWindow);
+      GetSolRedemptionHistoryResponse result = apiInstance.getSolRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolStakingApi#getSolRedemptionHistory");
@@ -337,6 +338,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **redeemId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
@@ -363,7 +365,7 @@ No authorization required
 
 <a id="getSolStakingHistory"></a>
 # **getSolStakingHistory**
-> GetSolStakingHistoryResponse getSolStakingHistory(startTime, endTime, current, size, recvWindow)
+> GetSolStakingHistoryResponse getSolStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow)
 
 Get SOL staking history(USER_DATA)
 
@@ -384,13 +386,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
+    Long purchaseId = 56L; // Long | 
     Long startTime = 56L; // Long | 
     Long endTime = 56L; // Long | 
     Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
     Long size = 56L; // Long | Default:10, Max:100
     Long recvWindow = 56L; // Long | 
     try {
-      GetSolStakingHistoryResponse result = apiInstance.getSolStakingHistory(startTime, endTime, current, size, recvWindow);
+      GetSolStakingHistoryResponse result = apiInstance.getSolStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SolStakingApi#getSolStakingHistory");
@@ -407,6 +410,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **purchaseId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |

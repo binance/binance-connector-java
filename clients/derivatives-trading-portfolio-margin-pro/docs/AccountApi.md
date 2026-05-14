@@ -6,10 +6,12 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**bnbTransfer**](AccountApi.md#bnbTransfer) | **POST** /sapi/v1/portfolio/bnb-transfer | BNB transfer(USER_DATA) |
 | [**changeAutoRepayFuturesStatus**](AccountApi.md#changeAutoRepayFuturesStatus) | **POST** /sapi/v1/portfolio/repay-futures-switch | Change Auto-repay-futures Status(TRADE) |
+| [**deleteMarginCallLevel**](AccountApi.md#deleteMarginCallLevel) | **DELETE** /sapi/v1/portfolio/margin-call-level | Delete Margin Call Level (USER_DATA) |
 | [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /sapi/v1/portfolio/auto-collection | Fund Auto-collection(USER_DATA) |
 | [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset(USER_DATA) |
 | [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA) |
 | [**getDeltaModeStatus**](AccountApi.md#getDeltaModeStatus) | **GET** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status(USER_DATA) |
+| [**getMarginCallLevel**](AccountApi.md#getMarginCallLevel) | **GET** /sapi/v1/portfolio/margin-call-level | Get Margin Call Level (USER_DATA) |
 | [**getPortfolioMarginProAccountBalance**](AccountApi.md#getPortfolioMarginProAccountBalance) | **GET** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance(USER_DATA) |
 | [**getPortfolioMarginProAccountInfo**](AccountApi.md#getPortfolioMarginProAccountInfo) | **GET** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA) |
 | [**getPortfolioMarginProSpanAccountInfo**](AccountApi.md#getPortfolioMarginProSpanAccountInfo) | **GET** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA) |
@@ -19,6 +21,7 @@ All URIs are relative to *https://api.binance.com*
 | [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
 | [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) |
 | [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
+| [**setMarginCallLevel**](AccountApi.md#setMarginCallLevel) | **POST** /sapi/v1/portfolio/margin-call-level | Set Margin Call Level (USER_DATA) |
 | [**switchDeltaMode**](AccountApi.md#switchDeltaMode) | **POST** /sapi/v1/portfolio/delta-mode | Switch Delta Mode(TRADE) |
 | [**transferLdusdtRwusdForPortfolioMargin**](AccountApi.md#transferLdusdtRwusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) |
 
@@ -146,6 +149,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Change Auto-repay-futures Status |  -  |
+
+<a id="deleteMarginCallLevel"></a>
+# **deleteMarginCallLevel**
+> DeleteMarginCallLevelResponse deleteMarginCallLevel(recvWindow)
+
+Delete Margin Call Level (USER_DATA)
+
+Delete the margin call level for a Portfolio Margin account.  Weight: 1500
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      DeleteMarginCallLevelResponse result = apiInstance.deleteMarginCallLevel(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#deleteMarginCallLevel");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**DeleteMarginCallLevelResponse**](DeleteMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Delete Margin Call Level |  -  |
 
 <a id="fundAutoCollection"></a>
 # **fundAutoCollection**
@@ -394,6 +459,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Get Delta Mode Status |  -  |
+
+<a id="getMarginCallLevel"></a>
+# **getMarginCallLevel**
+> GetMarginCallLevelResponse getMarginCallLevel(recvWindow)
+
+Get Margin Call Level (USER_DATA)
+
+Get the margin call level for a Portfolio Margin account.  Weight: 1500
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 56L; // Long | 
+    try {
+      GetMarginCallLevelResponse result = apiInstance.getMarginCallLevel(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#getMarginCallLevel");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**GetMarginCallLevelResponse**](GetMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Margin Call Level |  -  |
 
 <a id="getPortfolioMarginProAccountBalance"></a>
 # **getPortfolioMarginProAccountBalance**
@@ -974,6 +1101,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Repay futures Negative Balance |  -  |
+
+<a id="setMarginCallLevel"></a>
+# **setMarginCallLevel**
+> SetMarginCallLevelResponse setMarginCallLevel(setMarginCallLevelRequest)
+
+Set Margin Call Level (USER_DATA)
+
+Set the margin call level for a Portfolio Margin account. When the account&#39;s uniMMR drops to the specified level, a notification will be sent via email and SMS.  Weight: 1500
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    SetMarginCallLevelRequest setMarginCallLevelRequest = new SetMarginCallLevelRequest(); // SetMarginCallLevelRequest | 
+    try {
+      SetMarginCallLevelResponse result = apiInstance.setMarginCallLevel(setMarginCallLevelRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#setMarginCallLevel");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setMarginCallLevelRequest** | [**SetMarginCallLevelRequest**](SetMarginCallLevelRequest.md)|  | |
+
+### Return type
+
+[**SetMarginCallLevelResponse**](SetMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Set Margin Call Level |  -  |
 
 <a id="switchDeltaMode"></a>
 # **switchDeltaMode**

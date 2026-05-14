@@ -10,6 +10,8 @@
 |**symbol** | **String** |  |  [optional] |
 |**referencePrice** | **String** |  |  [optional] |
 |**timestamp** | **Long** |  |  [optional] |
+|**code** | **Long** |  |  [optional] |
+|**msg** | **String** |  |  [optional] |
 
 
 

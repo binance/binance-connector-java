@@ -1458,7 +1458,7 @@ No authorization required
 
 Get UM Futures Order Download Link by Id(USER_DATA)
 
-Get UM futures order download link by Id  * Download link expiration: 24h  Weight: 10
+Get UM futures order download link by Id  * Download link expiration: 7 days  Weight: 10
 
 ### Example
 ```java
@@ -1522,7 +1522,7 @@ No authorization required
 
 Get UM Futures Trade Download Link by Id(USER_DATA)
 
-Get UM futures trade download link by Id  * Download link expiration: 24h  Weight: 10
+Get UM futures trade download link by Id  * Download link expiration: 7 days  Weight: 10
 
 ### Example
 ```java
@@ -1586,7 +1586,7 @@ No authorization required
 
 Get UM Futures Transaction Download Link by Id(USER_DATA)
 
-Get UM futures Transaction download link by Id  * Download link expiration: 24h  Weight: 10
+Get UM futures Transaction download link by Id  * Download link expiration: 7 days  Weight: 10
 
 ### Example
 ```java

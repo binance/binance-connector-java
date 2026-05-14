@@ -53,7 +53,7 @@ public class ContinuousContractKlineCandlestickDataExample {
     public void continuousContractKlineCandlestickDataExample() throws ApiException {
         String pair = "";
         ContractType contractType = ContractType.PERPETUAL;
-        Interval interval = Interval.INTERVAL_1m;
+        Interval interval = Interval.INTERVAL_1s;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 100L;

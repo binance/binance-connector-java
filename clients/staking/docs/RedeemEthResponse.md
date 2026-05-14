@@ -11,6 +11,7 @@
 |**ethAmount** | **String** |  |  [optional] |
 |**conversionRatio** | **String** |  |  [optional] |
 |**arrivalTime** | **Long** |  |  [optional] |
+|**redeemId** | **Long** |  |  [optional] |
 
 
 

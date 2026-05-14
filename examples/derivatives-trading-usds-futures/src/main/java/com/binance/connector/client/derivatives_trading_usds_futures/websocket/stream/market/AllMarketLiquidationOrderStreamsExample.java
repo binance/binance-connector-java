@@ -37,7 +37,7 @@ public class AllMarketLiquidationOrderStreamsExample {
      * All Market Liquidation Order Streams
      *
      * <p>The All Liquidation Order Snapshot Streams push force liquidation order information for
-     * all symbols in the market. For each symbol，only the latest one liquidation order within
+     * all symbols in the market. For each symbol，only the largest one liquidation order within
      * 1000ms will be pushed as the snapshot. If no liquidation happens in the interval of 1000ms,
      * no stream will be pushed. Update Speed: 1000ms
      *

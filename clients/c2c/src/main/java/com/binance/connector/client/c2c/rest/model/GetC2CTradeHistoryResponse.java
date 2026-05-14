@@ -14,7 +14,6 @@ package com.binance.connector.client.c2c.rest.model;
 
 import com.binance.connector.client.c2c.rest.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -23,18 +22,13 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetC2CTradeHistoryResponse */
@@ -42,142 +36,461 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class GetC2CTradeHistoryResponse {
-    public static final String SERIALIZED_NAME_CODE = "code";
+    public static final String SERIALIZED_NAME_ORDER_NUMBER = "orderNumber";
 
-    @SerializedName(SERIALIZED_NAME_CODE)
+    @SerializedName(SERIALIZED_NAME_ORDER_NUMBER)
     @jakarta.annotation.Nullable
-    private String code;
+    private String orderNumber;
 
-    public static final String SERIALIZED_NAME_MESSAGE = "message";
+    public static final String SERIALIZED_NAME_ADV_NO = "advNo";
 
-    @SerializedName(SERIALIZED_NAME_MESSAGE)
+    @SerializedName(SERIALIZED_NAME_ADV_NO)
     @jakarta.annotation.Nullable
-    private String message;
+    private String advNo;
 
-    public static final String SERIALIZED_NAME_DATA = "data";
+    public static final String SERIALIZED_NAME_TRADE_TYPE = "tradeType";
 
-    @SerializedName(SERIALIZED_NAME_DATA)
+    @SerializedName(SERIALIZED_NAME_TRADE_TYPE)
     @jakarta.annotation.Nullable
-    private List<@Valid GetC2CTradeHistoryResponseDataInner> data;
+    private String tradeType;
 
-    public static final String SERIALIZED_NAME_TOTAL = "total";
+    public static final String SERIALIZED_NAME_ASSET = "asset";
 
-    @SerializedName(SERIALIZED_NAME_TOTAL)
+    @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nullable
-    private Long total;
+    private String asset;
 
-    public static final String SERIALIZED_NAME_SUCCESS = "success";
+    public static final String SERIALIZED_NAME_FIAT = "fiat";
 
-    @SerializedName(SERIALIZED_NAME_SUCCESS)
+    @SerializedName(SERIALIZED_NAME_FIAT)
     @jakarta.annotation.Nullable
-    private Boolean success;
+    private String fiat;
+
+    public static final String SERIALIZED_NAME_FIAT_SYMBOL = "fiatSymbol";
+
+    @SerializedName(SERIALIZED_NAME_FIAT_SYMBOL)
+    @jakarta.annotation.Nullable
+    private String fiatSymbol;
+
+    public static final String SERIALIZED_NAME_AMOUNT = "amount";
+
+    @SerializedName(SERIALIZED_NAME_AMOUNT)
+    @jakarta.annotation.Nullable
+    private String amount;
+
+    public static final String SERIALIZED_NAME_TOTAL_PRICE = "totalPrice";
+
+    @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
+    @jakarta.annotation.Nullable
+    private String totalPrice;
+
+    public static final String SERIALIZED_NAME_UNIT_PRICE = "unitPrice";
+
+    @SerializedName(SERIALIZED_NAME_UNIT_PRICE)
+    @jakarta.annotation.Nullable
+    private String unitPrice;
+
+    public static final String SERIALIZED_NAME_ORDER_STATUS = "orderStatus";
+
+    @SerializedName(SERIALIZED_NAME_ORDER_STATUS)
+    @jakarta.annotation.Nullable
+    private String orderStatus;
+
+    public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
+
+    @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+    @jakarta.annotation.Nullable
+    private Long createTime;
+
+    public static final String SERIALIZED_NAME_COMMISSION = "commission";
+
+    @SerializedName(SERIALIZED_NAME_COMMISSION)
+    @jakarta.annotation.Nullable
+    private String commission;
+
+    public static final String SERIALIZED_NAME_TAKER_COMMISSION_RATE = "takerCommissionRate";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_COMMISSION_RATE)
+    @jakarta.annotation.Nullable
+    private String takerCommissionRate;
+
+    public static final String SERIALIZED_NAME_TAKER_COMMISSION = "takerCommission";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_COMMISSION)
+    @jakarta.annotation.Nullable
+    private String takerCommission;
+
+    public static final String SERIALIZED_NAME_TAKER_AMOUNT = "takerAmount";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_AMOUNT)
+    @jakarta.annotation.Nullable
+    private String takerAmount;
+
+    public static final String SERIALIZED_NAME_COUNTER_PART_NICK_NAME = "counterPartNickName";
+
+    @SerializedName(SERIALIZED_NAME_COUNTER_PART_NICK_NAME)
+    @jakarta.annotation.Nullable
+    private String counterPartNickName;
+
+    public static final String SERIALIZED_NAME_PAY_METHOD_NAME = "payMethodName";
+
+    @SerializedName(SERIALIZED_NAME_PAY_METHOD_NAME)
+    @jakarta.annotation.Nullable
+    private String payMethodName;
+
+    public static final String SERIALIZED_NAME_ADDITIONAL_KYC_VERIFY = "additionalKycVerify";
+
+    @SerializedName(SERIALIZED_NAME_ADDITIONAL_KYC_VERIFY)
+    @jakarta.annotation.Nullable
+    private Long additionalKycVerify;
 
     public GetC2CTradeHistoryResponse() {}
 
-    public GetC2CTradeHistoryResponse code(@jakarta.annotation.Nullable String code) {
-        this.code = code;
+    public GetC2CTradeHistoryResponse orderNumber(@jakarta.annotation.Nullable String orderNumber) {
+        this.orderNumber = orderNumber;
         return this;
     }
 
     /**
-     * Get code
+     * Get orderNumber
      *
-     * @return code
+     * @return orderNumber
      */
     @jakarta.annotation.Nullable
-    public String getCode() {
-        return code;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setCode(@jakarta.annotation.Nullable String code) {
-        this.code = code;
+    public void setOrderNumber(@jakarta.annotation.Nullable String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
-    public GetC2CTradeHistoryResponse message(@jakarta.annotation.Nullable String message) {
-        this.message = message;
+    public GetC2CTradeHistoryResponse advNo(@jakarta.annotation.Nullable String advNo) {
+        this.advNo = advNo;
         return this;
     }
 
     /**
-     * Get message
+     * Get advNo
      *
-     * @return message
+     * @return advNo
      */
     @jakarta.annotation.Nullable
-    public String getMessage() {
-        return message;
+    public String getAdvNo() {
+        return advNo;
     }
 
-    public void setMessage(@jakarta.annotation.Nullable String message) {
-        this.message = message;
+    public void setAdvNo(@jakarta.annotation.Nullable String advNo) {
+        this.advNo = advNo;
     }
 
-    public GetC2CTradeHistoryResponse data(
-            @jakarta.annotation.Nullable List<@Valid GetC2CTradeHistoryResponseDataInner> data) {
-        this.data = data;
-        return this;
-    }
-
-    public GetC2CTradeHistoryResponse addDataItem(GetC2CTradeHistoryResponseDataInner dataItem) {
-        if (this.data == null) {
-            this.data = new ArrayList<>();
-        }
-        this.data.add(dataItem);
+    public GetC2CTradeHistoryResponse tradeType(@jakarta.annotation.Nullable String tradeType) {
+        this.tradeType = tradeType;
         return this;
     }
 
     /**
-     * Get data
+     * Get tradeType
      *
-     * @return data
+     * @return tradeType
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public List<@Valid GetC2CTradeHistoryResponseDataInner> getData() {
-        return data;
+    public String getTradeType() {
+        return tradeType;
     }
 
-    public void setData(
-            @jakarta.annotation.Nullable List<@Valid GetC2CTradeHistoryResponseDataInner> data) {
-        this.data = data;
+    public void setTradeType(@jakarta.annotation.Nullable String tradeType) {
+        this.tradeType = tradeType;
     }
 
-    public GetC2CTradeHistoryResponse total(@jakarta.annotation.Nullable Long total) {
-        this.total = total;
+    public GetC2CTradeHistoryResponse asset(@jakarta.annotation.Nullable String asset) {
+        this.asset = asset;
         return this;
     }
 
     /**
-     * Get total
+     * Get asset
      *
-     * @return total
+     * @return asset
      */
     @jakarta.annotation.Nullable
-    public Long getTotal() {
-        return total;
+    public String getAsset() {
+        return asset;
     }
 
-    public void setTotal(@jakarta.annotation.Nullable Long total) {
-        this.total = total;
+    public void setAsset(@jakarta.annotation.Nullable String asset) {
+        this.asset = asset;
     }
 
-    public GetC2CTradeHistoryResponse success(@jakarta.annotation.Nullable Boolean success) {
-        this.success = success;
+    public GetC2CTradeHistoryResponse fiat(@jakarta.annotation.Nullable String fiat) {
+        this.fiat = fiat;
         return this;
     }
 
     /**
-     * Get success
+     * Get fiat
      *
-     * @return success
+     * @return fiat
      */
     @jakarta.annotation.Nullable
-    public Boolean getSuccess() {
-        return success;
+    public String getFiat() {
+        return fiat;
     }
 
-    public void setSuccess(@jakarta.annotation.Nullable Boolean success) {
-        this.success = success;
+    public void setFiat(@jakarta.annotation.Nullable String fiat) {
+        this.fiat = fiat;
+    }
+
+    public GetC2CTradeHistoryResponse fiatSymbol(@jakarta.annotation.Nullable String fiatSymbol) {
+        this.fiatSymbol = fiatSymbol;
+        return this;
+    }
+
+    /**
+     * Get fiatSymbol
+     *
+     * @return fiatSymbol
+     */
+    @jakarta.annotation.Nullable
+    public String getFiatSymbol() {
+        return fiatSymbol;
+    }
+
+    public void setFiatSymbol(@jakarta.annotation.Nullable String fiatSymbol) {
+        this.fiatSymbol = fiatSymbol;
+    }
+
+    public GetC2CTradeHistoryResponse amount(@jakarta.annotation.Nullable String amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return amount
+     */
+    @jakarta.annotation.Nullable
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(@jakarta.annotation.Nullable String amount) {
+        this.amount = amount;
+    }
+
+    public GetC2CTradeHistoryResponse totalPrice(@jakarta.annotation.Nullable String totalPrice) {
+        this.totalPrice = totalPrice;
+        return this;
+    }
+
+    /**
+     * Get totalPrice
+     *
+     * @return totalPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(@jakarta.annotation.Nullable String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public GetC2CTradeHistoryResponse unitPrice(@jakarta.annotation.Nullable String unitPrice) {
+        this.unitPrice = unitPrice;
+        return this;
+    }
+
+    /**
+     * Get unitPrice
+     *
+     * @return unitPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(@jakarta.annotation.Nullable String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public GetC2CTradeHistoryResponse orderStatus(@jakarta.annotation.Nullable String orderStatus) {
+        this.orderStatus = orderStatus;
+        return this;
+    }
+
+    /**
+     * Get orderStatus
+     *
+     * @return orderStatus
+     */
+    @jakarta.annotation.Nullable
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(@jakarta.annotation.Nullable String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public GetC2CTradeHistoryResponse createTime(@jakarta.annotation.Nullable Long createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    /**
+     * Get createTime
+     *
+     * @return createTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(@jakarta.annotation.Nullable Long createTime) {
+        this.createTime = createTime;
+    }
+
+    public GetC2CTradeHistoryResponse commission(@jakarta.annotation.Nullable String commission) {
+        this.commission = commission;
+        return this;
+    }
+
+    /**
+     * Get commission
+     *
+     * @return commission
+     */
+    @jakarta.annotation.Nullable
+    public String getCommission() {
+        return commission;
+    }
+
+    public void setCommission(@jakarta.annotation.Nullable String commission) {
+        this.commission = commission;
+    }
+
+    public GetC2CTradeHistoryResponse takerCommissionRate(
+            @jakarta.annotation.Nullable String takerCommissionRate) {
+        this.takerCommissionRate = takerCommissionRate;
+        return this;
+    }
+
+    /**
+     * Get takerCommissionRate
+     *
+     * @return takerCommissionRate
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerCommissionRate() {
+        return takerCommissionRate;
+    }
+
+    public void setTakerCommissionRate(@jakarta.annotation.Nullable String takerCommissionRate) {
+        this.takerCommissionRate = takerCommissionRate;
+    }
+
+    public GetC2CTradeHistoryResponse takerCommission(
+            @jakarta.annotation.Nullable String takerCommission) {
+        this.takerCommission = takerCommission;
+        return this;
+    }
+
+    /**
+     * Get takerCommission
+     *
+     * @return takerCommission
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerCommission() {
+        return takerCommission;
+    }
+
+    public void setTakerCommission(@jakarta.annotation.Nullable String takerCommission) {
+        this.takerCommission = takerCommission;
+    }
+
+    public GetC2CTradeHistoryResponse takerAmount(@jakarta.annotation.Nullable String takerAmount) {
+        this.takerAmount = takerAmount;
+        return this;
+    }
+
+    /**
+     * Get takerAmount
+     *
+     * @return takerAmount
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerAmount() {
+        return takerAmount;
+    }
+
+    public void setTakerAmount(@jakarta.annotation.Nullable String takerAmount) {
+        this.takerAmount = takerAmount;
+    }
+
+    public GetC2CTradeHistoryResponse counterPartNickName(
+            @jakarta.annotation.Nullable String counterPartNickName) {
+        this.counterPartNickName = counterPartNickName;
+        return this;
+    }
+
+    /**
+     * Get counterPartNickName
+     *
+     * @return counterPartNickName
+     */
+    @jakarta.annotation.Nullable
+    public String getCounterPartNickName() {
+        return counterPartNickName;
+    }
+
+    public void setCounterPartNickName(@jakarta.annotation.Nullable String counterPartNickName) {
+        this.counterPartNickName = counterPartNickName;
+    }
+
+    public GetC2CTradeHistoryResponse payMethodName(
+            @jakarta.annotation.Nullable String payMethodName) {
+        this.payMethodName = payMethodName;
+        return this;
+    }
+
+    /**
+     * Get payMethodName
+     *
+     * @return payMethodName
+     */
+    @jakarta.annotation.Nullable
+    public String getPayMethodName() {
+        return payMethodName;
+    }
+
+    public void setPayMethodName(@jakarta.annotation.Nullable String payMethodName) {
+        this.payMethodName = payMethodName;
+    }
+
+    public GetC2CTradeHistoryResponse additionalKycVerify(
+            @jakarta.annotation.Nullable Long additionalKycVerify) {
+        this.additionalKycVerify = additionalKycVerify;
+        return this;
+    }
+
+    /**
+     * Get additionalKycVerify
+     *
+     * @return additionalKycVerify
+     */
+    @jakarta.annotation.Nullable
+    public Long getAdditionalKycVerify() {
+        return additionalKycVerify;
+    }
+
+    public void setAdditionalKycVerify(@jakarta.annotation.Nullable Long additionalKycVerify) {
+        this.additionalKycVerify = additionalKycVerify;
     }
 
     @Override
@@ -189,27 +502,80 @@ public class GetC2CTradeHistoryResponse {
             return false;
         }
         GetC2CTradeHistoryResponse getC2CTradeHistoryResponse = (GetC2CTradeHistoryResponse) o;
-        return Objects.equals(this.code, getC2CTradeHistoryResponse.code)
-                && Objects.equals(this.message, getC2CTradeHistoryResponse.message)
-                && Objects.equals(this.data, getC2CTradeHistoryResponse.data)
-                && Objects.equals(this.total, getC2CTradeHistoryResponse.total)
-                && Objects.equals(this.success, getC2CTradeHistoryResponse.success);
+        return Objects.equals(this.orderNumber, getC2CTradeHistoryResponse.orderNumber)
+                && Objects.equals(this.advNo, getC2CTradeHistoryResponse.advNo)
+                && Objects.equals(this.tradeType, getC2CTradeHistoryResponse.tradeType)
+                && Objects.equals(this.asset, getC2CTradeHistoryResponse.asset)
+                && Objects.equals(this.fiat, getC2CTradeHistoryResponse.fiat)
+                && Objects.equals(this.fiatSymbol, getC2CTradeHistoryResponse.fiatSymbol)
+                && Objects.equals(this.amount, getC2CTradeHistoryResponse.amount)
+                && Objects.equals(this.totalPrice, getC2CTradeHistoryResponse.totalPrice)
+                && Objects.equals(this.unitPrice, getC2CTradeHistoryResponse.unitPrice)
+                && Objects.equals(this.orderStatus, getC2CTradeHistoryResponse.orderStatus)
+                && Objects.equals(this.createTime, getC2CTradeHistoryResponse.createTime)
+                && Objects.equals(this.commission, getC2CTradeHistoryResponse.commission)
+                && Objects.equals(
+                        this.takerCommissionRate, getC2CTradeHistoryResponse.takerCommissionRate)
+                && Objects.equals(this.takerCommission, getC2CTradeHistoryResponse.takerCommission)
+                && Objects.equals(this.takerAmount, getC2CTradeHistoryResponse.takerAmount)
+                && Objects.equals(
+                        this.counterPartNickName, getC2CTradeHistoryResponse.counterPartNickName)
+                && Objects.equals(this.payMethodName, getC2CTradeHistoryResponse.payMethodName)
+                && Objects.equals(
+                        this.additionalKycVerify, getC2CTradeHistoryResponse.additionalKycVerify);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, message, data, total, success);
+        return Objects.hash(
+                orderNumber,
+                advNo,
+                tradeType,
+                asset,
+                fiat,
+                fiatSymbol,
+                amount,
+                totalPrice,
+                unitPrice,
+                orderStatus,
+                createTime,
+                commission,
+                takerCommissionRate,
+                takerCommission,
+                takerAmount,
+                counterPartNickName,
+                payMethodName,
+                additionalKycVerify);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class GetC2CTradeHistoryResponse {\n");
-        sb.append("		code: ").append(toIndentedString(code)).append("\n");
-        sb.append("		message: ").append(toIndentedString(message)).append("\n");
-        sb.append("		data: ").append(toIndentedString(data)).append("\n");
-        sb.append("		total: ").append(toIndentedString(total)).append("\n");
-        sb.append("		success: ").append(toIndentedString(success)).append("\n");
+        sb.append("		orderNumber: ").append(toIndentedString(orderNumber)).append("\n");
+        sb.append("		advNo: ").append(toIndentedString(advNo)).append("\n");
+        sb.append("		tradeType: ").append(toIndentedString(tradeType)).append("\n");
+        sb.append("		asset: ").append(toIndentedString(asset)).append("\n");
+        sb.append("		fiat: ").append(toIndentedString(fiat)).append("\n");
+        sb.append("		fiatSymbol: ").append(toIndentedString(fiatSymbol)).append("\n");
+        sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
+        sb.append("		totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
+        sb.append("		unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
+        sb.append("		orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
+        sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
+        sb.append("		commission: ").append(toIndentedString(commission)).append("\n");
+        sb.append("		takerCommissionRate: ")
+                .append(toIndentedString(takerCommissionRate))
+                .append("\n");
+        sb.append("		takerCommission: ").append(toIndentedString(takerCommission)).append("\n");
+        sb.append("		takerAmount: ").append(toIndentedString(takerAmount)).append("\n");
+        sb.append("		counterPartNickName: ")
+                .append(toIndentedString(counterPartNickName))
+                .append("\n");
+        sb.append("		payMethodName: ").append(toIndentedString(payMethodName)).append("\n");
+        sb.append("		additionalKycVerify: ")
+                .append(toIndentedString(additionalKycVerify))
+                .append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -217,29 +583,84 @@ public class GetC2CTradeHistoryResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object codeValue = getCode();
-        String codeValueAsString = "";
-        codeValueAsString = codeValue.toString();
-        sb.append("code=").append(urlEncode(codeValueAsString)).append("");
-        Object messageValue = getMessage();
-        String messageValueAsString = "";
-        messageValueAsString = messageValue.toString();
-        sb.append("message=").append(urlEncode(messageValueAsString)).append("");
-        Object dataValue = getData();
-        String dataValueAsString = "";
-        dataValueAsString =
-                (String)
-                        ((Collection) dataValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
-        sb.append("data=").append(urlEncode(dataValueAsString)).append("");
-        Object totalValue = getTotal();
-        String totalValueAsString = "";
-        totalValueAsString = totalValue.toString();
-        sb.append("total=").append(urlEncode(totalValueAsString)).append("");
-        Object successValue = getSuccess();
-        String successValueAsString = "";
-        successValueAsString = successValue.toString();
-        sb.append("success=").append(urlEncode(successValueAsString)).append("");
+        Object orderNumberValue = getOrderNumber();
+        String orderNumberValueAsString = "";
+        orderNumberValueAsString = orderNumberValue.toString();
+        sb.append("orderNumber=").append(urlEncode(orderNumberValueAsString)).append("");
+        Object advNoValue = getAdvNo();
+        String advNoValueAsString = "";
+        advNoValueAsString = advNoValue.toString();
+        sb.append("advNo=").append(urlEncode(advNoValueAsString)).append("");
+        Object tradeTypeValue = getTradeType();
+        String tradeTypeValueAsString = "";
+        tradeTypeValueAsString = tradeTypeValue.toString();
+        sb.append("tradeType=").append(urlEncode(tradeTypeValueAsString)).append("");
+        Object assetValue = getAsset();
+        String assetValueAsString = "";
+        assetValueAsString = assetValue.toString();
+        sb.append("asset=").append(urlEncode(assetValueAsString)).append("");
+        Object fiatValue = getFiat();
+        String fiatValueAsString = "";
+        fiatValueAsString = fiatValue.toString();
+        sb.append("fiat=").append(urlEncode(fiatValueAsString)).append("");
+        Object fiatSymbolValue = getFiatSymbol();
+        String fiatSymbolValueAsString = "";
+        fiatSymbolValueAsString = fiatSymbolValue.toString();
+        sb.append("fiatSymbol=").append(urlEncode(fiatSymbolValueAsString)).append("");
+        Object amountValue = getAmount();
+        String amountValueAsString = "";
+        amountValueAsString = amountValue.toString();
+        sb.append("amount=").append(urlEncode(amountValueAsString)).append("");
+        Object totalPriceValue = getTotalPrice();
+        String totalPriceValueAsString = "";
+        totalPriceValueAsString = totalPriceValue.toString();
+        sb.append("totalPrice=").append(urlEncode(totalPriceValueAsString)).append("");
+        Object unitPriceValue = getUnitPrice();
+        String unitPriceValueAsString = "";
+        unitPriceValueAsString = unitPriceValue.toString();
+        sb.append("unitPrice=").append(urlEncode(unitPriceValueAsString)).append("");
+        Object orderStatusValue = getOrderStatus();
+        String orderStatusValueAsString = "";
+        orderStatusValueAsString = orderStatusValue.toString();
+        sb.append("orderStatus=").append(urlEncode(orderStatusValueAsString)).append("");
+        Object createTimeValue = getCreateTime();
+        String createTimeValueAsString = "";
+        createTimeValueAsString = createTimeValue.toString();
+        sb.append("createTime=").append(urlEncode(createTimeValueAsString)).append("");
+        Object commissionValue = getCommission();
+        String commissionValueAsString = "";
+        commissionValueAsString = commissionValue.toString();
+        sb.append("commission=").append(urlEncode(commissionValueAsString)).append("");
+        Object takerCommissionRateValue = getTakerCommissionRate();
+        String takerCommissionRateValueAsString = "";
+        takerCommissionRateValueAsString = takerCommissionRateValue.toString();
+        sb.append("takerCommissionRate=")
+                .append(urlEncode(takerCommissionRateValueAsString))
+                .append("");
+        Object takerCommissionValue = getTakerCommission();
+        String takerCommissionValueAsString = "";
+        takerCommissionValueAsString = takerCommissionValue.toString();
+        sb.append("takerCommission=").append(urlEncode(takerCommissionValueAsString)).append("");
+        Object takerAmountValue = getTakerAmount();
+        String takerAmountValueAsString = "";
+        takerAmountValueAsString = takerAmountValue.toString();
+        sb.append("takerAmount=").append(urlEncode(takerAmountValueAsString)).append("");
+        Object counterPartNickNameValue = getCounterPartNickName();
+        String counterPartNickNameValueAsString = "";
+        counterPartNickNameValueAsString = counterPartNickNameValue.toString();
+        sb.append("counterPartNickName=")
+                .append(urlEncode(counterPartNickNameValueAsString))
+                .append("");
+        Object payMethodNameValue = getPayMethodName();
+        String payMethodNameValueAsString = "";
+        payMethodNameValueAsString = payMethodNameValue.toString();
+        sb.append("payMethodName=").append(urlEncode(payMethodNameValueAsString)).append("");
+        Object additionalKycVerifyValue = getAdditionalKycVerify();
+        String additionalKycVerifyValueAsString = "";
+        additionalKycVerifyValueAsString = additionalKycVerifyValue.toString();
+        sb.append("additionalKycVerify=")
+                .append(urlEncode(additionalKycVerifyValueAsString))
+                .append("");
         return sb.toString();
     }
 
@@ -268,11 +689,24 @@ public class GetC2CTradeHistoryResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("code");
-        openapiFields.add("message");
-        openapiFields.add("data");
-        openapiFields.add("total");
-        openapiFields.add("success");
+        openapiFields.add("orderNumber");
+        openapiFields.add("advNo");
+        openapiFields.add("tradeType");
+        openapiFields.add("asset");
+        openapiFields.add("fiat");
+        openapiFields.add("fiatSymbol");
+        openapiFields.add("amount");
+        openapiFields.add("totalPrice");
+        openapiFields.add("unitPrice");
+        openapiFields.add("orderStatus");
+        openapiFields.add("createTime");
+        openapiFields.add("commission");
+        openapiFields.add("takerCommissionRate");
+        openapiFields.add("takerCommission");
+        openapiFields.add("takerAmount");
+        openapiFields.add("counterPartNickName");
+        openapiFields.add("payMethodName");
+        openapiFields.add("additionalKycVerify");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -296,40 +730,135 @@ public class GetC2CTradeHistoryResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull())
-                && !jsonObj.get("code").isJsonPrimitive()) {
+        if ((jsonObj.get("orderNumber") != null && !jsonObj.get("orderNumber").isJsonNull())
+                && !jsonObj.get("orderNumber").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `code` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("code").toString()));
+                            "Expected the field `orderNumber` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("orderNumber").toString()));
         }
-        if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-                && !jsonObj.get("message").isJsonPrimitive()) {
+        if ((jsonObj.get("advNo") != null && !jsonObj.get("advNo").isJsonNull())
+                && !jsonObj.get("advNo").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `message` to be a primitive type in the JSON string"
+                            "Expected the field `advNo` to be a primitive type in the JSON string"
                                     + " but got `%s`",
-                            jsonObj.get("message").toString()));
+                            jsonObj.get("advNo").toString()));
         }
-        if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-            JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-            if (jsonArraydata != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("data").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `data` to be an array in the JSON string"
-                                            + " but got `%s`",
-                                    jsonObj.get("data").toString()));
-                }
-
-                // validate the optional field `data` (array)
-                for (int i = 0; i < jsonArraydata.size(); i++) {
-                    GetC2CTradeHistoryResponseDataInner.validateJsonElement(jsonArraydata.get(i));
-                }
-                ;
-            }
+        if ((jsonObj.get("tradeType") != null && !jsonObj.get("tradeType").isJsonNull())
+                && !jsonObj.get("tradeType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `tradeType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("tradeType").toString()));
+        }
+        if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
+                && !jsonObj.get("asset").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `asset` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("asset").toString()));
+        }
+        if ((jsonObj.get("fiat") != null && !jsonObj.get("fiat").isJsonNull())
+                && !jsonObj.get("fiat").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `fiat` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("fiat").toString()));
+        }
+        if ((jsonObj.get("fiatSymbol") != null && !jsonObj.get("fiatSymbol").isJsonNull())
+                && !jsonObj.get("fiatSymbol").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `fiatSymbol` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("fiatSymbol").toString()));
+        }
+        if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull())
+                && !jsonObj.get("amount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `amount` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("amount").toString()));
+        }
+        if ((jsonObj.get("totalPrice") != null && !jsonObj.get("totalPrice").isJsonNull())
+                && !jsonObj.get("totalPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `totalPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("totalPrice").toString()));
+        }
+        if ((jsonObj.get("unitPrice") != null && !jsonObj.get("unitPrice").isJsonNull())
+                && !jsonObj.get("unitPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `unitPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("unitPrice").toString()));
+        }
+        if ((jsonObj.get("orderStatus") != null && !jsonObj.get("orderStatus").isJsonNull())
+                && !jsonObj.get("orderStatus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `orderStatus` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("orderStatus").toString()));
+        }
+        if ((jsonObj.get("commission") != null && !jsonObj.get("commission").isJsonNull())
+                && !jsonObj.get("commission").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `commission` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("commission").toString()));
+        }
+        if ((jsonObj.get("takerCommissionRate") != null
+                        && !jsonObj.get("takerCommissionRate").isJsonNull())
+                && !jsonObj.get("takerCommissionRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerCommissionRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("takerCommissionRate").toString()));
+        }
+        if ((jsonObj.get("takerCommission") != null && !jsonObj.get("takerCommission").isJsonNull())
+                && !jsonObj.get("takerCommission").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerCommission` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("takerCommission").toString()));
+        }
+        if ((jsonObj.get("takerAmount") != null && !jsonObj.get("takerAmount").isJsonNull())
+                && !jsonObj.get("takerAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerAmount` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("takerAmount").toString()));
+        }
+        if ((jsonObj.get("counterPartNickName") != null
+                        && !jsonObj.get("counterPartNickName").isJsonNull())
+                && !jsonObj.get("counterPartNickName").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `counterPartNickName` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("counterPartNickName").toString()));
+        }
+        if ((jsonObj.get("payMethodName") != null && !jsonObj.get("payMethodName").isJsonNull())
+                && !jsonObj.get("payMethodName").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `payMethodName` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("payMethodName").toString()));
         }
     }
 

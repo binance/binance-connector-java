@@ -42,7 +42,7 @@ public class OldTradesLookupExample {
      *
      * <p>Get older market historical trades. * Market trades means trades filled in the order book.
      * Only market trades will be returned, which means the insurance fund trades and ADL trades
-     * won&#39;t be returned. * Only supports data from within the last three months Weight: 20
+     * won&#39;t be returned. * Only supports data from within the last one month Weight: 20
      *
      * @throws ApiException if the Api call fails
      */

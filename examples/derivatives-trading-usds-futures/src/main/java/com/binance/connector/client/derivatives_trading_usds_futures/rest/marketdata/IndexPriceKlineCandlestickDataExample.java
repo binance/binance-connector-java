@@ -50,7 +50,7 @@ public class IndexPriceKlineCandlestickDataExample {
      */
     public void indexPriceKlineCandlestickDataExample() throws ApiException {
         String pair = "";
-        Interval interval = Interval.INTERVAL_1m;
+        Interval interval = Interval.INTERVAL_1s;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 100L;

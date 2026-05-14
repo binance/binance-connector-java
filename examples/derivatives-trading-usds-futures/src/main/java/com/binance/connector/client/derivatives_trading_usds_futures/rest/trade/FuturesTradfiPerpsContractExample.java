@@ -13,13 +13,11 @@
 package com.binance.connector.client.derivatives_trading_usds_futures.rest.trade;
 
 import com.binance.connector.client.common.ApiException;
-import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 
 /** API examples for TradeApi */
 public class FuturesTradfiPerpsContractExample {
@@ -48,8 +46,6 @@ public class FuturesTradfiPerpsContractExample {
     public void futuresTradfiPerpsContractExample() throws ApiException {
         FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest =
                 new FuturesTradfiPerpsContractRequest();
-        ApiResponse<FuturesTradfiPerpsContractResponse> response =
-                getApi().futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
-        System.out.println(response.getData());
+        getApi().futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
     }
 }

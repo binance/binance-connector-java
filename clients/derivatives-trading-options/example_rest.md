@@ -62,7 +62,7 @@
 
 ## Trade
 
-[GET /eapi/v1/userTrades](https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List) - accountTradeList - [AccountTradeListExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/AccountTradeListExample.java#L47)
+[GET /eapi/v1/userTrades](https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List) - accountTradeList - [AccountTradeListExample.java:48](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/AccountTradeListExample.java#L48)
 
 [DELETE /eapi/v1/allOpenOrdersByUnderlying](https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-All-Option-Orders-By-Underlying) - cancelAllOptionOrdersByUnderlying - [CancelAllOptionOrdersByUnderlyingExample.java:47](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/rest/trade/CancelAllOptionOrdersByUnderlyingExample.java#L47)
 

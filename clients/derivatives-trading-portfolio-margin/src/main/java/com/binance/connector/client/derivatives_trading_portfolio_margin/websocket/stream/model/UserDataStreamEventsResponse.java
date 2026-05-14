@@ -47,6 +47,8 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AlgoUpdate> adapterAlgoUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(AlgoUpdate.class));
             final TypeAdapter<ConditionalOrderTradeUpdate> adapterConditionalOrderTradeUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(ConditionalOrderTradeUpdate.class));
             final TypeAdapter<AccountConfigUpdate> adapterAccountConfigUpdate =
@@ -80,6 +82,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
+                            // check if the actual instance is of the type `AlgoUpdate`
+                            if (value.getActualInstance() instanceof AlgoUpdate) {
+                                JsonElement element =
+                                        adapterAlgoUpdate.toJsonTree(
+                                                (AlgoUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
                             // check if the actual instance is of the type
                             // `ConditionalOrderTradeUpdate`
                             if (value.getActualInstance() instanceof ConditionalOrderTradeUpdate) {
@@ -173,11 +183,11 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             }
                             throw new IOException(
                                     "Failed to serialize as the type doesn't match oneOf schemas:"
-                                            + " AccountConfigUpdate, AccountUpdate, Balanceupdate,"
-                                            + " ConditionalOrderTradeUpdate, Executionreport,"
-                                            + " Liabilitychange, Listenkeyexpired, Openorderloss,"
-                                            + " OrderTradeUpdate, Outboundaccountposition,"
-                                            + " Risklevelchange");
+                                            + " AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
+                                            + " Balanceupdate, ConditionalOrderTradeUpdate,"
+                                            + " Executionreport, Liabilitychange, Listenkeyexpired,"
+                                            + " Openorderloss, OrderTradeUpdate,"
+                                            + " Outboundaccountposition, Risklevelchange");
                         }
 
                         @Override
@@ -208,6 +218,11 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                     case "ACCOUNT_UPDATE":
                                         deserialized =
                                                 adapterAccountUpdate.fromJsonTree(jsonObject);
+                                        newUserDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newUserDataStreamEventsResponse;
+                                    case "ALGO_UPDATE":
+                                        deserialized = adapterAlgoUpdate.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
@@ -279,6 +294,11 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
+                                    case "algoUpdate":
+                                        deserialized = adapterAlgoUpdate.fromJsonTree(jsonObject);
+                                        newUserDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newUserDataStreamEventsResponse;
                                     case "balanceupdate":
                                         deserialized =
                                                 adapterBalanceupdate.fromJsonTree(jsonObject);
@@ -345,14 +365,15 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                             + " for UserDataStreamEventsResponse."
                                                             + " Possible values:"
                                                             + " ACCOUNT_CONFIG_UPDATE"
-                                                            + " ACCOUNT_UPDATE"
+                                                            + " ACCOUNT_UPDATE ALGO_UPDATE"
                                                             + " CONDITIONAL_ORDER_TRADE_UPDATE"
                                                             + " ORDER_TRADE_UPDATE balanceUpdate"
                                                             + " executionReport liabilityChange"
                                                             + " listenKeyExpired openOrderLoss"
                                                             + " outboundAccountPosition"
                                                             + " riskLevelChange accountConfigUpdate"
-                                                            + " accountUpdate balanceupdate"
+                                                            + " accountUpdate algoUpdate"
+                                                            + " balanceupdate"
                                                             + " conditionalOrderTradeUpdate"
                                                             + " executionreport liabilitychange"
                                                             + " listenkeyexpired openorderloss"
@@ -368,6 +389,24 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
+                            // deserialize AlgoUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                AlgoUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterAlgoUpdate;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'AlgoUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for AlgoUpdate failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'AlgoUpdate'",
+                                        e);
+                            }
                             // deserialize ConditionalOrderTradeUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -622,6 +661,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
+        schemas.put("AlgoUpdate", AlgoUpdate.class);
         schemas.put("ConditionalOrderTradeUpdate", ConditionalOrderTradeUpdate.class);
         schemas.put("AccountConfigUpdate", AccountConfigUpdate.class);
         schemas.put("AccountUpdate", AccountUpdate.class);
@@ -642,14 +682,19 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
 
     /**
      * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-     * against the oneOf child schemas: AccountConfigUpdate, AccountUpdate, Balanceupdate,
-     * ConditionalOrderTradeUpdate, Executionreport, Liabilitychange, Listenkeyexpired,
-     * Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange
+     * against the oneOf child schemas: AccountConfigUpdate, AccountUpdate, AlgoUpdate,
+     * Balanceupdate, ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,
+     * Listenkeyexpired, Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange
      *
      * <p>It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance instanceof AlgoUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof ConditionalOrderTradeUpdate) {
             super.setActualInstance(instance);
             return;
@@ -706,18 +751,18 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         }
 
         throw new RuntimeException(
-                "Invalid instance type. Must be AccountConfigUpdate, AccountUpdate, Balanceupdate,"
-                    + " ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,"
-                    + " Listenkeyexpired, Openorderloss, OrderTradeUpdate, Outboundaccountposition,"
-                    + " Risklevelchange");
+                "Invalid instance type. Must be AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
+                        + " Balanceupdate, ConditionalOrderTradeUpdate, Executionreport,"
+                        + " Liabilitychange, Listenkeyexpired, Openorderloss, OrderTradeUpdate,"
+                        + " Outboundaccountposition, Risklevelchange");
     }
 
     /**
      * Get the actual instance, which can be the following: AccountConfigUpdate, AccountUpdate,
-     * Balanceupdate, ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,
+     * AlgoUpdate, Balanceupdate, ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,
      * Listenkeyexpired, Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange
      *
-     * @return The actual instance (AccountConfigUpdate, AccountUpdate, Balanceupdate,
+     * @return The actual instance (AccountConfigUpdate, AccountUpdate, AlgoUpdate, Balanceupdate,
      *     ConditionalOrderTradeUpdate, Executionreport, Liabilitychange, Listenkeyexpired,
      *     Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange)
      */
@@ -725,6 +770,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     @Override
     public Object getActualInstance() {
         return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `AlgoUpdate`. If the actual instance is not `AlgoUpdate`, the
+     * ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AlgoUpdate`
+     * @throws ClassCastException if the instance is not `AlgoUpdate`
+     */
+    public AlgoUpdate getAlgoUpdate() throws ClassCastException {
+        return (AlgoUpdate) super.getActualInstance();
     }
 
     /**
@@ -859,6 +915,16 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with AlgoUpdate
+        try {
+            AlgoUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for AlgoUpdate failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with ConditionalOrderTradeUpdate
         try {
             ConditionalOrderTradeUpdate.validateJsonElement(jsonElement);
@@ -981,12 +1047,12 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             throw new IOException(
                     String.format(
                             "The JSON string is invalid for UserDataStreamEventsResponse with oneOf"
-                                + " schemas: AccountConfigUpdate, AccountUpdate, Balanceupdate,"
-                                + " ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,"
-                                + " Listenkeyexpired, Openorderloss, OrderTradeUpdate,"
-                                + " Outboundaccountposition, Risklevelchange. %d class(es) match"
-                                + " the result, expected 1. Detailed failure message for oneOf"
-                                + " schemas: %s. JSON: %s",
+                                + " schemas: AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
+                                + " Balanceupdate, ConditionalOrderTradeUpdate, Executionreport,"
+                                + " Liabilitychange, Listenkeyexpired, Openorderloss,"
+                                + " OrderTradeUpdate, Outboundaccountposition, Risklevelchange. %d"
+                                + " class(es) match the result, expected 1. Detailed failure"
+                                + " message for oneOf schemas: %s. JSON: %s",
                             validCount, errorMessages, jsonElement.toString()));
         }
     }

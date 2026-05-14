@@ -162,13 +162,14 @@ public class EthStakingApiTest {
      */
     @Test
     public void getEthRedemptionHistoryTest() throws ApiException, CryptoException {
+        Long redeemId = 123L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetEthRedemptionHistoryResponse> response =
-                api.getEthRedemptionHistory(startTime, endTime, current, size, recvWindow);
+                api.getEthRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -181,10 +182,10 @@ public class EthStakingApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
+                "redeemId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
+                "90b22be90fad28e8f5f7cd6af50eb4c523db9c1363ee49915fad9713c0656f0d",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/eth-staking/eth/history/redemptionHistory",
@@ -206,13 +207,14 @@ public class EthStakingApiTest {
      */
     @Test
     public void getEthStakingHistoryTest() throws ApiException, CryptoException {
+        Long purchaseId = 123L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetEthStakingHistoryResponse> response =
-                api.getEthStakingHistory(startTime, endTime, current, size, recvWindow);
+                api.getEthStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -225,10 +227,10 @@ public class EthStakingApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
+                "purchaseId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
+                "35f8697a0b1f039ff660d5b47cb802e92c651d0f135334ec523e176dad5b714b",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/eth-staking/eth/history/stakingHistory",

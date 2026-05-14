@@ -103,6 +103,13 @@ public class NewOrderRequest {
     @jakarta.annotation.Nullable
     private Boolean isMmp;
 
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private SelfTradePreventionMode selfTradePreventionMode;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -332,6 +339,28 @@ public class NewOrderRequest {
         this.isMmp = isMmp;
     }
 
+    public NewOrderRequest selfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
     public NewOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -371,6 +400,8 @@ public class NewOrderRequest {
                 && Objects.equals(this.newOrderRespType, newOrderRequest.newOrderRespType)
                 && Objects.equals(this.clientOrderId, newOrderRequest.clientOrderId)
                 && Objects.equals(this.isMmp, newOrderRequest.isMmp)
+                && Objects.equals(
+                        this.selfTradePreventionMode, newOrderRequest.selfTradePreventionMode)
                 && Objects.equals(this.recvWindow, newOrderRequest.recvWindow);
     }
 
@@ -388,6 +419,7 @@ public class NewOrderRequest {
                 newOrderRespType,
                 clientOrderId,
                 isMmp,
+                selfTradePreventionMode,
                 recvWindow);
     }
 
@@ -406,6 +438,9 @@ public class NewOrderRequest {
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		isMmp: ").append(toIndentedString(isMmp)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -458,6 +493,12 @@ public class NewOrderRequest {
         String isMmpValueAsString = "";
         isMmpValueAsString = isMmpValue.toString();
         sb.append("isMmp=").append(urlEncode(isMmpValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -501,6 +542,7 @@ public class NewOrderRequest {
         openapiFields.add("newOrderRespType");
         openapiFields.add("clientOrderId");
         openapiFields.add("isMmp");
+        openapiFields.add("selfTradePreventionMode");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -566,6 +608,11 @@ public class NewOrderRequest {
                             "Expected the field `clientOrderId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("clientOrderId").toString()));
+        }
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 

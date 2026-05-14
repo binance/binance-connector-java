@@ -14,7 +14,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Account Funding Flow (USER_DATA)
 
-Query account funding flows.  Weight: 1
+Query account funding flows.   * Only support querying data in the past 3 months  Weight: 1
 
 ### Example
 ```java

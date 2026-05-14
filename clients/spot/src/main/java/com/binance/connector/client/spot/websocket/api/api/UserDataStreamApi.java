@@ -48,6 +48,10 @@ public class UserDataStreamApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Listing all subscriptions Weight: 2 **Data Source**: Memory
      *

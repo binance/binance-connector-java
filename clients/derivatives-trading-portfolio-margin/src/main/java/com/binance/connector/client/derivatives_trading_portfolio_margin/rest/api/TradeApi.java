@@ -23,6 +23,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllCmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllCmOpenOrdersResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelCmConditionalOrderResponse;
@@ -30,10 +31,13 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountAllOpenOrdersOnASymbolResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountOcoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountOrderResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmAccountTradeListResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmPositionAdlQuantileEstimationResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUmFuturesBnbBurnStatusResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountBorrowRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountBorrowResponse;
@@ -54,6 +58,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewCmOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewMarginOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewMarginOrderResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmConditionalOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmOrderRequest;
@@ -62,6 +68,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCmOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentCmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentCmOpenOrdersResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenAlgoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllMarginAccountOrdersResponse;
@@ -73,12 +80,14 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentCmOpenConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentCmOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentMarginOpenOrderResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsAllOcoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsOcoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsOpenOcoResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmAlgoOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmConditionalOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmModifyOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmOrderResponse;
@@ -112,7 +121,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin/5.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -435,6 +444,148 @@ public class TradeApi {
     }
 
     /**
+     * Build call for cancelAllUmAlgoOpenOrders
+     *
+     * @param symbol (required)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel All UM Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Algo-Open-Orders">Cancel
+     *     All UM Algo Open Orders (TRADE) Documentation</a>
+     */
+    private okhttp3.Call cancelAllUmAlgoOpenOrdersCall(String symbol, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/allOpenOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call cancelAllUmAlgoOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod("cancelAllUmAlgoOpenOrders", String.class, Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return cancelAllUmAlgoOpenOrdersCall(symbol, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Cancel All UM Algo Open Orders (TRADE) Cancel All UM Algo Open Orders Weight: 1
+     *
+     * @param symbol (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelAllUmAlgoOpenOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel All UM Algo Open Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Algo-Open-Orders">Cancel
+     *     All UM Algo Open Orders (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelAllUmAlgoOpenOrdersResponse> cancelAllUmAlgoOpenOrders(
+            @NotNull String symbol, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = cancelAllUmAlgoOpenOrdersValidateBeforeCall(symbol, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CancelAllUmAlgoOpenOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for cancelAllUmOpenConditionalOrders
      *
      * @param symbol (required)
@@ -448,10 +599,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel All UM Open Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Conditional-Orders">Cancel
-     *     All UM Open Conditional Orders (TRADE) Documentation</a>
+     *     All UM Open Conditional Orders Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call cancelAllUmOpenConditionalOrdersCall(String symbol, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -516,6 +669,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call cancelAllUmOpenConditionalOrdersValidateBeforeCall(
             String symbol, Long recvWindow) throws ApiException {
@@ -551,7 +705,7 @@ public class TradeApi {
     }
 
     /**
-     * Cancel All UM Open Conditional Orders (TRADE) Cancel All UM Open Conditional Orders Weight: 1
+     * Cancel All UM Open Conditional Orders Cancel All UM Open Conditional Orders Weight: 1
      *
      * @param symbol (required)
      * @param recvWindow (optional)
@@ -565,10 +719,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel All UM Open Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Conditional-Orders">Cancel
-     *     All UM Open Conditional Orders (TRADE) Documentation</a>
+     *     All UM Open Conditional Orders Documentation</a>
      */
+    @Deprecated
     public ApiResponse<CancelAllUmOpenConditionalOrdersResponse> cancelAllUmOpenConditionalOrders(
             @NotNull String symbol, Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
@@ -1587,6 +1743,157 @@ public class TradeApi {
     }
 
     /**
+     * Build call for cancelUmAlgoOrder
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel UM Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Algo-Order">Cancel
+     *     UM Algo Order (TRADE) Documentation</a>
+     */
+    private okhttp3.Call cancelUmAlgoOrderCall(Long algoId, String clientAlgoId, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/order";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (clientAlgoId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call cancelUmAlgoOrderValidateBeforeCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod("cancelUmAlgoOrder", Long.class, String.class, Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return cancelUmAlgoOrderCall(algoId, clientAlgoId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Cancel UM Algo Order (TRADE) Cancel an active UM algo order. * Either &#x60;algoId&#x60; or
+     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;CancelUmAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Cancel UM Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Algo-Order">Cancel
+     *     UM Algo Order (TRADE) Documentation</a>
+     */
+    public ApiResponse<CancelUmAlgoOrderResponse> cancelUmAlgoOrder(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                cancelUmAlgoOrderValidateBeforeCall(algoId, clientAlgoId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CancelUmAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for cancelUmConditionalOrder
      *
      * @param symbol (required)
@@ -1602,10 +1909,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel UM Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Conditional-Order">Cancel
-     *     UM Conditional Order(TRADE) Documentation</a>
+     *     UM Conditional Order Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call cancelUmConditionalOrderCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
             throws ApiException {
@@ -1680,6 +1989,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call cancelUmConditionalOrderValidateBeforeCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
@@ -1721,8 +2031,8 @@ public class TradeApi {
     }
 
     /**
-     * Cancel UM Conditional Order(TRADE) Cancel UM Conditional Order * Either
-     * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. Weight: 1
+     * Cancel UM Conditional Order Cancel UM Conditional Order * Either &#x60;strategyId&#x60; or
+     * &#x60;newClientStrategyId&#x60; must be sent. Weight: 1
      *
      * @param symbol (required)
      * @param strategyId (optional)
@@ -1738,10 +2048,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel UM Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Conditional-Order">Cancel
-     *     UM Conditional Order(TRADE) Documentation</a>
+     *     UM Conditional Order Documentation</a>
      */
+    @Deprecated
     public ApiResponse<CancelUmConditionalOrderResponse> cancelUmConditionalOrder(
             @NotNull String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
             throws ApiException {
@@ -2280,6 +2592,148 @@ public class TradeApi {
                 cmPositionAdlQuantileEstimationValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CmPositionAdlQuantileEstimationResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for futuresTradfiPerpsContract
+     *
+     * @param futuresTradfiPerpsContractRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Futures-TradFi-Perps-Contract">Futures
+     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call futuresTradfiPerpsContractCall(
+            FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/stock/contract";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (futuresTradfiPerpsContractRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", futuresTradfiPerpsContractRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call futuresTradfiPerpsContractValidateBeforeCall(
+            FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {futuresTradfiPerpsContractRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "futuresTradfiPerpsContract",
+                                    FuturesTradfiPerpsContractRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return futuresTradfiPerpsContractCall(futuresTradfiPerpsContractRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 5
+     *
+     * @param futuresTradfiPerpsContractRequest (required)
+     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Futures-TradFi-Perps-Contract">Futures
+     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     */
+    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+            @Valid @NotNull FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                futuresTradfiPerpsContractValidateBeforeCall(futuresTradfiPerpsContractRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<FuturesTradfiPerpsContractResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -4275,6 +4729,267 @@ public class TradeApi {
     }
 
     /**
+     * Build call for newUmAlgoOrder
+     *
+     * @param newUmAlgoOrderRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New UM Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Algo-Order">New
+     *     UM Algo Order (TRADE) Documentation</a>
+     */
+    private okhttp3.Call newUmAlgoOrderCall(NewUmAlgoOrderRequest newUmAlgoOrderRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/order";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (newUmAlgoOrderRequest.getAlgoType() != null) {
+            localVarFormParams.put("algoType", newUmAlgoOrderRequest.getAlgoType());
+        }
+
+        if (newUmAlgoOrderRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", newUmAlgoOrderRequest.getSymbol());
+        }
+
+        if (newUmAlgoOrderRequest.getSide() != null) {
+            localVarFormParams.put("side", newUmAlgoOrderRequest.getSide());
+        }
+
+        if (newUmAlgoOrderRequest.getPositionSide() != null) {
+            localVarFormParams.put("positionSide", newUmAlgoOrderRequest.getPositionSide());
+        }
+
+        if (newUmAlgoOrderRequest.getType() != null) {
+            localVarFormParams.put("type", newUmAlgoOrderRequest.getType());
+        }
+
+        if (newUmAlgoOrderRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", newUmAlgoOrderRequest.getTimeInForce());
+        }
+
+        if (newUmAlgoOrderRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(newUmAlgoOrderRequest.getQuantity()));
+        }
+
+        if (newUmAlgoOrderRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price",
+                    DecimalFormatter.getFormatter().format(newUmAlgoOrderRequest.getPrice()));
+        }
+
+        if (newUmAlgoOrderRequest.getTriggerPrice() != null) {
+            localVarFormParams.put(
+                    "triggerPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(newUmAlgoOrderRequest.getTriggerPrice()));
+        }
+
+        if (newUmAlgoOrderRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", newUmAlgoOrderRequest.getWorkingType());
+        }
+
+        if (newUmAlgoOrderRequest.getPriceMatch() != null) {
+            localVarFormParams.put("priceMatch", newUmAlgoOrderRequest.getPriceMatch());
+        }
+
+        if (newUmAlgoOrderRequest.getClosePosition() != null) {
+            localVarFormParams.put("closePosition", newUmAlgoOrderRequest.getClosePosition());
+        }
+
+        if (newUmAlgoOrderRequest.getPriceProtect() != null) {
+            localVarFormParams.put("priceProtect", newUmAlgoOrderRequest.getPriceProtect());
+        }
+
+        if (newUmAlgoOrderRequest.getReduceOnly() != null) {
+            localVarFormParams.put("reduceOnly", newUmAlgoOrderRequest.getReduceOnly());
+        }
+
+        if (newUmAlgoOrderRequest.getActivatePrice() != null) {
+            localVarFormParams.put(
+                    "activatePrice",
+                    DecimalFormatter.getFormatter()
+                            .format(newUmAlgoOrderRequest.getActivatePrice()));
+        }
+
+        if (newUmAlgoOrderRequest.getCallbackRate() != null) {
+            localVarFormParams.put(
+                    "callbackRate",
+                    DecimalFormatter.getFormatter()
+                            .format(newUmAlgoOrderRequest.getCallbackRate()));
+        }
+
+        if (newUmAlgoOrderRequest.getClientAlgoId() != null) {
+            localVarFormParams.put("clientAlgoId", newUmAlgoOrderRequest.getClientAlgoId());
+        }
+
+        if (newUmAlgoOrderRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", newUmAlgoOrderRequest.getNewOrderRespType());
+        }
+
+        if (newUmAlgoOrderRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", newUmAlgoOrderRequest.getSelfTradePreventionMode());
+        }
+
+        if (newUmAlgoOrderRequest.getGoodTillDate() != null) {
+            localVarFormParams.put("goodTillDate", newUmAlgoOrderRequest.getGoodTillDate());
+        }
+
+        if (newUmAlgoOrderRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", newUmAlgoOrderRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newUmAlgoOrderValidateBeforeCall(
+            NewUmAlgoOrderRequest newUmAlgoOrderRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {newUmAlgoOrderRequest};
+            Method method =
+                    this.getClass().getMethod("newUmAlgoOrder", NewUmAlgoOrderRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return newUmAlgoOrderCall(newUmAlgoOrderRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New UM Algo Order (TRADE) Place new UM conditional order * Algo order with type
+     * &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). *
+     * Algo order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent (
+     * default &#x60;GTC&#x60;). * Condition orders will be triggered when: * If
+     * parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * &#x60;triggerPrice&#x60; , the difference rate between \&quot;MARK_PRICE\&quot; and
+     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
+     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
+     * order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest
+     * price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1
+     * - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
+     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
+     * following requirements: * BUY: &#x60;activatePrice&#x60; should be smaller than latest price.
+     * * SELL: &#x60;activatePrice&#x60; should be larger than latest price. *
+     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
+     * orders. * If triggered, **close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 1
+     *
+     * @param newUmAlgoOrderRequest (required)
+     * @return ApiResponse&lt;NewUmAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New UM Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Algo-Order">New
+     *     UM Algo Order (TRADE) Documentation</a>
+     */
+    public ApiResponse<NewUmAlgoOrderResponse> newUmAlgoOrder(
+            @Valid @NotNull NewUmAlgoOrderRequest newUmAlgoOrderRequest) throws ApiException {
+        okhttp3.Call localVarCall = newUmAlgoOrderValidateBeforeCall(newUmAlgoOrderRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<NewUmAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for newUmConditionalOrder
      *
      * @param newUmConditionalOrderRequest (required)
@@ -4287,10 +5002,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New UM Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Conditional-Order">New
-     *     UM Conditional Order (TRADE) Documentation</a>
+     *     UM Conditional Order Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call newUmConditionalOrderCall(
             NewUmConditionalOrderRequest newUmConditionalOrderRequest) throws ApiException {
         String basePath = null;
@@ -4437,6 +5154,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call newUmConditionalOrderValidateBeforeCall(
             NewUmConditionalOrderRequest newUmConditionalOrderRequest) throws ApiException {
@@ -4471,7 +5189,7 @@ public class TradeApi {
     }
 
     /**
-     * New UM Conditional Order (TRADE) Place new UM conditional order * Order with type
+     * New UM Conditional Order Place new UM conditional order * Order with type
      * &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
      * &#x60;GTC&#x60;). * Condition orders will be triggered when: * &#x60;STOP&#x60;,
      * &#x60;STOP_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60; *
@@ -4514,10 +5232,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New UM Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Conditional-Order">New
-     *     UM Conditional Order (TRADE) Documentation</a>
+     *     UM Conditional Order Documentation</a>
      */
+    @Deprecated
     public ApiResponse<NewUmConditionalOrderResponse> newUmConditionalOrder(
             @Valid @NotNull NewUmConditionalOrderRequest newUmConditionalOrderRequest)
             throws ApiException {
@@ -5439,6 +6159,170 @@ public class TradeApi {
     }
 
     /**
+     * Build call for queryAllCurrentUmOpenAlgoOrders
+     *
+     * @param algoType (optional)
+     * @param symbol (optional)
+     * @param algoId (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All Current UM Open Algo Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Algo-Orders">Query
+     *     All Current UM Open Algo Orders (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryAllCurrentUmOpenAlgoOrdersCall(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/openAlgoOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoType", algoType));
+        }
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryAllCurrentUmOpenAlgoOrdersValidateBeforeCall(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoType, symbol, algoId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryAllCurrentUmOpenAlgoOrders",
+                                    String.class,
+                                    String.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryAllCurrentUmOpenAlgoOrdersCall(algoType, symbol, algoId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query All Current UM Open Algo Orders (USER_DATA) Get all UM open algo orders on a symbol. *
+     * If the symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for
+     * a single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
+     * symbol.
+     *
+     * @param algoType (optional)
+     * @param symbol (optional)
+     * @param algoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryAllCurrentUmOpenAlgoOrdersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> All Current UM Open Algo Orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Algo-Orders">Query
+     *     All Current UM Open Algo Orders (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryAllCurrentUmOpenAlgoOrdersResponse> queryAllCurrentUmOpenAlgoOrders(
+            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                queryAllCurrentUmOpenAlgoOrdersValidateBeforeCall(
+                        algoType, symbol, algoId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryAllCurrentUmOpenAlgoOrdersResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryAllCurrentUmOpenConditionalOrders
      *
      * @param symbol (optional)
@@ -5452,10 +6336,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> All Current UM Open Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Conditional-Orders">Query
-     *     All Current UM Open Conditional Orders(USER_DATA) Documentation</a>
+     *     All Current UM Open Conditional Orders Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call queryAllCurrentUmOpenConditionalOrdersCall(String symbol, Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -5520,6 +6406,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryAllCurrentUmOpenConditionalOrdersValidateBeforeCall(
             String symbol, Long recvWindow) throws ApiException {
@@ -5557,10 +6444,10 @@ public class TradeApi {
     }
 
     /**
-     * Query All Current UM Open Conditional Orders(USER_DATA) Get all open conditional orders on a
-     * symbol. * If the symbol is not sent, orders for all symbols will be returned in an array.
-     * Weight: 1 for a single symbol; 40 when the symbol parameter is omitted Careful when accessing
-     * this with no symbol.
+     * Query All Current UM Open Conditional Orders Get all open conditional orders on a symbol. *
+     * If the symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for
+     * a single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
+     * symbol.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -5574,10 +6461,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> All Current UM Open Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Conditional-Orders">Query
-     *     All Current UM Open Conditional Orders(USER_DATA) Documentation</a>
+     *     All Current UM Open Conditional Orders Documentation</a>
      */
+    @Deprecated
     public ApiResponse<QueryAllCurrentUmOpenConditionalOrdersResponse>
             queryAllCurrentUmOpenConditionalOrders(String symbol, Long recvWindow)
                     throws ApiException {
@@ -5935,10 +6824,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> All UM Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-UM-Conditional-Orders">Query
-     *     All UM Conditional Orders(USER_DATA) Documentation</a>
+     *     All UM Conditional Orders Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call queryAllUmConditionalOrdersCall(
             String symbol,
             Long strategyId,
@@ -6025,6 +6916,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryAllUmConditionalOrdersValidateBeforeCall(
             String symbol,
@@ -6073,11 +6965,11 @@ public class TradeApi {
     }
 
     /**
-     * Query All UM Conditional Orders(USER_DATA) Query All UM Conditional Orders * These orders
-     * will not be found: * order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;,
-     * **AND** * order has NO filled trade, **AND** * created time + 7 days &lt; current time * The
-     * query time period must be less than 7 days( default as the recent 7 days). Weight: 1 for a
-     * single symbol; 40 when the symbol parameter is omitted
+     * Query All UM Conditional Orders Query All UM Conditional Orders * These orders will not be
+     * found: * order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order
+     * has NO filled trade, **AND** * created time + 7 days &lt; current time * The query time
+     * period must be less than 7 days( default as the recent 7 days). Weight: 1 for a single
+     * symbol; 40 when the symbol parameter is omitted
      *
      * @param symbol (optional)
      * @param strategyId (optional)
@@ -6095,10 +6987,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> All UM Conditional Orders </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-UM-Conditional-Orders">Query
-     *     All UM Conditional Orders(USER_DATA) Documentation</a>
+     *     All UM Conditional Orders Documentation</a>
      */
+    @Deprecated
     public ApiResponse<QueryAllUmConditionalOrdersResponse> queryAllUmConditionalOrders(
             String symbol,
             Long strategyId,
@@ -7334,6 +8228,165 @@ public class TradeApi {
     }
 
     /**
+     * Build call for queryCurrentUmOpenAlgoOrder
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current UM Open Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Algo-Order">Query
+     *     Current UM Open Algo Order (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryCurrentUmOpenAlgoOrderCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/algoOrder";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (clientAlgoId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryCurrentUmOpenAlgoOrderValidateBeforeCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryCurrentUmOpenAlgoOrder",
+                                    Long.class,
+                                    String.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryCurrentUmOpenAlgoOrderCall(algoId, clientAlgoId, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Current UM Open Algo Order (USER_DATA) Check an UM algo order&#39;s status. * These
+     * orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;
+     * **AND** order has NO filled trade **AND** created time + 3 days &lt; current time * order
+     * create time + 90 days &lt; current time * Either &#x60;algoId&#x60; or
+     * &#x60;clientAlgoId&#x60; must be sent. * &#x60;algoId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60; Weight: 1
+     *
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryCurrentUmOpenAlgoOrderResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current UM Open Algo Order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Algo-Order">Query
+     *     Current UM Open Algo Order (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryCurrentUmOpenAlgoOrderResponse> queryCurrentUmOpenAlgoOrder(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                queryCurrentUmOpenAlgoOrderValidateBeforeCall(algoId, clientAlgoId, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryCurrentUmOpenAlgoOrderResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryCurrentUmOpenConditionalOrder
      *
      * @param symbol (required)
@@ -7349,10 +8402,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Current UM Open Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Conditional-Order">Query
-     *     Current UM Open Conditional Order(USER_DATA) Documentation</a>
+     *     Current UM Open Conditional Order Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call queryCurrentUmOpenConditionalOrderCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
             throws ApiException {
@@ -7427,6 +8482,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryCurrentUmOpenConditionalOrderValidateBeforeCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
@@ -7468,10 +8524,10 @@ public class TradeApi {
     }
 
     /**
-     * Query Current UM Open Conditional Order(USER_DATA) Query Current UM Open Conditional Order *
-     * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the
-     * queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;,
-     * the error message \&quot;Order does not exist\&quot; will be returned. Weight: 1
+     * Query Current UM Open Conditional Order Query Current UM Open Conditional Order * Either
+     * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the queried
+     * order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error
+     * message \&quot;Order does not exist\&quot; will be returned. Weight: 1
      *
      * @param symbol (required)
      * @param strategyId (optional)
@@ -7487,10 +8543,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Current UM Open Conditional Order </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Conditional-Order">Query
-     *     Current UM Open Conditional Order(USER_DATA) Documentation</a>
+     *     Current UM Open Conditional Order Documentation</a>
      */
+    @Deprecated
     public ApiResponse<QueryCurrentUmOpenConditionalOrderResponse>
             queryCurrentUmOpenConditionalOrder(
                     @NotNull String symbol,
@@ -8301,6 +9359,193 @@ public class TradeApi {
     }
 
     /**
+     * Build call for queryUmAlgoOrderHistory
+     *
+     * @param symbol (required)
+     * @param algoId (optional)
+     * @param startTime Timestamp in ms to get funding from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get funding until INCLUSIVE. (optional)
+     * @param limit Default 100; max 1000 (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> UM Algo Order History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Algo-Order-History">Query
+     *     UM Algo Order History (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryUmAlgoOrderHistoryCall(
+            String symbol, Long algoId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/papi/v1/um/algo/allAlgoOrders";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (algoId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryUmAlgoOrderHistoryValidateBeforeCall(
+            String symbol, Long algoId, Long startTime, Long endTime, Long limit, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, algoId, startTime, endTime, limit, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryUmAlgoOrderHistory",
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryUmAlgoOrderHistoryCall(
+                        symbol, algoId, startTime, endTime, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query UM Algo Order History (USER_DATA) Get all algo orders; ACTIVE, CANCELED, TRIGGERED or
+     * FINISHED . * If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that
+     * &#x60;algoId&#x60;. Otherwise most recent orders are returned. * The query time period must
+     * be less then 7 days( default as the recent 7 days). Weight: 5
+     *
+     * @param symbol (required)
+     * @param algoId (optional)
+     * @param startTime Timestamp in ms to get funding from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get funding until INCLUSIVE. (optional)
+     * @param limit Default 100; max 1000 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryUmAlgoOrderHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> UM Algo Order History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Algo-Order-History">Query
+     *     UM Algo Order History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryUmAlgoOrderHistoryResponse> queryUmAlgoOrderHistory(
+            @NotNull String symbol,
+            Long algoId,
+            Long startTime,
+            Long endTime,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                queryUmAlgoOrderHistoryValidateBeforeCall(
+                        symbol, algoId, startTime, endTime, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryUmAlgoOrderHistoryResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryUmConditionalOrderHistory
      *
      * @param symbol (required)
@@ -8316,10 +9561,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> UM Conditional Order History </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Conditional-Order-History">Query
-     *     UM Conditional Order History(USER_DATA) Documentation</a>
+     *     UM Conditional Order History Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call queryUmConditionalOrderHistoryCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
             throws ApiException {
@@ -8394,6 +9641,7 @@ public class TradeApi {
                 localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryUmConditionalOrderHistoryValidateBeforeCall(
             String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
@@ -8435,7 +9683,7 @@ public class TradeApi {
     }
 
     /**
-     * Query UM Conditional Order History(USER_DATA) Query UM Conditional Order History * Either
+     * Query UM Conditional Order History Query UM Conditional Order History * Either
      * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * &#x60;NEW&#x60;
      * orders will not be found. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** *
@@ -8455,10 +9703,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> UM Conditional Order History </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Conditional-Order-History">Query
-     *     UM Conditional Order History(USER_DATA) Documentation</a>
+     *     UM Conditional Order History Documentation</a>
      */
+    @Deprecated
     public ApiResponse<QueryUmConditionalOrderHistoryResponse> queryUmConditionalOrderHistory(
             @NotNull String symbol, Long strategyId, String newClientStrategyId, Long recvWindow)
             throws ApiException {
@@ -9009,7 +10259,8 @@ public class TradeApi {
      * Query User&#39;s CM Force Orders(USER_DATA) Query User&#39;s CM Force Orders * If
      * \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If
      * \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be
-     * queried Weight: 20 with symbol, 50 without symbol
+     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
+     * symbol
      *
      * @param symbol (optional)
      * @param autoCloseType &#x60;LIQUIDATION&#x60; for liquidation orders, &#x60;ADL&#x60; for ADL
@@ -9384,7 +10635,8 @@ public class TradeApi {
      * Query User&#39;s UM Force Orders (USER_DATA) Query User&#39;s UM Force Orders * If
      * &#x60;autoCloseType&#x60; is not sent, orders with both of the types will be returned * If
      * &#x60;startTime&#x60; is not sent, data within 7 days before &#x60;endTime&#x60; can be
-     * queried Weight: 20 with symbol, 50 without symbol
+     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
+     * symbol
      *
      * @param symbol (optional)
      * @param autoCloseType &#x60;LIQUIDATION&#x60; for liquidation orders, &#x60;ADL&#x60; for ADL

@@ -50,13 +50,15 @@ public class GetSolRedemptionHistoryExample {
      * @throws ApiException if the Api call fails
      */
     public void getSolRedemptionHistoryExample() throws ApiException {
+        Long redeemId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetSolRedemptionHistoryResponse> response =
-                getApi().getSolRedemptionHistory(startTime, endTime, current, size, recvWindow);
+                getApi().getSolRedemptionHistory(
+                                redeemId, startTime, endTime, current, size, recvWindow);
         System.out.println(response.getData());
     }
 }
