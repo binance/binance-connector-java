@@ -7,11 +7,24 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**code** | **String** |  |  [optional] |
-|**message** | **String** |  |  [optional] |
-|**data** | [**List&lt;GetC2CTradeHistoryResponseDataInner&gt;**](GetC2CTradeHistoryResponseDataInner.md) |  |  [optional] |
-|**total** | **Long** |  |  [optional] |
-|**success** | **Boolean** |  |  [optional] |
+|**orderNumber** | **String** |  |  [optional] |
+|**advNo** | **String** |  |  [optional] |
+|**tradeType** | **String** |  |  [optional] |
+|**asset** | **String** |  |  [optional] |
+|**fiat** | **String** |  |  [optional] |
+|**fiatSymbol** | **String** |  |  [optional] |
+|**amount** | **String** |  |  [optional] |
+|**totalPrice** | **String** |  |  [optional] |
+|**unitPrice** | **String** |  |  [optional] |
+|**orderStatus** | **String** |  |  [optional] |
+|**createTime** | **Long** |  |  [optional] |
+|**commission** | **String** |  |  [optional] |
+|**takerCommissionRate** | **String** |  |  [optional] |
+|**takerCommission** | **String** |  |  [optional] |
+|**takerAmount** | **String** |  |  [optional] |
+|**counterPartNickName** | **String** |  |  [optional] |
+|**payMethodName** | **String** |  |  [optional] |
+|**additionalKycVerify** | **Long** |  |  [optional] |
 
 
 

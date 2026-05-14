@@ -1,5 +1,27 @@
 # Changelog
 
+## 4.0.0 - 2026-05-04
+
+### Changed (1)
+
+- Modified response for `getPayTradeHistory()` (`GET /sapi/v1/pay/transactions`):
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+
+## 3.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
 ## 3.0.0 - 2025-09-22
 
 ### Changed (1)

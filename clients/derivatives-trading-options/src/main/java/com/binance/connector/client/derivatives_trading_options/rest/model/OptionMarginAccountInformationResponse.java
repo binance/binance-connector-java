@@ -84,6 +84,12 @@ public class OptionMarginAccountInformationResponse {
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
 
+    public static final String SERIALIZED_NAME_TRADE_GROUP_ID = "tradeGroupId";
+
+    @SerializedName(SERIALIZED_NAME_TRADE_GROUP_ID)
+    @jakarta.annotation.Nullable
+    private Long tradeGroupId;
+
     public OptionMarginAccountInformationResponse() {}
 
     public OptionMarginAccountInformationResponse asset(
@@ -251,6 +257,26 @@ public class OptionMarginAccountInformationResponse {
         this.reduceOnly = reduceOnly;
     }
 
+    public OptionMarginAccountInformationResponse tradeGroupId(
+            @jakarta.annotation.Nullable Long tradeGroupId) {
+        this.tradeGroupId = tradeGroupId;
+        return this;
+    }
+
+    /**
+     * Get tradeGroupId
+     *
+     * @return tradeGroupId
+     */
+    @jakarta.annotation.Nullable
+    public Long getTradeGroupId() {
+        return tradeGroupId;
+    }
+
+    public void setTradeGroupId(@jakarta.annotation.Nullable Long tradeGroupId) {
+        this.tradeGroupId = tradeGroupId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -270,12 +296,15 @@ public class OptionMarginAccountInformationResponse {
                 && Objects.equals(
                         this.canWithdraw, optionMarginAccountInformationResponse.canWithdraw)
                 && Objects.equals(
-                        this.reduceOnly, optionMarginAccountInformationResponse.reduceOnly);
+                        this.reduceOnly, optionMarginAccountInformationResponse.reduceOnly)
+                && Objects.equals(
+                        this.tradeGroupId, optionMarginAccountInformationResponse.tradeGroupId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(asset, greek, time, canTrade, canDeposit, canWithdraw, reduceOnly);
+        return Objects.hash(
+                asset, greek, time, canTrade, canDeposit, canWithdraw, reduceOnly, tradeGroupId);
     }
 
     @Override
@@ -289,6 +318,7 @@ public class OptionMarginAccountInformationResponse {
         sb.append("		canDeposit: ").append(toIndentedString(canDeposit)).append("\n");
         sb.append("		canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		tradeGroupId: ").append(toIndentedString(tradeGroupId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -330,6 +360,10 @@ public class OptionMarginAccountInformationResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object tradeGroupIdValue = getTradeGroupId();
+        String tradeGroupIdValueAsString = "";
+        tradeGroupIdValueAsString = tradeGroupIdValue.toString();
+        sb.append("tradeGroupId=").append(urlEncode(tradeGroupIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -365,6 +399,7 @@ public class OptionMarginAccountInformationResponse {
         openapiFields.add("canDeposit");
         openapiFields.add("canWithdraw");
         openapiFields.add("reduceOnly");
+        openapiFields.add("tradeGroupId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

@@ -42,7 +42,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyIsolatedPositionMarginRequest;
@@ -92,7 +91,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/10.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -2356,7 +2355,7 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
@@ -2464,28 +2463,26 @@ public class TradeApi {
      * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
      *
      * @param futuresTradfiPerpsContractRequest (required)
-     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
      *     TradFi Perps Contract(USER_DATA) Documentation</a>
      */
-    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+    public ApiResponse<Void> futuresTradfiPerpsContract(
             @Valid @NotNull FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 futuresTradfiPerpsContractValidateBeforeCall(futuresTradfiPerpsContractRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<FuturesTradfiPerpsContractResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
@@ -4571,7 +4568,6 @@ public class TradeApi {
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page (optional)
      * @param limit Default 100; max 1000 (optional)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -4588,13 +4584,7 @@ public class TradeApi {
      *     All Algo Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryAllAlgoOrdersCall(
-            String symbol,
-            Long algoId,
-            Long startTime,
-            Long endTime,
-            Long page,
-            Long limit,
-            Long recvWindow)
+            String symbol, Long algoId, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -4634,10 +4624,6 @@ public class TradeApi {
 
         if (endTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
-        }
-
-        if (page != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
         if (limit != null) {
@@ -4680,13 +4666,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryAllAlgoOrdersValidateBeforeCall(
-            String symbol,
-            Long algoId,
-            Long startTime,
-            Long endTime,
-            Long page,
-            Long limit,
-            Long recvWindow)
+            String symbol, Long algoId, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -4697,15 +4677,12 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {
-                symbol, algoId, startTime, endTime, page, limit, recvWindow
-            };
+            Object[] parameterValues = {symbol, algoId, startTime, endTime, limit, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "queryAllAlgoOrders",
                                     String.class,
-                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -4716,7 +4693,7 @@ public class TradeApi {
 
             if (violations.size() == 0) {
                 return queryAllAlgoOrdersCall(
-                        symbol, algoId, startTime, endTime, page, limit, recvWindow);
+                        symbol, algoId, startTime, endTime, limit, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -4742,7 +4719,6 @@ public class TradeApi {
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page (optional)
      * @param limit Default 100; max 1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
@@ -4764,13 +4740,12 @@ public class TradeApi {
             Long algoId,
             Long startTime,
             Long endTime,
-            Long page,
             Long limit,
             Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryAllAlgoOrdersValidateBeforeCall(
-                        symbol, algoId, startTime, endTime, page, limit, recvWindow);
+                        symbol, algoId, startTime, endTime, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryAllAlgoOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -5529,7 +5504,8 @@ public class TradeApi {
      * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders * If
      * \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If
      * \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be
-     * queried Weight: 20 with symbol, 50 without symbol
+     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
+     * symbol
      *
      * @param symbol (optional)
      * @param autoCloseType \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for

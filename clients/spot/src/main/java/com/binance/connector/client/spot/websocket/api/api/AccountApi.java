@@ -62,6 +62,10 @@ public class AccountApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Account Commission Rates Get current account commission rates. Weight: 20
      *

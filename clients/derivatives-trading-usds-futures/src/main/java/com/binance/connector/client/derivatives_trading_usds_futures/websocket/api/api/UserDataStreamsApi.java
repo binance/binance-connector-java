@@ -40,6 +40,10 @@ public class UserDataStreamsApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight: 1
      *

@@ -9,9 +9,13 @@
 |------------ | ------------- | ------------- | -------------|
 |**E** | **Long** |  |  [optional] |
 |**uLowerCase** | **String** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
 |**eq** | **String** |  |  [optional] |
 |**ae** | **String** |  |  [optional] |
+|**im** | **String** |  |  [optional] |
+|**mm** | **String** |  |  [optional] |
+|**avb** | **String** |  |  [optional] |
+|**vmw** | **String** |  |  [optional] |
+|**sLowerCase** | **String** |  |  [optional] |
 |**mLowerCase** | **String** |  |  [optional] |
 
 

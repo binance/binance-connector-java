@@ -42,7 +42,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountBalanceV3Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountConfigurationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradingQuantitativeRulesIndicatorsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetBnbBurnStatusResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetCurrentMultiAssetsModeResponse;
@@ -827,7 +826,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * @param period
      *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
      *     (required)
-     * @param limit Default 30,Max 500 (required)
+     * @param limit Default 100; max 1000 (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;BasisResponse&gt;
@@ -1235,7 +1234,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Old Trades Lookup (MARKET_DATA) Get older market historical trades. * Market trades means
      * trades filled in the order book. Only market trades will be returned, which means the
      * insurance fund trades and ADL trades won&#39;t be returned. * Only supports data from within
-     * the last three months Weight: 20
+     * the last one month Weight: 20
      *
      * @param symbol (required)
      * @param limit Default 100; max 1000 (optional)
@@ -2176,24 +2175,24 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
      *
      * @param futuresTradfiPerpsContractRequest (required)
-     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
      *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
      *     TradFi Perps Contract(USER_DATA) Documentation</a>
      */
-    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+    public void futuresTradfiPerpsContract(
             FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
             throws ApiException {
-        return tradeApi.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
+        tradeApi.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
     }
 
     /**
@@ -2595,7 +2594,6 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page (optional)
      * @param limit Default 100; max 1000 (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
@@ -2613,16 +2611,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
      *     All Algo Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryAllAlgoOrdersResponse> queryAllAlgoOrders(
-            String symbol,
-            Long algoId,
-            Long startTime,
-            Long endTime,
-            Long page,
-            Long limit,
-            Long recvWindow)
+            String symbol, Long algoId, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
-        return tradeApi.queryAllAlgoOrders(
-                symbol, algoId, startTime, endTime, page, limit, recvWindow);
+        return tradeApi.queryAllAlgoOrders(symbol, algoId, startTime, endTime, limit, recvWindow);
     }
 
     /**
@@ -2749,7 +2740,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders * If
      * \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If
      * \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be
-     * queried Weight: 20 with symbol, 50 without symbol
+     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
+     * symbol
      *
      * @param symbol (optional)
      * @param autoCloseType \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for

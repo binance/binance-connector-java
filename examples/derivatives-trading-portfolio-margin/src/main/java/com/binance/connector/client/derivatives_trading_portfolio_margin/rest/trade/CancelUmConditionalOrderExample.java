@@ -38,7 +38,7 @@ public class CancelUmConditionalOrderExample {
     }
 
     /**
-     * Cancel UM Conditional Order(TRADE)
+     * Cancel UM Conditional Order
      *
      * <p>Cancel UM Conditional Order * Either &#x60;strategyId&#x60; or
      * &#x60;newClientStrategyId&#x60; must be sent. Weight: 1

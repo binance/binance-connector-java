@@ -40,6 +40,10 @@ public class MarketDataApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Order Book Get current order book. Note that this request returns limited market depth. If
      * you need to continuously monitor order book updates, please consider using Websocket Market

@@ -77,7 +77,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/10.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -255,7 +255,7 @@ public class MarketDataApi {
      * @param period
      *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
      *     (required)
-     * @param limit Default 30,Max 500 (required)
+     * @param limit Default 100; max 1000 (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return Call to execute
@@ -412,7 +412,7 @@ public class MarketDataApi {
      * @param period
      *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
      *     (required)
-     * @param limit Default 30,Max 500 (required)
+     * @param limit Default 100; max 1000 (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;BasisResponse&gt;
@@ -433,7 +433,7 @@ public class MarketDataApi {
             @NotNull String pair,
             @NotNull ContractType contractType,
             @NotNull Period period,
-            @NotNull Long limit,
+            Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
@@ -2594,7 +2594,7 @@ public class MarketDataApi {
      * Old Trades Lookup (MARKET_DATA) Get older market historical trades. * Market trades means
      * trades filled in the order book. Only market trades will be returned, which means the
      * insurance fund trades and ADL trades won&#39;t be returned. * Only supports data from within
-     * the last three months Weight: 20
+     * the last one month Weight: 20
      *
      * @param symbol (required)
      * @param limit Default 100; max 1000 (optional)

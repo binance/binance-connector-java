@@ -14,7 +14,6 @@ package com.binance.connector.client.pay.rest.model;
 
 import com.binance.connector.client.pay.rest.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -29,12 +28,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInnerFundsDetailInner */
@@ -58,8 +53,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
 
     @SerializedName(SERIALIZED_NAME_WALLET_ASSET_COST)
     @jakarta.annotation.Nullable
-    private List<@Valid GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-            walletAssetCost;
+    private GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost walletAssetCost;
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner() {}
 
@@ -105,21 +99,9 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner walletAssetCost(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
+                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                             walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
-        return this;
-    }
-
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInner addWalletAssetCostItem(
-            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                    walletAssetCostItem) {
-        if (this.walletAssetCost == null) {
-            this.walletAssetCost = new ArrayList<>();
-        }
-        this.walletAssetCost.add(walletAssetCostItem);
         return this;
     }
 
@@ -130,16 +112,13 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-            getWalletAssetCost() {
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost getWalletAssetCost() {
         return walletAssetCost;
     }
 
     public void setWalletAssetCost(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
+                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                             walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
     }
@@ -193,10 +172,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
         sb.append("amount=").append(urlEncode(amountValueAsString)).append("");
         Object walletAssetCostValue = getWalletAssetCost();
         String walletAssetCostValueAsString = "";
-        walletAssetCostValueAsString =
-                (String)
-                        ((Collection) walletAssetCostValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        walletAssetCostValueAsString = walletAssetCostValue.toString();
         sb.append("walletAssetCost=").append(urlEncode(walletAssetCostValueAsString)).append("");
         return sb.toString();
     }
@@ -272,26 +248,11 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
         }
+        // validate the optional field `walletAssetCost`
         if (jsonObj.get("walletAssetCost") != null
                 && !jsonObj.get("walletAssetCost").isJsonNull()) {
-            JsonArray jsonArraywalletAssetCost = jsonObj.getAsJsonArray("walletAssetCost");
-            if (jsonArraywalletAssetCost != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("walletAssetCost").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `walletAssetCost` to be an array in the"
-                                            + " JSON string but got `%s`",
-                                    jsonObj.get("walletAssetCost").toString()));
-                }
-
-                // validate the optional field `walletAssetCost` (array)
-                for (int i = 0; i < jsonArraywalletAssetCost.size(); i++) {
-                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                            .validateJsonElement(jsonArraywalletAssetCost.get(i));
-                }
-                ;
-            }
+            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.validateJsonElement(
+                    jsonObj.get("walletAssetCost"));
         }
     }
 

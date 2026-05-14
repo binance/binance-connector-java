@@ -57,7 +57,7 @@ public class SolStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/4.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -779,6 +779,7 @@ public class SolStakingApi {
     /**
      * Build call for getSolRedemptionHistory
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -798,7 +799,7 @@ public class SolStakingApi {
      *     SOL redemption history(USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSolRedemptionHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -823,6 +824,10 @@ public class SolStakingApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (redeemId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("redeemId", redeemId));
+        }
 
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
@@ -876,7 +881,7 @@ public class SolStakingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSolRedemptionHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -887,11 +892,12 @@ public class SolStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {redeemId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getSolRedemptionHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -901,7 +907,8 @@ public class SolStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getSolRedemptionHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getSolRedemptionHistoryCall(
+                        redeemId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -923,6 +930,7 @@ public class SolStakingApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -943,11 +951,11 @@ public class SolStakingApi {
      *     SOL redemption history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolRedemptionHistoryResponse> getSolRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSolRedemptionHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        redeemId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSolRedemptionHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -956,6 +964,7 @@ public class SolStakingApi {
     /**
      * Build call for getSolStakingHistory
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -975,7 +984,7 @@ public class SolStakingApi {
      *     SOL staking history(USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSolStakingHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1000,6 +1009,10 @@ public class SolStakingApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (purchaseId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("purchaseId", purchaseId));
+        }
 
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
@@ -1053,7 +1066,7 @@ public class SolStakingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSolStakingHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1064,11 +1077,12 @@ public class SolStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {purchaseId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getSolStakingHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1078,7 +1092,8 @@ public class SolStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getSolStakingHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getSolStakingHistoryCall(
+                        purchaseId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1100,6 +1115,7 @@ public class SolStakingApi {
      * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
      * before &#x60;endTime&#x60; will be returned. Weight: 150
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param current Currently querying page. Start from 1. Default:1 (optional)
@@ -1120,11 +1136,11 @@ public class SolStakingApi {
      *     SOL staking history(USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolStakingHistoryResponse> getSolStakingHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSolStakingHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        purchaseId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSolStakingHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

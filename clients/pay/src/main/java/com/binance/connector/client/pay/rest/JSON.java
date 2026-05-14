@@ -120,7 +120,7 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.pay.rest.model
-                        .GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+                        .GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.pay.rest.model

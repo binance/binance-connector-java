@@ -9,12 +9,14 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.BnbTransferResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.DeleteMarginCallLevelResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetAutoRepayFuturesStatusResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetDeltaModeStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetMarginCallLevelResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginAssetLeverageResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountBalanceResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
@@ -30,6 +32,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SetMarginCallLevelRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SetMarginCallLevelResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
@@ -95,6 +99,30 @@ public class DerivativesTradingPortfolioMarginProRestApi {
             ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest)
             throws ApiException {
         return accountApi.changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest);
+    }
+
+    /**
+     * Delete Margin Call Level (USER_DATA) Delete the margin call level for a Portfolio Margin
+     * account. Weight: 1500
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;DeleteMarginCallLevelResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Delete Margin Call Level </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Delete-Margin-Call-Level">Delete
+     *     Margin Call Level (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DeleteMarginCallLevelResponse> deleteMarginCallLevel(Long recvWindow)
+            throws ApiException {
+        return accountApi.deleteMarginCallLevel(recvWindow);
     }
 
     /**
@@ -190,6 +218,30 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     public ApiResponse<GetDeltaModeStatusResponse> getDeltaModeStatus(Long recvWindow)
             throws ApiException {
         return accountApi.getDeltaModeStatus(recvWindow);
+    }
+
+    /**
+     * Get Margin Call Level (USER_DATA) Get the margin call level for a Portfolio Margin account.
+     * Weight: 1500
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetMarginCallLevelResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Margin Call Level </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Margin-Call-Level">Get
+     *     Margin Call Level (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetMarginCallLevelResponse> getMarginCallLevel(Long recvWindow)
+            throws ApiException {
+        return accountApi.getMarginCallLevel(recvWindow);
     }
 
     /**
@@ -436,6 +488,31 @@ public class DerivativesTradingPortfolioMarginProRestApi {
             RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest)
             throws ApiException {
         return accountApi.repayFuturesNegativeBalance(repayFuturesNegativeBalanceRequest);
+    }
+
+    /**
+     * Set Margin Call Level (USER_DATA) Set the margin call level for a Portfolio Margin account.
+     * When the account&#39;s uniMMR drops to the specified level, a notification will be sent via
+     * email and SMS. Weight: 1500
+     *
+     * @param setMarginCallLevelRequest (required)
+     * @return ApiResponse&lt;SetMarginCallLevelResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Set Margin Call Level </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Set-Margin-Call-Level">Set
+     *     Margin Call Level (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<SetMarginCallLevelResponse> setMarginCallLevel(
+            SetMarginCallLevelRequest setMarginCallLevelRequest) throws ApiException {
+        return accountApi.setMarginCallLevel(setMarginCallLevelRequest);
     }
 
     /**

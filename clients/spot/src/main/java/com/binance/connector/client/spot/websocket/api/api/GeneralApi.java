@@ -41,6 +41,10 @@ public class GeneralApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * WebSocket Exchange information Query current exchange trading rules, rate limits, and symbol
      * information. Weight: 20

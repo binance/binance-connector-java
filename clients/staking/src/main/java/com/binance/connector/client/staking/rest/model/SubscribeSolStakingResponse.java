@@ -54,6 +54,12 @@ public class SubscribeSolStakingResponse {
     @jakarta.annotation.Nullable
     private String exchangeRate;
 
+    public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
+
+    @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
+    @jakarta.annotation.Nullable
+    private Long purchaseId;
+
     public SubscribeSolStakingResponse() {}
 
     public SubscribeSolStakingResponse success(@jakarta.annotation.Nullable Boolean success) {
@@ -115,6 +121,25 @@ public class SubscribeSolStakingResponse {
         this.exchangeRate = exchangeRate;
     }
 
+    public SubscribeSolStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -126,12 +151,13 @@ public class SubscribeSolStakingResponse {
         SubscribeSolStakingResponse subscribeSolStakingResponse = (SubscribeSolStakingResponse) o;
         return Objects.equals(this.success, subscribeSolStakingResponse.success)
                 && Objects.equals(this.bnsolAmount, subscribeSolStakingResponse.bnsolAmount)
-                && Objects.equals(this.exchangeRate, subscribeSolStakingResponse.exchangeRate);
+                && Objects.equals(this.exchangeRate, subscribeSolStakingResponse.exchangeRate)
+                && Objects.equals(this.purchaseId, subscribeSolStakingResponse.purchaseId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, bnsolAmount, exchangeRate);
+        return Objects.hash(success, bnsolAmount, exchangeRate, purchaseId);
     }
 
     @Override
@@ -141,6 +167,7 @@ public class SubscribeSolStakingResponse {
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		bnsolAmount: ").append(toIndentedString(bnsolAmount)).append("\n");
         sb.append("		exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
+        sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -160,6 +187,10 @@ public class SubscribeSolStakingResponse {
         String exchangeRateValueAsString = "";
         exchangeRateValueAsString = exchangeRateValue.toString();
         sb.append("exchangeRate=").append(urlEncode(exchangeRateValueAsString)).append("");
+        Object purchaseIdValue = getPurchaseId();
+        String purchaseIdValueAsString = "";
+        purchaseIdValueAsString = purchaseIdValue.toString();
+        sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -191,6 +222,7 @@ public class SubscribeSolStakingResponse {
         openapiFields.add("success");
         openapiFields.add("bnsolAmount");
         openapiFields.add("exchangeRate");
+        openapiFields.add("purchaseId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

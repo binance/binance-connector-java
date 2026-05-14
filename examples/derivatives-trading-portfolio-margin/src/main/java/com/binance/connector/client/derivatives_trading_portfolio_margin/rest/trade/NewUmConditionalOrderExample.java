@@ -41,7 +41,7 @@ public class NewUmConditionalOrderExample {
     }
 
     /**
-     * New UM Conditional Order (TRADE)
+     * New UM Conditional Order
      *
      * <p>Place new UM conditional order * Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter
      * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be

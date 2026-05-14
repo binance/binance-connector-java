@@ -43,7 +43,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -237,7 +237,8 @@ public class AccountApi {
     }
 
     /**
-     * Account Funding Flow (USER_DATA) Query account funding flows. Weight: 1
+     * Account Funding Flow (USER_DATA) Query account funding flows. * Only support querying data in
+     * the past 3 months Weight: 1
      *
      * @param currency Asset type, only support USDT as of now (required)
      * @param recordId Return the recordId and subsequent data, the latest data is returned by
