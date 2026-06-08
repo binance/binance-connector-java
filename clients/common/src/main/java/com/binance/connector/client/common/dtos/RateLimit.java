@@ -1,7 +1,7 @@
 package com.binance.connector.client.common.dtos;
 
 /** DTOs for rate limits */
-public final class RateLimit {
+public class RateLimit {
     private RateLimitType rateLimitType;
     private RateLimitInterval interval;
     private Integer intervalNum;

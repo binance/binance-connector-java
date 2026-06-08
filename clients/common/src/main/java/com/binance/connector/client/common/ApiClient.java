@@ -215,11 +215,8 @@ public class ApiClient {
 
         SignatureConfiguration signatureConfiguration = configuration.getSignatureConfiguration();
         if (signatureConfiguration != null) {
-            Authentication authentication =
-                    binanceAuthenticationFactory.getAuthentication(signatureConfiguration);
-            if (authentication != null) {
-                authentications.put(BINANCE_SIGNATURE, authentication);
-            }
+            Map<String, Authentication> customAuthentications = getCustomAuthentications(binanceAuthenticationFactory, signatureConfiguration);
+            authentications.putAll(customAuthentications);
         }
 
         Authentication binanceApiKeyOnly =
@@ -512,6 +509,21 @@ public class ApiClient {
      * @return Map of authentication objects
      */
     public Map<String, Authentication> getAuthentications() {
+        return authentications;
+    }
+
+    /**
+     * Get custom authentications to be added (key: authentication name, value: authentication).
+     *
+     * @return Map of authentication objects
+     */
+    protected Map<String, Authentication> getCustomAuthentications(BinanceAuthenticationFactory binanceAuthenticationFactory, SignatureConfiguration signatureConfiguration) {
+        Map<String, Authentication> authentications = new HashMap<>();
+        Authentication authentication =
+                binanceAuthenticationFactory.getAuthentication(signatureConfiguration);
+        if (authentication != null) {
+            authentications.put(BINANCE_SIGNATURE, authentication);
+        }
         return authentications;
     }
 
@@ -1215,8 +1227,7 @@ public class ApiClient {
         try {
             Response response = call.execute();
             T data = handleResponse(response, returnType);
-            Map<RateLimitType, RateLimit> rateLimit =
-                    getRateLimit(response.code(), response.headers());
+            Map<RateLimitType, ? extends RateLimit> rateLimit = getRateLimit(response.code(), response.headers());
             return new ApiResponse<T>(
                     response.code(), response.headers().toMultimap(), data, rateLimit);
         } catch (IOException e) {
@@ -1571,7 +1582,7 @@ public class ApiClient {
         for (String authName : authNames) {
             Authentication auth = authentications.get(authName);
             if (auth == null) {
-                if (BINANCE_SIGNATURE.equals(authName)) {
+                if (isRequiredAuth(authName)) {
                     throw new RuntimeException(
                             "Request is signed, please add signatureConfiguration to"
                                     + " clientConfiguration");
@@ -1584,6 +1595,10 @@ public class ApiClient {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    protected boolean isRequiredAuth(String authName) {
+        return BINANCE_SIGNATURE.equals(authName);
     }
 
     /**
@@ -1819,7 +1834,7 @@ public class ApiClient {
         return "";
     }
 
-    private Map<RateLimitType, RateLimit> getRateLimit(Integer responseCode, Headers headers) {
+    protected Map<RateLimitType, ? extends RateLimit> getRateLimit(Integer responseCode, Headers headers) {
         HashMap<RateLimitType, RateLimit> rateLimitMap = new HashMap<>();
         Integer retryAfter = null;
         if (Arrays.asList(HTTP_TEA_POT, HTTP_TOO_MANY_REQS).contains(responseCode)) {
