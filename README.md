@@ -40,6 +40,7 @@ Before using the connectors, ensure you have:
 - [binance-staking](clients/staking) - Staking connector
 - [binance-sub-account](clients/sub-account) - Sub Account connector
 - [binance-vip-loan](clients/vip-loan) - VIP Loan connector
+- [binance-w3w-prediction](clients/w3w-prediction) - W3W Prediction
 - [binance-wallet](clients/wallet) - Wallet connector
 
 ## Documentation
@@ -254,6 +255,8 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 **Sub Account**: [Rest API](clients/sub-account/example_rest.md)
 
 **Vip Loan**: [Rest API](clients/vip-loan/example_rest.md)
+
+**W3W Prediction**: [Rest API](clients/w3w-prediction/example_rest.md)
 
 **Wallet**: [Rest API](clients/wallet/example_rest.md)
 
