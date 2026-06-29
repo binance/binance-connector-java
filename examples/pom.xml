@@ -39,6 +39,7 @@
         <module>staking</module>
         <module>sub-account</module>
         <module>vip-loan</module>
+        <module>w3w-prediction</module>
         <module>wallet</module>
         <!--    add_module    -->
     </modules>
