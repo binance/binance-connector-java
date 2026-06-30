@@ -307,10 +307,22 @@ public class JSON {
                         .GetCloudMiningPaymentAndRefundHistoryResponseRowsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetCountryListResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .GetCountryListResponseCountriesInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetRegionListResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetRegionListResponseRegionsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.GetSpotDelistScheduleResponse

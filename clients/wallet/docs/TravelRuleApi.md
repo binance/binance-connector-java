@@ -9,6 +9,8 @@ All URIs are relative to *https://api.binance.com*
 | [**depositHistoryTravelRule**](TravelRuleApi.md#depositHistoryTravelRule) | **GET** /sapi/v1/localentity/deposit/history | Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA) |
 | [**depositHistoryV2**](TravelRuleApi.md#depositHistoryV2) | **GET** /sapi/v2/localentity/deposit/history | Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA) |
 | [**fetchAddressVerificationList**](TravelRuleApi.md#fetchAddressVerificationList) | **GET** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA) |
+| [**getCountryList**](TravelRuleApi.md#getCountryList) | **GET** /sapi/v1/localentity/country/list | Get Country List (USER_DATA) |
+| [**getRegionList**](TravelRuleApi.md#getRegionList) | **GET** /sapi/v1/localentity/region/list | Get Region List (USER_DATA) |
 | [**submitDepositQuestionnaire**](TravelRuleApi.md#submitDepositQuestionnaire) | **PUT** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaireTravelRule**](TravelRuleApi.md#submitDepositQuestionnaireTravelRule) | **PUT** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA) |
 | [**submitDepositQuestionnaireV2**](TravelRuleApi.md#submitDepositQuestionnaireV2) | **PUT** /sapi/v2/localentity/deposit/provide-info | Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA) |
@@ -148,7 +150,7 @@ No authorization required
 
 Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA)
 
-Fetch deposit history for local entities that required travel rule.  * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must  Weight: 1
+Fetch deposit history for local entities that required travel rule.  * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific characteristics, the returned source address may be inaccurate. If multiple source addresses are found, only the first one will be returned.  Weight: 1
 
 ### Example
 ```java
@@ -230,7 +232,7 @@ No authorization required
 
 Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA)
 
-Fetch deposit history for local entities that with required travel rule information.  * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must  Weight: 1
+Fetch deposit history for local entities that with required travel rule information.  * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific characteristics, the returned source address may be inaccurate. If multiple source addresses are found, only the first one will be returned.  Weight: 1
 
 ### Example
 ```java
@@ -363,6 +365,126 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Fetch address verification list |  -  |
+
+<a id="getCountryList"></a>
+# **getCountryList**
+> GetCountryListResponse getCountryList()
+
+Get Country List (USER_DATA)
+
+Query the active country list for travel rule questionnaires. Currently, only supports AU entity.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    try {
+      GetCountryListResponse result = apiInstance.getCountryList();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#getCountryList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCountryListResponse**](GetCountryListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Country List |  -  |
+
+<a id="getRegionList"></a>
+# **getRegionList**
+> GetRegionListResponse getRegionList(countryCode)
+
+Get Region List (USER_DATA)
+
+Query the active region/city list for a given country. Currently, only supports AU entity.  Weight: 1
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.TravelRuleApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TravelRuleApi apiInstance = new TravelRuleApi(defaultClient);
+    String countryCode = "countryCode_example"; // String | ISO 2-digit country code (from `Country List` API).
+    try {
+      GetRegionListResponse result = apiInstance.getRegionList(countryCode);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TravelRuleApi#getRegionList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **countryCode** | **String**| ISO 2-digit country code (from &#x60;Country List&#x60; API). | |
+
+### Return type
+
+[**GetRegionListResponse**](GetRegionListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Region List |  -  |
 
 <a id="submitDepositQuestionnaire"></a>
 # **submitDepositQuestionnaire**

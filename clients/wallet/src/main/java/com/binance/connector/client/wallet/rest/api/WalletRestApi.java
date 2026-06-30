@@ -38,7 +38,9 @@ import com.binance.connector.client.wallet.rest.model.GetApiKeyPermissionRespons
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbRequest;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
+import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
@@ -948,7 +950,13 @@ public class WalletRestApi {
      * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
      * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
      * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
-     * travel rule please refer to the Travel Rule SAPI. Weight: 900
+     * travel rule please refer to the Travel Rule SAPI. * For networks that do not support
+     * memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return
+     * error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60;
+     * field for such networks. You can check whether a network requires a tag via &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;: * If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; →
+     * memo/tag is required. * If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not
+     * supported; omit &#x60;addressTag&#x60;. Weight: 900
      *
      * @param withdrawRequest (required)
      * @return ApiResponse&lt;WithdrawResponse&gt;
@@ -1134,7 +1142,9 @@ public class WalletRestApi {
      * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
      * interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
      * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific
+     * characteristics, the returned source address may be inaccurate. If multiple source addresses
+     * are found, only the first one will be returned. Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
@@ -1195,7 +1205,9 @@ public class WalletRestApi {
      * information. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to
      * make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
      * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific
+     * characteristics, the returned source address may be inaccurate. If multiple source addresses
+     * are found, only the first one will be returned. Weight: 1
      *
      * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
      * @param txId (optional)
@@ -1267,6 +1279,50 @@ public class WalletRestApi {
     public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList(
             Long recvWindow) throws ApiException {
         return travelRuleApi.fetchAddressVerificationList(recvWindow);
+    }
+
+    /**
+     * Get Country List (USER_DATA) Query the active country list for travel rule questionnaires.
+     * Currently, only supports AU entity. Weight: 1
+     *
+     * @return ApiResponse&lt;GetCountryListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Country List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/country-list">Get
+     *     Country List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetCountryListResponse> getCountryList() throws ApiException {
+        return travelRuleApi.getCountryList();
+    }
+
+    /**
+     * Get Region List (USER_DATA) Query the active region/city list for a given country. Currently,
+     * only supports AU entity. Weight: 1
+     *
+     * @param countryCode ISO 2-digit country code (from &#x60;Country List&#x60; API). (required)
+     * @return ApiResponse&lt;GetRegionListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Region List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/region-list">Get Region
+     *     List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetRegionListResponse> getRegionList(String countryCode)
+            throws ApiException {
+        return travelRuleApi.getRegionList(countryCode);
     }
 
     /**

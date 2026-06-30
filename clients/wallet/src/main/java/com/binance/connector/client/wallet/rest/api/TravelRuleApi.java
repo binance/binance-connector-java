@@ -26,6 +26,8 @@ import com.binance.connector.client.wallet.rest.model.CheckQuestionnaireRequirem
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationListResponse;
+import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
+import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
@@ -60,7 +62,7 @@ public class TravelRuleApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/4.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -649,7 +651,9 @@ public class TravelRuleApi {
      * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
      * interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
      * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific
+     * characteristics, the returned source address may be inaccurate. If multiple source addresses
+     * are found, only the first one will be returned. Weight: 1
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
      * @param txId (optional)
@@ -915,7 +919,9 @@ public class TravelRuleApi {
      * information. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to
      * make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
      * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * &#x60;&#x60;endTime&#x60;&#x60; must * Please, note that due to network-specific
+     * characteristics, the returned source address may be inaccurate. If multiple source addresses
+     * are found, only the first one will be returned. Weight: 1
      *
      * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
      * @param txId (optional)
@@ -1100,6 +1106,262 @@ public class TravelRuleApi {
         okhttp3.Call localVarCall = fetchAddressVerificationListValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<FetchAddressVerificationListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getCountryList
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Country List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/country-list">Get
+     *     Country List (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getCountryListCall() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/localentity/country/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getCountryListValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("getCountryList");
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getCountryListCall();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Country List (USER_DATA) Query the active country list for travel rule questionnaires.
+     * Currently, only supports AU entity. Weight: 1
+     *
+     * @return ApiResponse&lt;GetCountryListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Country List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/country-list">Get
+     *     Country List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetCountryListResponse> getCountryList() throws ApiException {
+        okhttp3.Call localVarCall = getCountryListValidateBeforeCall();
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetCountryListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getRegionList
+     *
+     * @param countryCode ISO 2-digit country code (from &#x60;Country List&#x60; API). (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Region List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/region-list">Get Region
+     *     List (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getRegionListCall(String countryCode) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/localentity/region/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (countryCode != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("countryCode", countryCode));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getRegionListValidateBeforeCall(String countryCode) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {countryCode};
+            Method method = this.getClass().getMethod("getRegionList", String.class);
+            Set<ConstraintViolation<TravelRuleApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getRegionListCall(countryCode);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Region List (USER_DATA) Query the active region/city list for a given country. Currently,
+     * only supports AU entity. Weight: 1
+     *
+     * @param countryCode ISO 2-digit country code (from &#x60;Country List&#x60; API). (required)
+     * @return ApiResponse&lt;GetRegionListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Region List </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/region-list">Get Region
+     *     List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetRegionListResponse> getRegionList(@NotNull String countryCode)
+            throws ApiException {
+        okhttp3.Call localVarCall = getRegionListValidateBeforeCall(countryCode);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetRegionListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
