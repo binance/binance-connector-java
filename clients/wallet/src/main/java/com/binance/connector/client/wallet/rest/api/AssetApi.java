@@ -68,7 +68,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/4.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -459,6 +459,10 @@ public class AssetApi {
             localVarFormParams.put("asset", dustConvertRequest.getAsset());
         }
 
+        if (dustConvertRequest.getAccountType() != null) {
+            localVarFormParams.put("accountType", dustConvertRequest.getAccountType());
+        }
+
         if (dustConvertRequest.getClientId() != null) {
             localVarFormParams.put("clientId", dustConvertRequest.getClientId());
         }
@@ -606,6 +610,10 @@ public class AssetApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (dustConvertibleAssetsRequest.getAccountType() != null) {
+            localVarFormParams.put("accountType", dustConvertibleAssetsRequest.getAccountType());
+        }
 
         if (dustConvertibleAssetsRequest.getTargetAsset() != null) {
             localVarFormParams.put("targetAsset", dustConvertibleAssetsRequest.getTargetAsset());

@@ -42,11 +42,11 @@ public class BrokerWithdrawResponse {
     @jakarta.annotation.Nullable
     private Long trId;
 
-    public static final String SERIALIZED_NAME_ACCPTED = "accpted";
+    public static final String SERIALIZED_NAME_ACCEPTED = "accepted";
 
-    @SerializedName(SERIALIZED_NAME_ACCPTED)
+    @SerializedName(SERIALIZED_NAME_ACCEPTED)
     @jakarta.annotation.Nullable
-    private Boolean accpted;
+    private Boolean accepted;
 
     public static final String SERIALIZED_NAME_INFO = "info";
 
@@ -75,23 +75,23 @@ public class BrokerWithdrawResponse {
         this.trId = trId;
     }
 
-    public BrokerWithdrawResponse accpted(@jakarta.annotation.Nullable Boolean accpted) {
-        this.accpted = accpted;
+    public BrokerWithdrawResponse accepted(@jakarta.annotation.Nullable Boolean accepted) {
+        this.accepted = accepted;
         return this;
     }
 
     /**
-     * Get accpted
+     * Get accepted
      *
-     * @return accpted
+     * @return accepted
      */
     @jakarta.annotation.Nullable
-    public Boolean getAccpted() {
-        return accpted;
+    public Boolean getAccepted() {
+        return accepted;
     }
 
-    public void setAccpted(@jakarta.annotation.Nullable Boolean accpted) {
-        this.accpted = accpted;
+    public void setAccepted(@jakarta.annotation.Nullable Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public BrokerWithdrawResponse info(@jakarta.annotation.Nullable String info) {
@@ -123,13 +123,13 @@ public class BrokerWithdrawResponse {
         }
         BrokerWithdrawResponse brokerWithdrawResponse = (BrokerWithdrawResponse) o;
         return Objects.equals(this.trId, brokerWithdrawResponse.trId)
-                && Objects.equals(this.accpted, brokerWithdrawResponse.accpted)
+                && Objects.equals(this.accepted, brokerWithdrawResponse.accepted)
                 && Objects.equals(this.info, brokerWithdrawResponse.info);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trId, accpted, info);
+        return Objects.hash(trId, accepted, info);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class BrokerWithdrawResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class BrokerWithdrawResponse {\n");
         sb.append("		trId: ").append(toIndentedString(trId)).append("\n");
-        sb.append("		accpted: ").append(toIndentedString(accpted)).append("\n");
+        sb.append("		accepted: ").append(toIndentedString(accepted)).append("\n");
         sb.append("		info: ").append(toIndentedString(info)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -150,10 +150,10 @@ public class BrokerWithdrawResponse {
         String trIdValueAsString = "";
         trIdValueAsString = trIdValue.toString();
         sb.append("trId=").append(urlEncode(trIdValueAsString)).append("");
-        Object accptedValue = getAccpted();
-        String accptedValueAsString = "";
-        accptedValueAsString = accptedValue.toString();
-        sb.append("accpted=").append(urlEncode(accptedValueAsString)).append("");
+        Object acceptedValue = getAccepted();
+        String acceptedValueAsString = "";
+        acceptedValueAsString = acceptedValue.toString();
+        sb.append("accepted=").append(urlEncode(acceptedValueAsString)).append("");
         Object infoValue = getInfo();
         String infoValueAsString = "";
         infoValueAsString = infoValue.toString();
@@ -187,7 +187,7 @@ public class BrokerWithdrawResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("trId");
-        openapiFields.add("accpted");
+        openapiFields.add("accepted");
         openapiFields.add("info");
 
         // a set of required properties/fields (JSON key names)

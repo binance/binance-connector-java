@@ -36,7 +36,13 @@ public class WithdrawExample {
      * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
      * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
      * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
-     * travel rule please refer to the Travel Rule SAPI. Weight: 900
+     * travel rule please refer to the Travel Rule SAPI. * For networks that do not support
+     * memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return
+     * error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60;
+     * field for such networks. You can check whether a network requires a tag via &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;: * If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; →
+     * memo/tag is required. * If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not
+     * supported; omit &#x60;addressTag&#x60;. Weight: 900
      *
      * @throws ApiException if the Api call fails
      */

@@ -37,6 +37,12 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class DustConvertibleAssetsRequest {
+    public static final String SERIALIZED_NAME_ACCOUNT_TYPE = "accountType";
+
+    @SerializedName(SERIALIZED_NAME_ACCOUNT_TYPE)
+    @jakarta.annotation.Nullable
+    private String accountType;
+
     public static final String SERIALIZED_NAME_TARGET_ASSET = "targetAsset";
 
     @SerializedName(SERIALIZED_NAME_TARGET_ASSET)
@@ -51,6 +57,26 @@ public class DustConvertibleAssetsRequest {
     private Double dustQuotaAssetToTargetAssetPrice;
 
     public DustConvertibleAssetsRequest() {}
+
+    public DustConvertibleAssetsRequest accountType(
+            @jakarta.annotation.Nullable String accountType) {
+        this.accountType = accountType;
+        return this;
+    }
+
+    /**
+     * Get accountType
+     *
+     * @return accountType
+     */
+    @jakarta.annotation.Nullable
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(@jakarta.annotation.Nullable String accountType) {
+        this.accountType = accountType;
+    }
 
     public DustConvertibleAssetsRequest targetAsset(
             @jakarta.annotation.Nonnull String targetAsset) {
@@ -105,7 +131,8 @@ public class DustConvertibleAssetsRequest {
         }
         DustConvertibleAssetsRequest dustConvertibleAssetsRequest =
                 (DustConvertibleAssetsRequest) o;
-        return Objects.equals(this.targetAsset, dustConvertibleAssetsRequest.targetAsset)
+        return Objects.equals(this.accountType, dustConvertibleAssetsRequest.accountType)
+                && Objects.equals(this.targetAsset, dustConvertibleAssetsRequest.targetAsset)
                 && Objects.equals(
                         this.dustQuotaAssetToTargetAssetPrice,
                         dustConvertibleAssetsRequest.dustQuotaAssetToTargetAssetPrice);
@@ -113,13 +140,14 @@ public class DustConvertibleAssetsRequest {
 
     @Override
     public int hashCode() {
-        return Objects.hash(targetAsset, dustQuotaAssetToTargetAssetPrice);
+        return Objects.hash(accountType, targetAsset, dustQuotaAssetToTargetAssetPrice);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class DustConvertibleAssetsRequest {\n");
+        sb.append("		accountType: ").append(toIndentedString(accountType)).append("\n");
         sb.append("		targetAsset: ").append(toIndentedString(targetAsset)).append("\n");
         sb.append("		dustQuotaAssetToTargetAssetPrice: ")
                 .append(toIndentedString(dustQuotaAssetToTargetAssetPrice))
@@ -131,6 +159,10 @@ public class DustConvertibleAssetsRequest {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
+        Object accountTypeValue = getAccountType();
+        String accountTypeValueAsString = "";
+        accountTypeValueAsString = accountTypeValue.toString();
+        sb.append("accountType=").append(urlEncode(accountTypeValueAsString)).append("");
         Object targetAssetValue = getTargetAsset();
         String targetAssetValueAsString = "";
         targetAssetValueAsString = targetAssetValue.toString();
@@ -170,6 +202,7 @@ public class DustConvertibleAssetsRequest {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("accountType");
         openapiFields.add("targetAsset");
         openapiFields.add("dustQuotaAssetToTargetAssetPrice");
 
@@ -207,6 +240,14 @@ public class DustConvertibleAssetsRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull())
+                && !jsonObj.get("accountType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `accountType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("accountType").toString()));
+        }
         if (!jsonObj.get("targetAsset").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

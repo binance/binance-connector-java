@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**trId** | **Long** |  |  [optional] |
-|**accpted** | **Boolean** |  |  [optional] |
+|**accepted** | **Boolean** |  |  [optional] |
 |**info** | **String** |  |  [optional] |
 
 

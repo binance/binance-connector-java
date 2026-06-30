@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**vaspName** | **String** |  |  [optional] |
 |**vaspCode** | **String** |  |  [optional] |
+|**vaspName** | **String** |  |  [optional] |
+|**identifier** | **String** |  |  [optional] |
 
 
 

@@ -36,38 +36,25 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.12.0")
 public class VaspListResponseInner {
-    public static final String SERIALIZED_NAME_VASP_NAME = "vaspName";
-
-    @SerializedName(SERIALIZED_NAME_VASP_NAME)
-    @jakarta.annotation.Nullable
-    private String vaspName;
-
     public static final String SERIALIZED_NAME_VASP_CODE = "vaspCode";
 
     @SerializedName(SERIALIZED_NAME_VASP_CODE)
     @jakarta.annotation.Nullable
     private String vaspCode;
 
-    public VaspListResponseInner() {}
+    public static final String SERIALIZED_NAME_VASP_NAME = "vaspName";
 
-    public VaspListResponseInner vaspName(@jakarta.annotation.Nullable String vaspName) {
-        this.vaspName = vaspName;
-        return this;
-    }
-
-    /**
-     * Get vaspName
-     *
-     * @return vaspName
-     */
+    @SerializedName(SERIALIZED_NAME_VASP_NAME)
     @jakarta.annotation.Nullable
-    public String getVaspName() {
-        return vaspName;
-    }
+    private String vaspName;
 
-    public void setVaspName(@jakarta.annotation.Nullable String vaspName) {
-        this.vaspName = vaspName;
-    }
+    public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
+
+    @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+    @jakarta.annotation.Nullable
+    private String identifier;
+
+    public VaspListResponseInner() {}
 
     public VaspListResponseInner vaspCode(@jakarta.annotation.Nullable String vaspCode) {
         this.vaspCode = vaspCode;
@@ -88,6 +75,44 @@ public class VaspListResponseInner {
         this.vaspCode = vaspCode;
     }
 
+    public VaspListResponseInner vaspName(@jakarta.annotation.Nullable String vaspName) {
+        this.vaspName = vaspName;
+        return this;
+    }
+
+    /**
+     * Get vaspName
+     *
+     * @return vaspName
+     */
+    @jakarta.annotation.Nullable
+    public String getVaspName() {
+        return vaspName;
+    }
+
+    public void setVaspName(@jakarta.annotation.Nullable String vaspName) {
+        this.vaspName = vaspName;
+    }
+
+    public VaspListResponseInner identifier(@jakarta.annotation.Nullable String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get identifier
+     *
+     * @return identifier
+     */
+    @jakarta.annotation.Nullable
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(@jakarta.annotation.Nullable String identifier) {
+        this.identifier = identifier;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -97,21 +122,23 @@ public class VaspListResponseInner {
             return false;
         }
         VaspListResponseInner vaspListResponseInner = (VaspListResponseInner) o;
-        return Objects.equals(this.vaspName, vaspListResponseInner.vaspName)
-                && Objects.equals(this.vaspCode, vaspListResponseInner.vaspCode);
+        return Objects.equals(this.vaspCode, vaspListResponseInner.vaspCode)
+                && Objects.equals(this.vaspName, vaspListResponseInner.vaspName)
+                && Objects.equals(this.identifier, vaspListResponseInner.identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vaspName, vaspCode);
+        return Objects.hash(vaspCode, vaspName, identifier);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class VaspListResponseInner {\n");
-        sb.append("		vaspName: ").append(toIndentedString(vaspName)).append("\n");
         sb.append("		vaspCode: ").append(toIndentedString(vaspCode)).append("\n");
+        sb.append("		vaspName: ").append(toIndentedString(vaspName)).append("\n");
+        sb.append("		identifier: ").append(toIndentedString(identifier)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -119,14 +146,18 @@ public class VaspListResponseInner {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object vaspNameValue = getVaspName();
-        String vaspNameValueAsString = "";
-        vaspNameValueAsString = vaspNameValue.toString();
-        sb.append("vaspName=").append(urlEncode(vaspNameValueAsString)).append("");
         Object vaspCodeValue = getVaspCode();
         String vaspCodeValueAsString = "";
         vaspCodeValueAsString = vaspCodeValue.toString();
         sb.append("vaspCode=").append(urlEncode(vaspCodeValueAsString)).append("");
+        Object vaspNameValue = getVaspName();
+        String vaspNameValueAsString = "";
+        vaspNameValueAsString = vaspNameValue.toString();
+        sb.append("vaspName=").append(urlEncode(vaspNameValueAsString)).append("");
+        Object identifierValue = getIdentifier();
+        String identifierValueAsString = "";
+        identifierValueAsString = identifierValue.toString();
+        sb.append("identifier=").append(urlEncode(identifierValueAsString)).append("");
         return sb.toString();
     }
 
@@ -155,8 +186,9 @@ public class VaspListResponseInner {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("vaspName");
         openapiFields.add("vaspCode");
+        openapiFields.add("vaspName");
+        openapiFields.add("identifier");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -180,6 +212,14 @@ public class VaspListResponseInner {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("vaspCode") != null && !jsonObj.get("vaspCode").isJsonNull())
+                && !jsonObj.get("vaspCode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `vaspCode` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("vaspCode").toString()));
+        }
         if ((jsonObj.get("vaspName") != null && !jsonObj.get("vaspName").isJsonNull())
                 && !jsonObj.get("vaspName").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -188,13 +228,13 @@ public class VaspListResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("vaspName").toString()));
         }
-        if ((jsonObj.get("vaspCode") != null && !jsonObj.get("vaspCode").isJsonNull())
-                && !jsonObj.get("vaspCode").isJsonPrimitive()) {
+        if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull())
+                && !jsonObj.get("identifier").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `vaspCode` to be a primitive type in the JSON"
+                            "Expected the field `identifier` to be a primitive type in the JSON"
                                     + " string but got `%s`",
-                            jsonObj.get("vaspCode").toString()));
+                            jsonObj.get("identifier").toString()));
         }
     }
 
