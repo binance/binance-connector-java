@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** HashrateResaleListResponseDataConfigDetailsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class HashrateResaleListResponseDataConfigDetailsInner {
     public static final String SERIALIZED_NAME_CONFIG_ID = "configId";
 
@@ -99,7 +99,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get configId
+     * Configuration ID
      *
      * @return configId
      */
@@ -119,7 +119,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get poolUsername
+     * Transfer-out sub-account
      *
      * @return poolUsername
      */
@@ -139,7 +139,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get toPoolUsername
+     * Transfer-in sub-account
      *
      * @return toPoolUsername
      */
@@ -159,7 +159,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get algoName
+     * Transfer algorithm name
      *
      * @return algoName
      */
@@ -179,7 +179,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get hashRate
+     * Transferred hashrate
      *
      * @return hashRate
      */
@@ -199,7 +199,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get startDay
+     * Start date
      *
      * @return startDay
      */
@@ -219,7 +219,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get endDay
+     * End date
      *
      * @return endDay
      */
@@ -239,7 +239,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get status
+     * Status: 0 Processing, 1 Cancelled, 2 Terminated
      *
      * @return status
      */
@@ -259,7 +259,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get type
+     * Type: 0 Hashrate transfer record, 1 Hashrate receive record
      *
      * @return type
      */

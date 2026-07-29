@@ -29,10 +29,17 @@ public class AllOrdersExample {
     }
 
     /**
-     * WebSocket Account order history
+     * Account order history (USER_DATA)
      *
      * <p>Query information about all your orders – active, canceled, filled – filtered by time
-     * range. Weight: 20
+     * range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database Notes: * If
+     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, &#x60;orderId&#x60; is
+     * ignored. Orders are filtered by &#x60;time&#x60; of the last execution status update. * If
+     * &#x60;orderId&#x60; is specified, return orders with order ID &gt;&#x3D; &#x60;orderId&#x60;.
+     * * If no condition is specified, the most recent orders are returned. * For some historical
+     * orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data
+     * is not available at this time. * The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      */
     public void allOrdersExampleAsync() {
         AllOrdersRequest allOrdersRequest = new AllOrdersRequest();
@@ -49,10 +56,17 @@ public class AllOrdersExample {
     }
 
     /**
-     * WebSocket Account order history
+     * Account order history (USER_DATA)
      *
      * <p>Query information about all your orders – active, canceled, filled – filtered by time
-     * range. Weight: 20
+     * range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database Notes: * If
+     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, &#x60;orderId&#x60; is
+     * ignored. Orders are filtered by &#x60;time&#x60; of the last execution status update. * If
+     * &#x60;orderId&#x60; is specified, return orders with order ID &gt;&#x3D; &#x60;orderId&#x60;.
+     * * If no condition is specified, the most recent orders are returned. * For some historical
+     * orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data
+     * is not available at this time. * The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      */
     public void allOrdersExampleSync() {
         AllOrdersRequest allOrdersRequest = new AllOrdersRequest();

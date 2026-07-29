@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountCancelOrderExample {
@@ -28,14 +30,14 @@ public class MarginAccountCancelOrderExample {
     /**
      * Margin Account Cancel Order (TRADE)
      *
-     * <p>Cancel an active order for margin account. * Either orderId or origClientOrderId must be
-     * sent. Weight: 10(IP)
+     * <p>Cancel an active order for margin account. Weight(IP): 10 Security Type: TRADE Notes: -
+     * Either orderId or origClientOrderId must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountCancelOrderExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void marginAccountCancelOrderExample() throws ApiException, IOException {
+        String symbol = "LTCBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         String origClientOrderId = "1";
         String newClientOrderId = "1";

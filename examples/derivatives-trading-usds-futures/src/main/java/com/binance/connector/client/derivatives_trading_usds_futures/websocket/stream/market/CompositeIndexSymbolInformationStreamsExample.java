@@ -33,7 +33,6 @@ public class CompositeIndexSymbolInformationStreamsExample {
         CompositeIndexSymbolInformationStreamsRequest
                 compositeIndexSymbolInformationStreamsRequest =
                         new CompositeIndexSymbolInformationStreamsRequest();
-        compositeIndexSymbolInformationStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<CompositeIndexSymbolInformationStreamsResponse> response =
                 getApi().compositeIndexSymbolInformationStreams(
                                 compositeIndexSymbolInformationStreamsRequest);

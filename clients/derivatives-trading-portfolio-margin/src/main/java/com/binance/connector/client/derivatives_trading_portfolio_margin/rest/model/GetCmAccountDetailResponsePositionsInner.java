@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetCmAccountDetailResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCmAccountDetailResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -117,7 +117,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -137,7 +137,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -157,7 +157,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -177,7 +177,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -197,7 +197,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -217,7 +217,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -238,7 +238,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -259,7 +259,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -279,7 +279,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -299,7 +299,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -319,7 +319,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maxQty
+     * maximum quantity of base asset
      *
      * @return maxQty
      */
@@ -339,7 +339,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

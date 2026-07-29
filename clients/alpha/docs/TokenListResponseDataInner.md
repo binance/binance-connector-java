@@ -7,17 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tokenId** | **String** |  |  [optional] |
-|**chainId** | **String** |  |  [optional] |
-|**chainIconUrl** | **String** |  |  [optional] |
-|**chainName** | **String** |  |  [optional] |
-|**contractAddress** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**iconUrl** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**percentChange24h** | **String** |  |  [optional] |
-|**volume24h** | **String** |  |  [optional] |
+|**tokenId** | **String** | Unique token identifier. |  [optional] |
+|**chainId** | **String** | Chain ID. |  [optional] |
+|**chainIconUrl** | **String** | Chain icon URL. |  [optional] |
+|**chainName** | **String** | Chain name. |  [optional] |
+|**contractAddress** | **String** | Token contract address. |  [optional] |
+|**name** | **String** | Token name. |  [optional] |
+|**symbol** | **String** | Token symbol. |  [optional] |
+|**iconUrl** | **String** | Token icon URL. |  [optional] |
+|**price** | **String** | Latest token price. |  [optional] |
+|**percentChange24h** | **String** | 24-hour price change percentage. |  [optional] |
+|**volume24h** | **String** | 24-hour trading volume. |  [optional] |
 |**marketCap** | **String** |  |  [optional] |
 |**fdv** | **String** |  |  [optional] |
 |**liquidity** | **String** |  |  [optional] |
@@ -32,7 +32,7 @@
 |**denomination** | **Long** |  |  [optional] |
 |**offline** | **Boolean** |  |  [optional] |
 |**tradeDecimal** | **Long** |  |  [optional] |
-|**alphaId** | **String** |  |  [optional] |
+|**alphaId** | **String** | ALPHA token ID, e.g. ALPHA_175. |  [optional] |
 |**offsell** | **Boolean** |  |  [optional] |
 |**priceHigh24h** | **String** |  |  [optional] |
 |**priceLow24h** | **String** |  |  [optional] |

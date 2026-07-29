@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,11 +28,17 @@ import com.binance.connector.client.margin_trading.rest.model.GetAllCrossMarginP
 import com.binance.connector.client.margin_trading.rest.model.GetAllIsolatedMarginSymbolResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetAllMarginAssetsResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetDelistScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
+import com.binance.connector.client.margin_trading.rest.model.GetMarginRestrictedAssetsResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginPriceindexResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -86,12 +92,12 @@ public class MarketDataApiTest {
     /**
      * Cross margin collateral ratio (MARKET_DATA)
      *
-     * <p>Cross margin collateral ratio Weight: 100(IP)
+     * <p>Cross margin collateral ratio Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void crossMarginCollateralRatioTest() throws ApiException, CryptoException {
+    public void crossMarginCollateralRatioTest() throws ApiException, CryptoException, IOException {
         ApiResponse<CrossMarginCollateralRatioResponse> response = api.crossMarginCollateralRatio();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -101,21 +107,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/margin/crossMarginCollateralRatio", actualRequest.url().encodedPath());
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/crossMarginCollateralRatio", actualRequest.url().encodedPath());
     }
 
     /**
      * Get All Cross Margin Pairs (MARKET_DATA)
      *
-     * <p>Get All Cross Margin Pairs Weight: 1(IP)
+     * <p>Get All Cross Margin Pairs Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAllCrossMarginPairsTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void getAllCrossMarginPairsTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
         ApiResponse<GetAllCrossMarginPairsResponse> response = api.getAllCrossMarginPairs(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -125,20 +132,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/allPairs", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get All Isolated Margin Symbol(MARKET_DATA)
+     * Get All Isolated Margin Symbol (MARKET_DATA)
      *
-     * <p>Get All Isolated Margin Symbol Weight: 10(IP)
+     * <p>Get All Isolated Margin Symbol Weight(IP): 10 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAllIsolatedMarginSymbolTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void getAllIsolatedMarginSymbolTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
         Long recvWindow = 5000L;
         ApiResponse<GetAllIsolatedMarginSymbolResponse> response =
                 api.getAllIsolatedMarginSymbol(symbol, recvWindow);
@@ -150,20 +159,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolated/allPairs", actualRequest.url().encodedPath());
     }
 
     /**
      * Get All Margin Assets (MARKET_DATA)
      *
-     * <p>Get All Margin Assets. Weight: 1(IP)
+     * <p>Get All Margin Assets. Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAllMarginAssetsTest() throws ApiException, CryptoException {
-        String asset = "";
+    public void getAllMarginAssetsTest() throws ApiException, CryptoException, IOException {
+        String asset = "USDC";
         ApiResponse<GetAllMarginAssetsResponse> response = api.getAllMarginAssets(asset);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -173,19 +184,21 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/allAssets", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Delist Schedule (MARKET_DATA)
      *
-     * <p>Get tokens or symbols delist schedule for cross margin and isolated margin Weight: 100
+     * <p>Get tokens or symbols delist schedule for cross margin and isolated margin Weight(IP): 100
+     * Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDelistScheduleTest() throws ApiException, CryptoException {
+    public void getDelistScheduleTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetDelistScheduleResponse> response = api.getDelistSchedule(recvWindow);
 
@@ -196,22 +209,133 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/delist-schedule", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Limit Price Pairs (MARKET_DATA)
+     *
+     * <p>Query trading pairs with restriction on limit price range. In margin trading, you can
+     * place orders with limit price. Limit price should be within (-15%, 15%) of current index
+     * price for a list of margin trading pairs. This rule only impacts limit sell orders with limit
+     * price that is lower than current index price and limit buy orders with limit price that is
+     * higher than current index price. - Buy order: Your order will be rejected with an error
+     * message notification if the limit price is 15% above the index price. - Sell order: Your
+     * order will be rejected with an error message notification if the limit price is 15% below the
+     * index price. Please review the limit price order placing strategy, backtest and calibrate the
+     * planned order size with the trading volume and order book depth to prevent trading loss.
+     * Weight(IP): 1 Security Type: MARKET_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getLimitPricePairsTest() throws ApiException, CryptoException, IOException {
+        ApiResponse<GetLimitPricePairsResponse> response = api.getLimitPricePairs();
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/limit-price-pairs", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get list Schedule (MARKET_DATA)
+     *
+     * <p>Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.
+     * Weight(IP): 100 Security Type: MARKET_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getListScheduleTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetListScheduleResponse> response = api.getListSchedule(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/list-schedule", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
+     *
+     * <p>Get Margin Asset Risk-Based Liquidation Ratio Weight(IP): 1 Security Type: MARKET_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getMarginAssetRiskBasedLiquidationRatioTest()
+            throws ApiException, CryptoException, IOException {
+        ApiResponse<GetMarginAssetRiskBasedLiquidationRatioResponse> response =
+                api.getMarginAssetRiskBasedLiquidationRatio();
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v1/margin/risk-based-liquidation-ratio",
+                actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Margin Restricted Assets (MARKET_DATA)
+     *
+     * <p>Get the list of margin-restricted assets. Weight(IP): 1 Security Type: MARKET_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getMarginRestrictedAssetsTest() throws ApiException, CryptoException, IOException {
+        ApiResponse<GetMarginRestrictedAssetsResponse> response = api.getMarginRestrictedAssets();
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/restricted-asset", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Isolated Margin Tier Data (USER_DATA)
      *
      * <p>Get isolated margin tier data collection with any tier as
-     * https://www.binance.com/en/margin-data Weight: 1(IP)
+     * https://www.binance.com/en/margin-data Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryIsolatedMarginTierDataTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long tier = 0L;
+    public void queryIsolatedMarginTierDataTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long tier = 1L;
         Long recvWindow = 5000L;
         ApiResponse<QueryIsolatedMarginTierDataResponse> response =
                 api.queryIsolatedMarginTierData(symbol, tier, recvWindow);
@@ -226,25 +350,24 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&tier=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&tier=0&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d598c86102a833b330fd5e0b272ae3ec3e38965235029950fe63b98d3f21118c",
+                "6a3f13f882bdae42ff9efe4de4c0a5d0ecbda82dbc9ad537d8b599903eee8635",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolatedMarginTier", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
+     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA)
      *
-     * <p>Liability Coin Leverage Bracket in Cross Margin Pro Mode Weight: 1
+     * <p>Liability Coin Leverage Bracket in Cross Margin Pro Mode Weight(IP): 1 Security Type:
+     * MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryLiabilityCoinLeverageBracketInCrossMarginProModeTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         ApiResponse<QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse> response =
                 api.queryLiabilityCoinLeverageBracketInCrossMarginProMode();
 
@@ -255,20 +378,25 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/margin/leverageBracket", actualRequest.url().encodedPath());
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v1/margin/leverageBracket",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Margin Available Inventory(USER_DATA)
+     * Query Margin Available Inventory (USER_DATA)
      *
-     * <p>Margin available Inventory query Weight: 50
+     * <p>Margin available Inventory query Weight(UID): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAvailableInventoryTest() throws ApiException, CryptoException {
-        String type = "";
+    public void queryMarginAvailableInventoryTest()
+            throws ApiException, CryptoException, IOException {
+        OrderType type = OrderType.ROLL_IN;
         ApiResponse<QueryMarginAvailableInventoryResponse> response =
                 api.queryMarginAvailableInventory(type);
 
@@ -282,9 +410,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("type=&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("type=ROLL_IN&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "a0a00da616718f873c1bc76aa304e6124894ea2b3df857101576732dca4e8f53",
+                "9a5b9ac20fe38cbe023bb49e62ad64f111412f99e7d3ffbb13bdd234e6772559",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/available-inventory", actualRequest.url().encodedPath());
     }
@@ -292,13 +420,13 @@ public class MarketDataApiTest {
     /**
      * Query Margin PriceIndex (MARKET_DATA)
      *
-     * <p>Query Margin PriceIndex Weight: 10(IP)
+     * <p>Query Margin PriceIndex Weight(IP): 10 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginPriceindexTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void queryMarginPriceindexTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
         ApiResponse<QueryMarginPriceindexResponse> response = api.queryMarginPriceindex(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -308,7 +436,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/priceIndex", actualRequest.url().encodedPath());
     }
 }

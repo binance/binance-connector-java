@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** NewSymbolInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewSymbolInfoResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -113,7 +113,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event Type
      *
      * @return eLowerCase
      */
@@ -132,7 +132,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -151,7 +151,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -170,7 +170,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Underlying index of the contract
      *
      * @return ps
      */
@@ -189,7 +189,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get qa
+     * Quotation asset
      *
      * @return qa
      */
@@ -208,7 +208,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get dLowerCase
+     * Option type
      *
      * @return dLowerCase
      */
@@ -227,7 +227,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get sp
+     * Strike price
      *
      * @return sp
      */
@@ -246,7 +246,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get dt
+     * Delivery date time
      *
      * @return dt
      */
@@ -265,7 +265,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * unit, the quantity of the underlying asset represented by a single contract.
      *
      * @return uLowerCase
      */
@@ -284,7 +284,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get ot
+     * onboard date time
      *
      * @return ot
      */
@@ -303,7 +303,7 @@ public class NewSymbolInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get cs
+     * Contract status
      *
      * @return cs
      */

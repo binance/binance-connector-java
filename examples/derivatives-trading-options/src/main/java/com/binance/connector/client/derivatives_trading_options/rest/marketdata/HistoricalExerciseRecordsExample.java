@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class HistoricalExerciseRecordsExample {
@@ -29,15 +30,15 @@ public class HistoricalExerciseRecordsExample {
      * Historical Exercise Records
      *
      * <p>Get historical exercise records. * REALISTIC_VALUE_STRICKEN -&gt; Exercised *
-     * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight: 3
+     * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight(IP): 3
      *
      * @throws ApiException if the Api call fails
      */
-    public void historicalExerciseRecordsExample() throws ApiException {
-        String underlying = "";
+    public void historicalExerciseRecordsExample() throws ApiException, IOException {
+        String underlying = "BTCUSDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         ApiResponse<HistoricalExerciseRecordsResponse> response =
                 getApi().historicalExerciseRecords(underlying, startTime, endTime, limit);
         System.out.println(response.getData());

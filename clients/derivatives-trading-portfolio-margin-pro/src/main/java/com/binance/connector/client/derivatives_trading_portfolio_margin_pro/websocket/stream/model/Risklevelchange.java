@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+ * Portfolio Margin Pro WebSocket Market Streams
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** Risklevelchange */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Risklevelchange extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -83,7 +83,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -102,7 +102,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * uniMMR level
      *
      * @return uLowerCase
      */
@@ -121,7 +121,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
      *
      * @return sLowerCase
      */
@@ -140,7 +140,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get eq
+     * Account equity in USD value
      *
      * @return eq
      */
@@ -159,7 +159,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get ae
+     * Actual equity without collateral rate in USD value
      *
      * @return ae
      */
@@ -178,7 +178,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Total maintenance margin in USD value
      *
      * @return mLowerCase
      */

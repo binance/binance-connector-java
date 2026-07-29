@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AlgoUpdateO */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AlgoUpdateO extends BaseDTO {
     public static final String SERIALIZED_NAME_CAID = "caid";
 
@@ -197,7 +197,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get caid
+     * Client Algo Id
      *
      * @return caid
      */
@@ -216,7 +216,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get aid
+     * Algo Id
      *
      * @return aid
      */
@@ -235,7 +235,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get at
+     * Algo Type
      *
      * @return at
      */
@@ -254,7 +254,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Order Type
      *
      * @return oLowerCase
      */
@@ -273,7 +273,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -292,7 +292,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -311,7 +311,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Position Side
      *
      * @return ps
      */
@@ -330,7 +330,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in force
      *
      * @return fLowerCase
      */
@@ -349,7 +349,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity
      *
      * @return qLowerCase
      */
@@ -368,7 +368,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get X
+     * Algo Status
      *
      * @return X
      */
@@ -387,7 +387,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ai
+     * Order Id
      *
      * @return ai
      */
@@ -406,7 +406,8 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ap
+     * Avg fill price in matching engine, only display when order is triggered and placed in
+     * matching engine
      *
      * @return ap
      */
@@ -425,7 +426,8 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get aq
+     * Executed quantity in matching engine, only display when order is triggered and placed in
+     * matching engine
      *
      * @return aq
      */
@@ -444,7 +446,8 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get act
+     * Actual order type in matching engine, only display when order is triggered and placed in
+     * matching engine
      *
      * @return act
      */
@@ -463,7 +466,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get tp
+     * Trigger Price
      *
      * @return tp
      */
@@ -482,7 +485,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Order Price
      *
      * @return pLowerCase
      */
@@ -501,7 +504,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get V
+     * STP mode
      *
      * @return V
      */
@@ -520,7 +523,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get wt
+     * Working type
      *
      * @return wt
      */
@@ -539,7 +542,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pm
+     * Price match mode
      *
      * @return pm
      */
@@ -558,7 +561,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get cp
+     * If Close-All
      *
      * @return cp
      */
@@ -577,7 +580,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pP
+     * If price protection is turned on
      *
      * @return pP
      */
@@ -596,7 +599,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get R
+     * Is this reduce only
      *
      * @return R
      */
@@ -615,7 +618,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get tt
+     * Trigger time
      *
      * @return tt
      */
@@ -634,7 +637,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get gtd
+     * Good till time for GTD time in force
      *
      * @return gtd
      */
@@ -653,7 +656,7 @@ public class AlgoUpdateO extends BaseDTO {
     }
 
     /**
-     * Get rm
+     * Algo order failed reason
      *
      * @return rm
      */

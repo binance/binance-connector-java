@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**List&lt;TickerBookResponse1Result&gt;**](TickerBookResponse1Result.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;RateLimits&gt;**](RateLimits.md) |  |  [optional] |
+|**result** | [**List&lt;TickerBookResponse2ResultInner&gt;**](TickerBookResponse2ResultInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

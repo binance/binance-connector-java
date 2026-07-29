@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryMarginAvailableInventoryExample {
@@ -26,14 +28,14 @@ public class QueryMarginAvailableInventoryExample {
     }
 
     /**
-     * Query Margin Available Inventory(USER_DATA)
+     * Query Margin Available Inventory (USER_DATA)
      *
-     * <p>Margin available Inventory query Weight: 50
+     * <p>Margin available Inventory query Weight(UID): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAvailableInventoryExample() throws ApiException {
-        String type = "";
+    public void queryMarginAvailableInventoryExample() throws ApiException, IOException {
+        OrderType type = OrderType.ROLL_IN;
         ApiResponse<QueryMarginAvailableInventoryResponse> response =
                 getApi().queryMarginAvailableInventory(type);
         System.out.println(response.getData());

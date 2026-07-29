@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.UmFuturesAccountConfigurationResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class UmFuturesAccountConfigurationExample {
@@ -26,13 +27,13 @@ public class UmFuturesAccountConfigurationExample {
     }
 
     /**
-     * UM Futures Account Configuration(USER_DATA)
+     * UM Futures Account Configuration (USER_DATA)
      *
-     * <p>Query UM Futures account configuration Weight: 5
+     * <p>Query UM Futures account configuration Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void umFuturesAccountConfigurationExample() throws ApiException {
+    public void umFuturesAccountConfigurationExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<UmFuturesAccountConfigurationResponse> response =
                 getApi().umFuturesAccountConfiguration(recvWindow);

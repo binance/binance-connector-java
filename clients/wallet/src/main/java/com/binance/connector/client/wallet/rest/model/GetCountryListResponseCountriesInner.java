@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetCountryListResponseCountriesInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCountryListResponseCountriesInner {
     public static final String SERIALIZED_NAME_COUNTRY_CODE = "countryCode";
 
@@ -81,7 +81,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get countryCode
+     * ISO 2-digit country code, lowercase.
      *
      * @return countryCode
      */
@@ -101,7 +101,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get countryName
+     * Country display name.
      *
      * @return countryName
      */
@@ -121,7 +121,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get blockType
+     * &#x60;supported&#x60;, &#x60;limited&#x60;, or &#x60;blocked&#x60;.
      *
      * @return blockType
      */
@@ -141,7 +141,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get depositAllowed
+     * Whether deposit is allowed for this country.
      *
      * @return depositAllowed
      */
@@ -161,7 +161,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get withdrawalAllowed
+     * Whether withdrawal is allowed for this country.
      *
      * @return withdrawalAllowed
      */
@@ -181,7 +181,7 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Get hasRegionRestrictions
+     * Whether this country has region-level restrictions.
      *
      * @return hasRegionRestrictions
      */

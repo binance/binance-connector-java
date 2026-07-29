@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMultipleOptionOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMultipleOptionOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -65,6 +65,12 @@ public class CancelMultipleOptionOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
     @jakarta.annotation.Nullable
     private String executedQty;
+
+    public static final String SERIALIZED_NAME_FEE = "fee";
+
+    @SerializedName(SERIALIZED_NAME_FEE)
+    @jakarta.annotation.Nullable
+    private String fee;
 
     public static final String SERIALIZED_NAME_SIDE = "side";
 
@@ -114,12 +120,6 @@ public class CancelMultipleOptionOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String avgPrice;
 
-    public static final String SERIALIZED_NAME_SOURCE = "source";
-
-    @SerializedName(SERIALIZED_NAME_SOURCE)
-    @jakarta.annotation.Nullable
-    private String source;
-
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
     @SerializedName(SERIALIZED_NAME_CLIENT_ORDER_ID)
@@ -156,6 +156,12 @@ public class CancelMultipleOptionOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Boolean mmp;
 
+    public static final String SERIALIZED_NAME_SOURCE = "source";
+
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    @jakarta.annotation.Nullable
+    private String source;
+
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
@@ -172,7 +178,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -192,7 +198,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -212,7 +218,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -232,7 +238,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -252,7 +258,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Number of completed quantity
      *
      * @return executedQty
      */
@@ -265,13 +271,32 @@ public class CancelMultipleOptionOrdersResponseInner {
         this.executedQty = executedQty;
     }
 
+    public CancelMultipleOptionOrdersResponseInner fee(@jakarta.annotation.Nullable String fee) {
+        this.fee = fee;
+        return this;
+    }
+
+    /**
+     * fee
+     *
+     * @return fee
+     */
+    @jakarta.annotation.Nullable
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(@jakarta.annotation.Nullable String fee) {
+        this.fee = fee;
+    }
+
     public CancelMultipleOptionOrdersResponseInner side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -290,7 +315,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -310,7 +335,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -330,7 +355,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -350,7 +375,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -370,7 +395,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update time
      *
      * @return updateTime
      */
@@ -390,7 +415,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -410,7 +435,7 @@ public class CancelMultipleOptionOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -421,6 +446,125 @@ public class CancelMultipleOptionOrdersResponseInner {
 
     public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
         this.avgPrice = avgPrice;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner clientOrderId(
+            @jakarta.annotation.Nullable String clientOrderId) {
+        this.clientOrderId = clientOrderId;
+        return this;
+    }
+
+    /**
+     * Client order ID
+     *
+     * @return clientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getClientOrderId() {
+        return clientOrderId;
+    }
+
+    public void setClientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
+        this.clientOrderId = clientOrderId;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner priceScale(
+            @jakarta.annotation.Nullable Long priceScale) {
+        this.priceScale = priceScale;
+        return this;
+    }
+
+    /**
+     * price Scale
+     *
+     * @return priceScale
+     */
+    @jakarta.annotation.Nullable
+    public Long getPriceScale() {
+        return priceScale;
+    }
+
+    public void setPriceScale(@jakarta.annotation.Nullable Long priceScale) {
+        this.priceScale = priceScale;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner quantityScale(
+            @jakarta.annotation.Nullable Long quantityScale) {
+        this.quantityScale = quantityScale;
+        return this;
+    }
+
+    /**
+     * quantity Scale
+     *
+     * @return quantityScale
+     */
+    @jakarta.annotation.Nullable
+    public Long getQuantityScale() {
+        return quantityScale;
+    }
+
+    public void setQuantityScale(@jakarta.annotation.Nullable Long quantityScale) {
+        this.quantityScale = quantityScale;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner optionSide(
+            @jakarta.annotation.Nullable String optionSide) {
+        this.optionSide = optionSide;
+        return this;
+    }
+
+    /**
+     * option Side
+     *
+     * @return optionSide
+     */
+    @jakarta.annotation.Nullable
+    public String getOptionSide() {
+        return optionSide;
+    }
+
+    public void setOptionSide(@jakarta.annotation.Nullable String optionSide) {
+        this.optionSide = optionSide;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner quoteAsset(
+            @jakarta.annotation.Nullable String quoteAsset) {
+        this.quoteAsset = quoteAsset;
+        return this;
+    }
+
+    /**
+     * quote Asset
+     *
+     * @return quoteAsset
+     */
+    @jakarta.annotation.Nullable
+    public String getQuoteAsset() {
+        return quoteAsset;
+    }
+
+    public void setQuoteAsset(@jakarta.annotation.Nullable String quoteAsset) {
+        this.quoteAsset = quoteAsset;
+    }
+
+    public CancelMultipleOptionOrdersResponseInner mmp(@jakarta.annotation.Nullable Boolean mmp) {
+        this.mmp = mmp;
+        return this;
+    }
+
+    /**
+     * mmp
+     *
+     * @return mmp
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getMmp() {
+        return mmp;
+    }
+
+    public void setMmp(@jakarta.annotation.Nullable Boolean mmp) {
+        this.mmp = mmp;
     }
 
     public CancelMultipleOptionOrdersResponseInner source(
@@ -441,125 +585,6 @@ public class CancelMultipleOptionOrdersResponseInner {
 
     public void setSource(@jakarta.annotation.Nullable String source) {
         this.source = source;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner clientOrderId(
-            @jakarta.annotation.Nullable String clientOrderId) {
-        this.clientOrderId = clientOrderId;
-        return this;
-    }
-
-    /**
-     * Get clientOrderId
-     *
-     * @return clientOrderId
-     */
-    @jakarta.annotation.Nullable
-    public String getClientOrderId() {
-        return clientOrderId;
-    }
-
-    public void setClientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
-        this.clientOrderId = clientOrderId;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner priceScale(
-            @jakarta.annotation.Nullable Long priceScale) {
-        this.priceScale = priceScale;
-        return this;
-    }
-
-    /**
-     * Get priceScale
-     *
-     * @return priceScale
-     */
-    @jakarta.annotation.Nullable
-    public Long getPriceScale() {
-        return priceScale;
-    }
-
-    public void setPriceScale(@jakarta.annotation.Nullable Long priceScale) {
-        this.priceScale = priceScale;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner quantityScale(
-            @jakarta.annotation.Nullable Long quantityScale) {
-        this.quantityScale = quantityScale;
-        return this;
-    }
-
-    /**
-     * Get quantityScale
-     *
-     * @return quantityScale
-     */
-    @jakarta.annotation.Nullable
-    public Long getQuantityScale() {
-        return quantityScale;
-    }
-
-    public void setQuantityScale(@jakarta.annotation.Nullable Long quantityScale) {
-        this.quantityScale = quantityScale;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner optionSide(
-            @jakarta.annotation.Nullable String optionSide) {
-        this.optionSide = optionSide;
-        return this;
-    }
-
-    /**
-     * Get optionSide
-     *
-     * @return optionSide
-     */
-    @jakarta.annotation.Nullable
-    public String getOptionSide() {
-        return optionSide;
-    }
-
-    public void setOptionSide(@jakarta.annotation.Nullable String optionSide) {
-        this.optionSide = optionSide;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner quoteAsset(
-            @jakarta.annotation.Nullable String quoteAsset) {
-        this.quoteAsset = quoteAsset;
-        return this;
-    }
-
-    /**
-     * Get quoteAsset
-     *
-     * @return quoteAsset
-     */
-    @jakarta.annotation.Nullable
-    public String getQuoteAsset() {
-        return quoteAsset;
-    }
-
-    public void setQuoteAsset(@jakarta.annotation.Nullable String quoteAsset) {
-        this.quoteAsset = quoteAsset;
-    }
-
-    public CancelMultipleOptionOrdersResponseInner mmp(@jakarta.annotation.Nullable Boolean mmp) {
-        this.mmp = mmp;
-        return this;
-    }
-
-    /**
-     * Get mmp
-     *
-     * @return mmp
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getMmp() {
-        return mmp;
-    }
-
-    public void setMmp(@jakarta.annotation.Nullable Boolean mmp) {
-        this.mmp = mmp;
     }
 
     public CancelMultipleOptionOrdersResponseInner selfTradePreventionMode(
@@ -599,6 +624,7 @@ public class CancelMultipleOptionOrdersResponseInner {
                 && Objects.equals(this.quantity, cancelMultipleOptionOrdersResponseInner.quantity)
                 && Objects.equals(
                         this.executedQty, cancelMultipleOptionOrdersResponseInner.executedQty)
+                && Objects.equals(this.fee, cancelMultipleOptionOrdersResponseInner.fee)
                 && Objects.equals(this.side, cancelMultipleOptionOrdersResponseInner.side)
                 && Objects.equals(this.type, cancelMultipleOptionOrdersResponseInner.type)
                 && Objects.equals(
@@ -611,7 +637,6 @@ public class CancelMultipleOptionOrdersResponseInner {
                         this.updateTime, cancelMultipleOptionOrdersResponseInner.updateTime)
                 && Objects.equals(this.status, cancelMultipleOptionOrdersResponseInner.status)
                 && Objects.equals(this.avgPrice, cancelMultipleOptionOrdersResponseInner.avgPrice)
-                && Objects.equals(this.source, cancelMultipleOptionOrdersResponseInner.source)
                 && Objects.equals(
                         this.clientOrderId, cancelMultipleOptionOrdersResponseInner.clientOrderId)
                 && Objects.equals(
@@ -623,6 +648,7 @@ public class CancelMultipleOptionOrdersResponseInner {
                 && Objects.equals(
                         this.quoteAsset, cancelMultipleOptionOrdersResponseInner.quoteAsset)
                 && Objects.equals(this.mmp, cancelMultipleOptionOrdersResponseInner.mmp)
+                && Objects.equals(this.source, cancelMultipleOptionOrdersResponseInner.source)
                 && Objects.equals(
                         this.selfTradePreventionMode,
                         cancelMultipleOptionOrdersResponseInner.selfTradePreventionMode);
@@ -636,6 +662,7 @@ public class CancelMultipleOptionOrdersResponseInner {
                 price,
                 quantity,
                 executedQty,
+                fee,
                 side,
                 type,
                 timeInForce,
@@ -644,13 +671,13 @@ public class CancelMultipleOptionOrdersResponseInner {
                 updateTime,
                 status,
                 avgPrice,
-                source,
                 clientOrderId,
                 priceScale,
                 quantityScale,
                 optionSide,
                 quoteAsset,
                 mmp,
+                source,
                 selfTradePreventionMode);
     }
 
@@ -663,6 +690,7 @@ public class CancelMultipleOptionOrdersResponseInner {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
+        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
@@ -671,13 +699,13 @@ public class CancelMultipleOptionOrdersResponseInner {
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
-        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
         sb.append("		mmp: ").append(toIndentedString(mmp)).append("\n");
+        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
@@ -708,6 +736,10 @@ public class CancelMultipleOptionOrdersResponseInner {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
+        Object feeValue = getFee();
+        String feeValueAsString = "";
+        feeValueAsString = feeValue.toString();
+        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -740,10 +772,6 @@ public class CancelMultipleOptionOrdersResponseInner {
         String avgPriceValueAsString = "";
         avgPriceValueAsString = avgPriceValue.toString();
         sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
-        Object sourceValue = getSource();
-        String sourceValueAsString = "";
-        sourceValueAsString = sourceValue.toString();
-        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         Object clientOrderIdValue = getClientOrderId();
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
@@ -768,6 +796,10 @@ public class CancelMultipleOptionOrdersResponseInner {
         String mmpValueAsString = "";
         mmpValueAsString = mmpValue.toString();
         sb.append("mmp=").append(urlEncode(mmpValueAsString)).append("");
+        Object sourceValue = getSource();
+        String sourceValueAsString = "";
+        sourceValueAsString = sourceValue.toString();
+        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         String selfTradePreventionModeValueAsString = "";
         selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
@@ -807,6 +839,7 @@ public class CancelMultipleOptionOrdersResponseInner {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
+        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
@@ -815,13 +848,13 @@ public class CancelMultipleOptionOrdersResponseInner {
         openapiFields.add("updateTime");
         openapiFields.add("status");
         openapiFields.add("avgPrice");
-        openapiFields.add("source");
         openapiFields.add("clientOrderId");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
         openapiFields.add("optionSide");
         openapiFields.add("quoteAsset");
         openapiFields.add("mmp");
+        openapiFields.add("source");
         openapiFields.add("selfTradePreventionMode");
 
         // a set of required properties/fields (JSON key names)
@@ -881,6 +914,14 @@ public class CancelMultipleOptionOrdersResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
         }
+        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
+                && !jsonObj.get("fee").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `fee` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("fee").toString()));
+        }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -921,14 +962,6 @@ public class CancelMultipleOptionOrdersResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("avgPrice").toString()));
         }
-        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
-                && !jsonObj.get("source").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `source` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("source").toString()));
-        }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -952,6 +985,14 @@ public class CancelMultipleOptionOrdersResponseInner {
                             "Expected the field `quoteAsset` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
+        }
+        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
+                && !jsonObj.get("source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `source` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("source").toString()));
         }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**leverage** | **Long** |  |  [optional] |
-|**maxNotionalValue** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**leverage** | **Long** | current initial leverage |  [optional] |
+|**maxNotionalValue** | **String** | Max Notional Value. |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
 
 
 

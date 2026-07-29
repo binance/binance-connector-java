@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**orderId** | **String** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**orderId** | **Long** | The orderId from &#x60;placeOrder&#x60; api |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds |  [optional] |
 
 
 

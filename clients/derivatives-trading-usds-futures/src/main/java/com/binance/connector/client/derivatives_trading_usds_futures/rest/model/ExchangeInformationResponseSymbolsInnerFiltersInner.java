@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInformationResponseSymbolsInnerFiltersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     public static final String SERIALIZED_NAME_FILTER_TYPE = "filterType";
 
@@ -117,7 +117,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get filterType
+     * Filter Type.
      *
      * @return filterType
      */
@@ -137,7 +137,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxPrice
+     * Max Price.
      *
      * @return maxPrice
      */
@@ -157,7 +157,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minPrice
+     * Min Price.
      *
      * @return minPrice
      */
@@ -177,7 +177,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get tickSize
+     * Tick Size.
      *
      * @return tickSize
      */
@@ -197,7 +197,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxQty
+     * Max Qty.
      *
      * @return maxQty
      */
@@ -217,7 +217,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minQty
+     * Min Qty.
      *
      * @return minQty
      */
@@ -237,7 +237,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get stepSize
+     * Step Size.
      *
      * @return stepSize
      */
@@ -257,7 +257,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get limit
+     * Limit.
      *
      * @return limit
      */
@@ -297,7 +297,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get multiplierUp
+     * Multiplier Up.
      *
      * @return multiplierUp
      */
@@ -317,7 +317,7 @@ public class ExchangeInformationResponseSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get multiplierDown
+     * Multiplier Down.
      *
      * @return multiplierDown
      */

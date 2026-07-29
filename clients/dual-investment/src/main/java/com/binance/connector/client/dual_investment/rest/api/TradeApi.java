@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,6 +24,7 @@ import com.binance.connector.client.dual_investment.rest.model.ChangeAutoCompoun
 import com.binance.connector.client.dual_investment.rest.model.ChangeAutoCompoundStatusResponse;
 import com.binance.connector.client.dual_investment.rest.model.CheckDualInvestmentAccountsResponse;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentPositionsResponse;
+import com.binance.connector.client.dual_investment.rest.model.Status;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsRequest;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsResponse;
 import com.google.gson.reflect.TypeToken;
@@ -49,7 +50,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-dual-investment/2.1.1 (Java/%s; %s; %s)",
+                    "binance-dual-investment/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,8 +101,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Change-Auto-Compound-status">Change
-     *     Auto-Compound status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#change-auto-compound-status">Change
+     *     Auto-Compound status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call changeAutoCompoundStatusCall(
             ChangeAutoCompoundStatusRequest changeAutoCompoundStatusRequest) throws ApiException {
@@ -135,7 +136,7 @@ public class TradeApi {
 
         if (changeAutoCompoundStatusRequest.getAutoCompoundPlan() != null) {
             localVarFormParams.put(
-                    "AutoCompoundPlan", changeAutoCompoundStatusRequest.getAutoCompoundPlan());
+                    "autoCompoundPlan", changeAutoCompoundStatusRequest.getAutoCompoundPlan());
         }
 
         if (changeAutoCompoundStatusRequest.getRecvWindow() != null) {
@@ -208,7 +209,8 @@ public class TradeApi {
     }
 
     /**
-     * Change Auto-Compound status(USER_DATA) Change Auto-Compound status Weight: 1(IP)
+     * Change Auto-Compound status (USER_DATA) Change Auto-Compound status Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - 15:31 ~ 16:00 UTC+8: This function is disabled.
      *
      * @param changeAutoCompoundStatusRequest (required)
      * @return ApiResponse&lt;ChangeAutoCompoundStatusResponse&gt;
@@ -222,8 +224,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Change-Auto-Compound-status">Change
-     *     Auto-Compound status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#change-auto-compound-status">Change
+     *     Auto-Compound status (USER_DATA) Documentation</a>
      */
     public ApiResponse<ChangeAutoCompoundStatusResponse> changeAutoCompoundStatus(
             @Valid @NotNull ChangeAutoCompoundStatusRequest changeAutoCompoundStatusRequest)
@@ -238,7 +240,7 @@ public class TradeApi {
     /**
      * Build call for checkDualInvestmentAccounts
      *
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -249,8 +251,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Check-Dual-Investment-accounts">Check
-     *     Dual Investment accounts(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#check-dual-investment-accounts">Check
+     *     Dual Investment accounts (USER_DATA) Documentation</a>
      */
     private okhttp3.Call checkDualInvestmentAccountsCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -343,9 +345,10 @@ public class TradeApi {
     }
 
     /**
-     * Check Dual Investment accounts(USER_DATA) Check Dual Investment accounts Weight: 1(IP)
+     * Check Dual Investment accounts (USER_DATA) Check Dual Investment accounts Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CheckDualInvestmentAccountsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -357,11 +360,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Check-Dual-Investment-accounts">Check
-     *     Dual Investment accounts(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#check-dual-investment-accounts">Check
+     *     Dual Investment accounts (USER_DATA) Documentation</a>
      */
     public ApiResponse<CheckDualInvestmentAccountsResponse> checkDualInvestmentAccounts(
-            Long recvWindow) throws ApiException {
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = checkDualInvestmentAccountsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CheckDualInvestmentAccountsResponse>() {}.getType();
@@ -371,15 +374,15 @@ public class TradeApi {
     /**
      * Build call for getDualInvestmentPositions
      *
-     * @param status &#x60;PENDING&#x60;:Products are purchasing, will give results
-     *     later;&#x60;PURCHASE_SUCCESS&#x60;:purchase successfully;&#x60;SETTLED&#x60;: Products
-     *     are finish settling;&#x60;PURCHASE_FAIL&#x60;:fail to
-     *     purchase;&#x60;REFUNDING&#x60;:refund ongoing;&#x60;REFUND_SUCCESS&#x60;:refund to spot
-     *     account successfully; &#x60;SETTLING&#x60;:Products are settling. If don&#39;t fill this
-     *     field, will response all the position status. (optional)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param status &#x60;PENDING&#x60;: Products are purchasing, will give results later;
+     *     &#x60;PURCHASE_SUCCESS&#x60;: purchase successfully; &#x60;SETTLED&#x60;: Products are
+     *     finish settling; &#x60;PURCHASE_FAIL&#x60;: fail to purchase; &#x60;REFUNDING&#x60;:
+     *     refund ongoing; &#x60;REFUND_SUCCESS&#x60;: refund to spot account successfully;
+     *     &#x60;SETTLING&#x60;: Products are settling. If don&#39;t fill this field, will response
+     *     all the position status. (optional)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -390,11 +393,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Get-Dual-Investment-positions">Get
-     *     Dual Investment positions(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#get-dual-investment-positions">Get
+     *     Dual Investment positions (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getDualInvestmentPositionsCall(
-            String status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
+            Status status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -467,7 +470,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDualInvestmentPositionsValidateBeforeCall(
-            String status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
+            Status status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -482,7 +485,7 @@ public class TradeApi {
                     this.getClass()
                             .getMethod(
                                     "getDualInvestmentPositions",
-                                    String.class,
+                                    Status.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -504,17 +507,18 @@ public class TradeApi {
     }
 
     /**
-     * Get Dual Investment positions(USER_DATA) Get Dual Investment positions (batch) Weight: 1(IP)
+     * Get Dual Investment positions (USER_DATA) Get Dual Investment positions (batch) Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param status &#x60;PENDING&#x60;:Products are purchasing, will give results
-     *     later;&#x60;PURCHASE_SUCCESS&#x60;:purchase successfully;&#x60;SETTLED&#x60;: Products
-     *     are finish settling;&#x60;PURCHASE_FAIL&#x60;:fail to
-     *     purchase;&#x60;REFUNDING&#x60;:refund ongoing;&#x60;REFUND_SUCCESS&#x60;:refund to spot
-     *     account successfully; &#x60;SETTLING&#x60;:Products are settling. If don&#39;t fill this
-     *     field, will response all the position status. (optional)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param status &#x60;PENDING&#x60;: Products are purchasing, will give results later;
+     *     &#x60;PURCHASE_SUCCESS&#x60;: purchase successfully; &#x60;SETTLED&#x60;: Products are
+     *     finish settling; &#x60;PURCHASE_FAIL&#x60;: fail to purchase; &#x60;REFUNDING&#x60;:
+     *     refund ongoing; &#x60;REFUND_SUCCESS&#x60;: refund to spot account successfully;
+     *     &#x60;SETTLING&#x60;: Products are settling. If don&#39;t fill this field, will response
+     *     all the position status. (optional)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetDualInvestmentPositionsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -526,11 +530,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Get-Dual-Investment-positions">Get
-     *     Dual Investment positions(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#get-dual-investment-positions">Get
+     *     Dual Investment positions (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDualInvestmentPositionsResponse> getDualInvestmentPositions(
-            String status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
+            Status status, @Max(100L) Long pageSize, Long pageIndex, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 getDualInvestmentPositionsValidateBeforeCall(
                         status, pageSize, pageIndex, recvWindow);
@@ -553,8 +558,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Subscribe-Dual-Investment-products">Subscribe
-     *     Dual Investment products(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#subscribe-dual-investment-products">Subscribe
+     *     Dual Investment products (USER_DATA) Documentation</a>
      */
     private okhttp3.Call subscribeDualInvestmentProductsCall(
             SubscribeDualInvestmentProductsRequest subscribeDualInvestmentProductsRequest)
@@ -676,9 +681,10 @@ public class TradeApi {
     }
 
     /**
-     * Subscribe Dual Investment products(USER_DATA) Subscribe Dual Investment products * Products
-     * are not available. // this means APR changes to lower value, or orders are not unavailable. *
-     * Failed. This means System or network errors. Weight: 1(IP)
+     * Subscribe Dual Investment products (USER_DATA) Subscribe Dual Investment products Weight(IP):
+     * 1 Security Type: USER_DATA Notes: - Failed messages: - Products are not available. This means
+     * APR changed to a lower value, or the order is unavailable. - Failed. This means system or
+     * network errors.
      *
      * @param subscribeDualInvestmentProductsRequest (required)
      * @return ApiResponse&lt;SubscribeDualInvestmentProductsResponse&gt;
@@ -692,8 +698,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Subscribe-Dual-Investment-products">Subscribe
-     *     Dual Investment products(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#subscribe-dual-investment-products">Subscribe
+     *     Dual Investment products (USER_DATA) Documentation</a>
      */
     public ApiResponse<SubscribeDualInvestmentProductsResponse> subscribeDualInvestmentProducts(
             @Valid @NotNull

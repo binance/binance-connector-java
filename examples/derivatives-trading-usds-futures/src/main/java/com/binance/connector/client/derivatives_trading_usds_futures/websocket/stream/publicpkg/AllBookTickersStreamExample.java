@@ -25,8 +25,11 @@ public class AllBookTickersStreamExample {
      * All Book Tickers Stream
      *
      * <p>Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all
-     * symbols. Retail Price Improvement(RPI) orders are not visible and excluded in the response
-     * message. Update Speed: 5s
+     * symbols. &gt; **After CM migration**, this stream pushes the merged UM + CM universe
+     * (subscribable on both &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is appended
+     * with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 5s Response Notes: - Retail Price
+     * Improvement(RPI) orders are not visible and excluded in the response message.
      *
      * @throws ApiException if the Api call fails
      */

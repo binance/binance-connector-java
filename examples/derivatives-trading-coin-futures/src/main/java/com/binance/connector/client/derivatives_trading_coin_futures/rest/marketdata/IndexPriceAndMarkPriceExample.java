@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IndexPriceAndMarkPriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class IndexPriceAndMarkPriceExample {
@@ -28,13 +29,13 @@ public class IndexPriceAndMarkPriceExample {
     /**
      * Index Price and Mark Price
      *
-     * <p>Query index price and mark price Weight: 10
+     * <p>Query index price and mark price Weight(IP): 10
      *
      * @throws ApiException if the Api call fails
      */
-    public void indexPriceAndMarkPriceExample() throws ApiException {
-        String symbol = "";
-        String pair = "";
+    public void indexPriceAndMarkPriceExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_PERP";
+        String pair = "BTCUSD";
         ApiResponse<IndexPriceAndMarkPriceResponse> response =
                 getApi().indexPriceAndMarkPrice(symbol, pair);
         System.out.println(response.getData());

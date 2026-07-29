@@ -8,6 +8,7 @@ import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class VipLoanBorrowExample {
@@ -26,21 +27,23 @@ public class VipLoanBorrowExample {
     }
 
     /**
-     * VIP Loan Borrow(TRADE)
+     * VIP Loan Borrow (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. * loanAccountId refer to loan receiving account
-     * * Only master account applications are supported * loanAccountId and collateralAccountId
-     * under same master account * loanTerm is mandatory if user choose stable rate Weight: 0
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE Notes: -
+     * &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only master account
+     * applications are supported. - &#x60;loanAccountId&#x60; and &#x60;collateralAccountId&#x60;
+     * must be under the same master account. - &#x60;loanTerm&#x60; is mandatory if the user
+     * chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
      *
      * @throws ApiException if the Api call fails
      */
-    public void vipLoanBorrowExample() throws ApiException {
+    public void vipLoanBorrowExample() throws ApiException, IOException {
         VipLoanBorrowRequest vipLoanBorrowRequest = new VipLoanBorrowRequest();
         vipLoanBorrowRequest.loanAccountId(1L);
-        vipLoanBorrowRequest.loanCoin("");
+        vipLoanBorrowRequest.loanCoin("BTC");
         vipLoanBorrowRequest.loanAmount(1.0d);
-        vipLoanBorrowRequest.collateralAccountId(1L);
-        vipLoanBorrowRequest.collateralCoin("");
+        vipLoanBorrowRequest.collateralAccountId("12345678,12345678,12345678");
+        vipLoanBorrowRequest.collateralCoin("BUSD,USDT,ETH");
         vipLoanBorrowRequest.isFlexibleRate(true);
         ApiResponse<VipLoanBorrowResponse> response = getApi().vipLoanBorrow(vipLoanBorrowRequest);
         System.out.println(response.getData());

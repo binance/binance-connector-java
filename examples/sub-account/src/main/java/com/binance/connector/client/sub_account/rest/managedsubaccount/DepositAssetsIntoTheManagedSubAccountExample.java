@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for ManagedSubAccountApi */
 public class DepositAssetsIntoTheManagedSubAccountExample {
@@ -29,16 +30,17 @@ public class DepositAssetsIntoTheManagedSubAccountExample {
     /**
      * Deposit Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *
-     * <p>Deposit Assets Into The Managed Sub-account * You need to enable &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * <p>Deposit Assets Into The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA Notes:
+     * - You need to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key
+     * which requests this endpoint
      *
      * @throws ApiException if the Api call fails
      */
-    public void depositAssetsIntoTheManagedSubAccountExample() throws ApiException {
+    public void depositAssetsIntoTheManagedSubAccountExample() throws ApiException, IOException {
         DepositAssetsIntoTheManagedSubAccountRequest depositAssetsIntoTheManagedSubAccountRequest =
                 new DepositAssetsIntoTheManagedSubAccountRequest();
-        depositAssetsIntoTheManagedSubAccountRequest.toEmail("");
-        depositAssetsIntoTheManagedSubAccountRequest.asset("");
+        depositAssetsIntoTheManagedSubAccountRequest.toEmail("abc@test.com");
+        depositAssetsIntoTheManagedSubAccountRequest.asset("BTC");
         depositAssetsIntoTheManagedSubAccountRequest.amount(1.0d);
         ApiResponse<DepositAssetsIntoTheManagedSubAccountResponse> response =
                 getApi().depositAssetsIntoTheManagedSubAccount(

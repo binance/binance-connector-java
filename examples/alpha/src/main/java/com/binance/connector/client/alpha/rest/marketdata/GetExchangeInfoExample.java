@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetExchangeInfoExample {
@@ -28,11 +29,11 @@ public class GetExchangeInfoExample {
      * Get Exchange Info
      *
      * <p>Fetches general exchange information, such as supported symbols, rate limits, and server
-     * time. Weight: 0
+     * time.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getExchangeInfoExample() throws ApiException {
+    public void getExchangeInfoExample() throws ApiException, IOException {
         ApiResponse<GetExchangeInfoResponse> response = getApi().getExchangeInfo();
         System.out.println(response.getData());
     }

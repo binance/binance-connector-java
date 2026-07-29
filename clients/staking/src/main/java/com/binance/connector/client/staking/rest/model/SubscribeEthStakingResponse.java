@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** SubscribeEthStakingResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeEthStakingResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -48,17 +48,17 @@ public class SubscribeEthStakingResponse {
     @jakarta.annotation.Nullable
     private String wbethAmount;
 
-    public static final String SERIALIZED_NAME_CONVERSION_RATIO = "conversionRatio";
-
-    @SerializedName(SERIALIZED_NAME_CONVERSION_RATIO)
-    @jakarta.annotation.Nullable
-    private String conversionRatio;
-
     public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
 
     @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
     @jakarta.annotation.Nullable
     private Long purchaseId;
+
+    public static final String SERIALIZED_NAME_CONVERSION_RATIO = "conversionRatio";
+
+    @SerializedName(SERIALIZED_NAME_CONVERSION_RATIO)
+    @jakarta.annotation.Nullable
+    private String conversionRatio;
 
     public SubscribeEthStakingResponse() {}
 
@@ -101,6 +101,25 @@ public class SubscribeEthStakingResponse {
         this.wbethAmount = wbethAmount;
     }
 
+    public SubscribeEthStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     public SubscribeEthStakingResponse conversionRatio(
             @jakarta.annotation.Nullable String conversionRatio) {
         this.conversionRatio = conversionRatio;
@@ -121,25 +140,6 @@ public class SubscribeEthStakingResponse {
         this.conversionRatio = conversionRatio;
     }
 
-    public SubscribeEthStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
-        this.purchaseId = purchaseId;
-        return this;
-    }
-
-    /**
-     * Get purchaseId
-     *
-     * @return purchaseId
-     */
-    @jakarta.annotation.Nullable
-    public Long getPurchaseId() {
-        return purchaseId;
-    }
-
-    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
-        this.purchaseId = purchaseId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -151,13 +151,14 @@ public class SubscribeEthStakingResponse {
         SubscribeEthStakingResponse subscribeEthStakingResponse = (SubscribeEthStakingResponse) o;
         return Objects.equals(this.success, subscribeEthStakingResponse.success)
                 && Objects.equals(this.wbethAmount, subscribeEthStakingResponse.wbethAmount)
-                && Objects.equals(this.conversionRatio, subscribeEthStakingResponse.conversionRatio)
-                && Objects.equals(this.purchaseId, subscribeEthStakingResponse.purchaseId);
+                && Objects.equals(this.purchaseId, subscribeEthStakingResponse.purchaseId)
+                && Objects.equals(
+                        this.conversionRatio, subscribeEthStakingResponse.conversionRatio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, wbethAmount, conversionRatio, purchaseId);
+        return Objects.hash(success, wbethAmount, purchaseId, conversionRatio);
     }
 
     @Override
@@ -166,8 +167,8 @@ public class SubscribeEthStakingResponse {
         sb.append("class SubscribeEthStakingResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		wbethAmount: ").append(toIndentedString(wbethAmount)).append("\n");
-        sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
         sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
+        sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -183,14 +184,14 @@ public class SubscribeEthStakingResponse {
         String wbethAmountValueAsString = "";
         wbethAmountValueAsString = wbethAmountValue.toString();
         sb.append("wbethAmount=").append(urlEncode(wbethAmountValueAsString)).append("");
-        Object conversionRatioValue = getConversionRatio();
-        String conversionRatioValueAsString = "";
-        conversionRatioValueAsString = conversionRatioValue.toString();
-        sb.append("conversionRatio=").append(urlEncode(conversionRatioValueAsString)).append("");
         Object purchaseIdValue = getPurchaseId();
         String purchaseIdValueAsString = "";
         purchaseIdValueAsString = purchaseIdValue.toString();
         sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
+        Object conversionRatioValue = getConversionRatio();
+        String conversionRatioValueAsString = "";
+        conversionRatioValueAsString = conversionRatioValue.toString();
+        sb.append("conversionRatio=").append(urlEncode(conversionRatioValueAsString)).append("");
         return sb.toString();
     }
 
@@ -221,8 +222,8 @@ public class SubscribeEthStakingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("wbethAmount");
-        openapiFields.add("conversionRatio");
         openapiFields.add("purchaseId");
+        openapiFields.add("conversionRatio");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

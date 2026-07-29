@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.dual_investment.rest.DualInvestmentRestApiUtil;
 import com.binance.connector.client.dual_investment.rest.api.DualInvestmentRestApi;
+import com.binance.connector.client.dual_investment.rest.model.AutoCompoundPlan;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsRequest;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class SubscribeDualInvestmentProductsExample {
@@ -27,21 +29,21 @@ public class SubscribeDualInvestmentProductsExample {
     }
 
     /**
-     * Subscribe Dual Investment products(USER_DATA)
+     * Subscribe Dual Investment products (USER_DATA)
      *
-     * <p>Subscribe Dual Investment products * Products are not available. // this means APR changes
-     * to lower value, or orders are not unavailable. * Failed. This means System or network errors.
-     * Weight: 1(IP)
+     * <p>Subscribe Dual Investment products Weight(IP): 1 Security Type: USER_DATA Notes: - Failed
+     * messages: - Products are not available. This means APR changed to a lower value, or the order
+     * is unavailable. - Failed. This means system or network errors.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeDualInvestmentProductsExample() throws ApiException {
+    public void subscribeDualInvestmentProductsExample() throws ApiException, IOException {
         SubscribeDualInvestmentProductsRequest subscribeDualInvestmentProductsRequest =
                 new SubscribeDualInvestmentProductsRequest();
-        subscribeDualInvestmentProductsRequest.id("");
-        subscribeDualInvestmentProductsRequest.orderId("1");
-        subscribeDualInvestmentProductsRequest.depositAmount(1.0d);
-        subscribeDualInvestmentProductsRequest.autoCompoundPlan("NONE");
+        subscribeDualInvestmentProductsRequest.id("741590");
+        subscribeDualInvestmentProductsRequest.orderId("8257205859");
+        subscribeDualInvestmentProductsRequest.depositAmount(1d);
+        subscribeDualInvestmentProductsRequest.autoCompoundPlan(AutoCompoundPlan.NONE);
         ApiResponse<SubscribeDualInvestmentProductsResponse> response =
                 getApi().subscribeDualInvestmentProducts(subscribeDualInvestmentProductsRequest);
         System.out.println(response.getData());

@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPayTradeHistoryResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInner {
     public static final String SERIALIZED_NAME_ORDER_TYPE = "orderType";
 
@@ -111,7 +111,8 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get orderType
+     * Order type. Enum: PAY, PAY_REFUND, C2C, CRYPTO_BOX, CRYPTO_BOX_RF, C2C_HOLDING,
+     * C2C_HOLDING_RF, PAYOUT, REMITTANCE.
      *
      * @return orderType
      */
@@ -131,7 +132,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get transactionId
+     * Transaction ID.
      *
      * @return transactionId
      */
@@ -151,7 +152,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get transactionTime
+     * Trade timestamp.
      *
      * @return transactionTime
      */
@@ -170,7 +171,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get amount
+     * Order amount (up to 8 decimal places). Positive means income; negative means expenditure.
      *
      * @return amount
      */
@@ -190,7 +191,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get currency
+     * Order asset.
      *
      * @return currency
      */
@@ -210,7 +211,8 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get walletType
+     * Main wallet type: 1&#x3D;funding wallet, 2&#x3D;spot wallet, 3&#x3D;fiat wallet, 4 or
+     * 6&#x3D;card payment, 5&#x3D;earn wallet.
      *
      * @return walletType
      */
@@ -238,7 +240,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get walletTypes
+     * Array format of wallet types. Multiple values may appear for combined payments.
      *
      * @return walletTypes
      */
@@ -268,7 +270,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get fundsDetail
+     * Funds usage details.
      *
      * @return fundsDetail
      */

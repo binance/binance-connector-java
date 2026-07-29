@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetCurrentEthStakingQuotaResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCurrentEthStakingQuotaResponse {
     public static final String SERIALIZED_NAME_LEFT_STAKING_PERSONAL_QUOTA =
             "leftStakingPersonalQuota";
@@ -101,7 +101,7 @@ public class GetCurrentEthStakingQuotaResponse {
     }
 
     /**
-     * Get leftStakingPersonalQuota
+     * Show min (Daily available limit, total personal staking quota)
      *
      * @return leftStakingPersonalQuota
      */
@@ -122,7 +122,7 @@ public class GetCurrentEthStakingQuotaResponse {
     }
 
     /**
-     * Get leftRedemptionPersonalQuota
+     * Show min (Daily personal redeem quota, total redemption limit)
      *
      * @return leftRedemptionPersonalQuota
      */

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionAdlQuantileEstimationResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class PositionAdlQuantileEstimationExample {
@@ -26,7 +27,7 @@ public class PositionAdlQuantileEstimationExample {
     }
 
     /**
-     * Position ADL Quantile Estimation(USER_DATA)
+     * Position ADL Quantile Estimation (USER_DATA)
      *
      * <p>Position ADL Quantile Estimation * Values update every 30s. * Values 0, 1, 2, 3, 4 shows
      * the queue position and possibility of ADL from low to high. * For positions of the symbol are
@@ -36,12 +37,12 @@ public class PositionAdlQuantileEstimationExample {
      * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value
      * caculated on unrealized pnls on long and short sides&#39; positions will be shown for
      * \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short
-     * sides. Weight: 5
+     * sides. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void positionAdlQuantileEstimationExample() throws ApiException {
-        String symbol = "";
+    public void positionAdlQuantileEstimationExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PositionAdlQuantileEstimationResponse> response =
                 getApi().positionAdlQuantileEstimation(symbol, recvWindow);

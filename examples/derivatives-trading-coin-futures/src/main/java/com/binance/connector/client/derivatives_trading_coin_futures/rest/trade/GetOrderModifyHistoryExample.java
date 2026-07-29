@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetOrderModifyHistoryResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetOrderModifyHistoryExample {
@@ -28,19 +29,20 @@ public class GetOrderModifyHistoryExample {
     /**
      * Get Order Modify History (USER_DATA)
      *
-     * <p>Get order modification history * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
-     * are sent. * Order modify history longer than 3 month is not avaliable Weight: 1
+     * <p>Get order modification history Weight(IP): 1 Security Type: USER_DATA Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the
+     * &#x60;orderId&#x60; will prevail if both are sent. - Order modify history longer than 3 month
+     * is not avaliable
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOrderModifyHistoryExample() throws ApiException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void getOrderModifyHistoryExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_PERP";
+        Long orderId = 20072994037L;
+        String origClientOrderId = "LJ9R4QZDihCaS8UAOOLpgW";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         Long recvWindow = 5000L;
         ApiResponse<GetOrderModifyHistoryResponse> response =
                 getApi().getOrderModifyHistory(

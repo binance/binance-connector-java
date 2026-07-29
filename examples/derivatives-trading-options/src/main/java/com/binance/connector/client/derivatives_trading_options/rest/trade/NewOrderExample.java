@@ -8,8 +8,9 @@ import com.binance.connector.client.derivatives_trading_options.rest.Derivatives
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewOrderResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.OrderType;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Side;
-import com.binance.connector.client.derivatives_trading_options.rest.model.Type;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class NewOrderExample {
@@ -31,15 +32,17 @@ public class NewOrderExample {
     /**
      * New Order (TRADE)
      *
-     * <p>Send a new order. Weight: 0
+     * <p>Send a new order. Weight(IP): 0 Security Type: TRADE Notes: Some parameters are mandatory
+     * depending on the order type as follows: Type | Mandatory parameters ------------ |
+     * ------------ LIMIT | timeInForce, quantity, price
      *
      * @throws ApiException if the Api call fails
      */
-    public void newOrderExample() throws ApiException {
+    public void newOrderExample() throws ApiException, IOException {
         NewOrderRequest newOrderRequest = new NewOrderRequest();
-        newOrderRequest.symbol("");
+        newOrderRequest.symbol("BTC-200730-9000-C");
         newOrderRequest.side(Side.BUY);
-        newOrderRequest.type(Type.LIMIT);
+        newOrderRequest.type(OrderType.LIMIT);
         newOrderRequest.quantity(1.0d);
         ApiResponse<NewOrderResponse> response = getApi().newOrder(newOrderRequest);
         System.out.println(response.getData());

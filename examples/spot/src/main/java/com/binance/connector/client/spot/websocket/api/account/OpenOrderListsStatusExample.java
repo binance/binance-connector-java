@@ -29,11 +29,13 @@ public class OpenOrderListsStatusExample {
     }
 
     /**
-     * WebSocket Current open Order lists
+     * Current open Order lists (USER_DATA)
      *
      * <p>Query execution status of all open order lists. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: 6
+     * status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:** Memory -&gt; Database
      */
     public void openOrderListsStatusExampleAsync() {
         OpenOrderListsStatusRequest openOrderListsStatusRequest = new OpenOrderListsStatusRequest();
@@ -50,11 +52,13 @@ public class OpenOrderListsStatusExample {
     }
 
     /**
-     * WebSocket Current open Order lists
+     * Current open Order lists (USER_DATA)
      *
      * <p>Query execution status of all open order lists. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: 6
+     * status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:** Memory -&gt; Database
      */
     public void openOrderListsStatusExampleSync() {
         OpenOrderListsStatusRequest openOrderListsStatusRequest = new OpenOrderListsStatusRequest();

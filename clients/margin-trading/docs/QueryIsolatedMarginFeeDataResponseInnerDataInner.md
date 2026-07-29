@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**coin** | **String** |  |  [optional] |
-|**dailyInterest** | **String** |  |  [optional] |
-|**borrowLimit** | **String** |  |  [optional] |
+|**coin** | **String** | coin. |  [optional] |
+|**dailyInterest** | **String** | daily Interest. |  [optional] |
+|**borrowLimit** | **String** | borrow Limit. |  [optional] |
 
 
 

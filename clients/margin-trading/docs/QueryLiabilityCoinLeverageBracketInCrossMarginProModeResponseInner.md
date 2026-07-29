@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**assetNames** | **List&lt;String&gt;** |  |  [optional] |
-|**rank** | **Long** |  |  [optional] |
-|**brackets** | [**List&lt;QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner&gt;**](QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner.md) |  |  [optional] |
+|**assetNames** | **List&lt;String&gt;** | asset Names list. |  [optional] |
+|**rank** | **Long** | rank. |  [optional] |
+|**brackets** | [**List&lt;QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner&gt;**](QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner.md) | brackets list. |  [optional] |
 
 
 

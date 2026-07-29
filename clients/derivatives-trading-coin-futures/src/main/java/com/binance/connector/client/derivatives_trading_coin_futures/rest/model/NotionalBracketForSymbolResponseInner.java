@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** NotionalBracketForSymbolResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalBracketForSymbolResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -69,7 +69,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -89,7 +89,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get notionalCoef
+     * user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted
      *
      * @return notionalCoef
      */
@@ -120,7 +120,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get brackets
+     * Leverage bracket details.
      *
      * @return brackets
      */

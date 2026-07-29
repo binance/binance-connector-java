@@ -8,6 +8,7 @@ import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.Direction;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryTransferListResponse;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class QueryTransferListExample {
@@ -27,14 +28,14 @@ public class QueryTransferListExample {
     }
 
     /**
-     * Query Transfer List
+     * Query Transfer List (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction wallet transfer history within a date range.
      * Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryTransferListExample() throws ApiException {
+    public void queryTransferListExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String startDate = "2026-05-01";
         String endDate = "2026-05-25";

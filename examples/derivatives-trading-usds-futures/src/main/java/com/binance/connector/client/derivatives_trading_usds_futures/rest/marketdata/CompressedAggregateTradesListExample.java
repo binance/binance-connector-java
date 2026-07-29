@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CompressedAggregateTradesListResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CompressedAggregateTradesListExample {
@@ -30,25 +31,25 @@ public class CompressedAggregateTradesListExample {
      *
      * <p>Get compressed, aggregate market trades. Market trades that fill in 100ms with the same
      * price and the same taking side will have the quantity aggregated. Retail Price
-     * Improvement(RPI) orders are aggregated and without special tags to be distinguished. *
-     * support querying futures trade histories that are not older than one year * If both
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; must be less than 1 hour. * If &#x60;fromId&#x60;,
-     * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades
-     * will be returned. * Only market trades will be aggregated and returned, which means the
-     * insurance fund trades and ADL trades won&#39;t be aggregated. * Sending both
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response
-     * timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
-     * Weight: 20
+     * Improvement(RPI) orders are aggregated and without special tags to be distinguished.
+     * Weight(IP): 20 Notes: - support querying futures trade histories that are not older than 24
+     * hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
+     * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
+     * recent aggregate trades will be returned. - Only market trades will be aggregated and
+     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. -
+     * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause
+     * response timeout, please send either &#x60;fromId&#x60; or
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void compressedAggregateTradesListExample() throws ApiException {
-        String symbol = "";
+    public void compressedAggregateTradesListExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long fromId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         ApiResponse<CompressedAggregateTradesListResponse> response =
                 getApi().compressedAggregateTradesList(symbol, fromId, startTime, endTime, limit);
         System.out.println(response.getData());

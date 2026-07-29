@@ -33,18 +33,19 @@ public class OrderListPlaceOpoExample {
     }
 
     /**
-     * WebSocket OPO
+     * OPO (TRADE)
      *
-     * <p>Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter
-     * and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
+     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOpoExampleAsync() {
         OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();
         orderListPlaceOpoRequest.symbol("BNBUSDT");
         orderListPlaceOpoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOpoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOpoRequest.workingPrice(1.0d);
-        orderListPlaceOpoRequest.workingQuantity(1.0d);
+        orderListPlaceOpoRequest.workingPrice(1d);
+        orderListPlaceOpoRequest.workingQuantity(1d);
         orderListPlaceOpoRequest.pendingType(PendingType.LIMIT);
         orderListPlaceOpoRequest.pendingSide(PendingSide.BUY);
         CompletableFuture<OrderListPlaceOpoResponse> future =
@@ -60,18 +61,19 @@ public class OrderListPlaceOpoExample {
     }
 
     /**
-     * WebSocket OPO
+     * OPO (TRADE)
      *
-     * <p>Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter
-     * and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
+     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOpoExampleSync() {
         OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();
         orderListPlaceOpoRequest.symbol("BNBUSDT");
         orderListPlaceOpoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOpoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOpoRequest.workingPrice(1.0d);
-        orderListPlaceOpoRequest.workingQuantity(1.0d);
+        orderListPlaceOpoRequest.workingPrice(1d);
+        orderListPlaceOpoRequest.workingQuantity(1d);
         orderListPlaceOpoRequest.pendingType(PendingType.LIMIT);
         orderListPlaceOpoRequest.pendingSide(PendingSide.BUY);
         CompletableFuture<OrderListPlaceOpoResponse> future =

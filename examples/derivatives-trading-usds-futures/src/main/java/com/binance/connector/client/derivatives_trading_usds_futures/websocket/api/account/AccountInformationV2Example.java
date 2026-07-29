@@ -29,10 +29,11 @@ public class AccountInformationV2Example {
     }
 
     /**
-     * Account Information V2(USER_DATA)
+     * Account Information V2 (USER_DATA)
      *
      * <p>Get current account information. User in single-asset/ multi-assets mode will see
-     * different value, see comments in response section for detail. Weight: 5
+     * different value, see comments in response section for detail. Weight(IP): 5 Security Type:
+     * USER_DATA
      */
     public void accountInformationV2ExampleAsync() {
         AccountInformationV2Request accountInformationV2Request = new AccountInformationV2Request();
@@ -49,10 +50,11 @@ public class AccountInformationV2Example {
     }
 
     /**
-     * Account Information V2(USER_DATA)
+     * Account Information V2 (USER_DATA)
      *
      * <p>Get current account information. User in single-asset/ multi-assets mode will see
-     * different value, see comments in response section for detail. Weight: 5
+     * different value, see comments in response section for detail. Weight(IP): 5 Security Type:
+     * USER_DATA
      */
     public void accountInformationV2ExampleSync() {
         AccountInformationV2Request accountInformationV2Request = new AccountInformationV2Request();

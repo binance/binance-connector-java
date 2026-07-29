@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** ListStatus */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ListStatus extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -111,7 +111,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -130,7 +130,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -149,7 +149,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get gLowerCase
+     * OrderListId
      *
      * @return gLowerCase
      */
@@ -168,7 +168,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Contingency Type
      *
      * @return cLowerCase
      */
@@ -187,7 +187,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * List Status Type
      *
      * @return lLowerCase
      */
@@ -206,7 +206,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get L
+     * List Order Status
      *
      * @return L
      */
@@ -225,7 +225,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get rLowerCase
+     * List Reject Reason
      *
      * @return rLowerCase
      */
@@ -244,7 +244,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get C
+     * List Client Order ID
      *
      * @return C
      */
@@ -263,7 +263,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction Time
      *
      * @return T
      */
@@ -290,7 +290,7 @@ public class ListStatus extends BaseDTO {
     }
 
     /**
-     * Get O
+     * An array of objects
      *
      * @return O
      */

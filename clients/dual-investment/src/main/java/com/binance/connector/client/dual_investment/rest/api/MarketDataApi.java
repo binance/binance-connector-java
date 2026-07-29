@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentProductListResponse;
+import com.binance.connector.client.dual_investment.rest.model.OptionType;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -42,7 +43,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-dual-investment/2.1.1 (Java/%s; %s; %s)",
+                    "binance-dual-investment/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -84,20 +85,18 @@ public class MarketDataApi {
      *
      * @param optionType Input CALL or PUT (required)
      * @param exercisedCoin Target exercised asset, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
      * @param investCoin Asset used for subscribing, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -108,11 +107,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/market-data/Get-Dual-Investment-product-list">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/market-data#get-dual-investment-product-list">Get
      *     Dual Investment product list Documentation</a>
      */
     private okhttp3.Call getDualInvestmentProductListCall(
-            String optionType,
+            OptionType optionType,
             String exercisedCoin,
             String investCoin,
             Long pageSize,
@@ -181,7 +180,6 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
-        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -200,7 +198,7 @@ public class MarketDataApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getDualInvestmentProductListValidateBeforeCall(
-            String optionType,
+            OptionType optionType,
             String exercisedCoin,
             String investCoin,
             Long pageSize,
@@ -223,7 +221,7 @@ public class MarketDataApi {
                     this.getClass()
                             .getMethod(
                                     "getDualInvestmentProductList",
-                                    String.class,
+                                    OptionType.class,
                                     String.class,
                                     String.class,
                                     Long.class,
@@ -248,24 +246,22 @@ public class MarketDataApi {
     }
 
     /**
-     * Get Dual Investment product list Get Dual Investment product list Weight: 1(IP)
+     * Get Dual Investment product list Get Dual Investment product list Weight(IP): 1
      *
      * @param optionType Input CALL or PUT (required)
      * @param exercisedCoin Target exercised asset, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
      * @param investCoin Asset used for subscribing, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetDualInvestmentProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -277,16 +273,16 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/market-data/Get-Dual-Investment-product-list">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/market-data#get-dual-investment-product-list">Get
      *     Dual Investment product list Documentation</a>
      */
     public ApiResponse<GetDualInvestmentProductListResponse> getDualInvestmentProductList(
-            @NotNull String optionType,
+            @NotNull OptionType optionType,
             @NotNull String exercisedCoin,
             @NotNull String investCoin,
-            Long pageSize,
+            @Max(100L) Long pageSize,
             Long pageIndex,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getDualInvestmentProductListValidateBeforeCall(

@@ -29,10 +29,11 @@ public class TradesRecentExample {
     }
 
     /**
-     * WebSocket Recent trades
+     * Recent trades
      *
      * <p>Get recent trades. If you need access to real-time trading activity, please consider using
-     * WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight: 25
+     * WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight(IP): 25 Security Type: NONE
+     * Notes: **Data Source:** Memory
      */
     public void tradesRecentExampleAsync() {
         TradesRecentRequest tradesRecentRequest = new TradesRecentRequest();
@@ -49,10 +50,11 @@ public class TradesRecentExample {
     }
 
     /**
-     * WebSocket Recent trades
+     * Recent trades
      *
      * <p>Get recent trades. If you need access to real-time trading activity, please consider using
-     * WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight: 25
+     * WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight(IP): 25 Security Type: NONE
+     * Notes: **Data Source:** Memory
      */
     public void tradesRecentExampleSync() {
         TradesRecentRequest tradesRecentRequest = new TradesRecentRequest();

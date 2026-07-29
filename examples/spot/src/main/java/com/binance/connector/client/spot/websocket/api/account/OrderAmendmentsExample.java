@@ -29,9 +29,10 @@ public class OrderAmendmentsExample {
     }
 
     /**
-     * WebSocket Query Order Amendments
+     * Query Order Amendments (USER_DATA)
      *
-     * <p>Queries all amendments of a single order. Weight: 4
+     * <p>Queries all amendments of a single order. Weight(IP): 4 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      */
     public void orderAmendmentsExampleAsync() {
         OrderAmendmentsRequest orderAmendmentsRequest = new OrderAmendmentsRequest();
@@ -50,9 +51,10 @@ public class OrderAmendmentsExample {
     }
 
     /**
-     * WebSocket Query Order Amendments
+     * Query Order Amendments (USER_DATA)
      *
-     * <p>Queries all amendments of a single order. Weight: 4
+     * <p>Queries all amendments of a single order. Weight(IP): 4 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      */
     public void orderAmendmentsExampleSync() {
         OrderAmendmentsRequest orderAmendmentsRequest = new OrderAmendmentsRequest();

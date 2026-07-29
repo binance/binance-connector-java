@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -45,7 +45,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin-pro/7.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin-pro/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -95,8 +95,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage">Get
-     *     Portfolio Margin Asset Leverage(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#get-portfolio-margin-asset-leverage">Get
+     *     Portfolio Margin Asset Leverage (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getPortfolioMarginAssetLeverageCall() throws ApiException {
         String basePath = null;
@@ -184,7 +184,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Get Portfolio Margin Asset Leverage(USER_DATA) Get Portfolio Margin Asset Leverage Weight: 50
+     * Get Portfolio Margin Asset Leverage (USER_DATA) Get Portfolio Margin Asset Leverage
+     * Weight(IP): 50 Security Type: USER_DATA
      *
      * @return ApiResponse&lt;GetPortfolioMarginAssetLeverageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -197,8 +198,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage">Get
-     *     Portfolio Margin Asset Leverage(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#get-portfolio-margin-asset-leverage">Get
+     *     Portfolio Margin Asset Leverage (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioMarginAssetLeverageResponse> getPortfolioMarginAssetLeverage()
             throws ApiException {
@@ -221,8 +222,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate">Portfolio
-     *     Margin Collateral Rate(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-collateral-rate">Portfolio
+     *     Margin Collateral Rate (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call portfolioMarginCollateralRateCall() throws ApiException {
         String basePath = null;
@@ -309,7 +310,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Portfolio Margin Collateral Rate(MARKET_DATA) Portfolio Margin Collateral Rate Weight: 50
+     * Portfolio Margin Collateral Rate (MARKET_DATA) Portfolio Margin Collateral Rate Weight(IP):
+     * 50 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;PortfolioMarginCollateralRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -322,8 +324,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate">Portfolio
-     *     Margin Collateral Rate(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-collateral-rate">Portfolio
+     *     Margin Collateral Rate (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<PortfolioMarginCollateralRateResponse> portfolioMarginCollateralRate()
             throws ApiException {
@@ -347,8 +349,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Portfolio-Margin-Pro-Tiered-Collateral-Rate">Portfolio
-     *     Margin Pro Tiered Collateral Rate(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-pro-tiered-collateral-rate">Portfolio
+     *     Margin Pro Tiered Collateral Rate (USER_DATA) Documentation</a>
      */
     private okhttp3.Call portfolioMarginProTieredCollateralRateCall(Long recvWindow)
             throws ApiException {
@@ -443,8 +445,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Portfolio Margin Pro Tiered Collateral Rate(USER_DATA) Portfolio Margin PRO Tiered Collateral
-     * Rate Weight: 50
+     * Portfolio Margin Pro Tiered Collateral Rate (USER_DATA) Portfolio Margin PRO Tiered
+     * Collateral Rate Weight(IP): 50 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;PortfolioMarginProTieredCollateralRateResponse&gt;
@@ -458,8 +460,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Portfolio-Margin-Pro-Tiered-Collateral-Rate">Portfolio
-     *     Margin Pro Tiered Collateral Rate(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-pro-tiered-collateral-rate">Portfolio
+     *     Margin Pro Tiered Collateral Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<PortfolioMarginProTieredCollateralRateResponse>
             portfolioMarginProTieredCollateralRate(Long recvWindow) throws ApiException {
@@ -484,7 +486,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#query-portfolio-margin-asset-index-price">Query
      *     Portfolio Margin Asset Index Price (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call queryPortfolioMarginAssetIndexPriceCall(String asset) throws ApiException {
@@ -579,7 +581,8 @@ public class MarketDataApi {
 
     /**
      * Query Portfolio Margin Asset Index Price (MARKET_DATA) Query Portfolio Margin Asset Index
-     * Price Weight: 1 if send asset or 50 if not send asset
+     * Price Weight: - 1 if &#x60;asset&#x60; is sent - 50 if &#x60;asset&#x60; is not sent Security
+     * Type: MARKET_DATA
      *
      * @param asset (optional)
      * @return ApiResponse&lt;QueryPortfolioMarginAssetIndexPriceResponse&gt;
@@ -593,7 +596,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#query-portfolio-margin-asset-index-price">Query
      *     Portfolio Margin Asset Index Price (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<QueryPortfolioMarginAssetIndexPriceResponse>

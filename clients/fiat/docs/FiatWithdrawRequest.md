@@ -7,11 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**recvWindow** | **Long** |  |  [optional] |
-|**currency** | **String** |  |  |
-|**apiPaymentMethod** | **String** |  |  |
-|**amount** | **Long** |  |  |
-|**accountInfo** | [**AccountInfo**](AccountInfo.md) |  |  |
+|**currency** | **String** | Fiat currency, such as BRL, ARS, MXN |  |
+|**apiPaymentMethod** | **ApiPaymentMethod** |  |  |
+|**amount** | **Long** | withdraw amount |  |
+|**accountInfo** | [**FiatWithdrawRequestAccountInfo**](FiatWithdrawRequestAccountInfo.md) |  |  |
 |**ext** | **Object** |  |  [optional] |
 
 

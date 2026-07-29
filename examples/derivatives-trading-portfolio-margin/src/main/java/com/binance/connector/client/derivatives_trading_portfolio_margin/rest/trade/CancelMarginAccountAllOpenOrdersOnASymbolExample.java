@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountAllOpenOrdersOnASymbolResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelMarginAccountAllOpenOrdersOnASymbolExample {
@@ -26,14 +27,15 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolExample {
     }
 
     /**
-     * Cancel Margin Account All Open Orders on a Symbol(TRADE)
+     * Cancel Margin Account All Open Orders on a Symbol (TRADE)
      *
-     * <p>Cancel Margin Account All Open Orders on a Symbol Weight: 5
+     * <p>Cancel Margin Account All Open Orders on a Symbol Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelMarginAccountAllOpenOrdersOnASymbolExample() throws ApiException {
-        String symbol = "";
+    public void cancelMarginAccountAllOpenOrdersOnASymbolExample()
+            throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<CancelMarginAccountAllOpenOrdersOnASymbolResponse> response =
                 getApi().cancelMarginAccountAllOpenOrdersOnASymbol(symbol, recvWindow);

@@ -4,21 +4,21 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelAlgoOrderFutureAlgo**](FutureAlgoApi.md#cancelAlgoOrderFutureAlgo) | **DELETE** /sapi/v1/algo/futures/order | Cancel Algo Order(TRADE) |
-| [**queryCurrentAlgoOpenOrdersFutureAlgo**](FutureAlgoApi.md#queryCurrentAlgoOpenOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/openOrders | Query Current Algo Open Orders(USER_DATA) |
-| [**queryHistoricalAlgoOrdersFutureAlgo**](FutureAlgoApi.md#queryHistoricalAlgoOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/historicalOrders | Query Historical Algo Orders(USER_DATA) |
-| [**querySubOrdersFutureAlgo**](FutureAlgoApi.md#querySubOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/subOrders | Query Sub Orders(USER_DATA) |
-| [**timeWeightedAveragePriceFutureAlgo**](FutureAlgoApi.md#timeWeightedAveragePriceFutureAlgo) | **POST** /sapi/v1/algo/futures/newOrderTwap | Time-Weighted Average Price(Twap) New Order(TRADE) |
-| [**volumeParticipationFutureAlgo**](FutureAlgoApi.md#volumeParticipationFutureAlgo) | **POST** /sapi/v1/algo/futures/newOrderVp | Volume Participation(VP) New Order (TRADE) |
+| [**cancelAlgoOrderFutureAlgo**](FutureAlgoApi.md#cancelAlgoOrderFutureAlgo) | **DELETE** /sapi/v1/algo/futures/order | Cancel Futures Algo Order (TRADE) |
+| [**queryCurrentAlgoOpenOrdersFutureAlgo**](FutureAlgoApi.md#queryCurrentAlgoOpenOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/openOrders | Query Current Futures Algo Open Orders (USER_DATA) |
+| [**queryHistoricalAlgoOrdersFutureAlgo**](FutureAlgoApi.md#queryHistoricalAlgoOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/historicalOrders | Query Historical Futures Algo Orders (USER_DATA) |
+| [**querySubOrdersFutureAlgo**](FutureAlgoApi.md#querySubOrdersFutureAlgo) | **GET** /sapi/v1/algo/futures/subOrders | Query Futures Sub Orders (USER_DATA) |
+| [**timeWeightedAveragePriceFutureAlgo**](FutureAlgoApi.md#timeWeightedAveragePriceFutureAlgo) | **POST** /sapi/v1/algo/futures/newOrderTwap | Time-Weighted Futures Average Price (Twap) New Order (TRADE) |
+| [**volumeParticipationFutureAlgo**](FutureAlgoApi.md#volumeParticipationFutureAlgo) | **POST** /sapi/v1/algo/futures/newOrderVp | Volume Participation (VP) New Order (TRADE) |
 
 
 <a id="cancelAlgoOrderFutureAlgo"></a>
 # **cancelAlgoOrderFutureAlgo**
 > CancelAlgoOrderFutureAlgoResponse cancelAlgoOrderFutureAlgo(algoId, recvWindow)
 
-Cancel Algo Order(TRADE)
+Cancel Futures Algo Order (TRADE)
 
-Cancel an active order.  * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 1
+Cancel an active order.  Weight(IP): 1  Security Type: TRADE  Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java
@@ -35,8 +35,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureAlgoApi apiInstance = new FutureAlgoApi(defaultClient);
-    Long algoId = 56L; // Long | eg. 14511
-    Long recvWindow = 56L; // Long | 
+    Long algoId = 1L; // Long | eg. 14511
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       CancelAlgoOrderFutureAlgoResponse result = apiInstance.cancelAlgoOrderFutureAlgo(algoId, recvWindow);
       System.out.println(result);
@@ -56,7 +56,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **algoId** | **Long**| eg. 14511 | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -80,9 +80,9 @@ No authorization required
 # **queryCurrentAlgoOpenOrdersFutureAlgo**
 > QueryCurrentAlgoOpenOrdersFutureAlgoResponse queryCurrentAlgoOpenOrdersFutureAlgo(recvWindow)
 
-Query Current Algo Open Orders(USER_DATA)
+Query Current Futures Algo Open Orders (USER_DATA)
 
-Query Current Algo Open Orders  * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 1
+Query Current Algo Open Orders  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java
@@ -99,7 +99,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureAlgoApi apiInstance = new FutureAlgoApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       QueryCurrentAlgoOpenOrdersFutureAlgoResponse result = apiInstance.queryCurrentAlgoOpenOrdersFutureAlgo(recvWindow);
       System.out.println(result);
@@ -118,7 +118,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -142,9 +142,9 @@ No authorization required
 # **queryHistoricalAlgoOrdersFutureAlgo**
 > QueryHistoricalAlgoOrdersFutureAlgoResponse queryHistoricalAlgoOrdersFutureAlgo(symbol, side, startTime, endTime, page, pageSize, recvWindow)
 
-Query Historical Algo Orders(USER_DATA)
+Query Historical Futures Algo Orders (USER_DATA)
 
-Query Historical Algo Order  * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 1
+Query Historical Algo Order  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java
@@ -161,13 +161,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureAlgoApi apiInstance = new FutureAlgoApi(defaultClient);
-    String symbol = "symbol_example"; // String | Trading symbol eg. BTCUSDT
-    String side = "side_example"; // String | BUY or SELL
-    Long startTime = 56L; // Long | in milliseconds  eg.1641522717552
-    Long endTime = 56L; // Long | in milliseconds  eg.1641522526562
-    Long page = 56L; // Long | Default is 1
-    Long pageSize = 56L; // Long | MIN 1, MAX 100; Default 100
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Trading symbol eg. BTCUSDT
+    Side side = Side.fromValue("BUY"); // Side | BUY or SELL
+    Long startTime = 1623319461670L; // Long | in milliseconds  eg.1641522717552
+    Long endTime = 1641782889000L; // Long | in milliseconds  eg.1641522526562
+    Long page = 1L; // Long | Page number
+    Long pageSize = 100L; // Long | Records per page
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       QueryHistoricalAlgoOrdersFutureAlgoResponse result = apiInstance.queryHistoricalAlgoOrdersFutureAlgo(symbol, side, startTime, endTime, page, pageSize, recvWindow);
       System.out.println(result);
@@ -187,12 +187,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**| Trading symbol eg. BTCUSDT | [optional] |
-| **side** | **String**| BUY or SELL | [optional] |
+| **side** | [**Side**](.md)| BUY or SELL | [optional] [enum: BUY, SELL] |
 | **startTime** | **Long**| in milliseconds  eg.1641522717552 | [optional] |
 | **endTime** | **Long**| in milliseconds  eg.1641522526562 | [optional] |
-| **page** | **Long**| Default is 1 | [optional] |
-| **pageSize** | **Long**| MIN 1, MAX 100; Default 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **page** | **Long**| Page number | [optional] |
+| **pageSize** | **Long**| Records per page | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -216,9 +216,9 @@ No authorization required
 # **querySubOrdersFutureAlgo**
 > QuerySubOrdersFutureAlgoResponse querySubOrdersFutureAlgo(algoId, page, pageSize, recvWindow)
 
-Query Sub Orders(USER_DATA)
+Query Futures Sub Orders (USER_DATA)
 
-Get respective sub orders for a specified algoId  * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 1
+Get respective sub orders for a specified algoId  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java
@@ -235,10 +235,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureAlgoApi apiInstance = new FutureAlgoApi(defaultClient);
-    Long algoId = 56L; // Long | eg. 14511
-    Long page = 56L; // Long | Default is 1
-    Long pageSize = 56L; // Long | MIN 1, MAX 100; Default 100
-    Long recvWindow = 56L; // Long | 
+    Long algoId = 1L; // Long | eg. 14511
+    Long page = 1L; // Long | Page number
+    Long pageSize = 100L; // Long | Records per page
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       QuerySubOrdersFutureAlgoResponse result = apiInstance.querySubOrdersFutureAlgo(algoId, page, pageSize, recvWindow);
       System.out.println(result);
@@ -258,9 +258,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **algoId** | **Long**| eg. 14511 | |
-| **page** | **Long**| Default is 1 | [optional] |
-| **pageSize** | **Long**| MIN 1, MAX 100; Default 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **page** | **Long**| Page number | [optional] |
+| **pageSize** | **Long**| Records per page | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -284,9 +284,9 @@ No authorization required
 # **timeWeightedAveragePriceFutureAlgo**
 > TimeWeightedAveragePriceFutureAlgoResponse timeWeightedAveragePriceFutureAlgo(timeWeightedAveragePriceFutureAlgoRequest)
 
-Time-Weighted Average Price(Twap) New Order(TRADE)
+Time-Weighted Futures Average Price (Twap) New Order (TRADE)
 
-Send in a Twap new order. Only support on USDⓈ-M Contracts.  * Total Algo open orders max allowed: &#x60;30&#x60; orders. * Leverage of symbols and position mode will be the same as your futures account settings. You can set up through the trading page or fapi. * Receiving &#x60;\&quot;success\&quot;: true&#x60; does not mean that your order will be executed. Please use the query order endpoints（&#x60;GET sapi/v1/algo/futures/openOrders&#x60; or &#x60;GET sapi/v1/algo/futures/historicalOrders&#x60;） to check the order status. For example: Your futures balance is insufficient, or open position with reduce only or position side is inconsistent with your own setting. In these cases you will receive &#x60;\&quot;success\&quot;: true&#x60;, but the order status will be &#x60;expired&#x60; after we check it. * &#x60;quantity&#x60; * 60 / &#x60;duration&#x60; should be larger than minQty * &#x60;duration&#x60; cannot be less than 5 mins or more than 24 hours. * For delivery contracts, TWAP end time should be one hour earlier than the delivery time of the symbol. * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 3000
+Send in a Twap new order. Only support on USDⓈ-M Contracts.  Weight(UID): 3000  Security Type: TRADE  Notes: - Other info:   - Total Algo open orders max allowed: &#x60;30&#x60; orders.   - Leverage and position mode follow your futures account settings.   - Receiving &#x60;\&quot;success\&quot;: true&#x60; does not guarantee execution; query order endpoints for final status.   - If balance/position constraints fail, response may still return success but order status becomes &#x60;expired&#x60;.   - &#x60;quantity * 60 / duration&#x60; must be greater than &#x60;minQty&#x60;.   - &#x60;duration&#x60; cannot be less than 5 minutes or greater than 24 hours.   - For delivery contracts, TWAP end time should be one hour earlier than symbol delivery time.   - You need to enable the corresponding permission for the API key requesting this endpoint:     - &#x60;Futures Trading Permission&#x60; — for Classic Trading Account mode     - &#x60;Portfolio Margin Trading Permission&#x60; — for Portfolio Margin Account mode   - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java
@@ -346,9 +346,9 @@ No authorization required
 # **volumeParticipationFutureAlgo**
 > VolumeParticipationFutureAlgoResponse volumeParticipationFutureAlgo(volumeParticipationFutureAlgoRequest)
 
-Volume Participation(VP) New Order (TRADE)
+Volume Participation (VP) New Order (TRADE)
 
-Send in a VP new order. Only support on USDⓈ-M Contracts.  * Total Algo open orders max allowed: &#x60;10&#x60; orders. * Leverage of symbols and position mode will be the same as your futures account settings. You can set up through the trading page or fapi. * Receiving &#x60;\&quot;success\&quot;: true&#x60; does not mean that your order will be executed. Please use the query order endpoints（&#x60;GET sapi/v1/algo/futures/openOrders&#x60; or &#x60;GET sapi/v1/algo/futures/historicalOrders&#x60;） to check the order status. For example: Your futures balance is insufficient, or open position with reduce only or position side is inconsistent with your own setting. In these cases you will receive &#x60;\&quot;success\&quot;: true&#x60;, but the order status will be &#x60;expired&#x60; after we check it. * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which requests this endpoint. * Base URL: https://api.binance.com  Weight: 300
+Send in a VP new order. Only support on USDⓈ-M Contracts.  Weight(UID): 300  Security Type: TRADE  Notes: - Other info:   - Total Algo open orders max allowed: &#x60;10&#x60; orders.   - Leverage and position mode follow your futures account settings.   - Receiving &#x60;\&quot;success\&quot;: true&#x60; does not guarantee execution; query order endpoints for final status.   - If balance/position constraints fail, response may still return success but order status becomes &#x60;expired&#x60;.   - You need to enable the corresponding permission for the API key requesting this endpoint:     - &#x60;Futures Trading Permission&#x60; — for Classic Trading Account mode     - &#x60;Portfolio Margin Trading Permission&#x60; — for Portfolio Margin Account mode   - Base URL: &#x60;https://api.binance.com&#x60;
 
 ### Example
 ```java

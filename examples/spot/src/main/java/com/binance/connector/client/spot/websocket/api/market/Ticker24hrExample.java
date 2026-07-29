@@ -29,15 +29,18 @@ public class Ticker24hrExample {
     }
 
     /**
-     * WebSocket 24hr ticker price change statistics
+     * 24hr ticker price change statistics
      *
      * <p>Get 24-hour rolling window price change statistics. If you need to continuously monitor
      * trading statistics, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
      * &#x60;&lt;symbol&gt;@miniTicker&#x60; or &#x60;!miniTicker@arr&#x60; If you need different
      * window sizes, use the &#x60;ticker&#x60; request. Weight: Adjusted based on the number of
-     * requested symbols: | Symbols | Weight | |:-----------:|:------:| | 1–20 | 2 | | 21–100 | 40 |
-     * | 101 or more | 80 | | all symbols | 80 |
+     * requested symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| |
+     * |omitted| 80| |symbols| 1-20 |2| | | 21-100 |40| | | 101+ |80| | |omitted| 80| Security Type:
+     * NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and &#x60;symbols&#x60;
+     * cannot be used together. * If no symbol is specified, returns information about all symbols
+     * currently trading on the exchange.
      */
     public void ticker24hrExampleAsync() {
         Ticker24hrRequest ticker24hrRequest = new Ticker24hrRequest();
@@ -53,15 +56,18 @@ public class Ticker24hrExample {
     }
 
     /**
-     * WebSocket 24hr ticker price change statistics
+     * 24hr ticker price change statistics
      *
      * <p>Get 24-hour rolling window price change statistics. If you need to continuously monitor
      * trading statistics, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
      * &#x60;&lt;symbol&gt;@miniTicker&#x60; or &#x60;!miniTicker@arr&#x60; If you need different
      * window sizes, use the &#x60;ticker&#x60; request. Weight: Adjusted based on the number of
-     * requested symbols: | Symbols | Weight | |:-----------:|:------:| | 1–20 | 2 | | 21–100 | 40 |
-     * | 101 or more | 80 | | all symbols | 80 |
+     * requested symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| |
+     * |omitted| 80| |symbols| 1-20 |2| | | 21-100 |40| | | 101+ |80| | |omitted| 80| Security Type:
+     * NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and &#x60;symbols&#x60;
+     * cannot be used together. * If no symbol is specified, returns information about all symbols
+     * currently trading on the exchange.
      */
     public void ticker24hrExampleSync() {
         Ticker24hrRequest ticker24hrRequest = new Ticker24hrRequest();

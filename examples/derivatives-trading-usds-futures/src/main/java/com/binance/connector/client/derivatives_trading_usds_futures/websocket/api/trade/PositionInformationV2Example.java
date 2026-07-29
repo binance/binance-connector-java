@@ -32,8 +32,8 @@ public class PositionInformationV2Example {
      * Position Information V2 (USER_DATA)
      *
      * <p>Get current position information(only symbol that has position or open orders will be
-     * returned). * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your
-     * timeliness and accuracy needs. Weight: 5
+     * returned). Weight(IP): 5 Security Type: USER_DATA Notes: - Please use with user data stream
+     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
      */
     public void positionInformationV2ExampleAsync() {
         PositionInformationV2Request positionInformationV2Request =
@@ -54,8 +54,8 @@ public class PositionInformationV2Example {
      * Position Information V2 (USER_DATA)
      *
      * <p>Get current position information(only symbol that has position or open orders will be
-     * returned). * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your
-     * timeliness and accuracy needs. Weight: 5
+     * returned). Weight(IP): 5 Security Type: USER_DATA Notes: - Please use with user data stream
+     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
      */
     public void positionInformationV2ExampleSync() {
         PositionInformationV2Request positionInformationV2Request =

@@ -8,6 +8,7 @@ import com.binance.connector.client.gift_card.rest.GiftCardRestApiUtil;
 import com.binance.connector.client.gift_card.rest.api.GiftCardRestApi;
 import com.binance.connector.client.gift_card.rest.model.CreateASingleTokenGiftCardRequest;
 import com.binance.connector.client.gift_card.rest.model.CreateASingleTokenGiftCardResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CreateASingleTokenGiftCardExample {
@@ -31,15 +32,15 @@ public class CreateASingleTokenGiftCardExample {
      * <p>This API is for creating a Binance Gift Card. To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for
-     * the API Key which requests this endpoint. Weight: 1
+     * the API Key which requests this endpoint. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void createASingleTokenGiftCardExample() throws ApiException {
+    public void createASingleTokenGiftCardExample() throws ApiException, IOException {
         CreateASingleTokenGiftCardRequest createASingleTokenGiftCardRequest =
                 new CreateASingleTokenGiftCardRequest();
-        createASingleTokenGiftCardRequest.token("");
-        createASingleTokenGiftCardRequest.amount(1.0d);
+        createASingleTokenGiftCardRequest.token("BNB");
+        createASingleTokenGiftCardRequest.amount(1d);
         ApiResponse<CreateASingleTokenGiftCardResponse> response =
                 getApi().createASingleTokenGiftCard(createASingleTokenGiftCardRequest);
         System.out.println(response.getData());

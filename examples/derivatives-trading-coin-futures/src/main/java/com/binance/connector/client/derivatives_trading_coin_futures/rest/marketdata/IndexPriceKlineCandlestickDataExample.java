@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IndexPriceKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Interval;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class IndexPriceKlineCandlestickDataExample {
@@ -30,25 +31,25 @@ public class IndexPriceKlineCandlestickDataExample {
      * Index Price Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for the index price of a pair. Klines are uniquely identified by
-     * their open time. 1000 | 10 * The difference between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can only be up to 200 days * Between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data from &#x60;endTime&#x60; will be
-     * returned: * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, current timestamp
-     * will be set as &#x60;endTime&#x60;, and the most recent data will be returned. * If
-     * &#x60;startTime&#x60; is sent only, the timestamp of 200 days after &#x60;startTime&#x60;
-     * will be set as &#x60;endTime&#x60;(up to the current time) * If &#x60;endTime&#x60; is sent
-     * only, the timestamp of 200 days before &#x60;endTime&#x60; will be set as
-     * &#x60;startTime&#x60; Weight: based on parameter LIMIT LIMIT | weight ---|--- [1,100) | 1
-     * [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * their open time. Weight: Based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | ---
+     * | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The
+     * difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days -
+     * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data
+     * from &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * are not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data
+     * will be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void indexPriceKlineCandlestickDataExample() throws ApiException {
-        String pair = "";
+    public void indexPriceKlineCandlestickDataExample() throws ApiException, IOException {
+        String pair = "BTCUSD";
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<IndexPriceKlineCandlestickDataResponse> response =
                 getApi().indexPriceKlineCandlestickData(pair, interval, startTime, endTime, limit);
         System.out.println(response.getData());

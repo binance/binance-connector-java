@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,6 +28,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProTieredCollateralRateResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginAssetIndexPriceResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,14 +80,15 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Get Portfolio Margin Asset Leverage(USER_DATA)
+     * Get Portfolio Margin Asset Leverage (USER_DATA)
      *
-     * <p>Get Portfolio Margin Asset Leverage Weight: 50
+     * <p>Get Portfolio Margin Asset Leverage Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPortfolioMarginAssetLeverageTest() throws ApiException, CryptoException {
+    public void getPortfolioMarginAssetLeverageTest()
+            throws ApiException, CryptoException, IOException {
         ApiResponse<GetPortfolioMarginAssetLeverageResponse> response =
                 api.getPortfolioMarginAssetLeverage();
 
@@ -108,14 +110,15 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Portfolio Margin Collateral Rate(MARKET_DATA)
+     * Portfolio Margin Collateral Rate (MARKET_DATA)
      *
-     * <p>Portfolio Margin Collateral Rate Weight: 50
+     * <p>Portfolio Margin Collateral Rate Weight(IP): 50 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void portfolioMarginCollateralRateTest() throws ApiException, CryptoException {
+    public void portfolioMarginCollateralRateTest()
+            throws ApiException, CryptoException, IOException {
         ApiResponse<PortfolioMarginCollateralRateResponse> response =
                 api.portfolioMarginCollateralRate();
 
@@ -126,19 +129,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/collateralRate", actualRequest.url().encodedPath());
     }
 
     /**
-     * Portfolio Margin Pro Tiered Collateral Rate(USER_DATA)
+     * Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
      *
-     * <p>Portfolio Margin PRO Tiered Collateral Rate Weight: 50
+     * <p>Portfolio Margin PRO Tiered Collateral Rate Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void portfolioMarginProTieredCollateralRateTest() throws ApiException, CryptoException {
+    public void portfolioMarginProTieredCollateralRateTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<PortfolioMarginProTieredCollateralRateResponse> response =
                 api.portfolioMarginProTieredCollateralRate(recvWindow);
@@ -153,23 +159,28 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v2/portfolio/collateralRate", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v2/portfolio/collateralRate", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Portfolio Margin Asset Index Price (MARKET_DATA)
      *
-     * <p>Query Portfolio Margin Asset Index Price Weight: 1 if send asset or 50 if not send asset
+     * <p>Query Portfolio Margin Asset Index Price Weight: - 1 if &#x60;asset&#x60; is sent - 50 if
+     * &#x60;asset&#x60; is not sent Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryPortfolioMarginAssetIndexPriceTest() throws ApiException, CryptoException {
-        String asset = "";
+    public void queryPortfolioMarginAssetIndexPriceTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         ApiResponse<QueryPortfolioMarginAssetIndexPriceResponse> response =
                 api.queryPortfolioMarginAssetIndexPrice(asset);
 
@@ -180,7 +191,10 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/asset-index-price", actualRequest.url().encodedPath());
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v1/portfolio/asset-index-price", actualRequest.url().encodedPath());
     }
 }

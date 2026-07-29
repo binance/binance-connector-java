@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOtoResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOtoResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -130,7 +130,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -150,7 +150,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -170,7 +170,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -190,7 +190,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -210,7 +210,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get transactTime
+     * transact Time.
      *
      * @return transactTime
      */
@@ -230,7 +230,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -250,7 +250,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -270,7 +270,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -290,7 +290,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -310,7 +310,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -330,7 +330,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -350,7 +350,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -370,7 +370,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -390,7 +390,7 @@ public class MarginAccountNewOtoResponseOrderReportsInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */

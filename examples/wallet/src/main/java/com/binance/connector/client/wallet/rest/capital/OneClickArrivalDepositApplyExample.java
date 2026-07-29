@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class OneClickArrivalDepositApplyExample {
@@ -28,12 +29,12 @@ public class OneClickArrivalDepositApplyExample {
     /**
      * One click arrival deposit apply (for expired address deposit) (USER_DATA)
      *
-     * <p>Apply deposit credit for expired address (One click arrival) * Params need to be in the
-     * POST body Weight: 1
+     * <p>Apply deposit credit for expired address (One click arrival) Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void oneClickArrivalDepositApplyExample() throws ApiException {
+    public void oneClickArrivalDepositApplyExample() throws ApiException, IOException {
         OneClickArrivalDepositApplyRequest oneClickArrivalDepositApplyRequest =
                 new OneClickArrivalDepositApplyRequest();
         ApiResponse<OneClickArrivalDepositApplyResponse> response =

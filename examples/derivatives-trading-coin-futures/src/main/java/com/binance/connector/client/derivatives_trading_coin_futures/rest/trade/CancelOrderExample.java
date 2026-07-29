@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CancelOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelOrderExample {
@@ -28,15 +29,15 @@ public class CancelOrderExample {
     /**
      * Cancel Order (TRADE)
      *
-     * <p>Cancel an active order. * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
-     * be sent. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelOrderExample() throws ApiException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void cancelOrderExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
+        Long orderId = 283194212L;
+        String origClientOrderId = "myOrder1";
         Long recvWindow = 5000L;
         ApiResponse<CancelOrderResponse> response =
                 getApi().cancelOrder(symbol, orderId, origClientOrderId, recvWindow);

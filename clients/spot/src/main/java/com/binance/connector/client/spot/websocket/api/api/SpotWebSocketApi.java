@@ -20,6 +20,8 @@ import com.binance.connector.client.spot.websocket.api.model.AllOrdersRequest;
 import com.binance.connector.client.spot.websocket.api.model.AllOrdersResponse;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceResponse;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalRequest;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalResponse;
 import com.binance.connector.client.spot.websocket.api.model.DepthRequest;
 import com.binance.connector.client.spot.websocket.api.model.DepthResponse;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
@@ -107,7 +109,6 @@ import com.binance.connector.client.spot.websocket.api.model.UiKlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
@@ -118,7 +119,7 @@ import java.util.concurrent.CompletableFuture;
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final ConnectionInterface connection;
@@ -274,6 +275,11 @@ public class SpotWebSocketApi {
         return marketApi.avgPrice(avgPriceRequest);
     }
 
+    public CompletableFuture<BlockTradesHistoricalResponse> blockTradesHistorical(
+            BlockTradesHistoricalRequest blockTradesHistoricalRequest) throws ApiException {
+        return marketApi.blockTradesHistorical(blockTradesHistoricalRequest);
+    }
+
     public CompletableFuture<DepthResponse> depth(DepthRequest depthRequest) throws ApiException {
         return marketApi.depth(depthRequest);
     }
@@ -424,11 +430,8 @@ public class SpotWebSocketApi {
     }
 
     public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
-            userDataStreamSubscribeSignature(
-                    UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest)
-                    throws ApiException {
-        return userDataStreamApi.userDataStreamSubscribeSignature(
-                userDataStreamSubscribeSignatureRequest);
+            userDataStreamSubscribeSignature() throws ApiException {
+        return userDataStreamApi.userDataStreamSubscribeSignature();
     }
 
     public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(

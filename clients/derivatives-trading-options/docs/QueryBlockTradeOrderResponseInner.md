@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**blockTradeSettlementKey** | **String** |  |  [optional] |
-|**expireTime** | **Long** |  |  [optional] |
-|**liquidity** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**createTime** | **Long** |  |  [optional] |
-|**legs** | [**List&lt;ExtendBlockTradeOrderResponseLegsInner&gt;**](ExtendBlockTradeOrderResponseLegsInner.md) |  |  [optional] |
+|**blockTradeSettlementKey** | **String** | block Trade Settlement Key |  [optional] |
+|**expireTime** | **Long** | expire Time |  [optional] |
+|**liquidity** | **String** | liquidity |  [optional] |
+|**status** | **String** | status |  [optional] |
+|**createTime** | **Long** | create Time |  [optional] |
+|**legs** | [**List&lt;ExtendBlockTradeOrderResponseLegsInner&gt;**](ExtendBlockTradeOrderResponseLegsInner.md) | legs |  [optional] |
 
 
 

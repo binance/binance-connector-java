@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.DeleteOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class DeleteOpenOrdersExample {
@@ -25,16 +26,16 @@ public class DeleteOpenOrdersExample {
     }
 
     /**
-     * Cancel All Open Orders on a Symbol
+     * Cancel All Open Orders on a Symbol (TRADE)
      *
      * <p>Cancels all active orders on a symbol. This includes orders that are part of an order
-     * list. Weight: 1
+     * list. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
-    public void deleteOpenOrdersExample() throws ApiException {
+    public void deleteOpenOrdersExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Double recvWindow = 5000.0d;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOpenOrdersResponse> response =
                 getApi().deleteOpenOrders(symbol, recvWindow);
         System.out.println(response.getData());

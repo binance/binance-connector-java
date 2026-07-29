@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rows** | [**List&lt;GetMarginBorrowLoanInterestHistoryResponseRowsInner&gt;**](GetMarginBorrowLoanInterestHistoryResponseRowsInner.md) |  |  [optional] |
-|**total** | **Long** |  |  [optional] |
+|**rows** | [**List&lt;GetMarginBorrowLoanInterestHistoryResponseRowsInner&gt;**](GetMarginBorrowLoanInterestHistoryResponseRowsInner.md) | Rows. |  [optional] |
+|**total** | **Long** | Total. |  [optional] |
 
 
 

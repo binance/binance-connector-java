@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.SimpleAccountResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class SimpleAccountExample {
@@ -26,13 +27,13 @@ public class SimpleAccountExample {
     }
 
     /**
-     * Simple Account(USER_DATA)
+     * Simple Account (USER_DATA)
      *
-     * <p>Simple Account query Weight: 150
+     * <p>Simple Account query Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void simpleAccountExample() throws ApiException {
+    public void simpleAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<SimpleAccountResponse> response = getApi().simpleAccount(recvWindow);
         System.out.println(response.getData());

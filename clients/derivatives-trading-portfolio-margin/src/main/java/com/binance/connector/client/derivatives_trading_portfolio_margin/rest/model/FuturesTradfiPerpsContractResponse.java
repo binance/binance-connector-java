@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,13 +34,13 @@ import org.hibernate.validator.constraints.*;
 /** FuturesTradfiPerpsContractResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesTradfiPerpsContractResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
     @SerializedName(SERIALIZED_NAME_CODE)
     @jakarta.annotation.Nullable
-    private Long code;
+    private Integer code;
 
     public static final String SERIALIZED_NAME_MSG = "msg";
 
@@ -50,7 +50,7 @@ public class FuturesTradfiPerpsContractResponse {
 
     public FuturesTradfiPerpsContractResponse() {}
 
-    public FuturesTradfiPerpsContractResponse code(@jakarta.annotation.Nullable Long code) {
+    public FuturesTradfiPerpsContractResponse code(@jakarta.annotation.Nullable Integer code) {
         this.code = code;
         return this;
     }
@@ -61,11 +61,11 @@ public class FuturesTradfiPerpsContractResponse {
      * @return code
      */
     @jakarta.annotation.Nullable
-    public Long getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(@jakarta.annotation.Nullable Long code) {
+    public void setCode(@jakarta.annotation.Nullable Integer code) {
         this.code = code;
     }
 

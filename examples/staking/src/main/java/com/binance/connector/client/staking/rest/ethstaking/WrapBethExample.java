@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.WrapBethRequest;
 import com.binance.connector.client.staking.rest.model.WrapBethResponse;
+import java.io.IOException;
 
 /** API examples for EthStakingApi */
 public class WrapBethExample {
@@ -26,14 +27,14 @@ public class WrapBethExample {
     }
 
     /**
-     * Wrap BETH(TRADE)
+     * Wrap BETH (TRADE)
      *
-     * <p>Wrap BETH * You need to open Enable Spot &amp; Margin Trading permission for the API Key
-     * which requests this endpoint. Weight: 150
+     * <p>Wrap BETH Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable Spot &amp;
+     * Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void wrapBethExample() throws ApiException {
+    public void wrapBethExample() throws ApiException, IOException {
         WrapBethRequest wrapBethRequest = new WrapBethRequest();
         wrapBethRequest.amount(1.0d);
         ApiResponse<WrapBethResponse> response = getApi().wrapBeth(wrapBethRequest);

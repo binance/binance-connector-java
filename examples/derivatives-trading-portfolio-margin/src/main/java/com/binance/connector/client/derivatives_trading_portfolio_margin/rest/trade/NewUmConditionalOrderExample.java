@@ -10,6 +10,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.Side;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.StrategyType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class NewUmConditionalOrderExample {
@@ -29,46 +30,29 @@ public class NewUmConditionalOrderExample {
     }
 
     /**
-     * New UM Conditional Order
+     * New UM Conditional Order (TRADE)
      *
-     * <p>Place new UM conditional order * Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot;
-     * &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot; &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * \&quot;MARK_PRICE\&quot; &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot;
-     * &gt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest mark
-     * price after order placed &#x60;&lt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark
-     * price &gt;&#x60;&#x3D; the lowest mark price * (1 + &#x60;callbackRate&#x60;) * SELL: the
-     * highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest
-     * mark price &lt;&#x3D; the highest mark price * (1 - &#x60;callbackRate&#x60;) * For
-     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;{\&quot;code\&quot;:
-     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; means that
-     * the parameters you send do not meet the following requirements: * BUY:
-     * &#x60;activationPrice&#x60; should be smaller than latest mark price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest mark price. * Condition orders will
-     * be triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price
-     * reaches the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
-     * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
+     * <p>Place new UM conditional order Weight(IP): 1 Security Type: TRADE Notes: - Additional
+     * mandatory parameters based on type: - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter
+     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). - Condition orders will be
+     * triggered when: - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: \&quot;MARK_PRICE\&quot;
+     * &gt;&#x3D; &#x60;stopPrice&#x60; - SELL: \&quot;MARK_PRICE\&quot; &#x3D;
+     * &#x60;stopPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest mark price after
+     * order placed &#x60;&#x60;&#x3D; the lowest mark price - (1 + &#x60;callbackRate&#x60;) -
+     * SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and
+     * the latest mark price &#x3D; &#x60;stopPrice&#x60; - SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60; -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. - In extreme market conditions,
      * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 1
+     * &#x60;goodTillDate&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void newUmConditionalOrderExample() throws ApiException {
+    public void newUmConditionalOrderExample() throws ApiException, IOException {
         NewUmConditionalOrderRequest newUmConditionalOrderRequest =
                 new NewUmConditionalOrderRequest();
-        newUmConditionalOrderRequest.symbol("");
+        newUmConditionalOrderRequest.symbol("BTCUSDT");
         newUmConditionalOrderRequest.side(Side.BUY);
         newUmConditionalOrderRequest.strategyType(StrategyType.STOP);
         ApiResponse<NewUmConditionalOrderResponse> response =

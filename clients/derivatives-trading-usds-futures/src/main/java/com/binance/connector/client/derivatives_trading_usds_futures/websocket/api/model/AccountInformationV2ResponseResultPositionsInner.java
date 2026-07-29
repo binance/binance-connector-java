@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationV2ResponseResultPositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -128,7 +128,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -168,7 +168,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -248,7 +248,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -268,7 +268,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -288,7 +288,7 @@ public class AccountInformationV2ResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

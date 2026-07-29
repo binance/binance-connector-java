@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUsersMarginForceOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryUsersMarginForceOrdersExample {
@@ -26,13 +27,13 @@ public class QueryUsersMarginForceOrdersExample {
     }
 
     /**
-     * Query User&#39;s Margin Force Orders(USER_DATA)
+     * Query User&#39;s Margin Force Orders (USER_DATA)
      *
-     * <p>Query user&#39;s margin force orders Weight: 1
+     * <p>Query user&#39;s margin force orders Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryUsersMarginForceOrdersExample() throws ApiException {
+    public void queryUsersMarginForceOrdersExample() throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

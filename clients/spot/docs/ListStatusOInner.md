@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sLowerCase** | **String** |  |  [optional] |
-|**iLowerCase** | **Long** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**iLowerCase** | **Long** | OrderId |  [optional] |
+|**cLowerCase** | **String** | ClientOrderId |  [optional] |
 
 
 

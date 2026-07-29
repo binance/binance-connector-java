@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsAllOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsAllOrdersExample {
@@ -28,20 +30,20 @@ public class QueryMarginAccountsAllOrdersExample {
     /**
      * Query Margin Account&#39;s All Orders (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s All Orders * If orderId is set, it will get orders &gt;&#x3D;
-     * that orderId. Otherwise the orders within 24 hours are returned. * For some historical orders
-     * cummulativeQuoteQty will be &lt; 0, meaning the data is not available at this time. * Less
-     * than 24 hours between startTime and endTime. Weight: 200(IP)
+     * <p>Query Margin Account&#39;s All Orders Weight(IP): 200 Security Type: USER_DATA Notes: - If
+     * orderId is set, it will get orders &gt;&#x3D; that orderId. Otherwise the orders within 24
+     * hours are returned. - For some historical orders cummulativeQuoteQty will be &lt; 0, meaning
+     * the data is not available at this time. - Less than 24 hours between startTime and endTime.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsAllOrdersExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsAllOrdersExample() throws ApiException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 500L;
+        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsAllOrdersResponse> response =
                 getApi().queryMarginAccountsAllOrders(

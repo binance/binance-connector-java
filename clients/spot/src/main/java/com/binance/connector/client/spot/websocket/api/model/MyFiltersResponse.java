@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,25 +41,25 @@ import org.hibernate.validator.constraints.*;
 /** MyFiltersResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MyFiltersResponse extends BaseDTO {
-    public static final String SERIALIZED_NAME_ID = "id";
+    public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
 
-    @SerializedName(SERIALIZED_NAME_ID)
+    @SerializedName(SERIALIZED_NAME_EXCHANGE_FILTERS)
     @jakarta.annotation.Nullable
-    private String id;
+    private List<ExchangeFilters> exchangeFilters;
 
-    public static final String SERIALIZED_NAME_STATUS = "status";
+    public static final String SERIALIZED_NAME_SYMBOL_FILTERS = "symbolFilters";
 
-    @SerializedName(SERIALIZED_NAME_STATUS)
+    @SerializedName(SERIALIZED_NAME_SYMBOL_FILTERS)
     @jakarta.annotation.Nullable
-    private Long status;
+    private List<SymbolFilters> symbolFilters;
 
-    public static final String SERIALIZED_NAME_RESULT = "result";
+    public static final String SERIALIZED_NAME_ASSET_FILTERS = "assetFilters";
 
-    @SerializedName(SERIALIZED_NAME_RESULT)
+    @SerializedName(SERIALIZED_NAME_ASSET_FILTERS)
     @jakarta.annotation.Nullable
-    private MyFiltersResponseResult result;
+    private List<MaxAssetFilter> assetFilters;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -69,62 +69,92 @@ public class MyFiltersResponse extends BaseDTO {
 
     public MyFiltersResponse() {}
 
-    public MyFiltersResponse id(@jakarta.annotation.Nullable String id) {
-        this.id = id;
+    public MyFiltersResponse exchangeFilters(
+            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+        this.exchangeFilters = exchangeFilters;
+        return this;
+    }
+
+    public MyFiltersResponse addExchangeFiltersItem(ExchangeFilters exchangeFiltersItem) {
+        if (this.exchangeFilters == null) {
+            this.exchangeFilters = new ArrayList<>();
+        }
+        this.exchangeFilters.add(exchangeFiltersItem);
         return this;
     }
 
     /**
-     * Get id
+     * Get exchangeFilters
      *
-     * @return id
-     */
-    @jakarta.annotation.Nullable
-    public String getId() {
-        return id;
-    }
-
-    public void setId(@jakarta.annotation.Nullable String id) {
-        this.id = id;
-    }
-
-    public MyFiltersResponse status(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return status
-     */
-    @jakarta.annotation.Nullable
-    public Long getStatus() {
-        return status;
-    }
-
-    public void setStatus(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
-    }
-
-    public MyFiltersResponse result(@jakarta.annotation.Nullable MyFiltersResponseResult result) {
-        this.result = result;
-        return this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return result
+     * @return exchangeFilters
      */
     @jakarta.annotation.Nullable
     @Valid
-    public MyFiltersResponseResult getResult() {
-        return result;
+    public List<ExchangeFilters> getExchangeFilters() {
+        return exchangeFilters;
     }
 
-    public void setResult(@jakarta.annotation.Nullable MyFiltersResponseResult result) {
-        this.result = result;
+    public void setExchangeFilters(
+            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+        this.exchangeFilters = exchangeFilters;
+    }
+
+    public MyFiltersResponse symbolFilters(
+            @jakarta.annotation.Nullable List<SymbolFilters> symbolFilters) {
+        this.symbolFilters = symbolFilters;
+        return this;
+    }
+
+    public MyFiltersResponse addSymbolFiltersItem(SymbolFilters symbolFiltersItem) {
+        if (this.symbolFilters == null) {
+            this.symbolFilters = new ArrayList<>();
+        }
+        this.symbolFilters.add(symbolFiltersItem);
+        return this;
+    }
+
+    /**
+     * Get symbolFilters
+     *
+     * @return symbolFilters
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<SymbolFilters> getSymbolFilters() {
+        return symbolFilters;
+    }
+
+    public void setSymbolFilters(@jakarta.annotation.Nullable List<SymbolFilters> symbolFilters) {
+        this.symbolFilters = symbolFilters;
+    }
+
+    public MyFiltersResponse assetFilters(
+            @jakarta.annotation.Nullable List<MaxAssetFilter> assetFilters) {
+        this.assetFilters = assetFilters;
+        return this;
+    }
+
+    public MyFiltersResponse addAssetFiltersItem(MaxAssetFilter assetFiltersItem) {
+        if (this.assetFilters == null) {
+            this.assetFilters = new ArrayList<>();
+        }
+        this.assetFilters.add(assetFiltersItem);
+        return this;
+    }
+
+    /**
+     * Get assetFilters
+     *
+     * @return assetFilters
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<MaxAssetFilter> getAssetFilters() {
+        return assetFilters;
+    }
+
+    public void setAssetFilters(@jakarta.annotation.Nullable List<MaxAssetFilter> assetFilters) {
+        this.assetFilters = assetFilters;
     }
 
     public MyFiltersResponse rateLimits(
@@ -165,24 +195,24 @@ public class MyFiltersResponse extends BaseDTO {
             return false;
         }
         MyFiltersResponse myFiltersResponse = (MyFiltersResponse) o;
-        return Objects.equals(this.id, myFiltersResponse.id)
-                && Objects.equals(this.status, myFiltersResponse.status)
-                && Objects.equals(this.result, myFiltersResponse.result)
+        return Objects.equals(this.exchangeFilters, myFiltersResponse.exchangeFilters)
+                && Objects.equals(this.symbolFilters, myFiltersResponse.symbolFilters)
+                && Objects.equals(this.assetFilters, myFiltersResponse.assetFilters)
                 && Objects.equals(this.rateLimits, myFiltersResponse.rateLimits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, result, rateLimits);
+        return Objects.hash(exchangeFilters, symbolFilters, assetFilters, rateLimits);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class MyFiltersResponse {\n");
-        sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		status: ").append(toIndentedString(status)).append("\n");
-        sb.append("		result: ").append(toIndentedString(result)).append("\n");
+        sb.append("		exchangeFilters: ").append(toIndentedString(exchangeFilters)).append("\n");
+        sb.append("		symbolFilters: ").append(toIndentedString(symbolFilters)).append("\n");
+        sb.append("		assetFilters: ").append(toIndentedString(assetFilters)).append("\n");
         sb.append("		rateLimits: ").append(toIndentedString(rateLimits)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -192,20 +222,20 @@ public class MyFiltersResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
-        if (idValue != null) {
-            String idValueAsString = idValue.toString();
-            valMap.put("id", idValueAsString);
+        List<ExchangeFilters> exchangeFiltersValue = getExchangeFilters();
+        if (exchangeFiltersValue != null) {
+            String exchangeFiltersValueAsString = JSON.getGson().toJson(exchangeFiltersValue);
+            valMap.put("exchangeFilters", exchangeFiltersValueAsString);
         }
-        Long statusValue = getStatus();
-        if (statusValue != null) {
-            String statusValueAsString = statusValue.toString();
-            valMap.put("status", statusValueAsString);
+        List<SymbolFilters> symbolFiltersValue = getSymbolFilters();
+        if (symbolFiltersValue != null) {
+            String symbolFiltersValueAsString = JSON.getGson().toJson(symbolFiltersValue);
+            valMap.put("symbolFilters", symbolFiltersValueAsString);
         }
-        MyFiltersResponseResult resultValue = getResult();
-        if (resultValue != null) {
-            String resultValueAsString = JSON.getGson().toJson(resultValue);
-            valMap.put("result", resultValueAsString);
+        List<MaxAssetFilter> assetFiltersValue = getAssetFilters();
+        if (assetFiltersValue != null) {
+            String assetFiltersValueAsString = JSON.getGson().toJson(assetFiltersValue);
+            valMap.put("assetFilters", assetFiltersValueAsString);
         }
         List<@Valid RateLimits> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
@@ -223,17 +253,17 @@ public class MyFiltersResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object idValue = getId();
-        if (idValue != null) {
-            valMap.put("id", idValue);
+        Object exchangeFiltersValue = getExchangeFilters();
+        if (exchangeFiltersValue != null) {
+            valMap.put("exchangeFilters", exchangeFiltersValue);
         }
-        Object statusValue = getStatus();
-        if (statusValue != null) {
-            valMap.put("status", statusValue);
+        Object symbolFiltersValue = getSymbolFilters();
+        if (symbolFiltersValue != null) {
+            valMap.put("symbolFilters", symbolFiltersValue);
         }
-        Object resultValue = getResult();
-        if (resultValue != null) {
-            valMap.put("result", resultValue);
+        Object assetFiltersValue = getAssetFilters();
+        if (assetFiltersValue != null) {
+            valMap.put("assetFilters", assetFiltersValue);
         }
         Object rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
@@ -265,9 +295,9 @@ public class MyFiltersResponse extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("id");
-        openapiFields.add("status");
-        openapiFields.add("result");
+        openapiFields.add("exchangeFilters");
+        openapiFields.add("symbolFilters");
+        openapiFields.add("assetFilters");
         openapiFields.add("rateLimits");
 
         // a set of required properties/fields (JSON key names)
@@ -304,17 +334,63 @@ public class MyFiltersResponse extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
+        if (jsonObj.get("exchangeFilters") != null
+                && !jsonObj.get("exchangeFilters").isJsonNull()) {
+            JsonArray jsonArrayexchangeFilters = jsonObj.getAsJsonArray("exchangeFilters");
+            if (jsonArrayexchangeFilters != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("exchangeFilters").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `exchangeFilters` to be an array in the"
+                                            + " JSON string but got `%s`",
+                                    jsonObj.get("exchangeFilters").toString()));
+                }
+
+                // validate the optional field `exchangeFilters` (array)
+                for (int i = 0; i < jsonArrayexchangeFilters.size(); i++) {
+                    ExchangeFilters.validateJsonElement(jsonArrayexchangeFilters.get(i));
+                }
+                ;
+            }
         }
-        // validate the optional field `result`
-        if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            MyFiltersResponseResult.validateJsonElement(jsonObj.get("result"));
+        if (jsonObj.get("symbolFilters") != null && !jsonObj.get("symbolFilters").isJsonNull()) {
+            JsonArray jsonArraysymbolFilters = jsonObj.getAsJsonArray("symbolFilters");
+            if (jsonArraysymbolFilters != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("symbolFilters").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `symbolFilters` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("symbolFilters").toString()));
+                }
+
+                // validate the optional field `symbolFilters` (array)
+                for (int i = 0; i < jsonArraysymbolFilters.size(); i++) {
+                    SymbolFilters.validateJsonElement(jsonArraysymbolFilters.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("assetFilters") != null && !jsonObj.get("assetFilters").isJsonNull()) {
+            JsonArray jsonArrayassetFilters = jsonObj.getAsJsonArray("assetFilters");
+            if (jsonArrayassetFilters != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("assetFilters").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `assetFilters` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("assetFilters").toString()));
+                }
+
+                // validate the optional field `assetFilters` (array)
+                for (int i = 0; i < jsonArrayassetFilters.size(); i++) {
+                    MaxAssetFilter.validateJsonElement(jsonArrayassetFilters.get(i));
+                }
+                ;
+            }
         }
         if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
             JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");

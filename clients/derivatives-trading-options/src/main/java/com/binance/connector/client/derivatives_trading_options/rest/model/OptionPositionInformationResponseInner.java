@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** OptionPositionInformationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionPositionInformationResponseInner {
     public static final String SERIALIZED_NAME_ENTRY_PRICE = "entryPrice";
 
@@ -141,7 +141,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * Average entry price
      *
      * @return entryPrice
      */
@@ -161,7 +161,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -180,7 +180,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get side
+     * Position direction
      *
      * @return side
      */
@@ -200,7 +200,8 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get quantity
+     * Number of positions (positive numbers represent long positions, negative number represent
+     * short positions)
      *
      * @return quantity
      */
@@ -220,7 +221,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get markValue
+     * Current market value
      *
      * @return markValue
      */
@@ -240,7 +241,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get unrealizedPNL
+     * Unrealized profit/loss
      *
      * @return unrealizedPNL
      */
@@ -260,7 +261,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark price
      *
      * @return markPrice
      */
@@ -280,7 +281,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get strikePrice
+     * Strike price
      *
      * @return strikePrice
      */
@@ -300,7 +301,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get expiryDate
+     * Exercise time
      *
      * @return expiryDate
      */
@@ -320,7 +321,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -340,7 +341,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -360,7 +361,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option type
      *
      * @return optionSide
      */
@@ -380,7 +381,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote asset
      *
      * @return quoteAsset
      */
@@ -399,7 +400,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get time
+     * last update time
      *
      * @return time
      */
@@ -419,7 +420,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get bidQuantity
+     * buy order qty
      *
      * @return bidQuantity
      */
@@ -439,7 +440,7 @@ public class OptionPositionInformationResponseInner {
     }
 
     /**
-     * Get askQuantity
+     * sell order qty
      *
      * @return askQuantity
      */

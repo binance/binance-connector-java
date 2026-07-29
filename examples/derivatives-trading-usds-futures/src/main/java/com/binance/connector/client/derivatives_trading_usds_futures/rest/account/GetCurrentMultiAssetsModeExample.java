@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetCurrentMultiAssetsModeResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetCurrentMultiAssetsModeExample {
@@ -29,11 +30,11 @@ public class GetCurrentMultiAssetsModeExample {
      * Get Current Multi-Assets Mode (USER_DATA)
      *
      * <p>Get user&#39;s Multi-Assets mode (Multi-Assets Mode or Single-Asset Mode) on ***Every
-     * symbol*** Weight: 30
+     * symbol*** Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCurrentMultiAssetsModeExample() throws ApiException {
+    public void getCurrentMultiAssetsModeExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCurrentMultiAssetsModeResponse> response =
                 getApi().getCurrentMultiAssetsMode(recvWindow);

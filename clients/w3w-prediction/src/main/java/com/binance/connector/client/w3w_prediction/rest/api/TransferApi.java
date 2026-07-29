@@ -49,7 +49,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/1.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,8 +100,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
-     *     Inbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
+     *     Inbound Transfer (TRADE) Documentation</a>
      */
     private okhttp3.Call createInboundTransferCall(
             CreateInboundTransferRequest createInboundTransferRequest) throws ApiException {
@@ -223,10 +223,10 @@ public class TransferApi {
     }
 
     /**
-     * Create Inbound Transfer Transfer funds from the prediction wallet back to the user&#39;s CEX
-     * account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization Required:**
-     * This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled
-     * for the wallet, the request will be rejected with &#x60;-31003 SAS authorization
+     * Create Inbound Transfer (TRADE) Transfer funds from the prediction wallet back to the
+     * user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization
+     * Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is
+     * not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization
      * required&#x60;. Enable SAS for your wallet before calling this endpoint. Weight(IP): 200
      * Security Type: TRADE
      *
@@ -242,8 +242,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
-     *     Inbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
+     *     Inbound Transfer (TRADE) Documentation</a>
      */
     public ApiResponse<CreateInboundTransferResponse> createInboundTransfer(
             @Valid @NotNull CreateInboundTransferRequest createInboundTransferRequest)
@@ -269,8 +269,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
-     *     Outbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
+     *     Outbound Transfer (TRADE) Documentation</a>
      */
     private okhttp3.Call createOutboundTransferCall(
             CreateOutboundTransferRequest createOutboundTransferRequest) throws ApiException {
@@ -397,8 +397,9 @@ public class TransferApi {
     }
 
     /**
-     * Create Outbound Transfer Transfer funds from the user&#39;s CEX account (SPOT or FUNDING)
-     * into the prediction wallet. Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
+     * Create Outbound Transfer (TRADE) Transfer funds from the user&#39;s CEX account (SPOT or
+     * FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 200 Security
+     * Type: TRADE
      *
      * @param createOutboundTransferRequest (required)
      * @return ApiResponse&lt;CreateOutboundTransferResponse&gt;
@@ -412,8 +413,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
-     *     Outbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
+     *     Outbound Transfer (TRADE) Documentation</a>
      */
     public ApiResponse<CreateOutboundTransferResponse> createOutboundTransfer(
             @Valid @NotNull CreateOutboundTransferRequest createOutboundTransferRequest)
@@ -449,8 +450,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
-     *     Transfer List Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
+     *     Transfer List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryTransferListCall(
             String walletAddress,
@@ -611,8 +612,8 @@ public class TransferApi {
     }
 
     /**
-     * Query Transfer List Get the authenticated user&#39;s prediction wallet transfer history
-     * within a date range. Weight(IP): 200 Security Type: USER_DATA
+     * Query Transfer List (USER_DATA) Get the authenticated user&#39;s prediction wallet transfer
+     * history within a date range. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param startDate Start date. Format: &#x60;yyyy-MM-dd&#x60;. Must be ≤ &#x60;endDate&#x60;
@@ -636,8 +637,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
-     *     Transfer List Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
+     *     Transfer List (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryTransferListResponse> queryTransferList(
             @NotNull String walletAddress,
@@ -679,8 +680,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
-     *     Transfer Status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
+     *     Transfer Status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryTransferStatusCall(String transferId, Long recvWindow)
             throws ApiException {
@@ -779,8 +780,8 @@ public class TransferApi {
     }
 
     /**
-     * Query Transfer Status Query the current status of a prediction wallet transfer by transfer
-     * ID. **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
+     * Query Transfer Status (USER_DATA) Query the current status of a prediction wallet transfer by
+     * transfer ID. **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
      * &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;.
      * **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state. Weight(IP): 200
      * Security Type: USER_DATA
@@ -798,8 +799,8 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
-     *     Transfer Status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
+     *     Transfer Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryTransferStatusResponse> queryTransferStatus(
             @NotNull String transferId, @Max(60000L) Long recvWindow) throws ApiException {

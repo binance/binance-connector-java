@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading WebSocket Market Streams
- * OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+ * Margin WebSocket Market Streams
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -18,7 +18,7 @@ import java.util.Objects;
 /** Abstract class for oneOf,anyOf schemas defined in OpenAPI spec */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public abstract class AbstractOpenApiSchema {
 
     // store the actual instance of the schema/object

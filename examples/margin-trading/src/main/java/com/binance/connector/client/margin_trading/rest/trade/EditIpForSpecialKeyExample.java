@@ -6,6 +6,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.EditIpForSpecialKeyRequest;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class EditIpForSpecialKeyExample {
@@ -25,17 +26,17 @@ public class EditIpForSpecialKeyExample {
     }
 
     /**
-     * Edit ip for Special Key(Low-Latency Trading)(TRADE)
+     * Edit ip for Special Key(Low-Latency Trading) (TRADE)
      *
      * <p>Edit ip restriction. This only applies to Special Key for Low Latency Trading. You need to
-     * enable Permits “Enable Spot &amp; Margin Trading” option for the API Key which requests this
-     * endpoint. Weight: 1(UID)
+     * enable Permits “Enable Spot &amp; Margin” option for the API Key which requests this
+     * endpoint. Weight(UID): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void editIpForSpecialKeyExample() throws ApiException {
+    public void editIpForSpecialKeyExample() throws ApiException, IOException {
         EditIpForSpecialKeyRequest editIpForSpecialKeyRequest = new EditIpForSpecialKeyRequest();
-        editIpForSpecialKeyRequest.ip("");
+        editIpForSpecialKeyRequest.ip("24.156.99.202");
         getApi().editIpForSpecialKey(editIpForSpecialKeyRequest);
     }
 }

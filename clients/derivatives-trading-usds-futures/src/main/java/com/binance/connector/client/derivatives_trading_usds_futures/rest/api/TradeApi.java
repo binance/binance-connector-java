@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -42,6 +42,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyIsolatedPositionMarginRequest;
@@ -91,7 +92,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -132,11 +133,11 @@ public class TradeApi {
      * Build call for accountTradeList
      *
      * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param orderId Must be used together with parameter &#x60;symbol&#x60;. (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -148,7 +149,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Account-Trade-List">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#account-trade-list">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountTradeListCall(
@@ -294,19 +295,19 @@ public class TradeApi {
     }
 
     /**
-     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 7 days&#39;
-     * data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 7 days. * The parameter &#x60;fromId&#x60; cannot be sent with
-     * &#x60;startTime&#x60; or &#x60;endTime&#x60;. * Only support querying trade in the past 6
-     * months Weight: 5
+     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight(IP): 5
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 7 days&#39; data will be returned. - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter
+     * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only
+     * support querying trade in the past 6 months
      *
      * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param orderId Must be used together with parameter &#x60;symbol&#x60;. (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -319,7 +320,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Account-Trade-List">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#account-trade-list">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountTradeListResponse> accountTradeList(
@@ -328,8 +329,8 @@ public class TradeApi {
             Long startTime,
             Long endTime,
             Long fromId,
-            Long limit,
-            Long recvWindow)
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 accountTradeListValidateBeforeCall(
@@ -344,9 +345,9 @@ public class TradeApi {
      *
      * @param symbol (required)
      * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -358,7 +359,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#all-orders">All
      *     Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call allOrdersCall(
@@ -484,18 +485,19 @@ public class TradeApi {
     }
 
     /**
-     * All Orders (USER_DATA) Get all account orders; active, canceled, or filled. * These orders
-     * will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND**
-     * order has NO filled trade **AND** created time + 3 days &lt; current time * order create time
-     * + 90 days &lt; current time * If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D;
-     * that &#x60;orderId&#x60;. Otherwise most recent orders are returned. * The query time period
-     * must be less then 7 days( default as the recent 7 days). Weight: 5
+     * All Orders (USER_DATA) Get all account orders; active, canceled, or filled. - These orders
+     * will not be found: - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND**
+     * order has NO filled trade **AND** created time + 3 days &lt; current time - order create time
+     * + 90 days &lt; current time Weight(IP): 5 Security Type: USER_DATA Notes: - If
+     * &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;orderId&#x60;. Otherwise
+     * most recent orders are returned. - The query time period must be less then 7 days( default as
+     * the recent 7 days).
      *
      * @param symbol (required)
      * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -508,7 +510,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#all-orders">All
      *     Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<AllOrdersResponse> allOrders(
@@ -516,8 +518,8 @@ public class TradeApi {
             Long orderId,
             Long startTime,
             Long endTime,
-            Long limit,
-            Long recvWindow)
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 allOrdersValidateBeforeCall(symbol, orderId, startTime, endTime, limit, recvWindow);
@@ -539,7 +541,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders">Auto-Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#auto-cancel-all-open-orders">Auto-Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call autoCancelAllOpenOrdersCall(
@@ -649,13 +651,14 @@ public class TradeApi {
     /**
      * Auto-Cancel All Open Orders (TRADE) Cancel all open orders of the specified symbol at the end
      * of the specified countdown. The endpoint should be called repeatedly as heartbeats so that
-     * the existing countdown time can be canceled and replaced by a new one. * Example usage: Call
+     * the existing countdown time can be canceled and replaced by a new one. Example usage: Call
      * this endpoint at 30s intervals with an countdownTime of 120000 (120s). If this endpoint is
      * not called within 120 seconds, all your orders of the specified symbol will be automatically
      * canceled. If this endpoint is called with an countdownTime of 0, the countdown timer will be
      * stopped. The system will check all countdowns **approximately every 10 milliseconds**, so
      * please note that sufficient redundancy should be considered when using this function. We do
-     * not recommend setting the countdown time to be too precise or too small. Weight: 10
+     * not recommend setting the countdown time to be too precise or too small. Weight(IP): 10
+     * Security Type: TRADE
      *
      * @param autoCancelAllOpenOrdersRequest (required)
      * @return ApiResponse&lt;AutoCancelAllOpenOrdersResponse&gt;
@@ -669,7 +672,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders">Auto-Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#auto-cancel-all-open-orders">Auto-Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
@@ -698,7 +701,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-algo-order">Cancel
      *     Algo Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAlgoOrderCall(Long algoId, String clientAlgoId, Long recvWindow)
@@ -804,8 +807,9 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
-     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
+     * Cancel Algo Order (TRADE) Cancel an active algo (conditional) order, including TP/SL (Take
+     * Profit / Stop Loss) and trailing stop orders on USD-M Futures. Weight(IP): 1 Security Type:
+     * TRADE Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
      * @param algoId (optional)
      * @param clientAlgoId (optional)
@@ -821,11 +825,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-algo-order">Cancel
      *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
-            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+            Long algoId, String clientAlgoId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 cancelAlgoOrderValidateBeforeCall(algoId, clientAlgoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -848,7 +852,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-algo-open-orders">Cancel
      *     All Algo Open Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAllAlgoOpenOrdersCall(String symbol, Long recvWindow)
@@ -948,7 +952,9 @@ public class TradeApi {
     }
 
     /**
-     * Cancel All Algo Open Orders (TRADE) Cancel All Algo Open Orders Weight: 1
+     * Cancel All Algo Open Orders (TRADE) Cancel all open algo (conditional) orders on a symbol,
+     * including TP/SL (Take Profit / Stop Loss) and trailing stop orders on USD-M Futures.
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @param symbol (required)
      * @param recvWindow (optional)
@@ -963,11 +969,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-algo-open-orders">Cancel
      *     All Algo Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllAlgoOpenOrdersResponse> cancelAllAlgoOpenOrders(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = cancelAllAlgoOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAllAlgoOpenOrdersResponse>() {}.getType();
@@ -989,7 +995,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-open-orders">Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAllOpenOrdersCall(String symbol, Long recvWindow)
@@ -1089,7 +1095,7 @@ public class TradeApi {
     }
 
     /**
-     * Cancel All Open Orders (TRADE) Cancel All Open Orders Weight: 1
+     * Cancel All Open Orders (TRADE) Cancel All Open Orders Weight(IP): 1 Security Type: TRADE
      *
      * @param symbol (required)
      * @param recvWindow (optional)
@@ -1104,11 +1110,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-open-orders">Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOpenOrdersResponse> cancelAllOpenOrders(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = cancelAllOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAllOpenOrdersResponse>() {}.getType();
@@ -1119,10 +1125,8 @@ public class TradeApi {
      * Build call for cancelMultipleOrders
      *
      * @param symbol (required)
-     * @param orderIdList max length 10 &lt;br /&gt; e.g. [1234567,2345678] (optional)
-     * @param origClientOrderIdList max length 10&lt;br /&gt; e.g.
-     *     [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after
-     *     comma. (optional)
+     * @param orderIdList (optional)
+     * @param origClientOrderIdList (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1134,7 +1138,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Multiple-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-multiple-orders">Cancel
      *     Multiple Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelMultipleOrdersCall(
@@ -1260,14 +1264,12 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Multiple Orders (TRADE) Cancel Multiple Orders * Either &#x60;orderIdList&#x60; or
-     * &#x60;origClientOrderIdList &#x60; must be sent. Weight: 1
+     * Cancel Multiple Orders (TRADE) Cancel Multiple Orders Weight(IP): 1 Security Type: TRADE
+     * Notes: - Either &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList &#x60; must be sent.
      *
      * @param symbol (required)
-     * @param orderIdList max length 10 &lt;br /&gt; e.g. [1234567,2345678] (optional)
-     * @param origClientOrderIdList max length 10&lt;br /&gt; e.g.
-     *     [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after
-     *     comma. (optional)
+     * @param orderIdList (optional)
+     * @param origClientOrderIdList (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;CancelMultipleOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1280,14 +1282,14 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Multiple-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-multiple-orders">Cancel
      *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelMultipleOrdersResponse> cancelMultipleOrders(
             @NotNull String symbol,
             OrderIdList orderIdList,
             OrigClientOrderIdList origClientOrderIdList,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 cancelMultipleOrdersValidateBeforeCall(
@@ -1314,7 +1316,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-order">Cancel
      *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelOrderCall(
@@ -1431,8 +1433,8 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Order (TRADE) Cancel an active order. * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent. Weight: 1
+     * Cancel Order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: -
+     * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -1449,11 +1451,14 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-order">Cancel
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelOrderResponse> cancelOrder(
-            @NotNull String symbol, Long orderId, String origClientOrderId, Long recvWindow)
+            @NotNull String symbol,
+            Long orderId,
+            String origClientOrderId,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 cancelOrderValidateBeforeCall(symbol, orderId, origClientOrderId, recvWindow);
@@ -1476,8 +1481,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Initial-Leverage">Change
-     *     Initial Leverage(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-initial-leverage">Change
+     *     Initial Leverage (TRADE) Documentation</a>
      */
     private okhttp3.Call changeInitialLeverageCall(
             ChangeInitialLeverageRequest changeInitialLeverageRequest) throws ApiException {
@@ -1581,8 +1586,8 @@ public class TradeApi {
     }
 
     /**
-     * Change Initial Leverage(TRADE) Change user&#39;s initial leverage of specific symbol market.
-     * Weight: 1
+     * Change Initial Leverage (TRADE) Change user&#39;s initial leverage of specific symbol market.
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @param changeInitialLeverageRequest (required)
      * @return ApiResponse&lt;ChangeInitialLeverageResponse&gt;
@@ -1596,8 +1601,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Initial-Leverage">Change
-     *     Initial Leverage(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-initial-leverage">Change
+     *     Initial Leverage (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeInitialLeverageResponse> changeInitialLeverage(
             @Valid @NotNull ChangeInitialLeverageRequest changeInitialLeverageRequest)
@@ -1623,8 +1628,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Margin-Type">Change
-     *     Margin Type(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-margin-type">Change
+     *     Margin Type (TRADE) Documentation</a>
      */
     private okhttp3.Call changeMarginTypeCall(ChangeMarginTypeRequest changeMarginTypeRequest)
             throws ApiException {
@@ -1727,7 +1732,7 @@ public class TradeApi {
     }
 
     /**
-     * Change Margin Type(TRADE) Change symbol level margin type Weight: 1
+     * Change Margin Type (TRADE) Change symbol level margin type Weight(IP): 1 Security Type: TRADE
      *
      * @param changeMarginTypeRequest (required)
      * @return ApiResponse&lt;ChangeMarginTypeResponse&gt;
@@ -1741,8 +1746,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Margin-Type">Change
-     *     Margin Type(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-margin-type">Change
+     *     Margin Type (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeMarginTypeResponse> changeMarginType(
             @Valid @NotNull ChangeMarginTypeRequest changeMarginTypeRequest) throws ApiException {
@@ -1766,7 +1771,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Multi-Assets-Mode">Change
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-multi-assets-mode">Change
      *     Multi-Assets Mode (TRADE) Documentation</a>
      */
     private okhttp3.Call changeMultiAssetsModeCall(
@@ -1869,7 +1874,7 @@ public class TradeApi {
 
     /**
      * Change Multi-Assets Mode (TRADE) Change user&#39;s Multi-Assets mode (Multi-Assets Mode or
-     * Single-Asset Mode) on ***Every symbol*** Weight: 1
+     * Single-Asset Mode) on ***Every symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @param changeMultiAssetsModeRequest (required)
      * @return ApiResponse&lt;ChangeMultiAssetsModeResponse&gt;
@@ -1883,7 +1888,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Multi-Assets-Mode">Change
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-multi-assets-mode">Change
      *     Multi-Assets Mode (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeMultiAssetsModeResponse> changeMultiAssetsMode(
@@ -1910,8 +1915,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode">Change
-     *     Position Mode(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-position-mode">Change
+     *     Position Mode (TRADE) Documentation</a>
      */
     private okhttp3.Call changePositionModeCall(ChangePositionModeRequest changePositionModeRequest)
             throws ApiException {
@@ -2012,8 +2017,12 @@ public class TradeApi {
     }
 
     /**
-     * Change Position Mode(TRADE) Change user&#39;s position mode (Hedge Mode or One-way Mode ) on
-     * ***EVERY symbol*** Weight: 1
+     * Change Position Mode (TRADE) Change user&#39;s position mode (Hedge Mode or One-way Mode ) on
+     * ***EVERY symbol***. **After CM migration**, UM and CM share the **same**
+     * &#x60;dualSidePosition&#x60; setting. Calling this endpoint flips both UM and CM at once. If
+     * either side has any open order or open position, the change is rejected: - &#x60;-4067&#x60;
+     * (open orders exist) - &#x60;-4068&#x60; (open position exists) Weight(IP): 1 Security Type:
+     * TRADE
      *
      * @param changePositionModeRequest (required)
      * @return ApiResponse&lt;ChangePositionModeResponse&gt;
@@ -2027,8 +2036,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode">Change
-     *     Position Mode(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-position-mode">Change
+     *     Position Mode (TRADE) Documentation</a>
      */
     public ApiResponse<ChangePositionModeResponse> changePositionMode(
             @Valid @NotNull ChangePositionModeRequest changePositionModeRequest)
@@ -2056,7 +2065,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-algo-open-orders">Current
      *     All Algo Open Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call currentAllAlgoOpenOrdersCall(
@@ -2170,10 +2179,11 @@ public class TradeApi {
     }
 
     /**
-     * Current All Algo Open Orders (USER_DATA) Get all algo open orders on a symbol. * If the
-     * symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for a
-     * single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
-     * symbol.
+     * Current All Algo Open Orders (USER_DATA) Get all open algo (conditional) orders on a symbol,
+     * including TP/SL (Take Profit / Stop Loss) and trailing stop orders on USD-M Futures. Weight:
+     * **1** for a single symbol; **40** when the symbol parameter is omitted **Careful** when
+     * accessing this with no symbol. Security Type: USER_DATA Notes: - If the symbol is not sent,
+     * orders for all symbols will be returned in an array.
      *
      * @param algoType (optional)
      * @param symbol (optional)
@@ -2190,11 +2200,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-algo-open-orders">Current
      *     All Algo Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<CurrentAllAlgoOpenOrdersResponse> currentAllAlgoOpenOrders(
-            String algoType, String symbol, Long algoId, Long recvWindow) throws ApiException {
+            String algoType, String symbol, Long algoId, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 currentAllAlgoOpenOrdersValidateBeforeCall(algoType, symbol, algoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -2217,7 +2228,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-open-orders">Current
      *     All Open Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call currentAllOpenOrdersCall(String symbol, Long recvWindow)
@@ -2317,9 +2328,10 @@ public class TradeApi {
     }
 
     /**
-     * Current All Open Orders (USER_DATA) Get all open orders on a symbol. * If the symbol is not
-     * sent, orders for all symbols will be returned in an array. Weight: 1 for a single symbol; 40
-     * when the symbol parameter is omitted Careful when accessing this with no symbol.
+     * Current All Open Orders (USER_DATA) Get all open orders on a symbol. Weight: **1** for a
+     * single symbol; **40** when the symbol parameter is omitted **Careful** when accessing this
+     * with no symbol. Security Type: USER_DATA Notes: - If the symbol is not sent, orders for all
+     * symbols will be returned in an array.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2334,11 +2346,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-open-orders">Current
      *     All Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<CurrentAllOpenOrdersResponse> currentAllOpenOrders(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = currentAllOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CurrentAllOpenOrdersResponse>() {}.getType();
@@ -2348,19 +2360,19 @@ public class TradeApi {
     /**
      * Build call for futuresTradfiPerpsContract
      *
-     * @param futuresTradfiPerpsContractRequest (required)
+     * @param futuresTradfiPerpsContractRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
-     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#futures-tradfi-perps-contract">Futures
+     *     TradFi Perps Contract (USER_DATA) Documentation</a>
      */
     private okhttp3.Call futuresTradfiPerpsContractCall(
             FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
@@ -2460,29 +2472,32 @@ public class TradeApi {
     }
 
     /**
-     * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
+     * Futures TradFi Perps Contract (USER_DATA) Sign TradFi-Perps agreement contract Weight(IP): 50
+     * Security Type: USER_DATA
      *
-     * @param futuresTradfiPerpsContractRequest (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @param futuresTradfiPerpsContractRequest (optional)
+     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
-     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#futures-tradfi-perps-contract">Futures
+     *     TradFi Perps Contract (USER_DATA) Documentation</a>
      */
-    public ApiResponse<Void> futuresTradfiPerpsContract(
-            @Valid @NotNull FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
+    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
+            @Valid FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 futuresTradfiPerpsContractValidateBeforeCall(futuresTradfiPerpsContractRequest);
-        return localVarApiClient.execute(localVarCall);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<FuturesTradfiPerpsContractResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -2491,9 +2506,9 @@ public class TradeApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Timestamp in ms to get modification history from INCLUSIVE (optional)
+     * @param endTime Timestamp in ms to get modification history until INCLUSIVE (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2505,7 +2520,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-order-modify-history">Get
      *     Order Modify History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOrderModifyHistoryCall(
@@ -2652,17 +2667,17 @@ public class TradeApi {
     }
 
     /**
-     * Get Order Modify History (USER_DATA) Get order modification history * Either
-     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the
-     * &#x60;orderId&#x60; will prevail if both are sent. * Order modify history longer than 3 month
-     * is not avaliable Weight: 1
+     * Get Order Modify History (USER_DATA) Get order modification history Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be
+     * sent, and the &#x60;orderId&#x60; will prevail if both are sent. - Order modify history
+     * longer than 3 month is not avaliable
      *
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Timestamp in ms to get modification history from INCLUSIVE (optional)
+     * @param endTime Timestamp in ms to get modification history until INCLUSIVE (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetOrderModifyHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2675,7 +2690,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-order-modify-history">Get
      *     Order Modify History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOrderModifyHistoryResponse> getOrderModifyHistory(
@@ -2684,8 +2699,8 @@ public class TradeApi {
             String origClientOrderId,
             Long startTime,
             Long endTime,
-            Long limit,
-            Long recvWindow)
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getOrderModifyHistoryValidateBeforeCall(
@@ -2700,9 +2715,9 @@ public class TradeApi {
      *
      * @param symbol (required)
      * @param type 1: Add position margin，2: Reduce position margin (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime time if not pass (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2714,7 +2729,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Position-Margin-Change-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-position-margin-change-history">Get
      *     Position Margin Change History (TRADE) Documentation</a>
      */
     private okhttp3.Call getPositionMarginChangeHistoryCall(
@@ -2841,15 +2856,16 @@ public class TradeApi {
     }
 
     /**
-     * Get Position Margin Change History (TRADE) Get Position Margin Change History * Support
-     * querying future histories that are not older than 30 days * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be more than 30 days Weight: 1
+     * Get Position Margin Change History (TRADE) Get Position Margin Change History Weight(IP): 1
+     * Security Type: TRADE Notes: - Support querying future histories that are not older than 30
+     * days - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be more than
+     * 30 days
      *
      * @param symbol (required)
      * @param type 1: Add position margin，2: Reduce position margin (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime time if not pass (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetPositionMarginChangeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2862,7 +2878,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Position-Margin-Change-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-position-margin-change-history">Get
      *     Position Margin Change History (TRADE) Documentation</a>
      */
     public ApiResponse<GetPositionMarginChangeHistoryResponse> getPositionMarginChangeHistory(
@@ -2871,7 +2887,7 @@ public class TradeApi {
             Long startTime,
             Long endTime,
             Long limit,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getPositionMarginChangeHistoryValidateBeforeCall(
@@ -2895,8 +2911,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Isolated-Position-Margin">Modify
-     *     Isolated Position Margin(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-isolated-position-margin">Modify
+     *     Isolated Position Margin (TRADE) Documentation</a>
      */
     private okhttp3.Call modifyIsolatedPositionMarginCall(
             ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest)
@@ -3017,8 +3033,8 @@ public class TradeApi {
     }
 
     /**
-     * Modify Isolated Position Margin(TRADE) Modify Isolated Position Margin * Only for isolated
-     * symbol Weight: 1
+     * Modify Isolated Position Margin (TRADE) Modify Isolated Position Margin Weight(IP): 1
+     * Security Type: TRADE Notes: - Only for isolated symbol
      *
      * @param modifyIsolatedPositionMarginRequest (required)
      * @return ApiResponse&lt;ModifyIsolatedPositionMarginResponse&gt;
@@ -3032,8 +3048,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Isolated-Position-Margin">Modify
-     *     Isolated Position Margin(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-isolated-position-margin">Modify
+     *     Isolated Position Margin (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyIsolatedPositionMarginResponse> modifyIsolatedPositionMargin(
             @Valid @NotNull ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest)
@@ -3059,8 +3075,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Multiple-Orders">Modify
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-multiple-orders">Modify
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call modifyMultipleOrdersCall(
             ModifyMultipleOrdersRequest modifyMultipleOrdersRequest) throws ApiException {
@@ -3161,12 +3177,13 @@ public class TradeApi {
     }
 
     /**
-     * Modify Multiple Orders(TRADE) Modify Multiple Orders (TRADE) * Parameter rules are same with
-     * &#x60;Modify Order&#x60; * Batch modify orders are processed concurrently, and the order of
-     * matching is not guaranteed. * The order of returned contents for batch modify orders is the
-     * same as the order of the order list. * One order can only be modfied for less than 10000
-     * times Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate
-     * limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Modify Multiple Orders (TRADE) Modify Multiple Orders (TRADE) Weight: 5 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate
+     * limit(x-mbx-used-weight-1m); Security Type: TRADE Notes: - Parameter rules are same with
+     * &#x60;Modify Order&#x60; - Batch modify orders are processed concurrently, and the order of
+     * matching is not guaranteed. - The order of returned contents for batch modify orders is the
+     * same as the order of the order list. - One order can only be modfied for less than 10000
+     * times
      *
      * @param modifyMultipleOrdersRequest (required)
      * @return ApiResponse&lt;ModifyMultipleOrdersResponse&gt;
@@ -3180,8 +3197,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Multiple-Orders">Modify
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-multiple-orders">Modify
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyMultipleOrdersResponse> modifyMultipleOrders(
             @Valid @NotNull ModifyMultipleOrdersRequest modifyMultipleOrdersRequest)
@@ -3207,7 +3224,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order">Modify
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-order">Modify
      *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call modifyOrderCall(ModifyOrderRequest modifyOrderRequest)
@@ -3265,6 +3282,10 @@ public class TradeApi {
 
         if (modifyOrderRequest.getPriceMatch() != null) {
             localVarFormParams.put("priceMatch", modifyOrderRequest.getPriceMatch());
+        }
+
+        if (modifyOrderRequest.getModifyId() != null) {
+            localVarFormParams.put("modifyId", modifyOrderRequest.getModifyId());
         }
 
         if (modifyOrderRequest.getRecvWindow() != null) {
@@ -3334,18 +3355,18 @@ public class TradeApi {
 
     /**
      * Modify Order (TRADE) Order modify function, currently only LIMIT order modification is
-     * supported, modified orders will be reordered in the match queue * Either &#x60;orderId&#x60;
-     * or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if
-     * both are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is
-     * different from dapi modify order endpoint. * When the new &#x60;quantity&#x60; or
-     * &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment
-     * will be rejected and the order will stay as it is. * However the order will be cancelled by
-     * the amendment in the following situations: * when the order is in partially filled status and
-     * the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is
-     * &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can
-     * only be modfied for less than 10000 times Weight: 1 on 10s order rate
+     * supported, modified orders will be reordered in the match queue Weight: 1 on 10s order rate
      * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
-     * limit(x-mbx-used-weight-1m)
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
+     * are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is different
+     * from dapi modify order endpoint. - When the new &#x60;quantity&#x60; or &#x60;price&#x60;
+     * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
+     * the order will stay as it is. - However the order will be cancelled by the amendment in the
+     * following situations: - when the order is in partially filled status and the new
+     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
+     * and the new price will cause it to be executed immediately - One order can only be modfied
+     * for less than 10000 times
      *
      * @param modifyOrderRequest (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;
@@ -3359,7 +3380,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order">Modify
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-order">Modify
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyOrderResponse> modifyOrder(
@@ -3384,8 +3405,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
-     *     Algo Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-algo-order">New
+     *     Algo Order (TRADE) Documentation</a>
      */
     private okhttp3.Call newAlgoOrderCall(NewAlgoOrderRequest newAlgoOrderRequest)
             throws ApiException {
@@ -3570,40 +3591,42 @@ public class TradeApi {
     }
 
     /**
-     * New Algo Order(TRADE) Send in a new Algo order. * Algo order with type &#x60;STOP&#x60;,
-     * parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Algo order with
-     * type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Condition orders will be triggered when: * If
-     * parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * New Algo Order (TRADE) Send in a new algo (conditional) order. Use this endpoint to place
+     * **TP/SL (Take Profit / Stop Loss)** and trailing stop orders on USD-M Futures. Supported
+     * order types under &#x60;algoType&#x3D;CONDITIONAL&#x60; are &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;STOP&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TRAILING_STOP_MARKET&#x60;. Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1
+     * on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * Security Type: TRADE Notes: - Algo order with type &#x60;STOP&#x60;, parameter
+     * &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type
+     * &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
+     * &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
      * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
      * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
-     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
-     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
-     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
-     * order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest
-     * price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
-     * &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1
-     * - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
-     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
-     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
-     * following requirements: * BUY: &#x60;activatePrice&#x60; should be smaller than latest price.
-     * * SELL: &#x60;activatePrice&#x60; should be larger than latest price. *
-     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
-     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;triggerPrice&#x60; - SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: -
+     * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest
+     * price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after
+     * order placed &#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activatePrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activatePrice&#x60; should be larger than latest price. - &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow
+     * the same rules for condition orders. - If triggered，**close all** current long position( if
+     * &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). - Cannot be used with
+     * &#x60;quantity&#x60; paremeter - Cannot be used with &#x60;reduceOnly&#x60; parameter - In
+     * Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and
+     * cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 0 on IP rate
-     * limit(x-mbx-used-weight-1m)
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
      *
      * @param newAlgoOrderRequest (required)
      * @return ApiResponse&lt;NewAlgoOrderResponse&gt;
@@ -3617,8 +3640,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
-     *     Algo Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-algo-order">New
+     *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewAlgoOrderResponse> newAlgoOrder(
             @Valid @NotNull NewAlgoOrderRequest newAlgoOrderRequest) throws ApiException {
@@ -3642,8 +3665,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order">New
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-order">New
+     *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call newOrderCall(NewOrderRequest newOrderRequest) throws ApiException {
         String basePath = null;
@@ -3690,14 +3713,14 @@ public class TradeApi {
             localVarFormParams.put("timeInForce", newOrderRequest.getTimeInForce());
         }
 
+        if (newOrderRequest.getReduceOnly() != null) {
+            localVarFormParams.put("reduceOnly", newOrderRequest.getReduceOnly());
+        }
+
         if (newOrderRequest.getQuantity() != null) {
             localVarFormParams.put(
                     "quantity",
                     DecimalFormatter.getFormatter().format(newOrderRequest.getQuantity()));
-        }
-
-        if (newOrderRequest.getReduceOnly() != null) {
-            localVarFormParams.put("reduceOnly", newOrderRequest.getReduceOnly());
         }
 
         if (newOrderRequest.getPrice() != null) {
@@ -3792,15 +3815,19 @@ public class TradeApi {
     }
 
     /**
-     * New Order(TRADE) Send in a new order. * If &#x60;newOrderRespType &#x60; is sent as
-     * &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be
-     * return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final
-     * status result of the order(FILLED or EXPIRED) will be returned directly. *
-     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
-     * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
-     * order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * New Order (TRADE) Send in a new order. Weight: 1 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: Additional mandatory parameters based
+     * on &#x60;type&#x60;: | Type | Additional mandatory parameters |
+     * |------|----------------------------------| | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | - If
+     * &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60;: - &#x60;MARKET&#x60; order: the
+     * final FILLED result of the order will be returned directly. - &#x60;LIMIT&#x60; order with
+     * special &#x60;timeInForce&#x60;: the final status result of the order (FILLED or EXPIRED)
+     * will be returned directly. - &#x60;selfTradePreventionMode&#x60; is only effective when
+     * &#x60;timeInForce&#x60; is set to &#x60;IOC&#x60;, &#x60;GTC&#x60;, or &#x60;GTD&#x60;. - In
+     * extreme market conditions, &#x60;timeInForce&#x60; &#x60;GTD&#x60; order auto-cancel time
+     * might be delayed compared to &#x60;goodTillDate&#x60;.
      *
      * @param newOrderRequest (required)
      * @return ApiResponse&lt;NewOrderResponse&gt;
@@ -3814,8 +3841,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order">New
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-order">New
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(@Valid @NotNull NewOrderRequest newOrderRequest)
             throws ApiException {
@@ -3838,8 +3865,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#place-multiple-orders">Place
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call placeMultipleOrdersCall(
             PlaceMultipleOrdersRequest placeMultipleOrdersRequest) throws ApiException {
@@ -3940,11 +3967,12 @@ public class TradeApi {
     }
 
     /**
-     * Place Multiple Orders(TRADE) Place Multiple Orders * Paremeter rules are same with &#x60;New
-     * Order&#x60; * Batch orders are processed concurrently, and the order of matching is not
-     * guaranteed. * The order of returned contents for batch orders is the same as the order of the
-     * order list. Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate
-     * limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Place Multiple Orders (TRADE) Place Multiple Orders Weight: 5 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate
+     * limit(x-mbx-used-weight-1m); Security Type: TRADE Notes: - Paremeter rules are same with
+     * &#x60;New Order&#x60; - Batch orders are processed concurrently, and the order of matching is
+     * not guaranteed. - The order of returned contents for batch orders is the same as the order of
+     * the order list.
      *
      * @param placeMultipleOrdersRequest (required)
      * @return ApiResponse&lt;PlaceMultipleOrdersResponse&gt;
@@ -3958,8 +3986,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#place-multiple-orders">Place
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
             @Valid @NotNull PlaceMultipleOrdersRequest placeMultipleOrdersRequest)
@@ -3986,8 +4014,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation">Position
-     *     ADL Quantile Estimation(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-adl-quantile-estimation">Position
+     *     ADL Quantile Estimation (USER_DATA) Documentation</a>
      */
     private okhttp3.Call positionAdlQuantileEstimationCall(String symbol, Long recvWindow)
             throws ApiException {
@@ -4087,7 +4115,7 @@ public class TradeApi {
     }
 
     /**
-     * Position ADL Quantile Estimation(USER_DATA) Position ADL Quantile Estimation * Values update
+     * Position ADL Quantile Estimation (USER_DATA) Position ADL Quantile Estimation * Values update
      * every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to
      * high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode,
      * \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the
@@ -4095,7 +4123,7 @@ public class TradeApi {
      * are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead
      * of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short
      * sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there
-     * are positions in both of long and short sides. Weight: 5
+     * are positions in both of long and short sides. Weight(IP): 5 Security Type: USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -4110,11 +4138,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation">Position
-     *     ADL Quantile Estimation(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-adl-quantile-estimation">Position
+     *     ADL Quantile Estimation (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionAdlQuantileEstimationResponse> positionAdlQuantileEstimation(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 positionAdlQuantileEstimationValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -4137,7 +4165,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V2">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v2">Position
      *     Information V2 (USER_DATA) Documentation</a>
      */
     private okhttp3.Call positionInformationV2Call(String symbol, Long recvWindow)
@@ -4237,8 +4265,9 @@ public class TradeApi {
     }
 
     /**
-     * Position Information V2 (USER_DATA) Get current position information. Please use with user
-     * data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * Position Information V2 (USER_DATA) Get current position information. Weight(IP): 5 Security
+     * Type: USER_DATA Notes: - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet
+     * your timeliness and accuracy needs.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -4253,11 +4282,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V2">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v2">Position
      *     Information V2 (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionInformationV2Response> positionInformationV2(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = positionInformationV2ValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<PositionInformationV2Response>() {}.getType();
@@ -4279,7 +4308,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v3">Position
      *     Information V3 (USER_DATA) Documentation</a>
      */
     private okhttp3.Call positionInformationV3Call(String symbol, Long recvWindow)
@@ -4380,8 +4409,9 @@ public class TradeApi {
 
     /**
      * Position Information V3 (USER_DATA) Get current position information(only symbol that has
-     * position or open orders will be returned). Please use with user data stream
-     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * position or open orders will be returned). Weight(IP): 5 Security Type: USER_DATA Notes: -
+     * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and
+     * accuracy needs.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -4396,11 +4426,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v3">Position
      *     Information V3 (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionInformationV3Response> positionInformationV3(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = positionInformationV3ValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<PositionInformationV3Response>() {}.getType();
@@ -4410,8 +4440,8 @@ public class TradeApi {
     /**
      * Build call for queryAlgoOrder
      *
-     * @param algoId (optional)
-     * @param clientAlgoId (optional)
+     * @param algoId Order ID (optional)
+     * @param clientAlgoId Client order ID (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -4423,7 +4453,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-algo-order">Query
      *     Algo Order (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryAlgoOrderCall(Long algoId, String clientAlgoId, Long recvWindow)
@@ -4529,14 +4559,16 @@ public class TradeApi {
     }
 
     /**
-     * Query Algo Order (USER_DATA) Check an algo order&#39;s status. * These orders will not be
-     * found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
+     * Query Algo Order (USER_DATA) Check the status of an algo (conditional) order, such as TP/SL
+     * (Take Profit / Stop Loss) or trailing stop orders on USD-M Futures. * These orders will not
+     * be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
      * filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days
-     * &lt; current time * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. *
-     * &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * &lt; current time Weight(IP): 1 Security Type: USER_DATA Notes: - Either &#x60;algoId&#x60;
+     * or &#x60;clientAlgoId&#x60; must be sent. - &#x60;algoId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      *
-     * @param algoId (optional)
-     * @param clientAlgoId (optional)
+     * @param algoId Order ID (optional)
+     * @param clientAlgoId Client order ID (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAlgoOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4549,7 +4581,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-algo-order">Query
      *     Algo Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryAlgoOrderResponse> queryAlgoOrder(
@@ -4564,11 +4596,11 @@ public class TradeApi {
     /**
      * Build call for queryAllAlgoOrders
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -4580,7 +4612,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-all-algo-orders">Query
      *     All Algo Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryAllAlgoOrdersCall(
@@ -4707,19 +4739,20 @@ public class TradeApi {
     }
 
     /**
-     * Query All Algo Orders (USER_DATA) Get all algo orders; active, CANCELED, TRIGGERED or
-     * FINISHED . * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
+     * Query All Algo Orders (USER_DATA) Get all algo (conditional) orders — active, CANCELED,
+     * TRIGGERED, or FINISHED — including TP/SL (Take Profit / Stop Loss) and trailing stop orders
+     * on USD-M Futures. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
      * &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt;
-     * current time * order create time + 90 days &lt; current time * If &#x60;algoId&#x60; is set,
-     * it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are
-     * returned. * The query time period must be less then 7 days( default as the recent 7 days).
-     * Weight: 5
+     * current time * order create time + 90 days &lt; current time Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that
+     * &#x60;algoId&#x60;. Otherwise most recent orders are returned. - The query time period must
+     * be less then 7 days( default as the recent 7 days).
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4732,7 +4765,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-all-algo-orders">Query
      *     All Algo Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryAllAlgoOrdersResponse> queryAllAlgoOrders(
@@ -4740,7 +4773,7 @@ public class TradeApi {
             Long algoId,
             Long startTime,
             Long endTime,
-            Long limit,
+            @Max(1000L) Long limit,
             Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
@@ -4768,7 +4801,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-current-open-order">Query
      *     Current Open Order (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCurrentOpenOrderCall(
@@ -4885,9 +4918,10 @@ public class TradeApi {
     }
 
     /**
-     * Query Current Open Order (USER_DATA) Query open order * Either&#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent * If the queried order has been filled or
-     * cancelled, the error message \&quot;Order does not exist\&quot; will be returned. Weight: 1
+     * Query Current Open Order (USER_DATA) Query open order Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Either&#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent - If the
+     * queried order has been filled or cancelled, the error message \&quot;Order does not
+     * exist\&quot; will be returned.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -4904,7 +4938,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-current-open-order">Query
      *     Current Open Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOrderResponse> queryCurrentOpenOrder(
@@ -4935,7 +4969,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-order">Query
      *     Order (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryOrderCall(
@@ -5055,8 +5089,9 @@ public class TradeApi {
      * Query Order (USER_DATA) Check an order&#39;s status. * These orders will not be found: *
      * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade
      * **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current
-     * time * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. *
-     * &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time Weight(IP): 1 Security Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - &#x60;orderId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -5073,7 +5108,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-order">Query
      *     Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryOrderResponse> queryOrder(
@@ -5100,8 +5135,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test">Test
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#test-order">Test
+     *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call testOrderCall(TestOrderRequest testOrderRequest) throws ApiException {
         String basePath = null;
@@ -5144,18 +5179,14 @@ public class TradeApi {
             localVarFormParams.put("type", testOrderRequest.getType());
         }
 
-        if (testOrderRequest.getTimeInForce() != null) {
-            localVarFormParams.put("timeInForce", testOrderRequest.getTimeInForce());
+        if (testOrderRequest.getReduceOnly() != null) {
+            localVarFormParams.put("reduceOnly", testOrderRequest.getReduceOnly());
         }
 
         if (testOrderRequest.getQuantity() != null) {
             localVarFormParams.put(
                     "quantity",
                     DecimalFormatter.getFormatter().format(testOrderRequest.getQuantity()));
-        }
-
-        if (testOrderRequest.getReduceOnly() != null) {
-            localVarFormParams.put("reduceOnly", testOrderRequest.getReduceOnly());
         }
 
         if (testOrderRequest.getPrice() != null) {
@@ -5187,6 +5218,10 @@ public class TradeApi {
             localVarFormParams.put(
                     "callbackRate",
                     DecimalFormatter.getFormatter().format(testOrderRequest.getCallbackRate()));
+        }
+
+        if (testOrderRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", testOrderRequest.getTimeInForce());
         }
 
         if (testOrderRequest.getWorkingType() != null) {
@@ -5280,44 +5315,49 @@ public class TradeApi {
     }
 
     /**
-     * Test Order(TRADE) Testing order request, this order will not be submitted to matching engine
-     * * Order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches
-     * the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * Test Order (TRADE) Testing order request, this order will not be submitted to matching engine
+     * Security Type: TRADE Notes: Additional mandatory parameters based on &#x60;type&#x60;: | Type
+     * | Additional mandatory parameters | | -------------------------------- |
+     * ---------------------------------- | | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | |
+     * &#x60;STOP/TAKE_PROFIT&#x60; | &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60;
+     * | | &#x60;STOP_MARKET/TAKE_PROFIT_MARKET&#x60; | &#x60;stopPrice&#x60; | |
+     * &#x60;TRAILING_STOP_MARKET&#x60; | &#x60;callbackRate&#x60; | - Order with type
+     * &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). -
+     * Order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent
+     * (default &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
+     * &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) -
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after order placed
+     * &#x60;&#x60;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activationPrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activationPrice&#x60; should be larger than latest price. - If &#x60;newOrderRespType
+     * &#x60; is sent as &#x60;RESULT&#x60; : - &#x60;MARKET&#x60; order: the final FILLED result of
+     * the order will be return directly. - &#x60;LIMIT&#x60; order with special
      * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * returned directly. - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow the same rules for condition
+     * orders. - If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). - Cannot be used with &#x60;quantity&#x60; paremeter -
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter - In Hedge Mode,cannot be used with
      * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. - In extreme market conditions,
      * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 0
+     * &#x60;goodTillDate&#x60;
      *
      * @param testOrderRequest (required)
      * @return ApiResponse&lt;TestOrderResponse&gt;
@@ -5331,8 +5371,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test">Test
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#test-order">Test
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<TestOrderResponse> testOrder(
             @Valid @NotNull TestOrderRequest testOrderRequest) throws ApiException {
@@ -5349,7 +5389,7 @@ public class TradeApi {
      *     ADL orders. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -5361,7 +5401,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders">User&#39;s
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#users-force-orders">User&#39;s
      *     Force Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call usersForceOrdersCall(
@@ -5501,18 +5541,17 @@ public class TradeApi {
     }
 
     /**
-     * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders * If
-     * \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If
-     * \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be
-     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
-     * symbol
+     * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders Weight: **20** with symbol,
+     * **50** without symbol Security Type: USER_DATA Notes: - If \&quot;autoCloseType\&quot; is not
+     * sent, orders with both of the types will be returned - If \&quot;startTime\&quot; is not
+     * sent, data within 7 days before \&quot;endTime\&quot; can be queried
      *
      * @param symbol (optional)
      * @param autoCloseType \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for
      *     ADL orders. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;UsersForceOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -5525,7 +5564,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders">User&#39;s
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#users-force-orders">User&#39;s
      *     Force Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<UsersForceOrdersResponse> usersForceOrders(
@@ -5533,7 +5572,7 @@ public class TradeApi {
             AutoCloseType autoCloseType,
             Long startTime,
             Long endTime,
-            Long limit,
+            @Max(100L) Long limit,
             Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =

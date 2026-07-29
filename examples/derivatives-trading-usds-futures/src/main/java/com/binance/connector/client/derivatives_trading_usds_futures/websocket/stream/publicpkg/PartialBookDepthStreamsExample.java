@@ -24,17 +24,16 @@ public class PartialBookDepthStreamsExample {
     /**
      * Partial Book Depth Streams
      *
-     * <p>Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;** are 5, 10, or 20.
-     * Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
-     * Update Speed: 250ms, 500ms or 100ms
+     * <p>Top &lt;levels&gt; bids and asks &gt; **After CM migration**, the payload is appended with
+     * a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 250ms or 500ms or 100ms Response Notes:
+     * Retail Price Improvement (RPI) orders are not visible and excluded in the response message.
      *
      * @throws ApiException if the Api call fails
      */
     public void partialBookDepthStreamsExample() throws ApiException, InterruptedException {
         PartialBookDepthStreamsRequest partialBookDepthStreamsRequest =
                 new PartialBookDepthStreamsRequest();
-        partialBookDepthStreamsRequest.symbol("btcusdt");
-        partialBookDepthStreamsRequest.levels(10L);
         StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> response =
                 getApi().partialBookDepthStreams(partialBookDepthStreamsRequest);
         while (true) {

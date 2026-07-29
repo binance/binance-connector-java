@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading WebSocket Market Streams
- * OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+ * Margin WebSocket Market Streams
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(RiskDataStreamEventsResponse.class.getName());
@@ -47,10 +47,10 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<UserLiabilityChange> adapterUserLiabilityChange =
-                    gson.getDelegateAdapter(this, TypeToken.get(UserLiabilityChange.class));
             final TypeAdapter<MarginLevelStatusChange> adapterMarginLevelStatusChange =
                     gson.getDelegateAdapter(this, TypeToken.get(MarginLevelStatusChange.class));
+            final TypeAdapter<UserLiabilityChange> adapterUserLiabilityChange =
+                    gson.getDelegateAdapter(this, TypeToken.get(UserLiabilityChange.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<RiskDataStreamEventsResponse>() {
@@ -62,20 +62,20 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
-                            // check if the actual instance is of the type `UserLiabilityChange`
-                            if (value.getActualInstance() instanceof UserLiabilityChange) {
-                                JsonElement element =
-                                        adapterUserLiabilityChange.toJsonTree(
-                                                (UserLiabilityChange) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
                             // check if the actual instance is of the type `MarginLevelStatusChange`
                             if (value.getActualInstance() instanceof MarginLevelStatusChange) {
                                 JsonElement element =
                                         adapterMarginLevelStatusChange.toJsonTree(
                                                 (MarginLevelStatusChange)
                                                         value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `UserLiabilityChange`
+                            if (value.getActualInstance() instanceof UserLiabilityChange) {
+                                JsonElement element =
+                                        adapterUserLiabilityChange.toJsonTree(
+                                                (UserLiabilityChange) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
@@ -116,19 +116,6 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         newRiskDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newRiskDataStreamEventsResponse;
-                                    case "marginLevelStatusChange":
-                                        deserialized =
-                                                adapterMarginLevelStatusChange.fromJsonTree(
-                                                        jsonObject);
-                                        newRiskDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newRiskDataStreamEventsResponse;
-                                    case "userLiabilityChange":
-                                        deserialized =
-                                                adapterUserLiabilityChange.fromJsonTree(jsonObject);
-                                        newRiskDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newRiskDataStreamEventsResponse;
                                     default:
                                         newRiskDataStreamEventsResponse.setActualInstance(
                                                 jsonElement.toString());
@@ -139,9 +126,7 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                             + " for RiskDataStreamEventsResponse."
                                                             + " Possible values:"
                                                             + " MARGIN_LEVEL_STATUS_CHANGE"
-                                                            + " USER_LIABILITY_CHANGE"
-                                                            + " marginLevelStatusChange"
-                                                            + " userLiabilityChange. Falling back"
+                                                            + " USER_LIABILITY_CHANGE. Falling back"
                                                             + " to String.",
                                                         jsonObject.get("e").getAsString()));
                                 }
@@ -151,27 +136,6 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
-                            // deserialize UserLiabilityChange
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                UserLiabilityChange.validateJsonElement(jsonElement);
-                                actualAdapter = adapterUserLiabilityChange;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'UserLiabilityChange'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for UserLiabilityChange failed"
-                                                        + " with `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'UserLiabilityChange'",
-                                        e);
-                            }
                             // deserialize MarginLevelStatusChange
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -192,6 +156,27 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         Level.FINER,
                                         "Input data does not match schema"
                                                 + " 'MarginLevelStatusChange'",
+                                        e);
+                            }
+                            // deserialize UserLiabilityChange
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                UserLiabilityChange.validateJsonElement(jsonElement);
+                                actualAdapter = adapterUserLiabilityChange;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'UserLiabilityChange'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for UserLiabilityChange failed"
+                                                        + " with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'UserLiabilityChange'",
                                         e);
                             }
 
@@ -227,8 +212,8 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("UserLiabilityChange", UserLiabilityChange.class);
         schemas.put("MarginLevelStatusChange", MarginLevelStatusChange.class);
+        schemas.put("UserLiabilityChange", UserLiabilityChange.class);
     }
 
     @Override
@@ -244,12 +229,12 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof UserLiabilityChange) {
+        if (instance instanceof MarginLevelStatusChange) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof MarginLevelStatusChange) {
+        if (instance instanceof UserLiabilityChange) {
             super.setActualInstance(instance);
             return;
         }
@@ -271,17 +256,6 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `UserLiabilityChange`. If the actual instance is not
-     * `UserLiabilityChange`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `UserLiabilityChange`
-     * @throws ClassCastException if the instance is not `UserLiabilityChange`
-     */
-    public UserLiabilityChange getUserLiabilityChange() throws ClassCastException {
-        return (UserLiabilityChange) super.getActualInstance();
-    }
-
-    /**
      * Get the actual instance of `MarginLevelStatusChange`. If the actual instance is not
      * `MarginLevelStatusChange`, the ClassCastException will be thrown.
      *
@@ -290,6 +264,17 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
      */
     public MarginLevelStatusChange getMarginLevelStatusChange() throws ClassCastException {
         return (MarginLevelStatusChange) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `UserLiabilityChange`. If the actual instance is not
+     * `UserLiabilityChange`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `UserLiabilityChange`
+     * @throws ClassCastException if the instance is not `UserLiabilityChange`
+     */
+    public UserLiabilityChange getUserLiabilityChange() throws ClassCastException {
+        return (UserLiabilityChange) super.getActualInstance();
     }
 
     /**
@@ -303,17 +288,6 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with UserLiabilityChange
-        try {
-            UserLiabilityChange.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for UserLiabilityChange failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
         // validate the json string with MarginLevelStatusChange
         try {
             MarginLevelStatusChange.validateJsonElement(jsonElement);
@@ -322,6 +296,17 @@ public class RiskDataStreamEventsResponse extends AbstractOpenApiSchema {
             errorMessages.add(
                     String.format(
                             "Deserialization for MarginLevelStatusChange failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with UserLiabilityChange
+        try {
+            UserLiabilityChange.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for UserLiabilityChange failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }

@@ -2,12 +2,14 @@ package com.binance.connector.client.algo.rest.futurealgo;
 
 import com.binance.connector.client.algo.rest.AlgoRestApiUtil;
 import com.binance.connector.client.algo.rest.api.AlgoRestApi;
+import com.binance.connector.client.algo.rest.model.Side;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceFutureAlgoRequest;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceFutureAlgoResponse;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for FutureAlgoApi */
 public class TimeWeightedAveragePriceFutureAlgoExample {
@@ -26,31 +28,29 @@ public class TimeWeightedAveragePriceFutureAlgoExample {
     }
 
     /**
-     * Time-Weighted Average Price(Twap) New Order(TRADE)
+     * Time-Weighted Futures Average Price (Twap) New Order (TRADE)
      *
-     * <p>Send in a Twap new order. Only support on USDⓈ-M Contracts. * Total Algo open orders max
-     * allowed: &#x60;30&#x60; orders. * Leverage of symbols and position mode will be the same as
-     * your futures account settings. You can set up through the trading page or fapi. * Receiving
-     * &#x60;\&quot;success\&quot;: true&#x60; does not mean that your order will be executed.
-     * Please use the query order endpoints（&#x60;GET sapi/v1/algo/futures/openOrders&#x60; or
-     * &#x60;GET sapi/v1/algo/futures/historicalOrders&#x60;） to check the order status. For
-     * example: Your futures balance is insufficient, or open position with reduce only or position
-     * side is inconsistent with your own setting. In these cases you will receive
-     * &#x60;\&quot;success\&quot;: true&#x60;, but the order status will be &#x60;expired&#x60;
-     * after we check it. * &#x60;quantity&#x60; * 60 / &#x60;duration&#x60; should be larger than
-     * minQty * &#x60;duration&#x60; cannot be less than 5 mins or more than 24 hours. * For
-     * delivery contracts, TWAP end time should be one hour earlier than the delivery time of the
-     * symbol. * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which
-     * requests this endpoint. * Base URL: https://api.binance.com Weight: 3000
+     * <p>Send in a Twap new order. Only support on USDⓈ-M Contracts. Weight(UID): 3000 Security
+     * Type: TRADE Notes: - Other info: - Total Algo open orders max allowed: &#x60;30&#x60; orders.
+     * - Leverage and position mode follow your futures account settings. - Receiving
+     * &#x60;\&quot;success\&quot;: true&#x60; does not guarantee execution; query order endpoints
+     * for final status. - If balance/position constraints fail, response may still return success
+     * but order status becomes &#x60;expired&#x60;. - &#x60;quantity * 60 / duration&#x60; must be
+     * greater than &#x60;minQty&#x60;. - &#x60;duration&#x60; cannot be less than 5 minutes or
+     * greater than 24 hours. - For delivery contracts, TWAP end time should be one hour earlier
+     * than symbol delivery time. - You need to enable the corresponding permission for the API key
+     * requesting this endpoint: - &#x60;Futures Trading Permission&#x60; — for Classic Trading
+     * Account mode - &#x60;Portfolio Margin Trading Permission&#x60; — for Portfolio Margin Account
+     * mode - Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void timeWeightedAveragePriceFutureAlgoExample() throws ApiException {
+    public void timeWeightedAveragePriceFutureAlgoExample() throws ApiException, IOException {
         TimeWeightedAveragePriceFutureAlgoRequest timeWeightedAveragePriceFutureAlgoRequest =
                 new TimeWeightedAveragePriceFutureAlgoRequest();
         timeWeightedAveragePriceFutureAlgoRequest.symbol("BTCUSDT");
-        timeWeightedAveragePriceFutureAlgoRequest.side("BUY");
-        timeWeightedAveragePriceFutureAlgoRequest.quantity(1.0d);
+        timeWeightedAveragePriceFutureAlgoRequest.side(Side.BUY);
+        timeWeightedAveragePriceFutureAlgoRequest.quantity(1d);
         timeWeightedAveragePriceFutureAlgoRequest.duration(5000L);
         ApiResponse<TimeWeightedAveragePriceFutureAlgoResponse> response =
                 getApi().timeWeightedAveragePriceFutureAlgo(

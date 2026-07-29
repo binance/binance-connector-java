@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** SwitchDeltaModeRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SwitchDeltaModeRequest {
     public static final String SERIALIZED_NAME_DELTA_ENABLED = "deltaEnabled";
 
     @SerializedName(SERIALIZED_NAME_DELTA_ENABLED)
     @jakarta.annotation.Nonnull
-    private String deltaEnabled;
+    private DeltaEnabled deltaEnabled;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -50,7 +51,8 @@ public class SwitchDeltaModeRequest {
 
     public SwitchDeltaModeRequest() {}
 
-    public SwitchDeltaModeRequest deltaEnabled(@jakarta.annotation.Nonnull String deltaEnabled) {
+    public SwitchDeltaModeRequest deltaEnabled(
+            @jakarta.annotation.Nonnull DeltaEnabled deltaEnabled) {
         this.deltaEnabled = deltaEnabled;
         return this;
     }
@@ -62,11 +64,12 @@ public class SwitchDeltaModeRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getDeltaEnabled() {
+    @Valid
+    public DeltaEnabled getDeltaEnabled() {
         return deltaEnabled;
     }
 
-    public void setDeltaEnabled(@jakarta.annotation.Nonnull String deltaEnabled) {
+    public void setDeltaEnabled(@jakarta.annotation.Nonnull DeltaEnabled deltaEnabled) {
         this.deltaEnabled = deltaEnabled;
     }
 
@@ -192,13 +195,8 @@ public class SwitchDeltaModeRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("deltaEnabled").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `deltaEnabled` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("deltaEnabled").toString()));
-        }
+        // validate the required field `deltaEnabled`
+        DeltaEnabled.validateJsonElement(jsonObj.get("deltaEnabled"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

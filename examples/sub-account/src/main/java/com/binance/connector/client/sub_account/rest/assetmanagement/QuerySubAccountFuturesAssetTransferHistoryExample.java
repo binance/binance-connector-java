@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountFuturesAssetTransferHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class QuerySubAccountFuturesAssetTransferHistoryExample {
@@ -28,17 +29,18 @@ public class QuerySubAccountFuturesAssetTransferHistoryExample {
     /**
      * Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account Futures Asset Transfer History Weight: 1
+     * <p>Query Sub-account Futures Asset Transfer History Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySubAccountFuturesAssetTransferHistoryExample() throws ApiException {
-        String email = "sub-account-email@email.com";
-        Long futuresType = 0L;
+    public void querySubAccountFuturesAssetTransferHistoryExample()
+            throws ApiException, IOException {
+        String email = "123@test.com";
+        Long futuresType = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountFuturesAssetTransferHistoryResponse> response =
                 getApi().querySubAccountFuturesAssetTransferHistory(

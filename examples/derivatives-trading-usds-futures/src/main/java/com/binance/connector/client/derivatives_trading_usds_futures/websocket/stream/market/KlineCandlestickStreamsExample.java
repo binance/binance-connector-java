@@ -25,15 +25,15 @@ public class KlineCandlestickStreamsExample {
      * Kline/Candlestick Streams
      *
      * <p>The Kline/Candlestick Stream push updates to the current klines/candlestick every 250
-     * milliseconds (if existing). Update Speed: 250ms
+     * milliseconds (if existing). &gt; **After CM migration**, both &#x60;fstream&#x60; and
+     * &#x60;dstream&#x60; may subscribe to either UM or CM symbols on this stream. Update Speed:
+     * 250ms
      *
      * @throws ApiException if the Api call fails
      */
     public void klineCandlestickStreamsExample() throws ApiException, InterruptedException {
         KlineCandlestickStreamsRequest klineCandlestickStreamsRequest =
                 new KlineCandlestickStreamsRequest();
-        klineCandlestickStreamsRequest.symbol("btcusdt");
-        klineCandlestickStreamsRequest.interval("1m");
         StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> response =
                 getApi().klineCandlestickStreams(klineCandlestickStreamsRequest);
         while (true) {

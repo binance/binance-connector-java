@@ -1,6 +1,6 @@
 /*
- * Binance C2C REST API
- * OpenAPI Specification for the Binance C2C REST API
+ * C2C REST API
+ * Query fiat transaction history via the C2C REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -110,6 +110,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.c2c.rest.model.GetC2CTradeHistoryResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.c2c.rest.model.GetC2CTradeHistoryResponseDataInner
                         .CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }

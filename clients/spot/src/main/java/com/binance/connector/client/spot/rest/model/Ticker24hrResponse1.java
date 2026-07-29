@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** Ticker24hrResponse1 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrResponse1 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -170,7 +170,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get symbol
+     * Symbol Name
      *
      * @return symbol
      */
@@ -267,7 +267,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get lastPrice
+     * Closing price of the interval
      *
      * @return lastPrice
      */
@@ -381,7 +381,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get openPrice
+     * Opening price of the Interval
      *
      * @return openPrice
      */
@@ -400,7 +400,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the interval
      *
      * @return highPrice
      */
@@ -419,7 +419,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the interval
      *
      * @return lowPrice
      */
@@ -438,7 +438,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get volume
+     * Total trade volume (in base asset)
      *
      * @return volume
      */
@@ -457,7 +457,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get quoteVolume
+     * Total trade volume (in quote asset)
      *
      * @return quoteVolume
      */
@@ -476,7 +476,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get openTime
+     * Start of the ticker interval
      *
      * @return openTime
      */
@@ -495,7 +495,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get closeTime
+     * End of the ticker interval
      *
      * @return closeTime
      */
@@ -514,7 +514,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -533,7 +533,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -552,7 +552,7 @@ public class Ticker24hrResponse1 {
     }
 
     /**
-     * Get count
+     * Trade count
      *
      * @return count
      */

@@ -8,6 +8,7 @@ import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.DepthResponse;
 import com.binance.connector.client.spot.rest.model.SymbolStatus;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class DepthExample {
@@ -28,14 +29,15 @@ public class DepthExample {
     /**
      * Order book
      *
-     * <p>Weight: Adjusted based on the limit: |Limit|Request Weight ------|------- 1-100| 5
-     * 101-500| 25 501-1000| 50 1001-5000| 250
+     * <p>Order book Weight: Adjusted based on the limit: |Limit|Request Weight ------|-------
+     * 1-100| 5 101-500| 25 501-1000| 50 1001-5000| 250 Security Type: NONE Notes: **Data Source:**
+     * Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void depthExample() throws ApiException {
+    public void depthExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
+        Integer limit = 1;
         SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<DepthResponse> response = getApi().depth(symbol, limit, symbolStatus);
         System.out.println(response.getData());

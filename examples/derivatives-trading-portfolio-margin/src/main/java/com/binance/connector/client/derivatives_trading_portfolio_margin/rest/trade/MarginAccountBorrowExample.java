@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountBorrowRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountBorrowResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountBorrowExample {
@@ -27,15 +28,15 @@ public class MarginAccountBorrowExample {
     }
 
     /**
-     * Margin Account Borrow(MARGIN)
+     * Margin Account Borrow (MARGIN)
      *
-     * <p>Apply for a margin loan. Weight: 100
+     * <p>Apply for a margin loan. Weight(IP): 100 Security Type: MARGIN
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountBorrowExample() throws ApiException {
+    public void marginAccountBorrowExample() throws ApiException, IOException {
         MarginAccountBorrowRequest marginAccountBorrowRequest = new MarginAccountBorrowRequest();
-        marginAccountBorrowRequest.asset("");
+        marginAccountBorrowRequest.asset("USDT");
         marginAccountBorrowRequest.amount(1.0d);
         ApiResponse<MarginAccountBorrowResponse> response =
                 getApi().marginAccountBorrow(marginAccountBorrowRequest);

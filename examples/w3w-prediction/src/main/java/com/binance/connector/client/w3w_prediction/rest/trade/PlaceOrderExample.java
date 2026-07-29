@@ -10,6 +10,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.AccountType;
 import com.binance.connector.client.w3w_prediction.rest.model.OrderType;
 import com.binance.connector.client.w3w_prediction.rest.model.PlaceOrderRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.PlaceOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class PlaceOrderExample {
@@ -29,7 +30,7 @@ public class PlaceOrderExample {
     }
 
     /**
-     * Place Order
+     * Place Order (TRADE)
      *
      * <p>Place a prediction order using a previously obtained quote. Requires SAS authorization.
      * Weight(IP): 200 Security Type: TRADE Notes: - Validation rules: | orderType | timeInForce |
@@ -39,7 +40,7 @@ public class PlaceOrderExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void placeOrderExample() throws ApiException {
+    public void placeOrderExample() throws ApiException, IOException {
         PlaceOrderRequest placeOrderRequest = new PlaceOrderRequest();
         placeOrderRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         placeOrderRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");

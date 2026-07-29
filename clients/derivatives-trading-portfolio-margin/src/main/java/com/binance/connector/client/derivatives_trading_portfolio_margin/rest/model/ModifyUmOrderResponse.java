@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ModifyUmOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyUmOrderResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -59,6 +59,12 @@ public class ModifyUmOrderResponse {
     @SerializedName(SERIALIZED_NAME_CLIENT_ORDER_ID)
     @jakarta.annotation.Nullable
     private String clientOrderId;
+
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -165,7 +171,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -184,7 +190,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -203,7 +209,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -222,7 +228,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -235,13 +241,32 @@ public class ModifyUmOrderResponse {
         this.clientOrderId = clientOrderId;
     }
 
+    public ModifyUmOrderResponse modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * user-defined modification identifier, only returned if provided in the request
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+    }
+
     public ModifyUmOrderResponse price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -260,7 +285,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -279,7 +304,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -298,7 +323,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -317,7 +342,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get cumQty
+     * Cum Qty.
      *
      * @return cumQty
      */
@@ -336,7 +361,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -355,7 +380,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -374,7 +399,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -393,7 +418,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -412,7 +437,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -431,7 +456,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -450,7 +475,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -470,7 +495,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -490,7 +515,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -509,7 +534,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -528,7 +553,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */
@@ -554,6 +579,7 @@ public class ModifyUmOrderResponse {
                 && Objects.equals(this.symbol, modifyUmOrderResponse.symbol)
                 && Objects.equals(this.status, modifyUmOrderResponse.status)
                 && Objects.equals(this.clientOrderId, modifyUmOrderResponse.clientOrderId)
+                && Objects.equals(this.modifyId, modifyUmOrderResponse.modifyId)
                 && Objects.equals(this.price, modifyUmOrderResponse.price)
                 && Objects.equals(this.avgPrice, modifyUmOrderResponse.avgPrice)
                 && Objects.equals(this.origQty, modifyUmOrderResponse.origQty)
@@ -580,6 +606,7 @@ public class ModifyUmOrderResponse {
                 symbol,
                 status,
                 clientOrderId,
+                modifyId,
                 price,
                 avgPrice,
                 origQty,
@@ -606,6 +633,7 @@ public class ModifyUmOrderResponse {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -647,6 +675,10 @@ public class ModifyUmOrderResponse {
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
         sb.append("clientOrderId=").append(urlEncode(clientOrderIdValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
@@ -745,6 +777,7 @@ public class ModifyUmOrderResponse {
         openapiFields.add("symbol");
         openapiFields.add("status");
         openapiFields.add("clientOrderId");
+        openapiFields.add("modifyId");
         openapiFields.add("price");
         openapiFields.add("avgPrice");
         openapiFields.add("origQty");

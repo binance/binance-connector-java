@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetConvertTradeHistoryResponseListInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetConvertTradeHistoryResponseListInner {
     public static final String SERIALIZED_NAME_QUOTE_ID = "quoteId";
 
@@ -145,7 +145,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get orderStatus
+     * Order status
      *
      * @return orderStatus
      */
@@ -165,7 +165,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get fromAsset
+     * Source asset
      *
      * @return fromAsset
      */
@@ -185,7 +185,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get fromAmount
+     * Source amount
      *
      * @return fromAmount
      */
@@ -205,7 +205,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get toAsset
+     * Destination asset
      *
      * @return toAsset
      */
@@ -225,7 +225,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get toAmount
+     * Destination amount
      *
      * @return toAmount
      */
@@ -245,7 +245,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get ratio
+     * Price ratio
      *
      * @return ratio
      */
@@ -265,7 +265,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get inverseRatio
+     * Inverse price ratio
      *
      * @return inverseRatio
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** UmNotionalAndLeverageBracketsResponseInnerBracketsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     public static final String SERIALIZED_NAME_BRACKET = "bracket";
 
@@ -82,7 +82,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get bracket
+     * Notional bracket
      *
      * @return bracket
      */
@@ -102,7 +102,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get initialLeverage
+     * Max initial leverage for this bracket
      *
      * @return initialLeverage
      */
@@ -122,7 +122,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get notionalCap
+     * Cap notional of this bracket
      *
      * @return notionalCap
      */
@@ -142,7 +142,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get notionalFloor
+     * Notional threshold of this bracket
      *
      * @return notionalFloor
      */
@@ -162,7 +162,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get maintMarginRatio
+     * Maintenance ratio for this bracket
      *
      * @return maintMarginRatio
      */
@@ -183,7 +183,7 @@ public class UmNotionalAndLeverageBracketsResponseInnerBracketsInner {
     }
 
     /**
-     * Get cum
+     * Auxiliary number for quick calculation
      *
      * @return cum
      */

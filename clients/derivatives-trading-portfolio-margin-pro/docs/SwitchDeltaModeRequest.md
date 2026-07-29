@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**deltaEnabled** | **String** |  |  |
+|**deltaEnabled** | **DeltaEnabled** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

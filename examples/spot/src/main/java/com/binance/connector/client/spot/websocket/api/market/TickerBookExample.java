@@ -29,13 +29,15 @@ public class TickerBookExample {
     }
 
     /**
-     * WebSocket Symbol order book ticker
+     * Symbol order book ticker
      *
      * <p>Get the current best price and quantity on the order book. If you need access to real-time
      * order book ticker updates, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@bookTicker&#x60; Weight: Adjusted based on the number of requested
-     * symbols: | Parameter | Weight | | --------- |:------:| | &#x60;symbol&#x60; | 2 | |
-     * &#x60;symbols&#x60; | 4 | | none | 4 |
+     * symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4|
+     * |symbols| Any |4| Security Type: NONE Notes: **Data Source:** Memory Notes: *
+     * &#x60;symbol&#x60; and &#x60;symbols&#x60; cannot be used together. * If no symbol is
+     * specified, returns information about all symbols currently trading on the exchange.
      */
     public void tickerBookExampleAsync() {
         TickerBookRequest tickerBookRequest = new TickerBookRequest();
@@ -51,13 +53,15 @@ public class TickerBookExample {
     }
 
     /**
-     * WebSocket Symbol order book ticker
+     * Symbol order book ticker
      *
      * <p>Get the current best price and quantity on the order book. If you need access to real-time
      * order book ticker updates, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@bookTicker&#x60; Weight: Adjusted based on the number of requested
-     * symbols: | Parameter | Weight | | --------- |:------:| | &#x60;symbol&#x60; | 2 | |
-     * &#x60;symbols&#x60; | 4 | | none | 4 |
+     * symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4|
+     * |symbols| Any |4| Security Type: NONE Notes: **Data Source:** Memory Notes: *
+     * &#x60;symbol&#x60; and &#x60;symbols&#x60; cannot be used together. * If no symbol is
+     * specified, returns information about all symbols currently trading on the exchange.
      */
     public void tickerBookExampleSync() {
         TickerBookRequest tickerBookRequest = new TickerBookRequest();

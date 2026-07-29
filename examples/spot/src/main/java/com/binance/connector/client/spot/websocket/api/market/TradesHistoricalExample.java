@@ -29,9 +29,10 @@ public class TradesHistoricalExample {
     }
 
     /**
-     * WebSocket Historical trades
+     * Historical trades
      *
-     * <p>Get historical trades. Weight: 25
+     * <p>Get historical trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
+     * Notes: * If &#x60;fromId&#x60; is not specified, the most recent trades are returned.
      */
     public void tradesHistoricalExampleAsync() {
         TradesHistoricalRequest tradesHistoricalRequest = new TradesHistoricalRequest();
@@ -49,9 +50,10 @@ public class TradesHistoricalExample {
     }
 
     /**
-     * WebSocket Historical trades
+     * Historical trades
      *
-     * <p>Get historical trades. Weight: 25
+     * <p>Get historical trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
+     * Notes: * If &#x60;fromId&#x60; is not specified, the most recent trades are returned.
      */
     public void tradesHistoricalExampleSync() {
         TradesHistoricalRequest tradesHistoricalRequest = new TradesHistoricalRequest();

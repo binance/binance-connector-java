@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class DustTransferExample {
@@ -28,14 +29,15 @@ public class DustTransferExample {
     /**
      * Dust Transfer (USER_DATA)
      *
-     * <p>Convert dust assets to BNB. * You need to open&#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 10
+     * <p>Convert dust assets to BNB. Weight(UID): 10 Security Type: USER_DATA Notes: - You need to
+     * open&#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests
+     * this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void dustTransferExample() throws ApiException {
+    public void dustTransferExample() throws ApiException, IOException {
         DustTransferRequest dustTransferRequest = new DustTransferRequest();
-        dustTransferRequest.asset("");
+        dustTransferRequest.asset("BTC");
         ApiResponse<DustTransferResponse> response = getApi().dustTransfer(dustTransferRequest);
         System.out.println(response.getData());
     }

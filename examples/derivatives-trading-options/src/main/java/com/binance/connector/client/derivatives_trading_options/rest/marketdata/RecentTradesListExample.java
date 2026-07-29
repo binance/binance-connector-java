@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentTradesListResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class RecentTradesListExample {
@@ -28,13 +29,13 @@ public class RecentTradesListExample {
     /**
      * Recent Trades List
      *
-     * <p>Get recent market trades Weight: 5
+     * <p>Get recent market trades Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
-    public void recentTradesListExample() throws ApiException {
-        String symbol = "";
-        Long limit = 100L;
+    public void recentTradesListExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long limit = 20L;
         ApiResponse<RecentTradesListResponse> response = getApi().recentTradesList(symbol, limit);
         System.out.println(response.getData());
     }

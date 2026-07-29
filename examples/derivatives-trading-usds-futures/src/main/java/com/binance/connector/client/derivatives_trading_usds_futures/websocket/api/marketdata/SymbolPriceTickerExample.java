@@ -31,9 +31,9 @@ public class SymbolPriceTickerExample {
     /**
      * Symbol Price Ticker
      *
-     * <p>Latest price for a symbol or symbols. * If the symbol is not sent, prices for all symbols
-     * will be returned in an array. Weight: 1 for a single symbol; 2 when the symbol parameter is
-     * omitted
+     * <p>Latest price for a symbol or symbols. Weight: **1** for a single symbol; **2** when the
+     * symbol parameter is omitted Notes: - If the symbol is not sent, prices for all symbols will
+     * be returned in an array.
      */
     public void symbolPriceTickerExampleAsync() {
         SymbolPriceTickerRequest symbolPriceTickerRequest = new SymbolPriceTickerRequest();
@@ -52,9 +52,9 @@ public class SymbolPriceTickerExample {
     /**
      * Symbol Price Ticker
      *
-     * <p>Latest price for a symbol or symbols. * If the symbol is not sent, prices for all symbols
-     * will be returned in an array. Weight: 1 for a single symbol; 2 when the symbol parameter is
-     * omitted
+     * <p>Latest price for a symbol or symbols. Weight: **1** for a single symbol; **2** when the
+     * symbol parameter is omitted Notes: - If the symbol is not sent, prices for all symbols will
+     * be returned in an array.
      */
     public void symbolPriceTickerExampleSync() {
         SymbolPriceTickerRequest symbolPriceTickerRequest = new SymbolPriceTickerRequest();

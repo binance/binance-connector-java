@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetSummaryOfMarginAccountExample {
@@ -28,11 +29,11 @@ public class GetSummaryOfMarginAccountExample {
     /**
      * Get Summary of Margin account (USER_DATA)
      *
-     * <p>Get personal margin level information Weight: 10(IP)
+     * <p>Get personal margin level information Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSummaryOfMarginAccountExample() throws ApiException {
+    public void getSummaryOfMarginAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfMarginAccountResponse> response =
                 getApi().getSummaryOfMarginAccount(recvWindow);

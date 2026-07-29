@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.AccountApiTradingStatusResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class AccountApiTradingStatusExample {
@@ -27,11 +28,11 @@ public class AccountApiTradingStatusExample {
     /**
      * Account API Trading Status (USER_DATA)
      *
-     * <p>Fetch account api trading status detail. Weight: 1
+     * <p>Fetch account api trading status detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountApiTradingStatusExample() throws ApiException {
+    public void accountApiTradingStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountApiTradingStatusResponse> response =
                 getApi().accountApiTradingStatus(recvWindow);

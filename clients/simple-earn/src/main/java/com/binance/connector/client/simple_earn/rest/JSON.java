@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -288,6 +288,12 @@ public class JSON {
                 new com.binance.connector.client.simple_earn.rest.model
                         .GetSimpleEarnLockedProductListResponseRowsInnerQuota
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetYieldArenaActivitiesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.simple_earn.rest.model
+                        .GetYieldArenaActivitiesResponseActivitiesInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest
                         .CustomTypeAdapterFactory());

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** StartUserDataStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class StartUserDataStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -65,7 +65,7 @@ public class StartUserDataStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid StartUserDataStreamResponseRateLimitsInner> rateLimits;
+    private List<@Valid CloseUserDataStreamResponseRateLimitsInner> rateLimits;
 
     public StartUserDataStreamResponse() {}
 
@@ -75,7 +75,7 @@ public class StartUserDataStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -94,7 +94,7 @@ public class StartUserDataStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -130,13 +130,13 @@ public class StartUserDataStreamResponse extends BaseDTO {
 
     public StartUserDataStreamResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid StartUserDataStreamResponseRateLimitsInner> rateLimits) {
+                    List<@Valid CloseUserDataStreamResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public StartUserDataStreamResponse addRateLimitsItem(
-            StartUserDataStreamResponseRateLimitsInner rateLimitsItem) {
+            CloseUserDataStreamResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -145,19 +145,19 @@ public class StartUserDataStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get rateLimits
+     * Rate limit definitions.
      *
      * @return rateLimits
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid StartUserDataStreamResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid CloseUserDataStreamResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid StartUserDataStreamResponseRateLimitsInner> rateLimits) {
+                    List<@Valid CloseUserDataStreamResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -212,7 +212,7 @@ public class StartUserDataStreamResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid StartUserDataStreamResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid CloseUserDataStreamResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -336,7 +336,7 @@ public class StartUserDataStreamResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    StartUserDataStreamResponseRateLimitsInner.validateJsonElement(
+                    CloseUserDataStreamResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**minUsdValue** | **String** |  |  [optional] |
-|**maxUsdValue** | **String** |  |  [optional] |
-|**discountRate** | **String** |  |  [optional] |
+|**minUsdValue** | **String** | min Usd Value. |  [optional] |
+|**maxUsdValue** | **String** | max Usd Value. |  [optional] |
+|**discountRate** | **String** | discount Rate. |  [optional] |
 
 
 

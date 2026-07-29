@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse;
+import java.io.IOException;
 
 /** API examples for BfusdApi */
 public class GetBfusdAccountExample {
@@ -28,11 +29,11 @@ public class GetBfusdAccountExample {
     /**
      * Get BFUSD Account (USER_DATA)
      *
-     * <p>Get BFUSD account information. Weight: 150
+     * <p>Get BFUSD account information. Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBfusdAccountExample() throws ApiException {
+    public void getBfusdAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetBfusdAccountResponse> response = getApi().getBfusdAccount(recvWindow);
         System.out.println(response.getData());

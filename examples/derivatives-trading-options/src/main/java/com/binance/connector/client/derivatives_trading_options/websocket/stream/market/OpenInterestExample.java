@@ -32,7 +32,6 @@ public class OpenInterestExample {
      */
     public void openInterestExample() throws ApiException, InterruptedException {
         OpenInterestRequest openInterestRequest = new OpenInterestRequest();
-        openInterestRequest.expirationDate("220930");
         StreamBlockingQueueWrapper<OpenInterestResponse> response =
                 getApi().openInterest(openInterestRequest);
         while (true) {

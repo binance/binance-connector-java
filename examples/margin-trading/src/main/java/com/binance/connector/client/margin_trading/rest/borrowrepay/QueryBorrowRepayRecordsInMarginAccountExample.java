@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryBorrowRepayRecordsInMarginAccountResponse;
+import java.io.IOException;
 
 /** API examples for BorrowRepayApi */
 public class QueryBorrowRepayRecordsInMarginAccountExample {
@@ -26,21 +28,22 @@ public class QueryBorrowRepayRecordsInMarginAccountExample {
     }
 
     /**
-     * Query borrow/repay records in Margin account(USER_DATA)
+     * Query borrow/repay records in Margin account (USER_DATA)
      *
-     * <p>Query borrow/repay records in Margin account * &#x60;txId&#x60; or &#x60;startTime&#x60;
-     * must be sent. &#x60;txId&#x60; takes precedence. * If an asset is sent, data within 30 days
-     * before &#x60;endTime&#x60;; If an asset is not sent, data within 7 days before
-     * &#x60;endTime&#x60; * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the
-     * recent 7-day data will be returned. * &#x60;startTime&#x60; set as &#x60;endTime&#x60; -
-     * 7days by default, &#x60;endTime&#x60; set as current time by default Weight: 10(IP)
+     * <p>Query borrow/repay records in Margin account Weight(IP): 10 Security Type: USER_DATA
+     * Notes: - &#x60;txId&#x60; or &#x60;startTime&#x60; must be sent. &#x60;txId&#x60; takes
+     * precedence. - Response in descending order - If an asset is sent, data within 30 days before
+     * &#x60;endTime&#x60;; If an asset is not sent, data within 7 days before &#x60;endTime&#x60; -
+     * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will
+     * be returned. - &#x60;startTime&#x60; set as &#x60;endTime&#x60; - 7 days by default,
+     * &#x60;endTime&#x60; set as current time by default
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryBorrowRepayRecordsInMarginAccountExample() throws ApiException {
-        String type = "";
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryBorrowRepayRecordsInMarginAccountExample() throws ApiException, IOException {
+        OrderType type = OrderType.ROLL_IN;
+        String asset = "BNB";
+        String isolatedSymbol = "BNBUSDT";
         Long txId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -32,10 +32,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** QueryCmModifyOrderHistoryResponseInnerAmendment */
+/** Amendment. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCmModifyOrderHistoryResponseInnerAmendment {
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -54,6 +54,12 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
     @SerializedName(SERIALIZED_NAME_COUNT)
     @jakarta.annotation.Nullable
     private Long count;
+
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
 
     public QueryCmModifyOrderHistoryResponseInnerAmendment() {}
 
@@ -112,7 +118,7 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
     }
 
     /**
-     * Get count
+     * Order modification count, representing the number of times the order has been modified
      *
      * @return count
      */
@@ -123,6 +129,26 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
 
     public void setCount(@jakarta.annotation.Nullable Long count) {
         this.count = count;
+    }
+
+    public QueryCmModifyOrderHistoryResponseInnerAmendment modifyId(
+            @jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * user-defined modification identifier, only returned if provided in the request
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
     }
 
     @Override
@@ -139,13 +165,14 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
         return Objects.equals(this.price, queryCmModifyOrderHistoryResponseInnerAmendment.price)
                 && Objects.equals(
                         this.origQty, queryCmModifyOrderHistoryResponseInnerAmendment.origQty)
+                && Objects.equals(this.count, queryCmModifyOrderHistoryResponseInnerAmendment.count)
                 && Objects.equals(
-                        this.count, queryCmModifyOrderHistoryResponseInnerAmendment.count);
+                        this.modifyId, queryCmModifyOrderHistoryResponseInnerAmendment.modifyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(price, origQty, count);
+        return Objects.hash(price, origQty, count, modifyId);
     }
 
     @Override
@@ -155,6 +182,7 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		count: ").append(toIndentedString(count)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -174,6 +202,10 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
         String countValueAsString = "";
         countValueAsString = countValue.toString();
         sb.append("count=").append(urlEncode(countValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -205,6 +237,7 @@ public class QueryCmModifyOrderHistoryResponseInnerAmendment {
         openapiFields.add("price");
         openapiFields.add("origQty");
         openapiFields.add("count");
+        openapiFields.add("modifyId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

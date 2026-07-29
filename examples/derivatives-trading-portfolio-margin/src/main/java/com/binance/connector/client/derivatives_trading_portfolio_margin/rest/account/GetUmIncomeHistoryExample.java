@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUmIncomeHistoryResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.IncomeType;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetUmIncomeHistoryExample {
@@ -26,21 +28,22 @@ public class GetUmIncomeHistoryExample {
     }
 
     /**
-     * Get UM Income History(USER_DATA)
+     * Get UM Income History (USER_DATA)
      *
-     * <p>Get UM Income History * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent,
-     * the recent 7-day data will be returned. * If &#x60;incomeType&#x60; is not sent, all kinds of
-     * flow will be returned * \&quot;trandId\&quot; is unique in the same incomeType for a user *
-     * Income history only contains data for the last three months Weight: 30
+     * <p>Get UM Income History. Weight(IP): 30 Security Type: USER_DATA Notes: - If neither
+     * &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will be
+     * returned. - If &#x60;incomeType&#x60; is not sent, all kinds of flow will be returned -
+     * \&quot;trandId\&quot; is unique in the same incomeType for a user - Income history only
+     * contains data for the last three months
      *
      * @throws ApiException if the Api call fails
      */
-    public void getUmIncomeHistoryExample() throws ApiException {
+    public void getUmIncomeHistoryExample() throws ApiException, IOException {
         String symbol = "";
-        String incomeType = "";
+        IncomeType incomeType = IncomeType.TRANSFER;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
+        Long page = 1L;
         Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<GetUmIncomeHistoryResponse> response =

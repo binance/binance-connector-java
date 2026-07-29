@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.AvgPriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class AvgPriceExample {
@@ -27,11 +28,12 @@ public class AvgPriceExample {
     /**
      * Current average price
      *
-     * <p>Current average price for a symbol. Weight: 2
+     * <p>Current average price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void avgPriceExample() throws ApiException {
+    public void avgPriceExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
         ApiResponse<AvgPriceResponse> response = getApi().avgPrice(symbol);
         System.out.println(response.getData());

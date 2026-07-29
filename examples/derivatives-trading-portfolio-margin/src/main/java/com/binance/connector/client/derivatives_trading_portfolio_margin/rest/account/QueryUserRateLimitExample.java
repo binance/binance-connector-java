@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUserRateLimitResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryUserRateLimitExample {
@@ -28,11 +29,11 @@ public class QueryUserRateLimitExample {
     /**
      * Query User Rate Limit (USER_DATA)
      *
-     * <p>Query User Rate Limit Weight: 1
+     * <p>Query User Rate Limit Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryUserRateLimitExample() throws ApiException {
+    public void queryUserRateLimitExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryUserRateLimitResponse> response = getApi().queryUserRateLimit(recvWindow);
         System.out.println(response.getData());

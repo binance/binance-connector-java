@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**List&lt;FuturesAccountBalanceV2ResponseResultInner&gt;**](FuturesAccountBalanceV2ResponseResultInner.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AccountInformationV2ResponseRateLimitsInner&gt;**](AccountInformationV2ResponseRateLimitsInner.md) |  |  [optional] |
+|**result** | [**List&lt;FuturesAccountBalanceResponseResultInner&gt;**](FuturesAccountBalanceResponseResultInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountInformationResponseRateLimitsInner&gt;**](AccountInformationResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

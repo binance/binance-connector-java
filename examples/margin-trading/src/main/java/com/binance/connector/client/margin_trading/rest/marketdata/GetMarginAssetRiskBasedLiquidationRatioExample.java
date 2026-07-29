@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetMarginAssetRiskBasedLiquidationRatioExample {
@@ -28,11 +29,11 @@ public class GetMarginAssetRiskBasedLiquidationRatioExample {
     /**
      * Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
      *
-     * <p>Get Margin Asset Risk-Based Liquidation Ratio Weight: 1
+     * <p>Get Margin Asset Risk-Based Liquidation Ratio Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getMarginAssetRiskBasedLiquidationRatioExample() throws ApiException {
+    public void getMarginAssetRiskBasedLiquidationRatioExample() throws ApiException, IOException {
         ApiResponse<GetMarginAssetRiskBasedLiquidationRatioResponse> response =
                 getApi().getMarginAssetRiskBasedLiquidationRatio();
         System.out.println(response.getData());

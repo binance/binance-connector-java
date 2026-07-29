@@ -33,7 +33,8 @@ public class StartUserDataStreamExample {
      *
      * <p>Start a new user data stream. The stream will close after 60 minutes unless a keepalive is
      * sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be
-     * returned and its validity will be extended for 60 minutes. Weight: 1
+     * returned and its validity will be extended for 60 minutes. Weight(IP): 1 Security Type:
+     * USER_STREAM
      */
     public void startUserDataStreamExampleAsync() {
         StartUserDataStreamRequest startUserDataStreamRequest = new StartUserDataStreamRequest();
@@ -54,7 +55,8 @@ public class StartUserDataStreamExample {
      *
      * <p>Start a new user data stream. The stream will close after 60 minutes unless a keepalive is
      * sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be
-     * returned and its validity will be extended for 60 minutes. Weight: 1
+     * returned and its validity will be extended for 60 minutes. Weight(IP): 1 Security Type:
+     * USER_STREAM
      */
     public void startUserDataStreamExampleSync() {
         StartUserDataStreamRequest startUserDataStreamRequest = new StartUserDataStreamRequest();

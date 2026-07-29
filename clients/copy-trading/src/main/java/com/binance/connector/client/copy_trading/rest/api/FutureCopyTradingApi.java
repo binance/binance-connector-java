@@ -1,6 +1,6 @@
 /*
- * Binance Copy Trading REST API
- * OpenAPI Specification for the Binance Copy Trading REST API
+ * Copy Trading REST API
+ * Automate lead trading via the Copy Trading API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -43,7 +43,7 @@ public class FutureCopyTradingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-copy-trading/1.2.1 (Java/%s; %s; %s)",
+                    "binance-copy-trading/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -83,7 +83,7 @@ public class FutureCopyTradingApi {
     /**
      * Build call for getFuturesLeadTraderStatus
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -94,8 +94,8 @@ public class FutureCopyTradingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trader-Status">Get
-     *     Futures Lead Trader Status(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trader-status">Get
+     *     Futures Lead Trader Status (TRADE) Documentation</a>
      */
     private okhttp3.Call getFuturesLeadTraderStatusCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -188,9 +188,10 @@ public class FutureCopyTradingApi {
     }
 
     /**
-     * Get Futures Lead Trader Status(TRADE) Get Futures Lead Trader Status Weight: 20
+     * Get Futures Lead Trader Status (TRADE) Get Futures Lead Trader Status Weight(IP): 1 Security
+     * Type: TRADE
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFuturesLeadTraderStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -202,11 +203,11 @@ public class FutureCopyTradingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trader-Status">Get
-     *     Futures Lead Trader Status(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trader-status">Get
+     *     Futures Lead Trader Status (TRADE) Documentation</a>
      */
     public ApiResponse<GetFuturesLeadTraderStatusResponse> getFuturesLeadTraderStatus(
-            Long recvWindow) throws ApiException {
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getFuturesLeadTraderStatusValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetFuturesLeadTraderStatusResponse>() {}.getType();
@@ -216,7 +217,7 @@ public class FutureCopyTradingApi {
     /**
      * Build call for getFuturesLeadTradingSymbolWhitelist
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -227,8 +228,8 @@ public class FutureCopyTradingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trading-Symbol-Whitelist">Get
-     *     Futures Lead Trading Symbol Whitelist(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trading-symbol-whitelist">Get
+     *     Futures Lead Trading Symbol Whitelist (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesLeadTradingSymbolWhitelistCall(Long recvWindow)
             throws ApiException {
@@ -323,10 +324,10 @@ public class FutureCopyTradingApi {
     }
 
     /**
-     * Get Futures Lead Trading Symbol Whitelist(USER_DATA) Get Futures Lead Trading Symbol
-     * Whitelist Weight: 20
+     * Get Futures Lead Trading Symbol Whitelist (USER_DATA) Get Futures Lead Trading Symbol
+     * Whitelist Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFuturesLeadTradingSymbolWhitelistResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -338,11 +339,11 @@ public class FutureCopyTradingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trading-Symbol-Whitelist">Get
-     *     Futures Lead Trading Symbol Whitelist(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trading-symbol-whitelist">Get
+     *     Futures Lead Trading Symbol Whitelist (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesLeadTradingSymbolWhitelistResponse>
-            getFuturesLeadTradingSymbolWhitelist(Long recvWindow) throws ApiException {
+            getFuturesLeadTradingSymbolWhitelist(@Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesLeadTradingSymbolWhitelistValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =

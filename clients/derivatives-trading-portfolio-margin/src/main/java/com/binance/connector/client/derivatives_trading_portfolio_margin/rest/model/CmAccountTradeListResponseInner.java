@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CmAccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CmAccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -140,7 +140,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -159,7 +159,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * ID.
      *
      * @return id
      */
@@ -178,7 +178,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -197,7 +197,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -216,7 +216,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -235,7 +235,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -254,7 +254,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -274,7 +274,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized Pnl.
      *
      * @return realizedPnl
      */
@@ -294,7 +294,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin Asset.
      *
      * @return marginAsset
      */
@@ -313,7 +313,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get baseQty
+     * Base Qty.
      *
      * @return baseQty
      */
@@ -333,7 +333,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -353,7 +353,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -372,7 +372,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -392,7 +392,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -411,7 +411,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Buyer.
      *
      * @return buyer
      */
@@ -430,7 +430,7 @@ public class CmAccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Maker.
      *
      * @return maker
      */

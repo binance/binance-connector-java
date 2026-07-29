@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,24 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets orderType */
+/** Please see [Enums](/products/spot/enums#ordertypes) for supported values. */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
     MARKET("MARKET"),
 
-    LIMIT("LIMIT"),
-
-    STOP_LOSS("STOP_LOSS"),
-
-    STOP_LOSS_LIMIT("STOP_LOSS_LIMIT"),
-
-    TAKE_PROFIT("TAKE_PROFIT"),
-
-    TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT"),
-
-    LIMIT_MAKER("LIMIT_MAKER"),
-
-    NON_REPRESENTABLE("NON_REPRESENTABLE");
+    LIMIT("LIMIT");
 
     private String value;
 

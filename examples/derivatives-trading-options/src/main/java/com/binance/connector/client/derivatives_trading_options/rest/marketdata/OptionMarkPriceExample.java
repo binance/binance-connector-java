@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarkPriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OptionMarkPriceExample {
@@ -28,12 +29,12 @@ public class OptionMarkPriceExample {
     /**
      * Option Mark Price
      *
-     * <p>Option mark price and greek info. Weight: 5
+     * <p>Option mark price and greek info. Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
-    public void optionMarkPriceExample() throws ApiException {
-        String symbol = "";
+    public void optionMarkPriceExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
         ApiResponse<OptionMarkPriceResponse> response = getApi().optionMarkPrice(symbol);
         System.out.println(response.getData());
     }

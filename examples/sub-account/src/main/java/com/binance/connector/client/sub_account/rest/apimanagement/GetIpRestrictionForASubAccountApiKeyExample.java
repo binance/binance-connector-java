@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetIpRestrictionForASubAccountApiKeyResponse;
+import java.io.IOException;
 
 /** API examples for ApiManagementApi */
 public class GetIpRestrictionForASubAccountApiKeyExample {
@@ -28,13 +29,13 @@ public class GetIpRestrictionForASubAccountApiKeyExample {
     /**
      * Get IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA)
      *
-     * <p>Get IP Restriction for a Sub-account API Key Weight: 3000
+     * <p>Get IP Restriction for a Sub-account API Key Weight(UID): 3000 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getIpRestrictionForASubAccountApiKeyExample() throws ApiException {
-        String email = "sub-account-email@email.com";
-        String subAccountApiKey = "";
+    public void getIpRestrictionForASubAccountApiKeyExample() throws ApiException, IOException {
+        String email = "123@test.com";
+        String subAccountApiKey = "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf";
         Long recvWindow = 5000L;
         ApiResponse<GetIpRestrictionForASubAccountApiKeyResponse> response =
                 getApi().getIpRestrictionForASubAccountApiKey(email, subAccountApiKey, recvWindow);

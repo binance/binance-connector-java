@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPaymentOptionBalancesResponse;
+import java.io.IOException;
 
 /** API examples for WalletApi */
 public class QueryPaymentOptionBalancesExample {
@@ -26,14 +27,14 @@ public class QueryPaymentOptionBalancesExample {
     }
 
     /**
-     * Query Payment Option Balances
+     * Query Payment Option Balances (USER_DATA)
      *
      * <p>Get available balances for each payment option that can be used for prediction trading.
      * Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPaymentOptionBalancesExample() throws ApiException {
+    public void queryPaymentOptionBalancesExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryPaymentOptionBalancesResponse> response =
                 getApi().queryPaymentOptionBalances(recvWindow);

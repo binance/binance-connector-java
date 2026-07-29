@@ -7,18 +7,18 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**commission** | **String** |  |  [optional] |
-|**commissionAsset** | **String** |  |  [optional] |
-|**id** | **Long** |  |  [optional] |
-|**isBestMatch** | **Boolean** |  |  [optional] |
-|**isBuyer** | **Boolean** |  |  [optional] |
-|**isMaker** | **Boolean** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**qty** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**isIsolated** | **Boolean** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**commission** | **String** | commission. |  [optional] |
+|**commissionAsset** | **String** | commission Asset. |  [optional] |
+|**id** | **Long** | id. |  [optional] |
+|**isBestMatch** | **Boolean** | is Best Match. |  [optional] |
+|**isBuyer** | **Boolean** | is Buyer. |  [optional] |
+|**isMaker** | **Boolean** | is Maker. |  [optional] |
+|**orderId** | **Long** | order Id. |  [optional] |
+|**price** | **String** | price. |  [optional] |
+|**qty** | **String** | qty. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**isIsolated** | **Boolean** | is Isolated. |  [optional] |
+|**time** | **Long** | time. |  [optional] |
 
 
 

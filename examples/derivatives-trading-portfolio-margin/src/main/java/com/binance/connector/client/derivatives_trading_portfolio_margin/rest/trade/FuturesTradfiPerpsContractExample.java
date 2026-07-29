@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FuturesTradfiPerpsContractRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FuturesTradfiPerpsContractResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class FuturesTradfiPerpsContractExample {
@@ -27,13 +28,13 @@ public class FuturesTradfiPerpsContractExample {
     }
 
     /**
-     * Futures TradFi Perps Contract(USER_DATA)
+     * Futures TradFi Perps Contract (USER_DATA)
      *
-     * <p>Sign TradFi-Perps agreement contract Weight: 5
+     * <p>Sign TradFi-Perps agreement contract Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void futuresTradfiPerpsContractExample() throws ApiException {
+    public void futuresTradfiPerpsContractExample() throws ApiException, IOException {
         FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest =
                 new FuturesTradfiPerpsContractRequest();
         ApiResponse<FuturesTradfiPerpsContractResponse> response =

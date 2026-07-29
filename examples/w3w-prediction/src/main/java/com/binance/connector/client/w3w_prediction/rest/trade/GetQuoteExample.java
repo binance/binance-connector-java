@@ -10,6 +10,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.GetQuoteRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.GetQuoteResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.OrderType;
 import com.binance.connector.client.w3w_prediction.rest.model.Side;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetQuoteExample {
@@ -29,7 +30,7 @@ public class GetQuoteExample {
     }
 
     /**
-     * Get Quote
+     * Get Quote (TRADE)
      *
      * <p>Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be used in
      * the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE Response Notes: -
@@ -44,7 +45,7 @@ public class GetQuoteExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void getQuoteExample() throws ApiException {
+    public void getQuoteExample() throws ApiException, IOException {
         GetQuoteRequest getQuoteRequest = new GetQuoteRequest();
         getQuoteRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         getQuoteRequest.tokenId("112233");

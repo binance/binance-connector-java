@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.AutoRepay;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class ChangeAutoRepayFuturesStatusExample {
@@ -27,16 +29,16 @@ public class ChangeAutoRepayFuturesStatusExample {
     }
 
     /**
-     * Change Auto-repay-futures Status(TRADE)
+     * Change Auto-repay-futures Status (TRADE)
      *
-     * <p>Change Auto-repay-futures Status Weight: 1500
+     * <p>Change Auto-repay-futures Status Weight(IP): 1500 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeAutoRepayFuturesStatusExample() throws ApiException {
+    public void changeAutoRepayFuturesStatusExample() throws ApiException, IOException {
         ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest =
                 new ChangeAutoRepayFuturesStatusRequest();
-        changeAutoRepayFuturesStatusRequest.autoRepay("true");
+        changeAutoRepayFuturesStatusRequest.autoRepay(AutoRepay.TRUE);
         ApiResponse<ChangeAutoRepayFuturesStatusResponse> response =
                 getApi().changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest);
         System.out.println(response.getData());

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.FuturesAccountBalanceResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class FuturesAccountBalanceExample {
@@ -28,11 +29,11 @@ public class FuturesAccountBalanceExample {
     /**
      * Futures Account Balance (USER_DATA)
      *
-     * <p>Check futures account balance Weight: 1
+     * <p>Check futures account balance Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void futuresAccountBalanceExample() throws ApiException {
+    public void futuresAccountBalanceExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FuturesAccountBalanceResponse> response =
                 getApi().futuresAccountBalance(recvWindow);

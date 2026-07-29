@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogMasterAccountTradingResponse;
+import com.binance.connector.client.sub_account.rest.model.TransferFunctionAccountType;
+import java.io.IOException;
 
 /** API examples for ManagedSubAccountApi */
 public class QueryManagedSubAccountTransferLogMasterAccountTradingExample {
@@ -26,25 +28,27 @@ public class QueryManagedSubAccountTransferLogMasterAccountTradingExample {
     }
 
     /**
-     * Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+     * Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
      *
-     * <p>Trading team can use this api to query managed sub account transfer log. This endpoint is
-     * available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type
-     * for investors who value flexibility in asset allocation and account application, while
-     * delegating trades to a professional trading team. Please refer to
+     * <p>Query Managed Sub Account Transfer Log For Trading Team Master Account Trading team can
+     * use this api to query managed sub account transfer log. This endpoint is available for
+     * trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors
+     * who value flexibility in asset allocation and account application, while delegating trades to
+     * a professional trading team. Please refer to
      * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight: 60
+     * Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryManagedSubAccountTransferLogMasterAccountTradingExample() throws ApiException {
-        String email = "sub-account-email@email.com";
+    public void queryManagedSubAccountTransferLogMasterAccountTradingExample()
+            throws ApiException, IOException {
+        String email = "abc@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 0L;
+        Long page = 1L;
+        Long limit = 10L;
         String transfers = "";
-        String transferFunctionAccountType = "";
+        TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.SPOT;
         ApiResponse<QueryManagedSubAccountTransferLogMasterAccountTradingResponse> response =
                 getApi().queryManagedSubAccountTransferLogMasterAccountTrading(
                                 email,

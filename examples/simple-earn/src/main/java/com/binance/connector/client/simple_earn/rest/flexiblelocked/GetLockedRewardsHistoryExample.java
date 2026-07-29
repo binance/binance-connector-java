@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetLockedRewardsHistoryResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class GetLockedRewardsHistoryExample {
@@ -26,21 +27,21 @@ public class GetLockedRewardsHistoryExample {
     }
 
     /**
-     * Get Locked Rewards History(USER_DATA)
+     * Get Locked Rewards History (USER_DATA)
      *
-     * <p>Get Locked Rewards History * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Locked Rewards History Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLockedRewardsHistoryExample() throws ApiException {
+    public void getLockedRewardsHistoryExample() throws ApiException, IOException {
         String positionId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

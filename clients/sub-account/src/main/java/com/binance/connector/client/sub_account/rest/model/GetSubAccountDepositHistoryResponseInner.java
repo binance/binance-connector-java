@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetSubAccountDepositHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSubAccountDepositHistoryResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -201,7 +201,8 @@ public class GetSubAccountDepositHistoryResponseInner {
     }
 
     /**
-     * Get status
+     * Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit,
+     * 8&#x3D;waiting user confirmation, 1&#x3D;success.
      *
      * @return status
      */

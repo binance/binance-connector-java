@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.PositionInformationResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class PositionInformationExample {
@@ -26,20 +27,22 @@ public class PositionInformationExample {
     }
 
     /**
-     * Position Information(USER_DATA)
+     * Position Information (USER_DATA)
      *
-     * <p>Get current account information. * If neither &#x60;marginAsset&#x60; nor &#x60;pair&#x60;
-     * is sent, positions of all symbols with &#x60;TRADING&#x60; status will be returned. * for
-     * One-way Mode user, the response will only show the \&quot;BOTH\&quot; positions * for Hedge
-     * Mode user, the response will show \&quot;BOTH\&quot;, \&quot;LONG\&quot;, and
-     * \&quot;SHORT\&quot; positions. Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to
-     * meet your timeliness and accuracy needs. Weight: 1
+     * <p>Get current account information. Weight(IP): 1 Security Type: USER_DATA Notes: - If
+     * neither &#x60;marginAsset&#x60; nor &#x60;pair&#x60; is sent, positions of all symbols with
+     * &#x60;TRADING&#x60; status will be returned. - for One-way Mode user, the response will only
+     * show the \&quot;BOTH\&quot; positions - for Hedge Mode user, the response will show
+     * \&quot;BOTH\&quot;, \&quot;LONG\&quot;, and \&quot;SHORT\&quot; positions. **Note** &gt;
+     * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and
+     * accuracy needs. - Please use with user data stream ACCOUNT_UPDATE to meet your timeliness and
+     * accuracy needs.
      *
      * @throws ApiException if the Api call fails
      */
-    public void positionInformationExample() throws ApiException {
-        String marginAsset = "";
-        String pair = "";
+    public void positionInformationExample() throws ApiException, IOException {
+        String marginAsset = "USDT";
+        String pair = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PositionInformationResponse> response =
                 getApi().positionInformation(marginAsset, pair, recvWindow);

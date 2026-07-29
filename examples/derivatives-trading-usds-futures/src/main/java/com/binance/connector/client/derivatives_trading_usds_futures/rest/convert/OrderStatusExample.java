@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderStatusResponse;
+import java.io.IOException;
 
 /** API examples for ConvertApi */
 public class OrderStatusExample {
@@ -26,14 +27,14 @@ public class OrderStatusExample {
     }
 
     /**
-     * Order status(USER_DATA)
+     * Order status (USER_DATA)
      *
-     * <p>Query order status by order ID. Weight: 50(IP)
+     * <p>Query order status by order ID. Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderStatusExample() throws ApiException {
-        Long orderId = 1L;
+    public void orderStatusExample() throws ApiException, IOException {
+        String orderId = "933256278426274400";
         String quoteId = "1";
         ApiResponse<OrderStatusResponse> response = getApi().orderStatus(orderId, quoteId);
         System.out.println(response.getData());

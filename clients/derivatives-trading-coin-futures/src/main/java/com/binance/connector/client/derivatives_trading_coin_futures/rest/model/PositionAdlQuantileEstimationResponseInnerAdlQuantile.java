@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** PositionAdlQuantileEstimationResponseInnerAdlQuantile */
+/** ADL quantile information. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionAdlQuantileEstimationResponseInnerAdlQuantile {
     public static final String SERIALIZED_NAME_L_O_N_G = "LONG";
 
@@ -69,7 +69,7 @@ public class PositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get LONG
+     * adl quantile for \&quot;LONG\&quot; position in hedge mode
      *
      * @return LONG
      */
@@ -89,7 +89,7 @@ public class PositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get SHORT
+     * adl qauntile for \&quot;SHORT\&quot; position in hedge mode
      *
      * @return SHORT
      */
@@ -109,7 +109,7 @@ public class PositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get HEDGE
+     * Hedge mode ADL quantile.
      *
      * @return HEDGE
      */
@@ -129,7 +129,7 @@ public class PositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get BOTH
+     * One-way mode ADL quantile.
      *
      * @return BOTH
      */

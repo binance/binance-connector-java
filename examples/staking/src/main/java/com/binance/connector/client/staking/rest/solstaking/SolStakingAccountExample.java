@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SolStakingAccountResponse;
+import java.io.IOException;
 
 /** API examples for SolStakingApi */
 public class SolStakingAccountExample {
@@ -25,13 +26,13 @@ public class SolStakingAccountExample {
     }
 
     /**
-     * SOL Staking account(USER_DATA)
+     * SOL Staking account (USER_DATA)
      *
-     * <p>SOL Staking account Weight: 150
+     * <p>SOL Staking account Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void solStakingAccountExample() throws ApiException {
+    public void solStakingAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<SolStakingAccountResponse> response = getApi().solStakingAccount(recvWindow);
         System.out.println(response.getData());

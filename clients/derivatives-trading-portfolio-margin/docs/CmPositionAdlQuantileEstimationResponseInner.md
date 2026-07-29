@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
 |**adlQuantile** | [**CmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](CmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
 
 

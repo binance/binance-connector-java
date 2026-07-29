@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,12 +28,15 @@ import com.binance.connector.client.wallet.rest.model.DepositAddressResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.FetchDepositAddressListWithNetworkResponse;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawAddressListResponse;
+import com.binance.connector.client.wallet.rest.model.FetchWithdrawQuotaResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
+import com.binance.connector.client.wallet.rest.model.Status;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.WithdrawResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -87,12 +90,13 @@ public class CapitalApiTest {
     /**
      * All Coins&#39; Information (USER_DATA)
      *
-     * <p>Get information of coins (available for deposit and withdraw) for user. Weight: 10
+     * <p>Get information of coins (available for deposit and withdraw) for user. Weight(IP): 10
+     * Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void allCoinsInformationTest() throws ApiException, CryptoException {
+    public void allCoinsInformationTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AllCoinsInformationResponse> response = api.allCoinsInformation(recvWindow);
 
@@ -108,26 +112,26 @@ public class CapitalApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/config/getall", actualRequest.url().encodedPath());
     }
 
     /**
      * Deposit Address(supporting network) (USER_DATA)
      *
-     * <p>Fetch deposit address with network. * If &#x60;network&#x60; is not send, return with
-     * default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
-     * &#x60;networkList&#x60; in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC
-     * SHA256)&#x60;. * &#x60;amount&#x60; needs to be sent if using LIGHTNING network Weight: 10
+     * <p>Fetch deposit address with network. Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * &#x60;network&#x60; is not send, return with default network of the coin. - You can get
+     * &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; in the response of
+     * &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - &#x60;amount&#x60; needs to
+     * be sent if using LIGHTNING network
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void depositAddressTest() throws ApiException, CryptoException {
-        String coin = "";
+    public void depositAddressTest() throws ApiException, CryptoException, IOException {
+        String coin = "BTC";
         String network = "";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<DepositAddressResponse> response =
                 api.depositAddress(coin, network, amount, recvWindow);
@@ -142,35 +146,30 @@ public class CapitalApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "coin=&network=&amount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "3adaccf2f8a7839589008cce4f4800c18fb1549a804794ea5cb13d10bee74f3f",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("coin=BTC&network=&amount=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("9e0dd5c7acc331253bb576e9dea6fc1c3071515afe865b07e8390ebec1ce1320", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/deposit/address", actualRequest.url().encodedPath());
     }
 
     /**
      * Deposit History (supporting network) (USER_DATA)
      *
-     * <p>Fetch deposit history. * Please notice the default &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. * If both
-     * &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between
-     * &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must be less than 90
-     * days. Weight: 1
+     * <p>Fetch deposit history. Weight(IP): 1 Security Type: USER_DATA Notes: - Please notice the
+     * default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is
+     * within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void depositHistoryTest() throws ApiException, CryptoException {
+    public void depositHistoryTest() throws ApiException, CryptoException, IOException {
         Boolean includeSource = false;
-        String coin = "";
-        Long status = 0L;
+        String coin = "BTC";
+        Status status = Status.STATUS_0;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         Long recvWindow = 5000L;
         String txId = "1";
         ApiResponse<DepositHistoryResponse> response =
@@ -195,27 +194,22 @@ public class CapitalApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "includeSource=false&coin=&status=0&startTime=1623319461670&endTime=1641782889000&offset=0&limit=7&recvWindow=5000&txId=1&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "0435c2811a4c783522fbf39f90a5899f56064cd717e2dcab5f6d7c79e129d91a",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("includeSource=false&coin=BTC&status=0&startTime=1623319461670&endTime=1641782889000&offset=0&limit=1000&recvWindow=5000&txId=1&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("bad13e622d024e33416c2a6e24ae4ba8e2de46c575930ba3434e228a95a233aa", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/deposit/hisrec", actualRequest.url().encodedPath());
     }
 
     /**
-     * Fetch deposit address list with network(USER_DATA)
+     * Fetch deposit address list with network (USER_DATA)
      *
-     * <p>Fetch deposit address list with network. * If network is not send, return with default
-     * network of the coin. * You can get network and isDefault in networkList in the response of
-     * &#x60;Get /sapi/v1/capital/config/getall&#x60;. Weight: 10
+     * <p>Fetch deposit address list with network. Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fetchDepositAddressListWithNetworkTest() throws ApiException, CryptoException {
-        String coin = "";
+    public void fetchDepositAddressListWithNetworkTest()
+            throws ApiException, CryptoException, IOException {
+        String coin = "BTC";
         String network = "";
         ApiResponse<FetchDepositAddressListWithNetworkResponse> response =
                 api.fetchDepositAddressListWithNetwork(coin, network);
@@ -230,22 +224,24 @@ public class CapitalApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("coin=&network=&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "0176fed7f72375816de60776e13e1182b649bb73bb0770b876035ecc14111a5d",
+                "coin=BTC&network=&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "b5bcbfae14c716af93dda2f84658cd1a1b31bc17cda9f92e69ac72b0f5c17551",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/capital/deposit/address/list", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/capital/deposit/address/list", actualRequest.url().encodedPath());
     }
 
     /**
      * Fetch withdraw address list (USER_DATA)
      *
-     * <p>Fetch withdraw address list Weight: 10
+     * <p>Fetch withdraw address list Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fetchWithdrawAddressListTest() throws ApiException, CryptoException {
+    public void fetchWithdrawAddressListTest() throws ApiException, CryptoException, IOException {
         ApiResponse<FetchWithdrawAddressListResponse> response = api.fetchWithdrawAddressList();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -266,15 +262,43 @@ public class CapitalApiTest {
     }
 
     /**
-     * One click arrival deposit apply (for expired address deposit) (USER_DATA)
+     * Fetch withdraw quota (USER_DATA)
      *
-     * <p>Apply deposit credit for expired address (One click arrival) * Params need to be in the
-     * POST body Weight: 1
+     * <p>Fetch withdraw quota Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void oneClickArrivalDepositApplyTest() throws ApiException, CryptoException {
+    public void fetchWithdrawQuotaTest() throws ApiException, CryptoException, IOException {
+        ApiResponse<FetchWithdrawQuotaResponse> response = api.fetchWithdrawQuota();
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/capital/withdraw/quota", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * One click arrival deposit apply (for expired address deposit) (USER_DATA)
+     *
+     * <p>Apply deposit credit for expired address (One click arrival) Weight(IP): 1 Security Type:
+     * USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void oneClickArrivalDepositApplyTest()
+            throws ApiException, CryptoException, IOException {
         OneClickArrivalDepositApplyRequest oneClickArrivalDepositApplyRequest =
                 new OneClickArrivalDepositApplyRequest();
 
@@ -299,22 +323,33 @@ public class CapitalApiTest {
     }
 
     /**
-     * Withdraw(USER_DATA)
+     * Withdraw (USER_DATA)
      *
-     * <p>Submit a withdraw request. * If &#x60;network&#x60; not send, return with default network
-     * of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
-     * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
-     * (HMAC SHA256)&#x60;. Weight: 900
+     * <p>Submit a withdraw request Weight(UID): 900 Security Type: USER_DATA Notes: - If
+     * &#x60;network&#x60; not send, return with default network of the coin. - You can get
+     * &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the
+     * response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - To check if
+     * travel rule is required, by using &#x60;GET
+     * /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than
+     * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
+     * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
+     * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
+     * travel rule please refer to the Travel Rule SAPI. - \&quot;For networks that do not support
+     * memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return
+     * error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60;
+     * field for such networks. You can check whether a network requires a tag via &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;: If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; →
+     * memo/tag is required. If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not
+     * supported; omit &#x60;addressTag&#x60;.\&quot;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawTest() throws ApiException, CryptoException {
+    public void withdrawTest() throws ApiException, CryptoException, IOException {
         WithdrawRequest withdrawRequest = new WithdrawRequest();
-
-        withdrawRequest.coin("");
+        withdrawRequest.coin("BTC");
         withdrawRequest.address("");
-        withdrawRequest.amount(1d);
+        withdrawRequest.amount(1.0d);
 
         ApiResponse<WithdrawResponse> response = api.withdraw(withdrawRequest);
 
@@ -328,36 +363,33 @@ public class CapitalApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000amount=1&address=&coin=", signInputCaptor.getValue());
-        assertEquals(
-                "b319fbc9f958d7a76c51c032ba547c695396ecf0df024768f7e6e09caddf6791",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000amount=1&address=&coin=BTC", signInputCaptor.getValue());
+        assertEquals("f361d8a2e998683dccab8fc54ea11531f4a6048d71f8e86252e2f478e3b29913", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/withdraw/apply", actualRequest.url().encodedPath());
     }
 
     /**
      * Withdraw History (supporting network) (USER_DATA)
      *
-     * <p>Fetch withdraw history. * &#x60;network&#x60; may not be in the response for old withdraw.
-     * * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that
-     * time interval is within 0-90 days. * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are
-     * sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. *
+     * <p>Fetch withdraw history Weight(UID): 18000 (10 requests per second) Security Type:
+     * USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old withdraw. - Please
+     * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
+     * interval is within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are
+     * sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. -
      * If &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; must be less than 7 days. * If &#x60;withdrawOrderId&#x60; is sent,
+     * &#x60;endTime&#x60; must be less than 7 days. - If &#x60;withdrawOrderId&#x60; is sent,
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records
-     * by default. * Maximum support &#x60;idList&#x60; number is 45. Weight: 18000 Request limit:
-     * 10 requests per second
+     * by default. - Maximum support &#x60;idList&#x60; number is 45.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawHistoryTest() throws ApiException, CryptoException {
-        String coin = "";
+    public void withdrawHistoryTest() throws ApiException, CryptoException, IOException {
+        String coin = "BTC";
         String withdrawOrderId = "1";
         Long status = 0L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         String idList = "";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -384,12 +416,9 @@ public class CapitalApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("coin=BTC&withdrawOrderId=1&status=0&offset=0&limit=1000&idList=&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "coin=&withdrawOrderId=1&status=0&offset=0&limit=7&idList=&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "9af7ab926930c86200dd40a05b8103457f5d21cffb03b6305d662d8126b7108f",
-                actualRequest.url().queryParameter("signature"));
+                "b2c182847368433b0223ce7bd91fd028a70ca36e9dd7032422d5eb7de2519505", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/withdraw/history", actualRequest.url().encodedPath());
     }
 }

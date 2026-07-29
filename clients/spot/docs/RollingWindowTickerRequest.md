@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  |
-|**windowSize** | **WindowSize** |  |  |
+|**id** | **String** | Unique WebSocket request ID. |  [optional] |
+|**symbol** | **String** | Symbol to query |  [optional] |
+|**windowSize** | **WindowSize** |  |  [optional] |
 
 
 

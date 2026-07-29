@@ -12,6 +12,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountTradeListResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AdlRiskResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AllOrdersResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
@@ -42,6 +43,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountBalanceV3Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesAccountConfigurationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradingQuantitativeRulesIndicatorsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetBnbBurnStatusResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetCurrentMultiAssetsModeResponse;
@@ -57,6 +59,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetIncomeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.IncomeType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.IndexPriceKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Interval;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.KeepaliveUserDataStreamResponse;
@@ -71,7 +74,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.MultiAssetsModeAssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderRequest;
@@ -143,9 +145,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Account Information V2(USER_DATA) Get current account information. User in single-asset/
+     * Account Information V2 (USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountInformationV2Response&gt;
@@ -159,8 +161,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Account-Information-V2">Account
-     *     Information V2(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#account-information-v2">Account
+     *     Information V2 (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountInformationV2Response> accountInformationV2(Long recvWindow)
             throws ApiException {
@@ -168,9 +170,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Account Information V3(USER_DATA) Get current account information. User in single-asset/
+     * Account Information V3 (USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountInformationV3Response&gt;
@@ -184,8 +186,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Account-Information-V3">Account
-     *     Information V3(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#account-information-v3">Account
+     *     Information V3 (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountInformationV3Response> accountInformationV3(Long recvWindow)
             throws ApiException {
@@ -193,7 +195,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Futures Account Balance V2 (USER_DATA) Query account balance info Weight: 5
+     * Futures Account Balance V2 (USER_DATA) Query account balance information. Weight(IP): 5
+     * Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;FuturesAccountBalanceV2Response&gt;
@@ -207,7 +210,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Futures-Account-Balance-V2">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#futures-account-balance-v2">Futures
      *     Account Balance V2 (USER_DATA) Documentation</a>
      */
     public ApiResponse<FuturesAccountBalanceV2Response> futuresAccountBalanceV2(Long recvWindow)
@@ -216,7 +219,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Futures Account Balance V3 (USER_DATA) Query account balance info Weight: 5
+     * Futures Account Balance V3 (USER_DATA) Query account balance information. Weight(IP): 5
+     * Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;FuturesAccountBalanceV3Response&gt;
@@ -230,7 +234,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Futures-Account-Balance-V3">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#futures-account-balance-v3">Futures
      *     Account Balance V3 (USER_DATA) Documentation</a>
      */
     public ApiResponse<FuturesAccountBalanceV3Response> futuresAccountBalanceV3(Long recvWindow)
@@ -239,7 +243,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Futures Account Configuration(USER_DATA) Query account configuration Weight: 5
+     * Futures Account Configuration (USER_DATA) Query account configuration Weight(IP): 5 Security
+     * Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;FuturesAccountConfigurationResponse&gt;
@@ -253,8 +258,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Account-Config">Futures
-     *     Account Configuration(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#futures-account-configuration">Futures
+     *     Account Configuration (USER_DATA) Documentation</a>
      */
     public ApiResponse<FuturesAccountConfigurationResponse> futuresAccountConfiguration(
             Long recvWindow) throws ApiException {
@@ -264,8 +269,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     /**
      * Futures Trading Quantitative Rules Indicators (USER_DATA) Futures trading quantitative rules
      * indicators, for more information on this, please refer to the [Futures Trading Quantitative
-     * Rules](https://www.binance.com/en/support/faq/4f462ebe6ff445d4a170be7d9e897272) Weight: - 1
-     * for a single symbol - 10 when the symbol parameter is omitted
+     * Rules](https://www.binance.com/en/support/faq/4f462ebe6ff445d4a170be7d9e897272) Weight: -
+     * **1** for a single symbol - **10** when the symbol parameter is omitted Security Type:
+     * USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -280,7 +286,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Futures-Trading-Quantitative-Rules-Indicators">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#futures-trading-quantitative-rules-indicators">Futures
      *     Trading Quantitative Rules Indicators (USER_DATA) Documentation</a>
      */
     public ApiResponse<FuturesTradingQuantitativeRulesIndicatorsResponse>
@@ -291,7 +297,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get BNB Burn Status (USER_DATA) Get user&#39;s BNB Fee Discount (Fee Discount On or Fee
-     * Discount Off ) Weight: 30
+     * Discount Off ) Weight(IP): 30 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBnbBurnStatusResponse&gt;
@@ -305,7 +311,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-BNB-Burn-Status">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-bnb-burn-status">Get
      *     BNB Burn Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBnbBurnStatusResponse> getBnbBurnStatus(Long recvWindow)
@@ -315,7 +321,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get Current Multi-Assets Mode (USER_DATA) Get user&#39;s Multi-Assets mode (Multi-Assets Mode
-     * or Single-Asset Mode) on ***Every symbol*** Weight: 30
+     * or Single-Asset Mode) on ***Every symbol*** Weight(IP): 30 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetCurrentMultiAssetsModeResponse&gt;
@@ -329,7 +335,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Current-Multi-Assets-Mode">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-current-multi-assets-mode">Get
      *     Current Multi-Assets Mode (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCurrentMultiAssetsModeResponse> getCurrentMultiAssetsMode(Long recvWindow)
@@ -338,8 +344,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Current Position Mode(USER_DATA) Get user&#39;s position mode (Hedge Mode or One-way Mode
-     * ) on ***EVERY symbol*** Weight: 30
+     * Get Current Position Mode (USER_DATA) Get user&#39;s position mode (Hedge Mode or One-way
+     * Mode ) on ***EVERY symbol*** Weight(IP): 30 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetCurrentPositionModeResponse&gt;
@@ -353,8 +359,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Current-Position-Mode">Get
-     *     Current Position Mode(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-current-position-mode">Get
+     *     Current Position Mode (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCurrentPositionModeResponse> getCurrentPositionMode(Long recvWindow)
             throws ApiException {
@@ -363,9 +369,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get Download Id For Futures Order History (USER_DATA) Get Download Id For Futures Order
-     * History * Request Limitation is 10 times per month, shared by front end download page and
-     * rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer
-     * than 1 year Weight: 1000
+     * History Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is 10 times per
+     * month, shared by front end download page and rest api - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -381,7 +387,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Order-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-download-id-for-futures-order-history">Get
      *     Download Id For Futures Order History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesOrderHistoryResponse>
@@ -392,9 +398,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get Download Id For Futures Trade History (USER_DATA) Get download id for futures trade
-     * history * Request Limitation is 5 times per month, shared by front end download page and rest
-     * api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1
-     * year Weight: 1000
+     * history Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is 5 times per
+     * month, shared by front end download page and rest api - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -410,7 +416,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Trade-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-download-id-for-futures-trade-history">Get
      *     Download Id For Futures Trade History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesTradeHistoryResponse>
@@ -420,10 +426,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Download Id For Futures Transaction History(USER_DATA) Get download id for futures
-     * transaction history * Request Limitation is 5 times per month, shared by front end download
-     * page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be
-     * longer than 1 year Weight: 1000
+     * Get Download Id For Futures Transaction History (USER_DATA) Get download id for futures
+     * transaction history Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is
+     * 5 times per month, shared by front end download page and rest api - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -439,8 +445,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Transaction-History">Get
-     *     Download Id For Futures Transaction History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-download-id-for-futures-transaction-history">Get
+     *     Download Id For Futures Transaction History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesTransactionHistoryResponse>
             getDownloadIdForFuturesTransactionHistory(Long startTime, Long endTime, Long recvWindow)
@@ -450,7 +456,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get Futures Order History Download Link by Id (USER_DATA) Get futures order history download
-     * link by Id * Download link expiration: 24h Weight: 10
+     * link by Id Weight(IP): 10 Security Type: USER_DATA Notes: - Download link expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -465,7 +471,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Order-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-futures-order-history-download-link-by-id">Get
      *     Futures Order History Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesOrderHistoryDownloadLinkByIdResponse>
@@ -475,8 +481,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Futures Trade Download Link by Id(USER_DATA) Get futures trade download link by Id *
-     * Download link expiration: 24h Weight: 10
+     * Get Futures Trade Download Link by Id (USER_DATA) Get futures trade download link by Id
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - Download link expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -491,8 +497,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Trade-Download-Link-by-Id">Get
-     *     Futures Trade Download Link by Id(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-futures-trade-download-link-by-id">Get
+     *     Futures Trade Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesTradeDownloadLinkByIdResponse> getFuturesTradeDownloadLinkById(
             String downloadId, Long recvWindow) throws ApiException {
@@ -501,7 +507,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Get Futures Transaction History Download Link by Id (USER_DATA) Get futures transaction
-     * history download link by Id * Download link expiration: 24h Weight: 10
+     * history download link by Id Weight(IP): 10 Security Type: USER_DATA Notes: - Download link
+     * expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -516,7 +523,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Transaction-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-futures-transaction-history-download-link-by-id">Get
      *     Futures Transaction History Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesTransactionHistoryDownloadLinkByIdResponse>
@@ -526,23 +533,18 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Income History (USER_DATA) Query income history * If neither &#x60;startTime&#x60; nor
-     * &#x60;endTime&#x60; is sent, the recent 7-day data will be returned. * If &#x60;incomeType
-     * &#x60; is not sent, all kinds of flow will be returned * \&quot;trandId\&quot; is unique in
-     * the same incomeType for a user * Income history only contains data for the last three months
-     * Weight: 30
+     * Get Income History (USER_DATA) Query income history Weight(IP): 30 Security Type: USER_DATA
+     * Notes: - If &#x60;incomeType &#x60; is not sent, all kinds of flow will be returned - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 7-day data will be
+     * returned. - &#x60;trandId&#x60; is unique in the same &#x60;incomeType&#x60; for a user. -
+     * Income history only contains data for the last three months.
      *
-     * @param symbol (optional)
-     * @param incomeType TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION,
-     *     INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD,
-     *     CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER,
-     *     AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW,
-     *     POSITION_LIMIT_INCREASE_FEE, STRATEGY_UMFUTURES_TRANSFER，FEE_RETURN，BFUSD_REWARD
-     *     (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param page (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param symbol Trading symbol. (optional)
+     * @param incomeType Income type. (optional)
+     * @param startTime Timestamp in milliseconds (inclusive start). (optional)
+     * @param endTime Timestamp in milliseconds (inclusive end). (optional)
+     * @param page Pagination page number. (optional)
+     * @param limit Maximum number of records to return. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetIncomeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -555,12 +557,12 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Income-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#get-income-history">Get
      *     Income History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetIncomeHistoryResponse> getIncomeHistory(
             String symbol,
-            String incomeType,
+            IncomeType incomeType,
             Long startTime,
             Long endTime,
             Long page,
@@ -573,7 +575,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Notional and Leverage Brackets (USER_DATA) Query user notional and leverage bracket on
-     * speicfic symbol Weight: 1
+     * speicfic symbol Weight(IP): 1 Security Type: USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -588,7 +590,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Notional-and-Leverage-Brackets">Notional
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#notional-and-leverage-brackets">Notional
      *     and Leverage Brackets (USER_DATA) Documentation</a>
      */
     public ApiResponse<NotionalAndLeverageBracketsResponse> notionalAndLeverageBrackets(
@@ -597,7 +599,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query User Rate Limit (USER_DATA) Query User Rate Limit Weight: 1
+     * Query User Rate Limit (USER_DATA) Query User Rate Limit Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserRateLimitResponse&gt;
@@ -611,7 +614,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Query-Rate-Limit">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#query-user-rate-limit">Query
      *     User Rate Limit (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserRateLimitResponse> queryUserRateLimit(Long recvWindow)
@@ -620,9 +623,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Symbol Configuration(USER_DATA) Get current account symbol configuration. Weight: 5
+     * Symbol Configuration (USER_DATA) Get current account symbol configuration. Weight(IP): 5
+     * Security Type: USER_DATA
      *
-     * @param symbol (optional)
+     * @param symbol Symbol (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;SymbolConfigurationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -635,8 +639,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Symbol-Config">Symbol
-     *     Configuration(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#symbol-configuration">Symbol
+     *     Configuration (USER_DATA) Documentation</a>
      */
     public ApiResponse<SymbolConfigurationResponse> symbolConfiguration(
             String symbol, Long recvWindow) throws ApiException {
@@ -645,7 +649,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Toggle BNB Burn On Futures Trade (TRADE) Change user&#39;s BNB Fee Discount (Fee Discount On
-     * or Fee Discount Off ) on ***EVERY symbol*** Weight: 1
+     * or Fee Discount Off ) on ***EVERY symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @param toggleBnbBurnOnFuturesTradeRequest (required)
      * @return ApiResponse&lt;ToggleBnbBurnOnFuturesTradeResponse&gt;
@@ -659,7 +663,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Toggle-BNB-Burn-On-Futures-Trade">Toggle
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#toggle-bnb-burn-on-futures-trade">Toggle
      *     BNB Burn On Futures Trade (TRADE) Documentation</a>
      */
     public ApiResponse<ToggleBnbBurnOnFuturesTradeResponse> toggleBnbBurnOnFuturesTrade(
@@ -669,9 +673,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * User Commission Rate (USER_DATA) Get User Commission Rate Weight: 20
+     * User Commission Rate (USER_DATA) Get User Commission Rate Weight(IP): 20 Security Type:
+     * USER_DATA
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;UserCommissionRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -684,7 +689,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/User-Commission-Rate">User
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/account#user-commission-rate">User
      *     Commission Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserCommissionRateResponse> userCommissionRate(
@@ -693,7 +698,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Accept the offered quote (USER_DATA) Accept the offered quote by quote ID. Weight: 200(IP)
+     * Accept the offered quote (USER_DATA) Accept the offered quote by quote ID. Weight(IP): 200
+     * Security Type: USER_DATA
      *
      * @param acceptTheOfferedQuoteRequest (required)
      * @return ApiResponse&lt;AcceptTheOfferedQuoteResponse&gt;
@@ -707,7 +713,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Accept-Quote">Accept
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#accept-the-offered-quote">Accept
      *     the offered quote (USER_DATA) Documentation</a>
      */
     public ApiResponse<AcceptTheOfferedQuoteResponse> acceptTheOfferedQuote(
@@ -717,9 +723,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * List All Convert Pairs Query for all convertible token pairs and the tokens’ respective
-     * upper/lower limits * User needs to supply either or both of the input parameter * If not
-     * defined for both fromAsset and toAsset, only partial token pairs will be returned * Asset
-     * BNFCR is only available to convert for MICA region users. Weight: 20(IP)
+     * upper/lower limits Weight(IP): 20 Notes: - User needs to supply either or both of the input
+     * parameter - If not defined for both fromAsset and toAsset, only partial token pairs will be
+     * returned - Asset BNFCR is only available to convert for MICA region users.
      *
      * @param fromAsset User spends coin (optional)
      * @param toAsset User receives coin (optional)
@@ -734,7 +740,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/">List
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#list-all-convert-pairs">List
      *     All Convert Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(
@@ -743,7 +749,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Order status(USER_DATA) Query order status by order ID. Weight: 50(IP)
+     * Order status (USER_DATA) Query order status by order ID. Weight(IP): 50 Security Type:
+     * USER_DATA
      *
      * @param orderId Either orderId or quoteId is required (optional)
      * @param quoteId Either orderId or quoteId is required (optional)
@@ -758,18 +765,18 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Order-Status">Order
-     *     status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#order-status">Order
+     *     status (USER_DATA) Documentation</a>
      */
-    public ApiResponse<OrderStatusResponse> orderStatus(Long orderId, String quoteId)
+    public ApiResponse<OrderStatusResponse> orderStatus(String orderId, String quoteId)
             throws ApiException {
         return convertApi.orderStatus(orderId, quoteId);
     }
 
     /**
-     * Send Quote Request(USER_DATA) Request a quote for the requested token pairs * Either
-     * fromAmount or toAmount should be sent * &#x60;quoteId&#x60; will be returned only if you have
-     * enough funds to convert Weight: 50(IP)
+     * Send Quote Request (USER_DATA) Request a quote for the requested token pairs Weight: 50(IP)
+     * 360/hour, 500/day Security Type: USER_DATA Notes: - Either fromAmount or toAmount should be
+     * sent - &#x60;quoteId&#x60; will be returned only if you have enough funds to convert
      *
      * @param sendQuoteRequestRequest (required)
      * @return ApiResponse&lt;SendQuoteRequestResponse&gt;
@@ -783,8 +790,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Send-quote-request">Send
-     *     Quote Request(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#send-quote-request">Send
+     *     Quote Request (USER_DATA) Documentation</a>
      */
     public ApiResponse<SendQuoteRequestResponse> sendQuoteRequest(
             SendQuoteRequestRequest sendQuoteRequestRequest) throws ApiException {
@@ -796,9 +803,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * of ADL during liquidation, and the rating takes into account the insurance fund balance,
      * position concentration on the symbol, order book depth, price volatility, average leverage,
      * unrealized PnL, and margin utilization at the symbol level. The rating can be high, medium
-     * and low, and is updated every 30 minutes. Weight: 1
+     * and low, and is updated every 30 minutes. Weight(IP): 1
      *
-     * @param symbol (optional)
+     * @param symbol Symbol (optional)
      * @return ApiResponse&lt;AdlRiskResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -810,7 +817,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk">ADL
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#adl-risk">ADL
      *     Risk Documentation</a>
      */
     public ApiResponse<AdlRiskResponse> adlRisk(String symbol) throws ApiException {
@@ -818,15 +825,39 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Basis Query future basis * If startTime and endTime are not sent, the most recent data is
-     * returned. * Only the data of the latest 30 days is available. Weight: 0
+     * Multi-Assets Mode Asset Index Asset index price. &gt; **CM-UM Integration (Effective
+     * 2026-06-30):** Renamed from *Multi-Assets Mode Asset Index*. The response now additionally
+     * pushes COIN-M settlement-asset price index entries (e.g., &#x60;BTCUSD&#x60;,
+     * &#x60;ETHUSD&#x60;, &#x60;BNBUSD&#x60;). The endpoint path &#x60;/fapi/v1/assetIndex&#x60; is
+     * unchanged. Weight: **1** for a single symbol; **10** when the symbol parameter is omitted
+     *
+     * @param symbol Asset pair (optional)
+     * @return ApiResponse&lt;AssetIndexResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Multi-Assets Mode Asset Index </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#asset-index">Multi-Assets
+     *     Mode Asset Index Documentation</a>
+     */
+    public ApiResponse<AssetIndexResponse> assetIndex(String symbol) throws ApiException {
+        return marketDataApi.assetIndex(symbol);
+    }
+
+    /**
+     * Basis Query future basis Weight(IP): 0 Notes: - If startTime and endTime are not sent, the
+     * most recent data is returned. - Only the data of the latest 30 days is available.
      *
      * @param pair (required)
      * @param contractType (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;BasisResponse&gt;
@@ -840,7 +871,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Basis">Basis
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#basis">Basis
      *     Documentation</a>
      */
     public ApiResponse<BasisResponse> basis(
@@ -855,8 +886,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Check Server Time Test connectivity to the Rest API and get the current server time. Weight:
-     * 1
+     * Check Server Time Test connectivity to the Rest API and get the current server time.
+     * Weight(IP): 1
      *
      * @return ApiResponse&lt;CheckServerTimeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -869,7 +900,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Check-Server-Time">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#check-server-time">Check
      *     Server Time Documentation</a>
      */
     public ApiResponse<CheckServerTimeResponse> checkServerTime() throws ApiException {
@@ -877,8 +908,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Composite Index Symbol Information Query composite index symbol information * Only for
-     * composite index symbols Weight: 1
+     * Composite Index Symbol Information Query composite index symbol information Weight(IP): 1
+     * Notes: - Only for composite index symbols
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;CompositeIndexSymbolInformationResponse&gt;
@@ -892,7 +923,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Composite-Index-Symbol-Information">Composite
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#composite-index-symbol-information">Composite
      *     Index Symbol Information Documentation</a>
      */
     public ApiResponse<CompositeIndexSymbolInformationResponse> compositeIndexSymbolInformation(
@@ -904,21 +935,21 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Compressed/Aggregate Trades List Get compressed, aggregate market trades. Market trades that
      * fill in 100ms with the same price and the same taking side will have the quantity aggregated.
      * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
-     * distinguished. * support querying futures trade histories that are not older than one year *
-     * If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. * If
+     * distinguished. Weight(IP): 20 Notes: - support querying futures trade histories that are not
+     * older than 24 hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
      * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
-     * recent aggregate trades will be returned. * Only market trades will be aggregated and
-     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. *
+     * recent aggregate trades will be returned. - Only market trades will be aggregated and
+     * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. -
      * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause
      * response timeout, please send either &#x60;fromId&#x60; or
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; Weight: 20
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60;
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;CompressedAggregateTradesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -930,7 +961,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Compressed-Aggregate-Trades-List">Compressed/Aggregate
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#compressed-aggregate-trades-list">Compressed/Aggregate
      *     Trades List Documentation</a>
      */
     public ApiResponse<CompressedAggregateTradesListResponse> compressedAggregateTradesList(
@@ -942,18 +973,17 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Continuous Contract Kline/Candlestick Data Kline/candlestick bars for a specific contract
-     * type. Klines are uniquely identified by their open time. * If startTime and endTime are not
-     * sent, the most recent klines are returned. * Contract type: * PERPETUAL * CURRENT_QUARTER *
-     * NEXT_QUARTER * TRADIFI_PERPETUAL Weight: based on parameter LIMIT | LIMIT | weight | |
-     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
-     * 10 |
+     * type. Klines are uniquely identified by their open time. Weight: based on parameter
+     * &#x60;LIMIT&#x60; | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 | | [100, 500) |
+     * 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - If startTime and endTime are not sent,
+     * the most recent klines are returned.
      *
-     * @param pair (required)
-     * @param contractType (required)
+     * @param pair After CM migration, accepts both UM and CM pair values. (required)
+     * @param contractType Futurestype (required)
      * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;ContinuousContractKlineCandlestickDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -965,7 +995,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Continuous-Contract-Kline-Candlestick-Data">Continuous
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#continuous-contract-kline-candlestick-data">Continuous
      *     Contract Kline/Candlestick Data Documentation</a>
      */
     public ApiResponse<ContinuousContractKlineCandlestickDataResponse>
@@ -982,7 +1012,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Exchange Information Current exchange trading rules and symbol information Weight: 1
+     * Exchange Information Current exchange trading rules and symbol information Weight(IP): 1
      *
      * @return ApiResponse&lt;ExchangeInformationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -995,7 +1025,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Exchange-Information">Exchange
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#exchange-information">Exchange
      *     Information Documentation</a>
      */
     public ApiResponse<ExchangeInformationResponse> exchangeInformation() throws ApiException {
@@ -1003,16 +1033,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Funding Rate History Get Funding Rate History * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are not sent, the most recent 200 records are returned. * If the number
-     * of data between &#x60;startTime&#x60; and &#x60;endTime&#x60; is larger than
-     * &#x60;limit&#x60;, return as &#x60;startTime&#x60; + &#x60;limit&#x60;. * In ascending order.
-     * Weight: share 500/5min/IP rate limit with GET /fapi/v1/fundingInfo
+     * Get Funding Rate History Get Funding Rate History Weight: share 500/5min/IP rate limit with
+     * GET /fapi/v1/fundingInfo Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, the most recent 200 records are returned. - If the number of data between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; is larger than &#x60;limit&#x60;, return as
+     * &#x60;startTime&#x60; + &#x60;limit&#x60;. - In ascending order.
      *
      * @param symbol (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Timestamp in ms to get funding rate from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get funding rate until INCLUSIVE. (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;GetFundingRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1024,7 +1054,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Get-Funding-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#get-funding-rate-history">Get
      *     Funding Rate History Documentation</a>
      */
     public ApiResponse<GetFundingRateHistoryResponse> getFundingRateHistory(
@@ -1033,9 +1063,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Funding Rate Info Query funding rate info for symbols that had FundingRateCap/
-     * FundingRateFloor / fundingIntervalHours adjustment Weight: 0 share 500/5min/IP rate limit
-     * with GET /fapi/v1/fundingRate
+     * Get Funding Rate Info Query funding rate info for symbols that had
+     * FundingRateCap/FundingRateFloor / fundingIntervalHours adjustment Weight: **0** share
+     * 500/5min/IP rate limit with &#x60;GET /fapi/v1/fundingRate&#x60;
      *
      * @return ApiResponse&lt;GetFundingRateInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1048,7 +1078,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Get-Funding-Rate-Info">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#get-funding-rate-info">Get
      *     Funding Rate Info Documentation</a>
      */
     public ApiResponse<GetFundingRateInfoResponse> getFundingRateInfo() throws ApiException {
@@ -1057,16 +1087,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Index Price Kline/Candlestick Data Kline/candlestick bars for the index price of a pair.
-     * Klines are uniquely identified by their open time. * If startTime and endTime are not sent,
-     * the most recent klines are returned. Weight: based on parameter LIMIT | LIMIT | weight | |
-     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
-     * 10 |
+     * Klines are uniquely identified by their open time. Weight: based on parameter
+     * &#x60;LIMIT&#x60; | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 | | [100, 500) |
+     * 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - If startTime and endTime are not sent,
+     * the most recent klines are returned.
      *
-     * @param pair (required)
+     * @param pair After CM migration, accepts both UM and CM pair values. (required)
      * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;IndexPriceKlineCandlestickDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1078,7 +1108,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Price-Kline-Candlestick-Data">Index
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#index-price-kline-candlestick-data">Index
      *     Price Kline/Candlestick Data Documentation</a>
      */
     public ApiResponse<IndexPriceKlineCandlestickDataResponse> indexPriceKlineCandlestickData(
@@ -1090,15 +1120,15 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Kline/Candlestick Data Kline/candlestick bars for a symbol. Klines are uniquely identified by
-     * their open time. * If startTime and endTime are not sent, the most recent klines are
-     * returned. Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | |
-     * [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * their open time. Weight: based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | |
+     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
+     * 10 | Notes: - If startTime and endTime are not sent, the most recent klines are returned.
      *
-     * @param symbol (required)
+     * @param symbol After CM migration, accepts both UM and CM symbols. (required)
      * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;KlineCandlestickDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1110,7 +1140,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Kline-Candlestick-Data">Kline/Candlestick
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#kline-candlestick-data">Kline/Candlestick
      *     Data Documentation</a>
      */
     public ApiResponse<KlineCandlestickDataResponse> klineCandlestickData(
@@ -1120,15 +1150,13 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Long/Short Ratio Query symbol Long/Short Ratio * If startTime and endTime are not sent, the
-     * most recent data is returned. * Only the data of the latest 30 days is available. * IP rate
-     * limit 1000 requests/5min Weight: 0
+     * Long/Short Ratio Query symbol Long/Short Ratio Weight(IP): 0 Notes: - If startTime and
+     * endTime are not sent, the most recent data is returned. - Only the data of the latest 30 days
+     * is available. - IP rate limit 1000 requests/5min
      *
      * @param symbol (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;LongShortRatioResponse&gt;
@@ -1142,7 +1170,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Long-Short-Ratio">Long/Short
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#long-short-ratio">Long/Short
      *     Ratio Documentation</a>
      */
     public ApiResponse<LongShortRatioResponse> longShortRatio(
@@ -1152,7 +1180,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Mark Price Mark Price and Funding Rate Weight: 1 with symbol, 10 without symbol
+     * Mark Price Mark Price and Funding Rate Weight: **1** with symbol, **10** without symbol
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;MarkPriceResponse&gt;
@@ -1166,7 +1194,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Mark-Price">Mark
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#mark-price">Mark
      *     Price Documentation</a>
      */
     public ApiResponse<MarkPriceResponse> markPrice(String symbol) throws ApiException {
@@ -1175,16 +1203,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Mark Price Kline/Candlestick Data Kline/candlestick bars for the mark price of a symbol.
-     * Klines are uniquely identified by their open time. * If startTime and endTime are not sent,
-     * the most recent klines are returned. Weight: based on parameter LIMIT | LIMIT | weight | |
-     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
-     * 10 |
+     * Klines are uniquely identified by their open time. Weight: based on parameter
+     * &#x60;LIMIT&#x60; | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 | | [100, 500) |
+     * 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - If startTime and endTime are not sent,
+     * the most recent klines are returned.
      *
-     * @param symbol (required)
+     * @param symbol After CM migration, accepts both UM and CM symbols. (required)
      * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;MarkPriceKlineCandlestickDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1196,7 +1224,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Mark-Price-Kline-Candlestick-Data">Mark
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#mark-price-kline-candlestick-data">Mark
      *     Price Kline/Candlestick Data Documentation</a>
      */
     public ApiResponse<MarkPriceKlineCandlestickDataResponse> markPriceKlineCandlestickData(
@@ -1207,38 +1235,14 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Multi-Assets Mode Asset Index asset index for Multi-Assets mode Weight: 1 for a single
-     * symbol; 10 when the symbol parameter is omitted
-     *
-     * @param symbol (optional)
-     * @return ApiResponse&lt;MultiAssetsModeAssetIndexResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Multi-Assets Mode Asset Index </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Multi-Assets-Mode-Asset-Index">Multi-Assets
-     *     Mode Asset Index Documentation</a>
-     */
-    public ApiResponse<MultiAssetsModeAssetIndexResponse> multiAssetsModeAssetIndex(String symbol)
-            throws ApiException {
-        return marketDataApi.multiAssetsModeAssetIndex(symbol);
-    }
-
-    /**
-     * Old Trades Lookup (MARKET_DATA) Get older market historical trades. * Market trades means
-     * trades filled in the order book. Only market trades will be returned, which means the
-     * insurance fund trades and ADL trades won&#39;t be returned. * Only supports data from within
-     * the last one month Weight: 20
+     * Old Trades Lookup (MARKET_DATA) Get older market historical trades. Weight(IP): 20 Security
+     * Type: MARKET_DATA Notes: - Market trades means trades filled in the order book. Only market
+     * trades will be returned, which means the insurance fund trades and ADL trades won&#39;t be
+     * returned. - Only supports data from within the last one month
      *
      * @param symbol (required)
-     * @param limit Default 100; max 1000 (optional)
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
+     * @param limit (optional)
+     * @param fromId TradeId to fetch from. Default gets most recent trades. (optional)
      * @return ApiResponse&lt;OldTradesLookupResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1250,7 +1254,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Old-Trades-Lookup">Old
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#old-trades-lookup">Old
      *     Trades Lookup (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<OldTradesLookupResponse> oldTradesLookup(
@@ -1259,7 +1263,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Open Interest Get present open interest of a specific symbol. Weight: 1
+     * Open Interest Get present open interest of a specific symbol. Weight(IP): 1
      *
      * @param symbol (required)
      * @return ApiResponse&lt;OpenInterestResponse&gt;
@@ -1273,7 +1277,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest">Open
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#open-interest">Open
      *     Interest Documentation</a>
      */
     public ApiResponse<OpenInterestResponse> openInterest(String symbol) throws ApiException {
@@ -1281,15 +1285,13 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Open Interest Statistics Open Interest Statistics * If startTime and endTime are not sent,
-     * the most recent data is returned. * Only the data of the latest 1 month is available. * IP
-     * rate limit 1000 requests/5min Weight: 0
+     * Open Interest Statistics Open Interest Statistics Weight(IP): 0 Notes: - If startTime and
+     * endTime are not sent, the most recent data is returned. - Only the data of the latest 1 month
+     * is available. - IP rate limit 1000 requests/5min
      *
      * @param symbol (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;OpenInterestStatisticsResponse&gt;
@@ -1303,7 +1305,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest-Statistics">Open
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#open-interest-statistics">Open
      *     Interest Statistics Documentation</a>
      */
     public ApiResponse<OpenInterestStatisticsResponse> openInterestStatistics(
@@ -1318,7 +1320,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @param symbol (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit Valid limits:[5, 10, 20, 50, 100, 500, 1000] (optional)
      * @return ApiResponse&lt;OrderBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1330,7 +1332,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book">Order
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#order-book">Order
      *     Book Documentation</a>
      */
     public ApiResponse<OrderBookResponse> orderBook(String symbol, Long limit) throws ApiException {
@@ -1339,15 +1341,15 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Premium index Kline Data Premium index kline bars of a symbol. Klines are uniquely identified
-     * by their open time. * If startTime and endTime are not sent, the most recent klines are
-     * returned. Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | |
-     * [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * by their open time. Weight: based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | |
+     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
+     * 10 | Notes: - If startTime and endTime are not sent, the most recent klines are returned.
      *
-     * @param symbol (required)
+     * @param symbol After CM migration, accepts both UM and CM symbols. (required)
      * @param interval (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;PremiumIndexKlineDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1359,7 +1361,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Premium-index-Kline-Data">Premium
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#premium-index-kline-data">Premium
      *     index Kline Data Documentation</a>
      */
     public ApiResponse<PremiumIndexKlineDataResponse> premiumIndexKlineData(
@@ -1369,7 +1371,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Quarterly Contract Settlement Price Latest price for a symbol or symbols. Weight: 0
+     * Quarterly Contract Settlement Price Latest price for a symbol or symbols. Weight(IP): 0
      *
      * @param pair (required)
      * @return ApiResponse&lt;QuarterlyContractSettlementPriceResponse&gt;
@@ -1383,7 +1385,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Delivery-Price">Quarterly
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#quarterly-contract-settlement-price">Quarterly
      *     Contract Settlement Price Documentation</a>
      */
     public ApiResponse<QuarterlyContractSettlementPriceResponse> quarterlyContractSettlementPrice(
@@ -1393,7 +1395,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Query Index Price Constituents Query index price constituents **Note**: Prices from
-     * constituents of TradFi perps will be hiden and displayed as -1. Weight: 2
+     * constituents of TradFi perps will be hiden and displayed as -1. Weight(IP): 2
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryIndexPriceConstituentsResponse&gt;
@@ -1407,7 +1409,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Constituents">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#query-index-price-constituents">Query
      *     Index Price Constituents Documentation</a>
      */
     public ApiResponse<QueryIndexPriceConstituentsResponse> queryIndexPriceConstituents(
@@ -1416,9 +1418,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query Insurance Fund Balance Snapshot Query Insurance Fund Balance Snapshot Weight: 1
+     * Query Insurance Fund Balance Snapshot Query Insurance Fund Balance Snapshot Weight(IP): 1
      *
-     * @param symbol (optional)
+     * @param symbol Symbol (optional)
      * @return ApiResponse&lt;QueryInsuranceFundBalanceSnapshotResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1430,7 +1432,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Query-Insurance-Fund-Balance-Snapshot">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#query-insurance-fund-balance-snapshot">Query
      *     Insurance Fund Balance Snapshot Documentation</a>
      */
     public ApiResponse<QueryInsuranceFundBalanceSnapshotResponse> queryInsuranceFundBalanceSnapshot(
@@ -1439,12 +1441,12 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Recent Trades List Get recent market trades * Market trades means trades filled in the order
-     * book. Only market trades will be returned, which means the insurance fund trades and ADL
-     * trades won&#39;t be returned. Weight: 5
+     * Recent Trades List Get recent market trades Weight(IP): 5 Notes: - Market trades means trades
+     * filled in the order book. Only market trades will be returned, which means the insurance fund
+     * trades and ADL trades won&#39;t be returned.
      *
      * @param symbol (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;RecentTradesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1456,7 +1458,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Recent-Trades-List">Recent
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#recent-trades-list">Recent
      *     Trades List Documentation</a>
      */
     public ApiResponse<RecentTradesListResponse> recentTradesList(String symbol, Long limit)
@@ -1471,7 +1473,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * | 1000 | 20 |
      *
      * @param symbol (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit Valid limits:[1000] (optional)
      * @return ApiResponse&lt;RpiOrderBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1483,7 +1485,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI">RPI
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#rpi-order-book">RPI
      *     Order Book Documentation</a>
      */
     public ApiResponse<RpiOrderBookResponse> rpiOrderBook(String symbol, Long limit)
@@ -1493,10 +1495,11 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. Retail
-     * Price Improvement(RPI) orders are not visible and excluded in the response message. * If the
-     * symbol is not sent, bookTickers for all symbols will be returned in an array. * The field
+     * Price Improvement(RPI) orders are not visible and excluded in the response message. Weight:
+     * **2** for a single symbol; **5** when the symbol parameter is omitted Notes: - If the symbol
+     * is not sent, bookTickers for all symbols will be returned in an array. - The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
-     * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
+     * please ignore.
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolOrderBookTickerResponse&gt;
@@ -1510,7 +1513,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Order-Book-Ticker">Symbol
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-order-book-ticker">Symbol
      *     Order Book Ticker Documentation</a>
      */
     public ApiResponse<SymbolOrderBookTickerResponse> symbolOrderBookTicker(String symbol)
@@ -1519,9 +1522,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
-     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
-     * symbol parameter is omitted
+     * Symbol Price Ticker Latest price for a symbol or symbols. Weight: 1 for a single symbol; 2
+     * when the symbol parameter is omitted Notes: - If the symbol is not sent, prices for all
+     * symbols will be returned in an array.
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerResponse&gt;
@@ -1536,7 +1539,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      *
      * @deprecated
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker">Symbol
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-price-ticker">Symbol
      *     Price Ticker Documentation</a>
      */
     public ApiResponse<SymbolPriceTickerResponse> symbolPriceTicker(String symbol)
@@ -1545,10 +1548,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Symbol Price Ticker V2 Latest price for a symbol or symbols. * If the symbol is not sent,
-     * prices for all symbols will be returned in an array. * The field
-     * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
-     * please ignore. Weight: 1 for a single symbol; 2 when the symbol parameter is omitted
+     * Symbol Price Ticker V2 Latest price for a symbol or symbols. Weight: 1 for a single symbol; 2
+     * when the symbol parameter is omitted Notes: - If the symbol is not sent, prices for all
+     * symbols will be returned in an array. - The field &#x60;X-MBX-USED-WEIGHT-1M&#x60; in
+     * response header is not accurate from this endpoint, please ignore.
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;SymbolPriceTickerV2Response&gt;
@@ -1562,7 +1565,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker-V2">Symbol
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-price-ticker-v2">Symbol
      *     Price Ticker V2 Documentation</a>
      */
     public ApiResponse<SymbolPriceTickerV2Response> symbolPriceTickerV2(String symbol)
@@ -1571,15 +1574,13 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Taker Buy/Sell Volume Taker Buy/Sell Volume * If startTime and endTime are not sent, the most
-     * recent data is returned. * Only the data of the latest 30 days is available. * IP rate limit
-     * 1000 requests/5min Weight: 0
+     * Taker Buy/Sell Volume Taker Buy/Sell Volume Weight(IP): 0 Notes: - If startTime and endTime
+     * are not sent, the most recent data is returned. - Only the data of the latest 30 days is
+     * available. - IP rate limit 1000 requests/5min
      *
      * @param symbol (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;TakerBuySellVolumeResponse&gt;
@@ -1593,7 +1594,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Taker-BuySell-Volume">Taker
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#taker-buy-sell-volume">Taker
      *     Buy/Sell Volume Documentation</a>
      */
     public ApiResponse<TakerBuySellVolumeResponse> takerBuySellVolume(
@@ -1603,7 +1604,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Test Connectivity Test connectivity to the Rest API. Weight: 1
+     * Test Connectivity Test connectivity to the Rest API. Weight(IP): 1
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1616,7 +1617,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Test-Connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#test-connectivity">Test
      *     Connectivity Documentation</a>
      */
     public void testConnectivity() throws ApiException {
@@ -1625,9 +1626,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * 24hr Ticker Price Change Statistics 24 hour rolling window price change statistics.
-     * **Careful** when accessing this with no symbol. * If the symbol is not sent, tickers for all
-     * symbols will be returned in an array. Weight: 1 for a single symbol; 40 when the symbol
-     * parameter is omitted
+     * **Careful** when accessing this with no symbol. Weight: **1** for a single symbol; **40**
+     * when the symbol parameter is omitted Notes: - If the symbol is not sent, tickers for all
+     * symbols will be returned in an array.
      *
      * @param symbol (optional)
      * @return ApiResponse&lt;Ticker24hrPriceChangeStatisticsResponse&gt;
@@ -1641,7 +1642,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/24hr-Ticker-Price-Change-Statistics">24hr
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#ticker24hr-price-change-statistics">24hr
      *     Ticker Price Change Statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrPriceChangeStatisticsResponse> ticker24hrPriceChangeStatistics(
@@ -1650,20 +1651,18 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Top Trader Long/Short Ratio (Accounts) The proportion of net long and net short accounts to
-     * total accounts of the top 20% users with the highest margin balance. Each account is counted
-     * once only. Long Account % &#x3D; Accounts of top traders with net long positions / Total
-     * accounts of top traders with open positions Short Account % &#x3D; Accounts of top traders
-     * with net short positions / Total accounts of top traders with open positions Long/Short Ratio
-     * (Accounts) &#x3D; Long Account % / Short Account % * If startTime and endTime are not sent,
-     * the most recent data is returned. * Only the data of the latest 30 days is available. * IP
-     * rate limit 1000 requests/5min Weight: 0
+     * Top Trader Long/Short Account Ratio (MARKET_DATA) The proportion of net long and net short
+     * accounts to total accounts of the top 20% users with the highest margin balance. Each account
+     * is counted once only. Long Account % &#x3D; Accounts of top traders with net long positions /
+     * Total accounts of top traders with open positions Short Account % &#x3D; Accounts of top
+     * traders with net short positions / Total accounts of top traders with open positions
+     * Long/Short Ratio (Accounts) &#x3D; Long Account % / Short Account % Security Type:
+     * MARKET_DATA Notes: - If startTime and endTime are not sent, the most recent data is returned.
+     * - Only the data of the latest 30 days is available. - IP rate limit 1000 requests/5min
      *
      * @param symbol (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;TopTraderLongShortRatioAccountsResponse&gt;
@@ -1677,8 +1676,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Long-Short-Account-Ratio">Top
-     *     Trader Long/Short Ratio (Accounts) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-accounts">Top
+     *     Trader Long/Short Account Ratio (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<TopTraderLongShortRatioAccountsResponse> topTraderLongShortRatioAccounts(
             String symbol, Period period, Long limit, Long startTime, Long endTime)
@@ -1688,19 +1687,18 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Top Trader Long/Short Ratio (Positions) The proportion of net long and net short positions to
-     * total open positions of the top 20% users with the highest margin balance. Long Position %
-     * &#x3D; Long positions of top traders / Total open positions of top traders Short Position %
-     * &#x3D; Short positions of top traders / Total open positions of top traders Long/Short Ratio
-     * (Positions) &#x3D; Long Position % / Short Position % * If startTime and endTime are not
-     * sent, the most recent data is returned. * Only the data of the latest 30 days is available. *
-     * IP rate limit 1000 requests/5min Weight: 0
+     * Top Trader Long/Short Position Ratio (MARKET_DATA) The proportion of net long and net short
+     * positions to total open positions of the top 20% users with the highest margin balance. Long
+     * Position % &#x3D; Long positions of top traders / Total open positions of top traders Short
+     * Position % &#x3D; Short positions of top traders / Total open positions of top traders
+     * Long/Short Ratio (Positions) &#x3D; Long Position % / Short Position % Weight(IP): 0 Security
+     * Type: MARKET_DATA Notes: - If startTime and endTime are not sent, the most recent data is
+     * returned. - Only the data of the latest 30 days is available. - IP rate limit 1000
+     * requests/5min
      *
      * @param symbol (required)
-     * @param period
-     *     \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
-     *     (required)
-     * @param limit Default 100; max 1000 (optional)
+     * @param period (required)
+     * @param limit (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @return ApiResponse&lt;TopTraderLongShortRatioPositionsResponse&gt;
@@ -1714,8 +1712,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Trader-Long-Short-Ratio">Top
-     *     Trader Long/Short Ratio (Positions) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-positions">Top
+     *     Trader Long/Short Position Ratio (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<TopTraderLongShortRatioPositionsResponse> topTraderLongShortRatioPositions(
             String symbol, Period period, Long limit, Long startTime, Long endTime)
@@ -1726,11 +1724,14 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Trading Schedule Trading session schedules for the underlying assets of TradFi Perps are
-     * provided for a one-week period starting from the day prior to the query time, covering both
-     * the U.S. equity and commodity markets. Equity market session types include
+     * provided for a one-week period forward and one-week period backward starting from the day
+     * prior to the query time, covering the U.S. equity market, Korean equity market, Hong Kong
+     * equity market, and the commodity market. Session types per market: - U.S. equity market:
      * \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
-     * \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;, while commodity market session types
-     * include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Weight: 5
+     * \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. - Korean equity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. - Hong Kong equity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @return ApiResponse&lt;TradingScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1743,7 +1744,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule">Trading
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#trading-schedule">Trading
      *     Schedule Documentation</a>
      */
     public ApiResponse<TradingScheduleResponse> tradingSchedule() throws ApiException {
@@ -1752,8 +1753,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Classic Portfolio Margin Account Information (USER_DATA) Get Classic Portfolio Margin current
-     * account information. * maxWithdrawAmount is for asset transfer out to the spot wallet.
-     * Weight: 5
+     * account information. Weight(IP): 5 Security Type: USER_DATA Notes: - maxWithdrawAmount is for
+     * asset transfer out to the spot wallet.
      *
      * @param asset (required)
      * @param recvWindow (optional)
@@ -1768,7 +1769,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/portfolio-margin-endpoints/Classic-Portfolio-Margin-Account-Information">Classic
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/portfolio-margin-endpoints#classic-portfolio-margin-account-information">Classic
      *     Portfolio Margin Account Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<ClassicPortfolioMarginAccountInformationResponse>
@@ -1779,19 +1780,19 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 7 days&#39;
-     * data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 7 days. * The parameter &#x60;fromId&#x60; cannot be sent with
-     * &#x60;startTime&#x60; or &#x60;endTime&#x60;. * Only support querying trade in the past 6
-     * months Weight: 5
+     * Account Trade List (USER_DATA) Get trades for a specific account and symbol. Weight(IP): 5
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 7 days&#39; data will be returned. - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter
+     * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only
+     * support querying trade in the past 6 months
      *
      * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param orderId Must be used together with parameter &#x60;symbol&#x60;. (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param fromId Trade id to fetch from. Default gets most recent trades. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1804,7 +1805,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Account-Trade-List">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#account-trade-list">Account
      *     Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountTradeListResponse> accountTradeList(
@@ -1821,18 +1822,19 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * All Orders (USER_DATA) Get all account orders; active, canceled, or filled. * These orders
-     * will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND**
-     * order has NO filled trade **AND** created time + 3 days &lt; current time * order create time
-     * + 90 days &lt; current time * If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D;
-     * that &#x60;orderId&#x60;. Otherwise most recent orders are returned. * The query time period
-     * must be less then 7 days( default as the recent 7 days). Weight: 5
+     * All Orders (USER_DATA) Get all account orders; active, canceled, or filled. - These orders
+     * will not be found: - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND**
+     * order has NO filled trade **AND** created time + 3 days &lt; current time - order create time
+     * + 90 days &lt; current time Weight(IP): 5 Security Type: USER_DATA Notes: - If
+     * &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;orderId&#x60;. Otherwise
+     * most recent orders are returned. - The query time period must be less then 7 days( default as
+     * the recent 7 days).
      *
      * @param symbol (required)
      * @param orderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1845,7 +1847,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#all-orders">All
      *     Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<AllOrdersResponse> allOrders(
@@ -1857,13 +1859,14 @@ public class DerivativesTradingUsdsFuturesRestApi {
     /**
      * Auto-Cancel All Open Orders (TRADE) Cancel all open orders of the specified symbol at the end
      * of the specified countdown. The endpoint should be called repeatedly as heartbeats so that
-     * the existing countdown time can be canceled and replaced by a new one. * Example usage: Call
+     * the existing countdown time can be canceled and replaced by a new one. Example usage: Call
      * this endpoint at 30s intervals with an countdownTime of 120000 (120s). If this endpoint is
      * not called within 120 seconds, all your orders of the specified symbol will be automatically
      * canceled. If this endpoint is called with an countdownTime of 0, the countdown timer will be
      * stopped. The system will check all countdowns **approximately every 10 milliseconds**, so
      * please note that sufficient redundancy should be considered when using this function. We do
-     * not recommend setting the countdown time to be too precise or too small. Weight: 10
+     * not recommend setting the countdown time to be too precise or too small. Weight(IP): 10
+     * Security Type: TRADE
      *
      * @param autoCancelAllOpenOrdersRequest (required)
      * @return ApiResponse&lt;AutoCancelAllOpenOrdersResponse&gt;
@@ -1877,7 +1880,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders">Auto-Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#auto-cancel-all-open-orders">Auto-Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
@@ -1886,8 +1889,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel Algo Order (TRADE) Cancel an active algo order. * Either &#x60;algoId&#x60; or
-     * &#x60;clientAlgoId&#x60; must be sent. Weight: 1
+     * Cancel Algo Order (TRADE) Cancel an active algo (conditional) order, including TP/SL (Take
+     * Profit / Stop Loss) and trailing stop orders on USD-M Futures. Weight(IP): 1 Security Type:
+     * TRADE Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
      * @param algoId (optional)
      * @param clientAlgoId (optional)
@@ -1903,7 +1907,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-algo-order">Cancel
      *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderResponse> cancelAlgoOrder(
@@ -1912,7 +1916,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel All Algo Open Orders (TRADE) Cancel All Algo Open Orders Weight: 1
+     * Cancel All Algo Open Orders (TRADE) Cancel all open algo (conditional) orders on a symbol,
+     * including TP/SL (Take Profit / Stop Loss) and trailing stop orders on USD-M Futures.
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @param symbol (required)
      * @param recvWindow (optional)
@@ -1927,7 +1933,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-algo-open-orders">Cancel
      *     All Algo Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllAlgoOpenOrdersResponse> cancelAllAlgoOpenOrders(
@@ -1936,7 +1942,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel All Open Orders (TRADE) Cancel All Open Orders Weight: 1
+     * Cancel All Open Orders (TRADE) Cancel All Open Orders Weight(IP): 1 Security Type: TRADE
      *
      * @param symbol (required)
      * @param recvWindow (optional)
@@ -1951,7 +1957,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-open-orders">Cancel
      *     All Open Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAllOpenOrdersResponse> cancelAllOpenOrders(
@@ -1960,14 +1966,12 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel Multiple Orders (TRADE) Cancel Multiple Orders * Either &#x60;orderIdList&#x60; or
-     * &#x60;origClientOrderIdList &#x60; must be sent. Weight: 1
+     * Cancel Multiple Orders (TRADE) Cancel Multiple Orders Weight(IP): 1 Security Type: TRADE
+     * Notes: - Either &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList &#x60; must be sent.
      *
      * @param symbol (required)
-     * @param orderIdList max length 10 &lt;br /&gt; e.g. [1234567,2345678] (optional)
-     * @param origClientOrderIdList max length 10&lt;br /&gt; e.g.
-     *     [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after
-     *     comma. (optional)
+     * @param orderIdList (optional)
+     * @param origClientOrderIdList (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;CancelMultipleOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1980,7 +1984,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Multiple-Orders">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-multiple-orders">Cancel
      *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<CancelMultipleOrdersResponse> cancelMultipleOrders(
@@ -1994,8 +1998,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Cancel Order (TRADE) Cancel an active order. * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent. Weight: 1
+     * Cancel Order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: -
+     * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -2012,7 +2016,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-order">Cancel
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelOrderResponse> cancelOrder(
@@ -2022,8 +2026,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Change Initial Leverage(TRADE) Change user&#39;s initial leverage of specific symbol market.
-     * Weight: 1
+     * Change Initial Leverage (TRADE) Change user&#39;s initial leverage of specific symbol market.
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @param changeInitialLeverageRequest (required)
      * @return ApiResponse&lt;ChangeInitialLeverageResponse&gt;
@@ -2037,8 +2041,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Initial-Leverage">Change
-     *     Initial Leverage(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-initial-leverage">Change
+     *     Initial Leverage (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeInitialLeverageResponse> changeInitialLeverage(
             ChangeInitialLeverageRequest changeInitialLeverageRequest) throws ApiException {
@@ -2046,7 +2050,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Change Margin Type(TRADE) Change symbol level margin type Weight: 1
+     * Change Margin Type (TRADE) Change symbol level margin type Weight(IP): 1 Security Type: TRADE
      *
      * @param changeMarginTypeRequest (required)
      * @return ApiResponse&lt;ChangeMarginTypeResponse&gt;
@@ -2060,8 +2064,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Margin-Type">Change
-     *     Margin Type(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-margin-type">Change
+     *     Margin Type (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeMarginTypeResponse> changeMarginType(
             ChangeMarginTypeRequest changeMarginTypeRequest) throws ApiException {
@@ -2070,7 +2074,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Change Multi-Assets Mode (TRADE) Change user&#39;s Multi-Assets mode (Multi-Assets Mode or
-     * Single-Asset Mode) on ***Every symbol*** Weight: 1
+     * Single-Asset Mode) on ***Every symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @param changeMultiAssetsModeRequest (required)
      * @return ApiResponse&lt;ChangeMultiAssetsModeResponse&gt;
@@ -2084,7 +2088,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Multi-Assets-Mode">Change
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-multi-assets-mode">Change
      *     Multi-Assets Mode (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeMultiAssetsModeResponse> changeMultiAssetsMode(
@@ -2093,8 +2097,12 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Change Position Mode(TRADE) Change user&#39;s position mode (Hedge Mode or One-way Mode ) on
-     * ***EVERY symbol*** Weight: 1
+     * Change Position Mode (TRADE) Change user&#39;s position mode (Hedge Mode or One-way Mode ) on
+     * ***EVERY symbol***. **After CM migration**, UM and CM share the **same**
+     * &#x60;dualSidePosition&#x60; setting. Calling this endpoint flips both UM and CM at once. If
+     * either side has any open order or open position, the change is rejected: - &#x60;-4067&#x60;
+     * (open orders exist) - &#x60;-4068&#x60; (open position exists) Weight(IP): 1 Security Type:
+     * TRADE
      *
      * @param changePositionModeRequest (required)
      * @return ApiResponse&lt;ChangePositionModeResponse&gt;
@@ -2108,8 +2116,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode">Change
-     *     Position Mode(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-position-mode">Change
+     *     Position Mode (TRADE) Documentation</a>
      */
     public ApiResponse<ChangePositionModeResponse> changePositionMode(
             ChangePositionModeRequest changePositionModeRequest) throws ApiException {
@@ -2117,10 +2125,11 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Current All Algo Open Orders (USER_DATA) Get all algo open orders on a symbol. * If the
-     * symbol is not sent, orders for all symbols will be returned in an array. Weight: 1 for a
-     * single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no
-     * symbol.
+     * Current All Algo Open Orders (USER_DATA) Get all open algo (conditional) orders on a symbol,
+     * including TP/SL (Take Profit / Stop Loss) and trailing stop orders on USD-M Futures. Weight:
+     * **1** for a single symbol; **40** when the symbol parameter is omitted **Careful** when
+     * accessing this with no symbol. Security Type: USER_DATA Notes: - If the symbol is not sent,
+     * orders for all symbols will be returned in an array.
      *
      * @param algoType (optional)
      * @param symbol (optional)
@@ -2137,7 +2146,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-algo-open-orders">Current
      *     All Algo Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<CurrentAllAlgoOpenOrdersResponse> currentAllAlgoOpenOrders(
@@ -2146,9 +2155,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Current All Open Orders (USER_DATA) Get all open orders on a symbol. * If the symbol is not
-     * sent, orders for all symbols will be returned in an array. Weight: 1 for a single symbol; 40
-     * when the symbol parameter is omitted Careful when accessing this with no symbol.
+     * Current All Open Orders (USER_DATA) Get all open orders on a symbol. Weight: **1** for a
+     * single symbol; **40** when the symbol parameter is omitted **Careful** when accessing this
+     * with no symbol. Security Type: USER_DATA Notes: - If the symbol is not sent, orders for all
+     * symbols will be returned in an array.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2163,7 +2173,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders">Current
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-open-orders">Current
      *     All Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<CurrentAllOpenOrdersResponse> currentAllOpenOrders(
@@ -2172,41 +2182,42 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Futures TradFi Perps Contract(USER_DATA) Sign TradFi-Perps agreement contract Weight: 0
+     * Futures TradFi Perps Contract (USER_DATA) Sign TradFi-Perps agreement contract Weight(IP): 50
+     * Security Type: USER_DATA
      *
-     * @param futuresTradfiPerpsContractRequest (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @param futuresTradfiPerpsContractRequest (optional)
+     * @return ApiResponse&lt;FuturesTradfiPerpsContractResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Futures TradFi Perps Contract </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract">Futures
-     *     TradFi Perps Contract(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#futures-tradfi-perps-contract">Futures
+     *     TradFi Perps Contract (USER_DATA) Documentation</a>
      */
-    public void futuresTradfiPerpsContract(
+    public ApiResponse<FuturesTradfiPerpsContractResponse> futuresTradfiPerpsContract(
             FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest)
             throws ApiException {
-        tradeApi.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
+        return tradeApi.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
     }
 
     /**
-     * Get Order Modify History (USER_DATA) Get order modification history * Either
-     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the
-     * &#x60;orderId&#x60; will prevail if both are sent. * Order modify history longer than 3 month
-     * is not avaliable Weight: 1
+     * Get Order Modify History (USER_DATA) Get order modification history Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be
+     * sent, and the &#x60;orderId&#x60; will prevail if both are sent. - Order modify history
+     * longer than 3 month is not avaliable
      *
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Timestamp in ms to get modification history from INCLUSIVE (optional)
+     * @param endTime Timestamp in ms to get modification history until INCLUSIVE (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetOrderModifyHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2219,7 +2230,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-order-modify-history">Get
      *     Order Modify History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOrderModifyHistoryResponse> getOrderModifyHistory(
@@ -2236,15 +2247,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Get Position Margin Change History (TRADE) Get Position Margin Change History * Support
-     * querying future histories that are not older than 30 days * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be more than 30 days Weight: 1
+     * Get Position Margin Change History (TRADE) Get Position Margin Change History Weight(IP): 1
+     * Security Type: TRADE Notes: - Support querying future histories that are not older than 30
+     * days - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be more than
+     * 30 days
      *
      * @param symbol (required)
      * @param type 1: Add position margin，2: Reduce position margin (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime time if not pass (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetPositionMarginChangeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2257,7 +2269,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Position-Margin-Change-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-position-margin-change-history">Get
      *     Position Margin Change History (TRADE) Documentation</a>
      */
     public ApiResponse<GetPositionMarginChangeHistoryResponse> getPositionMarginChangeHistory(
@@ -2268,8 +2280,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Modify Isolated Position Margin(TRADE) Modify Isolated Position Margin * Only for isolated
-     * symbol Weight: 1
+     * Modify Isolated Position Margin (TRADE) Modify Isolated Position Margin Weight(IP): 1
+     * Security Type: TRADE Notes: - Only for isolated symbol
      *
      * @param modifyIsolatedPositionMarginRequest (required)
      * @return ApiResponse&lt;ModifyIsolatedPositionMarginResponse&gt;
@@ -2283,8 +2295,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Isolated-Position-Margin">Modify
-     *     Isolated Position Margin(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-isolated-position-margin">Modify
+     *     Isolated Position Margin (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyIsolatedPositionMarginResponse> modifyIsolatedPositionMargin(
             ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest)
@@ -2293,12 +2305,13 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Modify Multiple Orders(TRADE) Modify Multiple Orders (TRADE) * Parameter rules are same with
-     * &#x60;Modify Order&#x60; * Batch modify orders are processed concurrently, and the order of
-     * matching is not guaranteed. * The order of returned contents for batch modify orders is the
-     * same as the order of the order list. * One order can only be modfied for less than 10000
-     * times Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate
-     * limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Modify Multiple Orders (TRADE) Modify Multiple Orders (TRADE) Weight: 5 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate
+     * limit(x-mbx-used-weight-1m); Security Type: TRADE Notes: - Parameter rules are same with
+     * &#x60;Modify Order&#x60; - Batch modify orders are processed concurrently, and the order of
+     * matching is not guaranteed. - The order of returned contents for batch modify orders is the
+     * same as the order of the order list. - One order can only be modfied for less than 10000
+     * times
      *
      * @param modifyMultipleOrdersRequest (required)
      * @return ApiResponse&lt;ModifyMultipleOrdersResponse&gt;
@@ -2312,8 +2325,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Multiple-Orders">Modify
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-multiple-orders">Modify
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyMultipleOrdersResponse> modifyMultipleOrders(
             ModifyMultipleOrdersRequest modifyMultipleOrdersRequest) throws ApiException {
@@ -2322,18 +2335,18 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Modify Order (TRADE) Order modify function, currently only LIMIT order modification is
-     * supported, modified orders will be reordered in the match queue * Either &#x60;orderId&#x60;
-     * or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if
-     * both are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is
-     * different from dapi modify order endpoint. * When the new &#x60;quantity&#x60; or
-     * &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment
-     * will be rejected and the order will stay as it is. * However the order will be cancelled by
-     * the amendment in the following situations: * when the order is in partially filled status and
-     * the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is
-     * &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can
-     * only be modfied for less than 10000 times Weight: 1 on 10s order rate
+     * supported, modified orders will be reordered in the match queue Weight: 1 on 10s order rate
      * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
-     * limit(x-mbx-used-weight-1m)
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
+     * are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is different
+     * from dapi modify order endpoint. - When the new &#x60;quantity&#x60; or &#x60;price&#x60;
+     * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
+     * the order will stay as it is. - However the order will be cancelled by the amendment in the
+     * following situations: - when the order is in partially filled status and the new
+     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
+     * and the new price will cause it to be executed immediately - One order can only be modfied
+     * for less than 10000 times
      *
      * @param modifyOrderRequest (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;
@@ -2347,7 +2360,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order">Modify
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-order">Modify
      *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<ModifyOrderResponse> modifyOrder(ModifyOrderRequest modifyOrderRequest)
@@ -2356,40 +2369,42 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * New Algo Order(TRADE) Send in a new Algo order. * Algo order with type &#x60;STOP&#x60;,
-     * parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Algo order with
-     * type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Condition orders will be triggered when: * If
-     * parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the
+     * New Algo Order (TRADE) Send in a new algo (conditional) order. Use this endpoint to place
+     * **TP/SL (Take Profit / Stop Loss)** and trailing stop orders on USD-M Futures. Supported
+     * order types under &#x60;algoType&#x3D;CONDITIONAL&#x60; are &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;STOP&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TRAILING_STOP_MARKET&#x60;. Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1
+     * on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * Security Type: TRADE Notes: - Algo order with type &#x60;STOP&#x60;, parameter
+     * &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type
+     * &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
+     * &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
      * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
      * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
-     * &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;,
-     * &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
-     * &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after
-     * order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest
-     * price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
-     * &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1
-     * - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
-     * code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would
-     * immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the
-     * following requirements: * BUY: &#x60;activatePrice&#x60; should be smaller than latest price.
-     * * SELL: &#x60;activatePrice&#x60; should be larger than latest price. *
-     * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
-     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;triggerPrice&#x60; - SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: -
+     * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest
+     * price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after
+     * order placed &#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activatePrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activatePrice&#x60; should be larger than latest price. - &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow
+     * the same rules for condition orders. - If triggered，**close all** current long position( if
+     * &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). - Cannot be used with
+     * &#x60;quantity&#x60; paremeter - Cannot be used with &#x60;reduceOnly&#x60; parameter - In
+     * Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and
+     * cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. Weight: 0 on IP rate
-     * limit(x-mbx-used-weight-1m)
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
      *
      * @param newAlgoOrderRequest (required)
      * @return ApiResponse&lt;NewAlgoOrderResponse&gt;
@@ -2403,8 +2418,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order">New
-     *     Algo Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-algo-order">New
+     *     Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewAlgoOrderResponse> newAlgoOrder(NewAlgoOrderRequest newAlgoOrderRequest)
             throws ApiException {
@@ -2412,15 +2427,19 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * New Order(TRADE) Send in a new order. * If &#x60;newOrderRespType &#x60; is sent as
-     * &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be
-     * return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final
-     * status result of the order(FILLED or EXPIRED) will be returned directly. *
-     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
-     * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
-     * order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * New Order (TRADE) Send in a new order. Weight: 1 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: Additional mandatory parameters based
+     * on &#x60;type&#x60;: | Type | Additional mandatory parameters |
+     * |------|----------------------------------| | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | - If
+     * &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60;: - &#x60;MARKET&#x60; order: the
+     * final FILLED result of the order will be returned directly. - &#x60;LIMIT&#x60; order with
+     * special &#x60;timeInForce&#x60;: the final status result of the order (FILLED or EXPIRED)
+     * will be returned directly. - &#x60;selfTradePreventionMode&#x60; is only effective when
+     * &#x60;timeInForce&#x60; is set to &#x60;IOC&#x60;, &#x60;GTC&#x60;, or &#x60;GTD&#x60;. - In
+     * extreme market conditions, &#x60;timeInForce&#x60; &#x60;GTD&#x60; order auto-cancel time
+     * might be delayed compared to &#x60;goodTillDate&#x60;.
      *
      * @param newOrderRequest (required)
      * @return ApiResponse&lt;NewOrderResponse&gt;
@@ -2434,8 +2453,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order">New
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-order">New
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(NewOrderRequest newOrderRequest)
             throws ApiException {
@@ -2443,11 +2462,12 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Place Multiple Orders(TRADE) Place Multiple Orders * Paremeter rules are same with &#x60;New
-     * Order&#x60; * Batch orders are processed concurrently, and the order of matching is not
-     * guaranteed. * The order of returned contents for batch orders is the same as the order of the
-     * order list. Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate
-     * limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Place Multiple Orders (TRADE) Place Multiple Orders Weight: 5 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate
+     * limit(x-mbx-used-weight-1m); Security Type: TRADE Notes: - Paremeter rules are same with
+     * &#x60;New Order&#x60; - Batch orders are processed concurrently, and the order of matching is
+     * not guaranteed. - The order of returned contents for batch orders is the same as the order of
+     * the order list.
      *
      * @param placeMultipleOrdersRequest (required)
      * @return ApiResponse&lt;PlaceMultipleOrdersResponse&gt;
@@ -2461,8 +2481,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders">Place
-     *     Multiple Orders(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#place-multiple-orders">Place
+     *     Multiple Orders (TRADE) Documentation</a>
      */
     public ApiResponse<PlaceMultipleOrdersResponse> placeMultipleOrders(
             PlaceMultipleOrdersRequest placeMultipleOrdersRequest) throws ApiException {
@@ -2470,7 +2490,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Position ADL Quantile Estimation(USER_DATA) Position ADL Quantile Estimation * Values update
+     * Position ADL Quantile Estimation (USER_DATA) Position ADL Quantile Estimation * Values update
      * every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to
      * high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode,
      * \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the
@@ -2478,7 +2498,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead
      * of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short
      * sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there
-     * are positions in both of long and short sides. Weight: 5
+     * are positions in both of long and short sides. Weight(IP): 5 Security Type: USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2493,8 +2513,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation">Position
-     *     ADL Quantile Estimation(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-adl-quantile-estimation">Position
+     *     ADL Quantile Estimation (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionAdlQuantileEstimationResponse> positionAdlQuantileEstimation(
             String symbol, Long recvWindow) throws ApiException {
@@ -2502,8 +2522,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Position Information V2 (USER_DATA) Get current position information. Please use with user
-     * data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * Position Information V2 (USER_DATA) Get current position information. Weight(IP): 5 Security
+     * Type: USER_DATA Notes: - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet
+     * your timeliness and accuracy needs.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2518,7 +2539,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V2">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v2">Position
      *     Information V2 (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionInformationV2Response> positionInformationV2(
@@ -2528,8 +2549,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
 
     /**
      * Position Information V3 (USER_DATA) Get current position information(only symbol that has
-     * position or open orders will be returned). Please use with user data stream
-     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * position or open orders will be returned). Weight(IP): 5 Security Type: USER_DATA Notes: -
+     * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and
+     * accuracy needs.
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2544,7 +2566,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3">Position
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v3">Position
      *     Information V3 (USER_DATA) Documentation</a>
      */
     public ApiResponse<PositionInformationV3Response> positionInformationV3(
@@ -2553,14 +2575,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query Algo Order (USER_DATA) Check an algo order&#39;s status. * These orders will not be
-     * found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
+     * Query Algo Order (USER_DATA) Check the status of an algo (conditional) order, such as TP/SL
+     * (Take Profit / Stop Loss) or trailing stop orders on USD-M Futures. * These orders will not
+     * be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO
      * filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days
-     * &lt; current time * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. *
-     * &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * &lt; current time Weight(IP): 1 Security Type: USER_DATA Notes: - Either &#x60;algoId&#x60;
+     * or &#x60;clientAlgoId&#x60; must be sent. - &#x60;algoId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      *
-     * @param algoId (optional)
-     * @param clientAlgoId (optional)
+     * @param algoId Order ID (optional)
+     * @param clientAlgoId Client order ID (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAlgoOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2573,7 +2597,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-algo-order">Query
      *     Algo Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryAlgoOrderResponse> queryAlgoOrder(
@@ -2582,19 +2606,20 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query All Algo Orders (USER_DATA) Get all algo orders; active, CANCELED, TRIGGERED or
-     * FINISHED . * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
+     * Query All Algo Orders (USER_DATA) Get all algo (conditional) orders — active, CANCELED,
+     * TRIGGERED, or FINISHED — including TP/SL (Take Profit / Stop Loss) and trailing stop orders
+     * on USD-M Futures. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
      * &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt;
-     * current time * order create time + 90 days &lt; current time * If &#x60;algoId&#x60; is set,
-     * it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are
-     * returned. * The query time period must be less then 7 days( default as the recent 7 days).
-     * Weight: 5
+     * current time * order create time + 90 days &lt; current time Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that
+     * &#x60;algoId&#x60;. Otherwise most recent orders are returned. - The query time period must
+     * be less then 7 days( default as the recent 7 days).
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param algoId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryAllAlgoOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2607,7 +2632,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-all-algo-orders">Query
      *     All Algo Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryAllAlgoOrdersResponse> queryAllAlgoOrders(
@@ -2617,9 +2642,10 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Query Current Open Order (USER_DATA) Query open order * Either&#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent * If the queried order has been filled or
-     * cancelled, the error message \&quot;Order does not exist\&quot; will be returned. Weight: 1
+     * Query Current Open Order (USER_DATA) Query open order Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Either&#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent - If the
+     * queried order has been filled or cancelled, the error message \&quot;Order does not
+     * exist\&quot; will be returned.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -2636,7 +2662,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-current-open-order">Query
      *     Current Open Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentOpenOrderResponse> queryCurrentOpenOrder(
@@ -2649,8 +2675,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Query Order (USER_DATA) Check an order&#39;s status. * These orders will not be found: *
      * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade
      * **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current
-     * time * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. *
-     * &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time Weight(IP): 1 Security Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - &#x60;orderId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -2667,7 +2694,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-order">Query
      *     Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryOrderResponse> queryOrder(
@@ -2677,44 +2704,49 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Test Order(TRADE) Testing order request, this order will not be submitted to matching engine
-     * * Order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches
-     * the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * Test Order (TRADE) Testing order request, this order will not be submitted to matching engine
+     * Security Type: TRADE Notes: Additional mandatory parameters based on &#x60;type&#x60;: | Type
+     * | Additional mandatory parameters | | -------------------------------- |
+     * ---------------------------------- | | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | |
+     * &#x60;STOP/TAKE_PROFIT&#x60; | &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60;
+     * | | &#x60;STOP_MARKET/TAKE_PROFIT_MARKET&#x60; | &#x60;stopPrice&#x60; | |
+     * &#x60;TRAILING_STOP_MARKET&#x60; | &#x60;callbackRate&#x60; | - Order with type
+     * &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). -
+     * Order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent
+     * (default &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
+     * &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) -
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after order placed
+     * &#x60;&#x60;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activationPrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activationPrice&#x60; should be larger than latest price. - If &#x60;newOrderRespType
+     * &#x60; is sent as &#x60;RESULT&#x60; : - &#x60;MARKET&#x60; order: the final FILLED result of
+     * the order will be return directly. - &#x60;LIMIT&#x60; order with special
      * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * returned directly. - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow the same rules for condition
+     * orders. - If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). - Cannot be used with &#x60;quantity&#x60; paremeter -
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter - In Hedge Mode,cannot be used with
      * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. - In extreme market conditions,
      * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 0
+     * &#x60;goodTillDate&#x60;
      *
      * @param testOrderRequest (required)
      * @return ApiResponse&lt;TestOrderResponse&gt;
@@ -2728,8 +2760,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test">Test
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#test-order">Test
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<TestOrderResponse> testOrder(TestOrderRequest testOrderRequest)
             throws ApiException {
@@ -2737,18 +2769,17 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders * If
-     * \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If
-     * \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be
-     * queried * Only support querying data in the past 90 days Weight: 20 with symbol, 50 without
-     * symbol
+     * User&#39;s Force Orders (USER_DATA) Query user&#39;s Force Orders Weight: **20** with symbol,
+     * **50** without symbol Security Type: USER_DATA Notes: - If \&quot;autoCloseType\&quot; is not
+     * sent, orders with both of the types will be returned - If \&quot;startTime\&quot; is not
+     * sent, data within 7 days before \&quot;endTime\&quot; can be queried
      *
      * @param symbol (optional)
      * @param autoCloseType \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for
      *     ADL orders. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;UsersForceOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2761,7 +2792,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders">User&#39;s
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#users-force-orders">User&#39;s
      *     Force Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<UsersForceOrdersResponse> usersForceOrders(
@@ -2777,7 +2808,8 @@ public class DerivativesTradingUsdsFuturesRestApi {
     }
 
     /**
-     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight: 1
+     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2790,7 +2822,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/user-data-streams#close-user-data-stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public void closeUserDataStream() throws ApiException {
@@ -2800,7 +2832,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
     /**
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * User data streams will close after 60 minutes. It&#39;s recommended to send a ping about
-     * every 60 minutes. Weight: 1
+     * every 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @return ApiResponse&lt;KeepaliveUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2813,7 +2845,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/user-data-streams#keepalive-user-data-stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<KeepaliveUserDataStreamResponse> keepaliveUserDataStream()
@@ -2825,7 +2857,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Start User Data Stream (USER_STREAM) Start a new user data stream. The stream will close
      * after 60 minutes unless a keepalive is sent. If the account has an active
      * &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be
-     * extended for 60 minutes. Weight: 1
+     * extended for 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @return ApiResponse&lt;StartUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2838,7 +2870,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/user-data-streams#start-user-data-stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<StartUserDataStreamResponse> startUserDataStream() throws ApiException {

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountInformationV2Response;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class AccountInformationV2Example {
@@ -26,14 +27,15 @@ public class AccountInformationV2Example {
     }
 
     /**
-     * Account Information V2(USER_DATA)
+     * Account Information V2 (USER_DATA)
      *
      * <p>Get current account information. User in single-asset/ multi-assets mode will see
-     * different value, see comments in response section for detail. Weight: 5
+     * different value, see comments in response section for detail. Weight(IP): 5 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountInformationV2Example() throws ApiException {
+    public void accountInformationV2Example() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountInformationV2Response> response =
                 getApi().accountInformationV2(recvWindow);

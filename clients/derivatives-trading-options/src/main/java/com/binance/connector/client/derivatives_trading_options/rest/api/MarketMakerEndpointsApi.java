@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -53,7 +53,7 @@ public class MarketMakerEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +104,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#auto-cancel-all-open-orders">Auto-Cancel
      *     All Open Orders (Kill-Switch) Heartbeat (TRADE) Documentation</a>
      */
     private okhttp3.Call autoCancelAllOpenOrdersCall(
@@ -210,9 +210,9 @@ public class MarketMakerEndpointsApi {
      * Auto-Cancel All Open Orders (Kill-Switch) Heartbeat (TRADE) This endpoint resets the time
      * from which the countdown will begin to the time this messaged is received. It should be
      * called repeatedly as heartbeats. Multiple heartbeats can be updated at once by specifying the
-     * underlying symbols as a list (ex. BTCUSDT,ETHUSDT) in the underlyings parameter. * The
-     * response will only include underlying symbols where the heartbeat has been successfully
-     * updated. Weight: 10
+     * underlying symbols as a list (ex. BTCUSDT,ETHUSDT) in the underlyings parameter. Weight(IP):
+     * 10 Security Type: TRADE Notes: - The response will only include underlying symbols where the
+     * heartbeat has been successfully updated.
      *
      * @param autoCancelAllOpenOrdersRequest (required)
      * @return ApiResponse&lt;AutoCancelAllOpenOrdersResponse&gt;
@@ -226,7 +226,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat">Auto-Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#auto-cancel-all-open-orders">Auto-Cancel
      *     All Open Orders (Kill-Switch) Heartbeat (TRADE) Documentation</a>
      */
     public ApiResponse<AutoCancelAllOpenOrdersResponse> autoCancelAllOpenOrders(
@@ -242,8 +242,8 @@ public class MarketMakerEndpointsApi {
     /**
      * Build call for getAutoCancelAllOpenOrders
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -254,7 +254,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-auto-cancel-all-open-orders">Get
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     private okhttp3.Call getAutoCancelAllOpenOrdersCall(String underlying, Long recvWindow)
@@ -359,10 +359,11 @@ public class MarketMakerEndpointsApi {
      * auto-cancel parameters for each underlying symbol. Note only active auto-cancel parameters
      * will be returned, if countdownTime is set to 0 (ie. countdownTime has been turned off), the
      * underlying symbol and corresponding countdownTime parameter will not be returned in the
-     * response. * countdownTime &#x3D; 0 means the function is disabled. Weight: 1
+     * response. Weight(IP): 1 Security Type: TRADE Notes: - countdownTime &#x3D; 0 means the
+     * function is disabled.
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;GetAutoCancelAllOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -374,7 +375,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-auto-cancel-all-open-orders">Get
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetAutoCancelAllOpenOrdersResponse> getAutoCancelAllOpenOrders(
@@ -389,8 +390,8 @@ public class MarketMakerEndpointsApi {
     /**
      * Build call for getMarketMakerProtectionConfig
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -401,7 +402,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-market-maker-protection-config">Get
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call getMarketMakerProtectionConfigCall(String underlying, Long recvWindow)
@@ -502,10 +503,11 @@ public class MarketMakerEndpointsApi {
     }
 
     /**
-     * Get Market Maker Protection Config (TRADE) Get config for MMP. Weight: 1
+     * Get Market Maker Protection Config (TRADE) Get config for MMP. Weight(IP): 1 Security Type:
+     * TRADE
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;GetMarketMakerProtectionConfigResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -517,11 +519,11 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-market-maker-protection-config">Get
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<GetMarketMakerProtectionConfigResponse> getMarketMakerProtectionConfig(
-            String underlying, Long recvWindow) throws ApiException {
+            @NotNull String underlying, Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getMarketMakerProtectionConfigValidateBeforeCall(underlying, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -543,7 +545,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#reset-market-maker-protection-config">Reset
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call resetMarketMakerProtectionConfigCall(
@@ -651,7 +653,8 @@ public class MarketMakerEndpointsApi {
     }
 
     /**
-     * Reset Market Maker Protection Config (TRADE) Reset MMP, start MMP order again. Weight: 1
+     * Reset Market Maker Protection Config (TRADE) Reset MMP, start MMP order again. Weight(IP): 1
+     * Security Type: TRADE
      *
      * @param resetMarketMakerProtectionConfigRequest (required)
      * @return ApiResponse&lt;ResetMarketMakerProtectionConfigResponse&gt;
@@ -665,7 +668,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config">Reset
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#reset-market-maker-protection-config">Reset
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<ResetMarketMakerProtectionConfigResponse> resetMarketMakerProtectionConfig(
@@ -694,7 +697,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-auto-cancel-all-open-orders">Set
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     private okhttp3.Call setAutoCancelAllOpenOrdersCall(
@@ -810,15 +813,16 @@ public class MarketMakerEndpointsApi {
      * of the specified countdown time period if no heartbeat message is sent. After the countdown
      * time period, all open orders will be cancelled and new orders will be rejected with error
      * code -2010 until either a heartbeat message is sent or the auto-cancel feature is turned off
-     * by setting countdownTime to 0. * This rest endpoint sets up the parameters to cancel your
-     * open orders in case of an outage or disconnection. * Example usage: Call this endpoint with a
-     * countdownTime value of 10000 (10 seconds) to turn on the auto-cancel feature. If the
-     * corresponding countdownCancelAllHeartBeat endpoint is not called within 10 seconds with the
-     * specified underlying symbol, all open orders of the specified symbol will be automatically
-     * canceled. If this endpoint is called with an countdownTime of 0, the countdown timer will be
-     * stopped. * The system will check all countdowns approximately every 100 milliseconds,
-     * **please note that sufficient redundancy should be considered when using this function**. We
-     * do not recommend setting the countdown time to be too precise or too small. Weight: 1
+     * by setting countdownTime to 0. Weight(IP): 1 Security Type: TRADE Notes: - This rest endpoint
+     * sets up the parameters to cancel your open orders in case of an outage or disconnection. -
+     * Example usage: &gt; Call this endpoint with a countdownTime value of 10000 (10 seconds) to
+     * turn on the auto-cancel feature. If the corresponding countdownCancelAllHeartBeat endpoint is
+     * not called within 10 seconds with the specified underlying symbol, all open orders of the
+     * specified symbol will be automatically canceled. If this endpoint is called with an
+     * countdownTime of 0, the countdown timer will be stopped. - The system will check all
+     * countdowns approximately every 100 milliseconds, **please note that sufficient redundancy
+     * should be considered when using this function**. We do not recommend setting the countdown
+     * time to be too precise or too small.
      *
      * @param setAutoCancelAllOpenOrdersRequest (required)
      * @return ApiResponse&lt;SetAutoCancelAllOpenOrdersResponse&gt;
@@ -832,7 +836,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config">Set
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-auto-cancel-all-open-orders">Set
      *     Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetAutoCancelAllOpenOrdersResponse> setAutoCancelAllOpenOrders(
@@ -859,7 +863,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-market-maker-protection-config">Set
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     private okhttp3.Call setMarketMakerProtectionConfigCall(
@@ -997,7 +1001,7 @@ public class MarketMakerEndpointsApi {
      * mass trading in short period time. Once market maker&#39;s account branches the threshold,
      * the Market Maker Protection will be triggered. When Market Maker Protection triggers, all the
      * current MMP orders will be canceled, new MMP orders will be rejected. Market maker can use
-     * this time to reevaluate market and modify order price. Weight: 1
+     * this time to reevaluate market and modify order price. Weight(IP): 1 Security Type: TRADE
      *
      * @param setMarketMakerProtectionConfigRequest (required)
      * @return ApiResponse&lt;SetMarketMakerProtectionConfigResponse&gt;
@@ -1011,7 +1015,7 @@ public class MarketMakerEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config">Set
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-market-maker-protection-config">Set
      *     Market Maker Protection Config (TRADE) Documentation</a>
      */
     public ApiResponse<SetMarketMakerProtectionConfigResponse> setMarketMakerProtectionConfig(

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.GetRedeemStatusResponse;
+import java.io.IOException;
 
 /** API examples for RedeemApi */
 public class GetRedeemStatusExample {
@@ -26,7 +27,7 @@ public class GetRedeemStatusExample {
     }
 
     /**
-     * Get Redeem Status
+     * Get Redeem Status (USER_DATA)
      *
      * <p>Query the on-chain transaction status of a previously submitted redeem request.
      * Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: | Value |
@@ -37,7 +38,7 @@ public class GetRedeemStatusExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void getRedeemStatusExample() throws ApiException {
+    public void getRedeemStatusExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String txHash = "0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd";
         Long recvWindow = 5000L;

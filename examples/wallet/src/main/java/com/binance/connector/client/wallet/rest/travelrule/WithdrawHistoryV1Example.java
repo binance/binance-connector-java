@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class WithdrawHistoryV1Example {
@@ -25,26 +26,26 @@ public class WithdrawHistoryV1Example {
     }
 
     /**
-     * Withdraw History (for local entities that require travel rule) (supporting network)
-     * (USER_DATA)
+     * Withdraw History Travel Rule (supporting network) (USER_DATA)
      *
-     * <p>Fetch withdraw history for local entities that required travel rule. * &#x60;network&#x60;
-     * may not be in the response for old withdraw. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
-     * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 1
+     * <p>Fetch withdraw history for local entities that required travel rule. Weight(IP): 1
+     * Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old
+     * withdraw. - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make
+     * sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be
+     * less than 90 days.
      *
      * @throws ApiException if the Api call fails
      */
-    public void withdrawHistoryV1Example() throws ApiException {
+    public void withdrawHistoryV1Example() throws ApiException, IOException {
         String trId = "1";
         String txId = "1";
         String withdrawOrderId = "1";
         String network = "";
-        String coin = "";
+        String coin = "BTC";
         Long travelRuleStatus = 0L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;

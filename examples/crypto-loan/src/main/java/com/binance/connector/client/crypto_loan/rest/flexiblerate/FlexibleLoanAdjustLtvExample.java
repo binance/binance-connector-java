@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
+import com.binance.connector.client.crypto_loan.rest.model.Direction;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class FlexibleLoanAdjustLtvExample {
@@ -27,20 +29,20 @@ public class FlexibleLoanAdjustLtvExample {
     }
 
     /**
-     * Flexible Loan Adjust LTV(TRADE)
+     * Flexible Loan Adjust LTV (TRADE)
      *
-     * <p>Flexible Loan Adjust LTV * API Key needs Spot &amp; Margin Trading permission for this
-     * endpoint Weight: 6000
+     * <p>Flexible Loan Adjust LTV Weight(UID): 6000 Security Type: TRADE Notes: - API key needs
+     * Spot &amp; Margin Trading permission for this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void flexibleLoanAdjustLtvExample() throws ApiException {
+    public void flexibleLoanAdjustLtvExample() throws ApiException, IOException {
         FlexibleLoanAdjustLtvRequest flexibleLoanAdjustLtvRequest =
                 new FlexibleLoanAdjustLtvRequest();
-        flexibleLoanAdjustLtvRequest.loanCoin("");
-        flexibleLoanAdjustLtvRequest.collateralCoin("");
-        flexibleLoanAdjustLtvRequest.adjustmentAmount(1.0d);
-        flexibleLoanAdjustLtvRequest.direction("");
+        flexibleLoanAdjustLtvRequest.loanCoin("BUSD");
+        flexibleLoanAdjustLtvRequest.collateralCoin("BNB");
+        flexibleLoanAdjustLtvRequest.adjustmentAmount(1d);
+        flexibleLoanAdjustLtvRequest.direction(Direction.ADDITIONAL);
         ApiResponse<FlexibleLoanAdjustLtvResponse> response =
                 getApi().flexibleLoanAdjustLtv(flexibleLoanAdjustLtvRequest);
         System.out.println(response.getData());

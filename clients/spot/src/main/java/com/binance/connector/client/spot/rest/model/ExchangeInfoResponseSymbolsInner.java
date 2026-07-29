@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInfoResponseSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInfoResponseSymbolsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -175,7 +175,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<SymbolFilters> filters;
+    private List<MyFiltersResponseSymbolFiltersInner> filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -637,12 +637,13 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     public ExchangeInfoResponseSymbolsInner filters(
-            @jakarta.annotation.Nullable List<SymbolFilters> filters) {
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> filters) {
         this.filters = filters;
         return this;
     }
 
-    public ExchangeInfoResponseSymbolsInner addFiltersItem(SymbolFilters filtersItem) {
+    public ExchangeInfoResponseSymbolsInner addFiltersItem(
+            MyFiltersResponseSymbolFiltersInner filtersItem) {
         if (this.filters == null) {
             this.filters = new ArrayList<>();
         }
@@ -657,11 +658,12 @@ public class ExchangeInfoResponseSymbolsInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<SymbolFilters> getFilters() {
+    public List<MyFiltersResponseSymbolFiltersInner> getFilters() {
         return filters;
     }
 
-    public void setFilters(@jakarta.annotation.Nullable List<SymbolFilters> filters) {
+    public void setFilters(
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> filters) {
         this.filters = filters;
     }
 
@@ -1205,7 +1207,8 @@ public class ExchangeInfoResponseSymbolsInner {
 
                 // validate the optional field `filters` (array)
                 for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    SymbolFilters.validateJsonElement(jsonArrayfilters.get(i));
+                    MyFiltersResponseSymbolFiltersInner.validateJsonElement(
+                            jsonArrayfilters.get(i));
                 }
                 ;
             }

@@ -38,6 +38,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferType;
 
 public class DerivativesTradingPortfolioMarginProRestApi {
 
@@ -54,8 +55,9 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * BNB transfer(USER_DATA) BNB transfer can be between Margin Account and USDM Account * You can
-     * only use this function 2 times per 10 minutes in a rolling manner Weight: 1500
+     * BNB transfer (USER_DATA) BNB transfer can be between Margin Account and USDM Account
+     * Weight(IP): 1500 Security Type: USER_DATA Notes: - You can only use this function 2 times per
+     * 10 minutes in a rolling manner
      *
      * @param bnbTransferRequest (required)
      * @return ApiResponse&lt;BnbTransferResponse&gt;
@@ -69,8 +71,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/BNB-transfer">BNB
-     *     transfer(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#bnb-transfer">BNB
+     *     transfer (USER_DATA) Documentation</a>
      */
     public ApiResponse<BnbTransferResponse> bnbTransfer(BnbTransferRequest bnbTransferRequest)
             throws ApiException {
@@ -78,7 +80,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Change Auto-repay-futures Status(TRADE) Change Auto-repay-futures Status Weight: 1500
+     * Change Auto-repay-futures Status (TRADE) Change Auto-repay-futures Status Weight(IP): 1500
+     * Security Type: TRADE
      *
      * @param changeAutoRepayFuturesStatusRequest (required)
      * @return ApiResponse&lt;ChangeAutoRepayFuturesStatusResponse&gt;
@@ -92,8 +95,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Change-Auto-repay-futures-Status">Change
-     *     Auto-repay-futures Status(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#change-auto-repay-futures-status">Change
+     *     Auto-repay-futures Status (TRADE) Documentation</a>
      */
     public ApiResponse<ChangeAutoRepayFuturesStatusResponse> changeAutoRepayFuturesStatus(
             ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest)
@@ -103,9 +106,9 @@ public class DerivativesTradingPortfolioMarginProRestApi {
 
     /**
      * Delete Margin Call Level (USER_DATA) Delete the margin call level for a Portfolio Margin
-     * account. Weight: 1500
+     * account. Weight(IP): 1500 Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;DeleteMarginCallLevelResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -117,7 +120,7 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Delete-Margin-Call-Level">Delete
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#delete-margin-call-level">Delete
      *     Margin Call Level (USER_DATA) Documentation</a>
      */
     public ApiResponse<DeleteMarginCallLevelResponse> deleteMarginCallLevel(Long recvWindow)
@@ -126,11 +129,12 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Fund Auto-collection(USER_DATA) Transfers all assets from Futures Account to Margin account *
-     * The BNB would not be collected from UM-PM account to the Portfolio Margin account. * You can
-     * only use this function 500 times per hour in a rolling manner. Weight: 1500
+     * Fund Auto-collection (USER_DATA) Transfers all assets from Futures Account to Margin account
+     * Weight(IP): 1500 Security Type: USER_DATA Notes: - The BNB would not be collected from UM-PM
+     * account to the Portfolio Margin account. - You can only use this function 500 times per hour
+     * in a rolling manner.
      *
-     * @param fundAutoCollectionRequest (required)
+     * @param fundAutoCollectionRequest (optional)
      * @return ApiResponse&lt;FundAutoCollectionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -142,8 +146,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Auto-collection">Fund
-     *     Auto-collection(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#fund-auto-collection">Fund
+     *     Auto-collection (USER_DATA) Documentation</a>
      */
     public ApiResponse<FundAutoCollectionResponse> fundAutoCollection(
             FundAutoCollectionRequest fundAutoCollectionRequest) throws ApiException {
@@ -151,8 +155,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Fund Collection by Asset(USER_DATA) Transfers specific asset from Futures Account to Margin
-     * account * The BNB transfer is not be supported Weight: 60
+     * Fund Collection by Asset (USER_DATA) Transfers specific asset from Futures Account to Margin
+     * account Weight(IP): 60 Security Type: USER_DATA Notes: - The BNB transfer is not be supported
      *
      * @param fundCollectionByAssetRequest (required)
      * @return ApiResponse&lt;FundCollectionByAssetResponse&gt;
@@ -166,8 +170,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Collection-by-Asset">Fund
-     *     Collection by Asset(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#fund-collection-by-asset">Fund
+     *     Collection by Asset (USER_DATA) Documentation</a>
      */
     public ApiResponse<FundCollectionByAssetResponse> fundCollectionByAsset(
             FundCollectionByAssetRequest fundCollectionByAssetRequest) throws ApiException {
@@ -175,7 +179,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Auto-repay-futures Status(USER_DATA) Query Auto-repay-futures Status Weight: 30
+     * Get Auto-repay-futures Status (USER_DATA) Query Auto-repay-futures Status Weight(IP): 30
+     * Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetAutoRepayFuturesStatusResponse&gt;
@@ -189,8 +194,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Auto-repay-futures-Status">Get
-     *     Auto-repay-futures Status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-auto-repay-futures-status">Get
+     *     Auto-repay-futures Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetAutoRepayFuturesStatusResponse> getAutoRepayFuturesStatus(Long recvWindow)
             throws ApiException {
@@ -198,7 +203,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Delta Mode Status(USER_DATA) Query the Delta mode status of current account. Weight: 1500
+     * Get Delta Mode Status (USER_DATA) Query the Delta mode status of current account. Weight(IP):
+     * 1500 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDeltaModeStatusResponse&gt;
@@ -212,8 +218,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Delta-Mode-Status">Get
-     *     Delta Mode Status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-delta-mode-status">Get
+     *     Delta Mode Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDeltaModeStatusResponse> getDeltaModeStatus(Long recvWindow)
             throws ApiException {
@@ -222,9 +228,9 @@ public class DerivativesTradingPortfolioMarginProRestApi {
 
     /**
      * Get Margin Call Level (USER_DATA) Get the margin call level for a Portfolio Margin account.
-     * Weight: 1500
+     * Weight(IP): 1500 Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetMarginCallLevelResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -236,7 +242,7 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Margin-Call-Level">Get
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-margin-call-level">Get
      *     Margin Call Level (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetMarginCallLevelResponse> getMarginCallLevel(Long recvWindow)
@@ -245,8 +251,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Portfolio Margin Pro Account Balance(USER_DATA) Query Portfolio Margin Pro account
-     * balance Weight: 20
+     * Get Portfolio Margin Pro Account Balance (USER_DATA) Query Portfolio Margin Pro account
+     * balance Weight(IP): 20 Security Type: USER_DATA
      *
      * @param asset (optional)
      * @param recvWindow (optional)
@@ -261,8 +267,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Balance-Info">Get
-     *     Portfolio Margin Pro Account Balance(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-account-balance">Get
+     *     Portfolio Margin Pro Account Balance (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioMarginProAccountBalanceResponse>
             getPortfolioMarginProAccountBalance(String asset, Long recvWindow) throws ApiException {
@@ -270,8 +276,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Portfolio Margin Pro Account Info(USER_DATA) Get Portfolio Margin Pro Account Info
-     * Weight: 5
+     * Get Portfolio Margin Pro Account Info (USER_DATA) Get Portfolio Margin Pro Account Info
+     * Weight(UID): 5 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetPortfolioMarginProAccountInfoResponse&gt;
@@ -285,8 +291,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info">Get
-     *     Portfolio Margin Pro Account Info(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-account-info">Get
+     *     Portfolio Margin Pro Account Info (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioMarginProAccountInfoResponse> getPortfolioMarginProAccountInfo(
             Long recvWindow) throws ApiException {
@@ -294,8 +300,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Portfolio Margin Pro SPAN Account Info(USER_DATA) Get Portfolio Margin Pro SPAN Account
-     * Info (For Portfolio Margin Pro SPAN users only) Weight: 5
+     * Get Portfolio Margin Pro SPAN Account Info (USER_DATA) Get Portfolio Margin Pro SPAN Account
+     * Info (For Portfolio Margin Pro SPAN users only) Weight(IP): 5 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetPortfolioMarginProSpanAccountInfoResponse&gt;
@@ -309,8 +315,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info-V2">Get
-     *     Portfolio Margin Pro SPAN Account Info(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-span-account-info">Get
+     *     Portfolio Margin Pro SPAN Account Info (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioMarginProSpanAccountInfoResponse>
             getPortfolioMarginProSpanAccountInfo(Long recvWindow) throws ApiException {
@@ -319,10 +325,11 @@ public class DerivativesTradingPortfolioMarginProRestApi {
 
     /**
      * Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA) Get transferable earn
-     * asset balance for all types of Portfolio Margin account Weight: 1500
+     * asset balance for all types of Portfolio Margin account Weight(IP): 1500 Security Type:
+     * USER_DATA
      *
      * @param asset &#x60;LDUSDT&#x60; only (required)
-     * @param transferType &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60; (required)
+     * @param transferType (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetTransferableEarnAssetBalanceForPortfolioMarginResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -335,22 +342,22 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Transferable-Earn-Asset-Balance-for-Portfolio-Margin">Get
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-transferable-earn-asset-balance-for-portfolio-margin">Get
      *     Transferable Earn Asset Balance for Portfolio Margin (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetTransferableEarnAssetBalanceForPortfolioMarginResponse>
             getTransferableEarnAssetBalanceForPortfolioMargin(
-                    String asset, String transferType, Long recvWindow) throws ApiException {
+                    String asset, TransferType transferType, Long recvWindow) throws ApiException {
         return accountApi.getTransferableEarnAssetBalanceForPortfolioMargin(
                 asset, transferType, recvWindow);
     }
 
     /**
-     * Portfolio Margin Pro Bankruptcy Loan Repay Repay Portfolio Margin Pro Bankruptcy Loan *
-     * Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this
-     * endpoint. Weight: 3000
+     * Portfolio Margin Pro Bankruptcy Loan Repay (TRADE) Repay Portfolio Margin Pro Bankruptcy Loan
+     * Weight(UID): 3000 Security Type: TRADE Notes: - Please note that the API Key has enabled Spot
+     * &amp; Margin Trading permissions to access this endpoint.
      *
-     * @param portfolioMarginProBankruptcyLoanRepayRequest (required)
+     * @param portfolioMarginProBankruptcyLoanRepayRequest (optional)
      * @return ApiResponse&lt;PortfolioMarginProBankruptcyLoanRepayResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -362,8 +369,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Classic-Portfolio-Margin-Bankruptcy-Loan-Repay">Portfolio
-     *     Margin Pro Bankruptcy Loan Repay Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#portfolio-margin-pro-bankruptcy-loan-repay">Portfolio
+     *     Margin Pro Bankruptcy Loan Repay (TRADE) Documentation</a>
      */
     public ApiResponse<PortfolioMarginProBankruptcyLoanRepayResponse>
             portfolioMarginProBankruptcyLoanRepay(
@@ -375,9 +382,9 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA) Query Portfolio Margin Pro
-     * Bankruptcy Loan Amount * If there’s no classic portfolio margin bankruptcy loan, the amount
-     * would be 0 Weight: 500
+     * Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA) Query Portfolio Margin Pro
+     * Bankruptcy Loan Amount Weight(UID): 500 Security Type: USER_DATA Notes: - If there’s no
+     * classic portfolio margin bankruptcy loan, the amount would be 0
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPortfolioMarginProBankruptcyLoanAmountResponse&gt;
@@ -391,8 +398,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Bankruptcy-Loan-Amount">Query
-     *     Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-bankruptcy-loan-amount">Query
+     *     Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPortfolioMarginProBankruptcyLoanAmountResponse>
             queryPortfolioMarginProBankruptcyLoanAmount(Long recvWindow) throws ApiException {
@@ -400,18 +407,18 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) Query repay history of
-     * pmloan for portfolio margin pro. * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
-     * longer than 360 days * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return
-     * records of the last 30 days by default. * If &#x60;startTime&#x60;is sent and
-     * &#x60;endTime&#x60; is not sent, return records of [startTime, startTime+30d]. * If
-     * &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of
-     * [endTime-30d, endTime]. Weight: 500
+     * Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA) Query repay history of
+     * pmloan for portfolio margin pro. Weight(IP): 500 Security Type: USER_DATA Notes: -
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 360 days - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 30 days by
+     * default. - If &#x60;startTime&#x60;is sent and &#x60;endTime&#x60; is not sent, return
+     * records of [startTime, startTime+30d]. - If &#x60;startTime&#x60; is not sent and
+     * &#x60;endTime&#x60; is sent, return records of [endTime-30d, endTime].
      *
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param size Number of results returned. (optional)
+     * @param current Currently querying page. Start from 1. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -424,25 +431,25 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Portfolio-Margin-Pro-Bankruptcy-Loan-Repay-History">Query
-     *     Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-bankruptcy-loan-repay-history">Query
+     *     Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse>
             queryPortfolioMarginProBankruptcyLoanRepayHistory(
-                    Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+                    Long startTime, Long endTime, Long size, Long current, Long recvWindow)
                     throws ApiException {
         return accountApi.queryPortfolioMarginProBankruptcyLoanRepayHistory(
-                startTime, endTime, current, size, recvWindow);
+                startTime, endTime, size, current, recvWindow);
     }
 
     /**
-     * Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) Query interest
-     * history of negative balance for portfolio margin. Weight: 50
+     * Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA) Query interest
+     * history of negative balance for portfolio margin. Weight(IP): 50 Security Type: USER_DATA
      *
      * @param asset (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param size Default:10 Max:100 (optional)
+     * @param startTime Start time (optional)
+     * @param endTime End time (optional)
+     * @param size Number of results returned. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -455,8 +462,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History">Query
-     *     Portfolio Margin Pro Negative Balance Interest History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-negative-balance-interest-history">Query
+     *     Portfolio Margin Pro Negative Balance Interest History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse>
             queryPortfolioMarginProNegativeBalanceInterestHistory(
@@ -467,9 +474,10 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Repay futures Negative Balance(USER_DATA) Repay futures Negative Balance Weight: 1500
+     * Repay futures Negative Balance (USER_DATA) Repay futures Negative Balance Weight(IP): 1500
+     * Security Type: USER_DATA
      *
-     * @param repayFuturesNegativeBalanceRequest (required)
+     * @param repayFuturesNegativeBalanceRequest (optional)
      * @return ApiResponse&lt;RepayFuturesNegativeBalanceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -481,8 +489,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance">Repay
-     *     futures Negative Balance(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#repay-futures-negative-balance">Repay
+     *     futures Negative Balance (USER_DATA) Documentation</a>
      */
     public ApiResponse<RepayFuturesNegativeBalanceResponse> repayFuturesNegativeBalance(
             RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest)
@@ -493,7 +501,7 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     /**
      * Set Margin Call Level (USER_DATA) Set the margin call level for a Portfolio Margin account.
      * When the account&#39;s uniMMR drops to the specified level, a notification will be sent via
-     * email and SMS. Weight: 1500
+     * email and SMS. Weight(IP): 1500 Security Type: USER_DATA
      *
      * @param setMarginCallLevelRequest (required)
      * @return ApiResponse&lt;SetMarginCallLevelResponse&gt;
@@ -507,7 +515,7 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Set-Margin-Call-Level">Set
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#set-margin-call-level">Set
      *     Margin Call Level (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetMarginCallLevelResponse> setMarginCallLevel(
@@ -516,8 +524,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Switch Delta Mode(TRADE) Switch the Delta mode for existing PM PRO / PM RETAIL accounts.
-     * Weight: 1500
+     * Switch Delta Mode (TRADE) Switch the Delta mode for existing PM PRO / PM RETAIL accounts.
+     * Weight(IP): 1500 Security Type: TRADE
      *
      * @param switchDeltaModeRequest (required)
      * @return ApiResponse&lt;SwitchDeltaModeResponse&gt;
@@ -531,8 +539,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Switch-Delta-Mode">Switch
-     *     Delta Mode(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#switch-delta-mode">Switch
+     *     Delta Mode (TRADE) Documentation</a>
      */
     public ApiResponse<SwitchDeltaModeResponse> switchDeltaMode(
             SwitchDeltaModeRequest switchDeltaModeRequest) throws ApiException {
@@ -540,8 +548,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE) Transfer LDUSDT/RWUSD as collateral for all
-     * types of Portfolio Margin account Weight: 1500
+     * Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE) Transfer LDUSDT/RWUSD as collateral for
+     * all types of Portfolio Margin account Weight(UID): 1500 Security Type: TRADE
      *
      * @param transferLdusdtRwusdForPortfolioMarginRequest (required)
      * @return ApiResponse&lt;TransferLdusdtRwusdForPortfolioMarginResponse&gt;
@@ -555,8 +563,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin">Transfer
-     *     LDUSDT/RWUSD for Portfolio Margin(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#transfer-ldusdt-rwusd-for-portfolio-margin">Transfer
+     *     LDUSDT/RWUSD for Portfolio Margin (TRADE) Documentation</a>
      */
     public ApiResponse<TransferLdusdtRwusdForPortfolioMarginResponse>
             transferLdusdtRwusdForPortfolioMargin(
@@ -568,7 +576,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Get Portfolio Margin Asset Leverage(USER_DATA) Get Portfolio Margin Asset Leverage Weight: 50
+     * Get Portfolio Margin Asset Leverage (USER_DATA) Get Portfolio Margin Asset Leverage
+     * Weight(IP): 50 Security Type: USER_DATA
      *
      * @return ApiResponse&lt;GetPortfolioMarginAssetLeverageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -581,8 +590,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage">Get
-     *     Portfolio Margin Asset Leverage(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#get-portfolio-margin-asset-leverage">Get
+     *     Portfolio Margin Asset Leverage (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioMarginAssetLeverageResponse> getPortfolioMarginAssetLeverage()
             throws ApiException {
@@ -590,7 +599,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Portfolio Margin Collateral Rate(MARKET_DATA) Portfolio Margin Collateral Rate Weight: 50
+     * Portfolio Margin Collateral Rate (MARKET_DATA) Portfolio Margin Collateral Rate Weight(IP):
+     * 50 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;PortfolioMarginCollateralRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -603,8 +613,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate">Portfolio
-     *     Margin Collateral Rate(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-collateral-rate">Portfolio
+     *     Margin Collateral Rate (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<PortfolioMarginCollateralRateResponse> portfolioMarginCollateralRate()
             throws ApiException {
@@ -612,8 +622,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
     }
 
     /**
-     * Portfolio Margin Pro Tiered Collateral Rate(USER_DATA) Portfolio Margin PRO Tiered Collateral
-     * Rate Weight: 50
+     * Portfolio Margin Pro Tiered Collateral Rate (USER_DATA) Portfolio Margin PRO Tiered
+     * Collateral Rate Weight(IP): 50 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;PortfolioMarginProTieredCollateralRateResponse&gt;
@@ -627,8 +637,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Portfolio-Margin-Pro-Tiered-Collateral-Rate">Portfolio
-     *     Margin Pro Tiered Collateral Rate(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-pro-tiered-collateral-rate">Portfolio
+     *     Margin Pro Tiered Collateral Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<PortfolioMarginProTieredCollateralRateResponse>
             portfolioMarginProTieredCollateralRate(Long recvWindow) throws ApiException {
@@ -637,7 +647,8 @@ public class DerivativesTradingPortfolioMarginProRestApi {
 
     /**
      * Query Portfolio Margin Asset Index Price (MARKET_DATA) Query Portfolio Margin Asset Index
-     * Price Weight: 1 if send asset or 50 if not send asset
+     * Price Weight: - 1 if &#x60;asset&#x60; is sent - 50 if &#x60;asset&#x60; is not sent Security
+     * Type: MARKET_DATA
      *
      * @param asset (optional)
      * @return ApiResponse&lt;QueryPortfolioMarginAssetIndexPriceResponse&gt;
@@ -651,7 +662,7 @@ public class DerivativesTradingPortfolioMarginProRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#query-portfolio-margin-asset-index-price">Query
      *     Portfolio Margin Asset Index Price (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<QueryPortfolioMarginAssetIndexPriceResponse>

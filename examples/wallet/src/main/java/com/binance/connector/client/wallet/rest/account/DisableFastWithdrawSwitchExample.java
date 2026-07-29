@@ -6,6 +6,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class DisableFastWithdrawSwitchExample {
@@ -26,11 +27,13 @@ public class DisableFastWithdrawSwitchExample {
     /**
      * Disable Fast Withdraw Switch (USER_DATA)
      *
-     * <p>Weight: 1
+     * <p>Disable Fast Withdraw Switch Weight(IP): 1 Security Type: USER_DATA Notes: - This request
+     * will disable fastwithdraw switch under your account. You need to enable \&quot;trade\&quot;
+     * option for the api key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void disableFastWithdrawSwitchExample() throws ApiException {
+    public void disableFastWithdrawSwitchExample() throws ApiException, IOException {
         DisableFastWithdrawSwitchRequest disableFastWithdrawSwitchRequest =
                 new DisableFastWithdrawSwitchRequest();
         getApi().disableFastWithdrawSwitch(disableFastWithdrawSwitchRequest);

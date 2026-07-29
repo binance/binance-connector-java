@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**notionalCoef** | **String** |  |  [optional] |
-|**brackets** | [**List&lt;UmNotionalAndLeverageBracketsResponseInnerBracketsInner&gt;**](UmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**notionalCoef** | **String** | Notional Coef. |  [optional] |
+|**brackets** | [**List&lt;UmNotionalAndLeverageBracketsResponseInnerBracketsInner&gt;**](UmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) | Brackets. |  [optional] |
 
 
 

@@ -5,6 +5,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
+import java.io.IOException;
 
 /** API examples for GeneralApi */
 public class PingExample {
@@ -25,11 +26,11 @@ public class PingExample {
     /**
      * Test connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight: 1
+     * <p>Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE
      *
      * @throws ApiException if the Api call fails
      */
-    public void pingExample() throws ApiException {
+    public void pingExample() throws ApiException, IOException {
         getApi().ping();
     }
 }

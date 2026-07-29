@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** SubmitDepositQuestionnaireTravelRuleRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubmitDepositQuestionnaireTravelRuleRequest {
     public static final String SERIALIZED_NAME_TRAN_ID = "tranId";
 
@@ -57,7 +57,7 @@ public class SubmitDepositQuestionnaireTravelRuleRequest {
     }
 
     /**
-     * Get tranId
+     * Wallet tran ID
      *
      * @return tranId
      */
@@ -78,7 +78,7 @@ public class SubmitDepositQuestionnaireTravelRuleRequest {
     }
 
     /**
-     * Get questionnaire
+     * JSON format questionnaire answers.
      *
      * @return questionnaire
      */

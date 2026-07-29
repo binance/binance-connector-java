@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** SendQuoteRequestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SendQuoteRequestRequest {
     public static final String SERIALIZED_NAME_FROM_ASSET = "fromAsset";
 
@@ -121,7 +121,7 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get fromAmount
+     * When specified, it is the amount you will be debited after the conversion
      *
      * @return fromAmount
      */
@@ -141,7 +141,7 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get toAmount
+     * When specified, it is the amount you will be credited after the conversion
      *
      * @return toAmount
      */
@@ -161,7 +161,7 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get validTime
+     * 10s, default 10s
      *
      * @return validTime
      */
@@ -180,11 +180,12 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

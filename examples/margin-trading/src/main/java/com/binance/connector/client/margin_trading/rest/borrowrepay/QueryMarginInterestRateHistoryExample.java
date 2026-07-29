@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginInterestRateHistoryResponse;
+import java.io.IOException;
 
 /** API examples for BorrowRepayApi */
 public class QueryMarginInterestRateHistoryExample {
@@ -28,12 +29,12 @@ public class QueryMarginInterestRateHistoryExample {
     /**
      * Query Margin Interest Rate History (USER_DATA)
      *
-     * <p>Query Margin Interest Rate History Weight: 1(IP)
+     * <p>Query Margin Interest Rate History Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginInterestRateHistoryExample() throws ApiException {
-        String asset = "";
+    public void queryMarginInterestRateHistoryExample() throws ApiException, IOException {
+        String asset = "BTC";
         Long vipLevel = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** GridUpdateGu */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GridUpdateGu extends BaseDTO {
     public static final String SERIALIZED_NAME_SI = "si";
 
@@ -107,7 +107,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get si
+     * Strategy ID
      *
      * @return si
      */
@@ -126,7 +126,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get st
+     * Strategy Type
      *
      * @return st
      */
@@ -145,7 +145,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get ss
+     * Strategy Status
      *
      * @return ss
      */
@@ -164,7 +164,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -183,7 +183,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get rLowerCase
+     * Realized PNL
      *
      * @return rLowerCase
      */
@@ -202,7 +202,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get up
+     * Unmatched Average Price
      *
      * @return up
      */
@@ -221,7 +221,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get uq
+     * Unmatched Qty
      *
      * @return uq
      */
@@ -240,7 +240,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get uf
+     * Unmatched Fee
      *
      * @return uf
      */
@@ -259,7 +259,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get mp
+     * Matched PNL
      *
      * @return mp
      */
@@ -278,7 +278,7 @@ public class GridUpdateGu extends BaseDTO {
     }
 
     /**
-     * Get ut
+     * Update Time
      *
      * @return ut
      */

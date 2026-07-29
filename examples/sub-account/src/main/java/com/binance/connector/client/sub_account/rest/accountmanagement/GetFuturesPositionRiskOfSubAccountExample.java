@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetFuturesPositionRiskOfSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountManagementApi */
 public class GetFuturesPositionRiskOfSubAccountExample {
@@ -28,12 +29,12 @@ public class GetFuturesPositionRiskOfSubAccountExample {
     /**
      * Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Get Futures Position-Risk of Sub-account Weight: 10
+     * <p>Get Futures Position-Risk of Sub-account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFuturesPositionRiskOfSubAccountExample() throws ApiException {
-        String email = "sub-account-email@email.com";
+    public void getFuturesPositionRiskOfSubAccountExample() throws ApiException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesPositionRiskOfSubAccountResponse> response =
                 getApi().getFuturesPositionRiskOfSubAccount(email, recvWindow);

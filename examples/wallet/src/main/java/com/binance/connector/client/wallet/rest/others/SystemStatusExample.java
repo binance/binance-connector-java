@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.SystemStatusResponse;
+import java.io.IOException;
 
 /** API examples for OthersApi */
 public class SystemStatusExample {
@@ -25,13 +26,13 @@ public class SystemStatusExample {
     }
 
     /**
-     * System Status (System)
+     * System Status
      *
-     * <p>Fetch system status. Weight: 1
+     * <p>Fetch system status. Weight(IP): 1 Security Type: System
      *
      * @throws ApiException if the Api call fails
      */
-    public void systemStatusExample() throws ApiException {
+    public void systemStatusExample() throws ApiException, IOException {
         ApiResponse<SystemStatusResponse> response = getApi().systemStatus();
         System.out.println(response.getData());
     }

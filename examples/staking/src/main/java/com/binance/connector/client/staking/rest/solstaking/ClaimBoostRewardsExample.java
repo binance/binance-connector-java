@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.ClaimBoostRewardsRequest;
 import com.binance.connector.client.staking.rest.model.ClaimBoostRewardsResponse;
+import java.io.IOException;
 
 /** API examples for SolStakingApi */
 public class ClaimBoostRewardsExample {
@@ -26,14 +27,15 @@ public class ClaimBoostRewardsExample {
     }
 
     /**
-     * Claim Boost Rewards(TRADE)
+     * Claim Boost Rewards (TRADE)
      *
-     * <p>Claim Boost APR Airdrop Rewards * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * <p>Claim Boost APR Airdrop Rewards Weight(IP): 150 Security Type: TRADE Notes: - You need to
+     * open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void claimBoostRewardsExample() throws ApiException {
+    public void claimBoostRewardsExample() throws ApiException, IOException {
         ClaimBoostRewardsRequest claimBoostRewardsRequest = new ClaimBoostRewardsRequest();
         ApiResponse<ClaimBoostRewardsResponse> response =
                 getApi().claimBoostRewards(claimBoostRewardsRequest);

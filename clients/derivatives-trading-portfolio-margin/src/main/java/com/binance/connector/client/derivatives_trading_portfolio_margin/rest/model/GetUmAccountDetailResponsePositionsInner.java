@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetUmAccountDetailResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -129,7 +129,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * symbol name
      *
      * @return symbol
      */
@@ -149,7 +149,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -169,7 +169,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -189,7 +189,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -209,7 +209,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -230,7 +230,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -251,7 +251,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -271,7 +271,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -291,7 +291,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maxNotional
+     * maximum available notional with current leverage
      *
      * @return maxNotional
      */
@@ -311,7 +311,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get bidNotional
+     * bids notional, ignore
      *
      * @return bidNotional
      */
@@ -331,7 +331,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get askNotional
+     * ask notional, ignore
      *
      * @return askNotional
      */
@@ -351,7 +351,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -371,7 +371,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -391,7 +391,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

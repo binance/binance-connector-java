@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse;
+import java.io.IOException;
 
 /** API examples for BfusdApi */
 public class GetBfusdQuotaDetailsExample {
@@ -28,12 +29,12 @@ public class GetBfusdQuotaDetailsExample {
     /**
      * Get BFUSD Quota Details (USER_DATA)
      *
-     * <p>Get BFUSD quota details including subscription quota, fast redemption quota and standard
-     * redemption quota. Weight: 150
+     * <p>Get BFUSD quota details including subscription quota, fast redemption quota, and standard
+     * redemption quota. Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBfusdQuotaDetailsExample() throws ApiException {
+    public void getBfusdQuotaDetailsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetBfusdQuotaDetailsResponse> response =
                 getApi().getBfusdQuotaDetails(recvWindow);

@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** TokenListResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TokenListResponseDataInner {
     public static final String SERIALIZED_NAME_TOKEN_ID = "tokenId";
 
@@ -272,7 +272,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get tokenId
+     * Unique token identifier.
      *
      * @return tokenId
      */
@@ -291,7 +291,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get chainId
+     * Chain ID.
      *
      * @return chainId
      */
@@ -311,7 +311,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get chainIconUrl
+     * Chain icon URL.
      *
      * @return chainIconUrl
      */
@@ -330,7 +330,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get chainName
+     * Chain name.
      *
      * @return chainName
      */
@@ -350,7 +350,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get contractAddress
+     * Token contract address.
      *
      * @return contractAddress
      */
@@ -369,7 +369,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get name
+     * Token name.
      *
      * @return name
      */
@@ -388,7 +388,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get symbol
+     * Token symbol.
      *
      * @return symbol
      */
@@ -407,7 +407,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get iconUrl
+     * Token icon URL.
      *
      * @return iconUrl
      */
@@ -426,7 +426,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -446,7 +446,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get percentChange24h
+     * 24-hour price change percentage.
      *
      * @return percentChange24h
      */
@@ -465,7 +465,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get volume24h
+     * 24-hour trading volume.
      *
      * @return volume24h
      */
@@ -752,7 +752,7 @@ public class TokenListResponseDataInner {
     }
 
     /**
-     * Get alphaId
+     * ALPHA token ID, e.g. ALPHA_175.
      *
      * @return alphaId
      */

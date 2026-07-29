@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Close User Data Stream (USER_STREAM)
 
-Close out a user data stream.  Weight: 1
+Close out a user data stream.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java
@@ -51,7 +51,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **closeUserDataStreamRequest** | [**CloseUserDataStreamRequest**](CloseUserDataStreamRequest.md)|  | |
+| **closeUserDataStreamRequest** | [**CloseUserDataStreamRequest**](CloseUserDataStreamRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -77,7 +77,7 @@ No authorization required
 
 Keepalive User Data Stream (USER_STREAM)
 
-Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It&#39;s recommended to send a ping about every 60 minutes.  Weight: 1
+Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It&#39;s recommended to send a ping about every 60 minutes.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java
@@ -113,7 +113,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keepaliveUserDataStreamRequest** | [**KeepaliveUserDataStreamRequest**](KeepaliveUserDataStreamRequest.md)|  | |
+| **keepaliveUserDataStreamRequest** | [**KeepaliveUserDataStreamRequest**](KeepaliveUserDataStreamRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -139,7 +139,7 @@ No authorization required
 
 Start User Data Stream (USER_STREAM)
 
-Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be extended for 60 minutes.  Weight: 1
+Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be extended for 60 minutes.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java
@@ -175,7 +175,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startUserDataStreamRequest** | [**StartUserDataStreamRequest**](StartUserDataStreamRequest.md)|  | |
+| **startUserDataStreamRequest** | [**StartUserDataStreamRequest**](StartUserDataStreamRequest.md)|  | [optional] |
 
 ### Return type
 

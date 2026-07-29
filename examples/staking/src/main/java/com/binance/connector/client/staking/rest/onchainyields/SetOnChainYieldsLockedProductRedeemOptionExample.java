@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
+import com.binance.connector.client.staking.rest.model.RedeemTo;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedProductRedeemOptionRequest;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedProductRedeemOptionResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class SetOnChainYieldsLockedProductRedeemOptionExample {
@@ -26,18 +28,20 @@ public class SetOnChainYieldsLockedProductRedeemOptionExample {
     }
 
     /**
-     * Set On-chain Yields Locked Product Redeem Option(USER_DATA)
+     * Set On-chain Yields Locked Product Redeem Option (USER_DATA)
      *
-     * <p>Set On-chain Yields redeem option for Locked product Weight: 50
+     * <p>Set On-chain Yields redeem option for Locked product Weight(IP): 50 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void setOnChainYieldsLockedProductRedeemOptionExample() throws ApiException {
+    public void setOnChainYieldsLockedProductRedeemOptionExample()
+            throws ApiException, IOException {
         SetOnChainYieldsLockedProductRedeemOptionRequest
                 setOnChainYieldsLockedProductRedeemOptionRequest =
                         new SetOnChainYieldsLockedProductRedeemOptionRequest();
         setOnChainYieldsLockedProductRedeemOptionRequest.positionId("1");
-        setOnChainYieldsLockedProductRedeemOptionRequest.redeemTo("");
+        setOnChainYieldsLockedProductRedeemOptionRequest.redeemTo(RedeemTo.SPOT);
         ApiResponse<SetOnChainYieldsLockedProductRedeemOptionResponse> response =
                 getApi().setOnChainYieldsLockedProductRedeemOption(
                                 setOnChainYieldsLockedProductRedeemOptionRequest);

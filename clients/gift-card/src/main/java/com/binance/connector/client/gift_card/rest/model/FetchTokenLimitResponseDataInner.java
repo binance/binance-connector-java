@@ -1,6 +1,6 @@
 /*
- * Binance Gift Card REST API
- * OpenAPI Specification for the Binance Gift Card REST API
+ * Gift Card REST API
+ * Create, redeem, and check the value of Binance crypto gift cards.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** FetchTokenLimitResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FetchTokenLimitResponseDataInner {
     public static final String SERIALIZED_NAME_COIN = "coin";
 

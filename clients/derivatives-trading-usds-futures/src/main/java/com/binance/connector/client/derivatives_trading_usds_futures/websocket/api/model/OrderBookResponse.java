@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderBookResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderBookResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -60,6 +60,18 @@ public class OrderBookResponse extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
     private OrderBookResponseResult result;
+
+    public static final String SERIALIZED_NAME_BIDS = "bids";
+
+    @SerializedName(SERIALIZED_NAME_BIDS)
+    @jakarta.annotation.Nullable
+    private List<List<String>> bids;
+
+    public static final String SERIALIZED_NAME_ASKS = "asks";
+
+    @SerializedName(SERIALIZED_NAME_ASKS)
+    @jakarta.annotation.Nullable
+    private List<List<String>> asks;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -127,6 +139,62 @@ public class OrderBookResponse extends BaseDTO {
         this.result = result;
     }
 
+    public OrderBookResponse bids(@jakarta.annotation.Nullable List<List<String>> bids) {
+        this.bids = bids;
+        return this;
+    }
+
+    public OrderBookResponse addBidsItem(List<String> bidsItem) {
+        if (this.bids == null) {
+            this.bids = new ArrayList<>();
+        }
+        this.bids.add(bidsItem);
+        return this;
+    }
+
+    /**
+     * Bid orders. Each entry is [price, quantity].
+     *
+     * @return bids
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<List<String>> getBids() {
+        return bids;
+    }
+
+    public void setBids(@jakarta.annotation.Nullable List<List<String>> bids) {
+        this.bids = bids;
+    }
+
+    public OrderBookResponse asks(@jakarta.annotation.Nullable List<List<String>> asks) {
+        this.asks = asks;
+        return this;
+    }
+
+    public OrderBookResponse addAsksItem(List<String> asksItem) {
+        if (this.asks == null) {
+            this.asks = new ArrayList<>();
+        }
+        this.asks.add(asksItem);
+        return this;
+    }
+
+    /**
+     * Ask orders. Each entry is [price, quantity].
+     *
+     * @return asks
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<List<String>> getAsks() {
+        return asks;
+    }
+
+    public void setAsks(@jakarta.annotation.Nullable List<List<String>> asks) {
+        this.asks = asks;
+    }
+
     public OrderBookResponse rateLimits(
             @jakarta.annotation.Nullable List<@Valid OrderBookResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
@@ -169,12 +237,14 @@ public class OrderBookResponse extends BaseDTO {
         return Objects.equals(this.id, orderBookResponse.id)
                 && Objects.equals(this.status, orderBookResponse.status)
                 && Objects.equals(this.result, orderBookResponse.result)
+                && Objects.equals(this.bids, orderBookResponse.bids)
+                && Objects.equals(this.asks, orderBookResponse.asks)
                 && Objects.equals(this.rateLimits, orderBookResponse.rateLimits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, result, rateLimits);
+        return Objects.hash(id, status, result, bids, asks, rateLimits);
     }
 
     @Override
@@ -184,6 +254,8 @@ public class OrderBookResponse extends BaseDTO {
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		result: ").append(toIndentedString(result)).append("\n");
+        sb.append("		bids: ").append(toIndentedString(bids)).append("\n");
+        sb.append("		asks: ").append(toIndentedString(asks)).append("\n");
         sb.append("		rateLimits: ").append(toIndentedString(rateLimits)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -207,6 +279,16 @@ public class OrderBookResponse extends BaseDTO {
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
+        }
+        List<List<String>> bidsValue = getBids();
+        if (bidsValue != null) {
+            String bidsValueAsString = JSON.getGson().toJson(bidsValue);
+            valMap.put("bids", bidsValueAsString);
+        }
+        List<List<String>> asksValue = getAsks();
+        if (asksValue != null) {
+            String asksValueAsString = JSON.getGson().toJson(asksValue);
+            valMap.put("asks", asksValueAsString);
         }
         List<@Valid OrderBookResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
@@ -235,6 +317,14 @@ public class OrderBookResponse extends BaseDTO {
         Object resultValue = getResult();
         if (resultValue != null) {
             valMap.put("result", resultValue);
+        }
+        Object bidsValue = getBids();
+        if (bidsValue != null) {
+            valMap.put("bids", bidsValue);
+        }
+        Object asksValue = getAsks();
+        if (asksValue != null) {
+            valMap.put("asks", asksValue);
         }
         Object rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
@@ -269,6 +359,8 @@ public class OrderBookResponse extends BaseDTO {
         openapiFields.add("id");
         openapiFields.add("status");
         openapiFields.add("result");
+        openapiFields.add("bids");
+        openapiFields.add("asks");
         openapiFields.add("rateLimits");
 
         // a set of required properties/fields (JSON key names)
@@ -316,6 +408,26 @@ public class OrderBookResponse extends BaseDTO {
         // validate the optional field `result`
         if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
             OrderBookResponseResult.validateJsonElement(jsonObj.get("result"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("bids") != null
+                && !jsonObj.get("bids").isJsonNull()
+                && !jsonObj.get("bids").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bids` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("bids").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("asks") != null
+                && !jsonObj.get("asks").isJsonNull()
+                && !jsonObj.get("asks").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `asks` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("asks").toString()));
         }
         if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
             JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");

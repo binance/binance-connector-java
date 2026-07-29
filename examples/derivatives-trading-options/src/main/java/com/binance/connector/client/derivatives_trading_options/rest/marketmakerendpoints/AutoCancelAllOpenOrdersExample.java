@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.Derivatives
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AutoCancelAllOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerEndpointsApi */
 public class AutoCancelAllOpenOrdersExample {
@@ -32,15 +33,15 @@ public class AutoCancelAllOpenOrdersExample {
      * <p>This endpoint resets the time from which the countdown will begin to the time this
      * messaged is received. It should be called repeatedly as heartbeats. Multiple heartbeats can
      * be updated at once by specifying the underlying symbols as a list (ex. BTCUSDT,ETHUSDT) in
-     * the underlyings parameter. * The response will only include underlying symbols where the
-     * heartbeat has been successfully updated. Weight: 10
+     * the underlyings parameter. Weight(IP): 10 Security Type: TRADE Notes: - The response will
+     * only include underlying symbols where the heartbeat has been successfully updated.
      *
      * @throws ApiException if the Api call fails
      */
-    public void autoCancelAllOpenOrdersExample() throws ApiException {
+    public void autoCancelAllOpenOrdersExample() throws ApiException, IOException {
         AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest =
                 new AutoCancelAllOpenOrdersRequest();
-        autoCancelAllOpenOrdersRequest.underlyings("");
+        autoCancelAllOpenOrdersRequest.underlyings("BTCUSDT,ETHUSDT");
         ApiResponse<AutoCancelAllOpenOrdersResponse> response =
                 getApi().autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
         System.out.println(response.getData());

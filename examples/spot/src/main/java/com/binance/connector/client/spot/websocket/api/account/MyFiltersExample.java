@@ -29,11 +29,12 @@ public class MyFiltersExample {
     }
 
     /**
-     * WebSocket Query Relevant Filters
+     * Query Relevant Filters (USER_DATA)
      *
-     * <p>Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This
-     * is the only method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it.
-     * Weight: 40
+     * <p>Retrieves the list of [filters](/products/spot/filters) relevant to an account on a given
+     * symbol. This is the only method that shows if an account has
+     * [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it. Weight(IP):
+     * 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void myFiltersExampleAsync() {
         MyFiltersRequest myFiltersRequest = new MyFiltersRequest();
@@ -50,11 +51,12 @@ public class MyFiltersExample {
     }
 
     /**
-     * WebSocket Query Relevant Filters
+     * Query Relevant Filters (USER_DATA)
      *
-     * <p>Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This
-     * is the only method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it.
-     * Weight: 40
+     * <p>Retrieves the list of [filters](/products/spot/filters) relevant to an account on a given
+     * symbol. This is the only method that shows if an account has
+     * [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it. Weight(IP):
+     * 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void myFiltersExampleSync() {
         MyFiltersRequest myFiltersRequest = new MyFiltersRequest();

@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangeMarginTypeRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangeMarginTypeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.MarginType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ChangeMarginTypeExample {
@@ -28,15 +29,15 @@ public class ChangeMarginTypeExample {
     }
 
     /**
-     * Change Margin Type(TRADE)
+     * Change Margin Type (TRADE)
      *
-     * <p>Change symbol level margin type Weight: 1
+     * <p>Change symbol level margin type Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeMarginTypeExample() throws ApiException {
+    public void changeMarginTypeExample() throws ApiException, IOException {
         ChangeMarginTypeRequest changeMarginTypeRequest = new ChangeMarginTypeRequest();
-        changeMarginTypeRequest.symbol("");
+        changeMarginTypeRequest.symbol("BTCUSDT");
         changeMarginTypeRequest.marginType(MarginType.ISOLATED);
         ApiResponse<ChangeMarginTypeResponse> response =
                 getApi().changeMarginType(changeMarginTypeRequest);

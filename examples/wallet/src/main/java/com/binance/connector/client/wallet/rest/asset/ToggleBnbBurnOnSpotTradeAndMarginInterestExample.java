@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestRequest;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class ToggleBnbBurnOnSpotTradeAndMarginInterestExample {
@@ -28,12 +29,14 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestExample {
     /**
      * Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)
      *
-     * <p>Toggle BNB Burn On Spot Trade And Margin Interest * \&quot;spotBNBBurn\&quot; and
-     * \&quot;interestBNBBurn\&quot; should be sent at least one. Weight: 1(IP)
+     * <p>Toggle BNB Burn On Spot Trade And Margin Interest Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - \&quot;spotBNBBurn\&quot; and \&quot;interestBNBBurn\&quot; should be sent at least
+     * one.
      *
      * @throws ApiException if the Api call fails
      */
-    public void toggleBnbBurnOnSpotTradeAndMarginInterestExample() throws ApiException {
+    public void toggleBnbBurnOnSpotTradeAndMarginInterestExample()
+            throws ApiException, IOException {
         ToggleBnbBurnOnSpotTradeAndMarginInterestRequest
                 toggleBnbBurnOnSpotTradeAndMarginInterestRequest =
                         new ToggleBnbBurnOnSpotTradeAndMarginInterestRequest();

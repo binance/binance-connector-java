@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QuarterlyContractSettlementPriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QuarterlyContractSettlementPriceExample {
@@ -28,12 +29,12 @@ public class QuarterlyContractSettlementPriceExample {
     /**
      * Quarterly Contract Settlement Price
      *
-     * <p>Latest price for a symbol or symbols. Weight: 0
+     * <p>Latest price for a symbol or symbols. Weight(IP): 0
      *
      * @throws ApiException if the Api call fails
      */
-    public void quarterlyContractSettlementPriceExample() throws ApiException {
-        String pair = "";
+    public void quarterlyContractSettlementPriceExample() throws ApiException, IOException {
+        String pair = "BTCUSDT";
         ApiResponse<QuarterlyContractSettlementPriceResponse> response =
                 getApi().quarterlyContractSettlementPrice(pair);
         System.out.println(response.getData());

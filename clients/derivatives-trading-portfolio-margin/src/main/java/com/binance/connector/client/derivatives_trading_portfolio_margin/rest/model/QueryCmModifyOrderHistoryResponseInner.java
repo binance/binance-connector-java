@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCmModifyOrderHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCmModifyOrderHistoryResponseInner {
     public static final String SERIALIZED_NAME_AMENDMENT_ID = "amendmentId";
 
@@ -88,7 +88,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get amendmentId
+     * Order modification ID
      *
      * @return amendmentId
      */
@@ -108,7 +108,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -127,7 +127,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -147,7 +147,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -167,7 +167,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -186,7 +186,7 @@ public class QueryCmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Order modification time
      *
      * @return time
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** FlexibleLoanBorrowRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FlexibleLoanBorrowRequest {
     public static final String SERIALIZED_NAME_LOAN_COIN = "loanCoin";
 
@@ -95,7 +95,7 @@ public class FlexibleLoanBorrowRequest {
     }
 
     /**
-     * Get loanAmount
+     * Mandatory when collateralAmount is empty
      *
      * @return loanAmount
      */
@@ -137,7 +137,7 @@ public class FlexibleLoanBorrowRequest {
     }
 
     /**
-     * Get collateralAmount
+     * Mandatory when loanAmount is empty
      *
      * @return collateralAmount
      */
@@ -157,11 +157,12 @@ public class FlexibleLoanBorrowRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

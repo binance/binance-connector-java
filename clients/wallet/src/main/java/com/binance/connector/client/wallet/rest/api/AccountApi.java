@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.wallet.rest.model.DailyAccountSnapshotRespon
 import com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest;
 import com.binance.connector.client.wallet.rest.model.EnableFastWithdrawSwitchRequest;
 import com.binance.connector.client.wallet.rest.model.GetApiKeyPermissionResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -49,7 +50,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/5.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +101,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Account-API-Trading-Status">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-api-trading-status">Account
      *     API Trading Status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountApiTradingStatusCall(Long recvWindow) throws ApiException {
@@ -194,7 +195,8 @@ public class AccountApi {
     }
 
     /**
-     * Account API Trading Status (USER_DATA) Fetch account api trading status detail. Weight: 1
+     * Account API Trading Status (USER_DATA) Fetch account api trading status detail. Weight(IP): 1
+     * Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountApiTradingStatusResponse&gt;
@@ -208,11 +210,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Account-API-Trading-Status">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-api-trading-status">Account
      *     API Trading Status (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AccountApiTradingStatusResponse> accountApiTradingStatus(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<AccountApiTradingStatusResponse> accountApiTradingStatus(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = accountApiTradingStatusValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AccountApiTradingStatusResponse>() {}.getType();
@@ -232,8 +234,9 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Account info </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-info">Account info
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-info">Account
+     *     info (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountInfoCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -325,7 +328,7 @@ public class AccountApi {
     }
 
     /**
-     * Account info (USER_DATA) Fetch account info detail. Weight: 1
+     * Account info (USER_DATA) Fetch account info detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountInfoResponse&gt;
@@ -338,10 +341,12 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Account info </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-info">Account info
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-info">Account
+     *     info (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AccountInfoResponse> accountInfo(Long recvWindow) throws ApiException {
+    public ApiResponse<AccountInfoResponse> accountInfo(@Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall = accountInfoValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AccountInfoResponse>() {}.getType();
@@ -361,7 +366,8 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Account Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-Status">Account
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-status">Account
      *     Status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountStatusCall(Long recvWindow) throws ApiException {
@@ -454,7 +460,8 @@ public class AccountApi {
     }
 
     /**
-     * Account Status (USER_DATA) Fetch account status detail. Weight: 1
+     * Account Status (USER_DATA) Fetch account status detail. Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountStatusResponse&gt;
@@ -467,10 +474,12 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Account Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-Status">Account
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-status">Account
      *     Status (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AccountStatusResponse> accountStatus(Long recvWindow) throws ApiException {
+    public ApiResponse<AccountStatusResponse> accountStatus(@Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall = accountStatusValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AccountStatusResponse>() {}.getType();
@@ -483,7 +492,7 @@ public class AccountApi {
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -495,11 +504,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/daily-account-snapshoot">Daily
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#daily-account-snapshot">Daily
      *     Account Snapshot (USER_DATA) Documentation</a>
      */
     private okhttp3.Call dailyAccountSnapshotCall(
-            String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -577,7 +586,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call dailyAccountSnapshotValidateBeforeCall(
-            String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -593,7 +602,7 @@ public class AccountApi {
                     this.getClass()
                             .getMethod(
                                     "dailyAccountSnapshot",
-                                    String.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -616,14 +625,15 @@ public class AccountApi {
     }
 
     /**
-     * Daily Account Snapshot (USER_DATA) Daily account snapshot * The query time period must be
-     * less then 30 days * Support query within the last one month only * If startTimeand endTime
-     * not sent, return records of the last 7 days by default Weight: 2400
+     * Daily Account Snapshot (USER_DATA) Daily account snapshot Weight(IP): 2400 Security Type:
+     * USER_DATA Notes: - The query time period must be less then 30 days - Support query within the
+     * last one month only - If startTimeand endTime not sent, return records of the last 7 days by
+     * default
      *
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;DailyAccountSnapshotResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -636,11 +646,15 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/daily-account-snapshoot">Daily
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#daily-account-snapshot">Daily
      *     Account Snapshot (USER_DATA) Documentation</a>
      */
     public ApiResponse<DailyAccountSnapshotResponse> dailyAccountSnapshot(
-            @NotNull String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            @NotNull OrderType type,
+            Long startTime,
+            Long endTime,
+            @Min(7L) @Max(30L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 dailyAccountSnapshotValidateBeforeCall(type, startTime, endTime, limit, recvWindow);
@@ -652,7 +666,7 @@ public class AccountApi {
     /**
      * Build call for disableFastWithdrawSwitch
      *
-     * @param disableFastWithdrawSwitchRequest (required)
+     * @param disableFastWithdrawSwitchRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -663,7 +677,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Disable-Fast-Withdraw-Switch">Disable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#disable-fast-withdraw-switch">Disable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     private okhttp3.Call disableFastWithdrawSwitchCall(
@@ -762,9 +776,11 @@ public class AccountApi {
     }
 
     /**
-     * Disable Fast Withdraw Switch (USER_DATA) Weight: 1
+     * Disable Fast Withdraw Switch (USER_DATA) Disable Fast Withdraw Switch Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - This request will disable fastwithdraw switch under your account.
+     * You need to enable \&quot;trade\&quot; option for the api key which requests this endpoint.
      *
-     * @param disableFastWithdrawSwitchRequest (required)
+     * @param disableFastWithdrawSwitchRequest (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -776,11 +792,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Disable-Fast-Withdraw-Switch">Disable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#disable-fast-withdraw-switch">Disable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     public ApiResponse<Void> disableFastWithdrawSwitch(
-            @Valid @NotNull DisableFastWithdrawSwitchRequest disableFastWithdrawSwitchRequest)
+            @Valid DisableFastWithdrawSwitchRequest disableFastWithdrawSwitchRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 disableFastWithdrawSwitchValidateBeforeCall(disableFastWithdrawSwitchRequest);
@@ -790,7 +806,7 @@ public class AccountApi {
     /**
      * Build call for enableFastWithdrawSwitch
      *
-     * @param enableFastWithdrawSwitchRequest (required)
+     * @param enableFastWithdrawSwitchRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -801,7 +817,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Enable-Fast-Withdraw-Switch">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#enable-fast-withdraw-switch">Enable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     private okhttp3.Call enableFastWithdrawSwitchCall(
@@ -900,12 +916,13 @@ public class AccountApi {
     }
 
     /**
-     * Enable Fast Withdraw Switch (USER_DATA) Enable Fast Withdraw Switch (USER_DATA) * This
-     * request will enable fastwithdraw switch under your account. &lt;br&gt;&lt;/br&gt; * When Fast
-     * Withdraw Switch is on, transferring funds to a Binance account will be done instantly. There
-     * is no on-chain transaction, no transaction ID and no withdrawal fee. Weight: 1
+     * Enable Fast Withdraw Switch (USER_DATA) Enable Fast Withdraw Switch (USER_DATA) Weight(IP): 1
+     * Security Type: USER_DATA Notes: - This request will enable fastwithdraw switch under your
+     * account. You need to enable \&quot;trade\&quot; option for the api key which requests this
+     * endpoint. - When Fast Withdraw Switch is on, transferring funds to a Binance account will be
+     * done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.
      *
-     * @param enableFastWithdrawSwitchRequest (required)
+     * @param enableFastWithdrawSwitchRequest (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -917,11 +934,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Enable-Fast-Withdraw-Switch">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#enable-fast-withdraw-switch">Enable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     public ApiResponse<Void> enableFastWithdrawSwitch(
-            @Valid @NotNull EnableFastWithdrawSwitchRequest enableFastWithdrawSwitchRequest)
+            @Valid EnableFastWithdrawSwitchRequest enableFastWithdrawSwitchRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 enableFastWithdrawSwitchValidateBeforeCall(enableFastWithdrawSwitchRequest);
@@ -941,8 +958,9 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Get API Key Permission </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/api-key-permission">Get API
-     *     Key Permission (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#get-api-key-permission">Get
+     *     API Key Permission (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getApiKeyPermissionCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -1035,7 +1053,8 @@ public class AccountApi {
     }
 
     /**
-     * Get API Key Permission (USER_DATA) Get API Key Permission Weight: 1
+     * Get API Key Permission (USER_DATA) Get API Key Permission Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetApiKeyPermissionResponse&gt;
@@ -1048,11 +1067,12 @@ public class AccountApi {
      * <tr><td> 200 </td><td> Get API Key Permission </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/api-key-permission">Get API
-     *     Key Permission (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#get-api-key-permission">Get
+     *     API Key Permission (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetApiKeyPermissionResponse> getApiKeyPermission(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetApiKeyPermissionResponse> getApiKeyPermission(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getApiKeyPermissionValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetApiKeyPermissionResponse>() {}.getType();

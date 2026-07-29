@@ -8,6 +8,7 @@ import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedAutoSubscribeRequest;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedAutoSubscribeResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class SetLockedAutoSubscribeExample {
@@ -27,17 +28,17 @@ public class SetLockedAutoSubscribeExample {
     }
 
     /**
-     * Set Locked Auto Subscribe(USER_DATA)
+     * Set Locked Auto Subscribe (USER_DATA)
      *
-     * <p>Set locked auto subscribe Weight: 150
+     * <p>Set locked auto subscribe Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void setLockedAutoSubscribeExample() throws ApiException {
+    public void setLockedAutoSubscribeExample() throws ApiException, IOException {
         SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest =
                 new SetLockedAutoSubscribeRequest();
         setLockedAutoSubscribeRequest.positionId("1");
-        setLockedAutoSubscribeRequest.autoSubscribe(false);
+        setLockedAutoSubscribeRequest.autoSubscribe(true);
         ApiResponse<SetLockedAutoSubscribeResponse> response =
                 getApi().setLockedAutoSubscribe(setLockedAutoSubscribeRequest);
         System.out.println(response.getData());

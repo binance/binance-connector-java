@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetCurrentEthStakingQuotaResponse;
+import java.io.IOException;
 
 /** API examples for EthStakingApi */
 public class GetCurrentEthStakingQuotaExample {
@@ -25,13 +26,13 @@ public class GetCurrentEthStakingQuotaExample {
     }
 
     /**
-     * Get current ETH staking quota(USER_DATA)
+     * Get current ETH staking quota (USER_DATA)
      *
-     * <p>Get current ETH staking quota Weight: 150
+     * <p>Get current ETH staking quota Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCurrentEthStakingQuotaExample() throws ApiException {
+    public void getCurrentEthStakingQuotaExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCurrentEthStakingQuotaResponse> response =
                 getApi().getCurrentEthStakingQuota(recvWindow);

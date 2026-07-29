@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryUsersMarginForceOrdersResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUsersMarginForceOrdersResponseRowsInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -99,7 +99,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -119,7 +119,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -139,7 +139,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -159,7 +159,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -179,7 +179,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -199,7 +199,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -219,7 +219,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -239,7 +239,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -259,7 +259,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get updatedTime
+     * Updated Time.
      *
      * @return updatedTime
      */

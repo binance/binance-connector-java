@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllCmOpenConditionalOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelAllCmOpenConditionalOrdersExample {
@@ -26,14 +27,14 @@ public class CancelAllCmOpenConditionalOrdersExample {
     }
 
     /**
-     * Cancel All CM Open Conditional Orders(TRADE)
+     * Cancel All CM Open Conditional Orders (TRADE)
      *
-     * <p>Cancel All CM Open Conditional Orders Weight: 1
+     * <p>Cancel All CM Open Conditional Orders Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAllCmOpenConditionalOrdersExample() throws ApiException {
-        String symbol = "";
+    public void cancelAllCmOpenConditionalOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllCmOpenConditionalOrdersResponse> response =
                 getApi().cancelAllCmOpenConditionalOrders(symbol, recvWindow);

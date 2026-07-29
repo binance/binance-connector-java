@@ -29,17 +29,19 @@ public class OrderAmendKeepPriorityExample {
     }
 
     /**
-     * WebSocket Order Amend Keep Priority
+     * Order Amend Keep Priority (TRADE)
      *
      * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
      * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
-     * Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
+     * Amend Keep Priority FAQ](/products/spot/faqs/order_amend_keep_priority) to learn more.
+     * Weight(IP): 4 Unfilled Order Count: 0 Security Type: TRADE Notes: **Data Source:** Matching
+     * Engine
      */
     public void orderAmendKeepPriorityExampleAsync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
                 new OrderAmendKeepPriorityRequest();
         orderAmendKeepPriorityRequest.symbol("BNBUSDT");
-        orderAmendKeepPriorityRequest.newQty(1.0d);
+        orderAmendKeepPriorityRequest.newQty(1d);
         CompletableFuture<OrderAmendKeepPriorityResponse> future =
                 getApi().orderAmendKeepPriority(orderAmendKeepPriorityRequest);
         future.handle(
@@ -53,17 +55,19 @@ public class OrderAmendKeepPriorityExample {
     }
 
     /**
-     * WebSocket Order Amend Keep Priority
+     * Order Amend Keep Priority (TRADE)
      *
      * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
      * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
-     * Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
+     * Amend Keep Priority FAQ](/products/spot/faqs/order_amend_keep_priority) to learn more.
+     * Weight(IP): 4 Unfilled Order Count: 0 Security Type: TRADE Notes: **Data Source:** Matching
+     * Engine
      */
     public void orderAmendKeepPriorityExampleSync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
                 new OrderAmendKeepPriorityRequest();
         orderAmendKeepPriorityRequest.symbol("BNBUSDT");
-        orderAmendKeepPriorityRequest.newQty(1.0d);
+        orderAmendKeepPriorityRequest.newQty(1d);
         CompletableFuture<OrderAmendKeepPriorityResponse> future =
                 getApi().orderAmendKeepPriority(orderAmendKeepPriorityRequest);
         OrderAmendKeepPriorityResponse response = future.join();

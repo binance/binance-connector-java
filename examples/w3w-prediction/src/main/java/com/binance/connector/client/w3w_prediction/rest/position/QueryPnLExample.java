@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPnLResponse;
+import java.io.IOException;
 
 /** API examples for PositionApi */
 public class QueryPnLExample {
@@ -26,7 +27,7 @@ public class QueryPnLExample {
     }
 
     /**
-     * Query PnL
+     * Query PnL (USER_DATA)
      *
      * <p>Query profit and loss records for the authenticated user&#39;s prediction positions. When
      * &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise
@@ -34,7 +35,7 @@ public class QueryPnLExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPnLExample() throws ApiException {
+    public void queryPnLExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long marketId = 5567895L;

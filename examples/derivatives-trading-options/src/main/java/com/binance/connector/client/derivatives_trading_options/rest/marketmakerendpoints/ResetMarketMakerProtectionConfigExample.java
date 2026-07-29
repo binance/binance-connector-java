@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.Derivatives
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerEndpointsApi */
 public class ResetMarketMakerProtectionConfigExample {
@@ -29,13 +30,14 @@ public class ResetMarketMakerProtectionConfigExample {
     /**
      * Reset Market Maker Protection Config (TRADE)
      *
-     * <p>Reset MMP, start MMP order again. Weight: 1
+     * <p>Reset MMP, start MMP order again. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void resetMarketMakerProtectionConfigExample() throws ApiException {
+    public void resetMarketMakerProtectionConfigExample() throws ApiException, IOException {
         ResetMarketMakerProtectionConfigRequest resetMarketMakerProtectionConfigRequest =
                 new ResetMarketMakerProtectionConfigRequest();
+        resetMarketMakerProtectionConfigRequest.underlying("BTCUSDT");
         ApiResponse<ResetMarketMakerProtectionConfigResponse> response =
                 getApi().resetMarketMakerProtectionConfig(resetMarketMakerProtectionConfigRequest);
         System.out.println(response.getData());

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  |
+|**symbol** | **String** | Symbol |  |
 |**marginType** | **MarginType** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 

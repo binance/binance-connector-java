@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryIsolatedMarginAccountInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginAccountInfoResponse {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
@@ -85,7 +85,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get assets
+     * assets list.
      *
      * @return assets
      */
@@ -108,7 +108,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalAssetOfBtc
+     * total Asset Of Btc.
      *
      * @return totalAssetOfBtc
      */
@@ -128,7 +128,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalLiabilityOfBtc
+     * total Liability Of Btc.
      *
      * @return totalLiabilityOfBtc
      */
@@ -148,7 +148,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalNetAssetOfBtc
+     * total Net Asset Of Btc.
      *
      * @return totalNetAssetOfBtc
      */

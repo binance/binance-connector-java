@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**time** | **Long** | Transaction time |  [optional] |
 
 
 

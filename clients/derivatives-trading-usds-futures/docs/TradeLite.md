@@ -7,18 +7,18 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**E** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
-|**pLowerCase** | **String** |  |  [optional] |
-|**mLowerCase** | **Boolean** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
-|**S** | **String** |  |  [optional] |
-|**L** | **String** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
-|**tLowerCase** | **Long** |  |  [optional] |
-|**iLowerCase** | **Long** |  |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
+|**T** | **Long** | Transaction Time |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**qLowerCase** | **String** | Original Quantity |  [optional] |
+|**pLowerCase** | **String** | Original Price |  [optional] |
+|**mLowerCase** | **Boolean** | Is this trade the maker side? |  [optional] |
+|**cLowerCase** | **String** | Client Order Id |  [optional] |
+|**S** | **String** | Side |  [optional] |
+|**L** | **String** | Last Filled Price |  [optional] |
+|**lLowerCase** | **String** | Order Last Filled Quantity |  [optional] |
+|**tLowerCase** | **Long** | Trade Id |  [optional] |
+|**iLowerCase** | **Long** | Order Id |  [optional] |
 
 
 

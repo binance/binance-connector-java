@@ -27,15 +27,16 @@ public class AggregateTradeStreamsExample {
      * <p>The Aggregate Trade Streams push market trade information that is aggregated for fills
      * with same price and taking side every 100 milliseconds. Only market trades will be
      * aggregated, which means the insurance fund trades and ADL trades won&#39;t be aggregated.
-     * Retail Price Improvement(RPI) orders are aggregated into field &#x60;q&#x60; and without
-     * special tags to be distinguished. Update Speed: 100ms
+     * &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field
+     * (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM). Update Speed: 100ms Response Notes: -
+     * Retail Price Improvement(RPI) orders are aggregated into field q and without special tags to
+     * be distinguished.
      *
      * @throws ApiException if the Api call fails
      */
     public void aggregateTradeStreamsExample() throws ApiException, InterruptedException {
         AggregateTradeStreamsRequest aggregateTradeStreamsRequest =
                 new AggregateTradeStreamsRequest();
-        aggregateTradeStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<AggregateTradeStreamsResponse> response =
                 getApi().aggregateTradeStreams(aggregateTradeStreamsRequest);
         while (true) {

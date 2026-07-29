@@ -8,6 +8,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.ChangeUmPositionModeRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.ChangeUmPositionModeResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.DualSidePosition;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class ChangeUmPositionModeExample {
@@ -27,16 +29,16 @@ public class ChangeUmPositionModeExample {
     }
 
     /**
-     * Change UM Position Mode(TRADE)
+     * Change UM Position Mode (TRADE)
      *
      * <p>Change user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM
-     * Weight: 1
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeUmPositionModeExample() throws ApiException {
+    public void changeUmPositionModeExample() throws ApiException, IOException {
         ChangeUmPositionModeRequest changeUmPositionModeRequest = new ChangeUmPositionModeRequest();
-        changeUmPositionModeRequest.dualSidePosition("");
+        changeUmPositionModeRequest.dualSidePosition(DualSidePosition.TRUE);
         ApiResponse<ChangeUmPositionModeResponse> response =
                 getApi().changeUmPositionMode(changeUmPositionModeRequest);
         System.out.println(response.getData());

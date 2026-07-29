@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.sub_account.rest.model.FromAccountType;
 import com.binance.connector.client.sub_account.rest.model.FuturesTransferForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.FuturesTransferForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetDetailOnSubAccountsFuturesAccountResponse;
@@ -39,6 +40,7 @@ import com.binance.connector.client.sub_account.rest.model.MarginTransferForSubA
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.OrderArgs;
+import com.binance.connector.client.sub_account.rest.model.ProductType;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountAssetsAssetManagementResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountAssetsResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountFuturesAssetTransferHistoryResponse;
@@ -48,6 +50,7 @@ import com.binance.connector.client.sub_account.rest.model.QueryUniversalTransfe
 import com.binance.connector.client.sub_account.rest.model.SubAccountFuturesAssetTransferRequest;
 import com.binance.connector.client.sub_account.rest.model.SubAccountFuturesAssetTransferResponse;
 import com.binance.connector.client.sub_account.rest.model.SubAccountTransferHistoryResponse;
+import com.binance.connector.client.sub_account.rest.model.ToAccountType;
 import com.binance.connector.client.sub_account.rest.model.TransferToMasterRequest;
 import com.binance.connector.client.sub_account.rest.model.TransferToMasterResponse;
 import com.binance.connector.client.sub_account.rest.model.TransferToSubAccountOfSameMasterRequest;
@@ -55,6 +58,7 @@ import com.binance.connector.client.sub_account.rest.model.TransferToSubAccountO
 import com.binance.connector.client.sub_account.rest.model.UniversalTransferRequest;
 import com.binance.connector.client.sub_account.rest.model.UniversalTransferResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -106,22 +110,23 @@ public class AssetManagementApiTest {
     }
 
     /**
-     * Futures Transfer for Sub-account(For Master Account)
+     * Futures Transfer for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Futures Transfer for Sub-account * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Futures Transfer for Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need
+     * to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void futuresTransferForSubAccountTest() throws ApiException, CryptoException {
+    public void futuresTransferForSubAccountTest()
+            throws ApiException, CryptoException, IOException {
         FuturesTransferForSubAccountRequest futuresTransferForSubAccountRequest =
                 new FuturesTransferForSubAccountRequest();
-
-        futuresTransferForSubAccountRequest.email("sub-account-email@email.com");
-        futuresTransferForSubAccountRequest.asset("");
-        futuresTransferForSubAccountRequest.amount(1d);
-        futuresTransferForSubAccountRequest.type(0L);
+        futuresTransferForSubAccountRequest.email("123@test.com");
+        futuresTransferForSubAccountRequest.asset("USDT");
+        futuresTransferForSubAccountRequest.amount(1.0d);
+        futuresTransferForSubAccountRequest.type(1L);
 
         ApiResponse<FuturesTransferForSubAccountResponse> response =
                 api.futuresTransferForSubAccount(futuresTransferForSubAccountRequest);
@@ -136,25 +141,24 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000amount=1&asset=USDT&type=1&email=123%40test.com", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000amount=1&asset=&type=0&email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bf6b436ab70f514d79e64c39ea94336c5d3f4a29f2b5f1208fc22df45e232930",
+                "7bc8ea3e7875d927c4e38ff8b07f165dc379a617c8aafaee5251e58238257aa1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/futures/transfer", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Detail on Sub-account&#39;s Futures Account(For Master Account)
+     * Get Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Detail on Sub-account&#39;s Futures Account Weight: 10
+     * <p>Get Detail on Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDetailOnSubAccountsFuturesAccountTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void getDetailOnSubAccountsFuturesAccountTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetDetailOnSubAccountsFuturesAccountResponse> response =
                 api.getDetailOnSubAccountsFuturesAccount(email, recvWindow);
@@ -170,25 +174,26 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/futures/account", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/sub-account/futures/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Detail on Sub-account&#39;s Futures Account V2(For Master Account)
+     * Get Detail on Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *
-     * <p>Get Detail on Sub-account&#39;s Futures Account Weight: 1
+     * <p>Get Detail on Sub-account&#39;s Futures Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDetailOnSubAccountsFuturesAccountV2Test() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        Long futuresType = 0L;
+    public void getDetailOnSubAccountsFuturesAccountV2Test()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        Long futuresType = 1L;
         Long recvWindow = 5000L;
         ApiResponse<GetDetailOnSubAccountsFuturesAccountV2Response> response =
                 api.getDetailOnSubAccountsFuturesAccountV2(email, futuresType, recvWindow);
@@ -204,24 +209,26 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&futuresType=0&recvWindow=5000&timestamp=1736393892000",
+                "email=123%40test.com&futuresType=1&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "cc664677d48539d81fe257dafb4f793b0036ed86f73c1bca867f692c34b6b490",
+                "26bcd5b994bb829b3a59484013a4fce2a60ba12d6f08fbe5a00173000cbe40c7",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v2/sub-account/futures/account", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v2/sub-account/futures/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Detail on Sub-account&#39;s Margin Account(For Master Account)
+     * Get Detail on Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Detail on Sub-account&#39;s Margin Account Weight: 10
+     * <p>Get Detail on Sub-account&#39;s Margin Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDetailOnSubAccountsMarginAccountTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void getDetailOnSubAccountsMarginAccountTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetDetailOnSubAccountsMarginAccountResponse> response =
                 api.getDetailOnSubAccountsMarginAccount(email, recvWindow);
@@ -237,36 +244,38 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/margin/account", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/sub-account/margin/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Move Position History for Sub-account (For Master Account)
+     * Get Move Position History for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Query move position history * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent,
-     * return records of the last 90 days by default with 1000 maximum limits * If
-     * &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of
-     * [max(startTime, now-90d), now]. * If &#x60;startTime&#x60; is not sent and
-     * &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime]. Weight: 150
+     * <p>Query move position history Weight(IP): 1 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, records from the last 90 days
+     * are returned by default (up to 1000 records). - If &#x60;startTime&#x60; is sent and
+     * &#x60;endTime&#x60; is omitted, records in &#x60;[max(startTime, now-90d), now]&#x60; are
+     * returned. - If &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in
+     * &#x60;[max(now, endTime-90d), endTime]&#x60; are returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getMovePositionHistoryForSubAccountTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long page = 0L;
-        Long row = 0L;
+    public void getMovePositionHistoryForSubAccountTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long page = 1L;
+        Long rows = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
         ApiResponse<GetMovePositionHistoryForSubAccountResponse> response =
                 api.getMovePositionHistoryForSubAccount(
-                        symbol, page, row, startTime, endTime, recvWindow);
+                        symbol, page, rows, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -279,29 +288,29 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=&startTime=1623319461670&endTime=1641782889000&page=0&row=0&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "symbol=BTCUSDT&startTime=1623319461670&endTime=1641782889000&page=1&rows=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "18c81a868b2ecf052663446d54492c03815e35deaea39da08a0ba175cb304fa9",
+                "8de4d8f77b968580be9fba1f25671a319d2930766c4b3aed8a43314b76a99423",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/move-position", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Sub-account Deposit Address(For Master Account)
+     * Get Sub-account Deposit Address (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account deposit address * &#x60;amount&#x60; needs to be sent if using LIGHTNING
-     * network Weight: 1
+     * <p>Fetch sub-account deposit address Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * &#x60;amount&#x60; needs to be sent if using LIGHTNING network
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSubAccountDepositAddressTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String coin = "";
+    public void getSubAccountDepositAddressTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String coin = "BTC";
         String network = "";
-        Double amount = 1d;
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetSubAccountDepositAddressResponse> response =
                 api.getSubAccountDepositAddress(email, coin, network, amount, recvWindow);
@@ -316,26 +325,26 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=123%40test.com&coin=BTC&network=&amount=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=sub-account-email%40email.com&coin=&network=&amount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "8775619e5f1bf1f99041b1f456c76870f8582b64031236aeb73211e3ad0476e0",
+                "3880bd931ca909128535fd68a39ef43e7c6ca42f0b85dd57ac2e4cd2095024cf",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/deposit/subAddress", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Sub-account Deposit History(For Master Account)
+     * Get Sub-account Deposit History (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account deposit history Weight: 1
+     * <p>Fetch sub-account deposit history Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSubAccountDepositHistoryTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String coin = "";
+    public void getSubAccountDepositHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        Boolean includeSource = false;
+        String coin = "BTC";
         Long status = 0L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -345,7 +354,16 @@ public class AssetManagementApiTest {
         String txId = "1";
         ApiResponse<GetSubAccountDepositHistoryResponse> response =
                 api.getSubAccountDepositHistory(
-                        email, coin, status, startTime, endTime, limit, offset, recvWindow, txId);
+                        email,
+                        includeSource,
+                        coin,
+                        status,
+                        startTime,
+                        endTime,
+                        limit,
+                        offset,
+                        recvWindow,
+                        txId);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -357,27 +375,28 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=123%40test.com&includeSource=false&coin=BTC&status=0&startTime=1623319461670&endTime=1641782889000&limit=1&offset=0&recvWindow=5000&txId=1&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=sub-account-email%40email.com&coin=&status=0&startTime=1623319461670&endTime=1641782889000&limit=1&offset=0&recvWindow=5000&txId=1&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "102448e6732e78a00d0cbe9a0530ccb1d103db100236b95997288da33bcc321f",
+                "ad9815d7e54142a951eb3d10e1c96bed6c3aa4e60d63277865b587e5b7d75e83",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/capital/deposit/subHisrec", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Summary of Sub-account&#39;s Futures Account(For Master Account)
+     * Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Summary of Sub-account&#39;s Futures Account Weight: 1
+     * <p>Get Summary of Sub-account&#39;s Futures Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSummaryOfSubAccountsFuturesAccountTest() throws ApiException, CryptoException {
+    public void getSummaryOfSubAccountsFuturesAccountTest()
+            throws ApiException, CryptoException, IOException {
+        Long page = 1L;
+        Long limit = 1L;
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse> response =
-                api.getSummaryOfSubAccountsFuturesAccount(1L, 100L, recvWindow);
+                api.getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -389,26 +408,29 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("page=1&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "896f98aeecf7fd75f5b6757aac79503b77ce8681d684a02de1677275f4e3217e",
+                "page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "8a73086a1b7b0b8fdd097b5e9651c03b0a8938014f4aae424ed1db47d1030ab6",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/accountSummary", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Summary of Sub-account&#39;s Futures Account V2(For Master Account)
+     * Get Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *
-     * <p>Get Summary of Sub-account&#39;s Futures Account Weight: 10
+     * <p>Get Summary of Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSummaryOfSubAccountsFuturesAccountV2Test() throws ApiException, CryptoException {
-        Long futuresType = 0L;
+    public void getSummaryOfSubAccountsFuturesAccountV2Test()
+            throws ApiException, CryptoException, IOException {
+        Long futuresType = 1L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsFuturesAccountV2Response> response =
                 api.getSummaryOfSubAccountsFuturesAccountV2(futuresType, page, limit, recvWindow);
@@ -424,24 +446,26 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "futuresType=0&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
+                "futuresType=1&page=1&limit=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "91064625cccb59ffc151c9ecf310ad9bab5b73b86da253f2fb2139647c3a43d1",
+                "92de66901bb7041e94ca3c2b3d89a9d1294d342396506a2a9a89d6958f336b2d",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v2/sub-account/futures/accountSummary", actualRequest.url().encodedPath());
+                "/sapi/v2/sub-account/futures/accountSummary",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Summary of Sub-account&#39;s Margin Account(For Master Account)
+     * Get Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Summary of Sub-account&#39;s Margin Account Weight: 10
+     * <p>Get Summary of Sub-account&#39;s Margin Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSummaryOfSubAccountsMarginAccountTest() throws ApiException, CryptoException {
+    public void getSummaryOfSubAccountsMarginAccountTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsMarginAccountResponse> response =
                 api.getSummaryOfSubAccountsMarginAccount(recvWindow);
@@ -456,7 +480,8 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
@@ -465,22 +490,23 @@ public class AssetManagementApiTest {
     }
 
     /**
-     * Margin Transfer for Sub-account(For Master Account)
+     * Margin Transfer for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Margin Transfer for Sub-account * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Margin Transfer for Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need
+     * to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginTransferForSubAccountTest() throws ApiException, CryptoException {
+    public void marginTransferForSubAccountTest()
+            throws ApiException, CryptoException, IOException {
         MarginTransferForSubAccountRequest marginTransferForSubAccountRequest =
                 new MarginTransferForSubAccountRequest();
-
-        marginTransferForSubAccountRequest.email("sub-account-email@email.com");
-        marginTransferForSubAccountRequest.asset("");
-        marginTransferForSubAccountRequest.amount(1d);
-        marginTransferForSubAccountRequest.type(0L);
+        marginTransferForSubAccountRequest.email("123@test.com");
+        marginTransferForSubAccountRequest.asset("BTC");
+        marginTransferForSubAccountRequest.amount(1.0d);
+        marginTransferForSubAccountRequest.type(1L);
 
         ApiResponse<MarginTransferForSubAccountResponse> response =
                 api.marginTransferForSubAccount(marginTransferForSubAccountRequest);
@@ -495,38 +521,36 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000amount=1&asset=BTC&type=1&email=123%40test.com", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000amount=1&asset=&type=0&email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bf6b436ab70f514d79e64c39ea94336c5d3f4a29f2b5f1208fc22df45e232930",
+                "acfe75e73013a95905b1f3ed818f99c7aad3d51ef6077334d13ae3b298542274",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/margin/transfer", actualRequest.url().encodedPath());
     }
 
     /**
-     * Move Position for Sub-account (For Master Account)
+     * Move Position for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Move position between sub-master, master-sub, or sub-sub accounts when necessary * You
-     * need to Enable Trading permission for the API Key which requests this endpoint. * This
-     * function only support VIP level 7-9. * Only master account can use the function * Quantity
-     * should be positive number only * The function support normal account, PM PRO and PM PRO SPAN.
-     * * Only support for from account has positions * For all orders in the same orderArgs request,
-     * if any symbol’s total close position quantity is bigger than the symbol’s current position
-     * quantity, all batch orders in the same list will fail simultaneously. * Only support cross
-     * margin mode * The price for move position is MarkPrice only. * Not support for MSA. * Not
-     * support for the symbol under Reduce-Only. Weight: 150
+     * <p>Move position between sub-master, master-sub, or sub-sub accounts when necessary
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - You need to enable the &#x60;Trading&#x60;
+     * permission for the API key used to call this endpoint. - This function is only available for
+     * VIP levels 7-9. - Only master accounts can call this endpoint. - &#x60;quantity&#x60; must be
+     * a positive number. - Supported account types: normal account, PM PRO, PM PRO SPAN, and PM
+     * Retail. - The source account must have positions. - For orders in the same
+     * &#x60;orderArgs&#x60; request, if any symbol&#39;s total close position quantity exceeds
+     * current position quantity, all orders in that batch fail. - Only cross margin mode is
+     * supported. - The move position price supports &#x60;MARK_PRICE&#x60; only. - MSA is not
+     * supported. - Symbols configured with &#x60;Reduce-Only&#x60; are not supported.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void movePositionForSubAccountTest() throws ApiException, CryptoException {
+    public void movePositionForSubAccountTest() throws ApiException, CryptoException, IOException {
         MovePositionForSubAccountRequest movePositionForSubAccountRequest =
                 new MovePositionForSubAccountRequest();
-
-        movePositionForSubAccountRequest.fromUserEmail("");
-        movePositionForSubAccountRequest.toUserEmail("");
-        movePositionForSubAccountRequest.productType("");
+        movePositionForSubAccountRequest.fromUserEmail("testFrom@google.com");
+        movePositionForSubAccountRequest.toUserEmail("testTo@google.com");
+        movePositionForSubAccountRequest.productType(ProductType.UM);
         movePositionForSubAccountRequest.orderArgs(new OrderArgs());
 
         ApiResponse<MovePositionForSubAccountResponse> response =
@@ -542,26 +566,23 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000toUserEmail=testTo%40google.com&fromUserEmail=testFrom%40google.com&orderArgs=%5B%5D&productType=UM", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000toUserEmail=&fromUserEmail=&orderArgs=%5B%5D&productType=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "41a35ce40a2e93c910c5f84b1e22985e11da6cf58ae1f75e82d2f00fd6f00ead",
+                "1320433d6bf5659d9b2271cc06f602deda4c1c404dbc95015240869cd3f28899",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sub-account/futures/move-position", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sub-account/futures/move-position", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Assets(For Master Account)
+     * Query Sub-account Assets (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account assets Weight: 60
+     * <p>Fetch sub-account assets Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountAssetsTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void querySubAccountAssetsTest() throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountAssetsResponse> response =
                 api.querySubAccountAssets(email, recvWindow);
@@ -576,25 +597,24 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=123%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v3/sub-account/assets", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Assets (For Master Account)(USER_DATA)
+     * Query Sub-account Assets V4 (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account assets Weight: 60
+     * <p>Fetch sub-account assets Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountAssetsAssetManagementTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void querySubAccountAssetsAssetManagementTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountAssetsAssetManagementResponse> response =
                 api.querySubAccountAssetsAssetManagement(email, recvWindow);
@@ -610,30 +630,30 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v4/sub-account/assets", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v4/sub-account/assets", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Futures Asset Transfer History(For Master Account)
+     * Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account Futures Asset Transfer History Weight: 1
+     * <p>Query Sub-account Futures Asset Transfer History Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void querySubAccountFuturesAssetTransferHistoryTest()
-            throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        Long futuresType = 0L;
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        Long futuresType = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountFuturesAssetTransferHistoryResponse> response =
                 api.querySubAccountFuturesAssetTransferHistory(
@@ -650,31 +670,35 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&futuresType=0&startTime=1623319461670&endTime=1641782889000&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
+                "email=123%40test.com&futuresType=1&startTime=1623319461670&endTime=1641782889000&page=1&limit=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "c4d0e5c4714d29882f1af3ebcc672cfc31cc002bb0830b62109f5aa90e739f99",
+                "fd0fcd6f5728a7271cffd9fca3460d0702847009aae87971969ac28f728697b7",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/sub-account/futures/internalTransfer", actualRequest.url().encodedPath());
+                "/sapi/v1/sub-account/futures/internalTransfer",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Spot Asset Transfer History(For Master Account)
+     * Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account Spot Asset Transfer History * fromEmail and toEmail cannot be sent at
-     * the same time. * Return fromEmail equal master account email by default. Weight: 1
+     * <p>Query Sub-account Spot Asset Transfer History Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; cannot be sent at the same time. - If
+     * both &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; are omitted, records with
+     * &#x60;fromEmail&#x60; equal to the master account are returned by default.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountSpotAssetTransferHistoryTest() throws ApiException, CryptoException {
-        String fromEmail = "";
-        String toEmail = "";
+    public void querySubAccountSpotAssetTransferHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String fromEmail = "aaa@test.com";
+        String toEmail = "bbb@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountSpotAssetTransferHistoryResponse> response =
                 api.querySubAccountSpotAssetTransferHistory(
@@ -691,25 +715,27 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "fromEmail=&toEmail=&startTime=1623319461670&endTime=1641782889000&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
+                "fromEmail=aaa%40test.com&toEmail=bbb%40test.com&startTime=1623319461670&endTime=1641782889000&page=1&limit=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "5a40d1d45de6e9395280b83d016f73de6f73ff423e20c0fcb787a1bc354e420d",
+                "380f287e79c1bf8fc0d5d115153310b032b2fbba418a461b6969c0461cb564d6",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/sub-account/sub/transfer/history", actualRequest.url().encodedPath());
+                "/sapi/v1/sub-account/sub/transfer/history",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Spot Assets Summary(For Master Account)
+     * Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA)
      *
-     * <p>Get BTC valued asset summary of subaccounts. Weight: 1
+     * <p>Get BTC valued asset summary of subaccounts. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountSpotAssetsSummaryTest() throws ApiException, CryptoException {
-        String email = "";
+    public void querySubAccountSpotAssetsSummaryTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long page = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
@@ -727,33 +753,35 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=&page=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&page=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "30a3e7836aa5dd96d832dd8e3c856015220d2b5a47b1fa45aad6b3529dd17798",
+                "9029a18d45f4a77c0c74df77bdb6839600bd23be68520dca80fe9697ef906e63",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/spotSummary", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Universal Transfer History(For Master Account)
+     * Query Universal Transfer History (For Master Account) (USER_DATA)
      *
-     * <p>Query Universal Transfer History * fromEmail and toEmail cannot be sent at the same time.
-     * * Return fromEmail equal master account email by default. * The query time period must be
-     * less than 7 days. * If startTime and endTime not sent, return records of the last 7 days by
-     * default. Weight: 1
+     * <p>Query Universal Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; cannot be sent at the same time. - If both
+     * &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; are omitted, records with &#x60;fromEmail&#x60;
+     * equal to the master account are returned by default. - The query time range must be less than
+     * 7 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the last
+     * 7 days are returned by default.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryUniversalTransferHistoryTest() throws ApiException, CryptoException {
-        String fromEmail = "";
-        String toEmail = "";
+    public void queryUniversalTransferHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String fromEmail = "abctest@gmail.com";
+        String toEmail = "deftest@gmail.com";
         String clientTranId = "1";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QueryUniversalTransferHistoryResponse> response =
                 api.queryUniversalTransferHistory(
@@ -776,33 +804,32 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("fromEmail=abctest%40gmail.com&toEmail=deftest%40gmail.com&clientTranId=1&startTime=1623319461670&endTime=1641782889000&page=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "fromEmail=&toEmail=&clientTranId=1&startTime=1623319461670&endTime=1641782889000&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "ac017b8d58998a26258f4669f08515619a652c0fdf9090a42bc95c0afa358cd6",
+                "1cd85eef2d15a61441518a575c60a87e65f4f9ea3724d0b7ef7b1889b8a05a39",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/universalTransfer", actualRequest.url().encodedPath());
     }
 
     /**
-     * Sub-account Futures Asset Transfer(For Master Account)
+     * Sub-account Futures Asset Transfer (For Master Account) (USER_DATA)
      *
-     * <p>Sub-account Futures Asset Transfer * Master account can transfer max 2000 times a minute *
-     * There must be sufficient margin balance in futures wallet to execute transferring. Weight: 1
+     * <p>Sub-account Futures Asset Transfer Weight(IP): 1 Security Type: USER_DATA Notes: - A
+     * master account can transfer at most 2000 times per minute. - The futures wallet must have
+     * sufficient margin balance to execute the transfer.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void subAccountFuturesAssetTransferTest() throws ApiException, CryptoException {
+    public void subAccountFuturesAssetTransferTest()
+            throws ApiException, CryptoException, IOException {
         SubAccountFuturesAssetTransferRequest subAccountFuturesAssetTransferRequest =
                 new SubAccountFuturesAssetTransferRequest();
-
-        subAccountFuturesAssetTransferRequest.fromEmail("");
-        subAccountFuturesAssetTransferRequest.toEmail("");
-        subAccountFuturesAssetTransferRequest.futuresType(0L);
-        subAccountFuturesAssetTransferRequest.asset("");
-        subAccountFuturesAssetTransferRequest.amount(1d);
+        subAccountFuturesAssetTransferRequest.fromEmail("abc@test.com");
+        subAccountFuturesAssetTransferRequest.toEmail("def@test.com");
+        subAccountFuturesAssetTransferRequest.futuresType(1L);
+        subAccountFuturesAssetTransferRequest.asset("BTC");
+        subAccountFuturesAssetTransferRequest.amount(1.0d);
 
         ApiResponse<SubAccountFuturesAssetTransferResponse> response =
                 api.subAccountFuturesAssetTransfer(subAccountFuturesAssetTransferRequest);
@@ -817,32 +844,30 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000futuresType=1&amount=1&asset=BTC&toEmail=def%40test.com&fromEmail=abc%40test.com", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000futuresType=0&amount=1&asset=&toEmail=&fromEmail=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a51c95722d0cbc7ff57e9310070dd556eda7eb06c2f2475c12de4c0349c9656c",
+                "807dc89039b8eb976af3c128a2532ea5488569e8b8753ca77923b29cb8a940e1",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sub-account/futures/internalTransfer", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sub-account/futures/internalTransfer", actualRequest.url().encodedPath());
     }
 
     /**
-     * Sub-account Transfer History(For Sub-account)
+     * Sub-account Transfer History (For Sub-account) (USER_DATA)
      *
-     * <p>Sub-account Transfer History * If type is not sent, the records of type 2: transfer out
-     * will be returned by default. * If startTime and endTime are not sent, the recent 30-day data
-     * will be returned. Weight: 1
+     * <p>Sub-account Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: - If
+     * &#x60;type&#x60; is not sent, records of type &#x60;2&#x60; (transfer out) are returned by
+     * default. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, data from the most
+     * recent 30 days is returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void subAccountTransferHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
-        Long type = 0L;
+    public void subAccountTransferHistoryTest() throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
+        Long type = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 1L;
+        Long limit = 10L;
         Boolean returnFailHistory = false;
         Long recvWindow = 5000L;
         ApiResponse<SubAccountTransferHistoryResponse> response =
@@ -859,30 +884,26 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BTC&type=1&startTime=1623319461670&endTime=1641782889000&limit=10&returnFailHistory=false&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&type=0&startTime=1623319461670&endTime=1641782889000&limit=1&returnFailHistory=false&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f8ec137c5ce8cc18e82982dd1f3ade0cc6487f4878f4c39fe921a213d2be01e8",
+                "969bb015eeb3d1ae1acd05e28a092c9d5f1d1174a93d590ac884595fbd0b2c5f",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sub-account/transfer/subUserHistory", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sub-account/transfer/subUserHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Transfer to Master(For Sub-account)
+     * Transfer to Master (For Sub-account) (USER_DATA)
      *
-     * <p>Transfer to Master * You need to open Enable Spot &amp; Margin Trading permission for the
-     * API Key which requests this endpoint. Weight: 1
+     * <p>Transfer to Master Weight(IP): 1 Security Type: USER_DATA Notes: - You need to open Enable
+     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void transferToMasterTest() throws ApiException, CryptoException {
+    public void transferToMasterTest() throws ApiException, CryptoException, IOException {
         TransferToMasterRequest transferToMasterRequest = new TransferToMasterRequest();
-
-        transferToMasterRequest.asset("");
-        transferToMasterRequest.amount(1d);
+        transferToMasterRequest.asset("BTC");
+        transferToMasterRequest.amount(1.0d);
 
         ApiResponse<TransferToMasterResponse> response =
                 api.transferToMaster(transferToMasterRequest);
@@ -897,30 +918,29 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&asset=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1&asset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "bdf4ac8bca8190f70887c6f51a3651b89a8e693487de037a66a7d489ebcde7a4",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sub-account/transfer/subToMaster", actualRequest.url().encodedPath());
+                "401ec13536653d8adc80da2b5661f41137968cfb90e0426e64ad721169840276", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sub-account/transfer/subToMaster", actualRequest.url().encodedPath());
     }
 
     /**
-     * Transfer to Sub-account of Same Master(For Sub-account)
+     * Transfer to Sub-account of Same Master (For Sub-account) (USER_DATA)
      *
-     * <p>Transfer to Sub-account of Same Master * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Transfer to Sub-account of Same Master Weight(IP): 1 Security Type: USER_DATA Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void transferToSubAccountOfSameMasterTest() throws ApiException, CryptoException {
+    public void transferToSubAccountOfSameMasterTest()
+            throws ApiException, CryptoException, IOException {
         TransferToSubAccountOfSameMasterRequest transferToSubAccountOfSameMasterRequest =
                 new TransferToSubAccountOfSameMasterRequest();
-
-        transferToSubAccountOfSameMasterRequest.toEmail("");
-        transferToSubAccountOfSameMasterRequest.asset("");
-        transferToSubAccountOfSameMasterRequest.amount(1d);
+        transferToSubAccountOfSameMasterRequest.toEmail("abc@test.com");
+        transferToSubAccountOfSameMasterRequest.asset("BTC");
+        transferToSubAccountOfSameMasterRequest.amount(1.0d);
 
         ApiResponse<TransferToSubAccountOfSameMasterResponse> response =
                 api.transferToSubAccountOfSameMaster(transferToSubAccountOfSameMasterRequest);
@@ -935,39 +955,41 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&asset=&toEmail=", signInputCaptor.getValue());
         assertEquals(
-                "227adce1b6fa8cd89964bd4feedcc86fc42fea35068da084d94698405ba251b8",
+                "timestamp=1736393892000amount=1&asset=BTC&toEmail=abc%40test.com", signInputCaptor.getValue());
+        assertEquals(
+                "f98122953530ecdb9458c84710d33fce8a94aa4ccaca94c66fc06f42265ca416",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/transfer/subToSub", actualRequest.url().encodedPath());
     }
 
     /**
-     * Universal Transfer(For Master Account)
+     * Universal Transfer (For Master Account) (USER_DATA)
      *
-     * <p>Universal Transfer * You need to enable \&quot;internal transfer\&quot; option for the api
-     * key which requests this endpoint. * Transfer from master account by default if fromEmail is
-     * not sent. * Transfer to master account by default if toEmail is not sent. * At least either
-     * fromEmail or toEmail need to be sent when the fromAccountType and the toAccountType are the
-     * same. * Supported transfer scenarios: * &#x60;SPOT&#x60; transfer to &#x60;SPOT&#x60;,
-     * &#x60;USDT_FUTURE&#x60;, &#x60;COIN_FUTURE&#x60; (regardless of master or sub) *
-     * &#x60;SPOT&#x60;, &#x60;USDT_FUTURE&#x60;, &#x60;COIN_FUTURE&#x60; transfer to
-     * &#x60;SPOT&#x60; (regardless of master or sub) * Master account &#x60;SPOT&#x60; transfer to
-     * sub-account &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account
-     * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account
-     * &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account
-     * &#x60;MARGIN(Cross)&#x60; Weight: 1
+     * <p>Universal Transfer Weight(IP): 1 Weight(UID): 360 Security Type: USER_DATA Notes: - You
+     * need to enable the &#x60;internal transfer&#x60; option for the API key used to call this
+     * endpoint. - If &#x60;fromEmail&#x60; is not sent, transfer out from the master account by
+     * default. - If &#x60;toEmail&#x60; is not sent, transfer into the master account by default. -
+     * When &#x60;fromAccountType&#x60; and &#x60;toAccountType&#x60; are the same, at least one of
+     * &#x60;fromEmail&#x60; or &#x60;toEmail&#x60; must be sent. - Supported transfer scenarios: -
+     * &#x60;SPOT&#x60; -&gt; &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; / &#x60;COIN_FUTURE&#x60;
+     * (master or sub-account). - &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; /
+     * &#x60;COIN_FUTURE&#x60; -&gt; &#x60;SPOT&#x60; (master or sub-account). - Master account
+     * &#x60;SPOT&#x60; -&gt; sub-account &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60;. -
+     * Sub-account &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60; -&gt; master account
+     * &#x60;SPOT&#x60;. - Sub-account &#x60;MARGIN(Cross)&#x60; -&gt; sub-account
+     * &#x60;MARGIN(Cross)&#x60;. - &#x60;ALPHA&#x60; -&gt; &#x60;ALPHA&#x60; (master or
+     * sub-account).
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void universalTransferTest() throws ApiException, CryptoException {
+    public void universalTransferTest() throws ApiException, CryptoException, IOException {
         UniversalTransferRequest universalTransferRequest = new UniversalTransferRequest();
-
-        universalTransferRequest.fromAccountType("");
-        universalTransferRequest.toAccountType("");
-        universalTransferRequest.asset("");
-        universalTransferRequest.amount(1d);
+        universalTransferRequest.fromAccountType(FromAccountType.SPOT);
+        universalTransferRequest.toAccountType(ToAccountType.SPOT);
+        universalTransferRequest.asset("BTC");
+        universalTransferRequest.amount(1.0d);
 
         ApiResponse<UniversalTransferResponse> response =
                 api.universalTransfer(universalTransferRequest);
@@ -982,12 +1004,9 @@ public class AssetManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000fromAccountType=SPOT&amount=1&toAccountType=SPOT&asset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000fromAccountType=&amount=1&toAccountType=&asset=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b299285ec20b4728448d2443690e3837d61e4112f0d26f981519c52d26e32928",
-                actualRequest.url().queryParameter("signature"));
+                "a34e9fef9cb7695920bbd303d4ea4c6d1cfe91f4e6cda0d3629f4ab99f8433c4", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/universalTransfer", actualRequest.url().encodedPath());
     }
 }

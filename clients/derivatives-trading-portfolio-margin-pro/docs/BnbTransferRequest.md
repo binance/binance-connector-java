@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**amount** | **Double** |  |  |
-|**transferSide** | **String** |  |  |
+|**transferSide** | **TransferSide** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

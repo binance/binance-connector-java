@@ -8,6 +8,8 @@ import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginManualLiquidationExample {
@@ -27,17 +29,18 @@ public class MarginManualLiquidationExample {
     }
 
     /**
-     * Margin Manual Liquidation(MARGIN)
+     * Margin Manual Liquidation (TRADE)
      *
-     * <p>Margin Manual Liquidation * This endpoint can support Cross Margin Classic Mode and Pro
-     * Mode. * And only support Isolated Margin for restricted region. Weight: 3000
+     * <p>Margin Manual Liquidation Weight(UID): 3000 Security Type: TRADE Notes: - This endpoint
+     * supports Cross Margin Classic Mode and Pro Mode. - Isolated Margin is only supported in
+     * restricted regions.
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginManualLiquidationExample() throws ApiException {
+    public void marginManualLiquidationExample() throws ApiException, IOException {
         MarginManualLiquidationRequest marginManualLiquidationRequest =
                 new MarginManualLiquidationRequest();
-        marginManualLiquidationRequest.type("");
+        marginManualLiquidationRequest.type(OrderType.ROLL_IN);
         ApiResponse<MarginManualLiquidationResponse> response =
                 getApi().marginManualLiquidation(marginManualLiquidationRequest);
         System.out.println(response.getData());

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** BalancePositionUpdate */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BalancePositionUpdate extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -81,7 +81,7 @@ public class BalancePositionUpdate extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -100,7 +100,7 @@ public class BalancePositionUpdate extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction Time
      *
      * @return T
      */
@@ -119,7 +119,7 @@ public class BalancePositionUpdate extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Event reason type
      *
      * @return mLowerCase
      */
@@ -147,7 +147,7 @@ public class BalancePositionUpdate extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Balances
      *
      * @return B
      */
@@ -176,7 +176,7 @@ public class BalancePositionUpdate extends BaseDTO {
     }
 
     /**
-     * Get P
+     * Positions
      *
      * @return P
      */

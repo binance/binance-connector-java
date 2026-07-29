@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -74,7 +74,7 @@ public class AssetManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/5.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -125,7 +125,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Futures-Transfer-for-Sub-account">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#futures-transfer-for-sub-account">Futures
      *     Transfer for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call futuresTransferForSubAccountCall(
@@ -247,8 +247,8 @@ public class AssetManagementApi {
 
     /**
      * Futures Transfer for Sub-account (For Master Account) (USER_DATA) Futures Transfer for
-     * Sub-account * You need to open Enable Spot &amp; Margin Trading permission for the API Key
-     * which requests this endpoint. Weight: 1
+     * Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need to open Enable Spot
+     * &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @param futuresTransferForSubAccountRequest (required)
      * @return ApiResponse&lt;FuturesTransferForSubAccountResponse&gt;
@@ -262,7 +262,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Futures-Transfer-for-Sub-account">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#futures-transfer-for-sub-account">Futures
      *     Transfer for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<FuturesTransferForSubAccountResponse> futuresTransferForSubAccount(
@@ -278,7 +278,7 @@ public class AssetManagementApi {
     /**
      * Build call for getDetailOnSubAccountsFuturesAccount
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -290,7 +290,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account">Get
      *     Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -396,9 +396,9 @@ public class AssetManagementApi {
 
     /**
      * Get Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA) Get Detail
-     * on Sub-account&#39;s Futures Account Weight: 10
+     * on Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDetailOnSubAccountsFuturesAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -411,13 +411,13 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account">Get
      *     Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetDetailOnSubAccountsFuturesAccountResponse>
-            getDetailOnSubAccountsFuturesAccount(@NotNull String email, Long recvWindow)
-                    throws ApiException {
+            getDetailOnSubAccountsFuturesAccount(
+                    @NotNull String email, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getDetailOnSubAccountsFuturesAccountValidateBeforeCall(email, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -428,7 +428,7 @@ public class AssetManagementApi {
     /**
      * Build call for getDetailOnSubAccountsFuturesAccountV2
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -441,7 +441,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account-v2">Get
      *     Detail on Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -553,9 +553,9 @@ public class AssetManagementApi {
 
     /**
      * Get Detail on Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA) Get
-     * Detail on Sub-account&#39;s Futures Account Weight: 1
+     * Detail on Sub-account&#39;s Futures Account Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDetailOnSubAccountsFuturesAccountV2Response&gt;
@@ -569,13 +569,13 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account-v2">Get
      *     Detail on Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetDetailOnSubAccountsFuturesAccountV2Response>
             getDetailOnSubAccountsFuturesAccountV2(
-                    @NotNull String email, @NotNull Long futuresType, Long recvWindow)
+                    @NotNull String email, @NotNull Long futuresType, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getDetailOnSubAccountsFuturesAccountV2ValidateBeforeCall(
@@ -588,7 +588,7 @@ public class AssetManagementApi {
     /**
      * Build call for getDetailOnSubAccountsMarginAccount
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -600,7 +600,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Margin-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-margin-account">Get
      *     Detail on Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -706,9 +706,9 @@ public class AssetManagementApi {
 
     /**
      * Get Detail on Sub-account&#39;s Margin Account (For Master Account) (USER_DATA) Get Detail on
-     * Sub-account&#39;s Margin Account Weight: 10
+     * Sub-account&#39;s Margin Account Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDetailOnSubAccountsMarginAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -721,12 +721,12 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Margin-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-margin-account">Get
      *     Detail on Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetDetailOnSubAccountsMarginAccountResponse>
-            getDetailOnSubAccountsMarginAccount(@NotNull String email, Long recvWindow)
+            getDetailOnSubAccountsMarginAccount(@NotNull String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getDetailOnSubAccountsMarginAccountValidateBeforeCall(email, recvWindow);
@@ -739,8 +739,8 @@ public class AssetManagementApi {
      * Build call for getMovePositionHistoryForSubAccount
      *
      * @param symbol (required)
-     * @param page Page (required)
-     * @param row (required)
+     * @param page (required)
+     * @param rows (required)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -754,11 +754,11 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Move-Position-History-for-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-move-position-history-for-sub-account">Get
      *     Move Position History for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getMovePositionHistoryForSubAccountCall(
-            String symbol, Long page, Long row, Long startTime, Long endTime, Long recvWindow)
+            String symbol, Long page, Long rows, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -800,8 +800,8 @@ public class AssetManagementApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
-        if (row != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("row", row));
+        if (rows != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("rows", rows));
         }
 
         if (recvWindow != null) {
@@ -840,7 +840,7 @@ public class AssetManagementApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getMovePositionHistoryForSubAccountValidateBeforeCall(
-            String symbol, Long page, Long row, Long startTime, Long endTime, Long recvWindow)
+            String symbol, Long page, Long rows, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -851,7 +851,7 @@ public class AssetManagementApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, page, row, startTime, endTime, recvWindow};
+            Object[] parameterValues = {symbol, page, rows, startTime, endTime, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
@@ -867,7 +867,7 @@ public class AssetManagementApi {
 
             if (violations.size() == 0) {
                 return getMovePositionHistoryForSubAccountCall(
-                        symbol, page, row, startTime, endTime, recvWindow);
+                        symbol, page, rows, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -882,15 +882,16 @@ public class AssetManagementApi {
 
     /**
      * Get Move Position History for Sub-account (For Master Account) (USER_DATA) Query move
-     * position history * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records
-     * of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent
-     * and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If
-     * &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of
-     * [max(now,endTime-90d), endTime]. Weight: 1
+     * position history Weight(IP): 1 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default
+     * (up to 1000 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted,
+     * records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If
+     * &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now,
+     * endTime-90d), endTime]&#x60; are returned.
      *
      * @param symbol (required)
-     * @param page Page (required)
-     * @param row (required)
+     * @param page (required)
+     * @param rows (required)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -905,21 +906,21 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Move-Position-History-for-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-move-position-history-for-sub-account">Get
      *     Move Position History for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetMovePositionHistoryForSubAccountResponse>
             getMovePositionHistoryForSubAccount(
                     @NotNull String symbol,
                     @NotNull Long page,
-                    @NotNull Long row,
+                    @NotNull Long rows,
                     Long startTime,
                     Long endTime,
-                    Long recvWindow)
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getMovePositionHistoryForSubAccountValidateBeforeCall(
-                        symbol, page, row, startTime, endTime, recvWindow);
+                        symbol, page, rows, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetMovePositionHistoryForSubAccountResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -928,7 +929,7 @@ public class AssetManagementApi {
     /**
      * Build call for getSubAccountDepositAddress
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param coin (required)
      * @param network networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60;
      *     (optional)
@@ -944,7 +945,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-Address">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-address">Get
      *     Sub-account Deposit Address (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSubAccountDepositAddressCall(
@@ -1068,9 +1069,10 @@ public class AssetManagementApi {
 
     /**
      * Get Sub-account Deposit Address (For Master Account) (USER_DATA) Fetch sub-account deposit
-     * address * &#x60;amount&#x60; needs to be sent if using LIGHTNING network Weight: 1
+     * address Weight(IP): 1 Security Type: USER_DATA Notes: - &#x60;amount&#x60; needs to be sent
+     * if using LIGHTNING network
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param coin (required)
      * @param network networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60;
      *     (optional)
@@ -1087,7 +1089,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-Address">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-address">Get
      *     Sub-account Deposit Address (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSubAccountDepositAddressResponse> getSubAccountDepositAddress(
@@ -1095,7 +1097,7 @@ public class AssetManagementApi {
             @NotNull String coin,
             String network,
             Double amount,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSubAccountDepositAddressValidateBeforeCall(
@@ -1108,14 +1110,16 @@ public class AssetManagementApi {
     /**
      * Build call for getSubAccountDepositHistory
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
+     * @param includeSource Default &#x60;false&#x60;, return &#x60;sourceAddress&#x60; field when
+     *     set to &#x60;true&#x60; (optional)
      * @param coin (optional)
-     * @param status 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User
-     *     confirm,1:success) (optional)
+     * @param status Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw,
+     *     7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
-     * @param offset default:0 (optional)
+     * @param limit (optional)
+     * @param offset (optional)
      * @param recvWindow (optional)
      * @param txId (optional)
      * @return Call to execute
@@ -1128,11 +1132,12 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-history">Get
      *     Sub-account Deposit History (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSubAccountDepositHistoryCall(
             String email,
+            Boolean includeSource,
             String coin,
             Long status,
             Long startTime,
@@ -1168,6 +1173,11 @@ public class AssetManagementApi {
 
         if (email != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        }
+
+        if (includeSource != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("includeSource", includeSource));
         }
 
         if (coin != null) {
@@ -1235,6 +1245,7 @@ public class AssetManagementApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSubAccountDepositHistoryValidateBeforeCall(
             String email,
+            Boolean includeSource,
             String coin,
             Long status,
             Long startTime,
@@ -1254,13 +1265,23 @@ public class AssetManagementApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {
-                email, coin, status, startTime, endTime, limit, offset, recvWindow, txId
+                email,
+                includeSource,
+                coin,
+                status,
+                startTime,
+                endTime,
+                limit,
+                offset,
+                recvWindow,
+                txId
             };
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getSubAccountDepositHistory",
                                     String.class,
+                                    Boolean.class,
                                     String.class,
                                     Long.class,
                                     Long.class,
@@ -1274,7 +1295,16 @@ public class AssetManagementApi {
 
             if (violations.size() == 0) {
                 return getSubAccountDepositHistoryCall(
-                        email, coin, status, startTime, endTime, limit, offset, recvWindow, txId);
+                        email,
+                        includeSource,
+                        coin,
+                        status,
+                        startTime,
+                        endTime,
+                        limit,
+                        offset,
+                        recvWindow,
+                        txId);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1289,16 +1319,18 @@ public class AssetManagementApi {
 
     /**
      * Get Sub-account Deposit History (For Master Account) (USER_DATA) Fetch sub-account deposit
-     * history Weight: 1
+     * history Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
+     * @param includeSource Default &#x60;false&#x60;, return &#x60;sourceAddress&#x60; field when
+     *     set to &#x60;true&#x60; (optional)
      * @param coin (optional)
-     * @param status 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User
-     *     confirm,1:success) (optional)
+     * @param status Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw,
+     *     7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
-     * @param offset default:0 (optional)
+     * @param limit (optional)
+     * @param offset (optional)
      * @param recvWindow (optional)
      * @param txId (optional)
      * @return ApiResponse&lt;GetSubAccountDepositHistoryResponse&gt;
@@ -1312,23 +1344,33 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-history">Get
      *     Sub-account Deposit History (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSubAccountDepositHistoryResponse> getSubAccountDepositHistory(
             @NotNull String email,
+            Boolean includeSource,
             String coin,
             Long status,
             Long startTime,
             Long endTime,
-            Long limit,
+            @Max(200L) Long limit,
             Long offset,
-            Long recvWindow,
+            @Max(60000L) Long recvWindow,
             String txId)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSubAccountDepositHistoryValidateBeforeCall(
-                        email, coin, status, startTime, endTime, limit, offset, recvWindow, txId);
+                        email,
+                        includeSource,
+                        coin,
+                        status,
+                        startTime,
+                        endTime,
+                        limit,
+                        offset,
+                        recvWindow,
+                        txId);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSubAccountDepositHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1337,8 +1379,8 @@ public class AssetManagementApi {
     /**
      * Build call for getSummaryOfSubAccountsFuturesAccount
      *
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param page (required)
+     * @param limit (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1350,7 +1392,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account">Get
      *     Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1461,10 +1503,10 @@ public class AssetManagementApi {
 
     /**
      * Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA) Get Summary
-     * of Sub-account&#39;s Futures Account Weight: 1
+     * of Sub-account&#39;s Futures Account Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param page (required)
+     * @param limit (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfSubAccountsFuturesAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1477,13 +1519,16 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account">Get
      *     Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetSummaryOfSubAccountsFuturesAccountResponse>
             getSummaryOfSubAccountsFuturesAccount(
-                    @NotNull Long page, @NotNull Long limit, Long recvWindow) throws ApiException {
+                    @NotNull Long page,
+                    @NotNull @Max(500L) Long limit,
+                    @Max(60000L) Long recvWindow)
+                    throws ApiException {
         okhttp3.Call localVarCall =
                 getSummaryOfSubAccountsFuturesAccountValidateBeforeCall(page, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1495,8 +1540,8 @@ public class AssetManagementApi {
      * Build call for getSummaryOfSubAccountsFuturesAccountV2
      *
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1508,7 +1553,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account-v2">Get
      *     Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1626,11 +1671,11 @@ public class AssetManagementApi {
 
     /**
      * Get Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA) Get
-     * Summary of Sub-account&#39;s Futures Account Weight: 10
+     * Summary of Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfSubAccountsFuturesAccountV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1643,13 +1688,16 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account-v2">Get
      *     Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetSummaryOfSubAccountsFuturesAccountV2Response>
             getSummaryOfSubAccountsFuturesAccountV2(
-                    @NotNull Long futuresType, Long page, Long limit, Long recvWindow)
+                    @NotNull Long futuresType,
+                    Long page,
+                    @Max(20L) Long limit,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getSummaryOfSubAccountsFuturesAccountV2ValidateBeforeCall(
@@ -1673,7 +1721,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Margin-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-margin-account">Get
      *     Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1771,7 +1819,7 @@ public class AssetManagementApi {
 
     /**
      * Get Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA) Get Summary
-     * of Sub-account&#39;s Margin Account Weight: 10
+     * of Sub-account&#39;s Margin Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfSubAccountsMarginAccountResponse&gt;
@@ -1785,12 +1833,12 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Margin-Account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-margin-account">Get
      *     Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetSummaryOfSubAccountsMarginAccountResponse>
-            getSummaryOfSubAccountsMarginAccount(Long recvWindow) throws ApiException {
+            getSummaryOfSubAccountsMarginAccount(@Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getSummaryOfSubAccountsMarginAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1812,7 +1860,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Margin-Transfer-for-Sub-account">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#margin-transfer-for-sub-account">Margin
      *     Transfer for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call marginTransferForSubAccountCall(
@@ -1934,8 +1982,8 @@ public class AssetManagementApi {
 
     /**
      * Margin Transfer for Sub-account (For Master Account) (USER_DATA) Margin Transfer for
-     * Sub-account * You need to open Enable Spot &amp; Margin Trading permission for the API Key
-     * which requests this endpoint. Weight: 1
+     * Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need to open Enable Spot
+     * &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @param marginTransferForSubAccountRequest (required)
      * @return ApiResponse&lt;MarginTransferForSubAccountResponse&gt;
@@ -1949,7 +1997,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Margin-Transfer-for-Sub-account">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#margin-transfer-for-sub-account">Margin
      *     Transfer for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<MarginTransferForSubAccountResponse> marginTransferForSubAccount(
@@ -1976,7 +2024,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Move-Position-for-Sub-account">Move
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#move-position-for-sub-account">Move
      *     Position for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call movePositionForSubAccountCall(
@@ -2096,15 +2144,16 @@ public class AssetManagementApi {
 
     /**
      * Move Position for Sub-account (For Master Account) (USER_DATA) Move position between
-     * sub-master, master-sub, or sub-sub accounts when necessary * You need to Enable Trading
-     * permission for the API Key which requests this endpoint. * This function only support VIP
-     * level 7-9. * Only master account can use the function * Quantity should be positive number
-     * only * The function support normal account, PM PRO and PM PRO SPAN. * Only support for from
-     * account has positions * For all orders in the same orderArgs request, if any symbol’s total
-     * close position quantity is bigger than the symbol’s current position quantity, all batch
-     * orders in the same list will fail simultaneously. * Only support cross margin mode * The
-     * price for move position is MarkPrice only. * Not support for MSA. * Not support for the
-     * symbol under Reduce-Only. Weight: 1
+     * sub-master, master-sub, or sub-sub accounts when necessary Weight(IP): 1 Security Type:
+     * USER_DATA Notes: - You need to enable the &#x60;Trading&#x60; permission for the API key used
+     * to call this endpoint. - This function is only available for VIP levels 7-9. - Only master
+     * accounts can call this endpoint. - &#x60;quantity&#x60; must be a positive number. -
+     * Supported account types: normal account, PM PRO, PM PRO SPAN, and PM Retail. - The source
+     * account must have positions. - For orders in the same &#x60;orderArgs&#x60; request, if any
+     * symbol&#39;s total close position quantity exceeds current position quantity, all orders in
+     * that batch fail. - Only cross margin mode is supported. - The move position price supports
+     * &#x60;MARK_PRICE&#x60; only. - MSA is not supported. - Symbols configured with
+     * &#x60;Reduce-Only&#x60; are not supported.
      *
      * @param movePositionForSubAccountRequest (required)
      * @return ApiResponse&lt;MovePositionForSubAccountResponse&gt;
@@ -2118,7 +2167,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Move-Position-for-Sub-account">Move
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#move-position-for-sub-account">Move
      *     Position for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<MovePositionForSubAccountResponse> movePositionForSubAccount(
@@ -2134,7 +2183,7 @@ public class AssetManagementApi {
     /**
      * Build call for querySubAccountAssets
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2146,7 +2195,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets">Query
      *     Sub-account Assets (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountAssetsCall(String email, Long recvWindow)
@@ -2246,9 +2295,10 @@ public class AssetManagementApi {
     }
 
     /**
-     * Query Sub-account Assets (For Master Account) (USER_DATA) Fetch sub-account assets Weight: 60
+     * Query Sub-account Assets (For Master Account) (USER_DATA) Fetch sub-account assets
+     * Weight(UID): 60 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountAssetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2261,11 +2311,11 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets">Query
      *     Sub-account Assets (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountAssetsResponse> querySubAccountAssets(
-            @NotNull String email, Long recvWindow) throws ApiException {
+            @NotNull String email, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = querySubAccountAssetsValidateBeforeCall(email, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QuerySubAccountAssetsResponse>() {}.getType();
@@ -2275,7 +2325,7 @@ public class AssetManagementApi {
     /**
      * Build call for querySubAccountAssetsAssetManagement
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2287,8 +2337,8 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4">Query
-     *     Sub-account Assets (For Master Account) (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets-asset-management">Query
+     *     Sub-account Assets V4 (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountAssetsAssetManagementCall(String email, Long recvWindow)
             throws ApiException {
@@ -2391,9 +2441,10 @@ public class AssetManagementApi {
     }
 
     /**
-     * Query Sub-account Assets (For Master Account) (USER_DATA) Fetch sub-account assets Weight: 60
+     * Query Sub-account Assets V4 (For Master Account) (USER_DATA) Fetch sub-account assets
+     * Weight(UID): 60 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountAssetsAssetManagementResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2406,12 +2457,12 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4">Query
-     *     Sub-account Assets (For Master Account) (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets-asset-management">Query
+     *     Sub-account Assets V4 (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountAssetsAssetManagementResponse>
-            querySubAccountAssetsAssetManagement(@NotNull String email, Long recvWindow)
-                    throws ApiException {
+            querySubAccountAssetsAssetManagement(
+                    @NotNull String email, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountAssetsAssetManagementValidateBeforeCall(email, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -2422,12 +2473,12 @@ public class AssetManagementApi {
     /**
      * Build call for querySubAccountFuturesAssetTransferHistory
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
-     * @param startTime (optional)
+     * @param startTime Cannot be earlier than 1 month ago (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2439,7 +2490,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Futures-Asset-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-futures-asset-transfer-history">Query
      *     Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -2588,14 +2639,14 @@ public class AssetManagementApi {
 
     /**
      * Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA) Query
-     * Sub-account Futures Asset Transfer History Weight: 1
+     * Sub-account Futures Asset Transfer History Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
-     * @param startTime (optional)
+     * @param startTime Cannot be earlier than 1 month ago (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountFuturesAssetTransferHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2608,7 +2659,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Futures-Asset-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-futures-asset-transfer-history">Query
      *     Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -2619,8 +2670,8 @@ public class AssetManagementApi {
                     Long startTime,
                     Long endTime,
                     Long page,
-                    Long limit,
-                    Long recvWindow)
+                    @Max(500L) Long limit,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountFuturesAssetTransferHistoryValidateBeforeCall(
@@ -2637,8 +2688,8 @@ public class AssetManagementApi {
      * @param toEmail (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2650,7 +2701,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Asset-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-asset-transfer-history">Query
      *     Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -2798,15 +2849,17 @@ public class AssetManagementApi {
 
     /**
      * Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA) Query
-     * Sub-account Spot Asset Transfer History * fromEmail and toEmail cannot be sent at the same
-     * time. * Return fromEmail equal master account email by default. Weight: 1
+     * Sub-account Spot Asset Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; cannot be sent at the same time. - If both
+     * &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; are omitted, records with &#x60;fromEmail&#x60;
+     * equal to the master account are returned by default.
      *
      * @param fromEmail (optional)
      * @param toEmail (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountSpotAssetTransferHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2819,7 +2872,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Asset-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-asset-transfer-history">Query
      *     Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -2830,8 +2883,8 @@ public class AssetManagementApi {
                     Long startTime,
                     Long endTime,
                     Long page,
-                    Long limit,
-                    Long recvWindow)
+                    @Max(200L) Long limit,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountSpotAssetTransferHistoryValidateBeforeCall(
@@ -2845,8 +2898,8 @@ public class AssetManagementApi {
      * Build call for querySubAccountSpotAssetsSummary
      *
      * @param email Managed sub-account email (optional)
-     * @param page Default value: 1 (optional)
-     * @param size default 10, max 20 (optional)
+     * @param page (optional)
+     * @param size (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2858,7 +2911,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Assets-Summary">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-assets-summary">Query
      *     Sub-account Spot Assets Summary (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountSpotAssetsSummaryCall(
@@ -2973,11 +3026,11 @@ public class AssetManagementApi {
 
     /**
      * Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA) Get BTC valued asset
-     * summary of subaccounts. Weight: 1
+     * summary of subaccounts. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param email Managed sub-account email (optional)
-     * @param page Default value: 1 (optional)
-     * @param size default 10, max 20 (optional)
+     * @param page (optional)
+     * @param size (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountSpotAssetsSummaryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2990,11 +3043,12 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Assets-Summary">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-assets-summary">Query
      *     Sub-account Spot Assets Summary (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountSpotAssetsSummaryResponse> querySubAccountSpotAssetsSummary(
-            String email, Long page, Long size, Long recvWindow) throws ApiException {
+            String email, Long page, @Max(20L) Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountSpotAssetsSummaryValidateBeforeCall(email, page, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -3010,8 +3064,8 @@ public class AssetManagementApi {
      * @param clientTranId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3023,7 +3077,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Universal-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-universal-transfer-history">Query
      *     Universal Transfer History (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryUniversalTransferHistoryCall(
@@ -3185,17 +3239,20 @@ public class AssetManagementApi {
 
     /**
      * Query Universal Transfer History (For Master Account) (USER_DATA) Query Universal Transfer
-     * History * fromEmail and toEmail cannot be sent at the same time. * Return fromEmail equal
-     * master account email by default. * The query time period must be less than 7 days. * If
-     * startTime and endTime not sent, return records of the last 7 days by default. Weight: 1
+     * History Weight(IP): 1 Security Type: USER_DATA Notes: - &#x60;fromEmail&#x60; and
+     * &#x60;toEmail&#x60; cannot be sent at the same time. - If both &#x60;fromEmail&#x60; and
+     * &#x60;toEmail&#x60; are omitted, records with &#x60;fromEmail&#x60; equal to the master
+     * account are returned by default. - The query time range must be less than 7 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the last 7 days are
+     * returned by default.
      *
      * @param fromEmail (optional)
      * @param toEmail (optional)
      * @param clientTranId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUniversalTransferHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3208,7 +3265,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Query-Universal-Transfer-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-universal-transfer-history">Query
      *     Universal Transfer History (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUniversalTransferHistoryResponse> queryUniversalTransferHistory(
@@ -3218,8 +3275,8 @@ public class AssetManagementApi {
             Long startTime,
             Long endTime,
             Long page,
-            Long limit,
-            Long recvWindow)
+            @Max(500L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryUniversalTransferHistoryValidateBeforeCall(
@@ -3250,7 +3307,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Futures-Asset-Transfer">Sub-account
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-futures-asset-transfer">Sub-account
      *     Futures Asset Transfer (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call subAccountFuturesAssetTransferCall(
@@ -3378,8 +3435,9 @@ public class AssetManagementApi {
 
     /**
      * Sub-account Futures Asset Transfer (For Master Account) (USER_DATA) Sub-account Futures Asset
-     * Transfer * Master account can transfer max 2000 times a minute * There must be sufficient
-     * margin balance in futures wallet to execute transferring. Weight: 1
+     * Transfer Weight(IP): 1 Security Type: USER_DATA Notes: - A master account can transfer at
+     * most 2000 times per minute. - The futures wallet must have sufficient margin balance to
+     * execute the transfer.
      *
      * @param subAccountFuturesAssetTransferRequest (required)
      * @return ApiResponse&lt;SubAccountFuturesAssetTransferResponse&gt;
@@ -3393,7 +3451,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Futures-Asset-Transfer">Sub-account
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-futures-asset-transfer">Sub-account
      *     Futures Asset Transfer (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<SubAccountFuturesAssetTransferResponse> subAccountFuturesAssetTransfer(
@@ -3415,7 +3473,7 @@ public class AssetManagementApi {
      * @param type 1: transfer in, 2: transfer out (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param limit (optional)
      * @param returnFailHistory Default &#x60;False&#x60;, return PROCESS and SUCCESS status
      *     history; If &#x60;True&#x60;,return PROCESS and SUCCESS and FAILURE status history
      *     (optional)
@@ -3430,7 +3488,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Transfer-History">Sub-account
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-transfer-history">Sub-account
      *     Transfer History (For Sub-account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call subAccountTransferHistoryCall(
@@ -3577,15 +3635,16 @@ public class AssetManagementApi {
     }
 
     /**
-     * Sub-account Transfer History (For Sub-account) (USER_DATA) Sub-account Transfer History * If
-     * type is not sent, the records of type 2: transfer out will be returned by default. * If
-     * startTime and endTime are not sent, the recent 30-day data will be returned. Weight: 1
+     * Sub-account Transfer History (For Sub-account) (USER_DATA) Sub-account Transfer History
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - If &#x60;type&#x60; is not sent, records of
+     * type &#x60;2&#x60; (transfer out) are returned by default. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, data from the most recent 30 days is returned.
      *
      * @param asset If not sent, result of all assets will be returned (optional)
      * @param type 1: transfer in, 2: transfer out (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param limit (optional)
      * @param returnFailHistory Default &#x60;False&#x60;, return PROCESS and SUCCESS status
      *     history; If &#x60;True&#x60;,return PROCESS and SUCCESS and FAILURE status history
      *     (optional)
@@ -3601,7 +3660,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Transfer-History">Sub-account
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-transfer-history">Sub-account
      *     Transfer History (For Sub-account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<SubAccountTransferHistoryResponse> subAccountTransferHistory(
@@ -3609,9 +3668,9 @@ public class AssetManagementApi {
             Long type,
             Long startTime,
             Long endTime,
-            Long limit,
+            @Max(200L) Long limit,
             Boolean returnFailHistory,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 subAccountTransferHistoryValidateBeforeCall(
@@ -3635,7 +3694,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Master">Transfer
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-master">Transfer
      *     to Master (For Sub-account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call transferToMasterCall(TransferToMasterRequest transferToMasterRequest)
@@ -3741,8 +3800,9 @@ public class AssetManagementApi {
     }
 
     /**
-     * Transfer to Master (For Sub-account) (USER_DATA) Transfer to Master * You need to open Enable
-     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint. Weight: 1
+     * Transfer to Master (For Sub-account) (USER_DATA) Transfer to Master Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - You need to open Enable Spot &amp; Margin Trading permission for the
+     * API Key which requests this endpoint.
      *
      * @param transferToMasterRequest (required)
      * @return ApiResponse&lt;TransferToMasterResponse&gt;
@@ -3756,7 +3816,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Master">Transfer
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-master">Transfer
      *     to Master (For Sub-account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<TransferToMasterResponse> transferToMaster(
@@ -3781,7 +3841,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master">Transfer
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-sub-account-of-same-master">Transfer
      *     to Sub-account of Same Master (For Sub-account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call transferToSubAccountOfSameMasterCall(
@@ -3900,8 +3960,8 @@ public class AssetManagementApi {
 
     /**
      * Transfer to Sub-account of Same Master (For Sub-account) (USER_DATA) Transfer to Sub-account
-     * of Same Master * You need to open Enable Spot &amp; Margin Trading permission for the API Key
-     * which requests this endpoint. Weight: 1
+     * of Same Master Weight(IP): 1 Security Type: USER_DATA Notes: - You need to open Enable Spot
+     * &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @param transferToSubAccountOfSameMasterRequest (required)
      * @return ApiResponse&lt;TransferToSubAccountOfSameMasterResponse&gt;
@@ -3915,7 +3975,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master">Transfer
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-sub-account-of-same-master">Transfer
      *     to Sub-account of Same Master (For Sub-account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<TransferToSubAccountOfSameMasterResponse> transferToSubAccountOfSameMaster(
@@ -3944,7 +4004,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer">Universal
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#universal-transfer">Universal
      *     Transfer (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call universalTransferCall(UniversalTransferRequest universalTransferRequest)
@@ -4075,20 +4135,21 @@ public class AssetManagementApi {
     }
 
     /**
-     * Universal Transfer (For Master Account) (USER_DATA) Universal Transfer * You need to enable
-     * \&quot;internal transfer\&quot; option for the api key which requests this endpoint. *
-     * Transfer from master account by default if fromEmail is not sent. * Transfer to master
-     * account by default if toEmail is not sent. * At least either fromEmail or toEmail need to be
-     * sent when the fromAccountType and the toAccountType are the same. * Supported transfer
-     * scenarios: * &#x60;SPOT&#x60; transfer to &#x60;SPOT&#x60;, &#x60;USDT_FUTURE&#x60;,
-     * &#x60;COIN_FUTURE&#x60; (regardless of master or sub) * &#x60;SPOT&#x60;,
-     * &#x60;USDT_FUTURE&#x60;, &#x60;COIN_FUTURE&#x60; transfer to &#x60;SPOT&#x60; (regardless of
-     * master or sub) * Master account &#x60;SPOT&#x60; transfer to sub-account
-     * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account
-     * &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account
-     * &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account
-     * &#x60;MARGIN(Cross)&#x60; * &#x60;ALPHA&#x60; to &#x60;ALPHA&#x60; (regardless of master or
-     * sub) Weight: 360
+     * Universal Transfer (For Master Account) (USER_DATA) Universal Transfer Weight(IP): 1
+     * Weight(UID): 360 Security Type: USER_DATA Notes: - You need to enable the &#x60;internal
+     * transfer&#x60; option for the API key used to call this endpoint. - If &#x60;fromEmail&#x60;
+     * is not sent, transfer out from the master account by default. - If &#x60;toEmail&#x60; is not
+     * sent, transfer into the master account by default. - When &#x60;fromAccountType&#x60; and
+     * &#x60;toAccountType&#x60; are the same, at least one of &#x60;fromEmail&#x60; or
+     * &#x60;toEmail&#x60; must be sent. - Supported transfer scenarios: - &#x60;SPOT&#x60; -&gt;
+     * &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; / &#x60;COIN_FUTURE&#x60; (master or sub-account).
+     * - &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; / &#x60;COIN_FUTURE&#x60; -&gt; &#x60;SPOT&#x60;
+     * (master or sub-account). - Master account &#x60;SPOT&#x60; -&gt; sub-account
+     * &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60;. - Sub-account
+     * &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60; -&gt; master account
+     * &#x60;SPOT&#x60;. - Sub-account &#x60;MARGIN(Cross)&#x60; -&gt; sub-account
+     * &#x60;MARGIN(Cross)&#x60;. - &#x60;ALPHA&#x60; -&gt; &#x60;ALPHA&#x60; (master or
+     * sub-account).
      *
      * @param universalTransferRequest (required)
      * @return ApiResponse&lt;UniversalTransferResponse&gt;
@@ -4102,7 +4163,7 @@ public class AssetManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer">Universal
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#universal-transfer">Universal
      *     Transfer (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<UniversalTransferResponse> universalTransfer(

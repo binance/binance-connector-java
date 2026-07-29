@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawAddressListResponse;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class FetchWithdrawAddressListExample {
@@ -27,11 +28,11 @@ public class FetchWithdrawAddressListExample {
     /**
      * Fetch withdraw address list (USER_DATA)
      *
-     * <p>Fetch withdraw address list Weight: 10
+     * <p>Fetch withdraw address list Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void fetchWithdrawAddressListExample() throws ApiException {
+    public void fetchWithdrawAddressListExample() throws ApiException, IOException {
         ApiResponse<FetchWithdrawAddressListResponse> response =
                 getApi().fetchWithdrawAddressList();
         System.out.println(response.getData());

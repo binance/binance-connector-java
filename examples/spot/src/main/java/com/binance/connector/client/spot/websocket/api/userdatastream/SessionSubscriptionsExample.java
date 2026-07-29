@@ -28,9 +28,10 @@ public class SessionSubscriptionsExample {
     }
 
     /**
-     * WebSocket Listing all subscriptions
+     * Listing all subscriptions
      *
-     * <p>Weight: 2 **Data Source**: Memory
+     * <p>**Note:** * Users should track the corresponding subscription status of related accounts
+     * as needed. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionSubscriptionsExampleAsync() {
         CompletableFuture<SessionSubscriptionsResponse> future = getApi().sessionSubscriptions();
@@ -45,9 +46,10 @@ public class SessionSubscriptionsExample {
     }
 
     /**
-     * WebSocket Listing all subscriptions
+     * Listing all subscriptions
      *
-     * <p>Weight: 2 **Data Source**: Memory
+     * <p>**Note:** * Users should track the corresponding subscription status of related accounts
+     * as needed. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionSubscriptionsExampleSync() {
         CompletableFuture<SessionSubscriptionsResponse> future = getApi().sessionSubscriptions();

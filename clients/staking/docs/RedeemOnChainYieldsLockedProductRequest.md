@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**positionId** | **String** |  |  |
+|**positionId** | **String** | Locked product position ID |  |
 |**channelId** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

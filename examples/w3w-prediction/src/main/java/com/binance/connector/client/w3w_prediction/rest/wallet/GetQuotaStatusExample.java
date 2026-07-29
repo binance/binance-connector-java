@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.GetQuotaStatusResponse;
+import java.io.IOException;
 
 /** API examples for WalletApi */
 public class GetQuotaStatusExample {
@@ -26,14 +27,14 @@ public class GetQuotaStatusExample {
     }
 
     /**
-     * Get Quota Status
+     * Get Quota Status (USER_DATA)
      *
      * <p>Query the current user&#39;s daily trading quota limit and remaining allowance for
      * prediction markets. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getQuotaStatusExample() throws ApiException {
+    public void getQuotaStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetQuotaStatusResponse> response = getApi().getQuotaStatus(recvWindow);
         System.out.println(response.getData());

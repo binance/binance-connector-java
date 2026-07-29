@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,8 +21,13 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyRequest;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyResponse;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyRequest;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.DeleteIpListForASubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.GetIpRestrictionForASubAccountApiKeyResponse;
+import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKeyPermissionRequest;
+import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKeyPermissionResponse;
+import com.binance.connector.client.sub_account.rest.model.QuerySubAccountApiKeyResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -46,7 +51,7 @@ public class ApiManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/5.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -97,7 +102,7 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Add-IP-Restriction-for-Sub-Account-API-key">Add
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#add-ip-restriction-for-sub-account-api-key">Add
      *     IP Restriction for Sub-Account API key (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call addIpRestrictionForSubAccountApiKeyCall(
@@ -221,8 +226,9 @@ public class ApiManagementApi {
 
     /**
      * Add IP Restriction for Sub-Account API key (For Master Account) (USER_DATA) Add IP
-     * Restriction for Sub-Account API key * You need to enable Enable Spot &amp; Margin Trading
-     * option for the api key which requests this endpoint Weight: 3000
+     * Restriction for Sub-Account API key Weight(UID): 3000 Security Type: USER_DATA Notes: - You
+     * need to enable Enable Spot &amp; Margin Trading option for the api key which requests this
+     * endpoint
      *
      * @param addIpRestrictionForSubAccountApiKeyRequest (required)
      * @return ApiResponse&lt;AddIpRestrictionForSubAccountApiKeyResponse&gt;
@@ -236,7 +242,7 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Add-IP-Restriction-for-Sub-Account-API-key">Add
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#add-ip-restriction-for-sub-account-api-key">Add
      *     IP Restriction for Sub-Account API key (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<AddIpRestrictionForSubAccountApiKeyResponse>
@@ -254,9 +260,202 @@ public class ApiManagementApi {
     }
 
     /**
+     * Build call for createSubAccountApiKey
+     *
+     * @param createSubAccountApiKeyRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Create Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key">Create
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call createSubAccountApiKeyCall(
+            CreateSubAccountApiKeyRequest createSubAccountApiKeyRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/sub-account/subAccountApi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (createSubAccountApiKeyRequest.getEmail() != null) {
+            localVarFormParams.put("email", createSubAccountApiKeyRequest.getEmail());
+        }
+
+        if (createSubAccountApiKeyRequest.getApiName() != null) {
+            localVarFormParams.put("apiName", createSubAccountApiKeyRequest.getApiName());
+        }
+
+        if (createSubAccountApiKeyRequest.getStatus() != null) {
+            localVarFormParams.put("status", createSubAccountApiKeyRequest.getStatus());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanTrade() != null) {
+            localVarFormParams.put("canTrade", createSubAccountApiKeyRequest.getCanTrade());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanMarginLoanRepay() != null) {
+            localVarFormParams.put(
+                    "canMarginLoanRepay", createSubAccountApiKeyRequest.getCanMarginLoanRepay());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanFuturesTrade() != null) {
+            localVarFormParams.put(
+                    "canFuturesTrade", createSubAccountApiKeyRequest.getCanFuturesTrade());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanUniversalTransfer() != null) {
+            localVarFormParams.put(
+                    "canUniversalTransfer",
+                    createSubAccountApiKeyRequest.getCanUniversalTransfer());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanVanillaOptions() != null) {
+            localVarFormParams.put(
+                    "canVanillaOptions", createSubAccountApiKeyRequest.getCanVanillaOptions());
+        }
+
+        if (createSubAccountApiKeyRequest.getIpAddress() != null) {
+            localVarFormParams.put("ipAddress", createSubAccountApiKeyRequest.getIpAddress());
+        }
+
+        if (createSubAccountApiKeyRequest.getThirdPartyName() != null) {
+            localVarFormParams.put(
+                    "thirdPartyName", createSubAccountApiKeyRequest.getThirdPartyName());
+        }
+
+        if (createSubAccountApiKeyRequest.getPublicKey() != null) {
+            localVarFormParams.put("publicKey", createSubAccountApiKeyRequest.getPublicKey());
+        }
+
+        if (createSubAccountApiKeyRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", createSubAccountApiKeyRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createSubAccountApiKeyValidateBeforeCall(
+            CreateSubAccountApiKeyRequest createSubAccountApiKeyRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {createSubAccountApiKeyRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "createSubAccountApiKey", CreateSubAccountApiKeyRequest.class);
+            Set<ConstraintViolation<ApiManagementApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return createSubAccountApiKeyCall(createSubAccountApiKeyRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Create Sub-account API Key (For Master Account) (USER_DATA) Create a new API Key for a
+     * sub-account. Weight(UID): 3000 Security Type: USER_DATA Notes: - &#x60;status&#x3D;2&#x60;
+     * requires &#x60;ipAddress&#x60; - &#x60;status&#x3D;3&#x60; requires
+     * &#x60;thirdPartyName&#x60; - Asset Sub Account is not supported - The caller must pass the
+     * KYC IP restriction check
+     *
+     * @param createSubAccountApiKeyRequest (required)
+     * @return ApiResponse&lt;CreateSubAccountApiKeyResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Create Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key">Create
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CreateSubAccountApiKeyResponse> createSubAccountApiKey(
+            @Valid @NotNull CreateSubAccountApiKeyRequest createSubAccountApiKeyRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                createSubAccountApiKeyValidateBeforeCall(createSubAccountApiKeyRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CreateSubAccountApiKeyResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for deleteIpListForASubAccountApiKey
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param subAccountApiKey (required)
      * @param ipAddress IPs to be deleted. Can be added in batches, separated by commas (required)
      * @param recvWindow (optional)
@@ -270,7 +469,7 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Delete-IP-List-For-a-Sub-account-API-Key">Delete
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-ip-list-for-asub-account-api-key">Delete
      *     IP List For a Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call deleteIpListForASubAccountApiKeyCall(
@@ -389,10 +588,10 @@ public class ApiManagementApi {
 
     /**
      * Delete IP List For a Sub-account API Key (For Master Account) (USER_DATA) Delete IP List For
-     * a Sub-account API Key * You need to enable Enable Spot &amp; Margin Trading option for the
-     * api key which requests this endpoint Weight: 3000
+     * a Sub-account API Key Weight(UID): 3000 Security Type: USER_DATA Notes: - You need to enable
+     * Enable Spot &amp; Margin Trading option for the api key which requests this endpoint
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param subAccountApiKey (required)
      * @param ipAddress IPs to be deleted. Can be added in batches, separated by commas (required)
      * @param recvWindow (optional)
@@ -407,14 +606,14 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Delete-IP-List-For-a-Sub-account-API-Key">Delete
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-ip-list-for-asub-account-api-key">Delete
      *     IP List For a Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<DeleteIpListForASubAccountApiKeyResponse> deleteIpListForASubAccountApiKey(
             @NotNull String email,
             @NotNull String subAccountApiKey,
             @NotNull String ipAddress,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteIpListForASubAccountApiKeyValidateBeforeCall(
@@ -425,9 +624,165 @@ public class ApiManagementApi {
     }
 
     /**
+     * Build call for deleteSubAccountApiKey
+     *
+     * @param email Sub-account email (required)
+     * @param subAccountApiKey The sub-account API Key to be deleted (required)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Delete Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-sub-account-api-key">Delete
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call deleteSubAccountApiKeyCall(
+            String email, String subAccountApiKey, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/sub-account/subAccountApi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (email != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        }
+
+        if (subAccountApiKey != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("subAccountApiKey", subAccountApiKey));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteSubAccountApiKeyValidateBeforeCall(
+            String email, String subAccountApiKey, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {email, subAccountApiKey, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "deleteSubAccountApiKey",
+                                    String.class,
+                                    String.class,
+                                    Long.class);
+            Set<ConstraintViolation<ApiManagementApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return deleteSubAccountApiKeyCall(email, subAccountApiKey, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Delete Sub-account API Key (For Master Account) (USER_DATA) Delete an API Key of a
+     * sub-account. Weight(UID): 3000 Security Type: USER_DATA Notes: - Asset Sub Account is not
+     * supported - The caller must pass the KYC IP restriction check
+     *
+     * @param email Sub-account email (required)
+     * @param subAccountApiKey The sub-account API Key to be deleted (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Delete Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-sub-account-api-key">Delete
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<Object> deleteSubAccountApiKey(
+            @NotNull String email, @NotNull String subAccountApiKey, @Max(60000L) Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                deleteSubAccountApiKeyValidateBeforeCall(email, subAccountApiKey, recvWindow);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<Object>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for getIpRestrictionForASubAccountApiKey
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param subAccountApiKey (required)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -440,7 +795,7 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Get-IP-Restriction-for-a-Sub-account-API-Key">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#get-ip-restriction-for-asub-account-api-key">Get
      *     IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -553,9 +908,9 @@ public class ApiManagementApi {
 
     /**
      * Get IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA) Get IP
-     * Restriction for a Sub-account API Key Weight: 3000
+     * Restriction for a Sub-account API Key Weight(UID): 3000 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param subAccountApiKey (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetIpRestrictionForASubAccountApiKeyResponse&gt;
@@ -569,19 +924,386 @@ public class ApiManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/api-management/Get-IP-Restriction-for-a-Sub-account-API-Key">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#get-ip-restriction-for-asub-account-api-key">Get
      *     IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetIpRestrictionForASubAccountApiKeyResponse>
             getIpRestrictionForASubAccountApiKey(
-                    @NotNull String email, @NotNull String subAccountApiKey, Long recvWindow)
+                    @NotNull String email,
+                    @NotNull String subAccountApiKey,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getIpRestrictionForASubAccountApiKeyValidateBeforeCall(
                         email, subAccountApiKey, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetIpRestrictionForASubAccountApiKeyResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for modifySubAccountApiKeyPermission
+     *
+     * @param modifySubAccountApiKeyPermissionRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Modify Sub-account API Key Permission </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#modify-sub-account-api-key-permission">Modify
+     *     Sub-account API Key Permission (For Master Account) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call modifySubAccountApiKeyPermissionCall(
+            ModifySubAccountApiKeyPermissionRequest modifySubAccountApiKeyPermissionRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/sub-account/subAccountApiPermission";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (modifySubAccountApiKeyPermissionRequest.getEmail() != null) {
+            localVarFormParams.put("email", modifySubAccountApiKeyPermissionRequest.getEmail());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getSubAccountApiKey() != null) {
+            localVarFormParams.put(
+                    "subAccountApiKey",
+                    modifySubAccountApiKeyPermissionRequest.getSubAccountApiKey());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanTrade() != null) {
+            localVarFormParams.put(
+                    "canTrade", modifySubAccountApiKeyPermissionRequest.getCanTrade());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanMarginLoanRepay() != null) {
+            localVarFormParams.put(
+                    "canMarginLoanRepay",
+                    modifySubAccountApiKeyPermissionRequest.getCanMarginLoanRepay());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanFuturesTrade() != null) {
+            localVarFormParams.put(
+                    "canFuturesTrade",
+                    modifySubAccountApiKeyPermissionRequest.getCanFuturesTrade());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanUniversalTransfer() != null) {
+            localVarFormParams.put(
+                    "canUniversalTransfer",
+                    modifySubAccountApiKeyPermissionRequest.getCanUniversalTransfer());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanVanillaOptions() != null) {
+            localVarFormParams.put(
+                    "canVanillaOptions",
+                    modifySubAccountApiKeyPermissionRequest.getCanVanillaOptions());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow", modifySubAccountApiKeyPermissionRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call modifySubAccountApiKeyPermissionValidateBeforeCall(
+            ModifySubAccountApiKeyPermissionRequest modifySubAccountApiKeyPermissionRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {modifySubAccountApiKeyPermissionRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "modifySubAccountApiKeyPermission",
+                                    ModifySubAccountApiKeyPermissionRequest.class);
+            Set<ConstraintViolation<ApiManagementApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return modifySubAccountApiKeyPermissionCall(
+                        modifySubAccountApiKeyPermissionRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Modify Sub-account API Key Permission (For Master Account) (USER_DATA) Modify the trading
+     * permissions of a sub-account API Key. Weight(UID): 3000 Security Type: USER_DATA Notes: -
+     * Portfolio Margin Retail User is not supported - Asset Sub Account is not supported - The
+     * caller must pass the KYC IP restriction check
+     *
+     * @param modifySubAccountApiKeyPermissionRequest (required)
+     * @return ApiResponse&lt;ModifySubAccountApiKeyPermissionResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Modify Sub-account API Key Permission </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#modify-sub-account-api-key-permission">Modify
+     *     Sub-account API Key Permission (For Master Account) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<ModifySubAccountApiKeyPermissionResponse> modifySubAccountApiKeyPermission(
+            @Valid @NotNull
+                    ModifySubAccountApiKeyPermissionRequest modifySubAccountApiKeyPermissionRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                modifySubAccountApiKeyPermissionValidateBeforeCall(
+                        modifySubAccountApiKeyPermissionRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<ModifySubAccountApiKeyPermissionResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for querySubAccountApiKey
+     *
+     * @param email Sub-account email (required)
+     * @param subAccountApiKey Specify an API Key for exact match (optional)
+     * @param page Page number, default 1, minimum 1 (optional)
+     * @param size Page size, default 30, maximum 100 (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#query-sub-account-api-key">Query
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call querySubAccountApiKeyCall(
+            String email, String subAccountApiKey, Long page, Long size, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/sub-account/subAccountApi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (email != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        }
+
+        if (subAccountApiKey != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("subAccountApiKey", subAccountApiKey));
+        }
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (size != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call querySubAccountApiKeyValidateBeforeCall(
+            String email, String subAccountApiKey, Long page, Long size, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {email, subAccountApiKey, page, size, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "querySubAccountApiKey",
+                                    String.class,
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<ApiManagementApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return querySubAccountApiKeyCall(email, subAccountApiKey, page, size, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Sub-account API Key (For Master Account) (USER_DATA) Query the API Key list of a
+     * sub-account. Weight(UID): 3000 Security Type: USER_DATA
+     *
+     * @param email Sub-account email (required)
+     * @param subAccountApiKey Specify an API Key for exact match (optional)
+     * @param page Page number, default 1, minimum 1 (optional)
+     * @param size Page size, default 30, maximum 100 (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QuerySubAccountApiKeyResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Sub-account API Key </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#query-sub-account-api-key">Query
+     *     Sub-account API Key (For Master Account) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QuerySubAccountApiKeyResponse> querySubAccountApiKey(
+            @NotNull String email,
+            String subAccountApiKey,
+            @Min(1L) Long page,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                querySubAccountApiKeyValidateBeforeCall(
+                        email, subAccountApiKey, page, size, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QuerySubAccountApiKeyResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

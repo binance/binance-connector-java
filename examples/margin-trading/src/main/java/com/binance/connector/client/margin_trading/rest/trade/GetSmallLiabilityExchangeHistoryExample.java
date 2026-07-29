@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetSmallLiabilityExchangeHistoryExample {
@@ -28,11 +29,11 @@ public class GetSmallLiabilityExchangeHistoryExample {
     /**
      * Get Small Liability Exchange History (USER_DATA)
      *
-     * <p>Get Small liability Exchange History Weight: 100(UID)
+     * <p>Get Small liability Exchange History Weight(UID): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSmallLiabilityExchangeHistoryExample() throws ApiException {
+    public void getSmallLiabilityExchangeHistoryExample() throws ApiException, IOException {
         Long current = 1L;
         Long size = 10L;
         Long startTime = 1623319461670L;

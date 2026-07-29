@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** VipLoanBorrowRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class VipLoanBorrowRequest {
     public static final String SERIALIZED_NAME_LOAN_ACCOUNT_ID = "loanAccountId";
 
@@ -59,7 +59,7 @@ public class VipLoanBorrowRequest {
 
     @SerializedName(SERIALIZED_NAME_COLLATERAL_ACCOUNT_ID)
     @jakarta.annotation.Nonnull
-    private Long collateralAccountId;
+    private String collateralAccountId;
 
     public static final String SERIALIZED_NAME_COLLATERAL_COIN = "collateralCoin";
 
@@ -71,7 +71,7 @@ public class VipLoanBorrowRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_FLEXIBLE_RATE)
     @jakarta.annotation.Nonnull
-    private Boolean isFlexibleRate;
+    private Boolean isFlexibleRate = true;
 
     public static final String SERIALIZED_NAME_LOAN_TERM = "loanTerm";
 
@@ -149,23 +149,23 @@ public class VipLoanBorrowRequest {
     }
 
     public VipLoanBorrowRequest collateralAccountId(
-            @jakarta.annotation.Nonnull Long collateralAccountId) {
+            @jakarta.annotation.Nonnull String collateralAccountId) {
         this.collateralAccountId = collateralAccountId;
         return this;
     }
 
     /**
-     * Get collateralAccountId
+     * Collateral account ID(s). Multiple split by &#x60;,&#x60;
      *
      * @return collateralAccountId
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public Long getCollateralAccountId() {
+    public String getCollateralAccountId() {
         return collateralAccountId;
     }
 
-    public void setCollateralAccountId(@jakarta.annotation.Nonnull Long collateralAccountId) {
+    public void setCollateralAccountId(@jakarta.annotation.Nonnull String collateralAccountId) {
         this.collateralAccountId = collateralAccountId;
     }
 
@@ -195,7 +195,7 @@ public class VipLoanBorrowRequest {
     }
 
     /**
-     * Get isFlexibleRate
+     * TRUE: flexible rate; FALSE: fixed rate
      *
      * @return isFlexibleRate
      */
@@ -215,7 +215,7 @@ public class VipLoanBorrowRequest {
     }
 
     /**
-     * Get loanTerm
+     * Mandatory for fixed rate. Optional for flexible rate. e.g. 30/60 days
      *
      * @return loanTerm
      */
@@ -234,11 +234,12 @@ public class VipLoanBorrowRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -416,6 +417,13 @@ public class VipLoanBorrowRequest {
                             "Expected the field `loanCoin` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("loanCoin").toString()));
+        }
+        if (!jsonObj.get("collateralAccountId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `collateralAccountId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("collateralAccountId").toString()));
         }
         if (!jsonObj.get("collateralCoin").isJsonPrimitive()) {
             throw new IllegalArgumentException(

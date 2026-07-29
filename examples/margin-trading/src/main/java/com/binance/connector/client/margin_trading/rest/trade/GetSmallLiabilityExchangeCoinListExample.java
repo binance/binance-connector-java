@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetSmallLiabilityExchangeCoinListExample {
@@ -28,11 +29,12 @@ public class GetSmallLiabilityExchangeCoinListExample {
     /**
      * Get Small Liability Exchange Coin List (USER_DATA)
      *
-     * <p>Query the coins which can be small liability exchange Weight: 100
+     * <p>Query the coins which can be small liability exchange Weight(IP): 100 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSmallLiabilityExchangeCoinListExample() throws ApiException {
+    public void getSmallLiabilityExchangeCoinListExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSmallLiabilityExchangeCoinListResponse> response =
                 getApi().getSmallLiabilityExchangeCoinList(recvWindow);

@@ -11,10 +11,11 @@ All URIs are relative to *https://eapi.binance.com*
 | [**cancelOptionOrder**](TradeApi.md#cancelOptionOrder) | **DELETE** /eapi/v1/order | Cancel Option Order (TRADE) |
 | [**newOrder**](TradeApi.md#newOrder) | **POST** /eapi/v1/order | New Order (TRADE) |
 | [**optionPositionInformation**](TradeApi.md#optionPositionInformation) | **GET** /eapi/v1/position | Option Position Information (USER_DATA) |
-| [**placeMultipleOrders**](TradeApi.md#placeMultipleOrders) | **POST** /eapi/v1/batchOrders | Place Multiple Orders(TRADE) |
+| [**placeMultipleOrders**](TradeApi.md#placeMultipleOrders) | **POST** /eapi/v1/batchOrders | Place Multiple Orders (TRADE) |
 | [**queryCurrentOpenOptionOrders**](TradeApi.md#queryCurrentOpenOptionOrders) | **GET** /eapi/v1/openOrders | Query Current Open Option Orders (USER_DATA) |
 | [**queryOptionOrderHistory**](TradeApi.md#queryOptionOrderHistory) | **GET** /eapi/v1/historyOrders | Query Option Order History (TRADE) |
 | [**querySingleOrder**](TradeApi.md#querySingleOrder) | **GET** /eapi/v1/order | Query Single Order (TRADE) |
+| [**tradfiOptionsContract**](TradeApi.md#tradfiOptionsContract) | **POST** /eapi/v1/stock/contract | TradFi Options Contract (USER_DATA) |
 | [**userCommission**](TradeApi.md#userCommission) | **GET** /eapi/v1/commission | User Commission (USER_DATA) |
 | [**userExerciseRecord**](TradeApi.md#userExerciseRecord) | **GET** /eapi/v1/exerciseRecord | User Exercise Record (USER_DATA) |
 
@@ -25,7 +26,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Account Trade List (USER_DATA)
 
-Get trades for a specific account and symbol.  * Only support querying trades in the past 3 months  Weight: 5
+Get trades for a specific account and symbol.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -42,12 +43,12 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long fromId = 1L; // Long | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       AccountTradeListResponse result = apiInstance.accountTradeList(symbol, fromId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -66,12 +67,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
+| **symbol** | **String**| Option trading pair. | |
 | **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of result sets returned. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -97,7 +98,7 @@ No authorization required
 
 Cancel All Option Orders By Underlying (TRADE)
 
-Cancel all active orders on specified underlying.  Weight: 1
+Cancel all active orders on specified underlying.  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -114,8 +115,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String underlying = "underlying_example"; // String | Option underlying, e.g BTCUSDT
-    Long recvWindow = 56L; // Long | 
+    String underlying = "BTCUSDT"; // String | Underlying asset.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       CancelAllOptionOrdersByUnderlyingResponse result = apiInstance.cancelAllOptionOrdersByUnderlying(underlying, recvWindow);
       System.out.println(result);
@@ -134,8 +135,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **underlying** | **String**| Option underlying, e.g BTCUSDT | |
-| **recvWindow** | **Long**|  | [optional] |
+| **underlying** | **String**| Underlying asset. | |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -161,7 +162,7 @@ No authorization required
 
 Cancel all Option orders on specific symbol (TRADE)
 
-Cancel all active order on a symbol.  Weight: 5
+Cancel all active order on a symbol.  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -178,8 +179,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       CancelAllOptionOrdersOnSpecificSymbolResponse result = apiInstance.cancelAllOptionOrdersOnSpecificSymbol(symbol, recvWindow);
       System.out.println(result);
@@ -198,8 +199,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Option trading pair. | |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -225,7 +226,7 @@ No authorization required
 
 Cancel Multiple Option Orders (TRADE)
 
-Cancel multiple orders.  * At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.  Weight: 1
+Cancel multiple orders.  Weight(IP): 5  Security Type: TRADE  Notes: - At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -242,10 +243,10 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    OrderIds orderIds = Arrays.asList(); // OrderIds | Order ID, e.g [4611875134427365377,4611875134427365378]
-    ClientOrderIds clientOrderIds = Arrays.asList(); // ClientOrderIds | User-defined order ID, e.g [\"my_id_1\",\"my_id_2\"]
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    OrderIds orderIds = Arrays.asList(); // OrderIds | Order ID list.
+    ClientOrderIds clientOrderIds = Arrays.asList(); // ClientOrderIds | Client order ID list.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       CancelMultipleOptionOrdersResponse result = apiInstance.cancelMultipleOptionOrders(symbol, orderIds, clientOrderIds, recvWindow);
       System.out.println(result);
@@ -264,10 +265,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **orderIds** | [**OrderIds**](Long.md)| Order ID, e.g [4611875134427365377,4611875134427365378] | [optional] |
-| **clientOrderIds** | [**ClientOrderIds**](String.md)| User-defined order ID, e.g [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;] | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Option trading pair. | |
+| **orderIds** | [**OrderIds**](Long.md)| Order ID list. | [optional] |
+| **clientOrderIds** | [**ClientOrderIds**](String.md)| Client order ID list. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -293,7 +294,7 @@ No authorization required
 
 Cancel Option Order (TRADE)
 
-Cancel an active order.  * At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.  Weight: 1
+Cancel an active order.  Weight(IP): 1  Security Type: TRADE  Notes: - At least one instance of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -310,10 +311,10 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
-    String clientOrderId = "clientOrderId_example"; // String | User-defined order ID, e.g 10000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long orderId = 4611875134427365000L; // Long | Order ID.
+    String clientOrderId = "10000"; // String | clientOrderId
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       CancelOptionOrderResponse result = apiInstance.cancelOptionOrder(symbol, orderId, clientOrderId, recvWindow);
       System.out.println(result);
@@ -332,10 +333,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
-| **clientOrderId** | **String**| User-defined order ID, e.g 10000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Option trading pair. | |
+| **orderId** | **Long**| Order ID. | [optional] |
+| **clientOrderId** | **String**| clientOrderId | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -361,7 +362,7 @@ No authorization required
 
 New Order (TRADE)
 
-Send a new order.  Weight: 0
+Send a new order.  Weight(IP): 0  Security Type: TRADE  Notes: Some parameters are mandatory depending on the order type as follows:  Type | Mandatory parameters ------------ | ------------  LIMIT | timeInForce, quantity, price
 
 ### Example
 ```java
@@ -423,7 +424,7 @@ No authorization required
 
 Option Position Information (USER_DATA)
 
-Get current position information.  Weight: 5
+Get current position information.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -440,8 +441,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       OptionPositionInformationResponse result = apiInstance.optionPositionInformation(symbol, recvWindow);
       System.out.println(result);
@@ -460,8 +461,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Option trading pair. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -485,9 +486,9 @@ No authorization required
 # **placeMultipleOrders**
 > PlaceMultipleOrdersResponse placeMultipleOrders(placeMultipleOrdersRequest)
 
-Place Multiple Orders(TRADE)
+Place Multiple Orders (TRADE)
 
-Send multiple option orders.  * Parameter rules are same with New Order * Batch orders are processed concurrently, and the order of matching is not guaranteed.  Weight: 5
+Send multiple option orders.  Weight(IP): 5  Security Type: TRADE  Notes: Some parameters are mandatory depending on the order type as follows:  Type | Mandatory parameters ------------ | ------------  LIMIT | timeInForce, quantity, price  - Parameter rules are same with New Order - Batch orders are processed concurrently, and the order of matching is not guaranteed.
 
 ### Example
 ```java
@@ -549,7 +550,7 @@ No authorization required
 
 Query Current Open Option Orders (USER_DATA)
 
-Query current all open orders, status: ACCEPTED PARTIALLY_FILLED  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
+Query current all open orders, status: ACCEPTED PARTIALLY_FILLED  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -566,11 +567,11 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long orderId = 4611875134427365000L; // Long | Order ID.
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       QueryCurrentOpenOptionOrdersResponse result = apiInstance.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow);
       System.out.println(result);
@@ -589,11 +590,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
-| **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
+| **symbol** | **String**| Option trading pair. | [optional] |
+| **orderId** | **Long**| Order ID. | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -619,7 +620,7 @@ No authorization required
 
 Query Option Order History (TRADE)
 
-Query all finished orders within 5 days, finished status: CANCELLED FILLED REJECTED.  Weight: 3
+Query all finished orders within 5 days, finished status: CANCELLED FILLED REJECTED.  Weight(IP): 3  Security Type: TRADE
 
 ### Example
 ```java
@@ -636,12 +637,12 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long orderId = 4611875134427365000L; // Long | Order ID.
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       QueryOptionOrderHistoryResponse result = apiInstance.queryOptionOrderHistory(symbol, orderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -660,12 +661,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
+| **symbol** | **String**| Option trading pair. | |
+| **orderId** | **Long**| Order ID. | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of result sets returned | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -691,7 +692,7 @@ No authorization required
 
 Query Single Order (TRADE)
 
-Check an order status.  * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;REJECTED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 3 days &lt; current time   * Either &#x60;orderId&#x60; or &#x60;clientOrderId &#x60; must be sent.  Weight: 1
+Check an order status.  * These orders will not be found:   * order status is &#x60;CANCELED&#x60; or &#x60;REJECTED&#x60;, **AND**   * order has NO filled trade, **AND**   * created time + 3 days &lt; current time  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;clientOrderId &#x60; must be sent.
 
 ### Example
 ```java
@@ -708,10 +709,10 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long orderId = 56L; // Long | Order ID, e.g 4611875134427365377
-    String clientOrderId = "clientOrderId_example"; // String | User-defined order ID, e.g 10000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long orderId = 4611875134427365000L; // Long | Order ID.
+    String clientOrderId = "abc123"; // String | User-defined order ID; cannot be duplicated among open orders.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       QuerySingleOrderResponse result = apiInstance.querySingleOrder(symbol, orderId, clientOrderId, recvWindow);
       System.out.println(result);
@@ -730,10 +731,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **orderId** | **Long**| Order ID, e.g 4611875134427365377 | [optional] |
-| **clientOrderId** | **String**| User-defined order ID, e.g 10000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Option trading pair. | |
+| **orderId** | **Long**| Order ID. | [optional] |
+| **clientOrderId** | **String**| User-defined order ID; cannot be duplicated among open orders. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -753,13 +754,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Single Order |  -  |
 
-<a id="userCommission"></a>
-# **userCommission**
-> UserCommissionResponse userCommission(recvWindow)
+<a id="tradfiOptionsContract"></a>
+# **tradfiOptionsContract**
+> TradfiOptionsContractResponse tradfiOptionsContract(tradfiOptionsContractRequest)
 
-User Commission (USER_DATA)
+TradFi Options Contract (USER_DATA)
 
-Get account commission.  Weight: 5
+Sign TradFi Options agreement contract  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -776,7 +777,69 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    TradfiOptionsContractRequest tradfiOptionsContractRequest = new TradfiOptionsContractRequest(); // TradfiOptionsContractRequest | 
+    try {
+      TradfiOptionsContractResponse result = apiInstance.tradfiOptionsContract(tradfiOptionsContractRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#tradfiOptionsContract");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tradfiOptionsContractRequest** | [**TradfiOptionsContractRequest**](TradfiOptionsContractRequest.md)|  | [optional] |
+
+### Return type
+
+[**TradfiOptionsContractResponse**](TradfiOptionsContractResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | TradFi Options Contract |  -  |
+
+<a id="userCommission"></a>
+# **userCommission**
+> UserCommissionResponse userCommission(recvWindow)
+
+User Commission (USER_DATA)
+
+Get account commission.  Weight(IP): 5  Security Type: USER_DATA
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.rest.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://eapi.binance.com");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       UserCommissionResponse result = apiInstance.userCommission(recvWindow);
       System.out.println(result);
@@ -795,7 +858,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -821,7 +884,7 @@ No authorization required
 
 User Exercise Record (USER_DATA)
 
-Get account exercise records.  Weight: 5
+Get account exercise records.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -838,11 +901,11 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair.
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       UserExerciseRecordResponse result = apiInstance.userExerciseRecord(symbol, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -861,11 +924,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
+| **symbol** | **String**| Option trading pair. | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of result sets returned. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 

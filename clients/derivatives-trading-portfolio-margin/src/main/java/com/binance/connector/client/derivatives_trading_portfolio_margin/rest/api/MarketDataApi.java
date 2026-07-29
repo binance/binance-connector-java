@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin/6.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -90,7 +90,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/market-data/Test-Connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/market-data#test-connectivity">Test
      *     Connectivity Documentation</a>
      */
     private okhttp3.Call testConnectivityCall() throws ApiException {
@@ -178,7 +178,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Test Connectivity Test connectivity to the Rest API. Weight: 1
+     * Test Connectivity Test connectivity to the Rest API. Weight(IP): 1
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -191,7 +191,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/portfolio-margin/market-data/Test-Connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/market-data#test-connectivity">Test
      *     Connectivity Documentation</a>
      */
     public ApiResponse<Void> testConnectivity() throws ApiException {

@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**pair** | **String** |  |  [optional] |
-|**contractType** | **String** |  |  [optional] |
-|**takerBuyVol** | **String** |  |  [optional] |
-|**takerSellVol** | **String** |  |  [optional] |
-|**takerBuyVolValue** | **String** |  |  [optional] |
-|**takerSellVolValue** | **String** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
+|**pair** | **String** | Pair |  [optional] |
+|**contractType** | **String** | Contract type. |  [optional] |
+|**takerBuyVol** | **String** | unit: cont |  [optional] |
+|**takerSellVol** | **String** | unit: cont |  [optional] |
+|**takerBuyVolValue** | **String** | unit: base asset |  [optional] |
+|**takerSellVolValue** | **String** | unit: base asset |  [optional] |
+|**timestamp** | **Long** | Timestamp in milliseconds. |  [optional] |
 
 
 

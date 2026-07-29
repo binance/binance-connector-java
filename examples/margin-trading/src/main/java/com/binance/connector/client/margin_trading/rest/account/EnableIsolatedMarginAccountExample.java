@@ -8,6 +8,7 @@ import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarginAccountRequest;
 import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarginAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class EnableIsolatedMarginAccountExample {
@@ -30,14 +31,14 @@ public class EnableIsolatedMarginAccountExample {
      * Enable Isolated Margin Account (TRADE)
      *
      * <p>Enable isolated margin account for a specific symbol(Only supports activation of
-     * previously disabled accounts). Weight: 300(UID)
+     * previously disabled accounts). Weight(UID): 300 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void enableIsolatedMarginAccountExample() throws ApiException {
+    public void enableIsolatedMarginAccountExample() throws ApiException, IOException {
         EnableIsolatedMarginAccountRequest enableIsolatedMarginAccountRequest =
                 new EnableIsolatedMarginAccountRequest();
-        enableIsolatedMarginAccountRequest.symbol("");
+        enableIsolatedMarginAccountRequest.symbol("BTCUSDT");
         ApiResponse<EnableIsolatedMarginAccountResponse> response =
                 getApi().enableIsolatedMarginAccount(enableIsolatedMarginAccountRequest);
         System.out.println(response.getData());

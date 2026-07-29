@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAccountResponse;
+import java.io.IOException;
 
 /** API examples for UserInformationApi */
 public class CheckVIPLoanCollateralAccountExample {
@@ -27,13 +28,14 @@ public class CheckVIPLoanCollateralAccountExample {
     /**
      * Check VIP Loan Collateral Account (USER_DATA)
      *
-     * <p>VIP loan is available for VIP users only * If the login account is loan account, all
-     * collateral accounts under the loan account can be queried. * If the login account is
-     * collateral account, only the current collateral account can be queried. Weight: 6000
+     * <p>VIP loan is available for VIP users only Weight(IP): 6000 Security Type: USER_DATA Notes:
+     * - If the logged-in account is a borrowing account, all collateral accounts bound to that
+     * borrowing account can be queried. - If the logged-in account is a collateral account, only
+     * collateral assets under that account can be queried.
      *
      * @throws ApiException if the Api call fails
      */
-    public void checkVIPLoanCollateralAccountExample() throws ApiException {
+    public void checkVIPLoanCollateralAccountExample() throws ApiException, IOException {
         Long orderId = 1L;
         Long collateralAccountId = 1L;
         Long recvWindow = 5000L;

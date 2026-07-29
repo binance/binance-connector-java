@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** KlineCandlestickStreamsResponseK */
+/** Kline payload */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -150,7 +150,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Kline start time
      *
      * @return tLowerCase
      */
@@ -169,7 +169,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Kline close time
      *
      * @return T
      */
@@ -189,7 +189,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -209,7 +209,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Interval
      *
      * @return iLowerCase
      */
@@ -229,7 +229,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * First trade ID
      *
      * @return fLowerCase
      */
@@ -248,7 +248,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last trade ID
      *
      * @return L
      */
@@ -268,7 +268,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open price
      *
      * @return oLowerCase
      */
@@ -288,7 +288,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Close price
      *
      * @return cLowerCase
      */
@@ -308,7 +308,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * High price
      *
      * @return hLowerCase
      */
@@ -328,7 +328,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Low price
      *
      * @return lLowerCase
      */
@@ -348,7 +348,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * volume
      *
      * @return vLowerCase
      */
@@ -368,7 +368,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Number of trades
      *
      * @return nLowerCase
      */
@@ -388,7 +388,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Is this kline closed?
      *
      * @return xLowerCase
      */
@@ -408,7 +408,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Base asset volume
      *
      * @return qLowerCase
      */
@@ -427,7 +427,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * Taker buy volume
      *
      * @return V
      */
@@ -446,7 +446,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * Taker buy base asset volume
      *
      * @return Q
      */
@@ -465,7 +465,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Ignore
      *
      * @return B
      */

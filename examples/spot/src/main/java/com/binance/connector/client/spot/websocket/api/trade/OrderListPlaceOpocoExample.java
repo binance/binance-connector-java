@@ -33,17 +33,18 @@ public class OrderListPlaceOpocoExample {
     }
 
     /**
-     * WebSocket OPOCO
+     * OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOpocoExampleAsync() {
         OrderListPlaceOpocoRequest orderListPlaceOpocoRequest = new OrderListPlaceOpocoRequest();
         orderListPlaceOpocoRequest.symbol("BNBUSDT");
         orderListPlaceOpocoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOpocoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOpocoRequest.workingPrice(1.0d);
-        orderListPlaceOpocoRequest.workingQuantity(1.0d);
+        orderListPlaceOpocoRequest.workingPrice(1d);
+        orderListPlaceOpocoRequest.workingQuantity(1d);
         orderListPlaceOpocoRequest.pendingSide(PendingSide.BUY);
         orderListPlaceOpocoRequest.pendingAboveType(PendingAboveType.STOP_LOSS_LIMIT);
         CompletableFuture<OrderListPlaceOpocoResponse> future =
@@ -59,17 +60,18 @@ public class OrderListPlaceOpocoExample {
     }
 
     /**
-     * WebSocket OPOCO
+     * OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOpocoExampleSync() {
         OrderListPlaceOpocoRequest orderListPlaceOpocoRequest = new OrderListPlaceOpocoRequest();
         orderListPlaceOpocoRequest.symbol("BNBUSDT");
         orderListPlaceOpocoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOpocoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOpocoRequest.workingPrice(1.0d);
-        orderListPlaceOpocoRequest.workingQuantity(1.0d);
+        orderListPlaceOpocoRequest.workingPrice(1d);
+        orderListPlaceOpocoRequest.workingQuantity(1d);
         orderListPlaceOpocoRequest.pendingSide(PendingSide.BUY);
         orderListPlaceOpocoRequest.pendingAboveType(PendingAboveType.STOP_LOSS_LIMIT);
         CompletableFuture<OrderListPlaceOpocoResponse> future =

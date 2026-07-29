@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginRestrictedAssetsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetMarginRestrictedAssetsExample {
@@ -28,11 +29,11 @@ public class GetMarginRestrictedAssetsExample {
     /**
      * Get Margin Restricted Assets (MARKET_DATA)
      *
-     * <p>Get Margin Restricted Assets Weight: 1
+     * <p>Get the list of margin-restricted assets. Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getMarginRestrictedAssetsExample() throws ApiException {
+    public void getMarginRestrictedAssetsExample() throws ApiException, IOException {
         ApiResponse<GetMarginRestrictedAssetsResponse> response =
                 getApi().getMarginRestrictedAssets();
         System.out.println(response.getData());

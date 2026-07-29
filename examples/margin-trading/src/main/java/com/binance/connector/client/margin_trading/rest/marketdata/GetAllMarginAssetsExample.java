@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetAllMarginAssetsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetAllMarginAssetsExample {
@@ -28,12 +29,12 @@ public class GetAllMarginAssetsExample {
     /**
      * Get All Margin Assets (MARKET_DATA)
      *
-     * <p>Get All Margin Assets. Weight: 1(IP)
+     * <p>Get All Margin Assets. Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getAllMarginAssetsExample() throws ApiException {
-        String asset = "";
+    public void getAllMarginAssetsExample() throws ApiException, IOException {
+        String asset = "USDC";
         ApiResponse<GetAllMarginAssetsResponse> response = getApi().getAllMarginAssets(asset);
         System.out.println(response.getData());
     }

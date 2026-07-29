@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class OpenOrderListExample {
@@ -25,14 +26,15 @@ public class OpenOrderListExample {
     }
 
     /**
-     * Query Open Order lists
+     * Query Open Order lists (USER_DATA)
      *
-     * <p>Weight: 6
+     * <p>Query Open Order lists Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:**
+     * Memory -&gt; Database
      *
      * @throws ApiException if the Api call fails
      */
-    public void openOrderListExample() throws ApiException {
-        Double recvWindow = 5000.0d;
+    public void openOrderListExample() throws ApiException, IOException {
+        Double recvWindow = 5000d;
         ApiResponse<OpenOrderListResponse> response = getApi().openOrderList(recvWindow);
         System.out.println(response.getData());
     }

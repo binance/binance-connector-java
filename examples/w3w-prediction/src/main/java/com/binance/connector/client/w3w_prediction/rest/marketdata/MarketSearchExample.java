@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.MarketSearchResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class MarketSearchExample {
@@ -32,7 +33,7 @@ public class MarketSearchExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void marketSearchExample() throws ApiException {
+    public void marketSearchExample() throws ApiException, IOException {
         String query = "BTC price";
         Integer topK = 20;
         ApiResponse<MarketSearchResponse> response = getApi().marketSearch(query, topK);

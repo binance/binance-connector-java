@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxBorrowResponse;
+import java.io.IOException;
 
 /** API examples for BorrowRepayApi */
 public class QueryMaxBorrowExample {
@@ -28,15 +29,15 @@ public class QueryMaxBorrowExample {
     /**
      * Query Max Borrow (USER_DATA)
      *
-     * <p>Query Max Borrow * If isolatedSymbol is not sent, crossed margin data will be sent. *
-     * &#x60;borrowLimit&#x60; is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee) Weight: 50(IP)
+     * <p>Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes: - If isolatedSymbol is not
+     * sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60; is also available from
+     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMaxBorrowExample() throws ApiException {
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryMaxBorrowExample() throws ApiException, IOException {
+        String asset = "BTC";
+        String isolatedSymbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryMaxBorrowResponse> response =
                 getApi().queryMaxBorrow(asset, isolatedSymbol, recvWindow);

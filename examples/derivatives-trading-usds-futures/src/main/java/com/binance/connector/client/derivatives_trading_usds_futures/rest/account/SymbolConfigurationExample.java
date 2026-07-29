@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolConfigurationResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class SymbolConfigurationExample {
@@ -26,14 +27,14 @@ public class SymbolConfigurationExample {
     }
 
     /**
-     * Symbol Configuration(USER_DATA)
+     * Symbol Configuration (USER_DATA)
      *
-     * <p>Get current account symbol configuration. Weight: 5
+     * <p>Get current account symbol configuration. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void symbolConfigurationExample() throws ApiException {
-        String symbol = "";
+    public void symbolConfigurationExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<SymbolConfigurationResponse> response =
                 getApi().symbolConfiguration(symbol, recvWindow);

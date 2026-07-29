@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  |
-|**amount** | **Double** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**asset** | **Asset** |  |  |
+|**amount** | **Double** | Amount |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

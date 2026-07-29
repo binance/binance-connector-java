@@ -4,9 +4,9 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPortfolioMarginAssetLeverage**](MarketDataApi.md#getPortfolioMarginAssetLeverage) | **GET** /sapi/v1/portfolio/margin-asset-leverage | Get Portfolio Margin Asset Leverage(USER_DATA) |
-| [**portfolioMarginCollateralRate**](MarketDataApi.md#portfolioMarginCollateralRate) | **GET** /sapi/v1/portfolio/collateralRate | Portfolio Margin Collateral Rate(MARKET_DATA) |
-| [**portfolioMarginProTieredCollateralRate**](MarketDataApi.md#portfolioMarginProTieredCollateralRate) | **GET** /sapi/v2/portfolio/collateralRate | Portfolio Margin Pro Tiered Collateral Rate(USER_DATA) |
+| [**getPortfolioMarginAssetLeverage**](MarketDataApi.md#getPortfolioMarginAssetLeverage) | **GET** /sapi/v1/portfolio/margin-asset-leverage | Get Portfolio Margin Asset Leverage (USER_DATA) |
+| [**portfolioMarginCollateralRate**](MarketDataApi.md#portfolioMarginCollateralRate) | **GET** /sapi/v1/portfolio/collateralRate | Portfolio Margin Collateral Rate (MARKET_DATA) |
+| [**portfolioMarginProTieredCollateralRate**](MarketDataApi.md#portfolioMarginProTieredCollateralRate) | **GET** /sapi/v2/portfolio/collateralRate | Portfolio Margin Pro Tiered Collateral Rate (USER_DATA) |
 | [**queryPortfolioMarginAssetIndexPrice**](MarketDataApi.md#queryPortfolioMarginAssetIndexPrice) | **GET** /sapi/v1/portfolio/asset-index-price | Query Portfolio Margin Asset Index Price (MARKET_DATA) |
 
 
@@ -14,9 +14,9 @@ All URIs are relative to *https://api.binance.com*
 # **getPortfolioMarginAssetLeverage**
 > GetPortfolioMarginAssetLeverageResponse getPortfolioMarginAssetLeverage()
 
-Get Portfolio Margin Asset Leverage(USER_DATA)
+Get Portfolio Margin Asset Leverage (USER_DATA)
 
-Get Portfolio Margin Asset Leverage  Weight: 50
+Get Portfolio Margin Asset Leverage  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -72,9 +72,9 @@ No authorization required
 # **portfolioMarginCollateralRate**
 > PortfolioMarginCollateralRateResponse portfolioMarginCollateralRate()
 
-Portfolio Margin Collateral Rate(MARKET_DATA)
+Portfolio Margin Collateral Rate (MARKET_DATA)
 
-Portfolio Margin Collateral Rate  Weight: 50
+Portfolio Margin Collateral Rate  Weight(IP): 50  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -130,9 +130,9 @@ No authorization required
 # **portfolioMarginProTieredCollateralRate**
 > PortfolioMarginProTieredCollateralRateResponse portfolioMarginProTieredCollateralRate(recvWindow)
 
-Portfolio Margin Pro Tiered Collateral Rate(USER_DATA)
+Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
 
-Portfolio Margin PRO Tiered Collateral Rate  Weight: 50
+Portfolio Margin PRO Tiered Collateral Rate  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -149,7 +149,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       PortfolioMarginProTieredCollateralRateResponse result = apiInstance.portfolioMarginProTieredCollateralRate(recvWindow);
       System.out.println(result);
@@ -194,7 +194,7 @@ No authorization required
 
 Query Portfolio Margin Asset Index Price (MARKET_DATA)
 
-Query Portfolio Margin Asset Index Price  Weight: 1 if send asset or 50 if not send asset
+Query Portfolio Margin Asset Index Price  Weight: - 1 if &#x60;asset&#x60; is sent - 50 if &#x60;asset&#x60; is not sent  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -211,7 +211,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String asset = "asset_example"; // String | 
+    String asset = "BTC"; // String | 
     try {
       QueryPortfolioMarginAssetIndexPriceResponse result = apiInstance.queryPortfolioMarginAssetIndexPrice(asset);
       System.out.println(result);

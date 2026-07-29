@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CancelAllOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelAllOpenOrdersExample {
@@ -26,14 +27,14 @@ public class CancelAllOpenOrdersExample {
     }
 
     /**
-     * Cancel All Open Orders(TRADE)
+     * Cancel All Open Orders (TRADE)
      *
-     * <p>Cancel All Open Orders Weight: 1
+     * <p>Cancel All Open Orders Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAllOpenOrdersExample() throws ApiException {
-        String symbol = "";
+    public void cancelAllOpenOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllOpenOrdersResponse> response =
                 getApi().cancelAllOpenOrders(symbol, recvWindow);

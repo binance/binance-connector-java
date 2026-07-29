@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | **List&lt;KlinesItem&gt;** |  |  [optional] |
-|**rateLimits** | [**List&lt;RateLimits&gt;**](RateLimits.md) |  |  [optional] |
+|**result** | **List&lt;List&lt;KlinesResponseResultInnerInner&gt;&gt;** |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

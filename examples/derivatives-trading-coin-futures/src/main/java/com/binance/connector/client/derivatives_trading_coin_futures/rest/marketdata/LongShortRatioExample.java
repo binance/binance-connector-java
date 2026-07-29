@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.LongShortRatioResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class LongShortRatioExample {
@@ -29,15 +30,15 @@ public class LongShortRatioExample {
     /**
      * Long/Short Ratio
      *
-     * <p>Query symbol Long/Short Ratio * If startTime and endTime are not sent, the most recent
-     * data is returned. * Only the data of the latest 30 days is available. Weight: 1
+     * <p>Query symbol Long/Short Ratio Weight(IP): 1 Notes: - If startTime and endTime are not
+     * sent, the most recent data is returned. - Only the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
-    public void longShortRatioExample() throws ApiException {
+    public void longShortRatioExample() throws ApiException, IOException {
         String pair = "";
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<LongShortRatioResponse> response =

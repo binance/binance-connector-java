@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** OrderAmendmentsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderAmendmentsRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -73,6 +79,25 @@ public class OrderAmendmentsRequest extends BaseDTO {
 
     public OrderAmendmentsRequest() {}
 
+    public OrderAmendmentsRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public OrderAmendmentsRequest symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
         return this;
@@ -99,7 +124,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
     }
 
     /**
-     * Get orderId
+     * Order ID
      *
      * @return orderId
      */
@@ -120,7 +145,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
     }
 
     /**
-     * Get fromExecutionId
+     * Execution ID to begin at
      *
      * @return fromExecutionId
      */
@@ -139,11 +164,12 @@ public class OrderAmendmentsRequest extends BaseDTO {
     }
 
     /**
-     * Get limit
+     * Default: 500; Maximum: 1000 maximum: 1000
      *
      * @return limit
      */
     @jakarta.annotation.Nullable
+    @Max(1000L)
     public Long getLimit() {
         return limit;
     }
@@ -158,12 +184,14 @@ public class OrderAmendmentsRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -181,7 +209,8 @@ public class OrderAmendmentsRequest extends BaseDTO {
             return false;
         }
         OrderAmendmentsRequest orderAmendmentsRequest = (OrderAmendmentsRequest) o;
-        return Objects.equals(this.symbol, orderAmendmentsRequest.symbol)
+        return Objects.equals(this.id, orderAmendmentsRequest.id)
+                && Objects.equals(this.symbol, orderAmendmentsRequest.symbol)
                 && Objects.equals(this.orderId, orderAmendmentsRequest.orderId)
                 && Objects.equals(this.fromExecutionId, orderAmendmentsRequest.fromExecutionId)
                 && Objects.equals(this.limit, orderAmendmentsRequest.limit)
@@ -190,13 +219,14 @@ public class OrderAmendmentsRequest extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, orderId, fromExecutionId, limit, recvWindow);
+        return Objects.hash(id, symbol, orderId, fromExecutionId, limit, recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderAmendmentsRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		fromExecutionId: ").append(toIndentedString(fromExecutionId)).append("\n");
@@ -210,6 +240,11 @@ public class OrderAmendmentsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -247,6 +282,10 @@ public class OrderAmendmentsRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -293,6 +332,7 @@ public class OrderAmendmentsRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("orderId");
         openapiFields.add("fromExecutionId");
@@ -345,6 +385,14 @@ public class OrderAmendmentsRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

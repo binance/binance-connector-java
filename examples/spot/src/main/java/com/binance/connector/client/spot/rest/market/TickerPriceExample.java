@@ -9,6 +9,7 @@ import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.TickerPriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class TickerPriceExample {
@@ -29,19 +30,15 @@ public class TickerPriceExample {
     /**
      * Symbol price ticker
      *
-     * <p>Latest price for a symbol or symbols. Weight: &lt;table&gt; &lt;thead&gt; &lt;tr&gt;
-     * &lt;th&gt;Parameter&lt;/th&gt; &lt;th&gt;Symbols Provided&lt;/th&gt;
-     * &lt;th&gt;Weight&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td
-     * rowspan&#x3D;\&quot;2\&quot;&gt;symbol&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
-     * &lt;td&gt;2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbol parameter is
-     * omitted&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbols&lt;/td&gt;
-     * &lt;td&gt;Any&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+     * <p>Latest price for a symbol or symbols. Weight: |Parameter|Symbols Provided|Weight|
+     * |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any |4| Security Type: NONE Notes:
+     * **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void tickerPriceExample() throws ApiException {
+    public void tickerPriceExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
         SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<TickerPriceResponse> response =
                 getApi().tickerPrice(symbol, symbols, symbolStatus);

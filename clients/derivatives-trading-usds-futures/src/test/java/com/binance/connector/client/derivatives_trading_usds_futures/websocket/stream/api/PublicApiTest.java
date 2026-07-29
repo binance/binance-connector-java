@@ -18,42 +18,7 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllBookTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllBookTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContractInfoStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContractInfoStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.DiffBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.DiffBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.KlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.LiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.LiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.*;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
@@ -233,8 +198,8 @@ public class PublicApiTest {
                 new PartialBookDepthStreamsRequest();
 
         partialBookDepthStreamsRequest.symbol("btcusdt");
-        partialBookDepthStreamsRequest.levels(10L);
-        partialBookDepthStreamsRequest.setUpdateSpeed("100ms");
+        partialBookDepthStreamsRequest.levels(Levels.LEVELS_10);
+        partialBookDepthStreamsRequest.setUpdateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> response =
                 api.partialBookDepthStreams(partialBookDepthStreamsRequest);

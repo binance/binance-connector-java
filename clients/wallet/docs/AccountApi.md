@@ -19,7 +19,7 @@ All URIs are relative to *https://api.binance.com*
 
 Account API Trading Status (USER_DATA)
 
-Fetch account api trading status detail.  Weight: 1
+Fetch account api trading status detail.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -36,7 +36,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AccountApiTradingStatusResponse result = apiInstance.accountApiTradingStatus(recvWindow);
       System.out.println(result);
@@ -81,7 +81,7 @@ No authorization required
 
 Account info (USER_DATA)
 
-Fetch account info detail.  Weight: 1
+Fetch account info detail.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -98,7 +98,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AccountInfoResponse result = apiInstance.accountInfo(recvWindow);
       System.out.println(result);
@@ -143,7 +143,7 @@ No authorization required
 
 Account Status (USER_DATA)
 
-Fetch account status detail.  Weight: 1
+Fetch account status detail.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -160,7 +160,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AccountStatusResponse result = apiInstance.accountStatus(recvWindow);
       System.out.println(result);
@@ -205,7 +205,7 @@ No authorization required
 
 Daily Account Snapshot (USER_DATA)
 
-Daily account snapshot  * The query time period must be less then 30 days * Support query within the last one month only * If startTimeand endTime not sent, return records of the last 7 days by default  Weight: 2400
+Daily account snapshot  Weight(IP): 2400  Security Type: USER_DATA  Notes: - The query time period must be less then 30 days - Support query within the last one month only - If startTimeand endTime not sent, return records of the last 7 days by default
 
 ### Example
 ```java
@@ -222,11 +222,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String type = "type_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | min 7, max 30, default 7
-    Long recvWindow = 56L; // Long | 
+    OrderType type = OrderType.fromValue("MAIN_UMFUTURE"); // OrderType | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long limit = 7L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       DailyAccountSnapshotResponse result = apiInstance.dailyAccountSnapshot(type, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -245,10 +245,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | **String**|  | |
+| **type** | [**OrderType**](.md)|  | [enum: MAIN_UMFUTURE, MAIN_CMFUTURE, MAIN_MARGIN, UMFUTURE_MAIN, UMFUTURE_MARGIN, CMFUTURE_MAIN, CMFUTURE_MARGIN, MARGIN_MAIN, MARGIN_UMFUTURE, MARGIN_CMFUTURE, ISOLATEDMARGIN_MARGIN, MARGIN_ISOLATEDMARGIN, ISOLATEDMARGIN_ISOLATEDMARGIN, MAIN_FUNDING, FUNDING_MAIN, FUNDING_UMFUTURE, UMFUTURE_FUNDING, MARGIN_FUNDING, FUNDING_MARGIN, FUNDING_CMFUTURE, CMFUTURE_FUNDING, MAIN_OPTION, OPTION_MAIN, UMFUTURE_OPTION, OPTION_UMFUTURE, MARGIN_OPTION, OPTION_MARGIN, FUNDING_OPTION, OPTION_FUNDING, MAIN_PORTFOLIO_MARGIN, PORTFOLIO_MARGIN_MAIN] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| min 7, max 30, default 7 | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -275,7 +275,7 @@ No authorization required
 
 Disable Fast Withdraw Switch (USER_DATA)
 
- Weight: 1
+Disable Fast Withdraw Switch  Weight(IP): 1  Security Type: USER_DATA  Notes: - This request will disable fastwithdraw switch under your account. You need to enable \&quot;trade\&quot; option for the api key which requests this endpoint.
 
 ### Example
 ```java
@@ -310,7 +310,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **disableFastWithdrawSwitchRequest** | [**DisableFastWithdrawSwitchRequest**](DisableFastWithdrawSwitchRequest.md)|  | |
+| **disableFastWithdrawSwitchRequest** | [**DisableFastWithdrawSwitchRequest**](DisableFastWithdrawSwitchRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -336,7 +336,7 @@ No authorization required
 
 Enable Fast Withdraw Switch (USER_DATA)
 
-Enable Fast Withdraw Switch (USER_DATA)  * This request will enable fastwithdraw switch under your  account. &lt;br&gt;&lt;/br&gt; * When Fast Withdraw Switch is on, transferring funds to a Binance account will be done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.  Weight: 1
+Enable Fast Withdraw Switch (USER_DATA)  Weight(IP): 1  Security Type: USER_DATA  Notes: - This request will enable fastwithdraw switch under your account. You need to enable \&quot;trade\&quot; option for the api key which requests this endpoint. - When Fast Withdraw Switch is on, transferring funds to a Binance account will be done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.
 
 ### Example
 ```java
@@ -371,7 +371,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **enableFastWithdrawSwitchRequest** | [**EnableFastWithdrawSwitchRequest**](EnableFastWithdrawSwitchRequest.md)|  | |
+| **enableFastWithdrawSwitchRequest** | [**EnableFastWithdrawSwitchRequest**](EnableFastWithdrawSwitchRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -397,7 +397,7 @@ No authorization required
 
 Get API Key Permission (USER_DATA)
 
-Get API Key Permission  Weight: 1
+Get API Key Permission  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -414,7 +414,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetApiKeyPermissionResponse result = apiInstance.getApiKeyPermission(recvWindow);
       System.out.println(result);

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetBnbBurnStatusResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetBnbBurnStatusExample {
@@ -28,11 +29,11 @@ public class GetBnbBurnStatusExample {
     /**
      * Get BNB Burn Status (USER_DATA)
      *
-     * <p>Get BNB Burn Status Weight: 1(IP)
+     * <p>Get BNB Burn Status Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBnbBurnStatusExample() throws ApiException {
+    public void getBnbBurnStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetBnbBurnStatusResponse> response = getApi().getBnbBurnStatus(recvWindow);
         System.out.println(response.getData());

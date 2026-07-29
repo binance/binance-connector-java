@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.HistoricalTradesResponse;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class HistoricalTradesExample {
@@ -27,13 +28,13 @@ public class HistoricalTradesExample {
     /**
      * Old trade lookup
      *
-     * <p>Get older trades. Weight: 25
+     * <p>Get older trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
      *
      * @throws ApiException if the Api call fails
      */
-    public void historicalTradesExample() throws ApiException {
+    public void historicalTradesExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
+        Integer limit = 1;
         Long fromId = 1L;
         ApiResponse<HistoricalTradesResponse> response =
                 getApi().historicalTrades(symbol, limit, fromId);

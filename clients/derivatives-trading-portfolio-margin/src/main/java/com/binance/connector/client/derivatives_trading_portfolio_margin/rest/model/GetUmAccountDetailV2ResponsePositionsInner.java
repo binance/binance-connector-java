@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetUmAccountDetailV2ResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailV2ResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -93,7 +93,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * symbol name
      *
      * @return symbol
      */
@@ -113,7 +113,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -133,7 +133,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -153,7 +153,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -173,7 +173,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -193,7 +193,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -213,7 +213,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -233,7 +233,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get notional
+     * Notional.
      *
      * @return notional
      */

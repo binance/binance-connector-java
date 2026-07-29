@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QuerySpecialKeyExample {
@@ -26,15 +27,15 @@ public class QuerySpecialKeyExample {
     }
 
     /**
-     * Query Special key(Low Latency Trading)(TRADE)
+     * Query Special key(Low Latency Trading) (TRADE)
      *
      * <p>Query Special Key Information. This only applies to Special Key for Low Latency Trading.
-     * Weight: 1(UID)
+     * Weight(UID): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySpecialKeyExample() throws ApiException {
-        String symbol = "";
+    public void querySpecialKeyExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QuerySpecialKeyResponse> response =
                 getApi().querySpecialKey(symbol, recvWindow);

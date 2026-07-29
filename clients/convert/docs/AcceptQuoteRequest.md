@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**quoteId** | **String** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds |  [optional] |
 
 
 

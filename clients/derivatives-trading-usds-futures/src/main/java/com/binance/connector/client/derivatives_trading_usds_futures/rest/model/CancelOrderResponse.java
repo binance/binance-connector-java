@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelOrderResponse {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -47,12 +47,6 @@ public class CancelOrderResponse {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -72,23 +66,11 @@ public class CancelOrderResponse {
     @jakarta.annotation.Nullable
     private String origQty;
 
-    public static final String SERIALIZED_NAME_ORIG_TYPE = "origType";
-
-    @SerializedName(SERIALIZED_NAME_ORIG_TYPE)
-    @jakarta.annotation.Nullable
-    private String origType;
-
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
     private String price;
-
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
@@ -137,6 +119,12 @@ public class CancelOrderResponse {
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
     private String timeInForce;
+
+    public static final String SERIALIZED_NAME_ORIG_TYPE = "origType";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_TYPE)
+    @jakarta.annotation.Nullable
+    private String origType;
 
     public static final String SERIALIZED_NAME_TYPE = "type";
 
@@ -201,7 +189,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order Id.
      *
      * @return clientOrderId
      */
@@ -233,32 +221,13 @@ public class CancelOrderResponse {
         this.cumQty = cumQty;
     }
 
-    public CancelOrderResponse cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Get cumQuote
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-    }
-
     public CancelOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -277,7 +246,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -296,7 +265,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -309,32 +278,13 @@ public class CancelOrderResponse {
         this.origQty = origQty;
     }
 
-    public CancelOrderResponse origType(@jakarta.annotation.Nullable String origType) {
-        this.origType = origType;
-        return this;
-    }
-
-    /**
-     * Get origType
-     *
-     * @return origType
-     */
-    @jakarta.annotation.Nullable
-    public String getOrigType() {
-        return origType;
-    }
-
-    public void setOrigType(@jakarta.annotation.Nullable String origType) {
-        this.origType = origType;
-    }
-
     public CancelOrderResponse price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -347,32 +297,13 @@ public class CancelOrderResponse {
         this.price = price;
     }
 
-    public CancelOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public CancelOrderResponse reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -391,7 +322,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -410,7 +341,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -429,7 +360,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -448,7 +379,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -467,7 +398,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -486,7 +417,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -505,7 +436,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -518,13 +449,32 @@ public class CancelOrderResponse {
         this.timeInForce = timeInForce;
     }
 
+    public CancelOrderResponse origType(@jakarta.annotation.Nullable String origType) {
+        this.origType = origType;
+        return this;
+    }
+
+    /**
+     * Orig Type.
+     *
+     * @return origType
+     */
+    @jakarta.annotation.Nullable
+    public String getOrigType() {
+        return origType;
+    }
+
+    public void setOrigType(@jakarta.annotation.Nullable String origType) {
+        this.origType = origType;
+    }
+
     public CancelOrderResponse type(@jakarta.annotation.Nullable String type) {
         this.type = type;
         return this;
     }
 
     /**
-     * Get type
+     * Type.
      *
      * @return type
      */
@@ -543,7 +493,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -562,7 +512,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -581,7 +531,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * Update Time.
      *
      * @return updateTime
      */
@@ -600,7 +550,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -619,7 +569,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -638,7 +588,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -658,7 +608,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -678,7 +628,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -702,13 +652,10 @@ public class CancelOrderResponse {
         CancelOrderResponse cancelOrderResponse = (CancelOrderResponse) o;
         return Objects.equals(this.clientOrderId, cancelOrderResponse.clientOrderId)
                 && Objects.equals(this.cumQty, cancelOrderResponse.cumQty)
-                && Objects.equals(this.cumQuote, cancelOrderResponse.cumQuote)
                 && Objects.equals(this.executedQty, cancelOrderResponse.executedQty)
                 && Objects.equals(this.orderId, cancelOrderResponse.orderId)
                 && Objects.equals(this.origQty, cancelOrderResponse.origQty)
-                && Objects.equals(this.origType, cancelOrderResponse.origType)
                 && Objects.equals(this.price, cancelOrderResponse.price)
-                && Objects.equals(this.avgPrice, cancelOrderResponse.avgPrice)
                 && Objects.equals(this.reduceOnly, cancelOrderResponse.reduceOnly)
                 && Objects.equals(this.side, cancelOrderResponse.side)
                 && Objects.equals(this.positionSide, cancelOrderResponse.positionSide)
@@ -717,6 +664,7 @@ public class CancelOrderResponse {
                 && Objects.equals(this.closePosition, cancelOrderResponse.closePosition)
                 && Objects.equals(this.symbol, cancelOrderResponse.symbol)
                 && Objects.equals(this.timeInForce, cancelOrderResponse.timeInForce)
+                && Objects.equals(this.origType, cancelOrderResponse.origType)
                 && Objects.equals(this.type, cancelOrderResponse.type)
                 && Objects.equals(this.activatePrice, cancelOrderResponse.activatePrice)
                 && Objects.equals(this.priceRate, cancelOrderResponse.priceRate)
@@ -734,13 +682,10 @@ public class CancelOrderResponse {
         return Objects.hash(
                 clientOrderId,
                 cumQty,
-                cumQuote,
                 executedQty,
                 orderId,
                 origQty,
-                origType,
                 price,
-                avgPrice,
                 reduceOnly,
                 side,
                 positionSide,
@@ -749,6 +694,7 @@ public class CancelOrderResponse {
                 closePosition,
                 symbol,
                 timeInForce,
+                origType,
                 type,
                 activatePrice,
                 priceRate,
@@ -766,13 +712,10 @@ public class CancelOrderResponse {
         sb.append("class CancelOrderResponse {\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
-        sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
@@ -781,6 +724,7 @@ public class CancelOrderResponse {
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
+        sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
         sb.append("		priceRate: ").append(toIndentedString(priceRate)).append("\n");
@@ -807,10 +751,6 @@ public class CancelOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumQuoteValue = getCumQuote();
-        String cumQuoteValueAsString = "";
-        cumQuoteValueAsString = cumQuoteValue.toString();
-        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -823,18 +763,10 @@ public class CancelOrderResponse {
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
         sb.append("origQty=").append(urlEncode(origQtyValueAsString)).append("");
-        Object origTypeValue = getOrigType();
-        String origTypeValueAsString = "";
-        origTypeValueAsString = origTypeValue.toString();
-        sb.append("origType=").append(urlEncode(origTypeValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object reduceOnlyValue = getReduceOnly();
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
@@ -867,6 +799,10 @@ public class CancelOrderResponse {
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
         sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
+        Object origTypeValue = getOrigType();
+        String origTypeValueAsString = "";
+        origTypeValueAsString = origTypeValue.toString();
+        sb.append("origType=").append(urlEncode(origTypeValueAsString)).append("");
         Object typeValue = getType();
         String typeValueAsString = "";
         typeValueAsString = typeValue.toString();
@@ -935,13 +871,10 @@ public class CancelOrderResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
-        openapiFields.add("origType");
         openapiFields.add("price");
-        openapiFields.add("avgPrice");
         openapiFields.add("reduceOnly");
         openapiFields.add("side");
         openapiFields.add("positionSide");
@@ -950,6 +883,7 @@ public class CancelOrderResponse {
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
         openapiFields.add("timeInForce");
+        openapiFields.add("origType");
         openapiFields.add("type");
         openapiFields.add("activatePrice");
         openapiFields.add("priceRate");
@@ -998,14 +932,6 @@ public class CancelOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
         }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
-        }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1022,14 +948,6 @@ public class CancelOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("origQty").toString()));
         }
-        if ((jsonObj.get("origType") != null && !jsonObj.get("origType").isJsonNull())
-                && !jsonObj.get("origType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `origType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("origType").toString()));
-        }
         if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
                 && !jsonObj.get("price").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1037,14 +955,6 @@ public class CancelOrderResponse {
                             "Expected the field `price` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
-        }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
         }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {
@@ -1093,6 +1003,14 @@ public class CancelOrderResponse {
                             "Expected the field `timeInForce` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("timeInForce").toString()));
+        }
+        if ((jsonObj.get("origType") != null && !jsonObj.get("origType").isJsonNull())
+                && !jsonObj.get("origType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("origType").toString()));
         }
         if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
                 && !jsonObj.get("type").isJsonPrimitive()) {

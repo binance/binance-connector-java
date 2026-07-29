@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -47,7 +47,7 @@ public class MarginAccountNewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nullable
-    private String isIsolated;
+    private IsIsolated isIsolated = IsIsolated.FALSE;
 
     public static final String SERIALIZED_NAME_SIDE = "side";
 
@@ -59,7 +59,7 @@ public class MarginAccountNewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -107,7 +107,7 @@ public class MarginAccountNewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE_EFFECT_TYPE)
     @jakarta.annotation.Nullable
-    private String sideEffectType;
+    private SideEffectType sideEffectType;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -120,13 +120,19 @@ public class MarginAccountNewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private String selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_TRAILING_DELTA = "trailingDelta";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_DELTA)
+    @jakarta.annotation.Nullable
+    private Long trailingDelta;
 
     public static final String SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL = "autoRepayAtCancel";
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL)
     @jakarta.annotation.Nullable
-    private Boolean autoRepayAtCancel;
+    private Boolean autoRepayAtCancel = true;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -156,7 +162,8 @@ public class MarginAccountNewOrderRequest {
         this.symbol = symbol;
     }
 
-    public MarginAccountNewOrderRequest isIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public MarginAccountNewOrderRequest isIsolated(
+            @jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
         return this;
     }
@@ -167,11 +174,12 @@ public class MarginAccountNewOrderRequest {
      * @return isIsolated
      */
     @jakarta.annotation.Nullable
-    public String getIsIsolated() {
+    @Valid
+    public IsIsolated getIsIsolated() {
         return isIsolated;
     }
 
-    public void setIsIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public void setIsIsolated(@jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
     }
 
@@ -196,7 +204,7 @@ public class MarginAccountNewOrderRequest {
         this.side = side;
     }
 
-    public MarginAccountNewOrderRequest type(@jakarta.annotation.Nonnull String type) {
+    public MarginAccountNewOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -208,11 +216,12 @@ public class MarginAccountNewOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -283,7 +292,8 @@ public class MarginAccountNewOrderRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -304,7 +314,7 @@ public class MarginAccountNewOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent.
      *
      * @return newClientOrderId
      */
@@ -323,7 +333,8 @@ public class MarginAccountNewOrderRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -360,7 +371,7 @@ public class MarginAccountNewOrderRequest {
     }
 
     public MarginAccountNewOrderRequest sideEffectType(
-            @jakarta.annotation.Nullable String sideEffectType) {
+            @jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
         return this;
     }
@@ -371,11 +382,12 @@ public class MarginAccountNewOrderRequest {
      * @return sideEffectType
      */
     @jakarta.annotation.Nullable
-    public String getSideEffectType() {
+    @Valid
+    public SideEffectType getSideEffectType() {
         return sideEffectType;
     }
 
-    public void setSideEffectType(@jakarta.annotation.Nullable String sideEffectType) {
+    public void setSideEffectType(@jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
     }
 
@@ -401,7 +413,7 @@ public class MarginAccountNewOrderRequest {
     }
 
     public MarginAccountNewOrderRequest selfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
         return this;
     }
@@ -412,13 +424,35 @@ public class MarginAccountNewOrderRequest {
      * @return selfTradePreventionMode
      */
     @jakarta.annotation.Nullable
-    public String getSelfTradePreventionMode() {
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
         return selfTradePreventionMode;
     }
 
     public void setSelfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public MarginAccountNewOrderRequest trailingDelta(
+            @jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+        return this;
+    }
+
+    /**
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
+     *
+     * @return trailingDelta
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingDelta() {
+        return trailingDelta;
+    }
+
+    public void setTrailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
     }
 
     public MarginAccountNewOrderRequest autoRepayAtCancel(
@@ -428,7 +462,8 @@ public class MarginAccountNewOrderRequest {
     }
 
     /**
-     * Get autoRepayAtCancel
+     * Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt
+     * generated by the order needs to be repaid after the order is cancelled.
      *
      * @return autoRepayAtCancel
      */
@@ -447,11 +482,12 @@ public class MarginAccountNewOrderRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -488,6 +524,7 @@ public class MarginAccountNewOrderRequest {
                 && Objects.equals(
                         this.selfTradePreventionMode,
                         marginAccountNewOrderRequest.selfTradePreventionMode)
+                && Objects.equals(this.trailingDelta, marginAccountNewOrderRequest.trailingDelta)
                 && Objects.equals(
                         this.autoRepayAtCancel, marginAccountNewOrderRequest.autoRepayAtCancel)
                 && Objects.equals(this.recvWindow, marginAccountNewOrderRequest.recvWindow);
@@ -510,6 +547,7 @@ public class MarginAccountNewOrderRequest {
                 sideEffectType,
                 timeInForce,
                 selfTradePreventionMode,
+                trailingDelta,
                 autoRepayAtCancel,
                 recvWindow);
     }
@@ -534,6 +572,7 @@ public class MarginAccountNewOrderRequest {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		trailingDelta: ").append(toIndentedString(trailingDelta)).append("\n");
         sb.append("		autoRepayAtCancel: ").append(toIndentedString(autoRepayAtCancel)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
@@ -601,6 +640,10 @@ public class MarginAccountNewOrderRequest {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object trailingDeltaValue = getTrailingDelta();
+        String trailingDeltaValueAsString = "";
+        trailingDeltaValueAsString = trailingDeltaValue.toString();
+        sb.append("trailingDelta=").append(urlEncode(trailingDeltaValueAsString)).append("");
         Object autoRepayAtCancelValue = getAutoRepayAtCancel();
         String autoRepayAtCancelValueAsString = "";
         autoRepayAtCancelValueAsString = autoRepayAtCancelValue.toString();
@@ -653,6 +696,7 @@ public class MarginAccountNewOrderRequest {
         openapiFields.add("sideEffectType");
         openapiFields.add("timeInForce");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("trailingDelta");
         openapiFields.add("autoRepayAtCancel");
         openapiFields.add("recvWindow");
 
@@ -699,23 +743,14 @@ public class MarginAccountNewOrderRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull())
-                && !jsonObj.get("isIsolated").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isIsolated` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("isIsolated").toString()));
+        // validate the optional field `isIsolated`
+        if (jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull()) {
+            IsIsolated.validateJsonElement(jsonObj.get("isIsolated"));
         }
         // validate the required field `side`
         Side.validateJsonElement(jsonObj.get("side"));
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())
                 && !jsonObj.get("newClientOrderId").isJsonPrimitive()) {
@@ -730,26 +765,18 @@ public class MarginAccountNewOrderRequest {
                 && !jsonObj.get("newOrderRespType").isJsonNull()) {
             NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
         }
-        if ((jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull())
-                && !jsonObj.get("sideEffectType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sideEffectType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sideEffectType").toString()));
+        // validate the optional field `sideEffectType`
+        if (jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull()) {
+            SideEffectType.validateJsonElement(jsonObj.get("sideEffectType"));
         }
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 

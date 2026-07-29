@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,6 +28,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairs
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginRestrictedAssetsResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
@@ -54,7 +55,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +105,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Cross-margin-collateral-ratio">Cross
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#cross-margin-collateral-ratio">Cross
      *     margin collateral ratio (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call crossMarginCollateralRatioCall() throws ApiException {
@@ -192,7 +193,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Cross margin collateral ratio (MARKET_DATA) Cross margin collateral ratio Weight: 100(IP)
+     * Cross margin collateral ratio (MARKET_DATA) Cross margin collateral ratio Weight(IP): 100
+     * Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;CrossMarginCollateralRatioResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -205,7 +207,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Cross-margin-collateral-ratio">Cross
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#cross-margin-collateral-ratio">Cross
      *     margin collateral ratio (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<CrossMarginCollateralRatioResponse> crossMarginCollateralRatio()
@@ -219,7 +221,7 @@ public class MarketDataApi {
     /**
      * Build call for getAllCrossMarginPairs
      *
-     * @param symbol isolated margin pair (optional)
+     * @param symbol (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -230,7 +232,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Cross-Margin-Pairs">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-cross-margin-pairs">Get
      *     All Cross Margin Pairs (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getAllCrossMarginPairsCall(String symbol) throws ApiException {
@@ -323,9 +325,10 @@ public class MarketDataApi {
     }
 
     /**
-     * Get All Cross Margin Pairs (MARKET_DATA) Get All Cross Margin Pairs Weight: 1(IP)
+     * Get All Cross Margin Pairs (MARKET_DATA) Get All Cross Margin Pairs Weight(IP): 1 Security
+     * Type: MARKET_DATA
      *
-     * @param symbol isolated margin pair (optional)
+     * @param symbol (optional)
      * @return ApiResponse&lt;GetAllCrossMarginPairsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -337,7 +340,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Cross-Margin-Pairs">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-cross-margin-pairs">Get
      *     All Cross Margin Pairs (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetAllCrossMarginPairsResponse> getAllCrossMarginPairs(String symbol)
@@ -351,8 +354,8 @@ public class MarketDataApi {
     /**
      * Build call for getAllIsolatedMarginSymbol
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -363,8 +366,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Isolated-Margin-Symbol">Get
-     *     All Isolated Margin Symbol(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-isolated-margin-symbol">Get
+     *     All Isolated Margin Symbol (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getAllIsolatedMarginSymbolCall(String symbol, Long recvWindow)
             throws ApiException {
@@ -463,10 +466,11 @@ public class MarketDataApi {
     }
 
     /**
-     * Get All Isolated Margin Symbol(MARKET_DATA) Get All Isolated Margin Symbol Weight: 10(IP)
+     * Get All Isolated Margin Symbol (MARKET_DATA) Get All Isolated Margin Symbol Weight(IP): 10
+     * Security Type: MARKET_DATA
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetAllIsolatedMarginSymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -478,11 +482,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Isolated-Margin-Symbol">Get
-     *     All Isolated Margin Symbol(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-isolated-margin-symbol">Get
+     *     All Isolated Margin Symbol (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetAllIsolatedMarginSymbolResponse> getAllIsolatedMarginSymbol(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getAllIsolatedMarginSymbolValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -504,7 +508,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Margin-Assets">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-margin-assets">Get
      *     All Margin Assets (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getAllMarginAssetsCall(String asset) throws ApiException {
@@ -596,7 +600,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Get All Margin Assets (MARKET_DATA) Get All Margin Assets. Weight: 1(IP)
+     * Get All Margin Assets (MARKET_DATA) Get All Margin Assets. Weight(IP): 1 Security Type:
+     * MARKET_DATA
      *
      * @param asset (optional)
      * @return ApiResponse&lt;GetAllMarginAssetsResponse&gt;
@@ -610,7 +615,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-All-Margin-Assets">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-all-margin-assets">Get
      *     All Margin Assets (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetAllMarginAssetsResponse> getAllMarginAssets(String asset)
@@ -624,7 +629,7 @@ public class MarketDataApi {
     /**
      * Build call for getDelistSchedule
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -635,7 +640,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Delist-Schedule">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-delist-schedule">Get
      *     Delist Schedule (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getDelistScheduleCall(Long recvWindow) throws ApiException {
@@ -728,9 +733,9 @@ public class MarketDataApi {
 
     /**
      * Get Delist Schedule (MARKET_DATA) Get tokens or symbols delist schedule for cross margin and
-     * isolated margin Weight: 100
+     * isolated margin Weight(IP): 100 Security Type: MARKET_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDelistScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -742,10 +747,10 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Delist-Schedule">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-delist-schedule">Get
      *     Delist Schedule (MARKET_DATA) Documentation</a>
      */
-    public ApiResponse<GetDelistScheduleResponse> getDelistSchedule(Long recvWindow)
+    public ApiResponse<GetDelistScheduleResponse> getDelistSchedule(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getDelistScheduleValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -766,8 +771,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
-     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-limit-price-pairs">Get
+     *     Limit Price Pairs (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getLimitPricePairsCall() throws ApiException {
         String basePath = null;
@@ -854,16 +859,16 @@ public class MarketDataApi {
     }
 
     /**
-     * Get Limit Price Pairs(MARKET_DATA) Query trading pairs with restriction on limit price range.
-     * In margin trading, you can place orders with limit price. Limit price should be within (-15%,
-     * 15%) of current index price for a list of margin trading pairs. This rule only impacts limit
-     * sell orders with limit price that is lower than current index price and limit buy orders with
-     * limit price that is higher than current index price. - Buy order: Your order will be rejected
-     * with an error message notification if the limit price is 15% above the index price. - Sell
-     * order: Your order will be rejected with an error message notification if the limit price is
-     * 15% below the index price. Please review the limit price order placing strategy, backtest and
-     * calibrate the planned order size with the trading volume and order book depth to prevent
-     * trading loss. Weight: 1
+     * Get Limit Price Pairs (MARKET_DATA) Query trading pairs with restriction on limit price
+     * range. In margin trading, you can place orders with limit price. Limit price should be within
+     * (-15%, 15%) of current index price for a list of margin trading pairs. This rule only impacts
+     * limit sell orders with limit price that is lower than current index price and limit buy
+     * orders with limit price that is higher than current index price. - Buy order: Your order will
+     * be rejected with an error message notification if the limit price is 15% above the index
+     * price. - Sell order: Your order will be rejected with an error message notification if the
+     * limit price is 15% below the index price. Please review the limit price order placing
+     * strategy, backtest and calibrate the planned order size with the trading volume and order
+     * book depth to prevent trading loss. Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;GetLimitPricePairsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -876,8 +881,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Limit-Price-Pairs">Get
-     *     Limit Price Pairs(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-limit-price-pairs">Get
+     *     Limit Price Pairs (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetLimitPricePairsResponse> getLimitPricePairs() throws ApiException {
         okhttp3.Call localVarCall = getLimitPricePairsValidateBeforeCall();
@@ -889,7 +894,7 @@ public class MarketDataApi {
     /**
      * Build call for getListSchedule
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -900,7 +905,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-list-schedule">Get
      *     list Schedule (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getListScheduleCall(Long recvWindow) throws ApiException {
@@ -993,9 +998,9 @@ public class MarketDataApi {
 
     /**
      * Get list Schedule (MARKET_DATA) Get the upcoming tokens or symbols listing schedule for Cross
-     * Margin and Isolated Margin. Weight: 100
+     * Margin and Isolated Margin. Weight(IP): 100 Security Type: MARKET_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetListScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1007,10 +1012,10 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-list-Schedule">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-list-schedule">Get
      *     list Schedule (MARKET_DATA) Documentation</a>
      */
-    public ApiResponse<GetListScheduleResponse> getListSchedule(Long recvWindow)
+    public ApiResponse<GetListScheduleResponse> getListSchedule(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getListScheduleValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1031,7 +1036,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-margin-asset-risk-based-liquidation-ratio">Get
      *     Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getMarginAssetRiskBasedLiquidationRatioCall() throws ApiException {
@@ -1121,7 +1126,7 @@ public class MarketDataApi {
 
     /**
      * Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Get Margin Asset Risk-Based
-     * Liquidation Ratio Weight: 1
+     * Liquidation Ratio Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;GetMarginAssetRiskBasedLiquidationRatioResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1134,7 +1139,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-margin-asset-risk-based-liquidation-ratio">Get
      *     Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetMarginAssetRiskBasedLiquidationRatioResponse>
@@ -1158,7 +1163,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Restricted-Assets">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-margin-restricted-assets">Get
      *     Margin Restricted Assets (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getMarginRestrictedAssetsCall() throws ApiException {
@@ -1246,7 +1251,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Get Margin Restricted Assets (MARKET_DATA) Get Margin Restricted Assets Weight: 1
+     * Get Margin Restricted Assets (MARKET_DATA) Get the list of margin-restricted assets.
+     * Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;GetMarginRestrictedAssetsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1259,7 +1265,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Restricted-Assets">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#get-margin-restricted-assets">Get
      *     Margin Restricted Assets (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetMarginRestrictedAssetsResponse> getMarginRestrictedAssets()
@@ -1274,8 +1280,8 @@ public class MarketDataApi {
      * Build call for queryIsolatedMarginTierData
      *
      * @param symbol (required)
-     * @param tier All margin tier data will be returned if tier is omitted (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param tier (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1286,7 +1292,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-isolated-margin-tier-data">Query
      *     Isolated Margin Tier Data (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryIsolatedMarginTierDataCall(String symbol, Long tier, Long recvWindow)
@@ -1396,11 +1402,11 @@ public class MarketDataApi {
 
     /**
      * Query Isolated Margin Tier Data (USER_DATA) Get isolated margin tier data collection with any
-     * tier as https://www.binance.com/en/margin-data Weight: 1(IP)
+     * tier as https://www.binance.com/en/margin-data Weight(IP): 1 Security Type: USER_DATA
      *
      * @param symbol (required)
-     * @param tier All margin tier data will be returned if tier is omitted (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param tier (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryIsolatedMarginTierDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1412,11 +1418,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Isolated-Margin-Tier-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-isolated-margin-tier-data">Query
      *     Isolated Margin Tier Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryIsolatedMarginTierDataResponse> queryIsolatedMarginTierData(
-            @NotNull String symbol, Long tier, Long recvWindow) throws ApiException {
+            @NotNull String symbol, Long tier, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryIsolatedMarginTierDataValidateBeforeCall(symbol, tier, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1437,8 +1443,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Liability-Coin-Leverage-Bracket-in-Cross-Margin-Pro-Mode">Query
-     *     Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-liability-coin-leverage-bracket-in-cross-margin-pro-mode">Query
+     *     Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call queryLiabilityCoinLeverageBracketInCrossMarginProModeCall()
             throws ApiException {
@@ -1529,8 +1535,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) Liability Coin
-     * Leverage Bracket in Cross Margin Pro Mode Weight: 1
+     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA) Liability Coin
+     * Leverage Bracket in Cross Margin Pro Mode Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1543,8 +1549,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Liability-Coin-Leverage-Bracket-in-Cross-Margin-Pro-Mode">Query
-     *     Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-liability-coin-leverage-bracket-in-cross-margin-pro-mode">Query
+     *     Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse>
             queryLiabilityCoinLeverageBracketInCrossMarginProMode() throws ApiException {
@@ -1559,7 +1565,7 @@ public class MarketDataApi {
     /**
      * Build call for queryMarginAvailableInventory
      *
-     * @param type MARGIN,ISOLATED (required)
+     * @param type (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1570,10 +1576,10 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-margin-avaliable-inventory">Query
-     *     Margin Available Inventory(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-available-inventory">Query
+     *     Margin Available Inventory (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call queryMarginAvailableInventoryCall(String type) throws ApiException {
+    private okhttp3.Call queryMarginAvailableInventoryCall(OrderType type) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1633,7 +1639,7 @@ public class MarketDataApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call queryMarginAvailableInventoryValidateBeforeCall(String type)
+    private okhttp3.Call queryMarginAvailableInventoryValidateBeforeCall(OrderType type)
             throws ApiException {
         try {
             Validator validator =
@@ -1646,7 +1652,7 @@ public class MarketDataApi {
 
             Object[] parameterValues = {type};
             Method method =
-                    this.getClass().getMethod("queryMarginAvailableInventory", String.class);
+                    this.getClass().getMethod("queryMarginAvailableInventory", OrderType.class);
             Set<ConstraintViolation<MarketDataApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1665,9 +1671,10 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Margin Available Inventory(USER_DATA) Margin available Inventory query Weight: 50
+     * Query Margin Available Inventory (USER_DATA) Margin available Inventory query Weight(UID): 50
+     * Security Type: USER_DATA
      *
-     * @param type MARGIN,ISOLATED (required)
+     * @param type (required)
      * @return ApiResponse&lt;QueryMarginAvailableInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1679,11 +1686,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-margin-avaliable-inventory">Query
-     *     Margin Available Inventory(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-available-inventory">Query
+     *     Margin Available Inventory (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAvailableInventoryResponse> queryMarginAvailableInventory(
-            @NotNull String type) throws ApiException {
+            @NotNull OrderType type) throws ApiException {
         okhttp3.Call localVarCall = queryMarginAvailableInventoryValidateBeforeCall(type);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryMarginAvailableInventoryResponse>() {}.getType();
@@ -1704,7 +1711,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Margin-PriceIndex">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-priceindex">Query
      *     Margin PriceIndex (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginPriceindexCall(String symbol) throws ApiException {
@@ -1797,7 +1804,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Margin PriceIndex (MARKET_DATA) Query Margin PriceIndex Weight: 10(IP)
+     * Query Margin PriceIndex (MARKET_DATA) Query Margin PriceIndex Weight(IP): 10 Security Type:
+     * MARKET_DATA
      *
      * @param symbol (required)
      * @return ApiResponse&lt;QueryMarginPriceindexResponse&gt;
@@ -1811,7 +1819,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/market-data/Query-Margin-PriceIndex">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-priceindex">Query
      *     Margin PriceIndex (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginPriceindexResponse> queryMarginPriceindex(@NotNull String symbol)

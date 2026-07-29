@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OpenInterestResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OpenInterestExample {
@@ -28,12 +29,12 @@ public class OpenInterestExample {
     /**
      * Open Interest
      *
-     * <p>Get present open interest of a specific symbol. Weight: 1
+     * <p>Get present open interest of a specific symbol. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void openInterestExample() throws ApiException {
-        String symbol = "";
+    public void openInterestExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200626";
         ApiResponse<OpenInterestResponse> response = getApi().openInterest(symbol);
         System.out.println(response.getData());
     }

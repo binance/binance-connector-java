@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetDetailOnSubAccountsFuturesAccountResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class GetDetailOnSubAccountsFuturesAccountExample {
@@ -28,12 +29,12 @@ public class GetDetailOnSubAccountsFuturesAccountExample {
     /**
      * Get Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Detail on Sub-account&#39;s Futures Account Weight: 10
+     * <p>Get Detail on Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getDetailOnSubAccountsFuturesAccountExample() throws ApiException {
-        String email = "sub-account-email@email.com";
+    public void getDetailOnSubAccountsFuturesAccountExample() throws ApiException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetDetailOnSubAccountsFuturesAccountResponse> response =
                 getApi().getDetailOnSubAccountsFuturesAccount(email, recvWindow);

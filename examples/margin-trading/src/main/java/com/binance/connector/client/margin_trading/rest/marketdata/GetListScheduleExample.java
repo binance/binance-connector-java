@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetListScheduleExample {
@@ -29,11 +30,11 @@ public class GetListScheduleExample {
      * Get list Schedule (MARKET_DATA)
      *
      * <p>Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.
-     * Weight: 100
+     * Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getListScheduleExample() throws ApiException {
+    public void getListScheduleExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetListScheduleResponse> response = getApi().getListSchedule(recvWindow);
         System.out.println(response.getData());

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetUmIncomeHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmIncomeHistoryResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -76,7 +76,7 @@ public class GetUmIncomeHistoryResponseInner {
 
     @SerializedName(SERIALIZED_NAME_TRAN_ID)
     @jakarta.annotation.Nullable
-    private Long tranId;
+    private String tranId;
 
     public static final String SERIALIZED_NAME_TRADE_ID = "tradeId";
 
@@ -92,7 +92,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -112,7 +112,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get incomeType
+     * Income type.
      *
      * @return incomeType
      */
@@ -131,7 +131,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get income
+     * Income amount.
      *
      * @return income
      */
@@ -150,7 +150,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get asset
+     * Income asset.
      *
      * @return asset
      */
@@ -169,7 +169,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get info
+     * Extra information.
      *
      * @return info
      */
@@ -188,7 +188,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -201,22 +201,22 @@ public class GetUmIncomeHistoryResponseInner {
         this.time = time;
     }
 
-    public GetUmIncomeHistoryResponseInner tranId(@jakarta.annotation.Nullable Long tranId) {
+    public GetUmIncomeHistoryResponseInner tranId(@jakarta.annotation.Nullable String tranId) {
         this.tranId = tranId;
         return this;
     }
 
     /**
-     * Get tranId
+     * Transaction ID.
      *
      * @return tranId
      */
     @jakarta.annotation.Nullable
-    public Long getTranId() {
+    public String getTranId() {
         return tranId;
     }
 
-    public void setTranId(@jakarta.annotation.Nullable Long tranId) {
+    public void setTranId(@jakarta.annotation.Nullable String tranId) {
         this.tranId = tranId;
     }
 
@@ -226,7 +226,7 @@ public class GetUmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get tradeId
+     * Trade ID, if existing.
      *
      * @return tradeId
      */
@@ -414,6 +414,14 @@ public class GetUmIncomeHistoryResponseInner {
                             "Expected the field `info` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("info").toString()));
+        }
+        if ((jsonObj.get("tranId") != null && !jsonObj.get("tranId").isJsonNull())
+                && !jsonObj.get("tranId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `tranId` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("tranId").toString()));
         }
         if ((jsonObj.get("tradeId") != null && !jsonObj.get("tradeId").isJsonNull())
                 && !jsonObj.get("tradeId").isJsonPrimitive()) {

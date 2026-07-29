@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenConditionalOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryAllCurrentUmOpenConditionalOrdersExample {
@@ -26,16 +27,16 @@ public class QueryAllCurrentUmOpenConditionalOrdersExample {
     }
 
     /**
-     * Query All Current UM Open Conditional Orders
+     * Query All Current UM Open Conditional Orders (USER_DATA)
      *
-     * <p>Get all open conditional orders on a symbol. * If the symbol is not sent, orders for all
-     * symbols will be returned in an array. Weight: 1 for a single symbol; 40 when the symbol
-     * parameter is omitted Careful when accessing this with no symbol.
+     * <p>Get all open conditional orders on a symbol. Weight: - 1 for a single &#x60;symbol&#x60; -
+     * 40 when &#x60;symbol&#x60; is omitted Security Type: USER_DATA Notes: - If &#x60;symbol&#x60;
+     * is not provided, conditional open orders for all symbols are returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryAllCurrentUmOpenConditionalOrdersExample() throws ApiException {
-        String symbol = "";
+    public void queryAllCurrentUmOpenConditionalOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryAllCurrentUmOpenConditionalOrdersResponse> response =
                 getApi().queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow);

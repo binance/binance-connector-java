@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginMaxWithdrawResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryMarginMaxWithdrawExample {
@@ -26,14 +27,14 @@ public class QueryMarginMaxWithdrawExample {
     }
 
     /**
-     * Query Margin Max Withdraw(USER_DATA)
+     * Query Margin Max Withdraw (USER_DATA)
      *
-     * <p>Query Margin Max Withdraw Weight: 5
+     * <p>Query Margin Max Withdraw Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginMaxWithdrawExample() throws ApiException {
-        String asset = "";
+    public void queryMarginMaxWithdrawExample() throws ApiException, IOException {
+        String asset = "USDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginMaxWithdrawResponse> response =
                 getApi().queryMarginMaxWithdraw(asset, recvWindow);

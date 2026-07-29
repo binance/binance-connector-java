@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponse {
     public static final String SERIALIZED_NAME_UNI_M_M_R = "uniMMR";
 
@@ -105,7 +105,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get uniMMR
+     * Portfolio margin account maintenance margin rate
      *
      * @return uniMMR
      */
@@ -125,7 +125,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get accountEquity
+     * Account equity, in USD value
      *
      * @return accountEquity
      */
@@ -145,7 +145,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get actualEquity
+     * Account equity without collateral rate, in USD value
      *
      * @return actualEquity
      */
@@ -165,7 +165,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get accountInitialMargin
+     * Account Initial Margin.
      *
      * @return accountInitialMargin
      */
@@ -185,7 +185,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get accountMaintMargin
+     * Portfolio margin account maintenance margin, unit：USD
      *
      * @return accountMaintMargin
      */
@@ -205,7 +205,9 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get accountStatus
+     * Portfolio margin account status:\&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;,
+     * \&quot;SUPPLY_MARGIN\&quot;, \&quot;REDUCE_ONLY\&quot;, \&quot;ACTIVE_LIQUIDATION\&quot;,
+     * \&quot;FORCE_LIQUIDATION\&quot;, \&quot;BANKRUPTED\&quot;
      *
      * @return accountStatus
      */
@@ -225,7 +227,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get virtualMaxWithdrawAmount
+     * Portfolio margin maximum amount for transfer out in USD
      *
      * @return virtualMaxWithdrawAmount
      */
@@ -246,7 +248,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get totalAvailableBalance
+     * Total Available Balance.
      *
      * @return totalAvailableBalance
      */
@@ -267,7 +269,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get totalMarginOpenLoss
+     * in USD margin open order
      *
      * @return totalMarginOpenLoss
      */
@@ -286,7 +288,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

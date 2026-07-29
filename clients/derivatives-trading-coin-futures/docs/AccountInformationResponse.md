@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**status** | **Long** |  |  [optional] |
+|**id** | **String** | positionId |  [optional] |
+|**status** | **Long** | Enum：completed，processing |  [optional] |
 |**result** | [**AccountInformationResponseResult**](AccountInformationResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AccountInformationResponseRateLimitsInner&gt;**](AccountInformationResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountInformationResponseRateLimitsInner&gt;**](AccountInformationResponseRateLimitsInner.md) | Rate limit definitions. |  [optional] |
 
 
 

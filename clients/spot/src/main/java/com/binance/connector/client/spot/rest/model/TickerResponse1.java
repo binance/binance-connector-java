@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** TickerResponse1 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerResponse1 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -153,7 +153,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change
      *
      * @return priceChange
      */
@@ -173,7 +173,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get priceChangePercent
+     * Relative price change in percent
      *
      * @return priceChangePercent
      */
@@ -192,7 +192,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get weightedAvgPrice
+     * QuoteVolume / Volume
      *
      * @return weightedAvgPrice
      */
@@ -306,7 +306,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get quoteVolume
+     * Sum of (price * volume) for all trades
      *
      * @return quoteVolume
      */
@@ -325,7 +325,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get openTime
+     * Open time for ticker window
      *
      * @return openTime
      */
@@ -344,7 +344,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get closeTime
+     * Close time for ticker window
      *
      * @return closeTime
      */
@@ -363,7 +363,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get firstId
+     * Trade IDs
      *
      * @return firstId
      */
@@ -401,7 +401,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get count
+     * Number of trades in the interval
      *
      * @return count
      */

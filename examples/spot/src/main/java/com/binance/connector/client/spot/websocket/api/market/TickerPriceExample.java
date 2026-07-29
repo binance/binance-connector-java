@@ -29,13 +29,15 @@ public class TickerPriceExample {
     }
 
     /**
-     * WebSocket Symbol price ticker
+     * Symbol price ticker
      *
      * <p>Get the latest market price for a symbol. If you need access to real-time price updates,
      * please consider using WebSocket Streams: * &#x60;&lt;symbol&gt;@aggTrade&#x60; *
-     * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based on the number of requested symbols: |
-     * Parameter | Weight | | --------- |:------:| | &#x60;symbol&#x60; | 2 | | &#x60;symbols&#x60;
-     * | 4 | | none | 4 |
+     * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based on the number of requested symbols:
+     * |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any
+     * |4| Security Type: NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and
+     * &#x60;symbols&#x60; cannot be used together. * If no symbol is specified, returns information
+     * about all symbols currently trading on the exchange.
      */
     public void tickerPriceExampleAsync() {
         TickerPriceRequest tickerPriceRequest = new TickerPriceRequest();
@@ -51,13 +53,15 @@ public class TickerPriceExample {
     }
 
     /**
-     * WebSocket Symbol price ticker
+     * Symbol price ticker
      *
      * <p>Get the latest market price for a symbol. If you need access to real-time price updates,
      * please consider using WebSocket Streams: * &#x60;&lt;symbol&gt;@aggTrade&#x60; *
-     * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based on the number of requested symbols: |
-     * Parameter | Weight | | --------- |:------:| | &#x60;symbol&#x60; | 2 | | &#x60;symbols&#x60;
-     * | 4 | | none | 4 |
+     * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based on the number of requested symbols:
+     * |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any
+     * |4| Security Type: NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and
+     * &#x60;symbols&#x60; cannot be used together. * If no symbol is specified, returns information
+     * about all symbols currently trading on the exchange.
      */
     public void tickerPriceExampleSync() {
         TickerPriceRequest tickerPriceRequest = new TickerPriceRequest();

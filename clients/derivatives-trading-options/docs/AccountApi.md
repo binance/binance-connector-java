@@ -14,7 +14,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Account Funding Flow (USER_DATA)
 
-Query account funding flows.   * Only support querying data in the past 3 months  Weight: 1
+Query account funding flows.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Only support querying data in the past 3 months
 
 ### Example
 ```java
@@ -31,12 +31,12 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String currency = "currency_example"; // String | Asset type, only support USDT  as of now
-    Long recordId = 56L; // Long | Return the recordId and subsequent data, the latest data is returned by default, e.g 100000
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    Long recvWindow = 56L; // Long | 
+    Currency currency = Currency.fromValue("USDT"); // Currency | Asset type, only support USDT  as of now
+    Long recordId = 100000L; // Long | Return the recordId and subsequent data, the latest data is returned by default
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       AccountFundingFlowResponse result = apiInstance.accountFundingFlow(currency, recordId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -55,12 +55,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **currency** | **String**| Asset type, only support USDT  as of now | |
-| **recordId** | **Long**| Return the recordId and subsequent data, the latest data is returned by default, e.g 100000 | [optional] |
+| **currency** | [**Currency**](.md)| Asset type, only support USDT  as of now | [enum: USDT] |
+| **recordId** | **Long**| Return the recordId and subsequent data, the latest data is returned by default | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of result sets returned | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -86,7 +86,7 @@ No authorization required
 
 Option Margin Account Information (USER_DATA)
 
-Get current account information.  Weight: 3
+Get current account information.  Weight(IP): 3  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -103,7 +103,7 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       OptionMarginAccountInformationResponse result = apiInstance.optionMarginAccountInformation(recvWindow);
       System.out.println(result);
@@ -122,7 +122,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 

@@ -29,14 +29,15 @@ public class ReferencePriceCalculationExample {
     }
 
     /**
-     * WebSocket Query Reference Price Calculation
+     * Query Reference Price Calculation
      *
-     * <p>Describes how reference price is calculated for a given symbol. Weight: 2
+     * <p>Query Reference Price Calculation Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      */
     public void referencePriceCalculationExampleAsync() {
         ReferencePriceCalculationRequest referencePriceCalculationRequest =
                 new ReferencePriceCalculationRequest();
-        referencePriceCalculationRequest.symbol("BNBUSDT");
+        referencePriceCalculationRequest.symbol("BAZUSD");
         CompletableFuture<ReferencePriceCalculationResponse> future =
                 getApi().referencePriceCalculation(referencePriceCalculationRequest);
         future.handle(
@@ -50,14 +51,15 @@ public class ReferencePriceCalculationExample {
     }
 
     /**
-     * WebSocket Query Reference Price Calculation
+     * Query Reference Price Calculation
      *
-     * <p>Describes how reference price is calculated for a given symbol. Weight: 2
+     * <p>Query Reference Price Calculation Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      */
     public void referencePriceCalculationExampleSync() {
         ReferencePriceCalculationRequest referencePriceCalculationRequest =
                 new ReferencePriceCalculationRequest();
-        referencePriceCalculationRequest.symbol("BNBUSDT");
+        referencePriceCalculationRequest.symbol("BAZUSD");
         CompletableFuture<ReferencePriceCalculationResponse> future =
                 getApi().referencePriceCalculation(referencePriceCalculationRequest);
         ReferencePriceCalculationResponse response = future.join();

@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ModifyOrderResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Side;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ModifyOrderExample {
@@ -31,21 +32,22 @@ public class ModifyOrderExample {
      * Modify Order (TRADE)
      *
      * <p>Order modify function, currently only LIMIT order modification is supported, modified
-     * orders will be reordered in the match queue * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
-     * are sent. * Either &#x60;quantity&#x60; or &#x60;price&#x60; must be sent. * When the new
-     * &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER /
-     * LOT_SIZE, amendment will be rejected and the order will stay as it is. * However the order
-     * will be cancelled by the amendment in the following situations: * when the order is in
-     * partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; *
-     * When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately
-     * * One order can only be modfied for less than 10000 times Weight: 1
+     * orders will be reordered in the match queue Weight(IP): 1 Security Type: TRADE Notes: -
+     * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the
+     * &#x60;orderId&#x60; will prevail if both are sent. - Either &#x60;quantity&#x60; or
+     * &#x60;price&#x60; must be sent. *(After CM migration, both &#x60;quantity&#x60; and
+     * &#x60;price&#x60; are required.)* - When the new &#x60;quantity&#x60; or &#x60;price&#x60;
+     * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
+     * the order will stay as it is. - However the order will be cancelled by the amendment in the
+     * following situations: - when the order is in partially filled status and the new
+     * &#x60;quantity&#x60; - When the order is &#x60;GTX&#x60; and the new price will cause it to
+     * be executed immediately - One order can only be modfied for less than 10000 times
      *
      * @throws ApiException if the Api call fails
      */
-    public void modifyOrderExample() throws ApiException {
+    public void modifyOrderExample() throws ApiException, IOException {
         ModifyOrderRequest modifyOrderRequest = new ModifyOrderRequest();
-        modifyOrderRequest.symbol("");
+        modifyOrderRequest.symbol("BTCUSD_PERP");
         modifyOrderRequest.side(Side.BUY);
         ApiResponse<ModifyOrderResponse> response = getApi().modifyOrder(modifyOrderRequest);
         System.out.println(response.getData());

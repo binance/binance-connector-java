@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmAccountTradeListResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CmAccountTradeListExample {
@@ -26,27 +27,28 @@ public class CmAccountTradeListExample {
     }
 
     /**
-     * CM Account Trade List(USER_DATA)
+     * CM Account Trade List (USER_DATA)
      *
-     * <p>Get trades for a specific account and CM symbol. * Either &#x60;symbol&#x60; or
-     * &#x60;pair&#x60; must be sent * &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent
-     * together * &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together *
-     * &#x60;OrderId&#x60; can only be sent together with symbol * If a &#x60;pair&#x60; is sent,
-     * tickers for all symbols of the &#x60;pair&#x60; will be returned * The parameter
-     * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; * If
+     * <p>Get trades for a specific account and CM symbol. Weight: - 20 with &#x60;symbol&#x60; - 40
+     * with &#x60;pair&#x60; Security Type: USER_DATA Notes: - Either &#x60;symbol&#x60; or
+     * &#x60;pair&#x60; must be sent - &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent
+     * together - &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together -
+     * &#x60;OrderId&#x60; can only be sent together with symbol - If a &#x60;pair&#x60; is sent,
+     * tickers for all symbols of the &#x60;pair&#x60; will be returned - The parameter
+     * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; - If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;24
-     * hours&#39; data will be returned. * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 24 hours. Weight: 20 with symbol, 40 with pair
+     * hours&#39; data will be returned. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 24 hours.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cmAccountTradeListExample() throws ApiException {
-        String symbol = "";
-        String pair = "";
+    public void cmAccountTradeListExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200626";
+        String pair = "BTCUSD";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<CmAccountTradeListResponse> response =
                 getApi().cmAccountTradeList(

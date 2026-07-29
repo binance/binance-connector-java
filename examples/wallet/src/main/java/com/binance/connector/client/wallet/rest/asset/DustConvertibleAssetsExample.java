@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest;
 import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class DustConvertibleAssetsExample {
@@ -28,14 +29,14 @@ public class DustConvertibleAssetsExample {
     /**
      * Dust Convertible Assets (USER_DATA)
      *
-     * <p>Query dust convertible assets Weight: 1
+     * <p>Query dust convertible assets Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void dustConvertibleAssetsExample() throws ApiException {
+    public void dustConvertibleAssetsExample() throws ApiException, IOException {
         DustConvertibleAssetsRequest dustConvertibleAssetsRequest =
                 new DustConvertibleAssetsRequest();
-        dustConvertibleAssetsRequest.targetAsset("");
+        dustConvertibleAssetsRequest.targetAsset("BTC");
         ApiResponse<DustConvertibleAssetsResponse> response =
                 getApi().dustConvertibleAssets(dustConvertibleAssetsRequest);
         System.out.println(response.getData());

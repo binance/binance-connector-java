@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**serverTime** | **Long** |  |  [optional] |
+|**serverTime** | **Long** | server Time |  [optional] |
 
 
 

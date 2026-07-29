@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**interest** | **String** |  |  [optional] |
-|**interestAccruedTime** | **Long** |  |  [optional] |
-|**interestRate** | **String** |  |  [optional] |
-|**principal** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**interest** | **String** | interest amount |  [optional] |
+|**interestAccruedTime** | **Long** | interest Accrued Time. |  [optional] |
+|**interestRate** | **String** | daily interest rate |  [optional] |
+|**principal** | **String** | principal. |  [optional] |
 
 
 

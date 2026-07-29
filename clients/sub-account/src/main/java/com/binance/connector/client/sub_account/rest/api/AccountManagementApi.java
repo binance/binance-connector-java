@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -53,7 +53,7 @@ public class AccountManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/5.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +104,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account">Create
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#create-avirtual-sub-account">Create
      *     a Virtual Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call createAVirtualSubAccountCall(
@@ -208,9 +208,10 @@ public class AccountManagementApi {
     }
 
     /**
-     * Create a Virtual Sub-account (For Master Account) (USER_DATA) Create a Virtual Sub-account *
-     * This request will generate a virtual sub account under your master account. * You need to
-     * enable \&quot;trade\&quot; option for the API Key which requests this endpoint. Weight: 1
+     * Create a Virtual Sub-account (For Master Account) (USER_DATA) Create a Virtual Sub-account
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - This request generates a virtual sub-account
+     * under your master account. - The API key used to call this endpoint must have the
+     * &#x60;trade&#x60; option enabled.
      *
      * @param createAVirtualSubAccountRequest (required)
      * @return ApiResponse&lt;CreateAVirtualSubAccountResponse&gt;
@@ -224,7 +225,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account">Create
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#create-avirtual-sub-account">Create
      *     a Virtual Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<CreateAVirtualSubAccountResponse> createAVirtualSubAccount(
@@ -251,7 +252,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-futures-for-sub-account">Enable
      *     Futures for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call enableFuturesForSubAccountCall(
@@ -357,7 +358,7 @@ public class AccountManagementApi {
 
     /**
      * Enable Futures for Sub-account (For Master Account) (USER_DATA) Enable Futures for
-     * Sub-account for Master Account Weight: 1
+     * Sub-account for Master Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @param enableFuturesForSubAccountRequest (required)
      * @return ApiResponse&lt;EnableFuturesForSubAccountResponse&gt;
@@ -371,7 +372,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-futures-for-sub-account">Enable
      *     Futures for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<EnableFuturesForSubAccountResponse> enableFuturesForSubAccount(
@@ -398,7 +399,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-options-for-sub-account">Enable
      *     Options for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call enableOptionsForSubAccountCall(
@@ -504,7 +505,7 @@ public class AccountManagementApi {
 
     /**
      * Enable Options for Sub-account (For Master Account) (USER_DATA) Enable Options for
-     * Sub-account (For Master Account). Weight: 1
+     * Sub-account (For Master Account). Weight(IP): 1 Security Type: USER_DATA
      *
      * @param enableOptionsForSubAccountRequest (required)
      * @return ApiResponse&lt;EnableOptionsForSubAccountResponse&gt;
@@ -518,7 +519,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-options-for-sub-account">Enable
      *     Options for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<EnableOptionsForSubAccountResponse> enableOptionsForSubAccount(
@@ -534,7 +535,7 @@ public class AccountManagementApi {
     /**
      * Build call for getFuturesPositionRiskOfSubAccount
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -546,7 +547,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account">Get
      *     Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesPositionRiskOfSubAccountCall(String email, Long recvWindow)
@@ -649,9 +650,9 @@ public class AccountManagementApi {
 
     /**
      * Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Get Futures
-     * Position-Risk of Sub-account Weight: 10
+     * Position-Risk of Sub-account Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFuturesPositionRiskOfSubAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -664,11 +665,11 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account">Get
      *     Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesPositionRiskOfSubAccountResponse>
-            getFuturesPositionRiskOfSubAccount(@NotNull String email, Long recvWindow)
+            getFuturesPositionRiskOfSubAccount(@NotNull String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesPositionRiskOfSubAccountValidateBeforeCall(email, recvWindow);
@@ -680,7 +681,7 @@ public class AccountManagementApi {
     /**
      * Build call for getFuturesPositionRiskOfSubAccountV2
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -693,7 +694,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account-v2">Get
      *     Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -805,9 +806,9 @@ public class AccountManagementApi {
 
     /**
      * Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA) Get Futures
-     * Position-Risk of Sub-account V2 Weight: 1
+     * Position-Risk of Sub-account V2 Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFuturesPositionRiskOfSubAccountV2Response&gt;
@@ -821,13 +822,13 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account-v2">Get
      *     Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetFuturesPositionRiskOfSubAccountV2Response>
             getFuturesPositionRiskOfSubAccountV2(
-                    @NotNull String email, @NotNull Long futuresType, Long recvWindow)
+                    @NotNull String email, @NotNull Long futuresType, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesPositionRiskOfSubAccountV2ValidateBeforeCall(
@@ -840,7 +841,7 @@ public class AccountManagementApi {
     /**
      * Build call for getSubAccountsStatusOnMarginOrFutures
      *
-     * @param email Managed sub-account email (optional)
+     * @param email (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -852,7 +853,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-sub-accounts-status-on-margin-or-futures">Get
      *     Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -958,10 +959,10 @@ public class AccountManagementApi {
 
     /**
      * Get Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA) Get
-     * Sub-account&#39;s Status on Margin Or Futures * If no email sent, all sub-accounts&#39;
-     * information will be returned. Weight: 10
+     * Sub-account&#39;s Status on Margin Or Futures Weight(IP): 10 Security Type: USER_DATA Notes:
+     * - If no email sent, all sub-accounts&#39; information will be returned.
      *
-     * @param email Managed sub-account email (optional)
+     * @param email (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSubAccountsStatusOnMarginOrFuturesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -974,12 +975,12 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-sub-accounts-status-on-margin-or-futures">Get
      *     Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetSubAccountsStatusOnMarginOrFuturesResponse>
-            getSubAccountsStatusOnMarginOrFutures(String email, Long recvWindow)
+            getSubAccountsStatusOnMarginOrFutures(String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getSubAccountsStatusOnMarginOrFuturesValidateBeforeCall(email, recvWindow);
@@ -991,10 +992,10 @@ public class AccountManagementApi {
     /**
      * Build call for querySubAccountList
      *
-     * @param email Managed sub-account email (optional)
-     * @param isFreeze true or false (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param isFreeze (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1006,7 +1007,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-list">Query
      *     Sub-account List (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountListCall(
@@ -1127,12 +1128,13 @@ public class AccountManagementApi {
     }
 
     /**
-     * Query Sub-account List (For Master Account) (USER_DATA) Query Sub-account List Weight: 1
+     * Query Sub-account List (For Master Account) (USER_DATA) Query Sub-account List Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param email Managed sub-account email (optional)
-     * @param isFreeze true or false (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param isFreeze (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1145,11 +1147,15 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-list">Query
      *     Sub-account List (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountListResponse> querySubAccountList(
-            String email, String isFreeze, Long page, Long limit, Long recvWindow)
+            String email,
+            String isFreeze,
+            Long page,
+            @Max(200L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountListValidateBeforeCall(email, isFreeze, page, limit, recvWindow);
@@ -1173,7 +1179,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-Transaction-Statistics">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-transaction-statistics">Query
      *     Sub-account Transaction Statistics (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountTransactionStatisticsCall(String email, Long recvWindow)
@@ -1278,7 +1284,7 @@ public class AccountManagementApi {
 
     /**
      * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA) Query Sub-account
-     * Transaction statistics (For Master Account). Weight: 60
+     * Transaction statistics (For Master Account). Weight(IP): 60 Security Type: USER_DATA
      *
      * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
@@ -1293,11 +1299,11 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-Transaction-Statistics">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-transaction-statistics">Query
      *     Sub-account Transaction Statistics (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountTransactionStatisticsResponse>
-            querySubAccountTransactionStatistics(String email, Long recvWindow)
+            querySubAccountTransactionStatistics(String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountTransactionStatisticsValidateBeforeCall(email, recvWindow);

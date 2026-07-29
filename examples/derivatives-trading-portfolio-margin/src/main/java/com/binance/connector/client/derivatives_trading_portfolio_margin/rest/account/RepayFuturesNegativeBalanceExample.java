@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.RepayFuturesNegativeBalanceResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class RepayFuturesNegativeBalanceExample {
@@ -27,13 +28,13 @@ public class RepayFuturesNegativeBalanceExample {
     }
 
     /**
-     * Repay futures Negative Balance(USER_DATA)
+     * Repay futures Negative Balance (USER_DATA)
      *
-     * <p>Repay futures Negative Balance Weight: 750
+     * <p>Repay futures Negative Balance Weight(IP): 750 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void repayFuturesNegativeBalanceExample() throws ApiException {
+    public void repayFuturesNegativeBalanceExample() throws ApiException, IOException {
         RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest =
                 new RepayFuturesNegativeBalanceRequest();
         ApiResponse<RepayFuturesNegativeBalanceResponse> response =

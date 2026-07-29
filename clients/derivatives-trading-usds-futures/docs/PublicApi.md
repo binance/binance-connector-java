@@ -17,7 +17,7 @@ All URIs are relative to *http://localhost*
 
 All Book Tickers Stream
 
-Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all symbols.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 5s
+Pushes any update to the best bid or ask&#39;s price or quantity in real-time for all symbols.  &gt; **After CM migration**, this stream pushes the merged UM + CM universe (subscribable on both &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol).  Update Speed: 5s  Response Notes: - Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
 
 ### Example
 ```java
@@ -79,7 +79,7 @@ No authorization required
 
 Diff. Book Depth Streams
 
-Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if existing)  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 250ms, 500ms, 100ms
+Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if existing).  &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol).  Update Speed: 250ms, 500ms, 100ms  Response Notes: - Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
 
 ### Example
 ```java
@@ -141,7 +141,7 @@ No authorization required
 
 Individual Symbol Book Ticker Streams
 
-Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a specified symbol.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: Real-time
+Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a specified symbol.  &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM).  Update Speed: Real-time  Response Notes: Retail Price Improvement (RPI) orders are not visible and excluded in the response message.
 
 ### Example
 ```java
@@ -203,7 +203,7 @@ No authorization required
 
 Partial Book Depth Streams
 
-Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;** are 5, 10, or 20.  Retail Price Improvement(RPI) orders are not visible and excluded in the response message.  Update Speed: 250ms, 500ms or 100ms
+Top &lt;levels&gt; bids and asks  &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol).  Update Speed: 250ms or 500ms or 100ms  Response Notes: Retail Price Improvement (RPI) orders are not visible and excluded in the response message.
 
 ### Example
 ```java
@@ -265,7 +265,7 @@ No authorization required
 
 RPI Diff. Book Depth Streams
 
-Bids and asks including RPI orders, pushed every 500 milliseconds  RPI(Retail Price Improvement) orders are included and aggreated in the response message. When the quantity of a price level to be updated is equal to 0, it means either all quotations for this price have been filled/canceled, or the quantity of crossed RPI orders for this price are hidden  Update Speed: 500ms
+Bids and asks including RPI orders, pushed every 500 milliseconds  &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol).  Update Speed: 500ms  Response Notes: - RPI(Retail Price Improvement) orders are included and aggreated in the response message. When the quantity of a price level to be updated is equal to 0, it means either all quotations for this price have been filled/canceled, or the quantity of crossed RPI orders for this price are hidden
 
 ### Example
 ```java

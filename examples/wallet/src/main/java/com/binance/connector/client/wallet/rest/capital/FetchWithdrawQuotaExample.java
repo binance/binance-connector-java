@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawQuotaResponse;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class FetchWithdrawQuotaExample {
@@ -27,11 +28,11 @@ public class FetchWithdrawQuotaExample {
     /**
      * Fetch withdraw quota (USER_DATA)
      *
-     * <p>Fetch withdraw quota Weight: 10
+     * <p>Fetch withdraw quota Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void fetchWithdrawQuotaExample() throws ApiException {
+    public void fetchWithdrawQuotaExample() throws ApiException, IOException {
         ApiResponse<FetchWithdrawQuotaResponse> response = getApi().fetchWithdrawQuota();
         System.out.println(response.getData());
     }

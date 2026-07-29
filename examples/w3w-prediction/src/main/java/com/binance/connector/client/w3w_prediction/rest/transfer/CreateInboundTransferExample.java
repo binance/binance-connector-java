@@ -9,6 +9,7 @@ import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi
 import com.binance.connector.client.w3w_prediction.rest.model.AccountType;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateInboundTransferRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateInboundTransferResponse;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class CreateInboundTransferExample {
@@ -28,7 +29,7 @@ public class CreateInboundTransferExample {
     }
 
     /**
-     * Create Inbound Transfer
+     * Create Inbound Transfer (TRADE)
      *
      * <p>Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or
      * FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization Required:** This endpoint
@@ -38,7 +39,7 @@ public class CreateInboundTransferExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void createInboundTransferExample() throws ApiException {
+    public void createInboundTransferExample() throws ApiException, IOException {
         CreateInboundTransferRequest createInboundTransferRequest =
                 new CreateInboundTransferRequest();
         createInboundTransferRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");

@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**brackets** | [**List&lt;CmNotionalAndLeverageBracketsResponseInnerBracketsInner&gt;**](CmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**brackets** | [**List&lt;CmNotionalAndLeverageBracketsResponseInnerBracketsInner&gt;**](CmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) | Brackets. |  [optional] |
 
 
 

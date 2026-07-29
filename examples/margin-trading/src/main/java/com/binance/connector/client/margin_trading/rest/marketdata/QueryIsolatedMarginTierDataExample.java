@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryIsolatedMarginTierDataExample {
@@ -29,13 +30,13 @@ public class QueryIsolatedMarginTierDataExample {
      * Query Isolated Margin Tier Data (USER_DATA)
      *
      * <p>Get isolated margin tier data collection with any tier as
-     * https://www.binance.com/en/margin-data Weight: 1(IP)
+     * https://www.binance.com/en/margin-data Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryIsolatedMarginTierDataExample() throws ApiException {
-        String symbol = "";
-        Long tier = 0L;
+    public void queryIsolatedMarginTierDataExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        Long tier = 1L;
         Long recvWindow = 5000L;
         ApiResponse<QueryIsolatedMarginTierDataResponse> response =
                 getApi().queryIsolatedMarginTierData(symbol, tier, recvWindow);

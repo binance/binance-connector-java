@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
+import java.io.IOException;
 
 /** API examples for UserInformationApi */
 public class QueryApplicationStatusExample {
@@ -25,13 +26,13 @@ public class QueryApplicationStatusExample {
     }
 
     /**
-     * Query Application Status(USER_DATA)
+     * Query Application Status (USER_DATA)
      *
-     * <p>Query Application Status Weight: 400
+     * <p>Query Application Status Weight(UID): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryApplicationStatusExample() throws ApiException {
+    public void queryApplicationStatusExample() throws ApiException, IOException {
         Long current = 1L;
         Long limit = 10L;
         Long recvWindow = 5000L;

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_FEE_TIER = "feeTier";
 
@@ -174,7 +174,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get feeTier
+     * account commission tier
      *
      * @return feeTier
      */
@@ -194,7 +194,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canTrade
+     * if can trade
      *
      * @return canTrade
      */
@@ -214,7 +214,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canDeposit
+     * if can transfer in asset
      *
      * @return canDeposit
      */
@@ -234,7 +234,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canWithdraw
+     * if can transfer out asset
      *
      * @return canWithdraw
      */
@@ -254,7 +254,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * reserved property, please ignore
      *
      * @return updateTime
      */
@@ -314,7 +314,8 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalInitialMargin
+     * total initial margin required with current mark price (useless with isolated positions), only
+     * for USDT asset
      *
      * @return totalInitialMargin
      */
@@ -334,7 +335,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalMaintMargin
+     * the sum of USD value of all cross positions maintenance margin
      *
      * @return totalMaintMargin
      */
@@ -354,7 +355,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalWalletBalance
+     * total wallet balance, only for USDT asset
      *
      * @return totalWalletBalance
      */
@@ -374,7 +375,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalUnrealizedProfit
+     * total unrealized profit, only for USDT asset
      *
      * @return totalUnrealizedProfit
      */
@@ -395,7 +396,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalMarginBalance
+     * total margin balance, only for USDT asset
      *
      * @return totalMarginBalance
      */
@@ -415,7 +416,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalPositionInitialMargin
+     * initial margin required for positions with current mark price, only for USDT asset
      *
      * @return totalPositionInitialMargin
      */
@@ -436,7 +437,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalOpenOrderInitialMargin
+     * initial margin required for open orders with current mark price, only for USDT asset
      *
      * @return totalOpenOrderInitialMargin
      */
@@ -457,7 +458,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalCrossWalletBalance
+     * crossed wallet balance, only for USDT asset
      *
      * @return totalCrossWalletBalance
      */
@@ -478,7 +479,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get totalCrossUnPnl
+     * unrealized profit of crossed positions, only for USDT asset
      *
      * @return totalCrossUnPnl
      */
@@ -498,7 +499,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get availableBalance
+     * available balance, only for USDT asset
      *
      * @return availableBalance
      */
@@ -518,7 +519,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * maximum amount for transfer out, only for USDT asset
      *
      * @return maxWithdrawAmount
      */
@@ -581,7 +582,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get positions
+     * positions of all symbols in the market are returned
      *
      * @return positions
      */

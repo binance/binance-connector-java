@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QuerySubOrdersFutureAlgoResponseSubOrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -129,7 +129,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get algoId
+     * Algo order ID
      *
      * @return algoId
      */
@@ -149,7 +149,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -169,7 +169,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get orderStatus
+     * Sub-order status
      *
      * @return orderStatus
      */
@@ -189,7 +189,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -209,7 +209,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get executedAmt
+     * Executed amount
      *
      * @return executedAmt
      */
@@ -229,7 +229,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get feeAmt
+     * Fee amount
      *
      * @return feeAmt
      */
@@ -249,7 +249,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get feeAsset
+     * Fee asset
      *
      * @return feeAsset
      */
@@ -269,7 +269,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get bookTime
+     * Order creation time
      *
      * @return bookTime
      */
@@ -289,7 +289,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -309,7 +309,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -329,7 +329,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -349,7 +349,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get subId
+     * Sub-order execution sequence ID
      *
      * @return subId
      */
@@ -369,7 +369,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -389,7 +389,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */

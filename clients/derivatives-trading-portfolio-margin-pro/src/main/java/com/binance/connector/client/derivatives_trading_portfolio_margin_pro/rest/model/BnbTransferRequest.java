@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** BnbTransferRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BnbTransferRequest {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -47,7 +47,7 @@ public class BnbTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_TRANSFER_SIDE)
     @jakarta.annotation.Nonnull
-    private String transferSide;
+    private TransferSide transferSide;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -78,7 +78,7 @@ public class BnbTransferRequest {
         this.amount = amount;
     }
 
-    public BnbTransferRequest transferSide(@jakarta.annotation.Nonnull String transferSide) {
+    public BnbTransferRequest transferSide(@jakarta.annotation.Nonnull TransferSide transferSide) {
         this.transferSide = transferSide;
         return this;
     }
@@ -90,11 +90,12 @@ public class BnbTransferRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getTransferSide() {
+    @Valid
+    public TransferSide getTransferSide() {
         return transferSide;
     }
 
-    public void setTransferSide(@jakarta.annotation.Nonnull String transferSide) {
+    public void setTransferSide(@jakarta.annotation.Nonnull TransferSide transferSide) {
         this.transferSide = transferSide;
     }
 
@@ -228,13 +229,8 @@ public class BnbTransferRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("transferSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `transferSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("transferSide").toString()));
-        }
+        // validate the required field `transferSide`
+        TransferSide.validateJsonElement(jsonObj.get("transferSide"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

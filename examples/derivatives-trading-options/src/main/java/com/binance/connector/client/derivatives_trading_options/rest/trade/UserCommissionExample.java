@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.UserCommissionResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class UserCommissionExample {
@@ -28,11 +29,11 @@ public class UserCommissionExample {
     /**
      * User Commission (USER_DATA)
      *
-     * <p>Get account commission. Weight: 5
+     * <p>Get account commission. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void userCommissionExample() throws ApiException {
+    public void userCommissionExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<UserCommissionResponse> response = getApi().userCommission(recvWindow);
         System.out.println(response.getData());

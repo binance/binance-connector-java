@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AccountBlockTradeListResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class AccountBlockTradeListExample {
@@ -28,14 +29,14 @@ public class AccountBlockTradeListExample {
     /**
      * Account Block Trade List (USER_DATA)
      *
-     * <p>Gets block trades for a specific account. Weight: 5
+     * <p>Gets block trades for a specific account. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountBlockTradeListExample() throws ApiException {
+    public void accountBlockTradeListExample() throws ApiException, IOException {
         Long endTime = 1641782889000L;
         Long startTime = 1623319461670L;
-        String underlying = "";
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<AccountBlockTradeListResponse> response =
                 getApi().accountBlockTradeList(endTime, startTime, underlying, recvWindow);

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.convert.rest.ConvertRestApiUtil;
 import com.binance.connector.client.convert.rest.api.ConvertRestApi;
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OrderStatusExample {
@@ -25,13 +26,13 @@ public class OrderStatusExample {
     }
 
     /**
-     * Order status(USER_DATA)
+     * Order status (USER_DATA)
      *
-     * <p>Query order status by order ID. Weight: 100(UID)
+     * <p>Query order status by order ID. Weight(UID): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderStatusExample() throws ApiException {
+    public void orderStatusExample() throws ApiException, IOException {
         String orderId = "1";
         String quoteId = "1";
         ApiResponse<OrderStatusResponse> response = getApi().orderStatus(orderId, quoteId);

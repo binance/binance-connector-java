@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsOrderExample {
@@ -28,15 +30,15 @@ public class QueryMarginAccountsOrderExample {
     /**
      * Query Margin Account&#39;s Order (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Order * Either orderId or origClientOrderId must be sent. * For
-     * some historical orders cummulativeQuoteQty will be &lt; 0, meaning the data is not available
-     * at this time. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Order Weight(IP): 10 Security Type: USER_DATA Notes: - Either
+     * orderId or origClientOrderId must be sent. - For some historical orders cummulativeQuoteQty
+     * will be &lt; 0, meaning the data is not available at this time.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsOrderExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsOrderExample() throws ApiException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;

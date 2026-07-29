@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.GetAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetAccountExample {
@@ -25,15 +26,16 @@ public class GetAccountExample {
     }
 
     /**
-     * Account information
+     * Account information (USER_DATA)
      *
-     * <p>Get current account information. Weight: 20
+     * <p>Get current account information. Weight(IP): 20 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database
      *
      * @throws ApiException if the Api call fails
      */
-    public void getAccountExample() throws ApiException {
+    public void getAccountExample() throws ApiException, IOException {
         Boolean omitZeroBalances = false;
-        Double recvWindow = 5000.0d;
+        Double recvWindow = 5000d;
         ApiResponse<GetAccountResponse> response =
                 getApi().getAccount(omitZeroBalances, recvWindow);
         System.out.println(response.getData());

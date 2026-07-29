@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**code** | **Long** |  |  [optional] |
 |**msg** | **String** |  |  [optional] |
-|**data** | **Long** |  |  [optional] |
+|**data** | **Long** | Configuration ID |  [optional] |
 
 
 

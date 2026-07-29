@@ -29,9 +29,10 @@ public class AccountStatusExample {
     }
 
     /**
-     * WebSocket Account information
+     * Account information (USER_DATA)
      *
-     * <p>Query information about your account. Weight: 20
+     * <p>Query information about your account. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Memory &#x3D;&gt; Database
      */
     public void accountStatusExampleAsync() {
         AccountStatusRequest accountStatusRequest = new AccountStatusRequest();
@@ -48,9 +49,10 @@ public class AccountStatusExample {
     }
 
     /**
-     * WebSocket Account information
+     * Account information (USER_DATA)
      *
-     * <p>Query information about your account. Weight: 20
+     * <p>Query information about your account. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Memory &#x3D;&gt; Database
      */
     public void accountStatusExampleSync() {
         AccountStatusRequest accountStatusRequest = new AccountStatusRequest();

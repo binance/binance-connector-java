@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for FutureAlgoApi */
 public class CancelAlgoOrderFutureAlgoExample {
@@ -25,14 +26,15 @@ public class CancelAlgoOrderFutureAlgoExample {
     }
 
     /**
-     * Cancel Algo Order(TRADE)
+     * Cancel Futures Algo Order (TRADE)
      *
-     * <p>Cancel an active order. * You need to enable &#x60;Futures Trading Permission&#x60; for
-     * the api key which requests this endpoint. * Base URL: https://api.binance.com Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - You need to enable
+     * &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base
+     * URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAlgoOrderFutureAlgoExample() throws ApiException {
+    public void cancelAlgoOrderFutureAlgoExample() throws ApiException, IOException {
         Long algoId = 1L;
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderFutureAlgoResponse> response =

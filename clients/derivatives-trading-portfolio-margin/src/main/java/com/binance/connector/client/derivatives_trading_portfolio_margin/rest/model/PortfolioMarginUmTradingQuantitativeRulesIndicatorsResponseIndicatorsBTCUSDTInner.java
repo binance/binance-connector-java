@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner {
     public static final String SERIALIZED_NAME_IS_LOCKED = "isLocked";
 
@@ -76,7 +76,7 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicato
     }
 
     /**
-     * Get isLocked
+     * Is Locked.
      *
      * @return isLocked
      */
@@ -96,7 +96,7 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicato
     }
 
     /**
-     * Get plannedRecoverTime
+     * Planned Recover Time.
      *
      * @return plannedRecoverTime
      */
@@ -116,7 +116,7 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicato
     }
 
     /**
-     * Get indicator
+     * Indicator.
      *
      * @return indicator
      */
@@ -136,7 +136,7 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicato
     }
 
     /**
-     * Get value
+     * Value.
      *
      * @return value
      */
@@ -157,7 +157,7 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicato
     }
 
     /**
-     * Get triggerValue
+     * Trigger Value.
      *
      * @return triggerValue
      */

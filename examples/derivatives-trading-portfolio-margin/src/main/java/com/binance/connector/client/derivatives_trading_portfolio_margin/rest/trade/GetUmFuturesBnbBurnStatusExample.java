@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUmFuturesBnbBurnStatusResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetUmFuturesBnbBurnStatusExample {
@@ -29,11 +30,11 @@ public class GetUmFuturesBnbBurnStatusExample {
      * Get UM Futures BNB Burn Status (USER_DATA)
      *
      * <p>Get user&#39;s BNB Fee Discount for UM Futures (Fee Discount On or Fee Discount Off )
-     * Weight: 30
+     * Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getUmFuturesBnbBurnStatusExample() throws ApiException {
+    public void getUmFuturesBnbBurnStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetUmFuturesBnbBurnStatusResponse> response =
                 getApi().getUmFuturesBnbBurnStatus(recvWindow);

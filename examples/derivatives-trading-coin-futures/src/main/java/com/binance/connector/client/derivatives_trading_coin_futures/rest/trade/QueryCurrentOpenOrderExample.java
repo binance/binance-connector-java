@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.QueryCurrentOpenOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryCurrentOpenOrderExample {
@@ -26,16 +27,17 @@ public class QueryCurrentOpenOrderExample {
     }
 
     /**
-     * Query Current Open Order(USER_DATA)
+     * Query Current Open Order (USER_DATA)
      *
-     * <p>Query Current Open Order * Either&#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
-     * be sent * If the queried order has been filled or cancelled, the error message \&quot;Order
-     * does not exist\&quot; will be returned. Weight: 1
+     * <p>Query Current Open Order Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * Either&#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent - If the queried
+     * order has been filled or cancelled, the error message \&quot;Order does not exist\&quot; will
+     * be returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCurrentOpenOrderExample() throws ApiException {
-        String symbol = "";
+    public void queryCurrentOpenOrderExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
         Long orderId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;

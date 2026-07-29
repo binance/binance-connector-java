@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponseResultAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -126,7 +126,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -146,7 +146,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get walletBalance
+     * total wallet balance
      *
      * @return walletBalance
      */
@@ -166,7 +166,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit or loss
      *
      * @return unrealizedProfit
      */
@@ -186,7 +186,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get marginBalance
+     * margin balance
      *
      * @return marginBalance
      */
@@ -206,7 +206,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -226,7 +226,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -246,7 +246,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -267,7 +267,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -288,7 +288,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * maximum amount for transfer out
      *
      * @return maxWithdrawAmount
      */
@@ -308,7 +308,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossWalletBalance
+     * wallet balance for crossed margin
      *
      * @return crossWalletBalance
      */
@@ -328,7 +328,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossUnPnl
+     * total unrealized profit or loss of crossed positions
      *
      * @return crossUnPnl
      */
@@ -348,7 +348,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get availableBalance
+     * available margin balance
      *
      * @return availableBalance
      */
@@ -368,7 +368,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */

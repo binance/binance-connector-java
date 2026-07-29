@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOcoResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountCancelOcoExample {
@@ -28,14 +30,14 @@ public class MarginAccountCancelOcoExample {
     /**
      * Margin Account Cancel OCO (TRADE)
      *
-     * <p>Cancel an entire Order List for a margin account. * Canceling an individual leg will
-     * cancel the entire OCO Weight: 1(UID)
+     * <p>Cancel an entire Order List for a margin account. Weight(UID): 1 Security Type: TRADE
+     * Notes: - Canceling an individual leg will cancel the entire OCO
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountCancelOcoExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void marginAccountCancelOcoExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderListId = 1L;
         String listClientOrderId = "1";
         String newClientOrderId = "1";

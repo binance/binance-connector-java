@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountRepayResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountRepayExample {
@@ -27,15 +28,15 @@ public class MarginAccountRepayExample {
     }
 
     /**
-     * Margin Account Repay(MARGIN)
+     * Margin Account Repay (MARGIN)
      *
-     * <p>Repay for a margin loan. Weight: 100
+     * <p>Repay for a margin loan. Weight(IP): 100 Security Type: MARGIN
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountRepayExample() throws ApiException {
+    public void marginAccountRepayExample() throws ApiException, IOException {
         MarginAccountRepayRequest marginAccountRepayRequest = new MarginAccountRepayRequest();
-        marginAccountRepayRequest.asset("");
+        marginAccountRepayRequest.asset("USDT");
         marginAccountRepayRequest.amount(1.0d);
         ApiResponse<MarginAccountRepayResponse> response =
                 getApi().marginAccountRepay(marginAccountRepayRequest);

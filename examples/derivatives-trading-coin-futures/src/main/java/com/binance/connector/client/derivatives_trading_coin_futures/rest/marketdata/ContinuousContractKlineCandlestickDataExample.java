@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContinuousContractKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Interval;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class ContinuousContractKlineCandlestickDataExample {
@@ -31,26 +32,26 @@ public class ContinuousContractKlineCandlestickDataExample {
      * Continuous Contract Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for a specific contract type. Klines are uniquely identified by
-     * their open time. * Contract type: * PERPETUAL * CURRENT_QUARTER * NEXT_QUARTER 1000 | 10 *
-     * The difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200
-     * days * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent
-     * &#x60;limit&#x60; data from &#x60;endTime&#x60; will be returned: * If &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; are not sent, current timestamp will be set as &#x60;endTime&#x60;,
-     * and the most recent data will be returned. * If &#x60;startTime&#x60; is sent only, the
-     * timestamp of 200 days after &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to
-     * the current time) * If &#x60;endTime&#x60; is sent only, the timestamp of 200 days before
-     * &#x60;endTime&#x60; will be set as &#x60;startTime&#x60; Weight: based on parameter LIMIT
-     * LIMIT | weight ---|--- [1,100) | 1 [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * their open time. Weight: based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | ---
+     * | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The
+     * difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days -
+     * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data
+     * from &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * are not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data
+     * will be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void continuousContractKlineCandlestickDataExample() throws ApiException {
-        String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+    public void continuousContractKlineCandlestickDataExample() throws ApiException, IOException {
+        String pair = "BTCUSD";
+        ContractType contractType = ContractType.ALL;
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<ContinuousContractKlineCandlestickDataResponse> response =
                 getApi().continuousContractKlineCandlestickData(
                                 pair, contractType, interval, startTime, endTime, limit);

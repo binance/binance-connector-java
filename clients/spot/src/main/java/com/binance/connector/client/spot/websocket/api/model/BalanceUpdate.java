@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** BalanceUpdate */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BalanceUpdate extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -71,7 +71,7 @@ public class BalanceUpdate extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -90,7 +90,7 @@ public class BalanceUpdate extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Asset
      *
      * @return aLowerCase
      */
@@ -109,7 +109,7 @@ public class BalanceUpdate extends BaseDTO {
     }
 
     /**
-     * Get dLowerCase
+     * Balance Delta
      *
      * @return dLowerCase
      */
@@ -128,7 +128,7 @@ public class BalanceUpdate extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Clear Time
      *
      * @return T
      */

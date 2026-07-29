@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** UmPositionAdlQuantileEstimationResponseInnerAdlQuantile */
+/** Adl Quantile. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UmPositionAdlQuantileEstimationResponseInnerAdlQuantile {
     public static final String SERIALIZED_NAME_L_O_N_G = "LONG";
 
@@ -63,7 +63,7 @@ public class UmPositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get LONG
+     * adl quantile for \&quot;LONG\&quot; position in hedge mode
      *
      * @return LONG
      */
@@ -83,7 +83,7 @@ public class UmPositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get SHORT
+     * adl quantile for \&quot;SHORT\&quot; position in hedge mode
      *
      * @return SHORT
      */
@@ -103,7 +103,7 @@ public class UmPositionAdlQuantileEstimationResponseInnerAdlQuantile {
     }
 
     /**
-     * Get BOTH
+     * adl quantile for position in one-way mode
      *
      * @return BOTH
      */

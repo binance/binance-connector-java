@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OrderBookResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OrderBookExample {
@@ -33,9 +34,9 @@ public class OrderBookExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderBookExample() throws ApiException {
-        String symbol = "";
-        Long limit = 100L;
+    public void orderBookExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long limit = 20L;
         ApiResponse<OrderBookResponse> response = getApi().orderBook(symbol, limit);
         System.out.println(response.getData());
     }

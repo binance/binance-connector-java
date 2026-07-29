@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountSpotAssetsSummaryResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class QuerySubAccountSpotAssetsSummaryExample {
@@ -28,12 +29,12 @@ public class QuerySubAccountSpotAssetsSummaryExample {
     /**
      * Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA)
      *
-     * <p>Get BTC valued asset summary of subaccounts. Weight: 1
+     * <p>Get BTC valued asset summary of subaccounts. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySubAccountSpotAssetsSummaryExample() throws ApiException {
-        String email = "";
+    public void querySubAccountSpotAssetsSummaryExample() throws ApiException, IOException {
+        String email = "123@test.com";
         Long page = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

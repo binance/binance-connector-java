@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**otherProfits** | [**List&lt;ExtraBonusListResponseDataOtherProfitsInner&gt;**](ExtraBonusListResponseDataOtherProfitsInner.md) |  |  [optional] |
-|**totalNum** | **Long** |  |  [optional] |
-|**pageSize** | **Long** |  |  [optional] |
+|**totalNum** | **Long** | Total rows |  [optional] |
+|**pageSize** | **Long** | Rows per page |  [optional] |
 
 
 

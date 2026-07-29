@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.GetPortfolioResponse;
+import java.io.IOException;
 
 /** API examples for WalletApi */
 public class GetPortfolioExample {
@@ -26,14 +27,14 @@ public class GetPortfolioExample {
     }
 
     /**
-     * Get Portfolio
+     * Get Portfolio (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction portfolio overview including active positions
      * count, aggregated PnL, and full position list. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getPortfolioExample() throws ApiException {
+    public void getPortfolioExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long marketId = 5567895L;

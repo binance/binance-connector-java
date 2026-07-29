@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetSummaryOfSubAccountsFuturesAccountV2Response;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class GetSummaryOfSubAccountsFuturesAccountV2Example {
@@ -28,14 +29,14 @@ public class GetSummaryOfSubAccountsFuturesAccountV2Example {
     /**
      * Get Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
      *
-     * <p>Get Summary of Sub-account&#39;s Futures Account Weight: 10
+     * <p>Get Summary of Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSummaryOfSubAccountsFuturesAccountV2Example() throws ApiException {
-        Long futuresType = 0L;
+    public void getSummaryOfSubAccountsFuturesAccountV2Example() throws ApiException, IOException {
+        Long futuresType = 1L;
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsFuturesAccountV2Response> response =
                 getApi().getSummaryOfSubAccountsFuturesAccountV2(

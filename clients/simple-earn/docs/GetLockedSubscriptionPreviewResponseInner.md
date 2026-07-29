@@ -14,11 +14,11 @@
 |**boostRewardAsset** | **String** |  |  [optional] |
 |**estDailyRewardAmt** | **String** |  |  [optional] |
 |**nextPay** | **String** |  |  [optional] |
-|**nextPayDate** | **String** |  |  [optional] |
-|**valueDate** | **String** |  |  [optional] |
-|**rewardsEndDate** | **String** |  |  [optional] |
-|**deliverDate** | **String** |  |  [optional] |
-|**nextSubscriptionDate** | **String** |  |  [optional] |
+|**nextPayDate** | **Long** |  |  [optional] |
+|**valueDate** | **Long** |  |  [optional] |
+|**rewardsEndDate** | **Long** |  |  [optional] |
+|**deliverDate** | **Long** |  |  [optional] |
+|**nextSubscriptionDate** | **Long** |  |  [optional] |
 
 
 

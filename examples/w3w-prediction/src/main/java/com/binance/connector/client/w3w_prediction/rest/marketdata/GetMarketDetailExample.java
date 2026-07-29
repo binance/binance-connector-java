@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.GetMarketDetailResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetMarketDetailExample {
@@ -33,7 +34,7 @@ public class GetMarketDetailExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void getMarketDetailExample() throws ApiException {
+    public void getMarketDetailExample() throws ApiException, IOException {
         Long marketTopicId = 4229564L;
         ApiResponse<GetMarketDetailResponse> response = getApi().getMarketDetail(marketTopicId);
         System.out.println(response.getData());

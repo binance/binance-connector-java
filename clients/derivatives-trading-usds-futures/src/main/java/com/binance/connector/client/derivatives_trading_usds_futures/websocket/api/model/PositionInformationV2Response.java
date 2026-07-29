@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** PositionInformationV2Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationV2Response extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -65,7 +65,7 @@ public class PositionInformationV2Response extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits;
+    private List<@Valid AccountInformationResponseRateLimitsInner> rateLimits;
 
     public PositionInformationV2Response() {}
 
@@ -142,13 +142,13 @@ public class PositionInformationV2Response extends BaseDTO {
 
     public PositionInformationV2Response rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountInformationResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public PositionInformationV2Response addRateLimitsItem(
-            AccountInformationV2ResponseRateLimitsInner rateLimitsItem) {
+            AccountInformationResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -163,13 +163,13 @@ public class PositionInformationV2Response extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountInformationV2ResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid AccountInformationResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountInformationResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -225,7 +225,7 @@ public class PositionInformationV2Response extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid AccountInformationResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -365,7 +365,7 @@ public class PositionInformationV2Response extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountInformationV2ResponseRateLimitsInner.validateJsonElement(
+                    AccountInformationResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

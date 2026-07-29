@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetFuturesOrderHistoryDownloadLinkByIdResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     public static final String SERIALIZED_NAME_DOWNLOAD_ID = "downloadId";
 
@@ -81,7 +81,7 @@ public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     }
 
     /**
-     * Get downloadId
+     * Download Id.
      *
      * @return downloadId
      */
@@ -101,7 +101,7 @@ public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -121,7 +121,7 @@ public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     }
 
     /**
-     * Get url
+     * The link is mapped to download id
      *
      * @return url
      */
@@ -141,7 +141,7 @@ public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     }
 
     /**
-     * Get notified
+     * ignore
      *
      * @return notified
      */
@@ -161,7 +161,7 @@ public class GetFuturesOrderHistoryDownloadLinkByIdResponse {
     }
 
     /**
-     * Get expirationTimestamp
+     * The link would expire after this timestamp
      *
      * @return expirationTimestamp
      */

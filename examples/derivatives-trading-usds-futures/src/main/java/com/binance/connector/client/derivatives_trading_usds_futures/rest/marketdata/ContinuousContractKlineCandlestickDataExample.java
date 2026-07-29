@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ContinuousContractKlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Interval;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class ContinuousContractKlineCandlestickDataExample {
@@ -31,20 +32,19 @@ public class ContinuousContractKlineCandlestickDataExample {
      * Continuous Contract Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for a specific contract type. Klines are uniquely identified by
-     * their open time. * If startTime and endTime are not sent, the most recent klines are
-     * returned. * Contract type: * PERPETUAL * CURRENT_QUARTER * NEXT_QUARTER * TRADIFI_PERPETUAL
-     * Weight: based on parameter LIMIT | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 |
-     * | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * their open time. Weight: based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | |
+     * ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 |
+     * 10 | Notes: - If startTime and endTime are not sent, the most recent klines are returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void continuousContractKlineCandlestickDataExample() throws ApiException {
-        String pair = "";
+    public void continuousContractKlineCandlestickDataExample() throws ApiException, IOException {
+        String pair = "BTCUSDT";
         ContractType contractType = ContractType.PERPETUAL;
-        Interval interval = Interval.INTERVAL_1s;
+        Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         ApiResponse<ContinuousContractKlineCandlestickDataResponse> response =
                 getApi().continuousContractKlineCandlestickData(
                                 pair, contractType, interval, startTime, endTime, limit);

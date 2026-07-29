@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**email** | **String** |  |  [optional] |
-|**binanceId** | **String** |  |  [optional] |
-|**accountId** | **String** |  |  [optional] |
-|**countryCode** | **String** |  |  [optional] |
-|**phoneNumber** | **String** |  |  [optional] |
-|**mobileCode** | **String** |  |  [optional] |
+|**name** | **String** | Nickname or merchant name. |  [optional] |
+|**type** | **String** | Account type: USER for personal, MERCHANT for merchant. |  [optional] |
+|**email** | **String** | Email. |  [optional] |
+|**binanceId** | **String** | Binance UID. |  [optional] |
+|**accountId** | **String** | Binance Pay ID. |  [optional] |
+|**countryCode** | **String** | International area code. |  [optional] |
+|**phoneNumber** | **String** | Phone number. |  [optional] |
+|**mobileCode** | **String** | Country code. |  [optional] |
 |**extend** | [**GetPayTradeHistoryResponseDataInnerReceiverInfoExtend**](GetPayTradeHistoryResponseDataInnerReceiverInfoExtend.md) |  |  [optional] |
 
 

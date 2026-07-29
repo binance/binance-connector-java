@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenAlgoOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryAllCurrentUmOpenAlgoOrdersExample {
@@ -28,16 +29,16 @@ public class QueryAllCurrentUmOpenAlgoOrdersExample {
     /**
      * Query All Current UM Open Algo Orders (USER_DATA)
      *
-     * <p>Get all UM open algo orders on a symbol. * If the symbol is not sent, orders for all
-     * symbols will be returned in an array. Weight: 1 for a single symbol; 40 when the symbol
-     * parameter is omitted Careful when accessing this with no symbol.
+     * <p>Get all UM open algo orders on a symbol. If the symbol is not sent, orders for all symbols
+     * will be returned. Weight(IP): 1 Security Type: USER_DATA Notes: - Weight: 1 for a single
+     * symbol; 40 when the symbol parameter is omitted.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryAllCurrentUmOpenAlgoOrdersExample() throws ApiException {
-        String algoType = "";
-        String symbol = "";
-        Long algoId = 1L;
+    public void queryAllCurrentUmOpenAlgoOrdersExample() throws ApiException, IOException {
+        String algoType = "CONDITIONAL";
+        String symbol = "BNBUSDT";
+        Long algoId = 2146760L;
         Long recvWindow = 5000L;
         ApiResponse<QueryAllCurrentUmOpenAlgoOrdersResponse> response =
                 getApi().queryAllCurrentUmOpenAlgoOrders(algoType, symbol, algoId, recvWindow);

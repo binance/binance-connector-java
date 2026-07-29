@@ -32,7 +32,7 @@ public class OrderListPlaceOcoExample {
     }
 
     /**
-     * WebSocket Place new Order list - OCO
+     * Place new Order list - OCO (TRADE)
      *
      * <p>Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately
      * cancels the other. * An OCO has 2 orders called the **above order** and **below order**. *
@@ -46,13 +46,14 @@ public class OrderListPlaceOcoExample {
      * Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60; *
      * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT
      * stopPrice&#x60; * OCOs add **2 orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOcoExampleAsync() {
         OrderListPlaceOcoRequest orderListPlaceOcoRequest = new OrderListPlaceOcoRequest();
         orderListPlaceOcoRequest.symbol("BNBUSDT");
         orderListPlaceOcoRequest.side(Side.BUY);
-        orderListPlaceOcoRequest.quantity(1.0d);
+        orderListPlaceOcoRequest.quantity(1d);
         orderListPlaceOcoRequest.aboveType(AboveType.STOP_LOSS_LIMIT);
         orderListPlaceOcoRequest.belowType(BelowType.STOP_LOSS);
         CompletableFuture<OrderListPlaceOcoResponse> future =
@@ -68,7 +69,7 @@ public class OrderListPlaceOcoExample {
     }
 
     /**
-     * WebSocket Place new Order list - OCO
+     * Place new Order list - OCO (TRADE)
      *
      * <p>Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately
      * cancels the other. * An OCO has 2 orders called the **above order** and **below order**. *
@@ -82,13 +83,14 @@ public class OrderListPlaceOcoExample {
      * Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60; *
      * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT
      * stopPrice&#x60; * OCOs add **2 orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine
      */
     public void orderListPlaceOcoExampleSync() {
         OrderListPlaceOcoRequest orderListPlaceOcoRequest = new OrderListPlaceOcoRequest();
         orderListPlaceOcoRequest.symbol("BNBUSDT");
         orderListPlaceOcoRequest.side(Side.BUY);
-        orderListPlaceOcoRequest.quantity(1.0d);
+        orderListPlaceOcoRequest.quantity(1d);
         orderListPlaceOcoRequest.aboveType(AboveType.STOP_LOSS_LIMIT);
         orderListPlaceOcoRequest.belowType(BelowType.STOP_LOSS);
         CompletableFuture<OrderListPlaceOcoResponse> future =

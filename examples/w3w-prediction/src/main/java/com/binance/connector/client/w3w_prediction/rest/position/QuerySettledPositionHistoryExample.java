@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QuerySettledPositionHistoryResponse;
+import java.io.IOException;
 
 /** API examples for PositionApi */
 public class QuerySettledPositionHistoryExample {
@@ -26,14 +27,14 @@ public class QuerySettledPositionHistoryExample {
     }
 
     /**
-     * Query Settled Position History
+     * Query Settled Position History (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s settled (resolved) prediction position history with
      * optional filters. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySettledPositionHistoryExample() throws ApiException {
+    public void querySettledPositionHistoryExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String l1Category = "crypto";
         Integer result = 1;

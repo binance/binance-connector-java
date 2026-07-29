@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -59,7 +59,7 @@ public class OnChainYieldsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/5.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +100,7 @@ public class OnChainYieldsApi {
      * Build call for getOnChainYieldsLockedPersonalLeftQuota
      *
      * @param projectId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -111,7 +111,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Personal-Left-Quota">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-personal-left-quota">Get
      *     On-chain Yields Locked Personal Left Quota (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedPersonalLeftQuotaCall(
@@ -216,10 +216,10 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Personal Left Quota (USER_DATA) Get On-chain Yields Locked
-     * Personal Left Quota Weight: 50
+     * Personal Left Quota Weight(IP): 50 Security Type: USER_DATA
      *
      * @param projectId (required)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedPersonalLeftQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -231,12 +231,12 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Personal-Left-Quota">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-personal-left-quota">Get
      *     On-chain Yields Locked Personal Left Quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedPersonalLeftQuotaResponse>
-            getOnChainYieldsLockedPersonalLeftQuota(@NotNull String projectId, Long recvWindow)
-                    throws ApiException {
+            getOnChainYieldsLockedPersonalLeftQuota(
+                    @NotNull String projectId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedPersonalLeftQuotaValidateBeforeCall(projectId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -248,9 +248,9 @@ public class OnChainYieldsApi {
      * Build call for getOnChainYieldsLockedProductList
      *
      * @param asset (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -260,7 +260,8 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Product List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/account/">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-list">Get
      *     On-chain Yields Locked Product List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedProductListCall(
@@ -375,12 +376,13 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Product List (USER_DATA) Get available On-chain Yields Locked
-     * product list * Get available On-chain Yields Locked product list Weight: 50
+     * product list Weight(IP): 50 Security Type: USER_DATA Notes: - Get available On-chain Yields
+     * Locked product list
      *
      * @param asset (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -391,11 +393,13 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Product List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/account/">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-list">Get
      *     On-chain Yields Locked Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedProductListResponse> getOnChainYieldsLockedProductList(
-            String asset, Long current, Long size, Long recvWindow) throws ApiException {
+            String asset, @Min(1L) Long current, @Max(100L) Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedProductListValidateBeforeCall(
                         asset, current, size, recvWindow);
@@ -410,9 +414,9 @@ public class OnChainYieldsApi {
      * @param asset (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -423,7 +427,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Product-Position">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-position">Get
      *     On-chain Yields Locked Product Position (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedProductPositionCall(
@@ -561,14 +565,14 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Product Position (USER_DATA) Get On-chain Yields Locked Product
-     * Position Weight: 50
+     * Position Weight(IP): 50 Security Type: USER_DATA
      *
      * @param asset (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -580,7 +584,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Product-Position">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-position">Get
      *     On-chain Yields Locked Product Position (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedProductPositionResponse>
@@ -588,9 +592,9 @@ public class OnChainYieldsApi {
                     String asset,
                     String positionId,
                     String projectId,
-                    Long current,
-                    Long size,
-                    Long recvWindow)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedProductPositionValidateBeforeCall(
@@ -608,9 +612,9 @@ public class OnChainYieldsApi {
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -621,7 +625,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Redemption-Record">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-redemption-record">Get
      *     On-chain Yields Locked Redemption Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedRedemptionRecordCall(
@@ -775,22 +779,22 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Redemption Record (USER_DATA) Get On-chain Yields Locked
-     * Redemption Record * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
-     * longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
-     * then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but
-     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 50
+     * Redemption Record Weight(IP): 50 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @param positionId (optional)
      * @param redeemId (optional)
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -802,7 +806,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Redemption-Record">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-redemption-record">Get
      *     On-chain Yields Locked Redemption Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedRedemptionRecordResponse>
@@ -812,9 +816,9 @@ public class OnChainYieldsApi {
                     String asset,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long size,
-                    Long recvWindow)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedRedemptionRecordValidateBeforeCall(
@@ -831,9 +835,9 @@ public class OnChainYieldsApi {
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -844,7 +848,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-rewards-history">Get
      *     On-chain Yields Locked Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedRewardsHistoryCall(
@@ -991,21 +995,21 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Rewards History (USER_DATA) Get On-chain Yields Locked Rewards
-     * History * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer
-     * than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the
-     * last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but
-     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 50
+     * History Weight(IP): 50 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @param positionId (optional)
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1017,7 +1021,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-rewards-history">Get
      *     On-chain Yields Locked Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedRewardsHistoryResponse>
@@ -1026,9 +1030,9 @@ public class OnChainYieldsApi {
                     String asset,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long size,
-                    Long recvWindow)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedRewardsHistoryValidateBeforeCall(
@@ -1043,8 +1047,8 @@ public class OnChainYieldsApi {
      *
      * @param projectId (required)
      * @param amount (required)
-     * @param autoSubscribe true or false, default true. (optional)
-     * @param recvWindow (optional)
+     * @param autoSubscribe (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1054,8 +1058,9 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Subscription Preview </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/earn/">Get On-chain
-     *     Yields Locked Subscription Preview (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-preview">Get
+     *     On-chain Yields Locked Subscription Preview (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedSubscriptionPreviewCall(
             String projectId, Double amount, Boolean autoSubscribe, Long recvWindow)
@@ -1175,12 +1180,12 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Subscription Preview (USER_DATA) Get On-chain Yields Locked
-     * Subscription Preview Weight: 50
+     * Subscription Preview Weight(IP): 50 Security Type: USER_DATA
      *
      * @param projectId (required)
      * @param amount (required)
-     * @param autoSubscribe true or false, default true. (optional)
-     * @param recvWindow (optional)
+     * @param autoSubscribe (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1191,15 +1196,16 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Subscription Preview </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/earn/">Get On-chain
-     *     Yields Locked Subscription Preview (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-preview">Get
+     *     On-chain Yields Locked Subscription Preview (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedSubscriptionPreviewResponse>
             getOnChainYieldsLockedSubscriptionPreview(
                     @NotNull String projectId,
                     @NotNull Double amount,
                     Boolean autoSubscribe,
-                    Long recvWindow)
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedSubscriptionPreviewValidateBeforeCall(
@@ -1217,9 +1223,9 @@ public class OnChainYieldsApi {
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1229,7 +1235,8 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Subscription Record </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/history/">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-record">Get
      *     On-chain Yields Locked Subscription Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getOnChainYieldsLockedSubscriptionRecordCall(
@@ -1383,22 +1390,22 @@ public class OnChainYieldsApi {
 
     /**
      * Get On-chain Yields Locked Subscription Record (USER_DATA) Get On-chain Yields Locked
-     * Subscription Record * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot
-     * be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not
-     * sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent
-     * but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 50
+     * Subscription Record Weight(IP): 50 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @param purchaseId (optional)
      * @param clientId (optional)
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetOnChainYieldsLockedSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1409,7 +1416,8 @@ public class OnChainYieldsApi {
      * <tr><td> 200 </td><td> Get On-chain Yields Locked Subscription Record </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/on-chain-yields/history/">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-record">Get
      *     On-chain Yields Locked Subscription Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetOnChainYieldsLockedSubscriptionRecordResponse>
@@ -1419,9 +1427,9 @@ public class OnChainYieldsApi {
                     String asset,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long size,
-                    Long recvWindow)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getOnChainYieldsLockedSubscriptionRecordValidateBeforeCall(
@@ -1434,7 +1442,7 @@ public class OnChainYieldsApi {
     /**
      * Build call for onChainYieldsAccount
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1445,7 +1453,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Onchain-Account">On-chain
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#on-chain-yields-account">On-chain
      *     Yields Account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call onChainYieldsAccountCall(Long recvWindow) throws ApiException {
@@ -1539,9 +1547,10 @@ public class OnChainYieldsApi {
     }
 
     /**
-     * On-chain Yields Account (USER_DATA) On-chain Yields Account query Weight: 50
+     * On-chain Yields Account (USER_DATA) On-chain Yields Account query Weight(IP): 50 Security
+     * Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
      * @return ApiResponse&lt;OnChainYieldsAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1553,11 +1562,11 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/account/Onchain-Account">On-chain
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#on-chain-yields-account">On-chain
      *     Yields Account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<OnChainYieldsAccountResponse> onChainYieldsAccount(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<OnChainYieldsAccountResponse> onChainYieldsAccount(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = onChainYieldsAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<OnChainYieldsAccountResponse>() {}.getType();
@@ -1578,7 +1587,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Redeem-Onchain-Locked-Product">Redeem
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#redeem-on-chain-yields-locked-product">Redeem
      *     On-chain Yields Locked Product (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemOnChainYieldsLockedProductCall(
@@ -1691,9 +1700,9 @@ public class OnChainYieldsApi {
     }
 
     /**
-     * Redeem On-chain Yields Locked Product (TRADE) Redeem On-chain Yields Locked Product * You
-     * need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which
-     * requests this endpoint. Weight: 1/3s per account
+     * Redeem On-chain Yields Locked Product (TRADE) Redeem On-chain Yields Locked Product
+     * Weight(IP): 200 Security Type: TRADE Notes: - You need to open &#x60;Enable Spot &amp; Margin
+     * Trading&#x60; permission for the API Key which requests this endpoint.
      *
      * @param redeemOnChainYieldsLockedProductRequest (required)
      * @return ApiResponse&lt;RedeemOnChainYieldsLockedProductResponse&gt;
@@ -1707,7 +1716,7 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Redeem-Onchain-Locked-Product">Redeem
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#redeem-on-chain-yields-locked-product">Redeem
      *     On-chain Yields Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemOnChainYieldsLockedProductResponse> redeemOnChainYieldsLockedProduct(
@@ -1736,8 +1745,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Auto-Subscribe">Set
-     *     On-chain Yields Locked Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-auto-subscribe">Set
+     *     On-chain Yields Locked Auto Subscribe (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setOnChainYieldsLockedAutoSubscribeCall(
             SetOnChainYieldsLockedAutoSubscribeRequest setOnChainYieldsLockedAutoSubscribeRequest)
@@ -1849,8 +1858,8 @@ public class OnChainYieldsApi {
     }
 
     /**
-     * Set On-chain Yields Locked Auto Subscribe(USER_DATA) Set On-chain Yield locked auto subscribe
-     * Weight: 50
+     * Set On-chain Yields Locked Auto Subscribe (USER_DATA) Set On-chain Yield locked auto
+     * subscribe Weight(IP): 50 Security Type: USER_DATA
      *
      * @param setOnChainYieldsLockedAutoSubscribeRequest (required)
      * @return ApiResponse&lt;SetOnChainYieldsLockedAutoSubscribeResponse&gt;
@@ -1864,8 +1873,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Auto-Subscribe">Set
-     *     On-chain Yields Locked Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-auto-subscribe">Set
+     *     On-chain Yields Locked Auto Subscribe (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetOnChainYieldsLockedAutoSubscribeResponse>
             setOnChainYieldsLockedAutoSubscribe(
@@ -1895,8 +1904,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Redeem-Option">Set
-     *     On-chain Yields Locked Product Redeem Option(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-product-redeem-option">Set
+     *     On-chain Yields Locked Product Redeem Option (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setOnChainYieldsLockedProductRedeemOptionCall(
             SetOnChainYieldsLockedProductRedeemOptionRequest
@@ -2010,8 +2019,8 @@ public class OnChainYieldsApi {
     }
 
     /**
-     * Set On-chain Yields Locked Product Redeem Option(USER_DATA) Set On-chain Yields redeem option
-     * for Locked product Weight: 50
+     * Set On-chain Yields Locked Product Redeem Option (USER_DATA) Set On-chain Yields redeem
+     * option for Locked product Weight(IP): 50 Security Type: USER_DATA
      *
      * @param setOnChainYieldsLockedProductRedeemOptionRequest (required)
      * @return ApiResponse&lt;SetOnChainYieldsLockedProductRedeemOptionResponse&gt;
@@ -2025,8 +2034,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Redeem-Option">Set
-     *     On-chain Yields Locked Product Redeem Option(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-product-redeem-option">Set
+     *     On-chain Yields Locked Product Redeem Option (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetOnChainYieldsLockedProductRedeemOptionResponse>
             setOnChainYieldsLockedProductRedeemOption(
@@ -2056,8 +2065,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Subscribe-Onchain-Locked-Product">Subscribe
-     *     On-chain Yields Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#subscribe-on-chain-yields-locked-product">Subscribe
+     *     On-chain Yields Locked Product (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeOnChainYieldsLockedProductCall(
             SubscribeOnChainYieldsLockedProductRequest subscribeOnChainYieldsLockedProductRequest)
@@ -2196,9 +2205,9 @@ public class OnChainYieldsApi {
     }
 
     /**
-     * Subscribe On-chain Yields Locked Product(TRADE) Subscribe On-chain Yields Locked Product *
-     * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key
-     * which requests this endpoint. Weight: 200
+     * Subscribe On-chain Yields Locked Product (TRADE) Subscribe On-chain Yields Locked Product
+     * Weight(IP): 200 Security Type: TRADE Notes: - You need to open &#x60;Enable Spot &amp; Margin
+     * Trading&#x60; permission for the API Key which requests this endpoint.
      *
      * @param subscribeOnChainYieldsLockedProductRequest (required)
      * @return ApiResponse&lt;SubscribeOnChainYieldsLockedProductResponse&gt;
@@ -2212,8 +2221,8 @@ public class OnChainYieldsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/on-chain-yields/earn/Subscribe-Onchain-Locked-Product">Subscribe
-     *     On-chain Yields Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#subscribe-on-chain-yields-locked-product">Subscribe
+     *     On-chain Yields Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeOnChainYieldsLockedProductResponse>
             subscribeOnChainYieldsLockedProduct(

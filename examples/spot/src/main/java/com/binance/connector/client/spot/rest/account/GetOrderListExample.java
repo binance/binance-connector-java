@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetOrderListExample {
@@ -25,16 +26,17 @@ public class GetOrderListExample {
     }
 
     /**
-     * Query Order list
+     * Query Order list (USER_DATA)
      *
-     * <p>Retrieves a specific order list based on provided optional parameters. Weight: 4
+     * <p>Retrieves a specific order list based on provided optional parameters. Weight(IP): 4
+     * Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOrderListExample() throws ApiException {
-        Long orderListId = 1L;
-        String origClientOrderId = "";
-        Double recvWindow = 5000.0d;
+    public void getOrderListExample() throws ApiException, IOException {
+        Long orderListId = 27L;
+        String origClientOrderId = "1";
+        Double recvWindow = 5000d;
         ApiResponse<GetOrderListResponse> response =
                 getApi().getOrderList(orderListId, origClientOrderId, recvWindow);
         System.out.println(response.getData());

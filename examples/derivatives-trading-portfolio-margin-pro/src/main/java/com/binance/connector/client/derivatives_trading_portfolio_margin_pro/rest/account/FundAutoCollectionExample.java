@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class FundAutoCollectionExample {
@@ -27,15 +28,15 @@ public class FundAutoCollectionExample {
     }
 
     /**
-     * Fund Auto-collection(USER_DATA)
+     * Fund Auto-collection (USER_DATA)
      *
-     * <p>Transfers all assets from Futures Account to Margin account * The BNB would not be
-     * collected from UM-PM account to the Portfolio Margin account. * You can only use this
-     * function 500 times per hour in a rolling manner. Weight: 1500
+     * <p>Transfers all assets from Futures Account to Margin account Weight(IP): 1500 Security
+     * Type: USER_DATA Notes: - The BNB would not be collected from UM-PM account to the Portfolio
+     * Margin account. - You can only use this function 500 times per hour in a rolling manner.
      *
      * @throws ApiException if the Api call fails
      */
-    public void fundAutoCollectionExample() throws ApiException {
+    public void fundAutoCollectionExample() throws ApiException, IOException {
         FundAutoCollectionRequest fundAutoCollectionRequest = new FundAutoCollectionRequest();
         ApiResponse<FundAutoCollectionResponse> response =
                 getApi().fundAutoCollection(fundAutoCollectionRequest);

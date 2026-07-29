@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**apiName** | **String** |  |  [optional] |
-|**apiKey** | **String** |  |  [optional] |
-|**ip** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**permissionMode** | **String** |  |  [optional] |
+|**apiName** | **String** | api Name. |  [optional] |
+|**apiKey** | **String** | api Key. |  [optional] |
+|**ip** | **String** | ip. |  [optional] |
+|**type** | **String** | type. |  [optional] |
+|**permissionMode** | **String** | permission Mode. |  [optional] |
 
 
 

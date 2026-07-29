@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ExchangeInformationResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class ExchangeInformationExample {
@@ -28,11 +29,11 @@ public class ExchangeInformationExample {
     /**
      * Exchange Information
      *
-     * <p>Current exchange trading rules and symbol information Weight: 1
+     * <p>Current exchange trading rules and symbol information Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void exchangeInformationExample() throws ApiException {
+    public void exchangeInformationExample() throws ApiException, IOException {
         ApiResponse<ExchangeInformationResponse> response = getApi().exchangeInformation();
         System.out.println(response.getData());
     }

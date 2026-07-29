@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetSummaryOfSubAccountsMarginAccountResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class GetSummaryOfSubAccountsMarginAccountExample {
@@ -28,11 +29,11 @@ public class GetSummaryOfSubAccountsMarginAccountExample {
     /**
      * Get Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
      *
-     * <p>Get Summary of Sub-account&#39;s Margin Account Weight: 10
+     * <p>Get Summary of Sub-account&#39;s Margin Account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSummaryOfSubAccountsMarginAccountExample() throws ApiException {
+    public void getSummaryOfSubAccountsMarginAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfSubAccountsMarginAccountResponse> response =
                 getApi().getSummaryOfSubAccountsMarginAccount(recvWindow);

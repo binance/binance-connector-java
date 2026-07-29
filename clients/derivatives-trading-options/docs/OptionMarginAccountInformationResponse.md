@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | [**List&lt;OptionMarginAccountInformationResponseAssetInner&gt;**](OptionMarginAccountInformationResponseAssetInner.md) |  |  [optional] |
-|**greek** | [**List&lt;OptionMarginAccountInformationResponseGreekInner&gt;**](OptionMarginAccountInformationResponseGreekInner.md) |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**canTrade** | **Boolean** |  |  [optional] |
-|**canDeposit** | **Boolean** |  |  [optional] |
-|**canWithdraw** | **Boolean** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**tradeGroupId** | **Long** |  |  [optional] |
+|**asset** | [**List&lt;OptionMarginAccountInformationResponseAssetInner&gt;**](OptionMarginAccountInformationResponseAssetInner.md) | asset |  [optional] |
+|**greek** | [**List&lt;OptionMarginAccountInformationResponseGreekInner&gt;**](OptionMarginAccountInformationResponseGreekInner.md) | greek |  [optional] |
+|**time** | **Long** | time |  [optional] |
+|**canTrade** | **Boolean** | can Trade |  [optional] |
+|**canDeposit** | **Boolean** | can Deposit |  [optional] |
+|**canWithdraw** | **Boolean** | can Withdraw |  [optional] |
+|**reduceOnly** | **Boolean** | reduce Only |  [optional] |
+|**tradeGroupId** | **Long** | Trade group ID |  [optional] |
 
 
 

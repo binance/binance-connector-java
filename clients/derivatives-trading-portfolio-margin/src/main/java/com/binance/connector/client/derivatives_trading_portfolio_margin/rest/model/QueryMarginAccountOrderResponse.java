@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryMarginAccountOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAccountOrderResponse {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -166,7 +166,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -186,7 +186,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -206,7 +206,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -226,7 +226,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get icebergQty
+     * Iceberg Qty.
      *
      * @return icebergQty
      */
@@ -246,7 +246,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get isWorking
+     * Is Working.
      *
      * @return isWorking
      */
@@ -265,7 +265,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -284,7 +284,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -303,7 +303,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -322,7 +322,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -341,7 +341,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -361,7 +361,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -380,7 +380,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -399,7 +399,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -419,7 +419,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -438,7 +438,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -458,7 +458,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -477,7 +477,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get accountId
+     * Account ID.
      *
      * @return accountId
      */
@@ -497,7 +497,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -518,7 +518,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get preventedMatchId
+     * Prevented Match ID.
      *
      * @return preventedMatchId
      */
@@ -538,7 +538,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Get preventedQuantity
+     * Prevented Quantity.
      *
      * @return preventedQuantity
      */

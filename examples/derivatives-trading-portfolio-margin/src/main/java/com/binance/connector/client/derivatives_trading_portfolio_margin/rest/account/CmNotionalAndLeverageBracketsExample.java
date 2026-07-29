@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmNotionalAndLeverageBracketsResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class CmNotionalAndLeverageBracketsExample {
@@ -26,14 +27,14 @@ public class CmNotionalAndLeverageBracketsExample {
     }
 
     /**
-     * CM Notional and Leverage Brackets(USER_DATA)
+     * CM Notional and Leverage Brackets (USER_DATA)
      *
-     * <p>Query CM notional and leverage brackets Weight: 1
+     * <p>Query CM notional and leverage brackets Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void cmNotionalAndLeverageBracketsExample() throws ApiException {
-        String symbol = "";
+    public void cmNotionalAndLeverageBracketsExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_PERP";
         Long recvWindow = 5000L;
         ApiResponse<CmNotionalAndLeverageBracketsResponse> response =
                 getApi().cmNotionalAndLeverageBrackets(symbol, recvWindow);

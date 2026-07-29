@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  |
-|**leverage** | **Long** |  |  |
+|**leverage** | **Long** | target initial leverage |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

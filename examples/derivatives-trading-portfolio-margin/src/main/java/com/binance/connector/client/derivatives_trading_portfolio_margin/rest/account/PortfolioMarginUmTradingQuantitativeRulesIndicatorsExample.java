@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsExample {
@@ -26,15 +27,16 @@ public class PortfolioMarginUmTradingQuantitativeRulesIndicatorsExample {
     }
 
     /**
-     * Portfolio Margin UM Trading Quantitative Rules Indicators(USER_DATA)
+     * Portfolio Margin UM Trading Quantitative Rules Indicators (USER_DATA)
      *
-     * <p>Portfolio Margin UM Trading Quantitative Rules Indicators Weight: 1 for a single symbol 10
-     * when the symbol parameter is omitted
+     * <p>Portfolio Margin UM Trading Quantitative Rules Indicators Weight: - 1 for a single
+     * &#x60;symbol&#x60; - 10 when &#x60;symbol&#x60; is omitted Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void portfolioMarginUmTradingQuantitativeRulesIndicatorsExample() throws ApiException {
-        String symbol = "";
+    public void portfolioMarginUmTradingQuantitativeRulesIndicatorsExample()
+            throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponse> response =
                 getApi().portfolioMarginUmTradingQuantitativeRulesIndicators(symbol, recvWindow);

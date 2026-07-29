@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetAutoRepayFuturesStatusResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetAutoRepayFuturesStatusExample {
@@ -26,13 +27,13 @@ public class GetAutoRepayFuturesStatusExample {
     }
 
     /**
-     * Get Auto-repay-futures Status(USER_DATA)
+     * Get Auto-repay-futures Status (USER_DATA)
      *
-     * <p>Query Auto-repay-futures Status Weight: 30
+     * <p>Query Auto-repay-futures Status Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getAutoRepayFuturesStatusExample() throws ApiException {
+    public void getAutoRepayFuturesStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetAutoRepayFuturesStatusResponse> response =
                 getApi().getAutoRepayFuturesStatus(recvWindow);

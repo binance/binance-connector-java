@@ -30,9 +30,18 @@ public class UserDataStreamSubscribeExample {
     }
 
     /**
-     * WebSocket Subscribe to User Data Stream
+     * Subscribe to User Data Stream
      *
-     * <p>Subscribe to the User Data Stream in the current WebSocket connection. Weight: 2
+     * <p>Subscribe to the User Data Stream in the current WebSocket connection. **Notes:** - This
+     * method requires an authenticated WebSocket connection using Ed25519 keys. Please refer to
+     * [&#x60;session.logon&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon).
+     * - To check the subscription status, use
+     * [&#x60;session.status&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-status),
+     * see the &#x60;userDataStream&#x60; flag indicating you have have an active subscription. -
+     * User Data Stream events are available in both JSON and [SBE](/products/spot/faqs/sbe_faq)
+     * sessions. - Please refer to [User Data Streams](/products/spot/user-data-stream) for the
+     * event format details. - For SBE, only SBE schema 2:1 or later is supported. Weight(IP): 2
+     * Security Type: NONE
      */
     public void userDataStreamSubscribeExampleStream() throws InterruptedException {
         StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse> resp =

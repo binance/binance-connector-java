@@ -7,16 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**uLowerCase** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
-|**bLowerCase** | **String** |  |  [optional] |
-|**B** | **String** |  |  [optional] |
-|**aLowerCase** | **String** |  |  [optional] |
-|**A** | **String** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
+|**eLowerCase** | **String** | Event type |  [optional] |
+|**uLowerCase** | **Long** | Order book update Id |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**bLowerCase** | **String** | Best bid price |  [optional] |
+|**B** | **String** | Best bid qty |  [optional] |
+|**aLowerCase** | **String** | Best ask price |  [optional] |
+|**A** | **String** | Best ask qty |  [optional] |
+|**T** | **Long** | Transaction time |  [optional] |
+|**E** | **Long** | Event time |  [optional] |
+|**ps** | **String** | Pair |  [optional] |
+|**st** | **Integer** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM |  [optional] |
 
 
 

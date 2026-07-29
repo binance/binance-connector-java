@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** QueryOrderResponseResult */
+/** Indicates that combined is set to true. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryOrderResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -92,6 +92,12 @@ public class QueryOrderResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
     @jakarta.annotation.Nullable
     private String executedQty;
+
+    public static final String SERIALIZED_NAME_CUM_QTY = "cumQty";
+
+    @SerializedName(SERIALIZED_NAME_CUM_QTY)
+    @jakarta.annotation.Nullable
+    private String cumQty;
 
     public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
 
@@ -192,7 +198,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -211,7 +217,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -230,7 +236,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -249,7 +255,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -269,7 +275,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -288,7 +294,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -307,7 +313,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -326,7 +332,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -345,7 +351,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -358,13 +364,32 @@ public class QueryOrderResponseResult extends BaseDTO {
         this.executedQty = executedQty;
     }
 
+    public QueryOrderResponseResult cumQty(@jakarta.annotation.Nullable String cumQty) {
+        this.cumQty = cumQty;
+        return this;
+    }
+
+    /**
+     * Cumulative filled quantity.
+     *
+     * @return cumQty
+     */
+    @jakarta.annotation.Nullable
+    public String getCumQty() {
+        return cumQty;
+    }
+
+    public void setCumQty(@jakarta.annotation.Nullable String cumQty) {
+        this.cumQty = cumQty;
+    }
+
     public QueryOrderResponseResult cumBase(@jakarta.annotation.Nullable String cumBase) {
         this.cumBase = cumBase;
         return this;
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -383,7 +408,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -402,7 +427,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -421,7 +446,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -441,7 +466,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -460,7 +485,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -479,7 +504,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -498,7 +523,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -517,7 +542,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -537,7 +562,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -556,7 +581,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -576,7 +601,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -596,7 +621,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -615,7 +640,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -634,7 +659,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -665,6 +690,7 @@ public class QueryOrderResponseResult extends BaseDTO {
                 && Objects.equals(this.avgPrice, queryOrderResponseResult.avgPrice)
                 && Objects.equals(this.origQty, queryOrderResponseResult.origQty)
                 && Objects.equals(this.executedQty, queryOrderResponseResult.executedQty)
+                && Objects.equals(this.cumQty, queryOrderResponseResult.cumQty)
                 && Objects.equals(this.cumBase, queryOrderResponseResult.cumBase)
                 && Objects.equals(this.timeInForce, queryOrderResponseResult.timeInForce)
                 && Objects.equals(this.type, queryOrderResponseResult.type)
@@ -696,6 +722,7 @@ public class QueryOrderResponseResult extends BaseDTO {
                 avgPrice,
                 origQty,
                 executedQty,
+                cumQty,
                 cumBase,
                 timeInForce,
                 type,
@@ -726,6 +753,7 @@ public class QueryOrderResponseResult extends BaseDTO {
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
+        sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
         sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -795,6 +823,11 @@ public class QueryOrderResponseResult extends BaseDTO {
         if (executedQtyValue != null) {
             String executedQtyValueAsString = executedQtyValue.toString();
             valMap.put("executedQty", executedQtyValueAsString);
+        }
+        String cumQtyValue = getCumQty();
+        if (cumQtyValue != null) {
+            String cumQtyValueAsString = cumQtyValue.toString();
+            valMap.put("cumQty", cumQtyValueAsString);
         }
         String cumBaseValue = getCumBase();
         if (cumBaseValue != null) {
@@ -918,6 +951,10 @@ public class QueryOrderResponseResult extends BaseDTO {
         if (executedQtyValue != null) {
             valMap.put("executedQty", executedQtyValue);
         }
+        Object cumQtyValue = getCumQty();
+        if (cumQtyValue != null) {
+            valMap.put("cumQty", cumQtyValue);
+        }
         Object cumBaseValue = getCumBase();
         if (cumBaseValue != null) {
             valMap.put("cumBase", cumBaseValue);
@@ -1013,6 +1050,7 @@ public class QueryOrderResponseResult extends BaseDTO {
         openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
+        openapiFields.add("cumQty");
         openapiFields.add("cumBase");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
@@ -1126,6 +1164,14 @@ public class QueryOrderResponseResult extends BaseDTO {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
+        }
+        if ((jsonObj.get("cumQty") != null && !jsonObj.get("cumQty").isJsonNull())
+                && !jsonObj.get("cumQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("cumQty").toString()));
         }
         if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
                 && !jsonObj.get("cumBase").isJsonPrimitive()) {

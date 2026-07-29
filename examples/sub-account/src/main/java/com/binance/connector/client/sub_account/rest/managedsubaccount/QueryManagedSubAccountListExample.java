@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountListResponse;
+import java.io.IOException;
 
 /** API examples for ManagedSubAccountApi */
 public class QueryManagedSubAccountListExample {
@@ -28,14 +29,14 @@ public class QueryManagedSubAccountListExample {
     /**
      * Query Managed Sub-account List (For Investor) (USER_DATA)
      *
-     * <p>Get investor&#39;s managed sub-account list. Weight: 60
+     * <p>Get investor&#39;s managed sub-account list. Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryManagedSubAccountListExample() throws ApiException {
-        String email = "";
+    public void queryManagedSubAccountListExample() throws ApiException, IOException {
+        String email = "abc@test.com";
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QueryManagedSubAccountListResponse> response =
                 getApi().queryManagedSubAccountList(email, page, limit, recvWindow);

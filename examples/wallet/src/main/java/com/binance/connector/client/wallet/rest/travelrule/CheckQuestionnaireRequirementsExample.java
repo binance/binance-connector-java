@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.CheckQuestionnaireRequirementsResponse;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class CheckQuestionnaireRequirementsExample {
@@ -29,11 +30,11 @@ public class CheckQuestionnaireRequirementsExample {
      * network) (USER_DATA)
      *
      * <p>This API will return user-specific Travel Rule questionnaire requirement information in
-     * reference to the current API key. Weight: 1
+     * reference to the current API key. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void checkQuestionnaireRequirementsExample() throws ApiException {
+    public void checkQuestionnaireRequirementsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<CheckQuestionnaireRequirementsResponse> response =
                 getApi().checkQuestionnaireRequirements(recvWindow);

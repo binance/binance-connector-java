@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** FuturesAccountBalanceResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesAccountBalanceResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,13 +59,13 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid FuturesAccountBalanceV2ResponseResultInner> result;
+    private List<@Valid FuturesAccountBalanceResponseResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits;
+    private List<@Valid AccountInformationResponseRateLimitsInner> rateLimits;
 
     public FuturesAccountBalanceResponse() {}
 
@@ -109,13 +109,13 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
 
     public FuturesAccountBalanceResponse result(
             @jakarta.annotation.Nullable
-                    List<@Valid FuturesAccountBalanceV2ResponseResultInner> result) {
+                    List<@Valid FuturesAccountBalanceResponseResultInner> result) {
         this.result = result;
         return this;
     }
 
     public FuturesAccountBalanceResponse addResultItem(
-            FuturesAccountBalanceV2ResponseResultInner resultItem) {
+            FuturesAccountBalanceResponseResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -130,25 +130,25 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid FuturesAccountBalanceV2ResponseResultInner> getResult() {
+    public List<@Valid FuturesAccountBalanceResponseResultInner> getResult() {
         return result;
     }
 
     public void setResult(
             @jakarta.annotation.Nullable
-                    List<@Valid FuturesAccountBalanceV2ResponseResultInner> result) {
+                    List<@Valid FuturesAccountBalanceResponseResultInner> result) {
         this.result = result;
     }
 
     public FuturesAccountBalanceResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountInformationResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public FuturesAccountBalanceResponse addRateLimitsItem(
-            AccountInformationV2ResponseRateLimitsInner rateLimitsItem) {
+            AccountInformationResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -163,13 +163,13 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountInformationV2ResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid AccountInformationResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountInformationResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -220,12 +220,12 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid FuturesAccountBalanceV2ResponseResultInner> resultValue = getResult();
+        List<@Valid FuturesAccountBalanceResponseResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountInformationV2ResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid AccountInformationResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -345,7 +345,7 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    FuturesAccountBalanceV2ResponseResultInner.validateJsonElement(
+                    FuturesAccountBalanceResponseResultInner.validateJsonElement(
                             jsonArrayresult.get(i));
                 }
                 ;
@@ -365,7 +365,7 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountInformationV2ResponseRateLimitsInner.validateJsonElement(
+                    AccountInformationResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

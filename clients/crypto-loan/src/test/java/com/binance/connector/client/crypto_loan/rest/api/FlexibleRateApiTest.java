@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,6 +24,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.crypto_loan.rest.model.CheckCollateralRepayRateResponse;
+import com.binance.connector.client.crypto_loan.rest.model.Direction;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanAdjustLtvResponse;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowRequest;
@@ -33,11 +34,13 @@ import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayResp
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanAssetsDataResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanBorrowHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanCollateralAssetsDataResponse;
+import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanInterestRateHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanLiquidationHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanLtvAdjustmentHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanOngoingOrdersResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanRepaymentHistoryResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,16 +92,17 @@ public class FlexibleRateApiTest {
     }
 
     /**
-     * Check Collateral Repay Rate (USER_DATA)
+     * Check Collateral Flexible Repay Rate (USER_DATA)
      *
-     * <p>Weight: 6000
+     * <p>Get the latest rate of collateral coin/loan coin when using collateral repay. Weight(IP):
+     * 6000 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void checkCollateralRepayRateTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void checkCollateralRepayRateTest() throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long recvWindow = 5000L;
         ApiResponse<CheckCollateralRepayRateResponse> response =
                 api.checkCollateralRepayRate(loanCoin, collateralCoin, recvWindow);
@@ -113,32 +117,29 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&collateralCoin=BNB&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&collateralCoin=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f49759cc0241450a3fbea110128c62034563a77fc6c27127278cd4e405221aa5",
+                "d928699696f9c267362b3ebbfee53b6a4b0d4f68bd6d71d8e8bbdceda8f83471",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/repay/rate", actualRequest.url().encodedPath());
     }
 
     /**
-     * Flexible Loan Adjust LTV(TRADE)
+     * Flexible Loan Adjust LTV (TRADE)
      *
-     * <p>Flexible Loan Adjust LTV * API Key needs Spot &amp; Margin Trading permission for this
-     * endpoint Weight: 6000
+     * <p>Flexible Loan Adjust LTV Weight(UID): 6000 Security Type: TRADE Notes: - API key needs
+     * Spot &amp; Margin Trading permission for this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void flexibleLoanAdjustLtvTest() throws ApiException, CryptoException {
+    public void flexibleLoanAdjustLtvTest() throws ApiException, CryptoException, IOException {
         FlexibleLoanAdjustLtvRequest flexibleLoanAdjustLtvRequest =
                 new FlexibleLoanAdjustLtvRequest();
-
-        flexibleLoanAdjustLtvRequest.loanCoin("");
-        flexibleLoanAdjustLtvRequest.collateralCoin("");
+        flexibleLoanAdjustLtvRequest.loanCoin("BUSD");
+        flexibleLoanAdjustLtvRequest.collateralCoin("BNB");
         flexibleLoanAdjustLtvRequest.adjustmentAmount(1d);
-        flexibleLoanAdjustLtvRequest.direction("");
+        flexibleLoanAdjustLtvRequest.direction(Direction.ADDITIONAL);
 
         ApiResponse<FlexibleLoanAdjustLtvResponse> response =
                 api.flexibleLoanAdjustLtv(flexibleLoanAdjustLtvRequest);
@@ -153,29 +154,27 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000collateralCoin=BNB&loanCoin=BUSD&adjustmentAmount=1&direction=ADDITIONAL", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000collateralCoin=&loanCoin=&adjustmentAmount=1&direction=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "120fe5c873088b09decd8c270c42e9103ac3f348610822ddbe5289943918baba",
+                "d03ac468f3616df1e9fef9f71d49dab050a34e66e4485c9912bf6a6f137ab45e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/adjust/ltv", actualRequest.url().encodedPath());
     }
 
     /**
-     * Flexible Loan Borrow(TRADE)
+     * Flexible Loan Borrow (TRADE)
      *
-     * <p>Borrow Flexible Loan * Only available for master account * You can customize LTV by
-     * entering loanAmount and collateralAmount. Weight: 6000
+     * <p>Borrow Flexible Loan Weight(IP): 6000 Security Type: TRADE Notes: - This endpoint is
+     * available for both master and sub-accounts. - You can customize LTV by entering
+     * &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void flexibleLoanBorrowTest() throws ApiException, CryptoException {
+    public void flexibleLoanBorrowTest() throws ApiException, CryptoException, IOException {
         FlexibleLoanBorrowRequest flexibleLoanBorrowRequest = new FlexibleLoanBorrowRequest();
-
-        flexibleLoanBorrowRequest.loanCoin("");
-        flexibleLoanBorrowRequest.collateralCoin("");
+        flexibleLoanBorrowRequest.loanCoin("BUSD");
+        flexibleLoanBorrowRequest.collateralCoin("BNB");
 
         ApiResponse<FlexibleLoanBorrowResponse> response =
                 api.flexibleLoanBorrow(flexibleLoanBorrowRequest);
@@ -190,28 +189,25 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000collateralCoin=BNB&loanCoin=BUSD", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000collateralCoin=&loanCoin=", signInputCaptor.getValue());
-        assertEquals(
-                "4ce6b14df8387f7fad89b74f1f6fc807a3864ed56315be51e7e2b637e342a67d",
-                actualRequest.url().queryParameter("signature"));
+                "98137ddb1b5ed3156359ea512911509a84e6ebac0075ba7d28bd1490abc5dbed", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/borrow", actualRequest.url().encodedPath());
     }
 
     /**
-     * Flexible Loan Repay(TRADE)
+     * Flexible Loan Repay (TRADE)
      *
-     * <p>Flexible Loan Repay * repayAmount is mandatory even fullRepayment &#x3D; FALSE Weight:
-     * 6000
+     * <p>Flexible Loan Repay Weight(IP): 6000 Security Type: TRADE Notes: - &#x60;repayAmount&#x60;
+     * is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void flexibleLoanRepayTest() throws ApiException, CryptoException {
+    public void flexibleLoanRepayTest() throws ApiException, CryptoException, IOException {
         FlexibleLoanRepayRequest flexibleLoanRepayRequest = new FlexibleLoanRepayRequest();
-
-        flexibleLoanRepayRequest.loanCoin("");
-        flexibleLoanRepayRequest.collateralCoin("");
+        flexibleLoanRepayRequest.loanCoin("BUSD");
+        flexibleLoanRepayRequest.collateralCoin("BNB");
         flexibleLoanRepayRequest.repayAmount(1d);
 
         ApiResponse<FlexibleLoanRepayResponse> response =
@@ -227,26 +223,23 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000repaymentType=1&collateralCoin=BNB&loanCoin=BUSD&repayAmount=1&collateralReturn=true&fullRepayment=false", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000collateralCoin=&loanCoin=&repayAmount=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "4901a7e5ee97147bb48abeb186304109d2e7b3a0533db9f895624d8b331d6ea4",
-                actualRequest.url().queryParameter("signature"));
+                "eb68927bc8457d0eaf536f856dc730749bdc4c85df617e5ce55e32f92083f254", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/repay", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan Assets Data(USER_DATA)
+     * Get Flexible Loan Assets Data (USER_DATA)
      *
      * <p>Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown
-     * in USD value. Weight: 400
+     * in USD value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanAssetsDataTest() throws ApiException, CryptoException {
-        String loanCoin = "";
+    public void getFlexibleLoanAssetsDataTest() throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
         Long recvWindow = 5000L;
         ApiResponse<GetFlexibleLoanAssetsDataResponse> response =
                 api.getFlexibleLoanAssetsData(loanCoin, recvWindow);
@@ -261,27 +254,28 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2a09517b57df001aaf35228b8642b62271321de1e3714ccb1f56606355218630",
+                "4c36c88954f57e8fccdb28fb7981875357d1ab4e4da5fe88aadb5d4ee66e26d2",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/loanable/data", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan Borrow History(USER_DATA)
+     * Get Flexible Loan Borrow History (USER_DATA)
      *
-     * <p>Get Flexible Loan Borrow History * If startTime and endTime are not sent, the recent
-     * 90-day data will be returned. * The max interval between startTime and endTime is 180 days.
-     * Weight: 400
+     * <p>Get Flexible Loan Borrow History. It can be used to check history before 2024-02-27 08:00.
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanBorrowHistoryTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanBorrowHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -301,26 +295,25 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "783b1032640c844b7bd8cd7e911ea212f1e43d197e20e7a1b21d63e572fd75c7",
+                "5c70ec5e8a0aaca2384e8591a263b36421afe71042a57ce1f37ce29a44e225b8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/borrow/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan Collateral Assets Data(USER_DATA)
+     * Get Flexible Loan Collateral Assets Data (USER_DATA)
      *
      * <p>Get LTV information and collateral limit of flexible loan&#39;s collateral assets. The
-     * collateral limit is shown in USD value. Weight: 400
+     * collateral limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanCollateralAssetsDataTest() throws ApiException, CryptoException {
-        String collateralCoin = "";
+    public void getFlexibleLoanCollateralAssetsDataTest()
+            throws ApiException, CryptoException, IOException {
+        String collateralCoin = "BNB";
         Long recvWindow = 5000L;
         ApiResponse<GetFlexibleLoanCollateralAssetsDataResponse> response =
                 api.getFlexibleLoanCollateralAssetsData(collateralCoin, recvWindow);
@@ -336,25 +329,68 @@ public class FlexibleRateApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "collateralCoin=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "collateralCoin=BNB&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "55075b58719a54df8f08bc09d0797b888e135d419c7e19dfe4987b5f83354c8e",
+                "83c9ad503abb8d5660cde608b81e985b91d25feeff0d51c344b86d842bfaa44b",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v2/loan/flexible/collateral/data", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v2/loan/flexible/collateral/data", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Flexible Loan Interest Rate History (USER_DATA)
+     *
+     * <p>Check Flexible Loan interest rate history Weight(IP): 400 Security Type: USER_DATA Notes:
+     * - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90
+     * days. - Time is based on UTC+0.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getFlexibleLoanInterestRateHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String coin = "USDT";
+        Long recvWindow = 5000L;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long limit = 10L;
+        ApiResponse<GetFlexibleLoanInterestRateHistoryResponse> response =
+                api.getFlexibleLoanInterestRateHistory(
+                        coin, recvWindow, startTime, endTime, current, limit);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                "coin=USDT&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "280639a911b1fb845012f755918969756593d9854fefaed7dbe1e00020403a61",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v2/loan/interestRateHistory", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Flexible Loan Liquidation History (USER_DATA)
      *
-     * <p>Weight: 400
+     * <p>Get Flexible Loan Liquidation History Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanLiquidationHistoryTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanLiquidationHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -375,28 +411,28 @@ public class FlexibleRateApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "783b1032640c844b7bd8cd7e911ea212f1e43d197e20e7a1b21d63e572fd75c7",
+                "5c70ec5e8a0aaca2384e8591a263b36421afe71042a57ce1f37ce29a44e225b8",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v2/loan/flexible/liquidation/history", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v2/loan/flexible/liquidation/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan LTV Adjustment History(USER_DATA)
+     * Get Flexible Loan LTV Adjustment History (USER_DATA)
      *
-     * <p>Get Flexible Loan LTV Adjustment History * If startTime and endTime are not sent, the
-     * recent 90-day data will be returned. * The max interval between startTime and endTime is 180
-     * days. Weight: 400
+     * <p>Get Flexible Loan LTV Adjustment History. It can be used to check history before
+     * 2024-02-27 08:00. Weight(UID): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanLtvAdjustmentHistoryTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanLtvAdjustmentHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -417,26 +453,26 @@ public class FlexibleRateApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "783b1032640c844b7bd8cd7e911ea212f1e43d197e20e7a1b21d63e572fd75c7",
+                "5c70ec5e8a0aaca2384e8591a263b36421afe71042a57ce1f37ce29a44e225b8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v2/loan/flexible/ltv/adjustment/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan Ongoing Orders(USER_DATA)
+     * Get Flexible Loan Ongoing Orders (USER_DATA)
      *
-     * <p>Get Flexible Loan Ongoing Orders Weight: 300
+     * <p>Get Flexible Loan Ongoing Orders Weight(IP): 300 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanOngoingOrdersTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanOngoingOrdersTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long current = 1L;
         Long limit = 10L;
         Long recvWindow = 5000L;
@@ -454,28 +490,28 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&collateralCoin=BNB&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&collateralCoin=&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "60ca806a57899002561ea1a2fe27470825b14c95b4a19144c49b7d0458c28733",
+                "c647c04381b9743e45d7006d34ef2df8f4338f2b71f6c1379270a7c78b9eb087",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/ongoing/orders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Loan Repayment History(USER_DATA)
+     * Get Flexible Loan Repayment History (USER_DATA)
      *
-     * <p>Get Flexible Loan Repayment History * If startTime and endTime are not sent, the recent
-     * 90-day data will be returned. * The max interval between startTime and endTime is 180 days.
-     * Weight: 400
+     * <p>Get Flexible Loan Repayment History. It can be used to check history before 2024-02-27
+     * 08:00. Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleLoanRepaymentHistoryTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanRepaymentHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -495,11 +531,9 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "783b1032640c844b7bd8cd7e911ea212f1e43d197e20e7a1b21d63e572fd75c7",
+                "5c70ec5e8a0aaca2384e8591a263b36421afe71042a57ce1f37ce29a44e225b8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/repay/history", actualRequest.url().encodedPath());
     }

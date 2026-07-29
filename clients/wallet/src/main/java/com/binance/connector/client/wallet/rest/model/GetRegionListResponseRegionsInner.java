@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetRegionListResponseRegionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetRegionListResponseRegionsInner {
     public static final String SERIALIZED_NAME_REGION_NAME = "regionName";
 
@@ -69,7 +69,7 @@ public class GetRegionListResponseRegionsInner {
     }
 
     /**
-     * Get regionName
+     * Region/city display name (use this value in questionnaire answers).
      *
      * @return regionName
      */
@@ -89,7 +89,7 @@ public class GetRegionListResponseRegionsInner {
     }
 
     /**
-     * Get blockType
+     * &#x60;supported&#x60;, &#x60;limited&#x60;, or &#x60;blocked&#x60;.
      *
      * @return blockType
      */
@@ -109,7 +109,7 @@ public class GetRegionListResponseRegionsInner {
     }
 
     /**
-     * Get depositAllowed
+     * Whether deposit is allowed for this region.
      *
      * @return depositAllowed
      */
@@ -129,7 +129,7 @@ public class GetRegionListResponseRegionsInner {
     }
 
     /**
-     * Get withdrawalAllowed
+     * Whether withdrawal is allowed for this region.
      *
      * @return withdrawalAllowed
      */

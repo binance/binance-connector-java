@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**amount** | **String** | amount. |  [optional] |
 
 
 

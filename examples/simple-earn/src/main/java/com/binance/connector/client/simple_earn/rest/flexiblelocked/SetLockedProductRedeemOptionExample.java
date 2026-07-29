@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.RedeemTo;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedProductRedeemOptionRequest;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedProductRedeemOptionResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class SetLockedProductRedeemOptionExample {
@@ -27,17 +29,17 @@ public class SetLockedProductRedeemOptionExample {
     }
 
     /**
-     * Set Locked Product Redeem Option(USER_DATA)
+     * Set Locked Product Redeem Option (USER_DATA)
      *
-     * <p>Set redeem option for Locked product Weight: 50
+     * <p>Set redeem option for Locked product Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void setLockedProductRedeemOptionExample() throws ApiException {
+    public void setLockedProductRedeemOptionExample() throws ApiException, IOException {
         SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest =
                 new SetLockedProductRedeemOptionRequest();
         setLockedProductRedeemOptionRequest.positionId("1");
-        setLockedProductRedeemOptionRequest.redeemTo("SPOT");
+        setLockedProductRedeemOptionRequest.redeemTo(RedeemTo.SPOT);
         ApiResponse<SetLockedProductRedeemOptionResponse> response =
                 getApi().setLockedProductRedeemOption(setLockedProductRedeemOptionRequest);
         System.out.println(response.getData());

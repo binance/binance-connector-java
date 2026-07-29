@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AllBookTickersStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllBookTickersStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -93,6 +93,18 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String A;
 
+    public static final String SERIALIZED_NAME_PS = "ps";
+
+    @SerializedName(SERIALIZED_NAME_PS)
+    @jakarta.annotation.Nullable
+    private String ps;
+
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public AllBookTickersStreamResponse() {}
 
     public AllBookTickersStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
@@ -101,7 +113,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -120,7 +132,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * order book updateId
      *
      * @return uLowerCase
      */
@@ -139,7 +151,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */
@@ -158,7 +170,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * transaction time
      *
      * @return T
      */
@@ -177,7 +189,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * symbol
      *
      * @return sLowerCase
      */
@@ -196,7 +208,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * best bid price
      *
      * @return bLowerCase
      */
@@ -215,7 +227,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get B
+     * best bid qty
      *
      * @return B
      */
@@ -234,7 +246,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * best ask price
      *
      * @return aLowerCase
      */
@@ -253,7 +265,7 @@ public class AllBookTickersStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get A
+     * best ask qty
      *
      * @return A
      */
@@ -264,6 +276,44 @@ public class AllBookTickersStreamResponse extends BaseDTO {
 
     public void setA(@jakarta.annotation.Nullable String A) {
         this.A = A;
+    }
+
+    public AllBookTickersStreamResponse ps(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Pair symbol
+     *
+     * @return ps
+     */
+    @jakarta.annotation.Nullable
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+    }
+
+    public AllBookTickersStreamResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -284,12 +334,15 @@ public class AllBookTickersStreamResponse extends BaseDTO {
                 && Objects.equals(this.bLowerCase, allBookTickersStreamResponse.bLowerCase)
                 && Objects.equals(this.B, allBookTickersStreamResponse.B)
                 && Objects.equals(this.aLowerCase, allBookTickersStreamResponse.aLowerCase)
-                && Objects.equals(this.A, allBookTickersStreamResponse.A);
+                && Objects.equals(this.A, allBookTickersStreamResponse.A)
+                && Objects.equals(this.ps, allBookTickersStreamResponse.ps)
+                && Objects.equals(this.st, allBookTickersStreamResponse.st);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, uLowerCase, E, T, sLowerCase, bLowerCase, B, aLowerCase, A);
+        return Objects.hash(
+                eLowerCase, uLowerCase, E, T, sLowerCase, bLowerCase, B, aLowerCase, A, ps, st);
     }
 
     @Override
@@ -305,6 +358,8 @@ public class AllBookTickersStreamResponse extends BaseDTO {
         sb.append("		B: ").append(toIndentedString(B)).append("\n");
         sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
         sb.append("		A: ").append(toIndentedString(A)).append("\n");
+        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -358,6 +413,16 @@ public class AllBookTickersStreamResponse extends BaseDTO {
             String AValueAsString = AValue.toString();
             valMap.put("A", AValueAsString);
         }
+        String psValue = getPs();
+        if (psValue != null) {
+            String psValueAsString = psValue.toString();
+            valMap.put("ps", psValueAsString);
+        }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -405,6 +470,14 @@ public class AllBookTickersStreamResponse extends BaseDTO {
         if (AValue != null) {
             valMap.put("A", AValue);
         }
+        Object psValue = getPs();
+        if (psValue != null) {
+            valMap.put("ps", psValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -440,6 +513,8 @@ public class AllBookTickersStreamResponse extends BaseDTO {
         openapiFields.add("B");
         openapiFields.add("a");
         openapiFields.add("A");
+        openapiFields.add("ps");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -523,6 +598,14 @@ public class AllBookTickersStreamResponse extends BaseDTO {
                             "Expected the field `A` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("A").toString()));
+        }
+        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
+                && !jsonObj.get("ps").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ps` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ps").toString()));
         }
     }
 

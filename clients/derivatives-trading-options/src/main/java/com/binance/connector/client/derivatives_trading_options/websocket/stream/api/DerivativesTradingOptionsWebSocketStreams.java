@@ -12,22 +12,22 @@ import com.binance.connector.client.common.websocket.service.StreamBlockingQueue
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Hour24TickerRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Hour24TickerResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OptionMarkPriceRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OptionMarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.UserDataStreamEventsResponse;
@@ -40,7 +40,7 @@ import java.util.Set;
 public class DerivativesTradingOptionsWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebSocketClientConfiguration clientConfiguration;
@@ -119,11 +119,6 @@ public class DerivativesTradingOptionsWebSocketStreams {
         return getMarketApi().klineCandlestickStreams(klineCandlestickStreamsRequest);
     }
 
-    public StreamBlockingQueueWrapper<MarkPriceResponse> markPrice(
-            MarkPriceRequest markPriceRequest) throws ApiException {
-        return getMarketApi().markPrice(markPriceRequest);
-    }
-
     public StreamBlockingQueueWrapper<NewSymbolInfoResponse> newSymbolInfo(
             NewSymbolInfoRequest newSymbolInfoRequest) throws ApiException {
         return getMarketApi().newSymbolInfo(newSymbolInfoRequest);
@@ -134,9 +129,19 @@ public class DerivativesTradingOptionsWebSocketStreams {
         return getMarketApi().openInterest(openInterestRequest);
     }
 
+    public StreamBlockingQueueWrapper<OptionMarkPriceResponse> optionMarkPrice(
+            OptionMarkPriceRequest optionMarkPriceRequest) throws ApiException {
+        return getMarketApi().optionMarkPrice(optionMarkPriceRequest);
+    }
+
     public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
             DiffBookDepthStreamsRequest diffBookDepthStreamsRequest) throws ApiException {
         return getPublicApi().diffBookDepthStreams(diffBookDepthStreamsRequest);
+    }
+
+    public StreamBlockingQueueWrapper<Hour24TickerResponse> hour24Ticker(
+            Hour24TickerRequest hour24TickerRequest) throws ApiException {
+        return getPublicApi().hour24Ticker(hour24TickerRequest);
     }
 
     public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
@@ -151,11 +156,6 @@ public class DerivativesTradingOptionsWebSocketStreams {
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
             PartialBookDepthStreamsRequest partialBookDepthStreamsRequest) throws ApiException {
         return getPublicApi().partialBookDepthStreams(partialBookDepthStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<Ticker24HourResponse> ticker24Hour(
-            Ticker24HourRequest ticker24HourRequest) throws ApiException {
-        return getPublicApi().ticker24Hour(ticker24HourRequest);
     }
 
     public StreamBlockingQueueWrapper<TradeStreamsResponse> tradeStreams(

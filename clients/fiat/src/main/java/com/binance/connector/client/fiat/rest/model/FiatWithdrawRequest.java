@@ -1,6 +1,6 @@
 /*
- * Binance Fiat REST API
- * OpenAPI Specification for the Binance Fiat REST API
+ * Fiat REST API
+ * Query Binance fiat deposit and withdrawal history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,14 +35,8 @@ import org.hibernate.validator.constraints.*;
 /** FiatWithdrawRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FiatWithdrawRequest {
-    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
-
-    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
-    @jakarta.annotation.Nullable
-    private Long recvWindow;
-
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
 
     @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -53,7 +47,7 @@ public class FiatWithdrawRequest {
 
     @SerializedName(SERIALIZED_NAME_API_PAYMENT_METHOD)
     @jakarta.annotation.Nonnull
-    private String apiPaymentMethod;
+    private ApiPaymentMethod apiPaymentMethod;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -65,7 +59,7 @@ public class FiatWithdrawRequest {
 
     @SerializedName(SERIALIZED_NAME_ACCOUNT_INFO)
     @jakarta.annotation.Nonnull
-    private AccountInfo accountInfo;
+    private FiatWithdrawRequestAccountInfo accountInfo;
 
     public static final String SERIALIZED_NAME_EXT = "ext";
 
@@ -75,32 +69,13 @@ public class FiatWithdrawRequest {
 
     public FiatWithdrawRequest() {}
 
-    public FiatWithdrawRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
-        this.recvWindow = recvWindow;
-        return this;
-    }
-
-    /**
-     * Get recvWindow
-     *
-     * @return recvWindow
-     */
-    @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
-        return recvWindow;
-    }
-
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
-        this.recvWindow = recvWindow;
-    }
-
     public FiatWithdrawRequest currency(@jakarta.annotation.Nonnull String currency) {
         this.currency = currency;
         return this;
     }
 
     /**
-     * Get currency
+     * Fiat currency, such as BRL, ARS, MXN
      *
      * @return currency
      */
@@ -115,7 +90,7 @@ public class FiatWithdrawRequest {
     }
 
     public FiatWithdrawRequest apiPaymentMethod(
-            @jakarta.annotation.Nonnull String apiPaymentMethod) {
+            @jakarta.annotation.Nonnull ApiPaymentMethod apiPaymentMethod) {
         this.apiPaymentMethod = apiPaymentMethod;
         return this;
     }
@@ -127,11 +102,12 @@ public class FiatWithdrawRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getApiPaymentMethod() {
+    @Valid
+    public ApiPaymentMethod getApiPaymentMethod() {
         return apiPaymentMethod;
     }
 
-    public void setApiPaymentMethod(@jakarta.annotation.Nonnull String apiPaymentMethod) {
+    public void setApiPaymentMethod(@jakarta.annotation.Nonnull ApiPaymentMethod apiPaymentMethod) {
         this.apiPaymentMethod = apiPaymentMethod;
     }
 
@@ -141,7 +117,7 @@ public class FiatWithdrawRequest {
     }
 
     /**
-     * Get amount
+     * withdraw amount
      *
      * @return amount
      */
@@ -155,7 +131,8 @@ public class FiatWithdrawRequest {
         this.amount = amount;
     }
 
-    public FiatWithdrawRequest accountInfo(@jakarta.annotation.Nonnull AccountInfo accountInfo) {
+    public FiatWithdrawRequest accountInfo(
+            @jakarta.annotation.Nonnull FiatWithdrawRequestAccountInfo accountInfo) {
         this.accountInfo = accountInfo;
         return this;
     }
@@ -168,11 +145,12 @@ public class FiatWithdrawRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public AccountInfo getAccountInfo() {
+    public FiatWithdrawRequestAccountInfo getAccountInfo() {
         return accountInfo;
     }
 
-    public void setAccountInfo(@jakarta.annotation.Nonnull AccountInfo accountInfo) {
+    public void setAccountInfo(
+            @jakarta.annotation.Nonnull FiatWithdrawRequestAccountInfo accountInfo) {
         this.accountInfo = accountInfo;
     }
 
@@ -204,8 +182,7 @@ public class FiatWithdrawRequest {
             return false;
         }
         FiatWithdrawRequest fiatWithdrawRequest = (FiatWithdrawRequest) o;
-        return Objects.equals(this.recvWindow, fiatWithdrawRequest.recvWindow)
-                && Objects.equals(this.currency, fiatWithdrawRequest.currency)
+        return Objects.equals(this.currency, fiatWithdrawRequest.currency)
                 && Objects.equals(this.apiPaymentMethod, fiatWithdrawRequest.apiPaymentMethod)
                 && Objects.equals(this.amount, fiatWithdrawRequest.amount)
                 && Objects.equals(this.accountInfo, fiatWithdrawRequest.accountInfo)
@@ -214,14 +191,13 @@ public class FiatWithdrawRequest {
 
     @Override
     public int hashCode() {
-        return Objects.hash(recvWindow, currency, apiPaymentMethod, amount, accountInfo, ext);
+        return Objects.hash(currency, apiPaymentMethod, amount, accountInfo, ext);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class FiatWithdrawRequest {\n");
-        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("		currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("		apiPaymentMethod: ").append(toIndentedString(apiPaymentMethod)).append("\n");
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
@@ -234,10 +210,6 @@ public class FiatWithdrawRequest {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object recvWindowValue = getRecvWindow();
-        String recvWindowValueAsString = "";
-        recvWindowValueAsString = recvWindowValue.toString();
-        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         Object currencyValue = getCurrency();
         String currencyValueAsString = "";
         currencyValueAsString = currencyValue.toString();
@@ -286,7 +258,6 @@ public class FiatWithdrawRequest {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("recvWindow");
         openapiFields.add("currency");
         openapiFields.add("apiPaymentMethod");
         openapiFields.add("amount");
@@ -336,15 +307,10 @@ public class FiatWithdrawRequest {
                                     + " string but got `%s`",
                             jsonObj.get("currency").toString()));
         }
-        if (!jsonObj.get("apiPaymentMethod").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `apiPaymentMethod` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("apiPaymentMethod").toString()));
-        }
+        // validate the required field `apiPaymentMethod`
+        ApiPaymentMethod.validateJsonElement(jsonObj.get("apiPaymentMethod"));
         // validate the required field `accountInfo`
-        AccountInfo.validateJsonElement(jsonObj.get("accountInfo"));
+        FiatWithdrawRequestAccountInfo.validateJsonElement(jsonObj.get("accountInfo"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

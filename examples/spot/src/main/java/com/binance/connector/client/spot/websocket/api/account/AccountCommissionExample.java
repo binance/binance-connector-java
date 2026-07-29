@@ -29,9 +29,10 @@ public class AccountCommissionExample {
     }
 
     /**
-     * WebSocket Account Commission Rates
+     * Account Commission Rates (USER_DATA)
      *
-     * <p>Get current account commission rates. Weight: 20
+     * <p>Get current account commission rates. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      */
     public void accountCommissionExampleAsync() {
         AccountCommissionRequest accountCommissionRequest = new AccountCommissionRequest();
@@ -49,9 +50,10 @@ public class AccountCommissionExample {
     }
 
     /**
-     * WebSocket Account Commission Rates
+     * Account Commission Rates (USER_DATA)
      *
-     * <p>Get current account commission rates. Weight: 20
+     * <p>Get current account commission rates. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      */
     public void accountCommissionExampleSync() {
         AccountCommissionRequest accountCommissionRequest = new AccountCommissionRequest();

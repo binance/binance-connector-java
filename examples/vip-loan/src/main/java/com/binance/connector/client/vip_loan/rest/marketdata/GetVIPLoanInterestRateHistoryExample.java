@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanInterestRateHistoryResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetVIPLoanInterestRateHistoryExample {
@@ -27,14 +28,15 @@ public class GetVIPLoanInterestRateHistoryExample {
     /**
      * Get VIP Loan Interest Rate History (USER_DATA)
      *
-     * <p>Check VIP Loan flexible interest rate history * If startTime and endTime are not sent, the
-     * recent 90-day data will be returned * The max interval between startTime and end Time is 180
-     * days. * Time based on UTC+0. Weight: 400
+     * <p>Check VIP Loan flexible interest rate history Weight(IP): 400 Security Type: USER_DATA
+     * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is
+     * returned. - The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days. - Time is based on UTC+0.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getVIPLoanInterestRateHistoryExample() throws ApiException {
-        String coin = "";
+    public void getVIPLoanInterestRateHistoryExample() throws ApiException, IOException {
+        String coin = "USDT";
         Long recvWindow = 5000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

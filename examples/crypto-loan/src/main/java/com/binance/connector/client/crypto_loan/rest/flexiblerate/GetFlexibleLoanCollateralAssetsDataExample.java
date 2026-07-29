@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanCollateralAssetsDataResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class GetFlexibleLoanCollateralAssetsDataExample {
@@ -26,15 +27,15 @@ public class GetFlexibleLoanCollateralAssetsDataExample {
     }
 
     /**
-     * Get Flexible Loan Collateral Assets Data(USER_DATA)
+     * Get Flexible Loan Collateral Assets Data (USER_DATA)
      *
      * <p>Get LTV information and collateral limit of flexible loan&#39;s collateral assets. The
-     * collateral limit is shown in USD value. Weight: 400
+     * collateral limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFlexibleLoanCollateralAssetsDataExample() throws ApiException {
-        String collateralCoin = "";
+    public void getFlexibleLoanCollateralAssetsDataExample() throws ApiException, IOException {
+        String collateralCoin = "BNB";
         Long recvWindow = 5000L;
         ApiResponse<GetFlexibleLoanCollateralAssetsDataResponse> response =
                 getApi().getFlexibleLoanCollateralAssetsData(collateralCoin, recvWindow);

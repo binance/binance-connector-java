@@ -28,13 +28,13 @@ public class SessionLogoutExample {
     }
 
     /**
-     * WebSocket Log out of the session
+     * Log out of the session
      *
      * <p>Forget the API key previously authenticated. If the connection is not authenticated, this
      * request does nothing. Note that the WebSocket connection stays open after
      * &#x60;session.logout&#x60; request. You can continue using the connection, but now you will
      * have to explicitly provide the &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters where
-     * needed. Weight: 2
+     * needed. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionLogoutExampleAsync() {
         CompletableFuture<SessionLogoutResponse> future = getApi().sessionLogout();
@@ -49,13 +49,13 @@ public class SessionLogoutExample {
     }
 
     /**
-     * WebSocket Log out of the session
+     * Log out of the session
      *
      * <p>Forget the API key previously authenticated. If the connection is not authenticated, this
      * request does nothing. Note that the WebSocket connection stays open after
      * &#x60;session.logout&#x60; request. You can continue using the connection, but now you will
      * have to explicitly provide the &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters where
-     * needed. Weight: 2
+     * needed. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionLogoutExampleSync() {
         CompletableFuture<SessionLogoutResponse> future = getApi().sessionLogout();

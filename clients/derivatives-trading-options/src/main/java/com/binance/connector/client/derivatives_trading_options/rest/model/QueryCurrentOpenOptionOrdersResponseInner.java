@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCurrentOpenOptionOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentOpenOptionOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -166,7 +166,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -186,7 +186,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -206,7 +206,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -226,7 +226,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -246,7 +246,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Number of completed trades
      *
      * @return executedQty
      */
@@ -266,7 +266,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -286,7 +286,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -306,7 +306,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -326,7 +326,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -346,7 +346,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -366,7 +366,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update Time
      *
      * @return updateTime
      */
@@ -386,7 +386,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -406,7 +406,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -426,7 +426,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -446,7 +446,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -466,7 +466,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -486,7 +486,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -506,7 +506,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -525,7 +525,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */

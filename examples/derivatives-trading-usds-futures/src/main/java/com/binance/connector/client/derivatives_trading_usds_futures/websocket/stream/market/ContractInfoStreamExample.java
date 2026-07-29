@@ -25,8 +25,10 @@ public class ContractInfoStreamExample {
      * Contract Info Stream
      *
      * <p>ContractInfo stream pushes when contract info updates(listing/settlement/contract bracket
-     * update). &#x60;bks&#x60; field only shows up when bracket gets updated. Update Speed:
-     * Real-time
+     * update). bks field only shows up when bracket gets updated. &gt; **After CM migration**, this
+     * stream pushes the merged UM + CM universe (subscribable on both &#x60;fstream&#x60; and
+     * &#x60;dstream&#x60;); each payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60;
+     * &#x3D; UM, &#x60;2&#x60; &#x3D; CM). Update Speed: Real-time
      *
      * @throws ApiException if the Api call fails
      */

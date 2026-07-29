@@ -3,7 +3,7 @@ package com.binance.connector.client.derivatives_trading_portfolio_margin_pro.we
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 
 public class DerivativesTradingPortfolioMarginProWebSocketStreamsUtil {
-    private static final String BASE_URL = "wss://fstream.binance.com/pm-classic";
+    private static final String BASE_URL = "wss://fstream.binance.com";
     private static final boolean HAS_TIME_UNIT = false;
 
     public static WebSocketClientConfiguration getClientConfiguration() {

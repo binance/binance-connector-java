@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CurrentAllAlgoOpenOrdersExample {
@@ -28,16 +29,18 @@ public class CurrentAllAlgoOpenOrdersExample {
     /**
      * Current All Algo Open Orders (USER_DATA)
      *
-     * <p>Get all algo open orders on a symbol. * If the symbol is not sent, orders for all symbols
-     * will be returned in an array. Weight: 1 for a single symbol; 40 when the symbol parameter is
-     * omitted Careful when accessing this with no symbol.
+     * <p>Get all open algo (conditional) orders on a symbol, including TP/SL (Take Profit / Stop
+     * Loss) and trailing stop orders on USD-M Futures. Weight: **1** for a single symbol; **40**
+     * when the symbol parameter is omitted **Careful** when accessing this with no symbol. Security
+     * Type: USER_DATA Notes: - If the symbol is not sent, orders for all symbols will be returned
+     * in an array.
      *
      * @throws ApiException if the Api call fails
      */
-    public void currentAllAlgoOpenOrdersExample() throws ApiException {
-        String algoType = "";
-        String symbol = "";
-        Long algoId = 1L;
+    public void currentAllAlgoOpenOrdersExample() throws ApiException, IOException {
+        String algoType = "CONDITIONAL";
+        String symbol = "BTCUSDT";
+        Long algoId = 2148627L;
         Long recvWindow = 5000L;
         ApiResponse<CurrentAllAlgoOpenOrdersResponse> response =
                 getApi().currentAllAlgoOpenOrders(algoType, symbol, algoId, recvWindow);

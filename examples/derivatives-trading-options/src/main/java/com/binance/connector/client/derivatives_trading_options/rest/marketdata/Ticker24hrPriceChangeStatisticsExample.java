@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class Ticker24hrPriceChangeStatisticsExample {
@@ -28,12 +29,13 @@ public class Ticker24hrPriceChangeStatisticsExample {
     /**
      * 24hr Ticker Price Change Statistics
      *
-     * <p>24 hour rolling window price change statistics. Weight: 5
+     * <p>24 hour rolling window price change statistics. Weight: 1 for a single symbol; 40 when the
+     * symbol parameter is omitted
      *
      * @throws ApiException if the Api call fails
      */
-    public void ticker24hrPriceChangeStatisticsExample() throws ApiException {
-        String symbol = "";
+    public void ticker24hrPriceChangeStatisticsExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
         ApiResponse<Ticker24hrPriceChangeStatisticsResponse> response =
                 getApi().ticker24hrPriceChangeStatistics(symbol);
         System.out.println(response.getData());

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.dual_investment.rest.DualInvestmentRestApiUtil;
 import com.binance.connector.client.dual_investment.rest.api.DualInvestmentRestApi;
 import com.binance.connector.client.dual_investment.rest.model.CheckDualInvestmentAccountsResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CheckDualInvestmentAccountsExample {
@@ -26,13 +27,13 @@ public class CheckDualInvestmentAccountsExample {
     }
 
     /**
-     * Check Dual Investment accounts(USER_DATA)
+     * Check Dual Investment accounts (USER_DATA)
      *
-     * <p>Check Dual Investment accounts Weight: 1(IP)
+     * <p>Check Dual Investment accounts Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void checkDualInvestmentAccountsExample() throws ApiException {
+    public void checkDualInvestmentAccountsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<CheckDualInvestmentAccountsResponse> response =
                 getApi().checkDualInvestmentAccounts(recvWindow);

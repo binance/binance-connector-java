@@ -7,23 +7,23 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
-|**isIsolated** | **Boolean** |  |  [optional] |
-|**transactTime** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**origQty** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**cummulativeQuoteQty** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**selfTradePreventionMode** | **String** |  |  [optional] |
-|**marginBuyBorrowAmount** | **Long** |  |  [optional] |
-|**marginBuyBorrowAsset** | **String** |  |  [optional] |
-|**fills** | [**List&lt;MarginAccountNewOrderResponseFillsInner&gt;**](MarginAccountNewOrderResponseFillsInner.md) |  |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**orderId** | **Long** | order Id. |  [optional] |
+|**clientOrderId** | **String** | client Order Id. |  [optional] |
+|**isIsolated** | **Boolean** | if isolated margin |  [optional] |
+|**transactTime** | **Long** | transact Time. |  [optional] |
+|**price** | **String** | price. |  [optional] |
+|**origQty** | **String** | orig Qty. |  [optional] |
+|**executedQty** | **String** | executed Qty. |  [optional] |
+|**cummulativeQuoteQty** | **String** | cummulative Quote Qty. |  [optional] |
+|**status** | **String** | status. |  [optional] |
+|**timeInForce** | **String** | time In Force. |  [optional] |
+|**type** | **String** | type. |  [optional] |
+|**side** | **String** | side. |  [optional] |
+|**selfTradePreventionMode** | **String** | self Trade Prevention Mode. |  [optional] |
+|**marginBuyBorrowAmount** | **Long** | margin Buy Borrow Amount. |  [optional] |
+|**marginBuyBorrowAsset** | **String** | margin Buy Borrow Asset. |  [optional] |
+|**fills** | [**List&lt;MarginAccountNewOrderResponseFillsInner&gt;**](MarginAccountNewOrderResponseFillsInner.md) | fills list. |  [optional] |
 
 
 

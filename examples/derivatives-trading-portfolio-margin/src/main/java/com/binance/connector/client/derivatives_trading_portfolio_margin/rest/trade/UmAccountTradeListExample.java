@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.UmAccountTradeListResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class UmAccountTradeListExample {
@@ -26,22 +27,22 @@ public class UmAccountTradeListExample {
     }
 
     /**
-     * UM Account Trade List(USER_DATA)
+     * UM Account Trade List (USER_DATA)
      *
-     * <p>Get trades for a specific account and UM symbol. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last &#39;7 days&#39; data will be returned.
-     * * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7
-     * days. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or
-     * &#x60;endTime&#x60;. Weight: 5
+     * <p>Get trades for a specific account and UM symbol. Weight(IP): 5 Security Type: USER_DATA
+     * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last
+     * &#39;7 days&#39; data will be returned. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter &#x60;fromId&#x60; cannot
+     * be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
-    public void umAccountTradeListExample() throws ApiException {
-        String symbol = "";
+    public void umAccountTradeListExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;
-        Long limit = 100L;
+        Long limit = 500L;
         Long recvWindow = 5000L;
         ApiResponse<UmAccountTradeListResponse> response =
                 getApi().umAccountTradeList(symbol, startTime, endTime, fromId, limit, recvWindow);

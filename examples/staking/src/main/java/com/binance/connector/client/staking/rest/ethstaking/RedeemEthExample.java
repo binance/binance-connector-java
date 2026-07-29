@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.RedeemEthRequest;
 import com.binance.connector.client.staking.rest.model.RedeemEthResponse;
+import java.io.IOException;
 
 /** API examples for EthStakingApi */
 public class RedeemEthExample {
@@ -26,14 +27,15 @@ public class RedeemEthExample {
     }
 
     /**
-     * Redeem ETH(TRADE)
+     * Redeem ETH (TRADE)
      *
-     * <p>Redeem WBETH or BETH and get ETH * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * <p>Redeem WBETH or BETH and get ETH Weight(IP): 150 Security Type: TRADE Notes: - You need to
+     * open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void redeemEthExample() throws ApiException {
+    public void redeemEthExample() throws ApiException, IOException {
         RedeemEthRequest redeemEthRequest = new RedeemEthRequest();
         redeemEthRequest.amount(1.0d);
         ApiResponse<RedeemEthResponse> response = getApi().redeemEth(redeemEthRequest);

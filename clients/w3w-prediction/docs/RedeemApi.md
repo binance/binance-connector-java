@@ -4,15 +4,15 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**batchRedeem**](RedeemApi.md#batchRedeem) | **POST** /sapi/v1/w3w/wallet/prediction/batch-redeem | Batch Redeem |
-| [**getRedeemStatus**](RedeemApi.md#getRedeemStatus) | **GET** /sapi/v1/w3w/wallet/prediction/redeem/status | Get Redeem Status |
+| [**batchRedeem**](RedeemApi.md#batchRedeem) | **POST** /sapi/v1/w3w/wallet/prediction/batch-redeem | Batch Redeem (TRADE) |
+| [**getRedeemStatus**](RedeemApi.md#getRedeemStatus) | **GET** /sapi/v1/w3w/wallet/prediction/redeem/status | Get Redeem Status (USER_DATA) |
 
 
 <a id="batchRedeem"></a>
 # **batchRedeem**
 > BatchRedeemResponse batchRedeem(batchRedeemRequest)
 
-Batch Redeem
+Batch Redeem (TRADE)
 
 Redeem one or more settled prediction tokens on-chain to claim winnings. Requires SAS authorization.  Weight(IP): 200  Security Type: TRADE
 
@@ -74,7 +74,7 @@ No authorization required
 # **getRedeemStatus**
 > GetRedeemStatusResponse getRedeemStatus(walletAddress, txHash, recvWindow)
 
-Get Redeem Status
+Get Redeem Status (USER_DATA)
 
 Query the on-chain transaction status of a previously submitted redeem request.  Weight(IP): 200  Security Type: USER_DATA  Response Notes: - Status values:    | Value       | Description                                  |   | ----------- | -------------------------------------------- |   | &#x60;PENDING&#x60;   | Transaction submitted, awaiting confirmation |   | &#x60;CONFIRMED&#x60; | Transaction confirmed on-chain               |   | &#x60;FAILED&#x60;    | Transaction failed                           |   | &#x60;NOT_FOUND&#x60; | Transaction hash not found                   |
 

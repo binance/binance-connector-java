@@ -32,8 +32,6 @@ public class KlineCandlestickStreamsExample {
     public void klineCandlestickStreamsExample() throws ApiException, InterruptedException {
         KlineCandlestickStreamsRequest klineCandlestickStreamsRequest =
                 new KlineCandlestickStreamsRequest();
-        klineCandlestickStreamsRequest.symbol("btcusdt");
-        klineCandlestickStreamsRequest.interval("1m");
         StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> response =
                 getApi().klineCandlestickStreams(klineCandlestickStreamsRequest);
         while (true) {

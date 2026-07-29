@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangeMarginTypeRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangeMarginTypeResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.MarginType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ChangeMarginTypeExample {
@@ -32,13 +33,13 @@ public class ChangeMarginTypeExample {
      *
      * <p>Change user&#39;s margin type in the specific symbol market.For Hedge Mode, LONG and SHORT
      * positions of one symbol use the same margin type. With ISOLATED margin type, margins of the
-     * LONG and SHORT positions are isolated from each other. Weight: 1
+     * LONG and SHORT positions are isolated from each other. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeMarginTypeExample() throws ApiException {
+    public void changeMarginTypeExample() throws ApiException, IOException {
         ChangeMarginTypeRequest changeMarginTypeRequest = new ChangeMarginTypeRequest();
-        changeMarginTypeRequest.symbol("");
+        changeMarginTypeRequest.symbol("BTCUSD_200925");
         changeMarginTypeRequest.marginType(MarginType.ISOLATED);
         ApiResponse<ChangeMarginTypeResponse> response =
                 getApi().changeMarginType(changeMarginTypeRequest);

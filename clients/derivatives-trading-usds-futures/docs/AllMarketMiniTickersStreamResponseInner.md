@@ -7,15 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
-|**oLowerCase** | **String** |  |  [optional] |
-|**hLowerCase** | **String** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
-|**vLowerCase** | **String** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | Event type |  [optional] |
+|**E** | **Long** | Event time |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**cLowerCase** | **String** | Close price |  [optional] |
+|**oLowerCase** | **String** | Open price |  [optional] |
+|**hLowerCase** | **String** | High price |  [optional] |
+|**lLowerCase** | **String** | Low price |  [optional] |
+|**vLowerCase** | **String** | Total traded base asset volume |  [optional] |
+|**qLowerCase** | **String** | Total traded quote asset volume |  [optional] |
+|**ps** | **String** | (After CM migration) Pair symbol |  [optional] |
+|**st** | **Integer** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM |  [optional] |
 
 
 

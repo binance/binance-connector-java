@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.AccountCommissionResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class AccountCommissionExample {
@@ -25,14 +26,15 @@ public class AccountCommissionExample {
     }
 
     /**
-     * Query Commission Rates
+     * Query Commission Rates (USER_DATA)
      *
-     * <p>Get current account commission rates. Weight: 20
+     * <p>Get current account commission rates. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountCommissionExample() throws ApiException {
-        String symbol = "BNBUSDT";
+    public void accountCommissionExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         ApiResponse<AccountCommissionResponse> response = getApi().accountCommission(symbol);
         System.out.println(response.getData());
     }

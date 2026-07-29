@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -43,7 +43,7 @@ public class OthersApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/5.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -93,8 +93,9 @@ public class OthersApi {
      * <tr><td> 200 </td><td> Get symbols delist schedule for spot </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/delist-schedule">Get symbols
-     *     delist schedule for spot (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#get-symbols-delist-schedule-for-spot">Get
+     *     Spot Delist Schedule (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getSymbolsDelistScheduleForSpotCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -187,8 +188,8 @@ public class OthersApi {
     }
 
     /**
-     * Get symbols delist schedule for spot (MARKET_DATA) Get symbols delist schedule for spot
-     * Weight: 100
+     * Get Spot Delist Schedule (MARKET_DATA) Get symbols delist schedule for spot Weight(IP): 100
+     * Security Type: MARKET_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSymbolsDelistScheduleForSpotResponse&gt;
@@ -201,11 +202,12 @@ public class OthersApi {
      * <tr><td> 200 </td><td> Get symbols delist schedule for spot </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/delist-schedule">Get symbols
-     *     delist schedule for spot (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#get-symbols-delist-schedule-for-spot">Get
+     *     Spot Delist Schedule (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetSymbolsDelistScheduleForSpotResponse> getSymbolsDelistScheduleForSpot(
-            Long recvWindow) throws ApiException {
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getSymbolsDelistScheduleForSpotValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSymbolsDelistScheduleForSpotResponse>() {}.getType();
@@ -224,8 +226,9 @@ public class OthersApi {
      * <tr><td> 200 </td><td> System Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/System-Status">System Status
-     *     (System) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#system-status">System
+     *     Status Documentation</a>
      */
     private okhttp3.Call systemStatusCall() throws ApiException {
         String basePath = null;
@@ -312,7 +315,7 @@ public class OthersApi {
     }
 
     /**
-     * System Status (System) Fetch system status. Weight: 1
+     * System Status Fetch system status. Weight(IP): 1 Security Type: System
      *
      * @return ApiResponse&lt;SystemStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -324,8 +327,9 @@ public class OthersApi {
      * <tr><td> 200 </td><td> System Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/System-Status">System Status
-     *     (System) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#system-status">System
+     *     Status Documentation</a>
      */
     public ApiResponse<SystemStatusResponse> systemStatus() throws ApiException {
         okhttp3.Call localVarCall = systemStatusValidateBeforeCall();

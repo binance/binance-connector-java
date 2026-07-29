@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetDownloadIdForFuturesTransactionHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetDownloadIdForFuturesTransactionHistoryExample {
@@ -26,15 +27,18 @@ public class GetDownloadIdForFuturesTransactionHistoryExample {
     }
 
     /**
-     * Get Download Id For Futures Transaction History(USER_DATA)
+     * Get Download Id For Futures Transaction History (USER_DATA)
      *
-     * <p>Get download id for futures transaction history * Request Limitation is 5 times per month,
-     * shared by front end download page and rest api * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can not be longer than 1 year Weight: 5
+     * <p>Get download id for futures transaction history Weight(IP): 1000 Security Type: USER_DATA
+     * Notes: - Request Limitation is 8 times per month, shared by front end download page and rest
+     * api - This endpoint uses the IP rate limit bucket and costs 1000 weight per call. The maximum
+     * is 2 calls per minute; the 3rd call within the same minute will trigger a ban. - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @throws ApiException if the Api call fails
      */
-    public void getDownloadIdForFuturesTransactionHistoryExample() throws ApiException {
+    public void getDownloadIdForFuturesTransactionHistoryExample()
+            throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;

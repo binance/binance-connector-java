@@ -4,39 +4,39 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCollateralRecord**](FlexibleLockedApi.md#getCollateralRecord) | **GET** /sapi/v1/simple-earn/flexible/history/collateralRecord | Get Collateral Record(USER_DATA) |
-| [**getFlexiblePersonalLeftQuota**](FlexibleLockedApi.md#getFlexiblePersonalLeftQuota) | **GET** /sapi/v1/simple-earn/flexible/personalLeftQuota | Get Flexible Personal Left Quota(USER_DATA) |
-| [**getFlexibleProductPosition**](FlexibleLockedApi.md#getFlexibleProductPosition) | **GET** /sapi/v1/simple-earn/flexible/position | Get Flexible Product Position(USER_DATA) |
-| [**getFlexibleRedemptionRecord**](FlexibleLockedApi.md#getFlexibleRedemptionRecord) | **GET** /sapi/v1/simple-earn/flexible/history/redemptionRecord | Get Flexible Redemption Record(USER_DATA) |
-| [**getFlexibleRewardsHistory**](FlexibleLockedApi.md#getFlexibleRewardsHistory) | **GET** /sapi/v1/simple-earn/flexible/history/rewardsRecord | Get Flexible Rewards History(USER_DATA) |
-| [**getFlexibleSubscriptionPreview**](FlexibleLockedApi.md#getFlexibleSubscriptionPreview) | **GET** /sapi/v1/simple-earn/flexible/subscriptionPreview | Get Flexible Subscription Preview(USER_DATA) |
-| [**getFlexibleSubscriptionRecord**](FlexibleLockedApi.md#getFlexibleSubscriptionRecord) | **GET** /sapi/v1/simple-earn/flexible/history/subscriptionRecord | Get Flexible Subscription Record(USER_DATA) |
-| [**getLockedPersonalLeftQuota**](FlexibleLockedApi.md#getLockedPersonalLeftQuota) | **GET** /sapi/v1/simple-earn/locked/personalLeftQuota | Get Locked Personal Left Quota(USER_DATA) |
-| [**getLockedProductPosition**](FlexibleLockedApi.md#getLockedProductPosition) | **GET** /sapi/v1/simple-earn/locked/position | Get Locked Product Position |
-| [**getLockedRedemptionRecord**](FlexibleLockedApi.md#getLockedRedemptionRecord) | **GET** /sapi/v1/simple-earn/locked/history/redemptionRecord | Get Locked Redemption Record(USER_DATA) |
-| [**getLockedRewardsHistory**](FlexibleLockedApi.md#getLockedRewardsHistory) | **GET** /sapi/v1/simple-earn/locked/history/rewardsRecord | Get Locked Rewards History(USER_DATA) |
-| [**getLockedSubscriptionPreview**](FlexibleLockedApi.md#getLockedSubscriptionPreview) | **GET** /sapi/v1/simple-earn/locked/subscriptionPreview | Get Locked Subscription Preview(USER_DATA) |
-| [**getLockedSubscriptionRecord**](FlexibleLockedApi.md#getLockedSubscriptionRecord) | **GET** /sapi/v1/simple-earn/locked/history/subscriptionRecord | Get Locked Subscription Record(USER_DATA) |
-| [**getRateHistory**](FlexibleLockedApi.md#getRateHistory) | **GET** /sapi/v1/simple-earn/flexible/history/rateHistory | Get Rate History(USER_DATA) |
-| [**getSimpleEarnFlexibleProductList**](FlexibleLockedApi.md#getSimpleEarnFlexibleProductList) | **GET** /sapi/v1/simple-earn/flexible/list | Get Simple Earn Flexible Product List(USER_DATA) |
-| [**getSimpleEarnLockedProductList**](FlexibleLockedApi.md#getSimpleEarnLockedProductList) | **GET** /sapi/v1/simple-earn/locked/list | Get Simple Earn Locked Product List(USER_DATA) |
-| [**redeemFlexibleProduct**](FlexibleLockedApi.md#redeemFlexibleProduct) | **POST** /sapi/v1/simple-earn/flexible/redeem | Redeem Flexible Product(TRADE) |
-| [**redeemLockedProduct**](FlexibleLockedApi.md#redeemLockedProduct) | **POST** /sapi/v1/simple-earn/locked/redeem | Redeem Locked Product(TRADE) |
-| [**setFlexibleAutoSubscribe**](FlexibleLockedApi.md#setFlexibleAutoSubscribe) | **POST** /sapi/v1/simple-earn/flexible/setAutoSubscribe | Set Flexible Auto Subscribe(USER_DATA) |
-| [**setLockedAutoSubscribe**](FlexibleLockedApi.md#setLockedAutoSubscribe) | **POST** /sapi/v1/simple-earn/locked/setAutoSubscribe | Set Locked Auto Subscribe(USER_DATA) |
-| [**setLockedProductRedeemOption**](FlexibleLockedApi.md#setLockedProductRedeemOption) | **POST** /sapi/v1/simple-earn/locked/setRedeemOption | Set Locked Product Redeem Option(USER_DATA) |
-| [**simpleAccount**](FlexibleLockedApi.md#simpleAccount) | **GET** /sapi/v1/simple-earn/account | Simple Account(USER_DATA) |
-| [**subscribeFlexibleProduct**](FlexibleLockedApi.md#subscribeFlexibleProduct) | **POST** /sapi/v1/simple-earn/flexible/subscribe | Subscribe Flexible Product(TRADE) |
-| [**subscribeLockedProduct**](FlexibleLockedApi.md#subscribeLockedProduct) | **POST** /sapi/v1/simple-earn/locked/subscribe | Subscribe Locked Product(TRADE) |
+| [**getCollateralRecord**](FlexibleLockedApi.md#getCollateralRecord) | **GET** /sapi/v1/simple-earn/flexible/history/collateralRecord | Get Collateral Record (USER_DATA) |
+| [**getFlexiblePersonalLeftQuota**](FlexibleLockedApi.md#getFlexiblePersonalLeftQuota) | **GET** /sapi/v1/simple-earn/flexible/personalLeftQuota | Get Flexible Personal Left Quota (USER_DATA) |
+| [**getFlexibleProductPosition**](FlexibleLockedApi.md#getFlexibleProductPosition) | **GET** /sapi/v1/simple-earn/flexible/position | Get Flexible Product Position (USER_DATA) |
+| [**getFlexibleRedemptionRecord**](FlexibleLockedApi.md#getFlexibleRedemptionRecord) | **GET** /sapi/v1/simple-earn/flexible/history/redemptionRecord | Get Flexible Redemption Record (USER_DATA) |
+| [**getFlexibleRewardsHistory**](FlexibleLockedApi.md#getFlexibleRewardsHistory) | **GET** /sapi/v1/simple-earn/flexible/history/rewardsRecord | Get Flexible Rewards History (USER_DATA) |
+| [**getFlexibleSubscriptionPreview**](FlexibleLockedApi.md#getFlexibleSubscriptionPreview) | **GET** /sapi/v1/simple-earn/flexible/subscriptionPreview | Get Flexible Subscription Preview (USER_DATA) |
+| [**getFlexibleSubscriptionRecord**](FlexibleLockedApi.md#getFlexibleSubscriptionRecord) | **GET** /sapi/v1/simple-earn/flexible/history/subscriptionRecord | Get Flexible Subscription Record (USER_DATA) |
+| [**getLockedPersonalLeftQuota**](FlexibleLockedApi.md#getLockedPersonalLeftQuota) | **GET** /sapi/v1/simple-earn/locked/personalLeftQuota | Get Locked Personal Left Quota (USER_DATA) |
+| [**getLockedProductPosition**](FlexibleLockedApi.md#getLockedProductPosition) | **GET** /sapi/v1/simple-earn/locked/position | Get Locked Product Position (USER_DATA) |
+| [**getLockedRedemptionRecord**](FlexibleLockedApi.md#getLockedRedemptionRecord) | **GET** /sapi/v1/simple-earn/locked/history/redemptionRecord | Get Locked Redemption Record (USER_DATA) |
+| [**getLockedRewardsHistory**](FlexibleLockedApi.md#getLockedRewardsHistory) | **GET** /sapi/v1/simple-earn/locked/history/rewardsRecord | Get Locked Rewards History (USER_DATA) |
+| [**getLockedSubscriptionPreview**](FlexibleLockedApi.md#getLockedSubscriptionPreview) | **GET** /sapi/v1/simple-earn/locked/subscriptionPreview | Get Locked Subscription Preview (USER_DATA) |
+| [**getLockedSubscriptionRecord**](FlexibleLockedApi.md#getLockedSubscriptionRecord) | **GET** /sapi/v1/simple-earn/locked/history/subscriptionRecord | Get Locked Subscription Record (USER_DATA) |
+| [**getRateHistory**](FlexibleLockedApi.md#getRateHistory) | **GET** /sapi/v1/simple-earn/flexible/history/rateHistory | Get Rate History (USER_DATA) |
+| [**getSimpleEarnFlexibleProductList**](FlexibleLockedApi.md#getSimpleEarnFlexibleProductList) | **GET** /sapi/v1/simple-earn/flexible/list | Get Simple Earn Flexible Product List (USER_DATA) |
+| [**getSimpleEarnLockedProductList**](FlexibleLockedApi.md#getSimpleEarnLockedProductList) | **GET** /sapi/v1/simple-earn/locked/list | Get Simple Earn Locked Product List (USER_DATA) |
+| [**redeemFlexibleProduct**](FlexibleLockedApi.md#redeemFlexibleProduct) | **POST** /sapi/v1/simple-earn/flexible/redeem | Redeem Flexible Product (TRADE) |
+| [**redeemLockedProduct**](FlexibleLockedApi.md#redeemLockedProduct) | **POST** /sapi/v1/simple-earn/locked/redeem | Redeem Locked Product (TRADE) |
+| [**setFlexibleAutoSubscribe**](FlexibleLockedApi.md#setFlexibleAutoSubscribe) | **POST** /sapi/v1/simple-earn/flexible/setAutoSubscribe | Set Flexible Auto Subscribe (USER_DATA) |
+| [**setLockedAutoSubscribe**](FlexibleLockedApi.md#setLockedAutoSubscribe) | **POST** /sapi/v1/simple-earn/locked/setAutoSubscribe | Set Locked Auto Subscribe (USER_DATA) |
+| [**setLockedProductRedeemOption**](FlexibleLockedApi.md#setLockedProductRedeemOption) | **POST** /sapi/v1/simple-earn/locked/setRedeemOption | Set Locked Product Redeem Option (USER_DATA) |
+| [**simpleAccount**](FlexibleLockedApi.md#simpleAccount) | **GET** /sapi/v1/simple-earn/account | Simple Account (USER_DATA) |
+| [**subscribeFlexibleProduct**](FlexibleLockedApi.md#subscribeFlexibleProduct) | **POST** /sapi/v1/simple-earn/flexible/subscribe | Subscribe Flexible Product (TRADE) |
+| [**subscribeLockedProduct**](FlexibleLockedApi.md#subscribeLockedProduct) | **POST** /sapi/v1/simple-earn/locked/subscribe | Subscribe Locked Product (TRADE) |
 
 
 <a id="getCollateralRecord"></a>
 # **getCollateralRecord**
 > GetCollateralRecordResponse getCollateralRecord(productId, startTime, endTime, current, size, recvWindow)
 
-Get Collateral Record(USER_DATA)
+Get Collateral Record (USER_DATA)
 
-Get Collateral Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 1
+Get Collateral Record  Weight(IP): 1  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -53,12 +53,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetCollateralRecordResponse result = apiInstance.getCollateralRecord(productId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -80,8 +80,8 @@ public class Example {
 | **productId** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -106,9 +106,9 @@ No authorization required
 # **getFlexiblePersonalLeftQuota**
 > GetFlexiblePersonalLeftQuotaResponse getFlexiblePersonalLeftQuota(productId, recvWindow)
 
-Get Flexible Personal Left Quota(USER_DATA)
+Get Flexible Personal Left Quota (USER_DATA)
 
-Get Flexible Personal Left Quota  Weight: 150
+Get Flexible Personal Left Quota  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -125,8 +125,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexiblePersonalLeftQuotaResponse result = apiInstance.getFlexiblePersonalLeftQuota(productId, recvWindow);
       System.out.println(result);
@@ -170,9 +170,9 @@ No authorization required
 # **getFlexibleProductPosition**
 > GetFlexibleProductPositionResponse getFlexibleProductPosition(asset, productId, current, size, recvWindow)
 
-Get Flexible Product Position(USER_DATA)
+Get Flexible Product Position (USER_DATA)
 
-Get Flexible Product Position  Weight: 150
+Get Flexible Product Position  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -189,11 +189,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    String productId = "productId_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String asset = "USDC"; // String | 
+    String productId = "1"; // String | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleProductPositionResponse result = apiInstance.getFlexibleProductPosition(asset, productId, current, size, recvWindow);
       System.out.println(result);
@@ -212,10 +212,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **productId** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -240,9 +240,9 @@ No authorization required
 # **getFlexibleRedemptionRecord**
 > GetFlexibleRedemptionRecordResponse getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size, recvWindow)
 
-Get Flexible Redemption Record(USER_DATA)
+Get Flexible Redemption Record (USER_DATA)
 
-Get Flexible Redemption Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Flexible Redemption Record  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -259,14 +259,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    String redeemId = "redeemId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    String redeemId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleRedemptionRecordResponse result = apiInstance.getFlexibleRedemptionRecord(productId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -287,11 +287,11 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**|  | [optional] |
 | **redeemId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -314,11 +314,11 @@ No authorization required
 
 <a id="getFlexibleRewardsHistory"></a>
 # **getFlexibleRewardsHistory**
-> GetFlexibleRewardsHistoryResponse getFlexibleRewardsHistory(type, productId, asset, startTime, endTime, current, size, recvWindow)
+> GetFlexibleRewardsHistoryResponse getFlexibleRewardsHistory(productId, asset, startTime, endTime, type, current, size, recvWindow)
 
-Get Flexible Rewards History(USER_DATA)
+Get Flexible Rewards History (USER_DATA)
 
-Get Flexible Rewards History  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Flexible Rewards History  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -335,16 +335,16 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String type = "type_example"; // String | `BONUS` - Bonus tiered APR, `REALTIME` Real-time APR, `REWARDS` Historical rewards,`ALL`(set to default)
-    String productId = "productId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    OrderType type = OrderType.fromValue("FAST"); // OrderType | `BONUS` - Bonus tiered APR, `REALTIME` - Real-time APR, `REWARDS` - Historical rewards, `ALL` - All types. Default: `ALL`
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
-      GetFlexibleRewardsHistoryResponse result = apiInstance.getFlexibleRewardsHistory(type, productId, asset, startTime, endTime, current, size, recvWindow);
+      GetFlexibleRewardsHistoryResponse result = apiInstance.getFlexibleRewardsHistory(productId, asset, startTime, endTime, type, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FlexibleLockedApi#getFlexibleRewardsHistory");
@@ -361,13 +361,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | **String**| &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; Real-time APR, &#x60;REWARDS&#x60; Historical rewards,&#x60;ALL&#x60;(set to default) | |
 | **productId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **type** | [**OrderType**](.md)| &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR, &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default: &#x60;ALL&#x60; | [optional] [default to STANDARD] [enum: FAST, STANDARD] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -392,9 +392,9 @@ No authorization required
 # **getFlexibleSubscriptionPreview**
 > GetFlexibleSubscriptionPreviewResponse getFlexibleSubscriptionPreview(productId, amount, recvWindow)
 
-Get Flexible Subscription Preview(USER_DATA)
+Get Flexible Subscription Preview (USER_DATA)
 
-Get Flexible Subscription Preview  Weight: 150
+Get Flexible Subscription Preview  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -411,9 +411,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    Double amount = 3.4D; // Double | 
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    Double amount = 1.0D; // Double | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleSubscriptionPreviewResponse result = apiInstance.getFlexibleSubscriptionPreview(productId, amount, recvWindow);
       System.out.println(result);
@@ -458,9 +458,9 @@ No authorization required
 # **getFlexibleSubscriptionRecord**
 > GetFlexibleSubscriptionRecordResponse getFlexibleSubscriptionRecord(productId, purchaseId, asset, startTime, endTime, current, size, recvWindow)
 
-Get Flexible Subscription Record(USER_DATA)
+Get Flexible Subscription Record (USER_DATA)
 
-Get Flexible Subscription Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Flexible Subscription Record  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -477,14 +477,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    String purchaseId = "purchaseId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    String purchaseId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetFlexibleSubscriptionRecordResponse result = apiInstance.getFlexibleSubscriptionRecord(productId, purchaseId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -505,11 +505,11 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**|  | [optional] |
 | **purchaseId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -534,9 +534,9 @@ No authorization required
 # **getLockedPersonalLeftQuota**
 > GetLockedPersonalLeftQuotaResponse getLockedPersonalLeftQuota(projectId, recvWindow)
 
-Get Locked Personal Left Quota(USER_DATA)
+Get Locked Personal Left Quota (USER_DATA)
 
-Get Locked Personal Left Quota  Weight: 150
+Get Locked Personal Left Quota  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -553,8 +553,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String projectId = "projectId_example"; // String | 
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String projectId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedPersonalLeftQuotaResponse result = apiInstance.getLockedPersonalLeftQuota(projectId, recvWindow);
       System.out.println(result);
@@ -598,9 +598,9 @@ No authorization required
 # **getLockedProductPosition**
 > GetLockedProductPositionResponse getLockedProductPosition(asset, positionId, projectId, current, size, recvWindow)
 
-Get Locked Product Position
+Get Locked Product Position (USER_DATA)
 
-Get Locked Product Position  Weight: 150
+Get Locked Product Position  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -617,12 +617,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    String positionId = "positionId_example"; // String | 
-    String projectId = "projectId_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String asset = "USDC"; // String | 
+    String positionId = "1"; // String | 
+    String projectId = "1"; // String | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedProductPositionResponse result = apiInstance.getLockedProductPosition(asset, positionId, projectId, current, size, recvWindow);
       System.out.println(result);
@@ -641,11 +641,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **positionId** | **String**|  | [optional] |
 | **projectId** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -670,9 +670,9 @@ No authorization required
 # **getLockedRedemptionRecord**
 > GetLockedRedemptionRecordResponse getLockedRedemptionRecord(positionId, redeemId, asset, startTime, endTime, current, size, recvWindow)
 
-Get Locked Redemption Record(USER_DATA)
+Get Locked Redemption Record (USER_DATA)
 
-Get Locked Redemption Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Locked Redemption Record  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -689,14 +689,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String positionId = "positionId_example"; // String | 
-    String redeemId = "redeemId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String positionId = "1"; // String | 
+    String redeemId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedRedemptionRecordResponse result = apiInstance.getLockedRedemptionRecord(positionId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -717,11 +717,11 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **positionId** | **String**|  | [optional] |
 | **redeemId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -746,9 +746,9 @@ No authorization required
 # **getLockedRewardsHistory**
 > GetLockedRewardsHistoryResponse getLockedRewardsHistory(positionId, asset, startTime, endTime, current, size, recvWindow)
 
-Get Locked Rewards History(USER_DATA)
+Get Locked Rewards History (USER_DATA)
 
-Get Locked Rewards History  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Locked Rewards History  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -765,13 +765,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String positionId = "positionId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String positionId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedRewardsHistoryResponse result = apiInstance.getLockedRewardsHistory(positionId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -791,11 +791,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **positionId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -820,9 +820,9 @@ No authorization required
 # **getLockedSubscriptionPreview**
 > GetLockedSubscriptionPreviewResponse getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow)
 
-Get Locked Subscription Preview(USER_DATA)
+Get Locked Subscription Preview (USER_DATA)
 
-Get Locked Subscription Preview  Weight: 150
+Get Locked Subscription Preview  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -839,10 +839,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String projectId = "projectId_example"; // String | 
-    Double amount = 3.4D; // Double | 
-    Boolean autoSubscribe = true; // Boolean | true or false, default true.
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String projectId = "1"; // String | 
+    Double amount = 1.0D; // Double | 
+    Boolean autoSubscribe = true; // Boolean | default true.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedSubscriptionPreviewResponse result = apiInstance.getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);
       System.out.println(result);
@@ -863,7 +863,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**|  | |
 | **amount** | **Double**|  | |
-| **autoSubscribe** | **Boolean**| true or false, default true. | [optional] |
+| **autoSubscribe** | **Boolean**| default true. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -888,9 +888,9 @@ No authorization required
 # **getLockedSubscriptionRecord**
 > GetLockedSubscriptionRecordResponse getLockedSubscriptionRecord(purchaseId, asset, startTime, endTime, current, size, recvWindow)
 
-Get Locked Subscription Record(USER_DATA)
+Get Locked Subscription Record (USER_DATA)
 
-Get Locked Subscription Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Locked Subscription Record  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -907,13 +907,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String purchaseId = "purchaseId_example"; // String | 
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String purchaseId = "1"; // String | 
+    String asset = "USDC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetLockedSubscriptionRecordResponse result = apiInstance.getLockedSubscriptionRecord(purchaseId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -933,11 +933,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **purchaseId** | **String**|  | [optional] |
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -962,9 +962,9 @@ No authorization required
 # **getRateHistory**
 > GetRateHistoryResponse getRateHistory(productId, aprPeriod, startTime, endTime, current, size, recvWindow)
 
-Get Rate History(USER_DATA)
+Get Rate History (USER_DATA)
 
-Get Rate History  * The time between startTime and endTime cannot be longer than 1 year. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Rate History  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between startTime and endTime cannot be longer than 1 year. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are   both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -981,13 +981,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String productId = "productId_example"; // String | 
-    String aprPeriod = "aprPeriod_example"; // String | \"DAY\",\"YEAR\",default\"DAY\"
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String productId = "1"; // String | 
+    AprPeriod aprPeriod = AprPeriod.fromValue("DAY"); // AprPeriod | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRateHistoryResponse result = apiInstance.getRateHistory(productId, aprPeriod, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -1007,11 +1007,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**|  | |
-| **aprPeriod** | **String**| \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; | [optional] |
+| **aprPeriod** | [**AprPeriod**](.md)|  | [optional] [default to DAY] [enum: DAY, YEAR] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -1036,9 +1036,9 @@ No authorization required
 # **getSimpleEarnFlexibleProductList**
 > GetSimpleEarnFlexibleProductListResponse getSimpleEarnFlexibleProductList(asset, current, size, recvWindow)
 
-Get Simple Earn Flexible Product List(USER_DATA)
+Get Simple Earn Flexible Product List (USER_DATA)
 
-Get available Simple Earn flexible product list  Weight: 150
+Get available Simple Earn flexible product list  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1055,10 +1055,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String asset = "USDC"; // String | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetSimpleEarnFlexibleProductListResponse result = apiInstance.getSimpleEarnFlexibleProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -1077,9 +1077,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **asset** | **String**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -1104,9 +1104,9 @@ No authorization required
 # **getSimpleEarnLockedProductList**
 > GetSimpleEarnLockedProductListResponse getSimpleEarnLockedProductList(asset, current, size, recvWindow)
 
-Get Simple Earn Locked Product List(USER_DATA)
+Get Simple Earn Locked Product List (USER_DATA)
 
-Get Simple Earn Locked Product List  * Get available Simple Earn locked product list  Weight: 150
+Get Simple Earn Locked Product List  Weight(IP): 150  Security Type: USER_DATA  Notes: - Get available Simple Earn locked product list
 
 ### Example
 ```java
@@ -1123,10 +1123,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    String asset = "USDC"; // String | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetSimpleEarnLockedProductListResponse result = apiInstance.getSimpleEarnLockedProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -1145,9 +1145,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **asset** | **String**|  | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -1172,9 +1172,9 @@ No authorization required
 # **redeemFlexibleProduct**
 > RedeemFlexibleProductResponse redeemFlexibleProduct(redeemFlexibleProductRequest)
 
-Redeem Flexible Product(TRADE)
+Redeem Flexible Product (TRADE)
 
-Redeem Flexible Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 1
+Redeem Flexible Product  Weight(IP): 1  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -1234,9 +1234,9 @@ No authorization required
 # **redeemLockedProduct**
 > RedeemLockedProductResponse redeemLockedProduct(redeemLockedProductRequest)
 
-Redeem Locked Product(TRADE)
+Redeem Locked Product (TRADE)
 
-Redeem Locked Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 1/3s per account
+Redeem Locked Product  Weight(IP): 1  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -1296,9 +1296,9 @@ No authorization required
 # **setFlexibleAutoSubscribe**
 > SetFlexibleAutoSubscribeResponse setFlexibleAutoSubscribe(setFlexibleAutoSubscribeRequest)
 
-Set Flexible Auto Subscribe(USER_DATA)
+Set Flexible Auto Subscribe (USER_DATA)
 
-Set Flexible Auto Subscribe  Weight: 150
+Set Flexible Auto Subscribe  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1358,9 +1358,9 @@ No authorization required
 # **setLockedAutoSubscribe**
 > SetLockedAutoSubscribeResponse setLockedAutoSubscribe(setLockedAutoSubscribeRequest)
 
-Set Locked Auto Subscribe(USER_DATA)
+Set Locked Auto Subscribe (USER_DATA)
 
-Set locked auto subscribe  Weight: 150
+Set locked auto subscribe  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1420,9 +1420,9 @@ No authorization required
 # **setLockedProductRedeemOption**
 > SetLockedProductRedeemOptionResponse setLockedProductRedeemOption(setLockedProductRedeemOptionRequest)
 
-Set Locked Product Redeem Option(USER_DATA)
+Set Locked Product Redeem Option (USER_DATA)
 
-Set redeem option for Locked product  Weight: 50
+Set redeem option for Locked product  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1482,9 +1482,9 @@ No authorization required
 # **simpleAccount**
 > SimpleAccountResponse simpleAccount(recvWindow)
 
-Simple Account(USER_DATA)
+Simple Account (USER_DATA)
 
-Simple Account query  Weight: 150
+Simple Account query  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1501,7 +1501,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleLockedApi apiInstance = new FlexibleLockedApi(defaultClient);
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       SimpleAccountResponse result = apiInstance.simpleAccount(recvWindow);
       System.out.println(result);
@@ -1544,9 +1544,9 @@ No authorization required
 # **subscribeFlexibleProduct**
 > SubscribeFlexibleProductResponse subscribeFlexibleProduct(subscribeFlexibleProductRequest)
 
-Subscribe Flexible Product(TRADE)
+Subscribe Flexible Product (TRADE)
 
-Subscribe Flexible Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 1
+Subscribe Flexible Product  Weight(IP): 1  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -1606,9 +1606,9 @@ No authorization required
 # **subscribeLockedProduct**
 > SubscribeLockedProductResponse subscribeLockedProduct(subscribeLockedProductRequest)
 
-Subscribe Locked Product(TRADE)
+Subscribe Locked Product (TRADE)
 
-Subscribe Locked Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 1
+Subscribe Locked Product  Weight(IP): 1  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java

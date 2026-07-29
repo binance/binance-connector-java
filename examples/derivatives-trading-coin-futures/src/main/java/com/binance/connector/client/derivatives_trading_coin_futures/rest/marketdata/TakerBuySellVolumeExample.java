@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.TakerBuySellVolumeResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class TakerBuySellVolumeExample {
@@ -31,17 +32,17 @@ public class TakerBuySellVolumeExample {
      * Taker Buy/Sell Volume
      *
      * <p>Taker Buy Volume: the total volume of buy orders filled by takers within the period. Taker
-     * Sell Volume: the total volume of sell orders filled by takers within the period. * If
-     * startTime and endTime are not sent, the most recent data is returned. * Only the data of the
-     * latest 30 days is available. Weight: 1
+     * Sell Volume: the total volume of sell orders filled by takers within the period. Weight(IP):
+     * 1 Notes: - If startTime and endTime are not sent, the most recent data is returned. - Only
+     * the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
-    public void takerBuySellVolumeExample() throws ApiException {
-        String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+    public void takerBuySellVolumeExample() throws ApiException, IOException {
+        String pair = "BTCUSD";
+        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TakerBuySellVolumeResponse> response =

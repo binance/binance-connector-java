@@ -8,8 +8,9 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewMarginOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewMarginOrderResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.OrderType;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.Side;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.Type;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class NewMarginOrderExample {
@@ -29,17 +30,17 @@ public class NewMarginOrderExample {
     }
 
     /**
-     * New Margin Order(TRADE)
+     * New Margin Order (TRADE)
      *
-     * <p>New Margin Order Weight: 1
+     * <p>New Margin Order Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void newMarginOrderExample() throws ApiException {
+    public void newMarginOrderExample() throws ApiException, IOException {
         NewMarginOrderRequest newMarginOrderRequest = new NewMarginOrderRequest();
-        newMarginOrderRequest.symbol("");
+        newMarginOrderRequest.symbol("BTCUSDT");
         newMarginOrderRequest.side(Side.BUY);
-        newMarginOrderRequest.type(Type.LIMIT);
+        newMarginOrderRequest.type(OrderType.STOP);
         ApiResponse<NewMarginOrderResponse> response =
                 getApi().newMarginOrder(newMarginOrderRequest);
         System.out.println(response.getData());

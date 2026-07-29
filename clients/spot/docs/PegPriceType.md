@@ -9,7 +9,5 @@
 
 * `MARKET_PEG` (value: `"MARKET_PEG"`)
 
-* `NON_REPRESENTABLE` (value: `"NON_REPRESENTABLE"`)
-
 
 

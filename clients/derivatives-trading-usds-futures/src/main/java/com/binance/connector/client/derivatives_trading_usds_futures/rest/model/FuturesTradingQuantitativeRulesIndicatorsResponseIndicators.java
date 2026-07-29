@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,10 +37,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** FuturesTradingQuantitativeRulesIndicatorsResponseIndicators */
+/**
+ * indicator: quantitative rules indicators, value: user&#39;s indicators value, triggerValue:
+ * trigger indicator value threshold of quantitative rules.
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesTradingQuantitativeRulesIndicatorsResponseIndicators {
     public static final String SERIALIZED_NAME_B_T_C_U_S_D_T = "BTCUSDT";
 

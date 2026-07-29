@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -115,6 +115,12 @@ public class JSON {
                 new com.binance.connector.client.alpha.rest.model.AggregatedTradesResponseDataInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.alpha.rest.model.FullDepthResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.alpha.rest.model.FullDepthResponseData
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.alpha.rest.model.GetExchangeInfoResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -134,10 +140,7 @@ public class JSON {
                 new com.binance.connector.client.alpha.rest.model.KlinesResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.alpha.rest.model.KlinesResponseDataItem
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.alpha.rest.model.KlinesResponseDataItemInner
+                new com.binance.connector.client.alpha.rest.model.KlinesResponseDataInnerInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.alpha.rest.model.TickerResponse

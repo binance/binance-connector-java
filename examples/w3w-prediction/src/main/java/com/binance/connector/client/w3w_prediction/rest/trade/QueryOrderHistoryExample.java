@@ -8,6 +8,7 @@ import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.OrderType;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryOrderHistoryResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryOrderHistoryExample {
@@ -27,14 +28,14 @@ public class QueryOrderHistoryExample {
     }
 
     /**
-     * Query Order History
+     * Query Order History (USER_DATA)
      *
      * <p>Get historical prediction orders (all statuses) for the authenticated user, with optional
      * filters. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryOrderHistoryExample() throws ApiException {
+    public void queryOrderHistoryExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String l1Category = "crypto";
         OrderType orderType = OrderType.MARKET;

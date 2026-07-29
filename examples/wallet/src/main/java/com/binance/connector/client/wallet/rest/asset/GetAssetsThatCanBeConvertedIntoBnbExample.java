@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbRequest;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class GetAssetsThatCanBeConvertedIntoBnbExample {
@@ -28,11 +29,11 @@ public class GetAssetsThatCanBeConvertedIntoBnbExample {
     /**
      * Get Assets That Can Be Converted Into BNB (USER_DATA)
      *
-     * <p>Get Assets That Can Be Converted Into BNB Weight: 1
+     * <p>Get Assets That Can Be Converted Into BNB Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getAssetsThatCanBeConvertedIntoBnbExample() throws ApiException {
+    public void getAssetsThatCanBeConvertedIntoBnbExample() throws ApiException, IOException {
         GetAssetsThatCanBeConvertedIntoBnbRequest getAssetsThatCanBeConvertedIntoBnbRequest =
                 new GetAssetsThatCanBeConvertedIntoBnbRequest();
         ApiResponse<GetAssetsThatCanBeConvertedIntoBnbResponse> response =

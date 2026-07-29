@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountBalanceResponse1Inner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountBalanceResponse1Inner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -122,7 +122,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -142,7 +142,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get totalWalletBalance
+     * Total Wallet Balance.
      *
      * @return totalWalletBalance
      */
@@ -162,7 +162,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get crossMarginAsset
+     * Cross Margin Asset.
      *
      * @return crossMarginAsset
      */
@@ -182,7 +182,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get crossMarginBorrowed
+     * Cross Margin Borrowed.
      *
      * @return crossMarginBorrowed
      */
@@ -202,7 +202,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get crossMarginFree
+     * Cross Margin Free.
      *
      * @return crossMarginFree
      */
@@ -222,7 +222,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get crossMarginInterest
+     * Cross Margin Interest.
      *
      * @return crossMarginInterest
      */
@@ -242,7 +242,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get crossMarginLocked
+     * Cross Margin Locked.
      *
      * @return crossMarginLocked
      */
@@ -262,7 +262,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get umWalletBalance
+     * Um Wallet Balance.
      *
      * @return umWalletBalance
      */
@@ -282,7 +282,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get umUnrealizedPNL
+     * Um Unrealized PNL.
      *
      * @return umUnrealizedPNL
      */
@@ -302,7 +302,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get cmWalletBalance
+     * Cm Wallet Balance.
      *
      * @return cmWalletBalance
      */
@@ -322,7 +322,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get cmUnrealizedPNL
+     * Cm Unrealized PNL.
      *
      * @return cmUnrealizedPNL
      */
@@ -341,7 +341,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -361,7 +361,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Get negativeBalance
+     * negative balance amount
      *
      * @return negativeBalance
      */

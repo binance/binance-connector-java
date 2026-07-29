@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOutAmountResponse;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class QueryMaxTransferOutAmountExample {
@@ -28,14 +29,14 @@ public class QueryMaxTransferOutAmountExample {
     /**
      * Query Max Transfer-Out Amount (USER_DATA)
      *
-     * <p>Query Max Transfer-Out Amount * If isolatedSymbol is not sent, crossed margin data will be
-     * sent. Weight: 50(IP)
+     * <p>Query Max Transfer-Out Amount Weight(IP): 50 Security Type: USER_DATA Notes: - If
+     * isolatedSymbol is not sent, crossed margin data will be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMaxTransferOutAmountExample() throws ApiException {
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryMaxTransferOutAmountExample() throws ApiException, IOException {
+        String asset = "BTC";
+        String isolatedSymbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryMaxTransferOutAmountResponse> response =
                 getApi().queryMaxTransferOutAmount(asset, isolatedSymbol, recvWindow);

@@ -1,6 +1,6 @@
 /*
- * Binance Rebate REST API
- * OpenAPI Specification for the Binance Rebate REST API
+ * Rebate REST API
+ * Query spot trading rebate history records.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetSpotRebateHistoryRecordsResponseData */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSpotRebateHistoryRecordsResponseData {
     public static final String SERIALIZED_NAME_PAGE = "page";
 
@@ -74,7 +74,7 @@ public class GetSpotRebateHistoryRecordsResponseData {
     }
 
     /**
-     * Get page
+     * Current page number.
      *
      * @return page
      */
@@ -94,7 +94,7 @@ public class GetSpotRebateHistoryRecordsResponseData {
     }
 
     /**
-     * Get totalRecords
+     * Total number of records.
      *
      * @return totalRecords
      */
@@ -114,7 +114,7 @@ public class GetSpotRebateHistoryRecordsResponseData {
     }
 
     /**
-     * Get totalPageNum
+     * Total number of pages.
      *
      * @return totalPageNum
      */
@@ -144,7 +144,7 @@ public class GetSpotRebateHistoryRecordsResponseData {
     }
 
     /**
-     * Get data
+     * Rebate records.
      *
      * @return data
      */

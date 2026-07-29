@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
+import java.io.IOException;
 
 /** API examples for OthersApi */
 public class GetSymbolsDelistScheduleForSpotExample {
@@ -25,13 +26,13 @@ public class GetSymbolsDelistScheduleForSpotExample {
     }
 
     /**
-     * Get symbols delist schedule for spot (MARKET_DATA)
+     * Get Spot Delist Schedule (MARKET_DATA)
      *
-     * <p>Get symbols delist schedule for spot Weight: 100
+     * <p>Get symbols delist schedule for spot Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSymbolsDelistScheduleForSpotExample() throws ApiException {
+    public void getSymbolsDelistScheduleForSpotExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSymbolsDelistScheduleForSpotResponse> response =
                 getApi().getSymbolsDelistScheduleForSpot(recvWindow);

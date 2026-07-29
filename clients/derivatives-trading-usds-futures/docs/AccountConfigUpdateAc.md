@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sLowerCase** | **String** |  |  [optional] |
-|**lLowerCase** | **Long** |  |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**lLowerCase** | **Long** | Leverage |  [optional] |
 
 
 

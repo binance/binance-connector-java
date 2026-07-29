@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** PlaceMultipleOrdersRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PlaceMultipleOrdersRequest {
     public static final String SERIALIZED_NAME_BATCH_ORDERS = "batchOrders";
 
     @SerializedName(SERIALIZED_NAME_BATCH_ORDERS)
     @jakarta.annotation.Nonnull
-    private BatchOrdersPlaceMultipleOrders batchOrders;
+    private BatchOrders batchOrders;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -52,7 +52,7 @@ public class PlaceMultipleOrdersRequest {
     public PlaceMultipleOrdersRequest() {}
 
     public PlaceMultipleOrdersRequest batchOrders(
-            @jakarta.annotation.Nonnull BatchOrdersPlaceMultipleOrders batchOrders) {
+            @jakarta.annotation.Nonnull BatchOrders batchOrders) {
         this.batchOrders = batchOrders;
         return this;
     }
@@ -65,12 +65,11 @@ public class PlaceMultipleOrdersRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public BatchOrdersPlaceMultipleOrders getBatchOrders() {
+    public BatchOrders getBatchOrders() {
         return batchOrders;
     }
 
-    public void setBatchOrders(
-            @jakarta.annotation.Nonnull BatchOrdersPlaceMultipleOrders batchOrders) {
+    public void setBatchOrders(@jakarta.annotation.Nonnull BatchOrders batchOrders) {
         this.batchOrders = batchOrders;
     }
 
@@ -80,11 +79,12 @@ public class PlaceMultipleOrdersRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

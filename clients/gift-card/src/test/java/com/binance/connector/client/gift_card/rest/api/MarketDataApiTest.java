@@ -1,6 +1,6 @@
 /*
- * Binance Gift Card REST API
- * OpenAPI Specification for the Binance Gift Card REST API
+ * Gift Card REST API
+ * Create, redeem, and check the value of Binance crypto gift cards.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,6 +33,7 @@ import com.binance.connector.client.gift_card.rest.model.RedeemABinanceGiftCardR
 import com.binance.connector.client.gift_card.rest.model.RedeemABinanceGiftCardResponse;
 import com.binance.connector.client.gift_card.rest.model.VerifyBinanceGiftCardByGiftCardNumberResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -84,29 +85,27 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Create a dual-token gift card(fixed value, discount feature)(TRADE)
+     * Create a dual-token gift card (fixed value, discount feature) (TRADE)
      *
      * <p>* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You
      * may create a gift card using USDT as baseToken, that is redeemable to another designated
      * token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100
-     * USDT plus 1 USDT fee. This gift card can keep the value fixed at 100 USDT before redemption,
+     * USDT plus minting fee. This gift card can keep the value fixed at 100 USDT before redemption,
      * and will be redeemable to BTC equivalent to 100 USDT upon redemption. * Once successfully
      * created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee
      * would be deducted from your funding wallet. * To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key
-     * which requests this endpoint. Weight: 1 * Monthly creation volume: 4,200,000 USDC / month /
-     * account * Monthly creation quantity: 6,000 Gift Cards / month / account
+     * which requests this endpoint. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createADualTokenGiftCardTest() throws ApiException, CryptoException {
+    public void createADualTokenGiftCardTest() throws ApiException, CryptoException, IOException {
         CreateADualTokenGiftCardRequest createADualTokenGiftCardRequest =
                 new CreateADualTokenGiftCardRequest();
-
-        createADualTokenGiftCardRequest.baseToken("");
-        createADualTokenGiftCardRequest.faceToken("");
+        createADualTokenGiftCardRequest.baseToken("BUSD");
+        createADualTokenGiftCardRequest.faceToken("BNB");
         createADualTokenGiftCardRequest.baseTokenAmount(1d);
 
         ApiResponse<CreateADualTokenGiftCardResponse> response =
@@ -122,11 +121,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000faceToken=BNB&baseToken=BUSD&baseTokenAmount=1", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000faceToken=&baseToken=&baseTokenAmount=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bbe48ab31c99a9424cf70566cd9e185b82788212d8b92ac66e921f0f6cdece26",
+                "07659b7881671e2a39f62759f7f3bf2ca4b7c671f8a67afc56851a6782826e43",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/giftcard/buyCode", actualRequest.url().encodedPath());
     }
@@ -137,17 +134,15 @@ public class MarketDataApiTest {
      * <p>This API is for creating a Binance Gift Card. To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for
-     * the API Key which requests this endpoint. Weight: 1 * Monthly creation volume: 4,200,000 USDC
-     * / month / account * Monthly creation quantity: 6,000 Gift Cards / month / account
+     * the API Key which requests this endpoint. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createASingleTokenGiftCardTest() throws ApiException, CryptoException {
+    public void createASingleTokenGiftCardTest() throws ApiException, CryptoException, IOException {
         CreateASingleTokenGiftCardRequest createASingleTokenGiftCardRequest =
                 new CreateASingleTokenGiftCardRequest();
-
-        createASingleTokenGiftCardRequest.token("");
+        createASingleTokenGiftCardRequest.token("BNB");
         createASingleTokenGiftCardRequest.amount(1d);
 
         ApiResponse<CreateASingleTokenGiftCardResponse> response =
@@ -163,24 +158,24 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&token=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1&token=BNB", signInputCaptor.getValue());
         assertEquals(
-                "91dfe9e37be6d04c246a02fcc01ed644ea5257803912f5cef6f46a021a1b8248",
+                "8bdf3f52730631b6a3bd44da7ac1bacf7d252dc6048245d4875b62ffe36b7206",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/giftcard/createCode", actualRequest.url().encodedPath());
     }
 
     /**
-     * Fetch RSA Public Key(USER_DATA)
+     * Fetch RSA Public Key (USER_DATA)
      *
      * <p>This API is for fetching the RSA Public Key. This RSA Public key will be used to encrypt
      * the card code. **Please note that the RSA Public key fetched is valid only for the current
-     * day.** Weight: 1
+     * day.** Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fetchRsaPublicKeyTest() throws ApiException, CryptoException {
+    public void fetchRsaPublicKeyTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FetchRsaPublicKeyResponse> response = api.fetchRsaPublicKey(recvWindow);
 
@@ -196,23 +191,22 @@ public class MarketDataApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/giftcard/cryptography/rsa-public-key", actualRequest.url().encodedPath());
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/giftcard/cryptography/rsa-public-key", actualRequest.url().encodedPath());
     }
 
     /**
-     * Fetch Token Limit(USER_DATA)
+     * Fetch Token Limit (USER_DATA)
      *
      * <p>This API is to help you verify which tokens are available for you to create
-     * Stablecoin-Denominated gift cards as mentioned in section 2 and its’ limitation. Weight: 1
+     * Stablecoin-Denominated gift cards as mentioned in section 2 and its’ limitation. Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fetchTokenLimitTest() throws ApiException, CryptoException {
-        String baseToken = "";
+    public void fetchTokenLimitTest() throws ApiException, CryptoException, IOException {
+        String baseToken = "BUSD";
         Long recvWindow = 5000L;
         ApiResponse<FetchTokenLimitResponse> response = api.fetchTokenLimit(baseToken, recvWindow);
 
@@ -226,34 +220,31 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("baseToken=BUSD&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "baseToken=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "ad48ec2424bc86ad21d7fc07d5661584031423f7843df207b496c96683f24adf",
-                actualRequest.url().queryParameter("signature"));
+                "2effe431d7d70bacce07fd901a4cde9fda23bae5daee514e3e793d57f6e0a61b", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/giftcard/buyCode/token-limit", actualRequest.url().encodedPath());
     }
 
     /**
-     * Redeem a Binance Gift Card(USER_DATA)
+     * Redeem a Binance Gift Card (USER_DATA)
      *
-     * <p>This API is for redeeming a Binance Gift Card Once redeemed, the coins will be deposited
-     * in your funding wallet. * Parameter code can be sent in two formats: * Plaintext * Encrypted
-     * * Sending code in Encrypted format provides more security than sending it as a plaintext. To
-     * send card code in encrypted format the following steps must be followed: * Fetch RSA public
-     * key from api stated below. * Use the below algorithm to encrypt the card code using the RSA
-     * public key fetched above: &#x60;RSA/ECB/OAEPWithSHA-256AndMGF1Padding&#x60; **A sample code
-     * snippet (JAVA) is stated below for reference, the same approach can be used for different
-     * languages like C#, PERL, PYTHON, SHELL etc.:** Weight: 1
+     * <p>This API is for redeeming a Binance Gift Card. Once redeemed, the coins will be deposited
+     * in your funding wallet. Weight(IP): 1 Security Type: USER_DATA Notes: - Parameter
+     * &#x60;code&#x60; can be sent in two formats: &#x60;Plaintext&#x60; and &#x60;Encrypted&#x60;.
+     * - Sending &#x60;code&#x60; in encrypted format is more secure than plaintext. - To send
+     * encrypted &#x60;code&#x60;: - Fetch RSA public key from &#x60;GET
+     * /sapi/v1/giftcard/cryptography/rsa-public-key&#x60;. - Encrypt card code using
+     * &#x60;RSA/ECB/OAEPWithSHA-256AndMGF1Padding&#x60;. - If you enter the wrong redemption code 5
+     * times within 24 hours, you will no longer be able to redeem any Binance Gift Cards that day.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void redeemABinanceGiftCardTest() throws ApiException, CryptoException {
+    public void redeemABinanceGiftCardTest() throws ApiException, CryptoException, IOException {
         RedeemABinanceGiftCardRequest redeemABinanceGiftCardRequest =
                 new RedeemABinanceGiftCardRequest();
-
-        redeemABinanceGiftCardRequest.code("");
+        redeemABinanceGiftCardRequest.code("6H9EKF5ECCWFBHGE");
 
         ApiResponse<RedeemABinanceGiftCardResponse> response =
                 api.redeemABinanceGiftCard(redeemABinanceGiftCardRequest);
@@ -268,25 +259,27 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000code=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000code=6H9EKF5ECCWFBHGE", signInputCaptor.getValue());
         assertEquals(
-                "1bbed7491819e9e91dca721f71b689fd5802f67881ed39df565eef91d31a6ea1",
+                "300ebaee53fedcadc261c3a38d5059ed6872294d9d82e4c60f46cd68d5401467",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/giftcard/redeemCode", actualRequest.url().encodedPath());
     }
 
     /**
-     * Verify Binance Gift Card by Gift Card Number(USER_DATA)
+     * Verify Binance Gift Card by Gift Card Number (USER_DATA)
      *
      * <p>This API is for verifying whether the Binance Gift Card is valid or not by entering Gift
      * Card Number. **Please note that if you enter the wrong Gift Card Number 5 times within an
-     * hour, you will no longer be able to verify any Gift Card Number for that hour.** Weight: 1
+     * hour, you will no longer be able to verify any Gift Card Number for that hour.** Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void verifyBinanceGiftCardByGiftCardNumberTest() throws ApiException, CryptoException {
-        String referenceNo = "";
+    public void verifyBinanceGiftCardByGiftCardNumberTest()
+            throws ApiException, CryptoException, IOException {
+        String referenceNo = "0033002328060227";
         Long recvWindow = 5000L;
         ApiResponse<VerifyBinanceGiftCardByGiftCardNumberResponse> response =
                 api.verifyBinanceGiftCardByGiftCardNumber(referenceNo, recvWindow);
@@ -302,10 +295,12 @@ public class MarketDataApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "referenceNo=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "referenceNo=0033002328060227&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
-                "bf4fdc473e45ef2efce7f171ab61a231969e9924b1a839b72500868675378a6f",
+                "bd40b7f9e4c1955b964419d2f43987e2eb6c14e803731465e8f33489b0612a0d",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/giftcard/verify", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/giftcard/verify", actualRequest.url().encodedPath());
     }
 }

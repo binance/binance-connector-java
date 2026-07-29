@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetLimitPricePairsExample {
@@ -26,7 +27,7 @@ public class GetLimitPricePairsExample {
     }
 
     /**
-     * Get Limit Price Pairs(MARKET_DATA)
+     * Get Limit Price Pairs (MARKET_DATA)
      *
      * <p>Query trading pairs with restriction on limit price range. In margin trading, you can
      * place orders with limit price. Limit price should be within (-15%, 15%) of current index
@@ -37,11 +38,11 @@ public class GetLimitPricePairsExample {
      * order will be rejected with an error message notification if the limit price is 15% below the
      * index price. Please review the limit price order placing strategy, backtest and calibrate the
      * planned order size with the trading volume and order book depth to prevent trading loss.
-     * Weight: 1
+     * Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLimitPricePairsExample() throws ApiException {
+    public void getLimitPricePairsExample() throws ApiException, IOException {
         ApiResponse<GetLimitPricePairsResponse> response = getApi().getLimitPricePairs();
         System.out.println(response.getData());
     }

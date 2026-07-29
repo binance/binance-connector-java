@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** |  |  |
+|**type** | **OrderType** |  |  |
 |**asset** | **String** |  |  |
 |**amount** | **Double** |  |  |
-|**fromSymbol** | **String** |  |  [optional] |
-|**toSymbol** | **String** |  |  [optional] |
+|**fromSymbol** | **FromSymbol** |  |  [optional] |
+|**toSymbol** | **ToSymbol** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

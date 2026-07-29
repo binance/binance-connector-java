@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,6 +39,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetFuturesTradeDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetFuturesTransactionHistoryDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetIncomeHistoryResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.IncomeType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NotionalAndLeverageBracketsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryUserRateLimitResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolConfigurationResponse;
@@ -46,6 +47,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ToggleBnbBurnOnFuturesTradeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UserCommissionRateResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -97,15 +99,16 @@ public class AccountApiTest {
     }
 
     /**
-     * Account Information V2(USER_DATA)
+     * Account Information V2 (USER_DATA)
      *
      * <p>Get current account information. User in single-asset/ multi-assets mode will see
-     * different value, see comments in response section for detail. Weight: 5
+     * different value, see comments in response section for detail. Weight(IP): 5 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountInformationV2Test() throws ApiException, CryptoException {
+    public void accountInformationV2Test() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountInformationV2Response> response = api.accountInformationV2(recvWindow);
 
@@ -127,15 +130,16 @@ public class AccountApiTest {
     }
 
     /**
-     * Account Information V3(USER_DATA)
+     * Account Information V3 (USER_DATA)
      *
      * <p>Get current account information. User in single-asset/ multi-assets mode will see
-     * different value, see comments in response section for detail. Weight: 5
+     * different value, see comments in response section for detail. Weight(IP): 5 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountInformationV3Test() throws ApiException, CryptoException {
+    public void accountInformationV3Test() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountInformationV3Response> response = api.accountInformationV3(recvWindow);
 
@@ -159,12 +163,12 @@ public class AccountApiTest {
     /**
      * Futures Account Balance V2 (USER_DATA)
      *
-     * <p>Query account balance info Weight: 5
+     * <p>Query account balance information. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void futuresAccountBalanceV2Test() throws ApiException, CryptoException {
+    public void futuresAccountBalanceV2Test() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FuturesAccountBalanceV2Response> response =
                 api.futuresAccountBalanceV2(recvWindow);
@@ -189,12 +193,12 @@ public class AccountApiTest {
     /**
      * Futures Account Balance V3 (USER_DATA)
      *
-     * <p>Query account balance info Weight: 5
+     * <p>Query account balance information. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void futuresAccountBalanceV3Test() throws ApiException, CryptoException {
+    public void futuresAccountBalanceV3Test() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FuturesAccountBalanceV3Response> response =
                 api.futuresAccountBalanceV3(recvWindow);
@@ -217,14 +221,15 @@ public class AccountApiTest {
     }
 
     /**
-     * Futures Account Configuration(USER_DATA)
+     * Futures Account Configuration (USER_DATA)
      *
-     * <p>Query account configuration Weight: 5
+     * <p>Query account configuration Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void futuresAccountConfigurationTest() throws ApiException, CryptoException {
+    public void futuresAccountConfigurationTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FuturesAccountConfigurationResponse> response =
                 api.futuresAccountConfiguration(recvWindow);
@@ -251,15 +256,16 @@ public class AccountApiTest {
      *
      * <p>Futures trading quantitative rules indicators, for more information on this, please refer
      * to the [Futures Trading Quantitative
-     * Rules](https://www.binance.com/en/support/faq/4f462ebe6ff445d4a170be7d9e897272) Weight: - 1
-     * for a single symbol - 10 when the symbol parameter is omitted
+     * Rules](https://www.binance.com/en/support/faq/4f462ebe6ff445d4a170be7d9e897272) Weight: -
+     * **1** for a single symbol - **10** when the symbol parameter is omitted Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void futuresTradingQuantitativeRulesIndicatorsTest()
-            throws ApiException, CryptoException {
-        String symbol = "";
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<FuturesTradingQuantitativeRulesIndicatorsResponse> response =
                 api.futuresTradingQuantitativeRulesIndicators(symbol, recvWindow);
@@ -274,22 +280,27 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/apiTradingStatus", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/apiTradingStatus",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Get BNB Burn Status (USER_DATA)
      *
-     * <p>Get user&#39;s BNB Fee Discount (Fee Discount On or Fee Discount Off ) Weight: 30
+     * <p>Get user&#39;s BNB Fee Discount (Fee Discount On or Fee Discount Off ) Weight(IP): 30
+     * Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBnbBurnStatusTest() throws ApiException, CryptoException {
+    public void getBnbBurnStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetBnbBurnStatusResponse> response = api.getBnbBurnStatus(recvWindow);
 
@@ -305,8 +316,7 @@ public class AccountApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/feeBurn", actualRequest.url().encodedPath());
     }
 
@@ -314,12 +324,12 @@ public class AccountApiTest {
      * Get Current Multi-Assets Mode (USER_DATA)
      *
      * <p>Get user&#39;s Multi-Assets mode (Multi-Assets Mode or Single-Asset Mode) on ***Every
-     * symbol*** Weight: 30
+     * symbol*** Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCurrentMultiAssetsModeTest() throws ApiException, CryptoException {
+    public void getCurrentMultiAssetsModeTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCurrentMultiAssetsModeResponse> response =
                 api.getCurrentMultiAssetsMode(recvWindow);
@@ -342,15 +352,15 @@ public class AccountApiTest {
     }
 
     /**
-     * Get Current Position Mode(USER_DATA)
+     * Get Current Position Mode (USER_DATA)
      *
-     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol*** Weight:
-     * 30
+     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol***
+     * Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCurrentPositionModeTest() throws ApiException, CryptoException {
+    public void getCurrentPositionModeTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCurrentPositionModeResponse> response =
                 api.getCurrentPositionMode(recvWindow);
@@ -375,14 +385,15 @@ public class AccountApiTest {
     /**
      * Get Download Id For Futures Order History (USER_DATA)
      *
-     * <p>Get Download Id For Futures Order History * Request Limitation is 10 times per month,
-     * shared by front end download page and rest api * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can not be longer than 1 year Weight: 1000
+     * <p>Get Download Id For Futures Order History Weight(IP): 1000 Security Type: USER_DATA Notes:
+     * - Request Limitation is 10 times per month, shared by front end download page and rest api -
+     * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDownloadIdForFuturesOrderHistoryTest() throws ApiException, CryptoException {
+    public void getDownloadIdForFuturesOrderHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
@@ -400,25 +411,26 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "812caedbe8f349196a4532c2050ff706ed2569fed185039c7b60a78cd84bc718",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/order/asyn", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/order/asyn", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Download Id For Futures Trade History (USER_DATA)
      *
-     * <p>Get download id for futures trade history * Request Limitation is 5 times per month,
-     * shared by front end download page and rest api * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can not be longer than 1 year Weight: 1000
+     * <p>Get download id for futures trade history Weight(IP): 1000 Security Type: USER_DATA Notes:
+     * - Request Limitation is 5 times per month, shared by front end download page and rest api -
+     * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDownloadIdForFuturesTradeHistoryTest() throws ApiException, CryptoException {
+    public void getDownloadIdForFuturesTradeHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
@@ -436,26 +448,27 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "812caedbe8f349196a4532c2050ff706ed2569fed185039c7b60a78cd84bc718",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/trade/asyn", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/trade/asyn", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Download Id For Futures Transaction History(USER_DATA)
+     * Get Download Id For Futures Transaction History (USER_DATA)
      *
-     * <p>Get download id for futures transaction history * Request Limitation is 5 times per month,
-     * shared by front end download page and rest api * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can not be longer than 1 year Weight: 1000
+     * <p>Get download id for futures transaction history Weight(IP): 1000 Security Type: USER_DATA
+     * Notes: - Request Limitation is 5 times per month, shared by front end download page and rest
+     * api - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1
+     * year
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void getDownloadIdForFuturesTransactionHistoryTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
@@ -478,19 +491,23 @@ public class AccountApiTest {
         assertEquals(
                 "812caedbe8f349196a4532c2050ff706ed2569fed185039c7b60a78cd84bc718",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/income/asyn", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/income/asyn",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Get Futures Order History Download Link by Id (USER_DATA)
      *
-     * <p>Get futures order history download link by Id * Download link expiration: 24h Weight: 10
+     * <p>Get futures order history download link by Id Weight(IP): 10 Security Type: USER_DATA
+     * Notes: - Download link expiration: 7 days
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesOrderHistoryDownloadLinkByIdTest() throws ApiException, CryptoException {
-        String downloadId = "1";
+    public void getFuturesOrderHistoryDownloadLinkByIdTest()
+            throws ApiException, CryptoException, IOException {
+        String downloadId = "545923594199212032";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesOrderHistoryDownloadLinkByIdResponse> response =
                 api.getFuturesOrderHistoryDownloadLinkById(downloadId, recvWindow);
@@ -506,23 +523,27 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "downloadId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "downloadId=545923594199212032&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
-                "4947fe463a17e3ec0b50fc22b21afc2aafddf3da892fa0c8dfd1b9c50af87349",
+                "638547334c9bc29c0b148d1084ee5f9ba70e01bb0f80f5ab8b59e1b056942563",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/order/asyn/id", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/order/asyn/id", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Futures Trade Download Link by Id(USER_DATA)
+     * Get Futures Trade Download Link by Id (USER_DATA)
      *
-     * <p>Get futures trade download link by Id * Download link expiration: 24h Weight: 10
+     * <p>Get futures trade download link by Id Weight(IP): 10 Security Type: USER_DATA Notes: -
+     * Download link expiration: 7 days
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesTradeDownloadLinkByIdTest() throws ApiException, CryptoException {
-        String downloadId = "1";
+    public void getFuturesTradeDownloadLinkByIdTest()
+            throws ApiException, CryptoException, IOException {
+        String downloadId = "545923594199212032";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesTradeDownloadLinkByIdResponse> response =
                 api.getFuturesTradeDownloadLinkById(downloadId, recvWindow);
@@ -537,10 +558,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("downloadId=545923594199212032&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "downloadId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "4947fe463a17e3ec0b50fc22b21afc2aafddf3da892fa0c8dfd1b9c50af87349",
+                "638547334c9bc29c0b148d1084ee5f9ba70e01bb0f80f5ab8b59e1b056942563",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/trade/asyn/id", actualRequest.url().encodedPath());
     }
@@ -548,15 +568,15 @@ public class AccountApiTest {
     /**
      * Get Futures Transaction History Download Link by Id (USER_DATA)
      *
-     * <p>Get futures transaction history download link by Id * Download link expiration: 24h
-     * Weight: 10
+     * <p>Get futures transaction history download link by Id Weight(IP): 10 Security Type:
+     * USER_DATA Notes: - Download link expiration: 7 days
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void getFuturesTransactionHistoryDownloadLinkByIdTest()
-            throws ApiException, CryptoException {
-        String downloadId = "1";
+            throws ApiException, CryptoException, IOException {
+        String downloadId = "545923594199212032";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesTransactionHistoryDownloadLinkByIdResponse> response =
                 api.getFuturesTransactionHistoryDownloadLinkById(downloadId, recvWindow);
@@ -572,31 +592,35 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "downloadId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "downloadId=545923594199212032&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
-                "4947fe463a17e3ec0b50fc22b21afc2aafddf3da892fa0c8dfd1b9c50af87349",
+                "638547334c9bc29c0b148d1084ee5f9ba70e01bb0f80f5ab8b59e1b056942563",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/income/asyn/id", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/income/asyn/id",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Get Income History (USER_DATA)
      *
-     * <p>Query income history * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent,
-     * the recent 7-day data will be returned. * If &#x60;incomeType &#x60; is not sent, all kinds
-     * of flow will be returned * \&quot;trandId\&quot; is unique in the same incomeType for a user
-     * * Income history only contains data for the last three months Weight: 30
+     * <p>Query income history Weight(IP): 30 Security Type: USER_DATA Notes: - If &#x60;incomeType
+     * &#x60; is not sent, all kinds of flow will be returned - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, the recent 7-day data will be returned. -
+     * &#x60;trandId&#x60; is unique in the same &#x60;incomeType&#x60; for a user. - Income history
+     * only contains data for the last three months.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getIncomeHistoryTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String incomeType = "";
+    public void getIncomeHistoryTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        IncomeType incomeType = IncomeType.TRANSFER;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 100L;
+        Long page = 1L;
+        Long limit = 30L;
         Long recvWindow = 5000L;
         ApiResponse<GetIncomeHistoryResponse> response =
                 api.getIncomeHistory(
@@ -612,25 +636,24 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&incomeType=TRANSFER&startTime=1623319461670&endTime=1641782889000&page=1&limit=30&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&incomeType=&startTime=1623319461670&endTime=1641782889000&page=0&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "05f9946fedf735df42817e55ffdc78ca315f60a95c723d2f957b7ce76546ef2e",
-                actualRequest.url().queryParameter("signature"));
+                "128f16c42dd66df38dc3a5d0a15371edcdb1bf4c2d103347020dcb40ccb5fb0c", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/income", actualRequest.url().encodedPath());
     }
 
     /**
      * Notional and Leverage Brackets (USER_DATA)
      *
-     * <p>Query user notional and leverage bracket on speicfic symbol Weight: 1
+     * <p>Query user notional and leverage bracket on speicfic symbol Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void notionalAndLeverageBracketsTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void notionalAndLeverageBracketsTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "ETHUSDT";
         Long recvWindow = 5000L;
         ApiResponse<NotionalAndLeverageBracketsResponse> response =
                 api.notionalAndLeverageBrackets(symbol, recvWindow);
@@ -645,9 +668,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=ETHUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "c975b46b635be947c7f599863263cb25892ecbaf7b1bf89b64011fc936a9e1ba",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/leverageBracket", actualRequest.url().encodedPath());
     }
@@ -655,12 +678,12 @@ public class AccountApiTest {
     /**
      * Query User Rate Limit (USER_DATA)
      *
-     * <p>Query User Rate Limit Weight: 1
+     * <p>Query User Rate Limit Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryUserRateLimitTest() throws ApiException, CryptoException {
+    public void queryUserRateLimitTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryUserRateLimitResponse> response = api.queryUserRateLimit(recvWindow);
 
@@ -676,21 +699,20 @@ public class AccountApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/rateLimit/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Symbol Configuration(USER_DATA)
+     * Symbol Configuration (USER_DATA)
      *
-     * <p>Get current account symbol configuration. Weight: 5
+     * <p>Get current account symbol configuration. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void symbolConfigurationTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void symbolConfigurationTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<SymbolConfigurationResponse> response =
                 api.symbolConfiguration(symbol, recvWindow);
@@ -705,10 +727,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/symbolConfig", actualRequest.url().encodedPath());
     }
 
@@ -716,16 +737,16 @@ public class AccountApiTest {
      * Toggle BNB Burn On Futures Trade (TRADE)
      *
      * <p>Change user&#39;s BNB Fee Discount (Fee Discount On or Fee Discount Off ) on ***EVERY
-     * symbol*** Weight: 1
+     * symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void toggleBnbBurnOnFuturesTradeTest() throws ApiException, CryptoException {
+    public void toggleBnbBurnOnFuturesTradeTest()
+            throws ApiException, CryptoException, IOException {
         ToggleBnbBurnOnFuturesTradeRequest toggleBnbBurnOnFuturesTradeRequest =
                 new ToggleBnbBurnOnFuturesTradeRequest();
-
-        toggleBnbBurnOnFuturesTradeRequest.feeBurn("");
+        toggleBnbBurnOnFuturesTradeRequest.feeBurn("true");
 
         ApiResponse<ToggleBnbBurnOnFuturesTradeResponse> response =
                 api.toggleBnbBurnOnFuturesTrade(toggleBnbBurnOnFuturesTradeRequest);
@@ -740,9 +761,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000feeBurn=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000feeBurn=true", signInputCaptor.getValue());
         assertEquals(
-                "b5185b9009ad5a0346daec6e86f58d6828c88fcc961b7eef5514f9bc0680560d",
+                "ff5edd18db9807ec9d50a2f885fad95e69ca0853908e5f65793984ea8d85e335",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/feeBurn", actualRequest.url().encodedPath());
     }
@@ -750,13 +771,13 @@ public class AccountApiTest {
     /**
      * User Commission Rate (USER_DATA)
      *
-     * <p>Get User Commission Rate Weight: 20
+     * <p>Get User Commission Rate Weight(IP): 20 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void userCommissionRateTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void userCommissionRateTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<UserCommissionRateResponse> response =
                 api.userCommissionRate(symbol, recvWindow);
@@ -771,10 +792,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/commissionRate", actualRequest.url().encodedPath());
     }
 }

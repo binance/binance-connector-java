@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsOpenOrdersExample {
@@ -28,16 +30,17 @@ public class QueryMarginAccountsOpenOrdersExample {
     /**
      * Query Margin Account&#39;s Open Orders (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Open Orders * If the symbol is not sent, orders for all symbols
-     * will be returned in an array. * When all symbols are returned, the number of requests counted
-     * against the rate limiter is equal to the number of symbols currently trading on the exchange.
-     * * If isIsolated &#x3D;\&quot;TRUE\&quot;, symbol must be sent. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Open Orders Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * the symbol is not sent, orders for all symbols will be returned in an array. - When all
+     * symbols are returned, the number of requests counted against the rate limiter is equal to the
+     * number of symbols currently trading on the exchange. - If isIsolated
+     * &#x3D;\&quot;TRUE\&quot;, symbol must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsOpenOrdersExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsOpenOrdersExample() throws ApiException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsOpenOrdersResponse> response =
                 getApi().queryMarginAccountsOpenOrders(symbol, isIsolated, recvWindow);

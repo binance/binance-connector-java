@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.convert.rest.ConvertRestApiUtil;
 import com.binance.connector.client.convert.rest.api.ConvertRestApi;
 import com.binance.connector.client.convert.rest.model.ListAllConvertPairsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class ListAllConvertPairsExample {
@@ -27,15 +28,16 @@ public class ListAllConvertPairsExample {
     /**
      * List All Convert Pairs
      *
-     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits * User
-     * needs to supply either or both of the input parameter * If not defined for both fromAsset and
-     * toAsset, only partial token pairs will be returned Weight: 3000(IP)
+     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits
+     * Weight(IP): 3000 Notes: - User needs to supply either or both input parameters. - If only one
+     * of &#x60;fromAsset&#x60; and &#x60;toAsset&#x60; is provided, only partial token pairs are
+     * returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void listAllConvertPairsExample() throws ApiException {
-        String fromAsset = "";
-        String toAsset = "";
+    public void listAllConvertPairsExample() throws ApiException, IOException {
+        String fromAsset = "BTC";
+        String toAsset = "USDT";
         ApiResponse<ListAllConvertPairsResponse> response =
                 getApi().listAllConvertPairs(fromAsset, toAsset);
         System.out.println(response.getData());

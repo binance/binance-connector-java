@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -32,12 +32,14 @@ import com.binance.connector.client.staking.rest.model.GetSolRedemptionHistoryRe
 import com.binance.connector.client.staking.rest.model.GetSolStakingHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetSolStakingQuotaDetailsResponse;
 import com.binance.connector.client.staking.rest.model.GetUnclaimedRewardsResponse;
+import com.binance.connector.client.staking.rest.model.OrderType;
 import com.binance.connector.client.staking.rest.model.RedeemSolRequest;
 import com.binance.connector.client.staking.rest.model.RedeemSolResponse;
 import com.binance.connector.client.staking.rest.model.SolStakingAccountResponse;
 import com.binance.connector.client.staking.rest.model.SubscribeSolStakingRequest;
 import com.binance.connector.client.staking.rest.model.SubscribeSolStakingResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,15 +91,16 @@ public class SolStakingApiTest {
     }
 
     /**
-     * Claim Boost Rewards(TRADE)
+     * Claim Boost Rewards (TRADE)
      *
-     * <p>Claim Boost APR Airdrop Rewards * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * <p>Claim Boost APR Airdrop Rewards Weight(IP): 150 Security Type: TRADE Notes: - You need to
+     * open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void claimBoostRewardsTest() throws ApiException, CryptoException {
+    public void claimBoostRewardsTest() throws ApiException, CryptoException, IOException {
         ClaimBoostRewardsRequest claimBoostRewardsRequest = new ClaimBoostRewardsRequest();
 
         ApiResponse<ClaimBoostRewardsResponse> response =
@@ -115,26 +118,25 @@ public class SolStakingApiTest {
 
         assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sol-staking/sol/claim", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get BNSOL Rate History(USER_DATA)
+     * Get BNSOL Rate History (USER_DATA)
      *
-     * <p>Get BNSOL Rate History * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get BNSOL Rate History Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBnsolRateHistoryTest() throws ApiException, CryptoException {
+    public void getBnsolRateHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -153,31 +155,27 @@ public class SolStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/rateHistory", actualRequest.url().encodedPath());
+                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sol-staking/sol/history/rateHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get BNSOL rewards history(USER_DATA)
+     * Get BNSOL rewards history (USER_DATA)
      *
-     * <p>Get BNSOL rewards history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get BNSOL rewards history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBnsolRewardsHistoryTest() throws ApiException, CryptoException {
+    public void getBnsolRewardsHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -196,33 +194,29 @@ public class SolStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/bnsolRewardsHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sol-staking/sol/history/bnsolRewardsHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Boost Rewards History(USER_DATA)
+     * Get Boost Rewards History (USER_DATA)
      *
-     * <p>Get Boost rewards history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Boost rewards history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBoostRewardsHistoryTest() throws ApiException, CryptoException {
-        String type = "CLAIM";
+    public void getBoostRewardsHistoryTest() throws ApiException, CryptoException, IOException {
+        OrderType type = OrderType.CLAIM;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -241,40 +235,37 @@ public class SolStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "type=CLAIM&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("type=CLAIM&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "3b49d920bd981c654e636398f5d2a73462a09fa7360871b5ecb722b787a1a351",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/boostRewardsHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sol-staking/sol/history/boostRewardsHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get SOL redemption history(USER_DATA)
+     * Get SOL redemption history (USER_DATA)
      *
-     * <p>Get SOL redemption history * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get SOL redemption history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSolRedemptionHistoryTest() throws ApiException, CryptoException {
-        Long redeemId = 123L;
+    public void getSolRedemptionHistoryTest() throws ApiException, CryptoException, IOException {
+        Long redeemId = 1234567L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetSolRedemptionHistoryResponse> response =
-                api.getSolRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
+                api.getSolRedemptionHistory(
+                        redeemId, startTime, endTime, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -286,33 +277,29 @@ public class SolStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("redeemId=1234567&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "redeemId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "90b22be90fad28e8f5f7cd6af50eb4c523db9c1363ee49915fad9713c0656f0d",
+                "68bf70ea1fa94c38fd8ef0f28a7ccdc5642f691b3471f9ff861491c93970a5de",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/redemptionHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sol-staking/sol/history/redemptionHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get SOL staking history(USER_DATA)
+     * Get SOL staking history (USER_DATA)
      *
-     * <p>Get SOL staking history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get SOL staking history Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSolStakingHistoryTest() throws ApiException, CryptoException {
-        Long purchaseId = 123L;
+    public void getSolStakingHistoryTest() throws ApiException, CryptoException, IOException {
+        Long purchaseId = 1234567L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -331,26 +318,22 @@ public class SolStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("purchaseId=1234567&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "purchaseId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "35f8697a0b1f039ff660d5b47cb802e92c651d0f135334ec523e176dad5b714b",
+                "43ce1eef38c940f1f565325261de3d211cbbba816cb7587d872562da5b16ad07",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/stakingHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sol-staking/sol/history/stakingHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get SOL staking quota details(USER_DATA)
+     * Get SOL staking quota details (USER_DATA)
      *
-     * <p>Get SOL staking quota Weight: 150
+     * <p>Get SOL staking quota Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSolStakingQuotaDetailsTest() throws ApiException, CryptoException {
+    public void getSolStakingQuotaDetailsTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSolStakingQuotaDetailsResponse> response =
                 api.getSolStakingQuotaDetails(recvWindow);
@@ -373,20 +356,20 @@ public class SolStakingApiTest {
     }
 
     /**
-     * Get Unclaimed Rewards(USER_DATA)
+     * Get Unclaimed Rewards (USER_DATA)
      *
-     * <p>Get Unclaimed rewards * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Unclaimed rewards Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getUnclaimedRewardsTest() throws ApiException, CryptoException {
+    public void getUnclaimedRewardsTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetUnclaimedRewardsResponse> response = api.getUnclaimedRewards(recvWindow);
 
@@ -402,26 +385,22 @@ public class SolStakingApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sol-staking/sol/history/unclaimedRewards",
-                actualRequest.url().encodedPath());
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sol-staking/sol/history/unclaimedRewards", actualRequest.url().encodedPath());
     }
 
     /**
-     * Redeem SOL(TRADE)
+     * Redeem SOL (TRADE)
      *
-     * <p>Redeem BNSOL get SOL * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Redeem BNSOL get SOL Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable
+     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void redeemSolTest() throws ApiException, CryptoException {
+    public void redeemSolTest() throws ApiException, CryptoException, IOException {
         RedeemSolRequest redeemSolRequest = new RedeemSolRequest();
-
-        redeemSolRequest.amount(1d);
+        redeemSolRequest.amount(1.0d);
 
         ApiResponse<RedeemSolResponse> response = api.redeemSol(redeemSolRequest);
 
@@ -436,21 +415,19 @@ public class SolStakingApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
-        assertEquals(
-                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sol-staking/sol/redeem", actualRequest.url().encodedPath());
     }
 
     /**
-     * SOL Staking account(USER_DATA)
+     * SOL Staking account (USER_DATA)
      *
-     * <p>SOL Staking account Weight: 150
+     * <p>SOL Staking account Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void solStakingAccountTest() throws ApiException, CryptoException {
+    public void solStakingAccountTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<SolStakingAccountResponse> response = api.solStakingAccount(recvWindow);
 
@@ -466,24 +443,22 @@ public class SolStakingApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sol-staking/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Subscribe SOL Staking(TRADE)
+     * Subscribe SOL Staking (TRADE)
      *
-     * <p>Subscribe SOL Staking * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Subscribe SOL Staking Weight(IP): 150 Security Type: TRADE Notes: - You need to open
+     * Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void subscribeSolStakingTest() throws ApiException, CryptoException {
+    public void subscribeSolStakingTest() throws ApiException, CryptoException, IOException {
         SubscribeSolStakingRequest subscribeSolStakingRequest = new SubscribeSolStakingRequest();
-
-        subscribeSolStakingRequest.amount(1d);
+        subscribeSolStakingRequest.amount(1.0d);
 
         ApiResponse<SubscribeSolStakingResponse> response =
                 api.subscribeSolStaking(subscribeSolStakingRequest);
@@ -500,8 +475,7 @@ public class SolStakingApiTest {
 
         assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
         assertEquals(
-                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e",
-                actualRequest.url().queryParameter("signature"));
+                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sol-staking/sol/stake", actualRequest.url().encodedPath());
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderCancelReplaceResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderCancelReplaceResponse {
     public static final String SERIALIZED_NAME_CANCEL_RESULT = "cancelResult";
 
@@ -60,24 +60,6 @@ public class OrderCancelReplaceResponse {
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESPONSE)
     @jakarta.annotation.Nullable
     private OrderCancelReplaceResponseNewOrderResponse newOrderResponse;
-
-    public static final String SERIALIZED_NAME_CODE = "code";
-
-    @SerializedName(SERIALIZED_NAME_CODE)
-    @jakarta.annotation.Nullable
-    private Long code;
-
-    public static final String SERIALIZED_NAME_MSG = "msg";
-
-    @SerializedName(SERIALIZED_NAME_MSG)
-    @jakarta.annotation.Nullable
-    private String msg;
-
-    public static final String SERIALIZED_NAME_DATA = "data";
-
-    @SerializedName(SERIALIZED_NAME_DATA)
-    @jakarta.annotation.Nullable
-    private OrderCancelReplaceResponseData data;
 
     public OrderCancelReplaceResponse() {}
 
@@ -167,65 +149,6 @@ public class OrderCancelReplaceResponse {
         this.newOrderResponse = newOrderResponse;
     }
 
-    public OrderCancelReplaceResponse code(@jakarta.annotation.Nullable Long code) {
-        this.code = code;
-        return this;
-    }
-
-    /**
-     * Get code
-     *
-     * @return code
-     */
-    @jakarta.annotation.Nullable
-    public Long getCode() {
-        return code;
-    }
-
-    public void setCode(@jakarta.annotation.Nullable Long code) {
-        this.code = code;
-    }
-
-    public OrderCancelReplaceResponse msg(@jakarta.annotation.Nullable String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    /**
-     * Get msg
-     *
-     * @return msg
-     */
-    @jakarta.annotation.Nullable
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(@jakarta.annotation.Nullable String msg) {
-        this.msg = msg;
-    }
-
-    public OrderCancelReplaceResponse data(
-            @jakarta.annotation.Nullable OrderCancelReplaceResponseData data) {
-        this.data = data;
-        return this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return data
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public OrderCancelReplaceResponseData getData() {
-        return data;
-    }
-
-    public void setData(@jakarta.annotation.Nullable OrderCancelReplaceResponseData data) {
-        this.data = data;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -239,16 +162,12 @@ public class OrderCancelReplaceResponse {
                 && Objects.equals(this.newOrderResult, orderCancelReplaceResponse.newOrderResult)
                 && Objects.equals(this.cancelResponse, orderCancelReplaceResponse.cancelResponse)
                 && Objects.equals(
-                        this.newOrderResponse, orderCancelReplaceResponse.newOrderResponse)
-                && Objects.equals(this.code, orderCancelReplaceResponse.code)
-                && Objects.equals(this.msg, orderCancelReplaceResponse.msg)
-                && Objects.equals(this.data, orderCancelReplaceResponse.data);
+                        this.newOrderResponse, orderCancelReplaceResponse.newOrderResponse);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                cancelResult, newOrderResult, cancelResponse, newOrderResponse, code, msg, data);
+        return Objects.hash(cancelResult, newOrderResult, cancelResponse, newOrderResponse);
     }
 
     @Override
@@ -259,9 +178,6 @@ public class OrderCancelReplaceResponse {
         sb.append("		newOrderResult: ").append(toIndentedString(newOrderResult)).append("\n");
         sb.append("		cancelResponse: ").append(toIndentedString(cancelResponse)).append("\n");
         sb.append("		newOrderResponse: ").append(toIndentedString(newOrderResponse)).append("\n");
-        sb.append("		code: ").append(toIndentedString(code)).append("\n");
-        sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
-        sb.append("		data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -285,18 +201,6 @@ public class OrderCancelReplaceResponse {
         String newOrderResponseValueAsString = "";
         newOrderResponseValueAsString = newOrderResponseValue.toString();
         sb.append("newOrderResponse=").append(urlEncode(newOrderResponseValueAsString)).append("");
-        Object codeValue = getCode();
-        String codeValueAsString = "";
-        codeValueAsString = codeValue.toString();
-        sb.append("code=").append(urlEncode(codeValueAsString)).append("");
-        Object msgValue = getMsg();
-        String msgValueAsString = "";
-        msgValueAsString = msgValue.toString();
-        sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
-        Object dataValue = getData();
-        String dataValueAsString = "";
-        dataValueAsString = dataValue.toString();
-        sb.append("data=").append(urlEncode(dataValueAsString)).append("");
         return sb.toString();
     }
 
@@ -329,9 +233,6 @@ public class OrderCancelReplaceResponse {
         openapiFields.add("newOrderResult");
         openapiFields.add("cancelResponse");
         openapiFields.add("newOrderResponse");
-        openapiFields.add("code");
-        openapiFields.add("msg");
-        openapiFields.add("data");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -381,18 +282,6 @@ public class OrderCancelReplaceResponse {
                 && !jsonObj.get("newOrderResponse").isJsonNull()) {
             OrderCancelReplaceResponseNewOrderResponse.validateJsonElement(
                     jsonObj.get("newOrderResponse"));
-        }
-        if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
-                && !jsonObj.get("msg").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `msg` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("msg").toString()));
-        }
-        // validate the optional field `data`
-        if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-            OrderCancelReplaceResponseData.validateJsonElement(jsonObj.get("data"));
         }
     }
 

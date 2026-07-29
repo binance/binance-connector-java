@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ToggleBnbBurnOnSpotTradeAndMarginInterestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     public static final String SERIALIZED_NAME_SPOT_B_N_B_BURN = "spotBNBBurn";
 
@@ -63,7 +63,7 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get spotBNBBurn
+     * Determines whether to use BNB to pay for trading fees on SPOT
      *
      * @return spotBNBBurn
      */
@@ -83,7 +83,7 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get interestBNBBurn
+     * Determines whether to use BNB to pay for margin loan&#39;s interest
      *
      * @return interestBNBBurn
      */
@@ -103,11 +103,12 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

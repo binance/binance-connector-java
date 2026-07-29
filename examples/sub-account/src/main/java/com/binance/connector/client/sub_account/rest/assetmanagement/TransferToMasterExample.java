@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.TransferToMasterRequest;
 import com.binance.connector.client.sub_account.rest.model.TransferToMasterResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class TransferToMasterExample {
@@ -29,14 +30,14 @@ public class TransferToMasterExample {
     /**
      * Transfer to Master (For Sub-account) (USER_DATA)
      *
-     * <p>Transfer to Master * You need to open Enable Spot &amp; Margin Trading permission for the
-     * API Key which requests this endpoint. Weight: 1
+     * <p>Transfer to Master Weight(IP): 1 Security Type: USER_DATA Notes: - You need to open Enable
+     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void transferToMasterExample() throws ApiException {
+    public void transferToMasterExample() throws ApiException, IOException {
         TransferToMasterRequest transferToMasterRequest = new TransferToMasterRequest();
-        transferToMasterRequest.asset("");
+        transferToMasterRequest.asset("BTC");
         transferToMasterRequest.amount(1.0d);
         ApiResponse<TransferToMasterResponse> response =
                 getApi().transferToMaster(transferToMasterRequest);

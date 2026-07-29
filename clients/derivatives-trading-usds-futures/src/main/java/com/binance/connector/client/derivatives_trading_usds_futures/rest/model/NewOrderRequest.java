@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -53,13 +53,13 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private String positionSide;
 
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -67,17 +67,17 @@ public class NewOrderRequest {
     @jakarta.annotation.Nullable
     private TimeInForce timeInForce;
 
+    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
+
+    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
+    @jakarta.annotation.Nullable
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
+
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
     private Double quantity;
-
-    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
-
-    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
-    @jakarta.annotation.Nullable
-    private String reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -95,7 +95,7 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
 
@@ -108,7 +108,7 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
 
     public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
 
@@ -165,27 +165,27 @@ public class NewOrderRequest {
         this.side = side;
     }
 
-    public NewOrderRequest positionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
+    public NewOrderRequest positionSide(@jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
         return this;
     }
 
     /**
-     * Get positionSide
+     * Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge
+     * Mode. It must be sent in Hedge Mode.
      *
      * @return positionSide
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public PositionSide getPositionSide() {
+    public String getPositionSide() {
         return positionSide;
     }
 
-    public void setPositionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
     }
 
-    public NewOrderRequest type(@jakarta.annotation.Nonnull String type) {
+    public NewOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -197,11 +197,12 @@ public class NewOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -225,6 +226,26 @@ public class NewOrderRequest {
         this.timeInForce = timeInForce;
     }
 
+    public NewOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+        return this;
+    }
+
+    /**
+     * Get reduceOnly
+     *
+     * @return reduceOnly
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public ReduceOnly getReduceOnly() {
+        return reduceOnly;
+    }
+
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+    }
+
     public NewOrderRequest quantity(@jakarta.annotation.Nullable Double quantity) {
         this.quantity = quantity;
         return this;
@@ -243,25 +264,6 @@ public class NewOrderRequest {
 
     public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
         this.quantity = quantity;
-    }
-
-    public NewOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
-        return this;
-    }
-
-    /**
-     * Get reduceOnly
-     *
-     * @return reduceOnly
-     */
-    @jakarta.annotation.Nullable
-    public String getReduceOnly() {
-        return reduceOnly;
-    }
-
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
     }
 
     public NewOrderRequest price(@jakarta.annotation.Nullable Double price) {
@@ -290,7 +292,8 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
      *
      * @return newClientOrderId
      */
@@ -373,7 +376,10 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get goodTillDate
+     * order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set
+     * to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be
+     * ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds
+     * and smaller than 253402300799000
      *
      * @return goodTillDate
      */
@@ -419,8 +425,8 @@ public class NewOrderRequest {
                 && Objects.equals(this.positionSide, newOrderRequest.positionSide)
                 && Objects.equals(this.type, newOrderRequest.type)
                 && Objects.equals(this.timeInForce, newOrderRequest.timeInForce)
-                && Objects.equals(this.quantity, newOrderRequest.quantity)
                 && Objects.equals(this.reduceOnly, newOrderRequest.reduceOnly)
+                && Objects.equals(this.quantity, newOrderRequest.quantity)
                 && Objects.equals(this.price, newOrderRequest.price)
                 && Objects.equals(this.newClientOrderId, newOrderRequest.newClientOrderId)
                 && Objects.equals(this.newOrderRespType, newOrderRequest.newOrderRespType)
@@ -439,8 +445,8 @@ public class NewOrderRequest {
                 positionSide,
                 type,
                 timeInForce,
-                quantity,
                 reduceOnly,
+                quantity,
                 price,
                 newClientOrderId,
                 newOrderRespType,
@@ -459,8 +465,8 @@ public class NewOrderRequest {
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
-        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
@@ -497,14 +503,14 @@ public class NewOrderRequest {
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
         sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
-        Object quantityValue = getQuantity();
-        String quantityValueAsString = "";
-        quantityValueAsString = quantityValue.toString();
-        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
         Object reduceOnlyValue = getReduceOnly();
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object quantityValue = getQuantity();
+        String quantityValueAsString = "";
+        quantityValueAsString = quantityValue.toString();
+        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
@@ -568,8 +574,8 @@ public class NewOrderRequest {
         openapiFields.add("positionSide");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
-        openapiFields.add("quantity");
         openapiFields.add("reduceOnly");
+        openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("newClientOrderId");
         openapiFields.add("newOrderRespType");
@@ -622,28 +628,23 @@ public class NewOrderRequest {
         }
         // validate the required field `side`
         Side.validateJsonElement(jsonObj.get("side"));
-        // validate the optional field `positionSide`
-        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
-            PositionSide.validateJsonElement(jsonObj.get("positionSide"));
-        }
-        if (!jsonObj.get("type").isJsonPrimitive()) {
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())

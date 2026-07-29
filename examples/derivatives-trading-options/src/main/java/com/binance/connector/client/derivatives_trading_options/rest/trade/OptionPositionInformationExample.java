@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionPositionInformationResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OptionPositionInformationExample {
@@ -28,12 +29,12 @@ public class OptionPositionInformationExample {
     /**
      * Option Position Information (USER_DATA)
      *
-     * <p>Get current position information. Weight: 5
+     * <p>Get current position information. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void optionPositionInformationExample() throws ApiException {
-        String symbol = "";
+    public void optionPositionInformationExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long recvWindow = 5000L;
         ApiResponse<OptionPositionInformationResponse> response =
                 getApi().optionPositionInformation(symbol, recvWindow);

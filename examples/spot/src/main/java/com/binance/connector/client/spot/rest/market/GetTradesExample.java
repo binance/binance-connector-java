@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.GetTradesResponse;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class GetTradesExample {
@@ -27,13 +28,13 @@ public class GetTradesExample {
     /**
      * Recent trades list
      *
-     * <p>Get recent trades. Weight: 25
+     * <p>Get recent trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void getTradesExample() throws ApiException {
+    public void getTradesExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
+        Integer limit = 1;
         ApiResponse<GetTradesResponse> response = getApi().getTrades(symbol, limit);
         System.out.println(response.getData());
     }

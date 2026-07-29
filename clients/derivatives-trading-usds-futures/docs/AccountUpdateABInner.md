@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**aLowerCase** | **String** |  |  [optional] |
-|**wb** | **String** |  |  [optional] |
-|**cw** | **String** |  |  [optional] |
-|**bc** | **String** |  |  [optional] |
+|**aLowerCase** | **String** | Asset |  [optional] |
+|**wb** | **String** | Wallet Balance |  [optional] |
+|**cw** | **String** | Cross Wallet Balance |  [optional] |
+|**bc** | **String** | Balance Change except PnL and Commission |  [optional] |
 
 
 

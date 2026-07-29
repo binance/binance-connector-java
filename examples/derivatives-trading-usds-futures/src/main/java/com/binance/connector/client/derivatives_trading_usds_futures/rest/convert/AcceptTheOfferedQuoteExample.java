@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AcceptTheOfferedQuoteRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AcceptTheOfferedQuoteResponse;
+import java.io.IOException;
 
 /** API examples for ConvertApi */
 public class AcceptTheOfferedQuoteExample {
@@ -29,11 +30,11 @@ public class AcceptTheOfferedQuoteExample {
     /**
      * Accept the offered quote (USER_DATA)
      *
-     * <p>Accept the offered quote by quote ID. Weight: 200(IP)
+     * <p>Accept the offered quote by quote ID. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void acceptTheOfferedQuoteExample() throws ApiException {
+    public void acceptTheOfferedQuoteExample() throws ApiException, IOException {
         AcceptTheOfferedQuoteRequest acceptTheOfferedQuoteRequest =
                 new AcceptTheOfferedQuoteRequest();
         acceptTheOfferedQuoteRequest.quoteId("1");

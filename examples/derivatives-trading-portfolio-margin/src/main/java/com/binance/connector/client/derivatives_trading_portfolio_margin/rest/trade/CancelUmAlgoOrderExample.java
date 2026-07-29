@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmAlgoOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelUmAlgoOrderExample {
@@ -28,14 +29,14 @@ public class CancelUmAlgoOrderExample {
     /**
      * Cancel UM Algo Order (TRADE)
      *
-     * <p>Cancel an active UM algo order. * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60;
-     * must be sent. Weight: 1
+     * <p>Cancel an active UM algo order Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelUmAlgoOrderExample() throws ApiException {
-        Long algoId = 1L;
-        String clientAlgoId = "1";
+    public void cancelUmAlgoOrderExample() throws ApiException, IOException {
+        Long algoId = 2146760L;
+        String clientAlgoId = "6B2I9XVcJpCjqPAJ4YoFX7";
         Long recvWindow = 5000L;
         ApiResponse<CancelUmAlgoOrderResponse> response =
                 getApi().cancelUmAlgoOrder(algoId, clientAlgoId, recvWindow);

@@ -24,16 +24,14 @@ public class PartialBookDepthStreamsExample {
     /**
      * Partial Book Depth Streams
      *
-     * <p>Top **&lt;levels\\&gt;** bids and asks, Valid levels are **&lt;levels\\&gt;** are 5, 10,
-     * 20. Update Speed: 100ms or 500ms
+     * <p>Top &lt;levels&gt; bids and asks. Valid &lt;levels&gt; are 5, 10, 20. Update Speed: 100ms
+     * or 500ms
      *
      * @throws ApiException if the Api call fails
      */
     public void partialBookDepthStreamsExample() throws ApiException, InterruptedException {
         PartialBookDepthStreamsRequest partialBookDepthStreamsRequest =
                 new PartialBookDepthStreamsRequest();
-        partialBookDepthStreamsRequest.symbol("btcusdt");
-        partialBookDepthStreamsRequest.level("example_value");
         StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> response =
                 getApi().partialBookDepthStreams(partialBookDepthStreamsRequest);
         while (true) {

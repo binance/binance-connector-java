@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** HashrateResaleDetailResponseDataProfitTransferDetailsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     public static final String SERIALIZED_NAME_POOL_USERNAME = "poolUsername";
 
@@ -88,7 +88,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get poolUsername
+     * Transfer-out sub-account
      *
      * @return poolUsername
      */
@@ -108,7 +108,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get toPoolUsername
+     * Transfer-in sub-account
      *
      * @return toPoolUsername
      */
@@ -128,7 +128,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get algoName
+     * Transfer algorithm name
      *
      * @return algoName
      */
@@ -148,7 +148,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get hashRate
+     * Transferred hashrate
      *
      * @return hashRate
      */
@@ -168,7 +168,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get day
+     * Transfer date
      *
      * @return day
      */
@@ -188,7 +188,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get amount
+     * Transferred income
      *
      * @return amount
      */
@@ -209,7 +209,7 @@ public class HashrateResaleDetailResponseDataProfitTransferDetailsInner {
     }
 
     /**
-     * Get coinName
+     * Income coin
      *
      * @return coinName
      */

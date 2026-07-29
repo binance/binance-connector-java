@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelCmOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelCmOrderExample {
@@ -26,15 +27,15 @@ public class CancelCmOrderExample {
     }
 
     /**
-     * Cancel CM Order(TRADE)
+     * Cancel CM Order (TRADE)
      *
-     * <p>Cancel an active LIMIT order * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60;
-     * must be sent. Weight: 1
+     * <p>Cancel an active LIMIT order Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelCmOrderExample() throws ApiException {
-        String symbol = "";
+    public void cancelCmOrderExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
         Long orderId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;

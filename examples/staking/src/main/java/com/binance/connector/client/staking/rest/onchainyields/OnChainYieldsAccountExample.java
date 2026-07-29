@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.OnChainYieldsAccountResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class OnChainYieldsAccountExample {
@@ -27,11 +28,11 @@ public class OnChainYieldsAccountExample {
     /**
      * On-chain Yields Account (USER_DATA)
      *
-     * <p>On-chain Yields Account query Weight: 50
+     * <p>On-chain Yields Account query Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void onChainYieldsAccountExample() throws ApiException {
+    public void onChainYieldsAccountExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<OnChainYieldsAccountResponse> response =
                 getApi().onChainYieldsAccount(recvWindow);

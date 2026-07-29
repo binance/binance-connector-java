@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.ListPredictionWalletsResponse;
+import java.io.IOException;
 
 /** API examples for WalletApi */
 public class ListPredictionWalletsExample {
@@ -26,14 +27,14 @@ public class ListPredictionWalletsExample {
     }
 
     /**
-     * List Prediction Wallets
+     * List Prediction Wallets (USER_DATA)
      *
      * <p>Get all prediction wallets registered for the authenticated user. Weight(IP): 200 Security
      * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void listPredictionWalletsExample() throws ApiException {
+    public void listPredictionWalletsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<ListPredictionWalletsResponse> response =
                 getApi().listPredictionWallets(recvWindow);

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FundAutoCollectionRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.FundAutoCollectionResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class FundAutoCollectionExample {
@@ -27,15 +28,15 @@ public class FundAutoCollectionExample {
     }
 
     /**
-     * Fund Auto-collection(TRADE)
+     * Fund Auto-collection (TRADE)
      *
-     * <p>Fund collection for Portfolio Margin * The BNB would not be collected from UM-PM account
-     * to the Portfolio Margin account. * You can only use this function 500 times per hour in a
-     * rolling manner. Weight: 750
+     * <p>Fund collection for Portfolio Margin Weight(IP): 750 Security Type: TRADE Notes: - BNB
+     * assets will not be auto-collected. - Rolling window endpoint can be called at most 500 times
+     * per hour.
      *
      * @throws ApiException if the Api call fails
      */
-    public void fundAutoCollectionExample() throws ApiException {
+    public void fundAutoCollectionExample() throws ApiException, IOException {
         FundAutoCollectionRequest fundAutoCollectionRequest = new FundAutoCollectionRequest();
         ApiResponse<FundAutoCollectionResponse> response =
                 getApi().fundAutoCollection(fundAutoCollectionRequest);

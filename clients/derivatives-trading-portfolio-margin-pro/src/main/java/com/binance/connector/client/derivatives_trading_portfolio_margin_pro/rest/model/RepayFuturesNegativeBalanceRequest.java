@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** RepayFuturesNegativeBalanceRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RepayFuturesNegativeBalanceRequest {
     public static final String SERIALIZED_NAME_FROM = "from";
 
     @SerializedName(SERIALIZED_NAME_FROM)
     @jakarta.annotation.Nullable
-    private String from;
+    private From from = From.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -50,7 +51,7 @@ public class RepayFuturesNegativeBalanceRequest {
 
     public RepayFuturesNegativeBalanceRequest() {}
 
-    public RepayFuturesNegativeBalanceRequest from(@jakarta.annotation.Nullable String from) {
+    public RepayFuturesNegativeBalanceRequest from(@jakarta.annotation.Nullable From from) {
         this.from = from;
         return this;
     }
@@ -61,11 +62,12 @@ public class RepayFuturesNegativeBalanceRequest {
      * @return from
      */
     @jakarta.annotation.Nullable
-    public String getFrom() {
+    @Valid
+    public From getFrom() {
         return from;
     }
 
-    public void setFrom(@jakarta.annotation.Nullable String from) {
+    public void setFrom(@jakarta.annotation.Nullable From from) {
         this.from = from;
     }
 
@@ -184,13 +186,9 @@ public class RepayFuturesNegativeBalanceRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("from") != null && !jsonObj.get("from").isJsonNull())
-                && !jsonObj.get("from").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `from` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("from").toString()));
+        // validate the optional field `from`
+        if (jsonObj.get("from") != null && !jsonObj.get("from").isJsonNull()) {
+            From.validateJsonElement(jsonObj.get("from"));
         }
     }
 

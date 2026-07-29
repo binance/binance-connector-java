@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,11 +21,9 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets priceMatch */
+/** Can&#39;t be passed together with &#x60;price&#x60; */
 @JsonAdapter(PriceMatch.Adapter.class)
 public enum PriceMatch {
-    NONE("NONE"),
-
     OPPONENT("OPPONENT"),
 
     OPPONENT_5("OPPONENT_5"),

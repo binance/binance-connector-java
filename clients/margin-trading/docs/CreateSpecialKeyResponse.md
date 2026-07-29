@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**apiKey** | **String** |  |  [optional] |
-|**secretKey** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
+|**apiKey** | **String** | api Key. |  [optional] |
+|**secretKey** | **String** | secretKey will be null when creating an RSA key |  [optional] |
+|**type** | **String** | HMAC_SHA256 or RSA |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,10 +29,13 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Accou
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Legs;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Liquidity;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryBlockTradeDetailsResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryBlockTradeOrderResponse;
+import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -41,7 +44,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-/** API tests for BlockTradeApi */
+/** API tests for MarketMakerBlockTradeApi */
 public class MarketMakerBlockTradeApiTest {
 
     private MarketMakerBlockTradeApi api;
@@ -86,15 +89,15 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * Accept Block Trade Order (TRADE)
      *
-     * <p>Accept a block trade order Weight: 5
+     * <p>Accept a block trade order Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void acceptBlockTradeOrderTest() throws ApiException, CryptoException {
+    public void acceptBlockTradeOrderTest() throws ApiException, CryptoException, IOException {
         AcceptBlockTradeOrderRequest acceptBlockTradeOrderRequest =
                 new AcceptBlockTradeOrderRequest();
-        acceptBlockTradeOrderRequest.blockOrderMatchingKey("");
+        acceptBlockTradeOrderRequest.blockOrderMatchingKey("7d046e6e-a429-4335-ab9d-6a681febcde5");
 
         ApiResponse<AcceptBlockTradeOrderResponse> response =
                 api.acceptBlockTradeOrder(acceptBlockTradeOrderRequest);
@@ -109,9 +112,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000blockOrderMatchingKey=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000blockOrderMatchingKey=7d046e6e-a429-4335-ab9d-6a681febcde5", signInputCaptor.getValue());
         assertEquals(
-                "d7779041fe175cc7ddb8035e21c7ed57583e4398e9dc5b99610e2e0ca442944a",
+                "4e58241bb580c0a3a3bfaa2ec833f58409c4da966d3ad729edc335fa4869afde",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/execute", actualRequest.url().encodedPath());
     }
@@ -119,15 +122,15 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * Account Block Trade List (USER_DATA)
      *
-     * <p>Gets block trades for a specific account. Weight: 5
+     * <p>Gets block trades for a specific account. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountBlockTradeListTest() throws ApiException, CryptoException {
+    public void accountBlockTradeListTest() throws ApiException, CryptoException, IOException {
         Long endTime = 1641782889000L;
         Long startTime = 1623319461670L;
-        String underlying = "";
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<AccountBlockTradeListResponse> response =
                 api.accountBlockTradeList(endTime, startTime, underlying, recvWindow);
@@ -138,12 +141,13 @@ public class MarketMakerBlockTradeApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("endTime=1641782889000&startTime=1623319461670&underlying=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "933e8ed3a3cfc481c957b452740b714628caeb1ad91262ed96e251eff4b8bd3f",
+                "0cb9ee3a76f6a30d5010f75457047e2805835e853f26970a9a430e64d846d7a2",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/user-trades", actualRequest.url().encodedPath());
     }
@@ -151,13 +155,13 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * Cancel Block Trade Order (TRADE)
      *
-     * <p>Cancel a block trade order. Weight: 5
+     * <p>Cancel a block trade order. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelBlockTradeOrderTest() throws ApiException, CryptoException {
-        String blockOrderMatchingKey = "";
+    public void cancelBlockTradeOrderTest() throws ApiException, CryptoException, IOException {
+        String blockOrderMatchingKey = "7d046e6e-a429-4335-ab9d-6a681febcde5";
         Long recvWindow = 5000L;
         api.cancelBlockTradeOrder(blockOrderMatchingKey, recvWindow);
 
@@ -170,9 +174,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=7d046e6e-a429-4335-ab9d-6a681febcde5&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "ae708c39578286d9f327c8abc95624dc3cc9d4999587112e264986264a52088a",
+                "0a86aed78bf68d702e4e07d5ca3ad3eaea2bfdc9950f58450b14352159b66e9e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/create", actualRequest.url().encodedPath());
     }
@@ -180,15 +184,16 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * Extend Block Trade Order (TRADE)
      *
-     * <p>Extends a block trade expire time by 30 mins from the current time. Weight: 5
+     * <p>Extends a block trade expire time by 30 mins from the current time. Weight(IP): 5 Security
+     * Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void extendBlockTradeOrderTest() throws ApiException, CryptoException {
+    public void extendBlockTradeOrderTest() throws ApiException, CryptoException, IOException {
         ExtendBlockTradeOrderRequest extendBlockTradeOrderRequest =
                 new ExtendBlockTradeOrderRequest();
-        extendBlockTradeOrderRequest.blockOrderMatchingKey("");
+        extendBlockTradeOrderRequest.blockOrderMatchingKey("3668822b8-1baa-6a2f-adb8-d3de6289b361");
 
         ApiResponse<ExtendBlockTradeOrderResponse> response =
                 api.extendBlockTradeOrder(extendBlockTradeOrderRequest);
@@ -203,9 +208,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000blockOrderMatchingKey=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000blockOrderMatchingKey=3668822b8-1baa-6a2f-adb8-d3de6289b361", signInputCaptor.getValue());
         assertEquals(
-                "d7779041fe175cc7ddb8035e21c7ed57583e4398e9dc5b99610e2e0ca442944a",
+                "3ba21e2b997c458e11934c6d75448af13c5b070052ea0391432be5bbeafb0a77",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/create", actualRequest.url().encodedPath());
     }
@@ -213,14 +218,14 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * New Block Trade Order (TRADE)
      *
-     * <p>Send in a new block trade order. Weight: 5
+     * <p>Send in a new block trade order. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void newBlockTradeOrderTest() throws ApiException, CryptoException {
+    public void newBlockTradeOrderTest() throws ApiException, CryptoException, IOException {
         NewBlockTradeOrderRequest newBlockTradeOrderRequest = new NewBlockTradeOrderRequest();
-        newBlockTradeOrderRequest.liquidity("");
+        newBlockTradeOrderRequest.liquidity(Liquidity.MAKER);
         newBlockTradeOrderRequest.legs(new Legs());
 
         ApiResponse<NewBlockTradeOrderResponse> response =
@@ -236,9 +241,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000legs=%5B%5D&liquidity=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000legs=%5B%5D&liquidity=MAKER", signInputCaptor.getValue());
         assertEquals(
-                "bfcdb97917945619131835baab3105074db01c428177e5af5122331605bf3cb8", actualRequest.url().queryParameter("signature"));
+                "23e0130a53d84460ade77405ef0ccad16e478b80ff00a83c48535a547200038b", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/create", actualRequest.url().encodedPath());
     }
 
@@ -246,13 +251,13 @@ public class MarketMakerBlockTradeApiTest {
      * Query Block Trade Details (USER_DATA)
      *
      * <p>Query block trade details; returns block trade details from counterparty&#39;s
-     * perspective. Weight: 5
+     * perspective. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryBlockTradeDetailsTest() throws ApiException, CryptoException {
-        String blockOrderMatchingKey = "";
+    public void queryBlockTradeDetailsTest() throws ApiException, CryptoException, IOException {
+        String blockOrderMatchingKey = "12b96c28-ba05-8906-c89t-703215cfb2e6";
         Long recvWindow = 5000L;
         ApiResponse<QueryBlockTradeDetailsResponse> response =
                 api.queryBlockTradeDetails(blockOrderMatchingKey, recvWindow);
@@ -267,9 +272,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("blockOrderMatchingKey=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=12b96c28-ba05-8906-c89t-703215cfb2e6&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "ae708c39578286d9f327c8abc95624dc3cc9d4999587112e264986264a52088a",
+                "6e6f8ffac81515a2053d62b48befd6ca7f79112ad9cd6400a2cdfe7b58bb89ee",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/execute", actualRequest.url().encodedPath());
     }
@@ -277,16 +282,16 @@ public class MarketMakerBlockTradeApiTest {
     /**
      * Query Block Trade Order (TRADE)
      *
-     * <p>Check block trade order status. Weight: 5
+     * <p>Check block trade order status. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryBlockTradeOrderTest() throws ApiException, CryptoException {
-        String blockOrderMatchingKey = "";
+    public void queryBlockTradeOrderTest() throws ApiException, CryptoException, IOException {
+        String blockOrderMatchingKey = "7d046e6e-a429-4335-ab9d-6a681febcde5";
         Long endTime = 1641782889000L;
         Long startTime = 1623319461670L;
-        String underlying = "";
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryBlockTradeOrderResponse> response =
                 api.queryBlockTradeOrder(
@@ -302,9 +307,9 @@ public class MarketMakerBlockTradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("blockOrderMatchingKey=&endTime=1641782889000&startTime=1623319461670&underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("blockOrderMatchingKey=7d046e6e-a429-4335-ab9d-6a681febcde5&endTime=1641782889000&startTime=1623319461670&underlying=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "12052ae669c254b370aeed981dae5ab6e617de9427448d3232d92d0506899440",
+                "dc503313092ce33e72a18f1b05444f56e21774d639d5c05c67a6e95fccd604c9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/block/order/orders", actualRequest.url().encodedPath());
     }

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ToggleBnbBurnOnFuturesTradeRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ToggleBnbBurnOnFuturesTradeResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class ToggleBnbBurnOnFuturesTradeExample {
@@ -30,14 +31,14 @@ public class ToggleBnbBurnOnFuturesTradeExample {
      * Toggle BNB Burn On Futures Trade (TRADE)
      *
      * <p>Change user&#39;s BNB Fee Discount (Fee Discount On or Fee Discount Off ) on ***EVERY
-     * symbol*** Weight: 1
+     * symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void toggleBnbBurnOnFuturesTradeExample() throws ApiException {
+    public void toggleBnbBurnOnFuturesTradeExample() throws ApiException, IOException {
         ToggleBnbBurnOnFuturesTradeRequest toggleBnbBurnOnFuturesTradeRequest =
                 new ToggleBnbBurnOnFuturesTradeRequest();
-        toggleBnbBurnOnFuturesTradeRequest.feeBurn("");
+        toggleBnbBurnOnFuturesTradeRequest.feeBurn("true");
         ApiResponse<ToggleBnbBurnOnFuturesTradeResponse> response =
                 getApi().toggleBnbBurnOnFuturesTrade(toggleBnbBurnOnFuturesTradeRequest);
         System.out.println(response.getData());

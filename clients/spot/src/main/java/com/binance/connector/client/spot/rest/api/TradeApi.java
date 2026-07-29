@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -71,7 +71,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -112,9 +112,8 @@ public class TradeApi {
      * Build call for deleteOpenOrders
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -125,8 +124,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
-     *     All Open Orders on a Symbol Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-open-orders">Cancel
+     *     All Open Orders on a Symbol (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteOpenOrdersCall(String symbol, Double recvWindow)
             throws ApiException {
@@ -227,13 +226,13 @@ public class TradeApi {
     }
 
     /**
-     * Cancel All Open Orders on a Symbol Cancels all active orders on a symbol. This includes
-     * orders that are part of an order list. Weight: 1
+     * Cancel All Open Orders on a Symbol (TRADE) Cancels all active orders on a symbol. This
+     * includes orders that are part of an order list. Weight(IP): 1 Security Type: TRADE Notes:
+     * **Data Source:** Matching Engine
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -245,11 +244,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
-     *     All Open Orders on a Symbol Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-open-orders">Cancel
+     *     All Open Orders on a Symbol (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(
-            @NotNull String symbol, Double recvWindow) throws ApiException {
+            @NotNull String symbol, @DecimalMax("60000") Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall = deleteOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<DeleteOpenOrdersResponse>() {}.getType();
@@ -262,13 +261,14 @@ public class TradeApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param cancelRestrictions Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will
+     *     succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt;
+     *     &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is
+     *     &#x60;PARTIALLY_FILLED&#x60;. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -279,8 +279,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">Cancel
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order">Cancel
+     *     order (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteOrderCall(
             String symbol,
@@ -428,18 +428,27 @@ public class TradeApi {
     }
 
     /**
-     * Cancel order Cancel an active order. Weight: 1
+     * Cancel order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
+     * be sent. - If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the
+     * &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that
+     * result is checked against that order. If both conditions are not met the request will be
+     * rejected. - The performance for canceling an order (single cancel or as part of a
+     * cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param cancelRestrictions Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will
+     *     succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt;
+     *     &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is
+     *     &#x60;PARTIALLY_FILLED&#x60;. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -451,8 +460,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">Cancel
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order">Cancel
+     *     order (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOrderResponse> deleteOrder(
             @NotNull String symbol,
@@ -460,7 +469,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Double recvWindow)
+            @DecimalMax("60000") Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderValidateBeforeCall(
@@ -481,13 +490,12 @@ public class TradeApi {
      * @param symbol (required)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
-     * @param listClientOrderId A unique Id for the entire orderList (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
+     *     be provided (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -498,8 +506,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade">Cancel
-     *     Order list Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order-list">Cancel
+     *     Order list (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteOrderListCall(
             String symbol,
@@ -635,18 +643,22 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Order list Cancel an entire Order list Weight: 1
+     * Cancel Order list (TRADE) Cancel an entire Order list Weight(IP): 1 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine **Notes:** - Canceling an individual order from an
+     * order list will cancel the entire order list. - If both orderListId and listClientOrderId
+     * parameters are provided, the orderListId is searched first, then the listClientOrderId from
+     * that result is checked against that order. If both conditions are not met the request will be
+     * rejected.
      *
      * @param symbol (required)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
-     * @param listClientOrderId A unique Id for the entire orderList (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up
-     *     to three decimal places of precision (e.g., 6000.346) so that microseconds may be
-     *     specified. (optional)
+     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
+     *     be provided (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -658,15 +670,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade">Cancel
-     *     Order list Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order-list">Cancel
+     *     Order list (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOrderListResponse> deleteOrderList(
             @NotNull String symbol,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Double recvWindow)
+            @DecimalMax("60000") Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderListValidateBeforeCall(
@@ -690,8 +702,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade">New
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#new-order">New
+     *     order (TRADE) Documentation</a>
      */
     private okhttp3.Call newOrderCall(NewOrderRequest newOrderRequest) throws ApiException {
         String basePath = null;
@@ -868,8 +880,54 @@ public class TradeApi {
     }
 
     /**
-     * New order Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60;
-     * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * New order (TRADE) Send in a new order. This adds 1 order to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
+     * 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Some
+     * additional mandatory parameters based on order &#x60;type&#x60;: Type | Additional mandatory
+     * parameters | Additional Information ------------ | ------------| ------ &#x60;LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;| &#x60;MARKET&#x60; |
+     * &#x60;quantity&#x60; or &#x60;quoteOrderQty&#x60;| &#x60;MARKET&#x60; orders using the
+     * &#x60;quantity&#x60; field specifies the amount of the &#x60;base asset&#x60; the user wants
+     * to buy or sell at the market price. &lt;br/&gt; E.g. MARKET order on BTCUSDT will specify how
+     * much BTC the user is buying or selling. &lt;br/&gt;&lt;br/&gt; &#x60;MARKET&#x60; orders
+     * using &#x60;quoteOrderQty&#x60; specifies the amount the user wants to spend (when buying) or
+     * receive (when selling) the &#x60;quote&#x60; asset; the correct &#x60;quantity&#x60; will be
+     * determined based on the market liquidity and &#x60;quoteOrderQty&#x60;. &lt;br/&gt; E.g.
+     * Using the symbol BTCUSDT: &lt;br/&gt; &#x60;BUY&#x60; side, the order will buy as many BTC as
+     * &#x60;quoteOrderQty&#x60; USDT can. &lt;br/&gt; &#x60;SELL&#x60; side, the order will sell as
+     * much BTC needed to receive &#x60;quoteOrderQty&#x60; USDT. &#x60;STOP_LOSS&#x60; |
+     * &#x60;quantity&#x60;, &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60;| This will execute a
+     * &#x60;MARKET&#x60; order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; &#x60;TAKE_PROFIT&#x60; | &#x60;quantity&#x60;,
+     * &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60; | This will execute a &#x60;MARKET&#x60;
+     * order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;TAKE_PROFIT_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; | &#x60;LIMIT_MAKER&#x60; | &#x60;quantity&#x60;,
+     * &#x60;price&#x60;| This is a &#x60;LIMIT&#x60; order that will be rejected if the order
+     * immediately matches and trades as a taker. &lt;br/&gt; This is also known as a POST-ONLY
+     * order. Notes on using parameters for Pegged Orders: * These parameters are allowed for
+     * &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If &#x60;pegPriceType&#x60; is specified,
+     * &#x60;price&#x60; becomes optional. Otherwise, it is still mandatory. *
+     * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is the best price on
+     * the same side of the order book as your order. * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60;
+     * means the market peg, that is the best price on the opposite side of the order book from your
+     * order. * Use &#x60;pegOffsetType&#x60; and &#x60;pegOffsetValue&#x60; to request a price
+     * level other than the best one. These parameters must be specified together. Other info: * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; type order can be made an iceberg order by
+     * sending an &#x60;icebergQty&#x60;. * Any order with an &#x60;icebergQty&#x60; MUST have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * For &#x60;STOP_LOSS&#x60;,
+     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; and &#x60;TAKE_PROFIT&#x60;
+     * orders, &#x60;trailingDelta&#x60; can be combined with &#x60;stopPrice&#x60;. *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; will not break &#x60;LOT_SIZE&#x60;
+     * filter rules; the order will execute a &#x60;quantity&#x60; that will have the notional value
+     * as close as possible to &#x60;quoteOrderQty&#x60;. Trigger order price rules against market
+     * price for both MARKET and LIMIT versions: * Price above market price: &#x60;STOP_LOSS&#x60;
+     * &#x60;BUY&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;SELL&#x60; * Price below market price:
+     * &#x60;STOP_LOSS&#x60; &#x60;SELL&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;BUY&#x60;
      *
      * @param newOrderRequest (required)
      * @return ApiResponse&lt;NewOrderResponse&gt;
@@ -883,8 +941,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade">New
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#new-order">New
+     *     order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(@Valid @NotNull NewOrderRequest newOrderRequest)
             throws ApiException {
@@ -907,8 +965,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade">Order
-     *     Amend Keep Priority Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-amend-keep-priority">Order
+     *     Amend Keep Priority (TRADE) Documentation</a>
      */
     private okhttp3.Call orderAmendKeepPriorityCall(
             OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest) throws ApiException {
@@ -1033,9 +1091,10 @@ public class TradeApi {
     }
 
     /**
-     * Order Amend Keep Priority Reduce the quantity of an existing open order. This adds 0 orders
-     * to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read
-     * [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
+     * Order Amend Keep Priority (TRADE) Reduce the quantity of an existing open order. This adds 0
+     * orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Read Order Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count:
+     * 0 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return ApiResponse&lt;OrderAmendKeepPriorityResponse&gt;
@@ -1049,8 +1108,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade">Order
-     *     Amend Keep Priority Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-amend-keep-priority">Order
+     *     Amend Keep Priority (TRADE) Documentation</a>
      */
     public ApiResponse<OrderAmendKeepPriorityResponse> orderAmendKeepPriority(
             @Valid @NotNull OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest)
@@ -1072,12 +1131,12 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Cancel an Existing Order and Send a New Order </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Both cancel and new order succeed </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade">Cancel
-     *     an Existing Order and Send a New Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-cancel-replace">Cancel
+     *     an Existing Order and Send a New Order (TRADE) Documentation</a>
      */
     private okhttp3.Call orderCancelReplaceCall(OrderCancelReplaceRequest orderCancelReplaceRequest)
             throws ApiException {
@@ -1298,12 +1357,117 @@ public class TradeApi {
     }
 
     /**
-     * Cancel an Existing Order and Send a New Order * Cancels an existing order and places a new
-     * order on the same symbol. * Filters and Order Count are evaluated before the processing of
-     * the cancellation and order placement occurs. * A new order that was not attempted (i.e. when
-     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. * You can only cancel an individual order from an orderList using this endpoint, but the
-     * result is the same as canceling the entire orderList. Weight: 1
+     * Cancel an Existing Order and Send a New Order (TRADE) - Cancels an existing order and places
+     * a new order on the same symbol. - Filters and Order Count are evaluated before the processing
+     * of the cancellation and order placement occurs. - A new order that was not attempted (i.e.
+     * when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count
+     * by 1. - You can only cancel an individual order from an orderList using this endpoint, but
+     * the result is the same as canceling the entire orderList. Weight(IP): 1 Unfilled Order Count:
+     * 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Similar to &#x60;POST
+     * /api/v3/order&#x60;, additional mandatory parameters are determined by &#x60;type&#x60;.
+     * Response format varies depending on whether the processing of the message succeeded,
+     * partially succeeded, or failed. &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Request&lt;/th&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
+     * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;newOrderResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;status&lt;/code&gt;&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt;
+     * &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;11\&quot;&gt;&lt;code&gt;STOP_ON_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;6\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;5\&quot;&gt;&lt;code&gt;CANCEL_ONLY&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;2\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;16\&quot;&gt;&lt;code&gt;ALLOW_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;CODE&gt;CANCEL_ONLY&lt;/CODE&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;N/A&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt;
+     * &lt;/table&gt; **Notes:** - The performance for canceling an order (single cancel or as part
+     * of a cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;
@@ -1313,12 +1477,12 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Cancel an Existing Order and Send a New Order </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Both cancel and new order succeed </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade">Cancel
-     *     an Existing Order and Send a New Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-cancel-replace">Cancel
+     *     an Existing Order and Send a New Order (TRADE) Documentation</a>
      */
     public ApiResponse<OrderCancelReplaceResponse> orderCancelReplace(
             @Valid @NotNull OrderCancelReplaceRequest orderCancelReplaceRequest)
@@ -1343,8 +1507,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade">New
-     *     Order list - OCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oco">New
+     *     Order list - OCO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOcoCall(OrderListOcoRequest orderListOcoRequest)
             throws ApiException {
@@ -1581,20 +1745,22 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OCO Send in an one-cancels-the-other (OCO) pair, where activation of one
-     * order immediately cancels the other. * An OCO has 2 orders called the **above order** and
-     * **below order**. * One of the orders must be a
+     * New Order list - OCO (TRADE) Send in an one-cancels-the-other (OCO) pair, where activation of
+     * one order immediately cancels the other. - An OCO has 2 orders called the **above order** and
+     * **below order**. - One of the orders must be a
      * &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and the other must be
-     * &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price restrictions * If the OCO
-     * is on the &#x60;SELL&#x60; side: * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60;
+     * &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. - Price restrictions - If the OCO
+     * is on the &#x60;SELL&#x60; side: - &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60;
      * &#x60;price&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt;
-     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * If the OCO is on the &#x60;BUY&#x60; side:
-     * * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60; &lt; Last Traded Price &lt;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &lt; Last Traded Price &lt;
+     * &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt;
+     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; - If the OCO is on the &#x60;BUY&#x60; side:
+     * - &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60; &lt; Last Traded Price &lt;
+     * &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT stopPrice&#x60; &lt; Last Traded Price &lt;
      * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. - OCOs add
+     * 2 orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
      *
      * @param orderListOcoRequest (required)
      * @return ApiResponse&lt;OrderListOcoResponse&gt;
@@ -1608,8 +1774,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade">New
-     *     Order list - OCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oco">New
+     *     Order list - OCO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOcoResponse> orderListOco(
             @Valid @NotNull OrderListOcoRequest orderListOcoRequest) throws ApiException {
@@ -1633,8 +1799,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
-     *     Order List - OPO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opo">New
+     *     Order List - OPO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOpoCall(OrderListOpoRequest orderListOpoRequest)
             throws ApiException {
@@ -1878,8 +2044,10 @@ public class TradeApi {
     }
 
     /**
-     * New Order List - OPO Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the
-     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     * New Order List - OPO (TRADE) Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to
+     * the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
      *
      * @param orderListOpoRequest (required)
      * @return ApiResponse&lt;OrderListOpoResponse&gt;
@@ -1893,8 +2061,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opo-trade">New
-     *     Order List - OPO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opo">New
+     *     Order List - OPO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOpoResponse> orderListOpo(
             @Valid @NotNull OrderListOpoRequest orderListOpoRequest) throws ApiException {
@@ -1918,8 +2086,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
-     *     Order List - OPOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opoco">New
+     *     Order List - OPOCO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOpocoCall(OrderListOpocoRequest orderListOpocoRequest)
             throws ApiException {
@@ -2246,7 +2414,8 @@ public class TradeApi {
     }
 
     /**
-     * New Order List - OPOCO Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     * New Order List - OPOCO (TRADE) Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1
+     * Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @param orderListOpocoRequest (required)
      * @return ApiResponse&lt;OrderListOpocoResponse&gt;
@@ -2260,8 +2429,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---opoco-trade">New
-     *     Order List - OPOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opoco">New
+     *     Order List - OPOCO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOpocoResponse> orderListOpoco(
             @Valid @NotNull OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
@@ -2285,8 +2454,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oto-trade">New
-     *     Order list - OTO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oto">New
+     *     Order list - OTO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOtoCall(OrderListOtoRequest orderListOtoRequest)
             throws ApiException {
@@ -2378,6 +2547,10 @@ public class TradeApi {
                     "workingStrategyType", orderListOtoRequest.getWorkingStrategyType());
         }
 
+        if (orderListOtoRequest.getPendingType() != null) {
+            localVarFormParams.put("pendingType", orderListOtoRequest.getPendingType());
+        }
+
         if (orderListOtoRequest.getWorkingPegPriceType() != null) {
             localVarFormParams.put(
                     "workingPegPriceType", orderListOtoRequest.getWorkingPegPriceType());
@@ -2391,10 +2564,6 @@ public class TradeApi {
         if (orderListOtoRequest.getWorkingPegOffsetValue() != null) {
             localVarFormParams.put(
                     "workingPegOffsetValue", orderListOtoRequest.getWorkingPegOffsetValue());
-        }
-
-        if (orderListOtoRequest.getPendingType() != null) {
-            localVarFormParams.put("pendingType", orderListOtoRequest.getPendingType());
         }
 
         if (orderListOtoRequest.getPendingSide() != null) {
@@ -2537,19 +2706,30 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OTO Place an OTO. * An OTO (One-Triggers-the-Other) is an order list
-     * comprised of 2 orders. * The first order is called the **working order** and must be
+     * New Order list - OTO (TRADE) Place an OTO. - An OTO (One-Triggers-the-Other) is an order list
+     * comprised of 2 orders. - The first order is called the **working order** and must be
      * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the
-     * order book. * The second order is called the **pending order**. It can be any order type
+     * order book. - The second order is called the **pending order**. It can be any order type
      * except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending
-     * order is only placed on the order book when the working order gets **fully filled**. * If
+     * order is only placed on the order book when the working order gets **fully filled**. - If
      * either the working order or the pending order is cancelled individually, the other order in
-     * the order list will also be canceled or expired. * When the order list is placed, if the
+     * the order list will also be canceled or expired. - When the order list is placed, if the
      * working order gets **immediately fully filled**, the placement response will show the working
      * order as &#x60;FILLED&#x60; but the pending order will still appear as
      * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
-     * updated status. * OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
+     * updated status. - OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine **Mandatory parameters based on
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;** Depending on the &#x60;pendingType&#x60;
+     * or &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; | |&#x60;pendingType&#x60; &#x3D;
+     * &#x60;LIMIT&#x60; |&#x60;pendingPrice&#x60;, &#x60;pendingTimeInForce&#x60; |
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or &#x60;TAKE_PROFIT&#x60;
+     * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
      *
      * @param orderListOtoRequest (required)
      * @return ApiResponse&lt;OrderListOtoResponse&gt;
@@ -2563,8 +2743,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oto-trade">New
-     *     Order list - OTO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oto">New
+     *     Order list - OTO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOtoResponse> orderListOto(
             @Valid @NotNull OrderListOtoRequest orderListOtoRequest) throws ApiException {
@@ -2588,8 +2768,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---otoco-trade">New
-     *     Order list - OTOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-otoco">New
+     *     Order list - OTOCO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOtocoCall(OrderListOtocoRequest orderListOtocoRequest)
             throws ApiException {
@@ -2923,16 +3103,34 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OTOCO Place an OTOCO. * An OTOCO (One-Triggers-One-Cancels-the-Other) is an
-     * order list comprised of 3 orders. * The first order is called the **working order** and must
-     * be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on
-     * the order book. * The behavior of the working order is the same as the
-     * [OTO](#new-order-list---oto-trade). * OTOCO has 2 pending orders (pending above and pending
-     * below), forming an OCO pair. The pending orders are only placed on the order book when the
-     * working order gets **fully filled**. * The rules of the pending above and pending below
-     * follow the same rules as the [Order list OCO](#new-order-list---oco-trade). * OTOCOs add **3
-     * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1 Unfilled Order Count: 3
+     * New Order list - OTOCO (TRADE) Place an OTOCO. - An OTOCO
+     * (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. - The first
+     * order is called the **working order** and must be &#x60;LIMIT&#x60; or
+     * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. - The
+     * behavior of the working order is the same as the [OTO](#order-list-oto). - OTOCO has 2
+     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
+     * only placed on the order book when the working order gets **fully filled**. - The rules of
+     * the pending above and pending below follow the same rules as the [Order list
+     * OCO](#order-list-oco). - OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
+     * filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine **Mandatory parameters based on
+     * &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;**
+     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; |
+     * |&#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingAbovePrice&#x60; |
+     * |&#x60;pendingAboveType&#x60; &#x3D; &#x60;STOP_LOSS/TAKE_PROFIT&#x60;
+     * |&#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60;|
+     * |&#x60;pendingAboveType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60;|
+     * |&#x60;pendingBelowType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingBelowPrice&#x60; |
+     * |&#x60;pendingBelowType&#x3D; STOP_LOSS/TAKE_PROFIT&#x60; |&#x60;pendingBelowStopPrice&#x60;
+     * and/or &#x60;pendingBelowTrailingDelta&#x60;|
+     * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60;|
      *
      * @param orderListOtocoRequest (required)
      * @return ApiResponse&lt;OrderListOtocoResponse&gt;
@@ -2946,8 +3144,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---otoco-trade">New
-     *     Order list - OTOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-otoco">New
+     *     Order list - OTOCO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOtocoResponse> orderListOtoco(
             @Valid @NotNull OrderListOtocoRequest orderListOtocoRequest) throws ApiException {
@@ -2972,8 +3170,8 @@ public class TradeApi {
      *
      * @deprecated
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
-     *     OCO - Deprecated Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-oco">New
+     *     OCO - Deprecated (TRADE) Documentation</a>
      */
     @Deprecated
     private okhttp3.Call orderOcoCall(OrderOcoRequest orderOcoRequest) throws ApiException {
@@ -3159,12 +3357,13 @@ public class TradeApi {
     }
 
     /**
-     * New OCO - Deprecated Send in a new OCO. * Price Restrictions: * &#x60;SELL&#x60;: Limit Price
-     * &gt; Last Price &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop
-     * Price * Quantity Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60;
-     * quantities however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * New OCO - Deprecated (TRADE) Send in a new OCO. - Price Restrictions: - &#x60;SELL&#x60;:
+     * Limit Price &gt; Last Price &gt; Stop Price - &#x60;BUY&#x60;: Limit Price &lt; Last Price
+     * &lt; Stop Price - Quantity Restrictions: - Both legs must have the same quantity. -
+     * &#x60;ICEBERG&#x60; quantities however do not have to be the same - &#x60;OCO&#x60; adds **2
+     * orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
      *
      * @param orderOcoRequest (required)
      * @return ApiResponse&lt;OrderOcoResponse&gt;
@@ -3179,8 +3378,8 @@ public class TradeApi {
      *
      * @deprecated
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
-     *     OCO - Deprecated Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-oco">New
+     *     OCO - Deprecated (TRADE) Documentation</a>
      */
     @Deprecated
     public ApiResponse<OrderOcoResponse> orderOco(@Valid @NotNull OrderOcoRequest orderOcoRequest)
@@ -3204,8 +3403,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade">Test
-     *     new order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-test">Test
+     *     new order (TRADE) Documentation</a>
      */
     private okhttp3.Call orderTestCall(OrderTestRequest orderTestRequest) throws ApiException {
         String basePath = null;
@@ -3387,10 +3586,10 @@ public class TradeApi {
     }
 
     /**
-     * Test new order Test new order creation and signature/recvWindow long. Creates and validates a
-     * new order but does not send it into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * Test new order (TRADE) Test new order creation and signature/recvWindow long. Creates and
+     * validates a new order but does not send it into the matching engine. Weight:
+     * |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1| |With
+     * &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:** Memory
      *
      * @param orderTestRequest (required)
      * @return ApiResponse&lt;OrderTestResponse&gt;
@@ -3404,8 +3603,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade">Test
-     *     new order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-test">Test
+     *     new order (TRADE) Documentation</a>
      */
     public ApiResponse<OrderTestResponse> orderTest(
             @Valid @NotNull OrderTestRequest orderTestRequest) throws ApiException {
@@ -3428,8 +3627,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade">New
-     *     order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order">New
+     *     order using SOR (TRADE) Documentation</a>
      */
     private okhttp3.Call sorOrderCall(SorOrderRequest sorOrderRequest) throws ApiException {
         String basePath = null;
@@ -3578,9 +3777,12 @@ public class TradeApi {
     }
 
     /**
-     * New order using SOR Places an order using smart order routing (SOR). This adds 1 order to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [SOR
-     * FAQ](faqs/sor_faq.md) to learn more. Weight: 1 Unfilled Order Count: 1
+     * New order using SOR (TRADE) Places an order using smart order routing (SOR). This adds 1
+     * order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Read [SOR FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled
+     * Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:**
+     * &#x60;POST /api/v3/sor/order&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60;
+     * orders. &#x60;quoteOrderQty&#x60; is not supported.
      *
      * @param sorOrderRequest (required)
      * @return ApiResponse&lt;SorOrderResponse&gt;
@@ -3594,8 +3796,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade">New
-     *     order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order">New
+     *     order using SOR (TRADE) Documentation</a>
      */
     public ApiResponse<SorOrderResponse> sorOrder(@Valid @NotNull SorOrderRequest sorOrderRequest)
             throws ApiException {
@@ -3618,8 +3820,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade">Test
-     *     new order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order-test">Test
+     *     new order using SOR (TRADE) Documentation</a>
      */
     private okhttp3.Call sorOrderTestCall(SorOrderTestRequest sorOrderTestRequest)
             throws ApiException {
@@ -3775,10 +3977,11 @@ public class TradeApi {
     }
 
     /**
-     * Test new order using SOR Test new order creation and signature/recvWindow using smart order
-     * routing (SOR). Creates and validates a new order but does not send it into the matching
-     * engine. Weight: | Condition | Request Weight | | --------- | -------------- | | Without
-     * &#x60;computeCommissionRates&#x60; | 1 | | With &#x60;computeCommissionRates&#x60; | 20 |
+     * Test new order using SOR (TRADE) Test new order creation and signature/recvWindow using smart
+     * order routing (SOR). Creates and validates a new order but does not send it into the matching
+     * engine. Weight: |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1|
+     * |With &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:**
+     * Memory
      *
      * @param sorOrderTestRequest (required)
      * @return ApiResponse&lt;SorOrderTestResponse&gt;
@@ -3792,8 +3995,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade">Test
-     *     new order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order-test">Test
+     *     new order using SOR (TRADE) Documentation</a>
      */
     public ApiResponse<SorOrderTestResponse> sorOrderTest(
             @Valid @NotNull SorOrderTestRequest sorOrderTestRequest) throws ApiException {

@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**loanCoin** | **String** |  |  |
-|**loanAmount** | **Double** |  |  [optional] |
+|**loanAmount** | **Double** | Mandatory when collateralAmount is empty |  [optional] |
 |**collateralCoin** | **String** |  |  |
-|**collateralAmount** | **Double** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**collateralAmount** | **Double** | Mandatory when loanAmount is empty |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds |  [optional] |
 
 
 

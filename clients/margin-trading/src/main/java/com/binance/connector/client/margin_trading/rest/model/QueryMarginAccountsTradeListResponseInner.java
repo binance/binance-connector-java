@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryMarginAccountsTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAccountsTradeListResponseInner {
     public static final String SERIALIZED_NAME_COMMISSION = "commission";
 
@@ -117,7 +117,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * commission.
      *
      * @return commission
      */
@@ -137,7 +137,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * commission Asset.
      *
      * @return commissionAsset
      */
@@ -156,7 +156,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * id.
      *
      * @return id
      */
@@ -176,7 +176,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get isBestMatch
+     * is Best Match.
      *
      * @return isBestMatch
      */
@@ -196,7 +196,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get isBuyer
+     * is Buyer.
      *
      * @return isBuyer
      */
@@ -216,7 +216,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get isMaker
+     * is Maker.
      *
      * @return isMaker
      */
@@ -236,7 +236,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -256,7 +256,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -275,7 +275,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * qty.
      *
      * @return qty
      */
@@ -295,7 +295,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -315,7 +315,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get isIsolated
+     * is Isolated.
      *
      * @return isIsolated
      */
@@ -334,7 +334,7 @@ public class QueryMarginAccountsTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * time.
      *
      * @return time
      */

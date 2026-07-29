@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.margin_trading.rest.model.GetCrossMarginTransferHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOutAmountResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -43,7 +44,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -84,13 +85,13 @@ public class TransferApi {
      * Build call for getCrossMarginTransferHistory
      *
      * @param asset (optional)
-     * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param type (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -101,12 +102,12 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Transfer-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#get-cross-margin-transfer-history">Get
      *     Cross Margin Transfer History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCrossMarginTransferHistoryCall(
             String asset,
-            String type,
+            OrderType type,
             Long startTime,
             Long endTime,
             Long current,
@@ -204,7 +205,7 @@ public class TransferApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getCrossMarginTransferHistoryValidateBeforeCall(
             String asset,
-            String type,
+            OrderType type,
             Long startTime,
             Long endTime,
             Long current,
@@ -229,7 +230,7 @@ public class TransferApi {
                             .getMethod(
                                     "getCrossMarginTransferHistory",
                                     String.class,
-                                    String.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -255,18 +256,19 @@ public class TransferApi {
     }
 
     /**
-     * Get Cross Margin Transfer History (USER_DATA) Get Cross Margin Transfer History * Response in
-     * descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is
-     * 30 days. * Returns data for last 7 days by default Weight: 1(IP)
+     * Get Cross Margin Transfer History (USER_DATA) Get Cross Margin Transfer History Weight(IP): 1
+     * Security Type: USER_DATA Notes: - Response in descending order - The max interval between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. - Returns data for last 7 days by
+     * default
      *
      * @param asset (optional)
-     * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param type (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetCrossMarginTransferHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -278,18 +280,18 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Transfer-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#get-cross-margin-transfer-history">Get
      *     Cross Margin Transfer History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCrossMarginTransferHistoryResponse> getCrossMarginTransferHistory(
             String asset,
-            String type,
+            OrderType type,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
             String isolatedSymbol,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getCrossMarginTransferHistoryValidateBeforeCall(
@@ -303,8 +305,8 @@ public class TransferApi {
      * Build call for queryMaxTransferOutAmount
      *
      * @param asset (required)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -315,7 +317,7 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/transfer/Query-Max-Transfer-Out-Amount">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#query-max-transfer-out-amount">Query
      *     Max Transfer-Out Amount (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMaxTransferOutAmountCall(
@@ -425,12 +427,13 @@ public class TransferApi {
     }
 
     /**
-     * Query Max Transfer-Out Amount (USER_DATA) Query Max Transfer-Out Amount * If isolatedSymbol
-     * is not sent, crossed margin data will be sent. Weight: 50(IP)
+     * Query Max Transfer-Out Amount (USER_DATA) Query Max Transfer-Out Amount Weight(IP): 50
+     * Security Type: USER_DATA Notes: - If isolatedSymbol is not sent, crossed margin data will be
+     * sent.
      *
      * @param asset (required)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMaxTransferOutAmountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -442,11 +445,12 @@ public class TransferApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/transfer/Query-Max-Transfer-Out-Amount">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#query-max-transfer-out-amount">Query
      *     Max Transfer-Out Amount (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMaxTransferOutAmountResponse> queryMaxTransferOutAmount(
-            @NotNull String asset, String isolatedSymbol, Long recvWindow) throws ApiException {
+            @NotNull String asset, String isolatedSymbol, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryMaxTransferOutAmountValidateBeforeCall(asset, isolatedSymbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =

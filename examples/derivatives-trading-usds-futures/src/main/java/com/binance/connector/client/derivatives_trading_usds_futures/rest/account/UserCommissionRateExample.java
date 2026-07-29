@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UserCommissionRateResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class UserCommissionRateExample {
@@ -28,12 +29,12 @@ public class UserCommissionRateExample {
     /**
      * User Commission Rate (USER_DATA)
      *
-     * <p>Get User Commission Rate Weight: 20
+     * <p>Get User Commission Rate Weight(IP): 20 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void userCommissionRateExample() throws ApiException {
-        String symbol = "";
+    public void userCommissionRateExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<UserCommissionRateResponse> response =
                 getApi().userCommissionRate(symbol, recvWindow);

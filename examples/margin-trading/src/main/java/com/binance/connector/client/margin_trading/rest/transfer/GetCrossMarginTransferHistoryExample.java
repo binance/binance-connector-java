@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetCrossMarginTransferHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class GetCrossMarginTransferHistoryExample {
@@ -28,20 +30,20 @@ public class GetCrossMarginTransferHistoryExample {
     /**
      * Get Cross Margin Transfer History (USER_DATA)
      *
-     * <p>Get Cross Margin Transfer History * Response in descending order * The max interval
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. * Returns data for last 7
-     * days by default Weight: 1(IP)
+     * <p>Get Cross Margin Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: - Response
+     * in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * is 30 days. - Returns data for last 7 days by default
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCrossMarginTransferHistoryExample() throws ApiException {
-        String asset = "";
-        String type = "";
+    public void getCrossMarginTransferHistoryExample() throws ApiException, IOException {
+        String asset = "BNB";
+        OrderType type = OrderType.ROLL_IN;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
-        String isolatedSymbol = "";
+        String isolatedSymbol = "BNBUSDT";
         Long recvWindow = 5000L;
         ApiResponse<GetCrossMarginTransferHistoryResponse> response =
                 getApi().getCrossMarginTransferHistory(

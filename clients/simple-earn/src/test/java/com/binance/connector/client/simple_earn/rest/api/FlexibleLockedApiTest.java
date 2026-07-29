@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.simple_earn.rest.model.AprPeriod;
 import com.binance.connector.client.simple_earn.rest.model.GetCollateralRecordResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexiblePersonalLeftQuotaResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexibleProductPositionResponse;
@@ -39,10 +40,12 @@ import com.binance.connector.client.simple_earn.rest.model.GetLockedSubscription
 import com.binance.connector.client.simple_earn.rest.model.GetRateHistoryResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnFlexibleProductListResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnLockedProductListResponse;
+import com.binance.connector.client.simple_earn.rest.model.OrderType;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductResponse;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductResponse;
+import com.binance.connector.client.simple_earn.rest.model.RedeemTo;
 import com.binance.connector.client.simple_earn.rest.model.SetFlexibleAutoSubscribeRequest;
 import com.binance.connector.client.simple_earn.rest.model.SetFlexibleAutoSubscribeResponse;
 import com.binance.connector.client.simple_earn.rest.model.SetLockedAutoSubscribeRequest;
@@ -54,6 +57,8 @@ import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProd
 import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProductResponse;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeLockedProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeLockedProductResponse;
+import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -62,7 +67,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-/** API tests for AccountApi */
+/** API tests for FlexibleLockedApi */
 public class FlexibleLockedApiTest {
 
     private FlexibleLockedApi api;
@@ -105,580 +110,20 @@ public class FlexibleLockedApiTest {
     }
 
     /**
-     * Get Flexible Personal Left Quota(USER_DATA)
+     * Get Collateral Record (USER_DATA)
      *
-     * <p>Get Flexible Personal Left Quota Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getFlexiblePersonalLeftQuotaTest() throws ApiException, CryptoException {
-        String productId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<GetFlexiblePersonalLeftQuotaResponse> response =
-                api.getFlexiblePersonalLeftQuota(productId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "productId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "3449171bcce7a8aa43ee9684da7eebf17feeecb24ed8fd2858ca78fcc5d87e85",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/personalLeftQuota",
-                actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Flexible Product Position(USER_DATA)
-     *
-     * <p>Get Flexible Product Position Weight: 150
+     * <p>Get Collateral Record Weight(IP): 1 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleProductPositionTest() throws ApiException, CryptoException {
-        String asset = "";
-        String productId = "1";
-        Long current = 1L;
-        Long size = 10L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetFlexibleProductPositionResponse> response =
-                api.getFlexibleProductPosition(asset, productId, current, size, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "asset=&productId=1&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "1cc1b386baba7fc174869f28bbc9dcbfff30e18b98f074dd3f90eadd0fee8692",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/flexible/position", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Locked Personal Left Quota(USER_DATA)
-     *
-     * <p>Get Locked Personal Left Quota Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getLockedPersonalLeftQuotaTest() throws ApiException, CryptoException {
-        String projectId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<GetLockedPersonalLeftQuotaResponse> response =
-                api.getLockedPersonalLeftQuota(projectId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "projectId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "7df8536b8711da59322819086e27ee0e183d18d1f4d6a68377c9c4a87f835ab8",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/personalLeftQuota", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Locked Product Position
-     *
-     * <p>Get Locked Product Position Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getLockedProductPositionTest() throws ApiException, CryptoException {
-        String asset = "";
-        String positionId = "1";
-        String projectId = "1";
-        Long current = 1L;
-        Long size = 10L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetLockedProductPositionResponse> response =
-                api.getLockedProductPosition(
-                        asset, positionId, projectId, current, size, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("3fa625e0c98e6f4e9f1ec21a44584f64734fa62a263ad96d4bea3583baa409d7", actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/locked/position", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Simple Earn Flexible Product List(USER_DATA)
-     *
-     * <p>Get available Simple Earn flexible product list Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getSimpleEarnFlexibleProductListTest() throws ApiException, CryptoException {
-        String asset = "";
-        Long current = 1L;
-        Long size = 10L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetSimpleEarnFlexibleProductListResponse> response =
-                api.getSimpleEarnFlexibleProductList(asset, current, size, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "asset=&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a8d7174d9767b6c5ac9e2a1b5c161cef80476f7dbb006361943091d5b77cd212",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/flexible/list", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Simple Earn Locked Product List(USER_DATA)
-     *
-     * <p>Get Simple Earn Locked Product List * Get available Simple Earn locked product list
-     * Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getSimpleEarnLockedProductListTest() throws ApiException, CryptoException {
-        String asset = "";
-        Long current = 1L;
-        Long size = 10L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetSimpleEarnLockedProductListResponse> response =
-                api.getSimpleEarnLockedProductList(asset, current, size, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "asset=&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a8d7174d9767b6c5ac9e2a1b5c161cef80476f7dbb006361943091d5b77cd212",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/locked/list", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Simple Account(USER_DATA)
-     *
-     * <p>Simple Account query Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void simpleAccountTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
-        ApiResponse<SimpleAccountResponse> response = api.simpleAccount(recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/account", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Flexible Subscription Preview(USER_DATA)
-     *
-     * <p>Get Flexible Subscription Preview Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getFlexibleSubscriptionPreviewTest() throws ApiException, CryptoException {
-        String productId = "1";
-        Double amount = 1d;
-        Long recvWindow = 5000L;
-        ApiResponse<GetFlexibleSubscriptionPreviewResponse> response =
-                api.getFlexibleSubscriptionPreview(productId, amount, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "productId=1&amount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "00a7c80c0c410b10c6a3067e01f82fc810a365b87c83c5086e7224f826896ff5",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/subscriptionPreview",
-                actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Locked Subscription Preview(USER_DATA)
-     *
-     * <p>Get Locked Subscription Preview Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getLockedSubscriptionPreviewTest() throws ApiException, CryptoException {
-        String projectId = "1";
-        Double amount = 1d;
-        Boolean autoSubscribe = false;
-        Long recvWindow = 5000L;
-        ApiResponse<GetLockedSubscriptionPreviewResponse> response =
-                api.getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "projectId=1&amount=1&autoSubscribe=false&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "ed6d60bbbd167523b7f2ff4be5baa4485dbf0f39322a1cb34907612d59aac34a",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/subscriptionPreview",
-                actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Redeem Flexible Product(TRADE)
-     *
-     * <p>Redeem Flexible Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void redeemFlexibleProductTest() throws ApiException, CryptoException {
-        RedeemFlexibleProductRequest redeemFlexibleProductRequest =
-                new RedeemFlexibleProductRequest();
-
-        redeemFlexibleProductRequest.productId("1");
-
-        ApiResponse<RedeemFlexibleProductResponse> response =
-                api.redeemFlexibleProduct(redeemFlexibleProductRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000productId=1", signInputCaptor.getValue());
-        assertEquals(
-                "c4c7af86a6a8cfafc9909bb0dec0f67695e17aba2a88ca75e983de6e0b915279",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/flexible/redeem", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Redeem Locked Product(TRADE)
-     *
-     * <p>Redeem Locked Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1/3s per account
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void redeemLockedProductTest() throws ApiException, CryptoException {
-        RedeemLockedProductRequest redeemLockedProductRequest = new RedeemLockedProductRequest();
-
-        redeemLockedProductRequest.positionId("1");
-
-        ApiResponse<RedeemLockedProductResponse> response =
-                api.redeemLockedProduct(redeemLockedProductRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000positionId=1", signInputCaptor.getValue());
-        assertEquals(
-                "05345189012e725ecf394a569c76b468c3a9d6377f5b644a1b90e1551920ce91",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/locked/redeem", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Set Flexible Auto Subscribe(USER_DATA)
-     *
-     * <p>Set Flexible Auto Subscribe Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void setFlexibleAutoSubscribeTest() throws ApiException, CryptoException {
-        SetFlexibleAutoSubscribeRequest setFlexibleAutoSubscribeRequest =
-                new SetFlexibleAutoSubscribeRequest();
-
-        setFlexibleAutoSubscribeRequest.productId("1");
-        setFlexibleAutoSubscribeRequest.autoSubscribe(false);
-
-        ApiResponse<SetFlexibleAutoSubscribeResponse> response =
-                api.setFlexibleAutoSubscribe(setFlexibleAutoSubscribeRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000productId=1&autoSubscribe=false",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7f0e71e1d2216401bdf0ebda0fabfe4e4c1000d47e4c68eb693dac11779f033f",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/setAutoSubscribe",
-                actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Set Locked Auto Subscribe(USER_DATA)
-     *
-     * <p>Set locked auto subscribe Weight: 150
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void setLockedAutoSubscribeTest() throws ApiException, CryptoException {
-        SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest =
-                new SetLockedAutoSubscribeRequest();
-
-        setLockedAutoSubscribeRequest.positionId("1");
-        setLockedAutoSubscribeRequest.autoSubscribe(false);
-
-        ApiResponse<SetLockedAutoSubscribeResponse> response =
-                api.setLockedAutoSubscribe(setLockedAutoSubscribeRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000positionId=1&autoSubscribe=false",
-                signInputCaptor.getValue());
-        assertEquals(
-                "3a195934cb713ee1998b4fa336da6ec3a9a4b2087a91d11a2d5602c7af3474e0",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/setAutoSubscribe", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Set Locked Product Redeem Option(USER_DATA)
-     *
-     * <p>Set redeem option for Locked product Weight: 50
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void setLockedProductRedeemOptionTest() throws ApiException, CryptoException {
-        SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest =
-                new SetLockedProductRedeemOptionRequest();
-
-        setLockedProductRedeemOptionRequest.positionId("1");
-        setLockedProductRedeemOptionRequest.redeemTo("");
-
-        ApiResponse<SetLockedProductRedeemOptionResponse> response =
-                api.setLockedProductRedeemOption(setLockedProductRedeemOptionRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000positionId=1&redeemTo=", signInputCaptor.getValue());
-        assertEquals(
-                "f8aaddc07f48085384e59233efb3421133330e9bcd0357b99332f1202fe03d70",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/setRedeemOption", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Subscribe Flexible Product(TRADE)
-     *
-     * <p>Subscribe Flexible Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void subscribeFlexibleProductTest() throws ApiException, CryptoException {
-        SubscribeFlexibleProductRequest subscribeFlexibleProductRequest =
-                new SubscribeFlexibleProductRequest();
-
-        subscribeFlexibleProductRequest.productId("1");
-        subscribeFlexibleProductRequest.amount(1d);
-
-        ApiResponse<SubscribeFlexibleProductResponse> response =
-                api.subscribeFlexibleProduct(subscribeFlexibleProductRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000amount=1&productId=1", signInputCaptor.getValue());
-        assertEquals(
-                "d71f21fc51817b324b37ac741557e5f0e37ba4c300b9b0dcf20dadffde1a1e1a",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/flexible/subscribe", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Subscribe Locked Product(TRADE)
-     *
-     * <p>Subscribe Locked Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void subscribeLockedProductTest() throws ApiException, CryptoException {
-        SubscribeLockedProductRequest subscribeLockedProductRequest =
-                new SubscribeLockedProductRequest();
-
-        subscribeLockedProductRequest.projectId("1");
-        subscribeLockedProductRequest.amount(1d);
-
-        ApiResponse<SubscribeLockedProductResponse> response =
-                api.subscribeLockedProduct(subscribeLockedProductRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000amount=1&projectId=1", signInputCaptor.getValue());
-        assertEquals(
-                "7ef22d632c2aec6bea9e728707f8eac15fbf16144341682080788f00ceb268ac",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/simple-earn/locked/subscribe", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Collateral Record(USER_DATA)
-     *
-     * <p>Get Collateral Record * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getCollateralRecordTest() throws ApiException, CryptoException {
+    public void getCollateralRecordTest() throws ApiException, CryptoException, IOException {
         String productId = "1";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -698,35 +143,97 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("productId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "productId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "906323d23878072da9680bca3160b76d28b6ea07530e027f762757a381c263c0",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/history/collateralRecord",
-                actualRequest.url().encodedPath());
+                "906323d23878072da9680bca3160b76d28b6ea07530e027f762757a381c263c0", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/history/collateralRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Redemption Record(USER_DATA)
+     * Get Flexible Personal Left Quota (USER_DATA)
      *
-     * <p>Get Flexible Redemption Record * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Flexible Personal Left Quota Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleRedemptionRecordTest() throws ApiException, CryptoException {
+    public void getFlexiblePersonalLeftQuotaTest()
+            throws ApiException, CryptoException, IOException {
+        String productId = "1";
+        Long recvWindow = 5000L;
+        ApiResponse<GetFlexiblePersonalLeftQuotaResponse> response =
+                api.getFlexiblePersonalLeftQuota(productId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("productId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "3449171bcce7a8aa43ee9684da7eebf17feeecb24ed8fd2858ca78fcc5d87e85",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/personalLeftQuota", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Flexible Product Position (USER_DATA)
+     *
+     * <p>Get Flexible Product Position Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getFlexibleProductPositionTest() throws ApiException, CryptoException, IOException {
+        String asset = "USDC";
+        String productId = "1";
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetFlexibleProductPositionResponse> response =
+                api.getFlexibleProductPosition(asset, productId, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("asset=USDC&productId=1&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "205c48c4fd76f24599ab28f0ab325bb711d1ada679bb06451c62b46570fa2baa",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/position", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Flexible Redemption Record (USER_DATA)
+     *
+     * <p>Get Flexible Redemption Record Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getFlexibleRedemptionRecordTest()
+            throws ApiException, CryptoException, IOException {
         String productId = "1";
         String redeemId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -746,42 +253,39 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("productId=1&redeemId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "productId=1&redeemId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d1703f8758c55672f9a39da68d446692dde9bf216f7ebef51b7093b2a9d37bd1",
+                "907945e0a1a31a90ab8515ae45491ff57247c05d8372f41e47d0fde8b670e0fd",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/history/redemptionRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/flexible/history/redemptionRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Rewards History(USER_DATA)
+     * Get Flexible Rewards History (USER_DATA)
      *
-     * <p>Get Flexible Rewards History * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Flexible Rewards History Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleRewardsHistoryTest() throws ApiException, CryptoException {
-        String type = "Bonus";
+    public void getFlexibleRewardsHistoryTest() throws ApiException, CryptoException, IOException {
         String productId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long current = null;
-        Long size = null;
-        Long recvWindow = null;
+        OrderType type = OrderType.FAST;
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
         ApiResponse<GetFlexibleRewardsHistoryResponse> response =
-                api.getFlexibleRewardsHistory(type, productId, asset, startTime, endTime, current, size, recvWindow);
+                api.getFlexibleRewardsHistory(
+                        productId, asset, startTime, endTime, type, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -793,35 +297,65 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("productId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&type=FAST&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "productId=1&asset=&startTime=1623319461670&endTime=1641782889000&type=Bonus&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "aaca82b4120f35ab3bf0bc811eb9e830f570191c637ef87b11b4e820934b3f50",
+                "5dfd8a9ebbfa27d45697fb7599acc13aa5cbb47ab85d8e07abd9eae12f480bfc",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/history/rewardsRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/flexible/history/rewardsRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Flexible Subscription Record(USER_DATA)
+     * Get Flexible Subscription Preview (USER_DATA)
      *
-     * <p>Get Flexible Subscription Record * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Flexible Subscription Preview Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFlexibleSubscriptionRecordTest() throws ApiException, CryptoException {
+    public void getFlexibleSubscriptionPreviewTest()
+            throws ApiException, CryptoException, IOException {
+        String productId = "1";
+        Double amount = 1.0d;
+        Long recvWindow = 5000L;
+        ApiResponse<GetFlexibleSubscriptionPreviewResponse> response =
+                api.getFlexibleSubscriptionPreview(productId, amount, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("productId=1&amount=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "00a7c80c0c410b10c6a3067e01f82fc810a365b87c83c5086e7224f826896ff5",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/subscriptionPreview", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Flexible Subscription Record (USER_DATA)
+     *
+     * <p>Get Flexible Subscription Record Weight(IP): 150 Security Type: USER_DATA Notes: - The
+     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. -
+     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
+     * days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
+     * is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be
+     * returned. - If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30
+     * days&#39; data before &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getFlexibleSubscriptionRecordTest()
+            throws ApiException, CryptoException, IOException {
         String productId = "1";
         String purchaseId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -848,35 +382,98 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("productId=1&purchaseId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "productId=1&purchaseId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "e68ebd079318006615cac9e1f467bdc7c3ac82bf05a7180825541e5925b07e51",
+                "e7e61fce165f623d32fb05e19fcf43a882a872b5b3f3d35a5ab2f3560b59aaab",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/flexible/history/subscriptionRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/flexible/history/subscriptionRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Locked Redemption Record(USER_DATA)
+     * Get Locked Personal Left Quota (USER_DATA)
      *
-     * <p>Get Locked Redemption Record * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Locked Personal Left Quota Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLockedRedemptionRecordTest() throws ApiException, CryptoException {
+    public void getLockedPersonalLeftQuotaTest() throws ApiException, CryptoException, IOException {
+        String projectId = "1";
+        Long recvWindow = 5000L;
+        ApiResponse<GetLockedPersonalLeftQuotaResponse> response =
+                api.getLockedPersonalLeftQuota(projectId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("projectId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "7df8536b8711da59322819086e27ee0e183d18d1f4d6a68377c9c4a87f835ab8",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/personalLeftQuota", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Locked Product Position (USER_DATA)
+     *
+     * <p>Get Locked Product Position Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getLockedProductPositionTest() throws ApiException, CryptoException, IOException {
+        String asset = "USDC";
+        String positionId = "1";
+        String projectId = "1";
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetLockedProductPositionResponse> response =
+                api.getLockedProductPosition(
+                        asset, positionId, projectId, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("asset=USDC&positionId=1&projectId=1&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "55f8123bcf85be60aa9a94100d0eca7e18538319ae18a18cffe627d144e9f4c1",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/position", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Locked Redemption Record (USER_DATA)
+     *
+     * <p>Get Locked Redemption Record Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getLockedRedemptionRecordTest() throws ApiException, CryptoException, IOException {
         String positionId = "1";
         String redeemId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -896,34 +493,30 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("positionId=1&redeemId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "positionId=1&redeemId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b969874fd814b72e7c29bdebdc319072c1dc23126f0a117b9b22f3617918204d",
+                "46bd7992ea72294fdb0f7e36c07b29e85adeea06e64d399efb120be0b269ebe1",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/history/redemptionRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/locked/history/redemptionRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Locked Rewards History(USER_DATA)
+     * Get Locked Rewards History (USER_DATA)
      *
-     * <p>Get Locked Rewards History * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Locked Rewards History Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLockedRewardsHistoryTest() throws ApiException, CryptoException {
+    public void getLockedRewardsHistoryTest() throws ApiException, CryptoException, IOException {
         String positionId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -943,34 +536,65 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("positionId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "positionId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "fa00e647d10a074646817619a9a8485086bbc8257eed00382562bf960d5f0143",
+                "7279f71f44a4e793bb7189854628ec3b60d49e559c55a525145a848ff3ab9f85",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/history/rewardsRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/locked/history/rewardsRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Locked Subscription Record(USER_DATA)
+     * Get Locked Subscription Preview (USER_DATA)
      *
-     * <p>Get Locked Subscription Record * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Locked Subscription Preview Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLockedSubscriptionRecordTest() throws ApiException, CryptoException {
+    public void getLockedSubscriptionPreviewTest()
+            throws ApiException, CryptoException, IOException {
+        String projectId = "1";
+        Double amount = 1.0d;
+        Boolean autoSubscribe = true;
+        Long recvWindow = 5000L;
+        ApiResponse<GetLockedSubscriptionPreviewResponse> response =
+                api.getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("projectId=1&amount=1&autoSubscribe=true&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "ecc2c9a2d68e05051696f604598a440ee1aeaed7b90bc546e17a9edcdc6ae43a",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/subscriptionPreview", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Locked Subscription Record (USER_DATA)
+     *
+     * <p>Get Locked Subscription Record Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getLockedSubscriptionRecordTest()
+            throws ApiException, CryptoException, IOException {
         String purchaseId = "1";
-        String asset = "";
+        String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -990,33 +614,30 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("purchaseId=1&asset=USDC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "purchaseId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bd233092b66eaad8df11be01a5a41670f67daa39dfc19880a9d14424471cfba7",
+                "4235939d0db60868b64c46b7e89d7546a9fdc5d2240aa82e65b4de84e74248d0",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/simple-earn/locked/history/subscriptionRecord",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/simple-earn/locked/history/subscriptionRecord", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Rate History(USER_DATA)
+     * Get Rate History (USER_DATA)
      *
-     * <p>Get Rate History * The time between startTime and endTime cannot be longer than 1 year. *
-     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
-     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
-     * is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be
-     * returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30
-     * days&#39; data before &#x60;endTime&#x60; will be returned. Weight: 150
+     * <p>Get Rate History Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * startTime and endTime cannot be longer than 1 year. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getRateHistoryTest() throws ApiException, CryptoException {
+    public void getRateHistoryTest() throws ApiException, CryptoException, IOException {
         String productId = "1";
-        String aprPeriod = "DAY";
+        AprPeriod aprPeriod = AprPeriod.DAY;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -1036,14 +657,348 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("productId=1&aprPeriod=DAY&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("0af754bef31bbc2eacb35fc0379a27fbebb9e93765a6b817a1c1a593149b478f", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/history/rateHistory", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Simple Earn Flexible Product List (USER_DATA)
+     *
+     * <p>Get available Simple Earn flexible product list Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSimpleEarnFlexibleProductListTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "USDC";
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetSimpleEarnFlexibleProductListResponse> response =
+                api.getSimpleEarnFlexibleProductList(asset, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
         assertEquals(
-                "productId=1&aprPeriod=DAY&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "asset=USDC&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "0af754bef31bbc2eacb35fc0379a27fbebb9e93765a6b817a1c1a593149b478f",
+                "1bd00651b1d3470bc5207521f585044d8795a618d07615786a0f9a25afaf8b35",
                 actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/list", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Simple Earn Locked Product List (USER_DATA)
+     *
+     * <p>Get Simple Earn Locked Product List Weight(IP): 150 Security Type: USER_DATA Notes: - Get
+     * available Simple Earn locked product list
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSimpleEarnLockedProductListTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "USDC";
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetSimpleEarnLockedProductListResponse> response =
+                api.getSimpleEarnLockedProductList(asset, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("asset=USDC&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "/sapi/v1/simple-earn/flexible/history/rateHistory",
-                actualRequest.url().encodedPath());
+                "1bd00651b1d3470bc5207521f585044d8795a618d07615786a0f9a25afaf8b35",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/list", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Redeem Flexible Product (TRADE)
+     *
+     * <p>Redeem Flexible Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void redeemFlexibleProductTest() throws ApiException, CryptoException, IOException {
+        RedeemFlexibleProductRequest redeemFlexibleProductRequest =
+                new RedeemFlexibleProductRequest();
+        redeemFlexibleProductRequest.productId("1");
+
+        ApiResponse<RedeemFlexibleProductResponse> response =
+                api.redeemFlexibleProduct(redeemFlexibleProductRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000productId=1&destAccount=SPOT&redeemAll=false", signInputCaptor.getValue());
+        assertEquals(
+                "1923492b39982c2a14769c4c96e75365b8627a00f73639458fbd03886e8097bc",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/redeem", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Redeem Locked Product (TRADE)
+     *
+     * <p>Redeem Locked Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void redeemLockedProductTest() throws ApiException, CryptoException, IOException {
+        RedeemLockedProductRequest redeemLockedProductRequest = new RedeemLockedProductRequest();
+        redeemLockedProductRequest.positionId("1");
+
+        ApiResponse<RedeemLockedProductResponse> response =
+                api.redeemLockedProduct(redeemLockedProductRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000positionId=1", signInputCaptor.getValue());
+        assertEquals(
+                "05345189012e725ecf394a569c76b468c3a9d6377f5b644a1b90e1551920ce91", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/redeem", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Set Flexible Auto Subscribe (USER_DATA)
+     *
+     * <p>Set Flexible Auto Subscribe Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void setFlexibleAutoSubscribeTest() throws ApiException, CryptoException, IOException {
+        SetFlexibleAutoSubscribeRequest setFlexibleAutoSubscribeRequest =
+                new SetFlexibleAutoSubscribeRequest();
+        setFlexibleAutoSubscribeRequest.productId("1");
+        setFlexibleAutoSubscribeRequest.autoSubscribe(true);
+
+        ApiResponse<SetFlexibleAutoSubscribeResponse> response =
+                api.setFlexibleAutoSubscribe(setFlexibleAutoSubscribeRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000productId=1&autoSubscribe=true", signInputCaptor.getValue());
+        assertEquals(
+                "d7860697c281e19aa84608fd813c8aa97ae6f872d6be69e3b2917e52c5452e21",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/setAutoSubscribe", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Set Locked Auto Subscribe (USER_DATA)
+     *
+     * <p>Set locked auto subscribe Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void setLockedAutoSubscribeTest() throws ApiException, CryptoException, IOException {
+        SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest =
+                new SetLockedAutoSubscribeRequest();
+        setLockedAutoSubscribeRequest.positionId("1");
+        setLockedAutoSubscribeRequest.autoSubscribe(true);
+
+        ApiResponse<SetLockedAutoSubscribeResponse> response =
+                api.setLockedAutoSubscribe(setLockedAutoSubscribeRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000positionId=1&autoSubscribe=true", signInputCaptor.getValue());
+        assertEquals(
+                "ccf4485e39f5a5902d6132dc3dff0cebd2ef3a8bd3920de8ebf5ab46d448213a",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/setAutoSubscribe", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Set Locked Product Redeem Option (USER_DATA)
+     *
+     * <p>Set redeem option for Locked product Weight(IP): 50 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void setLockedProductRedeemOptionTest()
+            throws ApiException, CryptoException, IOException {
+        SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest =
+                new SetLockedProductRedeemOptionRequest();
+        setLockedProductRedeemOptionRequest.positionId("1");
+        setLockedProductRedeemOptionRequest.redeemTo(RedeemTo.SPOT);
+
+        ApiResponse<SetLockedProductRedeemOptionResponse> response =
+                api.setLockedProductRedeemOption(setLockedProductRedeemOptionRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000positionId=1&redeemTo=SPOT", signInputCaptor.getValue());
+        assertEquals(
+                "54b4c36882fe7b0b06bb851e208c082cdc9e6d0ca526a21cbb323a3659e02a2e",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/setRedeemOption", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Simple Account (USER_DATA)
+     *
+     * <p>Simple Account query Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void simpleAccountTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<SimpleAccountResponse> response = api.simpleAccount(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/account", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Subscribe Flexible Product (TRADE)
+     *
+     * <p>Subscribe Flexible Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void subscribeFlexibleProductTest() throws ApiException, CryptoException, IOException {
+        SubscribeFlexibleProductRequest subscribeFlexibleProductRequest =
+                new SubscribeFlexibleProductRequest();
+        subscribeFlexibleProductRequest.productId("1");
+        subscribeFlexibleProductRequest.amount(1.0d);
+
+        ApiResponse<SubscribeFlexibleProductResponse> response =
+                api.subscribeFlexibleProduct(subscribeFlexibleProductRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000amount=1&productId=1&sourceAccount=SPOT&autoSubscribe=true", signInputCaptor.getValue());
+        assertEquals(
+                "0360447bba35d792b76aff3e94da6ca8061180e0405465a27d6f0c25889c26a9",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/flexible/subscribe", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Subscribe Locked Product (TRADE)
+     *
+     * <p>Subscribe Locked Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void subscribeLockedProductTest() throws ApiException, CryptoException, IOException {
+        SubscribeLockedProductRequest subscribeLockedProductRequest =
+                new SubscribeLockedProductRequest();
+        subscribeLockedProductRequest.projectId("1");
+        subscribeLockedProductRequest.amount(1.0d);
+
+        ApiResponse<SubscribeLockedProductResponse> response =
+                api.subscribeLockedProduct(subscribeLockedProductRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000amount=1&sourceAccount=SPOT&redeemTo=SPOT&autoSubscribe=false&projectId=1", signInputCaptor.getValue());
+        assertEquals(
+                "a7686908b7fbd13b024b68567f206f1335df97bc0798274055745eee6e379047",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/simple-earn/locked/subscribe", actualRequest.url().encodedPath());
     }
 }

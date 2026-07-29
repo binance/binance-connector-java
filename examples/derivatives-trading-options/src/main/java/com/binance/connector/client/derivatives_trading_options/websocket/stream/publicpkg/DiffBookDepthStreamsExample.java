@@ -31,7 +31,6 @@ public class DiffBookDepthStreamsExample {
      */
     public void diffBookDepthStreamsExample() throws ApiException, InterruptedException {
         DiffBookDepthStreamsRequest diffBookDepthStreamsRequest = new DiffBookDepthStreamsRequest();
-        diffBookDepthStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> response =
                 getApi().diffBookDepthStreams(diffBookDepthStreamsRequest);
         while (true) {

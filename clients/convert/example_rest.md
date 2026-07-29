@@ -1,22 +1,22 @@
 ## MarketData
 
-[GET /sapi/v1/convert/exchangeInfo](https://developers.binance.com/docs/convert/market-data/) - listAllConvertPairs - [ListAllConvertPairsExample.java:48](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/ListAllConvertPairsExample.java#L48)
+[GET /sapi/v1/convert/exchangeInfo](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#list-all-convert-pairs) - listAllConvertPairs - [ListAllConvertPairsExample.java:38](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/ListAllConvertPairsExample.java#L38)
 
-[GET /sapi/v1/convert/assetInfo](https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset) - queryOrderQuantityPrecisionPerAsset - [QueryOrderQuantityPrecisionPerAssetExample.java:46](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/QueryOrderQuantityPrecisionPerAssetExample.java#L46)
+[GET /sapi/v1/convert/assetInfo](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#query-order-quantity-precision-per-asset) - queryOrderQuantityPrecisionPerAsset - [QueryOrderQuantityPrecisionPerAssetExample.java:35](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/marketdata/QueryOrderQuantityPrecisionPerAssetExample.java#L35)
 
 ## Trade
 
-[POST /sapi/v1/convert/acceptQuote](https://developers.binance.com/docs/convert/trade/Accept-Quote) - acceptQuote - [AcceptQuoteExample.java:47](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/AcceptQuoteExample.java#L47)
+[POST /sapi/v1/convert/acceptQuote](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#accept-quote) - acceptQuote - [AcceptQuoteExample.java:36](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/AcceptQuoteExample.java#L36)
 
-[POST /sapi/v1/convert/limit/cancelOrder](https://developers.binance.com/docs/convert/trade/Cancel-Order) - cancelLimitOrder - [CancelLimitOrderExample.java:47](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/CancelLimitOrderExample.java#L47)
+[POST /sapi/v1/convert/limit/cancelOrder](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#cancel-limit-order) - cancelLimitOrder - [CancelLimitOrderExample.java:36](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/CancelLimitOrderExample.java#L36)
 
-[GET /sapi/v1/convert/tradeFlow](https://developers.binance.com/docs/convert/trade/Get-Convert-Trade-History) - getConvertTradeHistory - [GetConvertTradeHistoryExample.java:47](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/GetConvertTradeHistoryExample.java#L47)
+[GET /sapi/v1/convert/tradeFlow](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#get-convert-trade-history) - getConvertTradeHistory - [GetConvertTradeHistoryExample.java:36](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/GetConvertTradeHistoryExample.java#L36)
 
-[GET /sapi/v1/convert/orderStatus](https://developers.binance.com/docs/convert/trade/Order-Status) - orderStatus - [OrderStatusExample.java:46](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/OrderStatusExample.java#L46)
+[GET /sapi/v1/convert/orderStatus](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#order-status) - orderStatus - [OrderStatusExample.java:35](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/OrderStatusExample.java#L35)
 
-[POST /sapi/v1/convert/limit/placeOrder](https://developers.binance.com/docs/convert/trade/Place-Order) - placeLimitOrder - [PlaceLimitOrderExample.java:50](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/PlaceLimitOrderExample.java#L50)
+[POST /sapi/v1/convert/limit/placeOrder](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#place-limit-order) - placeLimitOrder - [PlaceLimitOrderExample.java:42](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/PlaceLimitOrderExample.java#L42)
 
-[GET /sapi/v1/convert/limit/queryOpenOrders](https://developers.binance.com/docs/convert/trade/Query-Order) - queryLimitOpenOrders - [QueryLimitOpenOrdersExample.java:46](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/QueryLimitOpenOrdersExample.java#L46)
+[GET /sapi/v1/convert/limit/queryOpenOrders](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#query-limit-open-orders) - queryLimitOpenOrders - [QueryLimitOpenOrdersExample.java:35](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/QueryLimitOpenOrdersExample.java#L35)
 
-[POST /sapi/v1/convert/getQuote](https://developers.binance.com/docs/convert/trade/Send-quote-request) - sendQuoteRequest - [SendQuoteRequestExample.java:49](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/SendQuoteRequestExample.java#L49)
+[POST /sapi/v1/convert/getQuote](https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#send-quote-request) - sendQuoteRequest - [SendQuoteRequestExample.java:38](/examples/convert/src/main/java/com/binance/connector/client/convert/rest/trade/SendQuoteRequestExample.java#L38)
 

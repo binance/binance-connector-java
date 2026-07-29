@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**assets** | [**QueryMarginAvailableInventoryResponseAssets**](QueryMarginAvailableInventoryResponseAssets.md) |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**assets** | **Map&lt;String, String&gt;** | Available inventory per asset. Keys are asset symbols, values are available amounts. |  [optional] |
+|**updateTime** | **Long** | update Time. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NewUmOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewUmOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -59,13 +59,13 @@ public class NewUmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce;
+    private TimeInForce timeInForce = TimeInForce.GTC;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -77,7 +77,7 @@ public class NewUmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -95,7 +95,7 @@ public class NewUmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
 
@@ -108,7 +108,7 @@ public class NewUmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
 
     public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
 
@@ -130,7 +130,7 @@ public class NewUmOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -185,7 +185,7 @@ public class NewUmOrderRequest {
         this.positionSide = positionSide;
     }
 
-    public NewUmOrderRequest type(@jakarta.annotation.Nonnull Type type) {
+    public NewUmOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -198,11 +198,11 @@ public class NewUmOrderRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public Type getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -232,7 +232,7 @@ public class NewUmOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Place amount
      *
      * @return quantity
      */
@@ -246,7 +246,7 @@ public class NewUmOrderRequest {
         this.quantity = quantity;
     }
 
-    public NewUmOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public NewUmOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -257,11 +257,12 @@ public class NewUmOrderRequest {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    @Valid
+    public ReduceOnly getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
@@ -271,7 +272,7 @@ public class NewUmOrderRequest {
     }
 
     /**
-     * Get price
+     * Order price
      *
      * @return price
      */
@@ -292,7 +293,8 @@ public class NewUmOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
      *
      * @return newClientOrderId
      */
@@ -375,7 +377,10 @@ public class NewUmOrderRequest {
     }
 
     /**
-     * Get goodTillDate
+     * order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set
+     * to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be
+     * ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds
+     * and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
      *
      * @return goodTillDate
      */
@@ -629,18 +634,14 @@ public class NewUmOrderRequest {
             PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
         // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())

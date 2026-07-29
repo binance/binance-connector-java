@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetSoftStakingProductListResponse;
+import java.io.IOException;
 
 /** API examples for SoftStakingApi */
 public class GetSoftStakingProductListExample {
@@ -27,12 +28,12 @@ public class GetSoftStakingProductListExample {
     /**
      * Get Soft Staking Product List (USER_DATA)
      *
-     * <p>Get the available Soft Staking product list. Weight: 50
+     * <p>Get the available Soft Staking product list. Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSoftStakingProductListExample() throws ApiException {
-        String asset = "";
+    public void getSoftStakingProductListExample() throws ApiException, IOException {
+        String asset = "BTC";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

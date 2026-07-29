@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetDownloadIdForUmFuturesTransactionHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetDownloadIdForUmFuturesTransactionHistoryExample {
@@ -28,13 +29,15 @@ public class GetDownloadIdForUmFuturesTransactionHistoryExample {
     /**
      * Get Download Id For UM Futures Transaction History (USER_DATA)
      *
-     * <p>Get download id for UM futures transaction history * Request Limitation is 5 times per
-     * month, shared by front end download page and rest api * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year Weight: 1500
+     * <p>Get download id for UM futures transaction history Weight(IP): 1500 Security Type:
+     * USER_DATA Notes: - Request Limitation is 5 times per month, shared by front end download page
+     * and rest api - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be
+     * longer than 1 year
      *
      * @throws ApiException if the Api call fails
      */
-    public void getDownloadIdForUmFuturesTransactionHistoryExample() throws ApiException {
+    public void getDownloadIdForUmFuturesTransactionHistoryExample()
+            throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;

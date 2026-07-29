@@ -7,11 +7,11 @@ All URIs are relative to *https://api.binance.com*
 | [**allCoinsInformation**](CapitalApi.md#allCoinsInformation) | **GET** /sapi/v1/capital/config/getall | All Coins&#39; Information (USER_DATA) |
 | [**depositAddress**](CapitalApi.md#depositAddress) | **GET** /sapi/v1/capital/deposit/address | Deposit Address(supporting network) (USER_DATA) |
 | [**depositHistory**](CapitalApi.md#depositHistory) | **GET** /sapi/v1/capital/deposit/hisrec | Deposit History (supporting network) (USER_DATA) |
-| [**fetchDepositAddressListWithNetwork**](CapitalApi.md#fetchDepositAddressListWithNetwork) | **GET** /sapi/v1/capital/deposit/address/list | Fetch deposit address list with network(USER_DATA) |
+| [**fetchDepositAddressListWithNetwork**](CapitalApi.md#fetchDepositAddressListWithNetwork) | **GET** /sapi/v1/capital/deposit/address/list | Fetch deposit address list with network (USER_DATA) |
 | [**fetchWithdrawAddressList**](CapitalApi.md#fetchWithdrawAddressList) | **GET** /sapi/v1/capital/withdraw/address/list | Fetch withdraw address list (USER_DATA) |
 | [**fetchWithdrawQuota**](CapitalApi.md#fetchWithdrawQuota) | **GET** /sapi/v1/capital/withdraw/quota | Fetch withdraw quota (USER_DATA) |
 | [**oneClickArrivalDepositApply**](CapitalApi.md#oneClickArrivalDepositApply) | **POST** /sapi/v1/capital/deposit/credit-apply | One click arrival deposit apply (for expired address deposit) (USER_DATA) |
-| [**withdraw**](CapitalApi.md#withdraw) | **POST** /sapi/v1/capital/withdraw/apply | Withdraw(USER_DATA) |
+| [**withdraw**](CapitalApi.md#withdraw) | **POST** /sapi/v1/capital/withdraw/apply | Withdraw (USER_DATA) |
 | [**withdrawHistory**](CapitalApi.md#withdrawHistory) | **GET** /sapi/v1/capital/withdraw/history | Withdraw History (supporting network) (USER_DATA) |
 
 
@@ -21,7 +21,7 @@ All URIs are relative to *https://api.binance.com*
 
 All Coins&#39; Information (USER_DATA)
 
-Get information of coins (available for deposit and withdraw) for user.  Weight: 10
+Get information of coins (available for deposit and withdraw) for user.  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -38,7 +38,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     CapitalApi apiInstance = new CapitalApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AllCoinsInformationResponse result = apiInstance.allCoinsInformation(recvWindow);
       System.out.println(result);
@@ -83,7 +83,7 @@ No authorization required
 
 Deposit Address(supporting network) (USER_DATA)
 
-Fetch deposit address with network.  * If &#x60;network&#x60; is not send, return with default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. * &#x60;amount&#x60; needs to be sent if using LIGHTNING network  Weight: 10
+Fetch deposit address with network.  Weight(IP): 10  Security Type: USER_DATA  Notes: - If &#x60;network&#x60; is not send, return with default network of the coin. - You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - &#x60;amount&#x60; needs to be sent if using LIGHTNING network
 
 ### Example
 ```java
@@ -100,10 +100,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     CapitalApi apiInstance = new CapitalApi(defaultClient);
-    String coin = "coin_example"; // String | `coin` refers to the parent network address format that the address is using
+    String coin = "BTC"; // String | `coin` refers to the parent network address format that the address is using
     String network = "network_example"; // String | 
-    Double amount = 3.4D; // Double | 
-    Long recvWindow = 56L; // Long | 
+    Double amount = 1.0D; // Double | 
+    Long recvWindow = 5000L; // Long | 
     try {
       DepositAddressResponse result = apiInstance.depositAddress(coin, network, amount, recvWindow);
       System.out.println(result);
@@ -151,7 +151,7 @@ No authorization required
 
 Deposit History (supporting network) (USER_DATA)
 
-Fetch deposit history.   * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must be less than 90 days.  Weight: 1
+Fetch deposit history.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days.
 
 ### Example
 ```java
@@ -168,15 +168,15 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     CapitalApi apiInstance = new CapitalApi(defaultClient);
-    Boolean includeSource = true; // Boolean | Default: `false`, return `sourceAddress`field when set to `true`
-    String coin = "coin_example"; // String | 
-    Long status = 56L; // Long | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long offset = 56L; // Long | Default: 0
-    Long limit = 56L; // Long | min 7, max 30, default 7
-    Long recvWindow = 56L; // Long | 
-    String txId = "txId_example"; // String | 
+    Boolean includeSource = false; // Boolean | return `sourceAddress` field when set to `true`
+    String coin = "BTC"; // String | 
+    Status status = Status.fromValue("0"); // Status | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+    Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
+    Long endTime = 1641782889000L; // Long | Default: present timestamp
+    Long offset = 0L; // Long | 
+    Long limit = 1000L; // Long | 
+    Long recvWindow = 5000L; // Long | 
+    String txId = "1"; // String | 
     try {
       DepositHistoryResponse result = apiInstance.depositHistory(includeSource, coin, status, startTime, endTime, offset, limit, recvWindow, txId);
       System.out.println(result);
@@ -195,13 +195,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **includeSource** | **Boolean**| Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60; | [optional] |
+| **includeSource** | **Boolean**| return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | [optional] |
 | **coin** | **String**|  | [optional] |
-| **status** | **Long**| 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | [optional] |
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
-| **offset** | **Long**| Default: 0 | [optional] |
-| **limit** | **Long**| min 7, max 30, default 7 | [optional] |
+| **status** | [**Status**](.md)| 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success | [optional] [enum: 0, 1, 2, 6, 7, 8] |
+| **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |
+| **endTime** | **Long**| Default: present timestamp | [optional] |
+| **offset** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 | **txId** | **String**|  | [optional] |
 
@@ -227,9 +227,9 @@ No authorization required
 # **fetchDepositAddressListWithNetwork**
 > FetchDepositAddressListWithNetworkResponse fetchDepositAddressListWithNetwork(coin, network)
 
-Fetch deposit address list with network(USER_DATA)
+Fetch deposit address list with network (USER_DATA)
 
-Fetch deposit address list with network.   * If network is not send, return with default network of the coin. * You can get network and isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60;.  Weight: 10
+Fetch deposit address list with network.  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -246,8 +246,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     CapitalApi apiInstance = new CapitalApi(defaultClient);
-    String coin = "coin_example"; // String | `coin` refers to the parent network address format that the address is using
-    String network = "network_example"; // String | 
+    String coin = "BTC"; // String | Coin name
+    String network = "network_example"; // String | If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of `Get /sapi/v1/capital/config/getall`
     try {
       FetchDepositAddressListWithNetworkResponse result = apiInstance.fetchDepositAddressListWithNetwork(coin, network);
       System.out.println(result);
@@ -266,8 +266,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **coin** | **String**| &#x60;coin&#x60; refers to the parent network address format that the address is using | |
-| **network** | **String**|  | [optional] |
+| **coin** | **String**| Coin name | |
+| **network** | **String**| If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60; | [optional] |
 
 ### Return type
 
@@ -293,7 +293,7 @@ No authorization required
 
 Fetch withdraw address list (USER_DATA)
 
-Fetch withdraw address list  Weight: 10
+Fetch withdraw address list  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -351,7 +351,7 @@ No authorization required
 
 Fetch withdraw quota (USER_DATA)
 
-Fetch withdraw quota  Weight: 10
+Fetch withdraw quota  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -409,7 +409,7 @@ No authorization required
 
 One click arrival deposit apply (for expired address deposit) (USER_DATA)
 
-Apply deposit credit for expired address (One click arrival)  * Params need to be in the POST body  Weight: 1
+Apply deposit credit for expired address (One click arrival)  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -445,7 +445,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **oneClickArrivalDepositApplyRequest** | [**OneClickArrivalDepositApplyRequest**](OneClickArrivalDepositApplyRequest.md)|  | |
+| **oneClickArrivalDepositApplyRequest** | [**OneClickArrivalDepositApplyRequest**](OneClickArrivalDepositApplyRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -469,9 +469,9 @@ No authorization required
 # **withdraw**
 > WithdrawResponse withdraw(withdrawRequest)
 
-Withdraw(USER_DATA)
+Withdraw (USER_DATA)
 
-Submit a withdraw request.   * If &#x60;network&#x60; not send, return with default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. * To check if travel rule is required, by using  &#x60;GET /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than &#x60;NIL&#x60; you will need update SAPI to &#x60;POST /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to travel rule please refer to the Travel Rule SAPI. * For networks that do not support memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60; field for such networks. You can check whether a network requires a tag via &#x60;GET /sapi/v1/capital/config/getall&#x60;: * If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; → memo/tag is required. * If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not supported; omit &#x60;addressTag&#x60;.  Weight: 900
+Submit a withdraw request  Weight(UID): 900  Security Type: USER_DATA  Notes: - If &#x60;network&#x60; not send, return with default network of the coin. - You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - To check if travel rule is required, by using &#x60;GET /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than &#x60;NIL&#x60; you will need update SAPI to &#x60;POST /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to travel rule please refer to the Travel Rule SAPI. - \&quot;For networks that do not support memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60; field for such networks. You can check whether a network requires a tag via &#x60;GET /sapi/v1/capital/config/getall&#x60;: If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; → memo/tag is required. If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not supported; omit &#x60;addressTag&#x60;.\&quot;
 
 ### Example
 ```java
@@ -533,7 +533,7 @@ No authorization required
 
 Withdraw History (supporting network) (USER_DATA)
 
-Fetch withdraw history.  * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. * If &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 7 days. * If &#x60;withdrawOrderId&#x60; is sent, &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records by default. * Maximum support &#x60;idList&#x60; number is 45.  Weight: 18000 Request limit: 10 requests per second
+Fetch withdraw history  Weight(UID): 18000 (10 requests per second)  Security Type: USER_DATA  Notes: - &#x60;network&#x60; may not be in the response for old withdraw. - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. - If &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 7 days. - If &#x60;withdrawOrderId&#x60; is sent, &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records by default. - Maximum support &#x60;idList&#x60; number is 45.
 
 ### Example
 ```java
@@ -550,15 +550,15 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     CapitalApi apiInstance = new CapitalApi(defaultClient);
-    String coin = "coin_example"; // String | 
-    String withdrawOrderId = "withdrawOrderId_example"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
-    Long status = 56L; // Long | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
-    Long offset = 56L; // Long | Default: 0
-    Long limit = 56L; // Long | min 7, max 30, default 7
+    String coin = "BTC"; // String | 
+    String withdrawOrderId = "1"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
+    Long status = 0L; // Long | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+    Long offset = 0L; // Long | Default: 0
+    Long limit = 1000L; // Long | 
     String idList = "idList_example"; // String | id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,`
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
+    Long endTime = 1641782889000L; // Long | Default: present timestamp
+    Long recvWindow = 5000L; // Long | 
     try {
       WithdrawHistoryResponse result = apiInstance.withdrawHistory(coin, withdrawOrderId, status, offset, limit, idList, startTime, endTime, recvWindow);
       System.out.println(result);
@@ -581,10 +581,10 @@ public class Example {
 | **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
 | **status** | **Long**| 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | [optional] |
 | **offset** | **Long**| Default: 0 | [optional] |
-| **limit** | **Long**| min 7, max 30, default 7 | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **idList** | **String**| id list returned in the response of POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; | [optional] |
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
+| **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |
+| **endTime** | **Long**| Default: present timestamp | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

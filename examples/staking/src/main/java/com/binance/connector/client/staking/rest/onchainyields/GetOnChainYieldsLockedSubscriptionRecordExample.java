@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedSubscriptionRecordResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class GetOnChainYieldsLockedSubscriptionRecordExample {
@@ -27,20 +28,21 @@ public class GetOnChainYieldsLockedSubscriptionRecordExample {
     /**
      * Get On-chain Yields Locked Subscription Record (USER_DATA)
      *
-     * <p>Get On-chain Yields Locked Subscription Record * The time between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
+     * <p>Get On-chain Yields Locked Subscription Record Weight(IP): 50 Security Type: USER_DATA
+     * Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than
+     * 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last
+     * 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
      * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 50
+     * returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOnChainYieldsLockedSubscriptionRecordExample() throws ApiException {
+    public void getOnChainYieldsLockedSubscriptionRecordExample() throws ApiException, IOException {
         String purchaseId = "1";
         String clientId = "1";
-        String asset = "";
+        String asset = "BTC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

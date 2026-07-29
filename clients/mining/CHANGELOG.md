@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.0 - 2026-07-29
+
+### Changed (1)
+
+- Modified response for `statisticList()` (`GET /sapi/v1/mining/statistics/user/status`):
+  - `data`.`profitToday`: property `BSV` deleted
+  - `data`.`profitToday`: property `BTC` deleted
+  - `data`.`profitToday`: property `BCH` deleted
+  - `data`.`profitYesterday`: property `BCH` deleted
+  - `data`.`profitYesterday`: property `BSV` deleted
+  - `data`.`profitYesterday`: property `BTC` deleted
+
 ## 3.0.1 - 2026-04-30
 
 - Update `binance/common` module to version `2.4.2`.

@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.BasisResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class BasisExample {
@@ -30,16 +31,16 @@ public class BasisExample {
     /**
      * Basis
      *
-     * <p>Query basis * If startTime and endTime are not sent, the most recent data is returned. *
-     * Only the data of the latest 30 days is available. Weight: 1
+     * <p>Query basis Weight(IP): 1 Notes: - If startTime and endTime are not sent, the most recent
+     * data is returned. - Only the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
-    public void basisExample() throws ApiException {
+    public void basisExample() throws ApiException, IOException {
         String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<BasisResponse> response =

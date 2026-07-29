@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class GetOpenSymbolListExample {
@@ -27,12 +28,12 @@ public class GetOpenSymbolListExample {
     /**
      * Get Open Symbol List (MARKET_DATA)
      *
-     * <p>Get the list of symbols that are scheduled to be opened for trading in the market. Weight:
-     * 100
+     * <p>Get the list of symbols that are scheduled to be opened for trading in the market.
+     * Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOpenSymbolListExample() throws ApiException {
+    public void getOpenSymbolListExample() throws ApiException, IOException {
         ApiResponse<GetOpenSymbolListResponse> response = getApi().getOpenSymbolList();
         System.out.println(response.getData());
     }

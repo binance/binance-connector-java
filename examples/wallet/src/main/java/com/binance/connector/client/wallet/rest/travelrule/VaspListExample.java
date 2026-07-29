@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.VaspListResponse;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class VaspListExample {
@@ -27,11 +28,11 @@ public class VaspListExample {
     /**
      * VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
      *
-     * <p>Fetch the VASP list for local entities. Weight: 1
+     * <p>Fetch the VASP list for local entities. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void vaspListExample() throws ApiException {
+    public void vaspListExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<VaspListResponse> response = getApi().vaspList(recvWindow);
         System.out.println(response.getData());

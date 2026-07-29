@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.DeltaEnabled;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class SwitchDeltaModeExample {
@@ -27,15 +29,16 @@ public class SwitchDeltaModeExample {
     }
 
     /**
-     * Switch Delta Mode(TRADE)
+     * Switch Delta Mode (TRADE)
      *
-     * <p>Switch the Delta mode for existing PM PRO / PM RETAIL accounts. Weight: 1500
+     * <p>Switch the Delta mode for existing PM PRO / PM RETAIL accounts. Weight(IP): 1500 Security
+     * Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void switchDeltaModeExample() throws ApiException {
+    public void switchDeltaModeExample() throws ApiException, IOException {
         SwitchDeltaModeRequest switchDeltaModeRequest = new SwitchDeltaModeRequest();
-        switchDeltaModeRequest.deltaEnabled("");
+        switchDeltaModeRequest.deltaEnabled(DeltaEnabled.TRUE);
         ApiResponse<SwitchDeltaModeResponse> response =
                 getApi().switchDeltaMode(switchDeltaModeRequest);
         System.out.println(response.getData());

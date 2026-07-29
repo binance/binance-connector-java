@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**time** | **Long** | Transaction time |  [optional] |
 
 
 

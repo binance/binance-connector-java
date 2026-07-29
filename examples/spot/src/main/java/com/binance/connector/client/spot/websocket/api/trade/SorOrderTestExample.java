@@ -31,19 +31,19 @@ public class SorOrderTestExample {
     }
 
     /**
-     * WebSocket Test new order using SOR
+     * Test new order using SOR (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow using smart order routing (SOR). Creates
-     * and validates a new order but does not send it into the matching engine. Weight: |Condition |
-     * Request Weight| |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1
-     * | |With &#x60;computeCommissionRates&#x60; |20 |
+     * and validates a new order but does not send it into the matching engine. Weight: | Condition
+     * | Request Weight | | --- | --- | | Without &#x60;computeCommissionRates&#x60; | 1 | | With
+     * &#x60;computeCommissionRates&#x60; | 20 | Security Type: TRADE Notes: **Data Source:** Memory
      */
     public void sorOrderTestExampleAsync() {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
         sorOrderTestRequest.symbol("BNBUSDT");
         sorOrderTestRequest.side(Side.BUY);
         sorOrderTestRequest.type(OrderType.MARKET);
-        sorOrderTestRequest.quantity(1.0d);
+        sorOrderTestRequest.quantity(1d);
         CompletableFuture<SorOrderTestResponse> future = getApi().sorOrderTest(sorOrderTestRequest);
         future.handle(
                 (response, error) -> {
@@ -56,19 +56,19 @@ public class SorOrderTestExample {
     }
 
     /**
-     * WebSocket Test new order using SOR
+     * Test new order using SOR (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow using smart order routing (SOR). Creates
-     * and validates a new order but does not send it into the matching engine. Weight: |Condition |
-     * Request Weight| |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1
-     * | |With &#x60;computeCommissionRates&#x60; |20 |
+     * and validates a new order but does not send it into the matching engine. Weight: | Condition
+     * | Request Weight | | --- | --- | | Without &#x60;computeCommissionRates&#x60; | 1 | | With
+     * &#x60;computeCommissionRates&#x60; | 20 | Security Type: TRADE Notes: **Data Source:** Memory
      */
     public void sorOrderTestExampleSync() {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
         sorOrderTestRequest.symbol("BNBUSDT");
         sorOrderTestRequest.side(Side.BUY);
         sorOrderTestRequest.type(OrderType.MARKET);
-        sorOrderTestRequest.quantity(1.0d);
+        sorOrderTestRequest.quantity(1d);
         CompletableFuture<SorOrderTestResponse> future = getApi().sorOrderTest(sorOrderTestRequest);
         SorOrderTestResponse response = future.join();
         System.out.println(response);

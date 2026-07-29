@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for ManagedSubAccountApi */
 public class WithdrawlAssetsFromTheManagedSubAccountExample {
@@ -29,17 +30,17 @@ public class WithdrawlAssetsFromTheManagedSubAccountExample {
     /**
      * Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *
-     * <p>Withdrawl Assets From The Managed Sub-account * You need to enable &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * <p>Withdrawl Assets From The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Your API key must have the permission &#x60;Enable Spot &amp; Margin Trading&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
-    public void withdrawlAssetsFromTheManagedSubAccountExample() throws ApiException {
+    public void withdrawlAssetsFromTheManagedSubAccountExample() throws ApiException, IOException {
         WithdrawlAssetsFromTheManagedSubAccountRequest
                 withdrawlAssetsFromTheManagedSubAccountRequest =
                         new WithdrawlAssetsFromTheManagedSubAccountRequest();
-        withdrawlAssetsFromTheManagedSubAccountRequest.fromEmail("");
-        withdrawlAssetsFromTheManagedSubAccountRequest.asset("");
+        withdrawlAssetsFromTheManagedSubAccountRequest.fromEmail("from@test.com");
+        withdrawlAssetsFromTheManagedSubAccountRequest.asset("BTC");
         withdrawlAssetsFromTheManagedSubAccountRequest.amount(1.0d);
         ApiResponse<WithdrawlAssetsFromTheManagedSubAccountResponse> response =
                 getApi().withdrawlAssetsFromTheManagedSubAccount(

@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**apiKey** | **String** |  |  [optional] |
-|**ip** | **String** |  |  [optional] |
-|**apiName** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**permissionMode** | **String** |  |  [optional] |
+|**apiKey** | **String** | api Key. |  [optional] |
+|**ip** | **String** | 0.0.0.0 is just an initial statereference (no extra meaning). |  [optional] |
+|**apiName** | **String** | api Name. |  [optional] |
+|**type** | **String** | type. |  [optional] |
+|**permissionMode** | **String** | permission Mode. |  [optional] |
 
 
 

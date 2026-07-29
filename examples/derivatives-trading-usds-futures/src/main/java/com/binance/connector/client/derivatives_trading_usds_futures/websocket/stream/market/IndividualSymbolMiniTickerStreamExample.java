@@ -25,8 +25,10 @@ public class IndividualSymbolMiniTickerStreamExample {
      * Individual Symbol Mini Ticker Stream
      *
      * <p>24hr rolling window mini-ticker statistics for a single symbol. These are NOT the
-     * statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before. Update
-     * Speed: 2s
+     * statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs before. &gt;
+     * **After CM migration**, the payload is appended with a new &#x60;st&#x60; field
+     * (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair
+     * symbol). Update Speed: 2s
      *
      * @throws ApiException if the Api call fails
      */
@@ -34,7 +36,6 @@ public class IndividualSymbolMiniTickerStreamExample {
             throws ApiException, InterruptedException {
         IndividualSymbolMiniTickerStreamRequest individualSymbolMiniTickerStreamRequest =
                 new IndividualSymbolMiniTickerStreamRequest();
-        individualSymbolMiniTickerStreamRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<IndividualSymbolMiniTickerStreamResponse> response =
                 getApi().individualSymbolMiniTickerStream(individualSymbolMiniTickerStreamRequest);
         while (true) {

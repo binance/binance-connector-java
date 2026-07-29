@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.AccountBalanceResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class AccountBalanceExample {
@@ -26,14 +27,14 @@ public class AccountBalanceExample {
     }
 
     /**
-     * Account Balance(USER_DATA)
+     * Account Balance (USER_DATA)
      *
-     * <p>Query account balance Weight: 20
+     * <p>Query account balance Weight(IP): 20 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountBalanceExample() throws ApiException {
-        String asset = "";
+    public void accountBalanceExample() throws ApiException, IOException {
+        String asset = "USDT";
         Long recvWindow = 5000L;
         ApiResponse<AccountBalanceResponse> response = getApi().accountBalance(asset, recvWindow);
         System.out.println(response.getData());

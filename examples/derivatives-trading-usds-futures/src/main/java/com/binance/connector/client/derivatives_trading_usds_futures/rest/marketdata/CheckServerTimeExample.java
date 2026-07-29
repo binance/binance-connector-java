@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CheckServerTimeResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CheckServerTimeExample {
@@ -28,11 +29,11 @@ public class CheckServerTimeExample {
     /**
      * Check Server Time
      *
-     * <p>Test connectivity to the Rest API and get the current server time. Weight: 1
+     * <p>Test connectivity to the Rest API and get the current server time. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void checkServerTimeExample() throws ApiException {
+    public void checkServerTimeExample() throws ApiException, IOException {
         ApiResponse<CheckServerTimeResponse> response = getApi().checkServerTime();
         System.out.println(response.getData());
     }
