@@ -28,9 +28,12 @@ public class PingExample {
     }
 
     /**
-     * WebSocket Test connectivity
+     * Test connectivity
      *
-     * <p>Test connectivity to the WebSocket API. Weight: 1
+     * <p>Test connectivity to the WebSocket API. Note: You can use regular WebSocket ping frames to
+     * test connectivity as well, WebSocket API will respond with pong frames as soon as possible.
+     * ping request along with time is a safe way to test request-response handling in your
+     * application. Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void pingExampleAsync() {
         CompletableFuture<PingResponse> future = getApi().ping();
@@ -45,9 +48,12 @@ public class PingExample {
     }
 
     /**
-     * WebSocket Test connectivity
+     * Test connectivity
      *
-     * <p>Test connectivity to the WebSocket API. Weight: 1
+     * <p>Test connectivity to the WebSocket API. Note: You can use regular WebSocket ping frames to
+     * test connectivity as well, WebSocket API will respond with pong frames as soon as possible.
+     * ping request along with time is a safe way to test request-response handling in your
+     * application. Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void pingExampleSync() {
         CompletableFuture<PingResponse> future = getApi().ping();

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryTransferStatusResponse;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class QueryTransferStatusExample {
@@ -26,7 +27,7 @@ public class QueryTransferStatusExample {
     }
 
     /**
-     * Query Transfer Status
+     * Query Transfer Status (USER_DATA)
      *
      * <p>Query the current status of a prediction wallet transfer by transfer ID.
      * **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
@@ -36,7 +37,7 @@ public class QueryTransferStatusExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryTransferStatusExample() throws ApiException {
+    public void queryTransferStatusExample() throws ApiException, IOException {
         String transferId = "tf_20260525_out_001";
         Long recvWindow = 5000L;
         ApiResponse<QueryTransferStatusResponse> response =

@@ -7,25 +7,23 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**clientOrderId** | **String** |  |  [optional] |
-|**cumQty** | **String** |  |  [optional] |
-|**cumQuote** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
-|**origQty** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**selfTradePreventionMode** | **String** |  |  [optional] |
-|**goodTillDate** | **Long** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**priceMatch** | **String** |  |  [optional] |
+|**clientOrderId** | **String** | Client Order ID. |  [optional] |
+|**cumQty** | **String** | Cum Qty. |  [optional] |
+|**executedQty** | **String** | Executed Qty. |  [optional] |
+|**orderId** | **Long** | Normal orderID after trigger if appliable, only have when the strategy is triggered |  [optional] |
+|**origQty** | **String** | Orig Qty. |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**reduceOnly** | **Boolean** | Reduce Only. |  [optional] |
+|**side** | **String** | Side. |  [optional] |
+|**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
+|**status** | **String** | Enum：completed，processing |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**timeInForce** | **String** | Time In Force. |  [optional] |
+|**type** | **String** | Normal order type after trigger if appliable |  [optional] |
+|**selfTradePreventionMode** | **String** | self trading preventation mode |  [optional] |
+|**goodTillDate** | **Long** | order pre-set auot cancel time for TIF GTD order |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**priceMatch** | **String** | Price Match. |  [optional] |
 
 
 

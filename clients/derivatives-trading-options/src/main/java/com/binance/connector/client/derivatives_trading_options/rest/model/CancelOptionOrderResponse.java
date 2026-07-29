@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelOptionOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelOptionOrderResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -171,7 +171,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -190,7 +190,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -209,7 +209,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -228,7 +228,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -247,7 +247,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Number of executed quantity
      *
      * @return executedQty
      */
@@ -266,7 +266,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -285,7 +285,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -304,7 +304,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -323,7 +323,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -342,7 +342,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get createDate
+     * Order Time
      *
      * @return createDate
      */
@@ -361,7 +361,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * Update time
      *
      * @return updateTime
      */
@@ -380,7 +380,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -399,7 +399,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -418,7 +418,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get source
+     * source
      *
      * @return source
      */
@@ -438,7 +438,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -457,7 +457,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -477,7 +477,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -496,7 +496,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -515,7 +515,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -534,7 +534,7 @@ public class CancelOptionOrderResponse {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */

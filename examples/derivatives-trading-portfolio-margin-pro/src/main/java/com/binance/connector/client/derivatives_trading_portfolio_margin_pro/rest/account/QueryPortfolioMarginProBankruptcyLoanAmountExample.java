@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanAmountResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryPortfolioMarginProBankruptcyLoanAmountExample {
@@ -26,14 +27,16 @@ public class QueryPortfolioMarginProBankruptcyLoanAmountExample {
     }
 
     /**
-     * Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
+     * Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
      *
-     * <p>Query Portfolio Margin Pro Bankruptcy Loan Amount * If there’s no classic portfolio margin
-     * bankruptcy loan, the amount would be 0 Weight: 500
+     * <p>Query Portfolio Margin Pro Bankruptcy Loan Amount Weight(UID): 500 Security Type:
+     * USER_DATA Notes: - If there’s no classic portfolio margin bankruptcy loan, the amount would
+     * be 0
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPortfolioMarginProBankruptcyLoanAmountExample() throws ApiException {
+    public void queryPortfolioMarginProBankruptcyLoanAmountExample()
+            throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryPortfolioMarginProBankruptcyLoanAmountResponse> response =
                 getApi().queryPortfolioMarginProBankruptcyLoanAmount(recvWindow);

@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrders;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyMultipleOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyMultipleOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ModifyMultipleOrdersExample {
@@ -28,18 +29,18 @@ public class ModifyMultipleOrdersExample {
     }
 
     /**
-     * Modify Multiple Orders(TRADE)
+     * Modify Multiple Orders (TRADE)
      *
-     * <p>Modify Multiple Orders (TRADE) * Parameter rules are same with &#x60;Modify Order&#x60; *
-     * Batch modify orders are processed concurrently, and the order of matching is not guaranteed.
-     * * The order of returned contents for batch modify orders is the same as the order of the
-     * order list. * One order can only be modfied for less than 10000 times Weight: 5 on 10s order
-     * rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP
-     * rate limit(x-mbx-used-weight-1m);
+     * <p>Modify Multiple Orders (TRADE) Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1
+     * on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Security Type: TRADE Notes: - Parameter rules are same with &#x60;Modify Order&#x60; - Batch
+     * modify orders are processed concurrently, and the order of matching is not guaranteed. - The
+     * order of returned contents for batch modify orders is the same as the order of the order
+     * list. - One order can only be modfied for less than 10000 times
      *
      * @throws ApiException if the Api call fails
      */
-    public void modifyMultipleOrdersExample() throws ApiException {
+    public void modifyMultipleOrdersExample() throws ApiException, IOException {
         ModifyMultipleOrdersRequest modifyMultipleOrdersRequest = new ModifyMultipleOrdersRequest();
         modifyMultipleOrdersRequest.batchOrders(new BatchOrders());
         ApiResponse<ModifyMultipleOrdersResponse> response =

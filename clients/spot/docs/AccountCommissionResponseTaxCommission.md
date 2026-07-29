@@ -2,6 +2,7 @@
 
 # AccountCommissionResponseTaxCommission
 
+Tax commission rates for trades from the order.
 
 ## Properties
 

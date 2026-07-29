@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
@@ -52,8 +52,7 @@ public class GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp {
 
     @SerializedName(SERIALIZED_NAME_ASSETS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-            assets;
+    private List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets;
 
     public static final String SERIALIZED_NAME_CAN_DEPOSIT = "canDeposit";
 
@@ -159,16 +158,13 @@ public class GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp {
 
     public GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp assets(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-                            assets) {
+                    List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets) {
         this.assets = assets;
         return this;
     }
 
     public GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp addAssetsItem(
-            GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner assetsItem) {
+            GetDetailOnSubAccountsFuturesAccountResponseAssetsInner assetsItem) {
         if (this.assets == null) {
             this.assets = new ArrayList<>();
         }
@@ -183,17 +179,13 @@ public class GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-            getAssets() {
+    public List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> getAssets() {
         return assets;
     }
 
     public void setAssets(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-                            assets) {
+                    List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets) {
         this.assets = assets;
     }
 
@@ -761,8 +753,8 @@ public class GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp {
 
                 // validate the optional field `assets` (array)
                 for (int i = 0; i < jsonArrayassets.size(); i++) {
-                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner
-                            .validateJsonElement(jsonArrayassets.get(i));
+                    GetDetailOnSubAccountsFuturesAccountResponseAssetsInner.validateJsonElement(
+                            jsonArrayassets.get(i));
                 }
                 ;
             }

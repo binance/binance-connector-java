@@ -29,9 +29,10 @@ public class AccountRateLimitsOrdersExample {
     }
 
     /**
-     * WebSocket Unfilled Order Count
+     * Unfilled Order Count (USER_DATA)
      *
-     * <p>Query your current unfilled order count for all intervals. Weight: 40
+     * <p>Query your current unfilled order count for all intervals. Weight(IP): 40 Security Type:
+     * USER_DATA Notes: **Data Source:** Memory
      */
     public void accountRateLimitsOrdersExampleAsync() {
         AccountRateLimitsOrdersRequest accountRateLimitsOrdersRequest =
@@ -49,9 +50,10 @@ public class AccountRateLimitsOrdersExample {
     }
 
     /**
-     * WebSocket Unfilled Order Count
+     * Unfilled Order Count (USER_DATA)
      *
-     * <p>Query your current unfilled order count for all intervals. Weight: 40
+     * <p>Query your current unfilled order count for all intervals. Weight(IP): 40 Security Type:
+     * USER_DATA Notes: **Data Source:** Memory
      */
     public void accountRateLimitsOrdersExampleSync() {
         AccountRateLimitsOrdersRequest accountRateLimitsOrdersRequest =

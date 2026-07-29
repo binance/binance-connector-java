@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class AggregatedTradesExample {
@@ -28,15 +29,15 @@ public class AggregatedTradesExample {
      * Aggregated Trades
      *
      * <p>Retrieves compressed, aggregated historical trades for a specific symbol. Useful for
-     * recent trade history. Weight: 0
+     * recent trade history.
      *
      * @throws ApiException if the Api call fails
      */
-    public void aggregatedTradesExample() throws ApiException {
-        String symbol = "";
-        Long fromId = 1L;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+    public void aggregatedTradesExample() throws ApiException, IOException {
+        String symbol = "ALPHA_118USDC";
+        Long fromId = 58470L;
+        Long startTime = 1752568680000L;
+        Long endTime = 1752572280000L;
         Long limit = 500L;
         ApiResponse<AggregatedTradesResponse> response =
                 getApi().aggregatedTrades(symbol, fromId, startTime, endTime, limit);

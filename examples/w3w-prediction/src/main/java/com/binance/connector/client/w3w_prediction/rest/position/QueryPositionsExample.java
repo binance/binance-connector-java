@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPositionsResponse;
+import java.io.IOException;
 
 /** API examples for PositionApi */
 public class QueryPositionsExample {
@@ -26,14 +27,14 @@ public class QueryPositionsExample {
     }
 
     /**
-     * Query Positions
+     * Query Positions (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction token positions with portfolio summary and
      * tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPositionsExample() throws ApiException {
+    public void queryPositionsExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tab = "ONGOING";
         Integer offset = 0;

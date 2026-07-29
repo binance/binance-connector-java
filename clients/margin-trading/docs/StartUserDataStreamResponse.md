@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**listenKey** | **String** |  |  [optional] |
+|**listenKey** | **String** | listen Key. |  [optional] |
 
 
 

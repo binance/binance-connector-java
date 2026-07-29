@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryPortfolioMarginProNegativeBalanceInterestHistoryExample {
@@ -26,14 +27,16 @@ public class QueryPortfolioMarginProNegativeBalanceInterestHistoryExample {
     }
 
     /**
-     * Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
+     * Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
      *
-     * <p>Query interest history of negative balance for portfolio margin. Weight: 50
+     * <p>Query interest history of negative balance for portfolio margin. Weight(IP): 50 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPortfolioMarginProNegativeBalanceInterestHistoryExample() throws ApiException {
-        String asset = "";
+    public void queryPortfolioMarginProNegativeBalanceInterestHistoryExample()
+            throws ApiException, IOException {
+        String asset = "USDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long size = 10L;

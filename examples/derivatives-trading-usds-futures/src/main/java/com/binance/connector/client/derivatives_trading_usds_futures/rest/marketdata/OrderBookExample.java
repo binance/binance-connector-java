@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderBookResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OrderBookExample {
@@ -34,9 +35,9 @@ public class OrderBookExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderBookExample() throws ApiException {
-        String symbol = "";
-        Long limit = 100L;
+    public void orderBookExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        Long limit = 50L;
         ApiResponse<OrderBookResponse> response = getApi().orderBook(symbol, limit);
         System.out.println(response.getData());
     }

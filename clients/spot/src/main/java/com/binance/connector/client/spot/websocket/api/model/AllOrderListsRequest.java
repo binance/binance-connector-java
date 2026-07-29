@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** AllOrderListsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllOrderListsRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_FROM_ID = "fromId";
 
     @SerializedName(SERIALIZED_NAME_FROM_ID)
@@ -73,13 +79,32 @@ public class AllOrderListsRequest extends BaseDTO {
 
     public AllOrderListsRequest() {}
 
+    public AllOrderListsRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public AllOrderListsRequest fromId(@jakarta.annotation.Nullable Integer fromId) {
         this.fromId = fromId;
         return this;
     }
 
     /**
-     * Get fromId
+     * Order list ID to begin at
      *
      * @return fromId
      */
@@ -98,7 +123,7 @@ public class AllOrderListsRequest extends BaseDTO {
     }
 
     /**
-     * Get startTime
+     * Timestamp in ms
      *
      * @return startTime
      */
@@ -117,7 +142,7 @@ public class AllOrderListsRequest extends BaseDTO {
     }
 
     /**
-     * Get endTime
+     * Timestamp in ms
      *
      * @return endTime
      */
@@ -136,11 +161,12 @@ public class AllOrderListsRequest extends BaseDTO {
     }
 
     /**
-     * Get limit
+     * Default: 500; Maximum: 1000 maximum: 1000
      *
      * @return limit
      */
     @jakarta.annotation.Nullable
+    @Max(1000)
     public Integer getLimit() {
         return limit;
     }
@@ -155,12 +181,14 @@ public class AllOrderListsRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -178,7 +206,8 @@ public class AllOrderListsRequest extends BaseDTO {
             return false;
         }
         AllOrderListsRequest allOrderListsRequest = (AllOrderListsRequest) o;
-        return Objects.equals(this.fromId, allOrderListsRequest.fromId)
+        return Objects.equals(this.id, allOrderListsRequest.id)
+                && Objects.equals(this.fromId, allOrderListsRequest.fromId)
                 && Objects.equals(this.startTime, allOrderListsRequest.startTime)
                 && Objects.equals(this.endTime, allOrderListsRequest.endTime)
                 && Objects.equals(this.limit, allOrderListsRequest.limit)
@@ -187,13 +216,14 @@ public class AllOrderListsRequest extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(fromId, startTime, endTime, limit, recvWindow);
+        return Objects.hash(id, fromId, startTime, endTime, limit, recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class AllOrderListsRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		fromId: ").append(toIndentedString(fromId)).append("\n");
         sb.append("		startTime: ").append(toIndentedString(startTime)).append("\n");
         sb.append("		endTime: ").append(toIndentedString(endTime)).append("\n");
@@ -207,6 +237,11 @@ public class AllOrderListsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         Integer fromIdValue = getFromId();
         if (fromIdValue != null) {
             String fromIdValueAsString = fromIdValue.toString();
@@ -244,6 +279,10 @@ public class AllOrderListsRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object fromIdValue = getFromId();
         if (fromIdValue != null) {
             valMap.put("fromId", fromIdValue);
@@ -290,6 +329,7 @@ public class AllOrderListsRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("fromId");
         openapiFields.add("startTime");
         openapiFields.add("endTime");
@@ -330,6 +370,14 @@ public class AllOrderListsRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

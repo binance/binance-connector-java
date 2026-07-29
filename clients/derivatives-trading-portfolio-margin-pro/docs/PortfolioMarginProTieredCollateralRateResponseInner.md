@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
 |**collateralInfo** | [**List&lt;PortfolioMarginProTieredCollateralRateResponseInnerCollateralInfoInner&gt;**](PortfolioMarginProTieredCollateralRateResponseInnerCollateralInfoInner.md) |  |  [optional] |
 
 

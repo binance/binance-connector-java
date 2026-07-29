@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.DisableIsolatedMarginAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class DisableIsolatedMarginAccountExample {
@@ -29,12 +30,12 @@ public class DisableIsolatedMarginAccountExample {
      * Disable Isolated Margin Account (TRADE)
      *
      * <p>Disable isolated margin account for a specific symbol. Each trading pair can only be
-     * deactivated once every 24 hours. Weight: 300(UID)
+     * deactivated once every 24 hours. Weight(UID): 300 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void disableIsolatedMarginAccountExample() throws ApiException {
-        String symbol = "";
+    public void disableIsolatedMarginAccountExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<DisableIsolatedMarginAccountResponse> response =
                 getApi().disableIsolatedMarginAccount(symbol, recvWindow);

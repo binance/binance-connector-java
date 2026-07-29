@@ -33,6 +33,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.QueryTransferListR
 import com.binance.connector.client.w3w_prediction.rest.model.QueryTransferStatusResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.SourceBiz;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -84,7 +85,7 @@ public class TransferApiTest {
     }
 
     /**
-     * Create Inbound Transfer
+     * Create Inbound Transfer (TRADE)
      *
      * <p>Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or
      * FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization Required:** This endpoint
@@ -95,7 +96,7 @@ public class TransferApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createInboundTransferTest() throws ApiException, CryptoException {
+    public void createInboundTransferTest() throws ApiException, CryptoException, IOException {
         CreateInboundTransferRequest createInboundTransferRequest =
                 new CreateInboundTransferRequest();
         createInboundTransferRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");
@@ -113,7 +114,6 @@ public class TransferApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -125,7 +125,7 @@ public class TransferApiTest {
     }
 
     /**
-     * Create Outbound Transfer
+     * Create Outbound Transfer (TRADE)
      *
      * <p>Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction
      * wallet. Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
@@ -133,7 +133,7 @@ public class TransferApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createOutboundTransferTest() throws ApiException, CryptoException {
+    public void createOutboundTransferTest() throws ApiException, CryptoException, IOException {
         CreateOutboundTransferRequest createOutboundTransferRequest =
                 new CreateOutboundTransferRequest();
         createOutboundTransferRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");
@@ -152,7 +152,6 @@ public class TransferApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -164,7 +163,7 @@ public class TransferApiTest {
     }
 
     /**
-     * Query Transfer List
+     * Query Transfer List (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction wallet transfer history within a date range.
      * Weight(IP): 200 Security Type: USER_DATA
@@ -172,7 +171,7 @@ public class TransferApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryTransferListTest() throws ApiException, CryptoException {
+    public void queryTransferListTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String startDate = "2026-05-01";
         String endDate = "2026-05-25";
@@ -199,7 +198,6 @@ public class TransferApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -210,7 +208,7 @@ public class TransferApiTest {
     }
 
     /**
-     * Query Transfer Status
+     * Query Transfer Status (USER_DATA)
      *
      * <p>Query the current status of a prediction wallet transfer by transfer ID.
      * **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
@@ -221,7 +219,7 @@ public class TransferApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryTransferStatusTest() throws ApiException, CryptoException {
+    public void queryTransferStatusTest() throws ApiException, CryptoException, IOException {
         String transferId = "tf_20260525_out_001";
         Long recvWindow = 5000L;
         ApiResponse<QueryTransferStatusResponse> response =
@@ -233,7 +231,6 @@ public class TransferApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

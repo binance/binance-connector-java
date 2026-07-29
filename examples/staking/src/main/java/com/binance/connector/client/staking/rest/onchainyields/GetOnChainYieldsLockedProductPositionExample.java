@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedProductPositionResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class GetOnChainYieldsLockedProductPositionExample {
@@ -27,12 +28,12 @@ public class GetOnChainYieldsLockedProductPositionExample {
     /**
      * Get On-chain Yields Locked Product Position (USER_DATA)
      *
-     * <p>Get On-chain Yields Locked Product Position Weight: 50
+     * <p>Get On-chain Yields Locked Product Position Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOnChainYieldsLockedProductPositionExample() throws ApiException {
-        String asset = "";
+    public void getOnChainYieldsLockedProductPositionExample() throws ApiException, IOException {
+        String asset = "BTC";
         String positionId = "1";
         String projectId = "1";
         Long current = 1L;

@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** CreateSpecialKeyRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CreateSpecialKeyRequest {
     public static final String SERIALIZED_NAME_API_NAME = "apiName";
 
@@ -64,7 +65,7 @@ public class CreateSpecialKeyRequest {
 
     @SerializedName(SERIALIZED_NAME_PERMISSION_MODE)
     @jakarta.annotation.Nullable
-    private String permissionMode;
+    private PermissionMode permissionMode = PermissionMode.TRADE;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -119,7 +120,7 @@ public class CreateSpecialKeyRequest {
     }
 
     /**
-     * Get ip
+     * Can be added in batches, separated by commas. Max 30 for an API key
      *
      * @return ip
      */
@@ -138,7 +139,8 @@ public class CreateSpecialKeyRequest {
     }
 
     /**
-     * Get publicKey
+     * 1. If publicKey is inputted it will create an RSA or Ed25519 key. 2. Need to be encoded to
+     * URL-encoded format
      *
      * @return publicKey
      */
@@ -152,7 +154,7 @@ public class CreateSpecialKeyRequest {
     }
 
     public CreateSpecialKeyRequest permissionMode(
-            @jakarta.annotation.Nullable String permissionMode) {
+            @jakarta.annotation.Nullable PermissionMode permissionMode) {
         this.permissionMode = permissionMode;
         return this;
     }
@@ -163,11 +165,12 @@ public class CreateSpecialKeyRequest {
      * @return permissionMode
      */
     @jakarta.annotation.Nullable
-    public String getPermissionMode() {
+    @Valid
+    public PermissionMode getPermissionMode() {
         return permissionMode;
     }
 
-    public void setPermissionMode(@jakarta.annotation.Nullable String permissionMode) {
+    public void setPermissionMode(@jakarta.annotation.Nullable PermissionMode permissionMode) {
         this.permissionMode = permissionMode;
     }
 
@@ -177,11 +180,12 @@ public class CreateSpecialKeyRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -352,13 +356,9 @@ public class CreateSpecialKeyRequest {
                                     + " string but got `%s`",
                             jsonObj.get("publicKey").toString()));
         }
-        if ((jsonObj.get("permissionMode") != null && !jsonObj.get("permissionMode").isJsonNull())
-                && !jsonObj.get("permissionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `permissionMode` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("permissionMode").toString()));
+        // validate the optional field `permissionMode`
+        if (jsonObj.get("permissionMode") != null && !jsonObj.get("permissionMode").isJsonNull()) {
+            PermissionMode.validateJsonElement(jsonObj.get("permissionMode"));
         }
     }
 

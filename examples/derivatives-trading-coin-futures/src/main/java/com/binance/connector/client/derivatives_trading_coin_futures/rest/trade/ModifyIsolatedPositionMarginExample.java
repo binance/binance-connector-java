@@ -8,7 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ModifyIsolatedPositionMarginRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ModifyIsolatedPositionMarginResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Type;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ModifyIsolatedPositionMarginExample {
@@ -28,18 +28,19 @@ public class ModifyIsolatedPositionMarginExample {
     }
 
     /**
-     * Modify Isolated Position Margin(TRADE)
+     * Modify Isolated Position Margin (TRADE)
      *
-     * <p>Modify Isolated Position Margin * Only for isolated symbol Weight: 1
+     * <p>Modify Isolated Position Margin Weight(IP): 1 Security Type: TRADE Notes: - Only for
+     * isolated symbol
      *
      * @throws ApiException if the Api call fails
      */
-    public void modifyIsolatedPositionMarginExample() throws ApiException {
+    public void modifyIsolatedPositionMarginExample() throws ApiException, IOException {
         ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest =
                 new ModifyIsolatedPositionMarginRequest();
-        modifyIsolatedPositionMarginRequest.symbol("");
+        modifyIsolatedPositionMarginRequest.symbol("BTCUSDT");
         modifyIsolatedPositionMarginRequest.amount(1.0d);
-        modifyIsolatedPositionMarginRequest.type(Type.LIMIT);
+        modifyIsolatedPositionMarginRequest.type(1L);
         ApiResponse<ModifyIsolatedPositionMarginResponse> response =
                 getApi().modifyIsolatedPositionMargin(modifyIsolatedPositionMarginRequest);
         System.out.println(response.getData());

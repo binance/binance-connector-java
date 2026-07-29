@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** PlaceMultipleOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PlaceMultipleOrdersResponseInner {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -48,12 +48,6 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String cumQty;
 
-    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
-
-    @SerializedName(SERIALIZED_NAME_CUM_BASE)
-    @jakarta.annotation.Nullable
-    private String cumBase;
-
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
@@ -65,12 +59,6 @@ public class PlaceMultipleOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
     private Long orderId;
-
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
 
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
@@ -113,6 +101,12 @@ public class PlaceMultipleOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
     private String stopPrice;
+
+    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
+
+    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
+    @jakarta.annotation.Nullable
+    private Boolean closePosition;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -208,7 +202,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -227,7 +221,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get cumQty
+     * Cumulative filled quantity.
      *
      * @return cumQty
      */
@@ -240,25 +234,6 @@ public class PlaceMultipleOrdersResponseInner {
         this.cumQty = cumQty;
     }
 
-    public PlaceMultipleOrdersResponseInner cumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-        return this;
-    }
-
-    /**
-     * Get cumBase
-     *
-     * @return cumBase
-     */
-    @jakarta.annotation.Nullable
-    public String getCumBase() {
-        return cumBase;
-    }
-
-    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-    }
-
     public PlaceMultipleOrdersResponseInner executedQty(
             @jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
@@ -266,7 +241,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -285,7 +260,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -298,32 +273,13 @@ public class PlaceMultipleOrdersResponseInner {
         this.orderId = orderId;
     }
 
-    public PlaceMultipleOrdersResponseInner avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public PlaceMultipleOrdersResponseInner origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -342,7 +298,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -362,7 +318,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -381,7 +337,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -401,7 +357,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -420,7 +376,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -440,7 +396,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -453,13 +409,33 @@ public class PlaceMultipleOrdersResponseInner {
         this.stopPrice = stopPrice;
     }
 
+    public PlaceMultipleOrdersResponseInner closePosition(
+            @jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+        return this;
+    }
+
+    /**
+     * if Close-All
+     *
+     * @return closePosition
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+    }
+
     public PlaceMultipleOrdersResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -478,7 +454,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -498,7 +474,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -517,7 +493,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -536,7 +512,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -556,7 +532,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -576,7 +552,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -596,7 +572,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -616,7 +592,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -636,7 +612,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -656,7 +632,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -676,7 +652,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -696,7 +672,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get code
+     * API response code. \&quot;000000\&quot; indicates success.
      *
      * @return code
      */
@@ -715,7 +691,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get msg
+     * Message details.
      *
      * @return msg
      */
@@ -740,10 +716,8 @@ public class PlaceMultipleOrdersResponseInner {
                 (PlaceMultipleOrdersResponseInner) o;
         return Objects.equals(this.clientOrderId, placeMultipleOrdersResponseInner.clientOrderId)
                 && Objects.equals(this.cumQty, placeMultipleOrdersResponseInner.cumQty)
-                && Objects.equals(this.cumBase, placeMultipleOrdersResponseInner.cumBase)
                 && Objects.equals(this.executedQty, placeMultipleOrdersResponseInner.executedQty)
                 && Objects.equals(this.orderId, placeMultipleOrdersResponseInner.orderId)
-                && Objects.equals(this.avgPrice, placeMultipleOrdersResponseInner.avgPrice)
                 && Objects.equals(this.origQty, placeMultipleOrdersResponseInner.origQty)
                 && Objects.equals(this.price, placeMultipleOrdersResponseInner.price)
                 && Objects.equals(this.reduceOnly, placeMultipleOrdersResponseInner.reduceOnly)
@@ -751,6 +725,8 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.positionSide, placeMultipleOrdersResponseInner.positionSide)
                 && Objects.equals(this.status, placeMultipleOrdersResponseInner.status)
                 && Objects.equals(this.stopPrice, placeMultipleOrdersResponseInner.stopPrice)
+                && Objects.equals(
+                        this.closePosition, placeMultipleOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, placeMultipleOrdersResponseInner.symbol)
                 && Objects.equals(this.pair, placeMultipleOrdersResponseInner.pair)
                 && Objects.equals(this.timeInForce, placeMultipleOrdersResponseInner.timeInForce)
@@ -775,10 +751,8 @@ public class PlaceMultipleOrdersResponseInner {
         return Objects.hash(
                 clientOrderId,
                 cumQty,
-                cumBase,
                 executedQty,
                 orderId,
-                avgPrice,
                 origQty,
                 price,
                 reduceOnly,
@@ -786,6 +760,7 @@ public class PlaceMultipleOrdersResponseInner {
                 positionSide,
                 status,
                 stopPrice,
+                closePosition,
                 symbol,
                 pair,
                 timeInForce,
@@ -808,10 +783,8 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("class PlaceMultipleOrdersResponseInner {\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -819,6 +792,7 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
@@ -850,10 +824,6 @@ public class PlaceMultipleOrdersResponseInner {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumBaseValue = getCumBase();
-        String cumBaseValueAsString = "";
-        cumBaseValueAsString = cumBaseValue.toString();
-        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -862,10 +832,6 @@ public class PlaceMultipleOrdersResponseInner {
         String orderIdValueAsString = "";
         orderIdValueAsString = orderIdValue.toString();
         sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
@@ -894,6 +860,10 @@ public class PlaceMultipleOrdersResponseInner {
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object closePositionValue = getClosePosition();
+        String closePositionValueAsString = "";
+        closePositionValueAsString = closePositionValue.toString();
+        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -982,10 +952,8 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumBase");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
@@ -993,6 +961,7 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
+        openapiFields.add("closePosition");
         openapiFields.add("symbol");
         openapiFields.add("pair");
         openapiFields.add("timeInForce");
@@ -1047,14 +1016,6 @@ public class PlaceMultipleOrdersResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
         }
-        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
-                && !jsonObj.get("cumBase").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumBase` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("cumBase").toString()));
-        }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1062,14 +1023,6 @@ public class PlaceMultipleOrdersResponseInner {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
         }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {

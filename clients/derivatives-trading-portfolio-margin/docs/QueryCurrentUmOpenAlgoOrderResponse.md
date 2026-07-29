@@ -21,12 +21,6 @@
 |**actualPrice** | **String** |  |  [optional] |
 |**triggerPrice** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**icebergQuantity** | **String** |  |  [optional] |
-|**tpTriggerPrice** | **String** |  |  [optional] |
-|**tpPrice** | **String** |  |  [optional] |
-|**slTriggerPrice** | **String** |  |  [optional] |
-|**slPrice** | **String** |  |  [optional] |
-|**tpOrderType** | **String** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
 |**workingType** | **String** |  |  [optional] |
 |**priceMatch** | **String** |  |  [optional] |

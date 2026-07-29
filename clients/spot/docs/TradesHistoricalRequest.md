@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** | Client-generated request identifier. |  [optional] |
 |**symbol** | **String** |  |  |
-|**fromId** | **Integer** |  |  [optional] |
+|**fromId** | **Long** | Trade ID to begin at |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
 
 

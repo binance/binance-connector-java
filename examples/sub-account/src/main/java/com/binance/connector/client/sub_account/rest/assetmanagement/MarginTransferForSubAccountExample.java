@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.MarginTransferForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.MarginTransferForSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class MarginTransferForSubAccountExample {
@@ -29,18 +30,19 @@ public class MarginTransferForSubAccountExample {
     /**
      * Margin Transfer for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Margin Transfer for Sub-account * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Margin Transfer for Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need
+     * to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginTransferForSubAccountExample() throws ApiException {
+    public void marginTransferForSubAccountExample() throws ApiException, IOException {
         MarginTransferForSubAccountRequest marginTransferForSubAccountRequest =
                 new MarginTransferForSubAccountRequest();
-        marginTransferForSubAccountRequest.email("sub-account-email@email.com");
-        marginTransferForSubAccountRequest.asset("");
+        marginTransferForSubAccountRequest.email("123@test.com");
+        marginTransferForSubAccountRequest.asset("BTC");
         marginTransferForSubAccountRequest.amount(1.0d);
-        marginTransferForSubAccountRequest.type(0L);
+        marginTransferForSubAccountRequest.type(1L);
         ApiResponse<MarginTransferForSubAccountResponse> response =
                 getApi().marginTransferForSubAccount(marginTransferForSubAccountRequest);
         System.out.println(response.getData());

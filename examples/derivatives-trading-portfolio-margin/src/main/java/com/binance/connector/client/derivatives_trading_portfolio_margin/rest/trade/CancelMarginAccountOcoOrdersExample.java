@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountOcoOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelMarginAccountOcoOrdersExample {
@@ -26,15 +27,15 @@ public class CancelMarginAccountOcoOrdersExample {
     }
 
     /**
-     * Cancel Margin Account OCO Orders(TRADE)
+     * Cancel Margin Account OCO Orders (TRADE)
      *
-     * <p>Cancel Margin Account OCO Orders * Additional notes: Canceling an individual leg will
-     * cancel the entire OCO Weight: 2
+     * <p>Cancel Margin Account OCO Orders Weight(IP): 2 Security Type: TRADE Notes: - Additional
+     * notes: Canceling an individual leg will cancel the entire OCO
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelMarginAccountOcoOrdersExample() throws ApiException {
-        String symbol = "";
+    public void cancelMarginAccountOcoOrdersExample() throws ApiException, IOException {
+        String symbol = "LTCBTC";
         Long orderListId = 1L;
         String listClientOrderId = "1";
         String newClientOrderId = "1";

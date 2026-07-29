@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,12 +27,12 @@ import com.binance.connector.client.derivatives_trading_options.websocket.stream
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OptionMarkPriceRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OptionMarkPriceResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class MarketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -88,7 +88,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Index-Price-Streams">Index
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#index-price-streams">Index
      *     Price Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<IndexPriceStreamsResponse> indexPriceStreams(
@@ -167,7 +167,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Kline-Candlestick-Streams">Kline/Candlestick
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#kline-candlestick-streams">Kline/Candlestick
      *     Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
@@ -242,90 +242,6 @@ public class MarketApi {
     }
 
     /**
-     * Mark Price The mark price for all option symbols on specific underlying asset.
-     * E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)
-     * Update Speed: 1000ms
-     *
-     * @param markPriceRequest (required)
-     * @return MarkPriceResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Mark Price </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Mark-Price">Mark
-     *     Price Documentation</a>
-     */
-    public StreamBlockingQueueWrapper<MarkPriceResponse> markPrice(
-            MarkPriceRequest markPriceRequest) throws ApiException {
-        StreamBlockingQueue<String> queue = markPriceRaw(markPriceRequest);
-
-        TypeToken<MarkPriceResponse> typeToken = new TypeToken<MarkPriceResponse>() {};
-
-        return new StreamBlockingQueueWrapper<>(queue, typeToken);
-    }
-
-    public StreamBlockingQueue<String> markPriceRaw(MarkPriceRequest markPriceRequest)
-            throws ApiException {
-        markPriceValidateBeforeCall(markPriceRequest);
-
-        String methodName =
-                "/<underlying>@optionMarkPrice"
-                        .substring(1)
-                        .replace(
-                                "<id>",
-                                markPriceRequest.getId() != null
-                                        ? markPriceRequest.getId().toString()
-                                        : "")
-                        .replace(
-                                "<underlying>",
-                                markPriceRequest.getUnderlying() != null
-                                        ? markPriceRequest.getUnderlying().toString()
-                                        : "");
-        if ("@".equals(methodName.substring(methodName.length() - 1))) {
-            methodName = methodName.substring(0, methodName.length() - 1);
-        }
-
-        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
-                new RequestWrapperDTO.Builder<Set<String>, Object>()
-                        .id(getRequestID())
-                        .method("SUBSCRIBE")
-                        .params(Collections.singleton(methodName))
-                        .build();
-        Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
-        return queuesMap.get(methodName);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void markPriceValidateBeforeCall(MarkPriceRequest markPriceRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<MarkPriceRequest>> violations =
-                    validator.validate(markPriceRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
      * New Symbol Info New symbol listing stream. Update Speed: 50ms
      *
      * @param newSymbolInfoRequest (required)
@@ -340,7 +256,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/New-Symbol-Info">New
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#new-symbol-info">New
      *     Symbol Info Documentation</a>
      */
     public StreamBlockingQueueWrapper<NewSymbolInfoResponse> newSymbolInfo(
@@ -419,7 +335,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Open-Interest">Open
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#open-interest">Open
      *     Interest Documentation</a>
      */
     public StreamBlockingQueueWrapper<OpenInterestResponse> openInterest(
@@ -436,12 +352,17 @@ public class MarketApi {
         openInterestValidateBeforeCall(openInterestRequest);
 
         String methodName =
-                "/underlying@optionOpenInterest@<expirationDate>"
+                "/<underlying>@openInterest@<expirationDate>"
                         .substring(1)
                         .replace(
                                 "<id>",
                                 openInterestRequest.getId() != null
                                         ? openInterestRequest.getId().toString()
+                                        : "")
+                        .replace(
+                                "<underlying>",
+                                openInterestRequest.getUnderlying() != null
+                                        ? openInterestRequest.getUnderlying().toString()
                                         : "")
                         .replace(
                                 "<expirationDate>",
@@ -476,6 +397,90 @@ public class MarketApi {
 
             Set<ConstraintViolation<OpenInterestRequest>> violations =
                     validator.validate(openInterestRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Option Mark Price The mark price for all option symbols on specific underlying asset.
+     * E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)
+     * Update Speed: 1000ms
+     *
+     * @param optionMarkPriceRequest (required)
+     * @return OptionMarkPriceResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Mark Price </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#option-mark-price">Option
+     *     Mark Price Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<OptionMarkPriceResponse> optionMarkPrice(
+            OptionMarkPriceRequest optionMarkPriceRequest) throws ApiException {
+        StreamBlockingQueue<String> queue = optionMarkPriceRaw(optionMarkPriceRequest);
+
+        TypeToken<OptionMarkPriceResponse> typeToken = new TypeToken<OptionMarkPriceResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> optionMarkPriceRaw(
+            OptionMarkPriceRequest optionMarkPriceRequest) throws ApiException {
+        optionMarkPriceValidateBeforeCall(optionMarkPriceRequest);
+
+        String methodName =
+                "/<underlying>@optionMarkPrice"
+                        .substring(1)
+                        .replace(
+                                "<id>",
+                                optionMarkPriceRequest.getId() != null
+                                        ? optionMarkPriceRequest.getId().toString()
+                                        : "")
+                        .replace(
+                                "<underlying>",
+                                optionMarkPriceRequest.getUnderlying() != null
+                                        ? optionMarkPriceRequest.getUnderlying().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void optionMarkPriceValidateBeforeCall(OptionMarkPriceRequest optionMarkPriceRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OptionMarkPriceRequest>> violations =
+                    validator.validate(optionMarkPriceRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

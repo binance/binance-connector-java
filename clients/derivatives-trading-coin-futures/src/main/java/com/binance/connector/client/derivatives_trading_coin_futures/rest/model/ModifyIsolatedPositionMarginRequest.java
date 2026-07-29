@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** ModifyIsolatedPositionMarginRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyIsolatedPositionMarginRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -59,7 +59,7 @@ public class ModifyIsolatedPositionMarginRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private Long type;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -75,7 +75,7 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -116,7 +116,7 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     /**
-     * Get amount
+     * Margin asset
      *
      * @return amount
      */
@@ -131,24 +131,23 @@ public class ModifyIsolatedPositionMarginRequest {
         this.amount = amount;
     }
 
-    public ModifyIsolatedPositionMarginRequest type(@jakarta.annotation.Nonnull Type type) {
+    public ModifyIsolatedPositionMarginRequest type(@jakarta.annotation.Nonnull Long type) {
         this.type = type;
         return this;
     }
 
     /**
-     * Get type
+     * 1: Add position margin,2: Reduce position margin
      *
      * @return type
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    @Valid
-    public Type getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull Long type) {
         this.type = type;
     }
 
@@ -159,11 +158,12 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -313,8 +313,6 @@ public class ModifyIsolatedPositionMarginRequest {
         if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
             PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
-        // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

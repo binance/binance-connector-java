@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetIncomeHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetIncomeHistoryResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -92,7 +92,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * trade symbol, if existing
      *
      * @return symbol
      */
@@ -112,7 +112,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get incomeType
+     * income type
      *
      * @return incomeType
      */
@@ -131,7 +131,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get income
+     * income amount
      *
      * @return income
      */
@@ -150,7 +150,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get asset
+     * income asset
      *
      * @return asset
      */
@@ -169,7 +169,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get info
+     * extra information
      *
      * @return info
      */
@@ -188,7 +188,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */
@@ -207,7 +207,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get tranId
+     * transaction id
      *
      * @return tranId
      */
@@ -226,7 +226,7 @@ public class GetIncomeHistoryResponseInner {
     }
 
     /**
-     * Get tradeId
+     * trade id, if existing
      *
      * @return tradeId
      */

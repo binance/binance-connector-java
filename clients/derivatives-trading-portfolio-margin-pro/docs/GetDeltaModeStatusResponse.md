@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**deltaEnabled** | **Boolean** |  |  [optional] |
+|**deltaEnabled** | **Boolean** | delta Enabled. |  [optional] |
 
 
 

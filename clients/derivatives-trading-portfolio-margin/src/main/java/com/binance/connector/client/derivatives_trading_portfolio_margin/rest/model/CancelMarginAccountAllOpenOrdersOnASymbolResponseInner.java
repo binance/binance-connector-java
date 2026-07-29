@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMarginAccountAllOpenOrdersOnASymbolResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -172,7 +172,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -192,7 +192,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origClientOrderId
+     * Orig Client Order ID.
      *
      * @return origClientOrderId
      */
@@ -212,7 +212,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -232,7 +232,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -252,7 +252,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -272,7 +272,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -292,7 +292,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -312,7 +312,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -332,7 +332,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -352,7 +352,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -372,7 +372,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -392,7 +392,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -412,7 +412,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -432,7 +432,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get contingencyType
+     * Contingency Type.
      *
      * @return contingencyType
      */
@@ -452,7 +452,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listStatusType
+     * List Status Type.
      *
      * @return listStatusType
      */
@@ -472,7 +472,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listOrderStatus
+     * List Order Status.
      *
      * @return listOrderStatus
      */
@@ -492,7 +492,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listClientOrderId
+     * List Client Order ID.
      *
      * @return listClientOrderId
      */
@@ -512,7 +512,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get transactionTime
+     * Transaction Time.
      *
      * @return transactionTime
      */
@@ -543,7 +543,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orders
+     * Orders.
      *
      * @return orders
      */
@@ -582,7 +582,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderReports
+     * Order Reports.
      *
      * @return orderReports
      */

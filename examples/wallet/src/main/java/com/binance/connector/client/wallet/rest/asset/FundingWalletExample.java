@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.FundingWalletRequest;
 import com.binance.connector.client.wallet.rest.model.FundingWalletResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class FundingWalletExample {
@@ -28,12 +29,13 @@ public class FundingWalletExample {
     /**
      * Funding Wallet (USER_DATA)
      *
-     * <p>Query Funding Wallet * Currently supports querying the following business assets：Binance
-     * Pay, Binance Card, Binance Gift Card, Stock Token Weight: 1
+     * <p>Query Funding Wallet Weight(IP): 1 Security Type: USER_DATA Notes: - Currently supports
+     * querying the following business assets：Binance Pay, Binance Card, Binance Gift Card, Stock
+     * Token
      *
      * @throws ApiException if the Api call fails
      */
-    public void fundingWalletExample() throws ApiException {
+    public void fundingWalletExample() throws ApiException, IOException {
         FundingWalletRequest fundingWalletRequest = new FundingWalletRequest();
         ApiResponse<FundingWalletResponse> response = getApi().fundingWallet(fundingWalletRequest);
         System.out.println(response.getData());

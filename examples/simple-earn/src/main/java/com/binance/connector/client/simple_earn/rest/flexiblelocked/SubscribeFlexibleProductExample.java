@@ -8,6 +8,7 @@ import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeFlexibleProductResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class SubscribeFlexibleProductExample {
@@ -27,14 +28,15 @@ public class SubscribeFlexibleProductExample {
     }
 
     /**
-     * Subscribe Flexible Product(TRADE)
+     * Subscribe Flexible Product (TRADE)
      *
-     * <p>Subscribe Flexible Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Subscribe Flexible Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeFlexibleProductExample() throws ApiException {
+    public void subscribeFlexibleProductExample() throws ApiException, IOException {
         SubscribeFlexibleProductRequest subscribeFlexibleProductRequest =
                 new SubscribeFlexibleProductRequest();
         subscribeFlexibleProductRequest.productId("1");

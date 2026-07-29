@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QuerySingleOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QuerySingleOrderExample {
@@ -30,15 +31,15 @@ public class QuerySingleOrderExample {
      *
      * <p>Check an order status. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;REJECTED&#x60;, **AND** * order has NO filled trade, **AND** *
-     * created time + 3 days &lt; current time * Either &#x60;orderId&#x60; or &#x60;clientOrderId
-     * &#x60; must be sent. Weight: 1
+     * created time + 3 days &lt; current time Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;clientOrderId &#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySingleOrderExample() throws ApiException {
-        String symbol = "";
-        Long orderId = 1L;
-        String clientOrderId = "1";
+    public void querySingleOrderExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long orderId = 4611875134427365000L;
+        String clientOrderId = "abc123";
         Long recvWindow = 5000L;
         ApiResponse<QuerySingleOrderResponse> response =
                 getApi().querySingleOrder(symbol, orderId, clientOrderId, recvWindow);

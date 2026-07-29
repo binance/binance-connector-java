@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ResetMarketMakerProtectionConfigResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ResetMarketMakerProtectionConfigResponse {
     public static final String SERIALIZED_NAME_UNDERLYING_ID = "underlyingId";
 
@@ -89,7 +89,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get underlyingId
+     * underlying Id
      *
      * @return underlyingId
      */
@@ -109,7 +109,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get underlying
+     * underlying
      *
      * @return underlying
      */
@@ -129,7 +129,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get windowTimeInMilliseconds
+     * window Time In Milliseconds
      *
      * @return windowTimeInMilliseconds
      */
@@ -150,7 +150,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get frozenTimeInMilliseconds
+     * frozen Time In Milliseconds
      *
      * @return frozenTimeInMilliseconds
      */
@@ -171,7 +171,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get qtyLimit
+     * qty Limit
      *
      * @return qtyLimit
      */
@@ -191,7 +191,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get deltaLimit
+     * delta Limit
      *
      * @return deltaLimit
      */
@@ -211,7 +211,7 @@ public class ResetMarketMakerProtectionConfigResponse {
     }
 
     /**
-     * Get lastTriggerTime
+     * last Trigger Time
      *
      * @return lastTriggerTime
      */

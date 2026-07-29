@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetDeltaModeStatusResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetDeltaModeStatusExample {
@@ -26,13 +27,13 @@ public class GetDeltaModeStatusExample {
     }
 
     /**
-     * Get Delta Mode Status(USER_DATA)
+     * Get Delta Mode Status (USER_DATA)
      *
-     * <p>Query the Delta mode status of current account. Weight: 1500
+     * <p>Query the Delta mode status of current account. Weight(IP): 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getDeltaModeStatusExample() throws ApiException {
+    public void getDeltaModeStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetDeltaModeStatusResponse> response = getApi().getDeltaModeStatus(recvWindow);
         System.out.println(response.getData());

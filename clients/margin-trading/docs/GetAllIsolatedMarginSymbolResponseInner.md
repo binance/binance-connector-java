@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**base** | **String** |  |  [optional] |
-|**isBuyAllowed** | **Boolean** |  |  [optional] |
-|**isMarginTrade** | **Boolean** |  |  [optional] |
-|**isSellAllowed** | **Boolean** |  |  [optional] |
-|**quote** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**base** | **String** | base. |  [optional] |
+|**isBuyAllowed** | **Boolean** | is Buy Allowed. |  [optional] |
+|**isMarginTrade** | **Boolean** | is Margin Trade. |  [optional] |
+|**isSellAllowed** | **Boolean** | is Sell Allowed. |  [optional] |
+|**quote** | **String** | quote. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
 
 
 

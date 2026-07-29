@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**aLowerCase** | **String** |  |  [optional] |
-|**bLowerCase** | **String** |  |  [optional] |
-|**bc** | **String** |  |  [optional] |
+|**aLowerCase** | **String** | Margin asset |  [optional] |
+|**bLowerCase** | **String** | Account balance |  [optional] |
+|**bc** | **String** | Balance Change except PnL and Commission |  [optional] |
 
 
 

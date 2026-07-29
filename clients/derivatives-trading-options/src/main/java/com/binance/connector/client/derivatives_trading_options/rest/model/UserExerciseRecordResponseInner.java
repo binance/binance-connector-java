@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** UserExerciseRecordResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserExerciseRecordResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -122,7 +122,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
@@ -141,7 +141,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get currency
+     * currency
      *
      * @return currency
      */
@@ -160,7 +160,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -180,7 +180,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get exercisePrice
+     * exercise Price
      *
      * @return exercisePrice
      */
@@ -199,7 +199,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get quantity
+     * quantity
      *
      * @return quantity
      */
@@ -218,7 +218,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get amount
+     * amount
      *
      * @return amount
      */
@@ -237,7 +237,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get fee
+     * fee
      *
      * @return fee
      */
@@ -257,7 +257,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get createDate
+     * create Date
      *
      * @return createDate
      */
@@ -277,7 +277,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -297,7 +297,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -317,7 +317,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -337,7 +337,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get positionSide
+     * position Side
      *
      * @return positionSide
      */
@@ -357,7 +357,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */

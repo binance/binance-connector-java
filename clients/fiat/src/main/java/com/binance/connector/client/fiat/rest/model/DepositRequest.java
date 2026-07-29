@@ -1,6 +1,6 @@
 /*
- * Binance Fiat REST API
- * OpenAPI Specification for the Binance Fiat REST API
+ * Fiat REST API
+ * Query Binance fiat deposit and withdrawal history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,14 +35,8 @@ import org.hibernate.validator.constraints.*;
 /** DepositRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DepositRequest {
-    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
-
-    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
-    @jakarta.annotation.Nullable
-    private Long recvWindow;
-
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
 
     @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -52,13 +47,13 @@ public class DepositRequest {
 
     @SerializedName(SERIALIZED_NAME_API_PAYMENT_METHOD)
     @jakarta.annotation.Nonnull
-    private String apiPaymentMethod;
+    private ApiPaymentMethod apiPaymentMethod;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
     @SerializedName(SERIALIZED_NAME_AMOUNT)
     @jakarta.annotation.Nonnull
-    private Long amount;
+    private String amount;
 
     public static final String SERIALIZED_NAME_EXT = "ext";
 
@@ -67,25 +62,6 @@ public class DepositRequest {
     private Object ext;
 
     public DepositRequest() {}
-
-    public DepositRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
-        this.recvWindow = recvWindow;
-        return this;
-    }
-
-    /**
-     * Get recvWindow
-     *
-     * @return recvWindow
-     */
-    @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
-        return recvWindow;
-    }
-
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
-        this.recvWindow = recvWindow;
-    }
 
     public DepositRequest currency(@jakarta.annotation.Nonnull String currency) {
         this.currency = currency;
@@ -107,7 +83,8 @@ public class DepositRequest {
         this.currency = currency;
     }
 
-    public DepositRequest apiPaymentMethod(@jakarta.annotation.Nonnull String apiPaymentMethod) {
+    public DepositRequest apiPaymentMethod(
+            @jakarta.annotation.Nonnull ApiPaymentMethod apiPaymentMethod) {
         this.apiPaymentMethod = apiPaymentMethod;
         return this;
     }
@@ -119,31 +96,32 @@ public class DepositRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getApiPaymentMethod() {
+    @Valid
+    public ApiPaymentMethod getApiPaymentMethod() {
         return apiPaymentMethod;
     }
 
-    public void setApiPaymentMethod(@jakarta.annotation.Nonnull String apiPaymentMethod) {
+    public void setApiPaymentMethod(@jakarta.annotation.Nonnull ApiPaymentMethod apiPaymentMethod) {
         this.apiPaymentMethod = apiPaymentMethod;
     }
 
-    public DepositRequest amount(@jakarta.annotation.Nonnull Long amount) {
+    public DepositRequest amount(@jakarta.annotation.Nonnull String amount) {
         this.amount = amount;
         return this;
     }
 
     /**
-     * Get amount
+     * deposit amount
      *
      * @return amount
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(@jakarta.annotation.Nonnull Long amount) {
+    public void setAmount(@jakarta.annotation.Nonnull String amount) {
         this.amount = amount;
     }
 
@@ -175,8 +153,7 @@ public class DepositRequest {
             return false;
         }
         DepositRequest depositRequest = (DepositRequest) o;
-        return Objects.equals(this.recvWindow, depositRequest.recvWindow)
-                && Objects.equals(this.currency, depositRequest.currency)
+        return Objects.equals(this.currency, depositRequest.currency)
                 && Objects.equals(this.apiPaymentMethod, depositRequest.apiPaymentMethod)
                 && Objects.equals(this.amount, depositRequest.amount)
                 && Objects.equals(this.ext, depositRequest.ext);
@@ -184,14 +161,13 @@ public class DepositRequest {
 
     @Override
     public int hashCode() {
-        return Objects.hash(recvWindow, currency, apiPaymentMethod, amount, ext);
+        return Objects.hash(currency, apiPaymentMethod, amount, ext);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class DepositRequest {\n");
-        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("		currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("		apiPaymentMethod: ").append(toIndentedString(apiPaymentMethod)).append("\n");
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
@@ -203,10 +179,6 @@ public class DepositRequest {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object recvWindowValue = getRecvWindow();
-        String recvWindowValueAsString = "";
-        recvWindowValueAsString = recvWindowValue.toString();
-        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         Object currencyValue = getCurrency();
         String currencyValueAsString = "";
         currencyValueAsString = currencyValue.toString();
@@ -251,7 +223,6 @@ public class DepositRequest {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("recvWindow");
         openapiFields.add("currency");
         openapiFields.add("apiPaymentMethod");
         openapiFields.add("amount");
@@ -299,12 +270,14 @@ public class DepositRequest {
                                     + " string but got `%s`",
                             jsonObj.get("currency").toString()));
         }
-        if (!jsonObj.get("apiPaymentMethod").isJsonPrimitive()) {
+        // validate the required field `apiPaymentMethod`
+        ApiPaymentMethod.validateJsonElement(jsonObj.get("apiPaymentMethod"));
+        if (!jsonObj.get("amount").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `apiPaymentMethod` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("apiPaymentMethod").toString()));
+                            "Expected the field `amount` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("amount").toString()));
         }
     }
 

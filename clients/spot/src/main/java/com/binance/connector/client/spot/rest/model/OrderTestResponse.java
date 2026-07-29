@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderTestResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTestResponse {
     public static final String SERIALIZED_NAME_STANDARD_COMMISSION_FOR_ORDER =
             "standardCommissionForOrder";
@@ -55,7 +55,7 @@ public class OrderTestResponse {
 
     @SerializedName(SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER)
     @jakarta.annotation.Nullable
-    private OrderTestResponseStandardCommissionForOrder taxCommissionForOrder;
+    private OrderTestResponseTaxCommissionForOrder taxCommissionForOrder;
 
     public static final String SERIALIZED_NAME_DISCOUNT = "discount";
 
@@ -115,7 +115,7 @@ public class OrderTestResponse {
 
     public OrderTestResponse taxCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseStandardCommissionForOrder taxCommissionForOrder) {
+                    OrderTestResponseTaxCommissionForOrder taxCommissionForOrder) {
         this.taxCommissionForOrder = taxCommissionForOrder;
         return this;
     }
@@ -127,13 +127,13 @@ public class OrderTestResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public OrderTestResponseStandardCommissionForOrder getTaxCommissionForOrder() {
+    public OrderTestResponseTaxCommissionForOrder getTaxCommissionForOrder() {
         return taxCommissionForOrder;
     }
 
     public void setTaxCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseStandardCommissionForOrder taxCommissionForOrder) {
+                    OrderTestResponseTaxCommissionForOrder taxCommissionForOrder) {
         this.taxCommissionForOrder = taxCommissionForOrder;
     }
 
@@ -299,7 +299,7 @@ public class OrderTestResponse {
         // validate the optional field `taxCommissionForOrder`
         if (jsonObj.get("taxCommissionForOrder") != null
                 && !jsonObj.get("taxCommissionForOrder").isJsonNull()) {
-            OrderTestResponseStandardCommissionForOrder.validateJsonElement(
+            OrderTestResponseTaxCommissionForOrder.validateJsonElement(
                     jsonObj.get("taxCommissionForOrder"));
         }
         // validate the optional field `discount`

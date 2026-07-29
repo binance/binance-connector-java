@@ -29,10 +29,14 @@ public class OrderListStatusExample {
     }
 
     /**
-     * WebSocket Query Order list
+     * Query Order list (USER_DATA)
      *
      * <p>Check execution status of an Order list. For execution status of individual orders, use
-     * &#x60;order.status&#x60;. Weight: 4
+     * &#x60;order.status&#x60;. Weight(IP): 4 Security Type: USER_DATA Notes: **Data Source:**
+     * Database Notes: * &#x60;origClientOrderId&#x60; refers to &#x60;listClientOrderId&#x60; of
+     * the order list itself. * If both &#x60;origClientOrderId&#x60; and &#x60;orderListId&#x60;
+     * parameters are specified, only &#x60;origClientOrderId&#x60; is used and
+     * &#x60;orderListId&#x60; is ignored.
      */
     public void orderListStatusExampleAsync() {
         OrderListStatusRequest orderListStatusRequest = new OrderListStatusRequest();
@@ -49,10 +53,14 @@ public class OrderListStatusExample {
     }
 
     /**
-     * WebSocket Query Order list
+     * Query Order list (USER_DATA)
      *
      * <p>Check execution status of an Order list. For execution status of individual orders, use
-     * &#x60;order.status&#x60;. Weight: 4
+     * &#x60;order.status&#x60;. Weight(IP): 4 Security Type: USER_DATA Notes: **Data Source:**
+     * Database Notes: * &#x60;origClientOrderId&#x60; refers to &#x60;listClientOrderId&#x60; of
+     * the order list itself. * If both &#x60;origClientOrderId&#x60; and &#x60;orderListId&#x60;
+     * parameters are specified, only &#x60;origClientOrderId&#x60; is used and
+     * &#x60;orderListId&#x60; is ignored.
      */
     public void orderListStatusExampleSync() {
         OrderListStatusRequest orderListStatusRequest = new OrderListStatusRequest();

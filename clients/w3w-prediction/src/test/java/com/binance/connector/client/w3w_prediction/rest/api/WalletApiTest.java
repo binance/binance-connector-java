@@ -28,6 +28,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.GetQuotaStatusResp
 import com.binance.connector.client.w3w_prediction.rest.model.ListPredictionWalletsResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPaymentOptionBalancesResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,7 +80,7 @@ public class WalletApiTest {
     }
 
     /**
-     * Get Portfolio
+     * Get Portfolio (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction portfolio overview including active positions
      * count, aggregated PnL, and full position list. Weight(IP): 200 Security Type: USER_DATA
@@ -87,7 +88,7 @@ public class WalletApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPortfolioTest() throws ApiException, CryptoException {
+    public void getPortfolioTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long marketId = 5567895L;
@@ -105,7 +106,6 @@ public class WalletApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -115,7 +115,7 @@ public class WalletApiTest {
     }
 
     /**
-     * Get Quota Status
+     * Get Quota Status (USER_DATA)
      *
      * <p>Query the current user&#39;s daily trading quota limit and remaining allowance for
      * prediction markets. Weight(IP): 200 Security Type: USER_DATA
@@ -123,7 +123,7 @@ public class WalletApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getQuotaStatusTest() throws ApiException, CryptoException {
+    public void getQuotaStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetQuotaStatusResponse> response = api.getQuotaStatus(recvWindow);
 
@@ -134,7 +134,6 @@ public class WalletApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -144,7 +143,7 @@ public class WalletApiTest {
     }
 
     /**
-     * List Prediction Wallets
+     * List Prediction Wallets (USER_DATA)
      *
      * <p>Get all prediction wallets registered for the authenticated user. Weight(IP): 200 Security
      * Type: USER_DATA
@@ -152,7 +151,7 @@ public class WalletApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void listPredictionWalletsTest() throws ApiException, CryptoException {
+    public void listPredictionWalletsTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<ListPredictionWalletsResponse> response = api.listPredictionWallets(recvWindow);
 
@@ -162,7 +161,6 @@ public class WalletApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -175,7 +173,7 @@ public class WalletApiTest {
     }
 
     /**
-     * Query Payment Option Balances
+     * Query Payment Option Balances (USER_DATA)
      *
      * <p>Get available balances for each payment option that can be used for prediction trading.
      * Weight(IP): 200 Security Type: USER_DATA
@@ -183,7 +181,7 @@ public class WalletApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryPaymentOptionBalancesTest() throws ApiException, CryptoException {
+    public void queryPaymentOptionBalancesTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryPaymentOptionBalancesResponse> response =
                 api.queryPaymentOptionBalances(recvWindow);
@@ -194,7 +192,6 @@ public class WalletApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

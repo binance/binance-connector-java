@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CompositeIndexSymbolInformationResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CompositeIndexSymbolInformationExample {
@@ -28,12 +29,13 @@ public class CompositeIndexSymbolInformationExample {
     /**
      * Composite Index Symbol Information
      *
-     * <p>Query composite index symbol information * Only for composite index symbols Weight: 1
+     * <p>Query composite index symbol information Weight(IP): 1 Notes: - Only for composite index
+     * symbols
      *
      * @throws ApiException if the Api call fails
      */
-    public void compositeIndexSymbolInformationExample() throws ApiException {
-        String symbol = "";
+    public void compositeIndexSymbolInformationExample() throws ApiException, IOException {
+        String symbol = "DEFIUSDT";
         ApiResponse<CompositeIndexSymbolInformationResponse> response =
                 getApi().compositeIndexSymbolInformation(symbol);
         System.out.println(response.getData());

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryOrderBookResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryOrderBookExample {
@@ -33,7 +34,7 @@ public class QueryOrderBookExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryOrderBookExample() throws ApiException {
+    public void queryOrderBookExample() throws ApiException, IOException {
         String vendor = "predict_fun";
         Long marketId = 5567895L;
         String tokenId = "112233";

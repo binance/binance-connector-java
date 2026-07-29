@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.gift_card.rest.GiftCardRestApiUtil;
 import com.binance.connector.client.gift_card.rest.api.GiftCardRestApi;
 import com.binance.connector.client.gift_card.rest.model.VerifyBinanceGiftCardByGiftCardNumberResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class VerifyBinanceGiftCardByGiftCardNumberExample {
@@ -25,16 +26,17 @@ public class VerifyBinanceGiftCardByGiftCardNumberExample {
     }
 
     /**
-     * Verify Binance Gift Card by Gift Card Number(USER_DATA)
+     * Verify Binance Gift Card by Gift Card Number (USER_DATA)
      *
      * <p>This API is for verifying whether the Binance Gift Card is valid or not by entering Gift
      * Card Number. **Please note that if you enter the wrong Gift Card Number 5 times within an
-     * hour, you will no longer be able to verify any Gift Card Number for that hour.** Weight: 1
+     * hour, you will no longer be able to verify any Gift Card Number for that hour.** Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void verifyBinanceGiftCardByGiftCardNumberExample() throws ApiException {
-        String referenceNo = "";
+    public void verifyBinanceGiftCardByGiftCardNumberExample() throws ApiException, IOException {
+        String referenceNo = "0033002328060227";
         Long recvWindow = 5000L;
         ApiResponse<VerifyBinanceGiftCardByGiftCardNumberResponse> response =
                 getApi().verifyBinanceGiftCardByGiftCardNumber(referenceNo, recvWindow);

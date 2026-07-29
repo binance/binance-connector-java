@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountManagementApi */
 public class CreateAVirtualSubAccountExample {
@@ -29,16 +30,16 @@ public class CreateAVirtualSubAccountExample {
     /**
      * Create a Virtual Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Create a Virtual Sub-account * This request will generate a virtual sub account under your
-     * master account. * You need to enable \&quot;trade\&quot; option for the API Key which
-     * requests this endpoint. Weight: 1
+     * <p>Create a Virtual Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - This request
+     * generates a virtual sub-account under your master account. - The API key used to call this
+     * endpoint must have the &#x60;trade&#x60; option enabled.
      *
      * @throws ApiException if the Api call fails
      */
-    public void createAVirtualSubAccountExample() throws ApiException {
+    public void createAVirtualSubAccountExample() throws ApiException, IOException {
         CreateAVirtualSubAccountRequest createAVirtualSubAccountRequest =
                 new CreateAVirtualSubAccountRequest();
-        createAVirtualSubAccountRequest.subAccountString("");
+        createAVirtualSubAccountRequest.subAccountString("testSubAccount");
         ApiResponse<CreateAVirtualSubAccountResponse> response =
                 getApi().createAVirtualSubAccount(createAVirtualSubAccountRequest);
         System.out.println(response.getData());

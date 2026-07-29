@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.GetOrderResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetOrderExample {
@@ -25,17 +26,24 @@ public class GetOrderExample {
     }
 
     /**
-     * Query order
+     * Query order (USER_DATA)
      *
-     * <p>Check an order&#39;s status. Weight: 4
+     * <p>Check an order&#39;s status. Weight(IP): 4 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - If both &#x60;orderId&#x60; and
+     * &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60; is searched first, then
+     * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. - For some historical orders
+     * &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is not available at this
+     * time.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOrderExample() throws ApiException {
-        String symbol = "BNBUSDT";
+    public void getOrderExample() throws ApiException, IOException {
+        String symbol = "LTCBTC";
         Long orderId = 1L;
-        String origClientOrderId = "";
-        Double recvWindow = 5000.0d;
+        String origClientOrderId = "myOrder1";
+        Double recvWindow = 5000d;
         ApiResponse<GetOrderResponse> response =
                 getApi().getOrder(symbol, orderId, origClientOrderId, recvWindow);
         System.out.println(response.getData());

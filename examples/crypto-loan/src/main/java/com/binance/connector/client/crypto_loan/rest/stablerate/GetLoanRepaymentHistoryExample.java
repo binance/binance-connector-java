@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanRepaymentHistoryResponse;
+import java.io.IOException;
 
 /** API examples for StableRateApi */
 public class GetLoanRepaymentHistoryExample {
@@ -26,17 +27,19 @@ public class GetLoanRepaymentHistoryExample {
     }
 
     /**
-     * Get Loan Repayment History(USER_DATA)
+     * Get Loan Repayment History (USER_DATA)
      *
-     * <p>Get Loan Repayment History * If startTime and endTime are not sent, the recent 90-day data
-     * will be returned. * The max interval between startTime and endTime is 180 days. Weight: 400
+     * <p>Get Loan Repayment History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLoanRepaymentHistoryExample() throws ApiException {
+    public void getLoanRepaymentHistoryExample() throws ApiException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

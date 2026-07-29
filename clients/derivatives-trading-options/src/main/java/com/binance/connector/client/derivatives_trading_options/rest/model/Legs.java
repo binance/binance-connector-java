@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,11 +31,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** Legs */
+/**
+ * Max 1 (only single leg supported), list of legs parameters in JSON; example:
+ * eapi/v1/block/order/create?orders&#x3D;[{\&quot;symbol\&quot;:\&quot;BTC-210115-35000-C\&quot;,
+ * \&quot;price\&quot;:\&quot;100\&quot;,\&quot;quantity\&quot;:\&quot;0.0002\&quot;,\&quot;side\&quot;:\&quot;BUY\&quot;,\&quot;type\&quot;:\&quot;LIMIT\&quot;}]
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
-public class Legs extends ArrayList<Object> {
+        comments = "Generator version: 7.22.0")
+public class Legs extends ArrayList<LegsInner> {
     public Legs() {}
 
     @Override
@@ -116,13 +120,7 @@ public class Legs extends ArrayList<Object> {
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            if (!element.getAsJsonPrimitive().isNumber()) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "Expected array items to be of type Number in the JSON string but"
-                                        + " got `%s`",
-                                jsonElement.toString()));
-            }
+            LegsInner.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!Legs.openapiRequiredFields

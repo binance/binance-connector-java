@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCmOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryCmOrderExample {
@@ -26,17 +27,17 @@ public class QueryCmOrderExample {
     }
 
     /**
-     * Query CM Order(USER_DATA)
+     * Query CM Order (USER_DATA)
      *
-     * <p>Check an CM order&#39;s status. * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent. * These orders will not be found: * order status
-     * is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND**
-     * * created time + 3 days &lt; current time Weight: 1
+     * <p>Check an CM order&#39;s status. Weight(IP): 1 Security Type: USER_DATA Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - These orders will not be
+     * found: - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** - order has NO
+     * filled trade, **AND** - created time + 3 days &lt; current time
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCmOrderExample() throws ApiException {
-        String symbol = "";
+    public void queryCmOrderExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
         Long orderId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AutoCancelAllOpenOrdersRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AutoCancelAllOpenOrdersRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -83,7 +83,8 @@ public class AutoCancelAllOpenOrdersRequest {
     }
 
     /**
-     * Get countdownTime
+     * Countdown in milliseconds. &#x60;1000&#x60; means 1 second; &#x60;0&#x60; disables countdown
+     * cancel-all.
      *
      * @return countdownTime
      */
@@ -103,11 +104,12 @@ public class AutoCancelAllOpenOrdersRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

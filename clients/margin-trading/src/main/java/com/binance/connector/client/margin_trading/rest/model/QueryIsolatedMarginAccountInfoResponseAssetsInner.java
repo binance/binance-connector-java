@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryIsolatedMarginAccountInfoResponseAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     public static final String SERIALIZED_NAME_BASE_ASSET = "baseAsset";
 
@@ -166,7 +166,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -186,7 +186,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get isolatedCreated
+     * isolated Created.
      *
      * @return isolatedCreated
      */
@@ -206,7 +206,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get enabled
+     * true-enabled, false-disabled
      *
      * @return enabled
      */
@@ -226,7 +226,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get marginLevel
+     * margin Level.
      *
      * @return marginLevel
      */
@@ -246,7 +246,8 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get marginLevelStatus
+     * \&quot;EXCESSIVE\&quot;, \&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;,
+     * \&quot;PRE_LIQUIDATION\&quot;, \&quot;FORCE_LIQUIDATION\&quot;
      *
      * @return marginLevelStatus
      */
@@ -266,7 +267,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get marginRatio
+     * margin Ratio.
      *
      * @return marginRatio
      */
@@ -286,7 +287,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get indexPrice
+     * index Price.
      *
      * @return indexPrice
      */
@@ -306,7 +307,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get liquidatePrice
+     * liquidate Price.
      *
      * @return liquidatePrice
      */
@@ -326,7 +327,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get liquidateRate
+     * liquidate Rate.
      *
      * @return liquidateRate
      */
@@ -346,7 +347,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInner {
     }
 
     /**
-     * Get tradeEnabled
+     * trade Enabled.
      *
      * @return tradeEnabled
      */

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UsersForceOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class UsersForceOrdersExample {
@@ -29,19 +30,19 @@ public class UsersForceOrdersExample {
     /**
      * User&#39;s Force Orders (USER_DATA)
      *
-     * <p>Query user&#39;s Force Orders * If \&quot;autoCloseType\&quot; is not sent, orders with
-     * both of the types will be returned * If \&quot;startTime\&quot; is not sent, data within 7
-     * days before \&quot;endTime\&quot; can be queried * Only support querying data in the past 90
-     * days Weight: 20 with symbol, 50 without symbol
+     * <p>Query user&#39;s Force Orders Weight: **20** with symbol, **50** without symbol Security
+     * Type: USER_DATA Notes: - If \&quot;autoCloseType\&quot; is not sent, orders with both of the
+     * types will be returned - If \&quot;startTime\&quot; is not sent, data within 7 days before
+     * \&quot;endTime\&quot; can be queried
      *
      * @throws ApiException if the Api call fails
      */
-    public void usersForceOrdersExample() throws ApiException {
-        String symbol = "";
+    public void usersForceOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         AutoCloseType autoCloseType = AutoCloseType.LIQUIDATION;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<UsersForceOrdersResponse> response =
                 getApi().usersForceOrders(

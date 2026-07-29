@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangeInitialLeverageRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangeInitialLeverageResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ChangeInitialLeverageExample {
@@ -31,15 +32,15 @@ public class ChangeInitialLeverageExample {
      *
      * <p>Change user&#39;s initial leverage in the specific symbol market. For Hedge Mode, LONG and
      * SHORT positions of one symbol use the same initial leverage and share a total notional value.
-     * Weight: 1
+     * Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeInitialLeverageExample() throws ApiException {
+    public void changeInitialLeverageExample() throws ApiException, IOException {
         ChangeInitialLeverageRequest changeInitialLeverageRequest =
                 new ChangeInitialLeverageRequest();
-        changeInitialLeverageRequest.symbol("");
-        changeInitialLeverageRequest.leverage(0L);
+        changeInitialLeverageRequest.symbol("BTCUSD_200925");
+        changeInitialLeverageRequest.leverage(1L);
         ApiResponse<ChangeInitialLeverageResponse> response =
                 getApi().changeInitialLeverage(changeInitialLeverageRequest);
         System.out.println(response.getData());

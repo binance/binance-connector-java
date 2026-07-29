@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUmFuturesOrderDownloadLinkByIdResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetUmFuturesOrderDownloadLinkByIdExample {
@@ -26,14 +27,15 @@ public class GetUmFuturesOrderDownloadLinkByIdExample {
     }
 
     /**
-     * Get UM Futures Order Download Link by Id(USER_DATA)
+     * Get UM Futures Order Download Link by Id (USER_DATA)
      *
-     * <p>Get UM futures order download link by Id * Download link expiration: 7 days Weight: 10
+     * <p>Get UM futures order download link by Id Weight(IP): 10 Security Type: USER_DATA Notes: -
+     * Download link expiration: 7 days
      *
      * @throws ApiException if the Api call fails
      */
-    public void getUmFuturesOrderDownloadLinkByIdExample() throws ApiException {
-        String downloadId = "1";
+    public void getUmFuturesOrderDownloadLinkByIdExample() throws ApiException, IOException {
+        String downloadId = "545923594199212032";
         Long recvWindow = 5000L;
         ApiResponse<GetUmFuturesOrderDownloadLinkByIdResponse> response =
                 getApi().getUmFuturesOrderDownloadLinkById(downloadId, recvWindow);

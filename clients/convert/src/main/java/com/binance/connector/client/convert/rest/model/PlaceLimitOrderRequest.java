@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** PlaceLimitOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PlaceLimitOrderRequest {
     public static final String SERIALIZED_NAME_BASE_ASSET = "baseAsset";
 
@@ -71,19 +71,19 @@ public class PlaceLimitOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE)
     @jakarta.annotation.Nonnull
-    private String side;
+    private Side side;
 
     public static final String SERIALIZED_NAME_WALLET_TYPE = "walletType";
 
     @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
     @jakarta.annotation.Nullable
-    private String walletType;
+    private WalletType walletType = WalletType.SPOT;
 
     public static final String SERIALIZED_NAME_EXPIRED_TYPE = "expiredType";
 
     @SerializedName(SERIALIZED_NAME_EXPIRED_TYPE)
     @jakarta.annotation.Nonnull
-    private String expiredType;
+    private ExpiredType expiredType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -99,7 +99,8 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get baseAsset
+     * base asset (use the response &#x60;fromIsBase&#x60; from &#x60;GET
+     * /sapi/v1/convert/exchangeInfo&#x60; api to check which one is baseAsset )
      *
      * @return baseAsset
      */
@@ -119,7 +120,7 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get quoteAsset
+     * quote asset
      *
      * @return quoteAsset
      */
@@ -139,7 +140,7 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get limitPrice
+     * Symbol limit price (from baseAsset to quoteAsset)
      *
      * @return limitPrice
      */
@@ -160,7 +161,7 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get baseAmount
+     * Base asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required)
      *
      * @return baseAmount
      */
@@ -180,7 +181,7 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get quoteAmount
+     * Quote asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required)
      *
      * @return quoteAmount
      */
@@ -194,7 +195,7 @@ public class PlaceLimitOrderRequest {
         this.quoteAmount = quoteAmount;
     }
 
-    public PlaceLimitOrderRequest side(@jakarta.annotation.Nonnull String side) {
+    public PlaceLimitOrderRequest side(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
         return this;
     }
@@ -206,15 +207,16 @@ public class PlaceLimitOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getSide() {
+    @Valid
+    public Side getSide() {
         return side;
     }
 
-    public void setSide(@jakarta.annotation.Nonnull String side) {
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
     }
 
-    public PlaceLimitOrderRequest walletType(@jakarta.annotation.Nullable String walletType) {
+    public PlaceLimitOrderRequest walletType(@jakarta.annotation.Nullable WalletType walletType) {
         this.walletType = walletType;
         return this;
     }
@@ -225,15 +227,16 @@ public class PlaceLimitOrderRequest {
      * @return walletType
      */
     @jakarta.annotation.Nullable
-    public String getWalletType() {
+    @Valid
+    public WalletType getWalletType() {
         return walletType;
     }
 
-    public void setWalletType(@jakarta.annotation.Nullable String walletType) {
+    public void setWalletType(@jakarta.annotation.Nullable WalletType walletType) {
         this.walletType = walletType;
     }
 
-    public PlaceLimitOrderRequest expiredType(@jakarta.annotation.Nonnull String expiredType) {
+    public PlaceLimitOrderRequest expiredType(@jakarta.annotation.Nonnull ExpiredType expiredType) {
         this.expiredType = expiredType;
         return this;
     }
@@ -245,11 +248,12 @@ public class PlaceLimitOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getExpiredType() {
+    @Valid
+    public ExpiredType getExpiredType() {
         return expiredType;
     }
 
-    public void setExpiredType(@jakarta.annotation.Nonnull String expiredType) {
+    public void setExpiredType(@jakarta.annotation.Nonnull ExpiredType expiredType) {
         this.expiredType = expiredType;
     }
 
@@ -259,11 +263,12 @@ public class PlaceLimitOrderRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -451,28 +456,14 @@ public class PlaceLimitOrderRequest {
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
         }
-        if (!jsonObj.get("side").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `side` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("side").toString()));
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the optional field `walletType`
+        if (jsonObj.get("walletType") != null && !jsonObj.get("walletType").isJsonNull()) {
+            WalletType.validateJsonElement(jsonObj.get("walletType"));
         }
-        if ((jsonObj.get("walletType") != null && !jsonObj.get("walletType").isJsonNull())
-                && !jsonObj.get("walletType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `walletType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("walletType").toString()));
-        }
-        if (!jsonObj.get("expiredType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `expiredType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("expiredType").toString()));
-        }
+        // validate the required field `expiredType`
+        ExpiredType.validateJsonElement(jsonObj.get("expiredType"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

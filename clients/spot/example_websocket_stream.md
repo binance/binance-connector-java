@@ -1,30 +1,32 @@
-## WebSocketStreams
+## Default
 
-[<symbol>@aggTrade](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#aggregate-trade-streams) - aggTrade - [AggTradeExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AggTradeExample.java#L44)
+[<symbol>@aggTrade](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#agg-trade) - aggTrade - [AggTradeExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/AggTradeExample.java#L32)
 
-[!ticker_<windowSize>@arr](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-rolling-window-statistics-streams) - allMarketRollingWindowTicker - [AllMarketRollingWindowTickerExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AllMarketRollingWindowTickerExample.java#L45)
+[!ticker_<windowSize>@arr](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#all-market-rolling-window-ticker) - allMarketRollingWindowTicker - [AllMarketRollingWindowTickerExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/AllMarketRollingWindowTickerExample.java#L32)
 
-[!miniTicker@arr](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#all-market-mini-tickers-stream) - allMiniTicker - [AllMiniTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AllMiniTickerExample.java#L44)
+[!miniTicker@arr](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#all-mini-ticker) - allMiniTicker - [AllMiniTickerExample.java:33](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/AllMiniTickerExample.java#L33)
 
-[<symbol>@avgPrice](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#average-price) - avgPrice - [AvgPriceExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/AvgPriceExample.java#L43)
+[<symbol>@avgPrice](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#avg-price) - avgPrice - [AvgPriceExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/AvgPriceExample.java#L32)
 
-[<symbol>@bookTicker](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-book-ticker-streams) - bookTicker - [BookTickerExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/BookTickerExample.java#L45)
+[<symbol>@blockTrade](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#block-trade) - blockTrade - [BlockTradeExample.java:31](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/BlockTradeExample.java#L31)
 
-[<symbol>@depth@<updateSpeed>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#diff-depth-stream) - diffBookDepth - [DiffBookDepthExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/DiffBookDepthExample.java#L43)
+[<symbol>@bookTicker](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#book-ticker) - bookTicker - [BookTickerExample.java:33](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/BookTickerExample.java#L33)
 
-[<symbol>@kline_<interval>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#klinecandlestick-streams-for-utc) - kline - [KlineExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/KlineExample.java#L45)
+[<symbol>@depth@<updateSpeed>](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#diff-book-depth) - diffBookDepth - [DiffBookDepthExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/DiffBookDepthExample.java#L32)
 
-[<symbol>@kline_<interval>@+08:00](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#klinecandlestick-streams-with-timezone-offset) - klineOffset - [KlineOffsetExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/KlineOffsetExample.java#L45)
+[<symbol>@kline_<interval>](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#kline) - kline - [KlineExample.java:33](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/KlineExample.java#L33)
 
-[<symbol>@miniTicker](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-mini-ticker-stream) - miniTicker - [MiniTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/MiniTickerExample.java#L44)
+[<symbol>@kline_<interval>@+08:00](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#kline-offset) - klineOffset - [KlineOffsetExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/KlineOffsetExample.java#L37)
 
-[<symbol>@depth<levels>@<updateSpeed>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#partial-book-depth-streams) - partialBookDepth - [PartialBookDepthExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/PartialBookDepthExample.java#L45)
+[<symbol>@miniTicker](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#mini-ticker) - miniTicker - [MiniTickerExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/MiniTickerExample.java#L32)
 
-[<symbol>@referencePrice](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#reference-price-streams) - referencePrice - [ReferencePriceExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/ReferencePriceExample.java#L41)
+[<symbol>@depth<levels>@<updateSpeed>](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#partial-book-depth) - partialBookDepth - [PartialBookDepthExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/PartialBookDepthExample.java#L32)
 
-[<symbol>@ticker_<windowSize>](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-rolling-window-statistics-streams) - rollingWindowTicker - [RollingWindowTickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/RollingWindowTickerExample.java#L44)
+[<symbol>@referencePrice](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#reference-price) - referencePrice - [ReferencePriceExample.java:31](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/ReferencePriceExample.java#L31)
 
-[<symbol>@ticker](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#individual-symbol-ticker-streams) - ticker - [TickerExample.java:44](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/TickerExample.java#L44)
+[<symbol>@ticker_<windowSize>](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#rolling-window-ticker) - rollingWindowTicker - [RollingWindowTickerExample.java:35](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/RollingWindowTickerExample.java#L35)
 
-[<symbol>@trade](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#trade-streams) - trade - [TradeExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/websocketstreams/TradeExample.java#L43)
+[<symbol>@ticker](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#ticker) - ticker - [TickerExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/TickerExample.java#L32)
+
+[<symbol>@trade](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#trade) - trade - [TradeExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/TradeExample.java#L32)
 

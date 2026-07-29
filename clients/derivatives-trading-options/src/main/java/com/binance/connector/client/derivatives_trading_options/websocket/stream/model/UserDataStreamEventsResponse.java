@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(UserDataStreamEventsResponse.class.getName());
@@ -47,16 +47,18 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AccountUpdate> adapterAccountUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(AccountUpdate.class));
             final TypeAdapter<BalancePositionUpdate> adapterBalancePositionUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(BalancePositionUpdate.class));
             final TypeAdapter<GreekUpdate> adapterGreekUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(GreekUpdate.class));
+            final TypeAdapter<ListenKeyExpired> adapterListenKeyExpired =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListenKeyExpired.class));
             final TypeAdapter<OrderTradeUpdate> adapterOrderTradeUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(OrderTradeUpdate.class));
             final TypeAdapter<RiskLevelChange> adapterRiskLevelChange =
                     gson.getDelegateAdapter(this, TypeToken.get(RiskLevelChange.class));
-            final TypeAdapter<Listenkeyexpired> adapterListenkeyexpired =
-                    gson.getDelegateAdapter(this, TypeToken.get(Listenkeyexpired.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<UserDataStreamEventsResponse>() {
@@ -68,6 +70,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
+                            // check if the actual instance is of the type `AccountUpdate`
+                            if (value.getActualInstance() instanceof AccountUpdate) {
+                                JsonElement element =
+                                        adapterAccountUpdate.toJsonTree(
+                                                (AccountUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
                             // check if the actual instance is of the type `BalancePositionUpdate`
                             if (value.getActualInstance() instanceof BalancePositionUpdate) {
                                 JsonElement element =
@@ -81,6 +91,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 JsonElement element =
                                         adapterGreekUpdate.toJsonTree(
                                                 (GreekUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `ListenKeyExpired`
+                            if (value.getActualInstance() instanceof ListenKeyExpired) {
+                                JsonElement element =
+                                        adapterListenKeyExpired.toJsonTree(
+                                                (ListenKeyExpired) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
@@ -100,18 +118,10 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Listenkeyexpired`
-                            if (value.getActualInstance() instanceof Listenkeyexpired) {
-                                JsonElement element =
-                                        adapterListenkeyexpired.toJsonTree(
-                                                (Listenkeyexpired) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
                             throw new IOException(
                                     "Failed to serialize as the type doesn't match oneOf schemas:"
-                                        + " BalancePositionUpdate, GreekUpdate, Listenkeyexpired,"
-                                        + " OrderTradeUpdate, RiskLevelChange");
+                                        + " AccountUpdate, BalancePositionUpdate, GreekUpdate,"
+                                        + " ListenKeyExpired, OrderTradeUpdate, RiskLevelChange");
                         }
 
                         @Override
@@ -133,6 +143,12 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             } else {
                                 // look up the discriminator value in the field `e`
                                 switch (jsonObject.get("e").getAsString()) {
+                                    case "ACCOUNT_UPDATE":
+                                        deserialized =
+                                                adapterAccountUpdate.fromJsonTree(jsonObject);
+                                        newUserDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newUserDataStreamEventsResponse;
                                     case "BALANCE_POSITION_UPDATE":
                                         deserialized =
                                                 adapterBalancePositionUpdate.fromJsonTree(
@@ -159,37 +175,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         return newUserDataStreamEventsResponse;
                                     case "listenKeyExpired":
                                         deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "balancePositionUpdate":
-                                        deserialized =
-                                                adapterBalancePositionUpdate.fromJsonTree(
-                                                        jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "greekUpdate":
-                                        deserialized = adapterGreekUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "listenkeyexpired":
-                                        deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "orderTradeUpdate":
-                                        deserialized =
-                                                adapterOrderTradeUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "riskLevelChange":
-                                        deserialized =
-                                                adapterRiskLevelChange.fromJsonTree(jsonObject);
+                                                adapterListenKeyExpired.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
@@ -201,14 +187,11 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                 String.format(
                                                         "Failed to lookup discriminator value `%s`"
                                                             + " for UserDataStreamEventsResponse."
-                                                            + " Possible values:"
+                                                            + " Possible values: ACCOUNT_UPDATE"
                                                             + " BALANCE_POSITION_UPDATE"
                                                             + " GREEK_UPDATE ORDER_TRADE_UPDATE"
-                                                            + " RISK_LEVEL_CHANGE listenKeyExpired"
-                                                            + " balancePositionUpdate greekUpdate"
-                                                            + " listenkeyexpired orderTradeUpdate"
-                                                            + " riskLevelChange. Falling back to"
-                                                            + " String.",
+                                                            + " RISK_LEVEL_CHANGE listenKeyExpired."
+                                                            + " Falling back to String.",
                                                         jsonObject.get("e").getAsString()));
                                 }
                             }
@@ -217,6 +200,25 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
+                            // deserialize AccountUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                AccountUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterAccountUpdate;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'AccountUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for AccountUpdate failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'AccountUpdate'",
+                                        e);
+                            }
                             // deserialize BalancePositionUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -254,6 +256,27 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 log.log(
                                         Level.FINER,
                                         "Input data does not match schema 'GreekUpdate'",
+                                        e);
+                            }
+                            // deserialize ListenKeyExpired
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ListenKeyExpired.validateJsonElement(jsonElement);
+                                actualAdapter = adapterListenKeyExpired;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'ListenKeyExpired'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ListenKeyExpired failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ListenKeyExpired'",
                                         e);
                             }
                             // deserialize OrderTradeUpdate
@@ -296,27 +319,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         "Input data does not match schema 'RiskLevelChange'",
                                         e);
                             }
-                            // deserialize Listenkeyexpired
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Listenkeyexpired.validateJsonElement(jsonElement);
-                                actualAdapter = adapterListenkeyexpired;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'Listenkeyexpired'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Listenkeyexpired failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Listenkeyexpired'",
-                                        e);
-                            }
 
                             if (match == 1) {
                                 UserDataStreamEventsResponse ret =
@@ -350,11 +352,12 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
+        schemas.put("AccountUpdate", AccountUpdate.class);
         schemas.put("BalancePositionUpdate", BalancePositionUpdate.class);
         schemas.put("GreekUpdate", GreekUpdate.class);
+        schemas.put("ListenKeyExpired", ListenKeyExpired.class);
         schemas.put("OrderTradeUpdate", OrderTradeUpdate.class);
         schemas.put("RiskLevelChange", RiskLevelChange.class);
-        schemas.put("Listenkeyexpired", Listenkeyexpired.class);
     }
 
     @Override
@@ -364,19 +367,29 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
 
     /**
      * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-     * against the oneOf child schemas: BalancePositionUpdate, GreekUpdate, Listenkeyexpired,
-     * OrderTradeUpdate, RiskLevelChange
+     * against the oneOf child schemas: AccountUpdate, BalancePositionUpdate, GreekUpdate,
+     * ListenKeyExpired, OrderTradeUpdate, RiskLevelChange
      *
      * <p>It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance instanceof AccountUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof BalancePositionUpdate) {
             super.setActualInstance(instance);
             return;
         }
 
         if (instance instanceof GreekUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ListenKeyExpired) {
             super.setActualInstance(instance);
             return;
         }
@@ -391,27 +404,33 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             return;
         }
 
-        if (instance instanceof Listenkeyexpired) {
-            super.setActualInstance(instance);
-            return;
-        }
-
         throw new RuntimeException(
-                "Invalid instance type. Must be BalancePositionUpdate, GreekUpdate,"
-                        + " Listenkeyexpired, OrderTradeUpdate, RiskLevelChange");
+                "Invalid instance type. Must be AccountUpdate, BalancePositionUpdate, GreekUpdate,"
+                        + " ListenKeyExpired, OrderTradeUpdate, RiskLevelChange");
     }
 
     /**
-     * Get the actual instance, which can be the following: BalancePositionUpdate, GreekUpdate,
-     * Listenkeyexpired, OrderTradeUpdate, RiskLevelChange
+     * Get the actual instance, which can be the following: AccountUpdate, BalancePositionUpdate,
+     * GreekUpdate, ListenKeyExpired, OrderTradeUpdate, RiskLevelChange
      *
-     * @return The actual instance (BalancePositionUpdate, GreekUpdate, Listenkeyexpired,
-     *     OrderTradeUpdate, RiskLevelChange)
+     * @return The actual instance (AccountUpdate, BalancePositionUpdate, GreekUpdate,
+     *     ListenKeyExpired, OrderTradeUpdate, RiskLevelChange)
      */
     @SuppressWarnings("unchecked")
     @Override
     public Object getActualInstance() {
         return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `AccountUpdate`. If the actual instance is not `AccountUpdate`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AccountUpdate`
+     * @throws ClassCastException if the instance is not `AccountUpdate`
+     */
+    public AccountUpdate getAccountUpdate() throws ClassCastException {
+        return (AccountUpdate) super.getActualInstance();
     }
 
     /**
@@ -437,6 +456,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
+     * Get the actual instance of `ListenKeyExpired`. If the actual instance is not
+     * `ListenKeyExpired`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ListenKeyExpired`
+     * @throws ClassCastException if the instance is not `ListenKeyExpired`
+     */
+    public ListenKeyExpired getListenKeyExpired() throws ClassCastException {
+        return (ListenKeyExpired) super.getActualInstance();
+    }
+
+    /**
      * Get the actual instance of `OrderTradeUpdate`. If the actual instance is not
      * `OrderTradeUpdate`, the ClassCastException will be thrown.
      *
@@ -459,17 +489,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `Listenkeyexpired`. If the actual instance is not
-     * `Listenkeyexpired`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Listenkeyexpired`
-     * @throws ClassCastException if the instance is not `Listenkeyexpired`
-     */
-    public Listenkeyexpired getListenkeyexpired() throws ClassCastException {
-        return (Listenkeyexpired) super.getActualInstance();
-    }
-
-    /**
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
@@ -480,6 +499,16 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with AccountUpdate
+        try {
+            AccountUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for AccountUpdate failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with BalancePositionUpdate
         try {
             BalancePositionUpdate.validateJsonElement(jsonElement);
@@ -499,6 +528,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             errorMessages.add(
                     String.format(
                             "Deserialization for GreekUpdate failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ListenKeyExpired
+        try {
+            ListenKeyExpired.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ListenKeyExpired failed with `%s`.",
+                            e.getMessage()));
             // continue to the next one
         }
         // validate the json string with OrderTradeUpdate
@@ -523,25 +563,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Listenkeyexpired
-        try {
-            Listenkeyexpired.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Listenkeyexpired failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
         if (validCount != 1) {
             throw new IOException(
                     String.format(
                             "The JSON string is invalid for UserDataStreamEventsResponse with oneOf"
-                                + " schemas: BalancePositionUpdate, GreekUpdate, Listenkeyexpired,"
-                                + " OrderTradeUpdate, RiskLevelChange. %d class(es) match the"
-                                + " result, expected 1. Detailed failure message for oneOf schemas:"
-                                + " %s. JSON: %s",
+                                    + " schemas: AccountUpdate, BalancePositionUpdate, GreekUpdate,"
+                                    + " ListenKeyExpired, OrderTradeUpdate, RiskLevelChange. %d"
+                                    + " class(es) match the result, expected 1. Detailed failure"
+                                    + " message for oneOf schemas: %s. JSON: %s",
                             validCount, errorMessages, jsonElement.toString()));
         }
     }

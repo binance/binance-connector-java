@@ -29,9 +29,10 @@ public class AvgPriceExample {
     }
 
     /**
-     * WebSocket Current average price
+     * Current average price
      *
-     * <p>Get current average price for a symbol. Weight: 2
+     * <p>Get current average price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      */
     public void avgPriceExampleAsync() {
         AvgPriceRequest avgPriceRequest = new AvgPriceRequest();
@@ -48,9 +49,10 @@ public class AvgPriceExample {
     }
 
     /**
-     * WebSocket Current average price
+     * Current average price
      *
-     * <p>Get current average price for a symbol. Weight: 2
+     * <p>Get current average price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      */
     public void avgPriceExampleSync() {
         AvgPriceRequest avgPriceRequest = new AvgPriceRequest();

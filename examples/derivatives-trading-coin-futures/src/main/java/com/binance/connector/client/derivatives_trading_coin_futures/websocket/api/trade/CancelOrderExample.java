@@ -31,12 +31,12 @@ public class CancelOrderExample {
     /**
      * Cancel Order (TRADE)
      *
-     * <p>Cancel an active order. * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
-     * be sent. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      */
     public void cancelOrderExampleAsync() {
         CancelOrderRequest cancelOrderRequest = new CancelOrderRequest();
-        cancelOrderRequest.symbol("");
+        cancelOrderRequest.symbol("BTCUSD_PERP");
         CompletableFuture<CancelOrderResponse> future = getApi().cancelOrder(cancelOrderRequest);
         future.handle(
                 (response, error) -> {
@@ -51,12 +51,12 @@ public class CancelOrderExample {
     /**
      * Cancel Order (TRADE)
      *
-     * <p>Cancel an active order. * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
-     * be sent. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      */
     public void cancelOrderExampleSync() {
         CancelOrderRequest cancelOrderRequest = new CancelOrderRequest();
-        cancelOrderRequest.symbol("");
+        cancelOrderRequest.symbol("BTCUSD_PERP");
         CompletableFuture<CancelOrderResponse> future = getApi().cancelOrder(cancelOrderRequest);
         CancelOrderResponse response = future.join();
         System.out.println(response);

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexibleProductPositionResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class GetFlexibleProductPositionExample {
@@ -26,14 +27,14 @@ public class GetFlexibleProductPositionExample {
     }
 
     /**
-     * Get Flexible Product Position(USER_DATA)
+     * Get Flexible Product Position (USER_DATA)
      *
-     * <p>Get Flexible Product Position Weight: 150
+     * <p>Get Flexible Product Position Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFlexibleProductPositionExample() throws ApiException {
-        String asset = "";
+    public void getFlexibleProductPositionExample() throws ApiException, IOException {
+        String asset = "USDC";
         String productId = "1";
         Long current = 1L;
         Long size = 10L;

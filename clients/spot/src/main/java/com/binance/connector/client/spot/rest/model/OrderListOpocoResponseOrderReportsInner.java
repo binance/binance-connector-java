@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListOpocoResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOpocoResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -127,17 +127,101 @@ public class OrderListOpocoResponseOrderReportsInner {
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
+
+    @SerializedName(SERIALIZED_NAME_ORIG_QTY)
+    @jakarta.annotation.Nullable
+    private String origQty;
+
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
+
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
+    @jakarta.annotation.Nullable
+    private String icebergQty;
+
+    public static final String SERIALIZED_NAME_PREVENTED_MATCH_ID = "preventedMatchId";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_MATCH_ID)
+    @jakarta.annotation.Nullable
+    private Long preventedMatchId;
+
+    public static final String SERIALIZED_NAME_PREVENTED_QUANTITY = "preventedQuantity";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String preventedQuantity;
+
     public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
 
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
     private String stopPrice;
 
-    public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
+    public static final String SERIALIZED_NAME_STRATEGY_ID = "strategyId";
 
-    @SerializedName(SERIALIZED_NAME_ORIG_QTY)
+    @SerializedName(SERIALIZED_NAME_STRATEGY_ID)
     @jakarta.annotation.Nullable
-    private String origQty;
+    private Long strategyId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_TYPE)
+    @jakarta.annotation.Nullable
+    private Long strategyType;
+
+    public static final String SERIALIZED_NAME_TRAILING_DELTA = "trailingDelta";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_DELTA)
+    @jakarta.annotation.Nullable
+    private Long trailingDelta;
+
+    public static final String SERIALIZED_NAME_TRAILING_TIME = "trailingTime";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_TIME)
+    @jakarta.annotation.Nullable
+    private Long trailingTime;
+
+    public static final String SERIALIZED_NAME_USED_SOR = "usedSor";
+
+    @SerializedName(SERIALIZED_NAME_USED_SOR)
+    @jakarta.annotation.Nullable
+    private Boolean usedSor;
+
+    public static final String SERIALIZED_NAME_WORKING_FLOOR = "workingFloor";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_FLOOR)
+    @jakarta.annotation.Nullable
+    private String workingFloor;
+
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegOffsetType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Long pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEGGED_PRICE = "peggedPrice";
+
+    @SerializedName(SERIALIZED_NAME_PEGGED_PRICE)
+    @jakarta.annotation.Nullable
+    private String peggedPrice;
+
+    public static final String SERIALIZED_NAME_EXPIRY_REASON = "expiryReason";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRY_REASON)
+    @jakarta.annotation.Nullable
+    private String expiryReason;
 
     public OrderListOpocoResponseOrderReportsInner() {}
 
@@ -440,26 +524,6 @@ public class OrderListOpocoResponseOrderReportsInner {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderListOpocoResponseOrderReportsInner stopPrice(
-            @jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-        return this;
-    }
-
-    /**
-     * Get stopPrice
-     *
-     * @return stopPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getStopPrice() {
-        return stopPrice;
-    }
-
-    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
-        this.stopPrice = stopPrice;
-    }
-
     public OrderListOpocoResponseOrderReportsInner origQty(
             @jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
@@ -478,6 +542,306 @@ public class OrderListOpocoResponseOrderReportsInner {
 
     public void setOrigQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner icebergQty(
+            @jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+        return this;
+    }
+
+    /**
+     * Appears only if the parameter icebergQty was sent in the request.
+     *
+     * @return icebergQty
+     */
+    @jakarta.annotation.Nullable
+    public String getIcebergQty() {
+        return icebergQty;
+    }
+
+    public void setIcebergQty(@jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner preventedMatchId(
+            @jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+        return this;
+    }
+
+    /**
+     * Appears only if the order expired due to STP.
+     *
+     * @return preventedMatchId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPreventedMatchId() {
+        return preventedMatchId;
+    }
+
+    public void setPreventedMatchId(@jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner preventedQuantity(
+            @jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+        return this;
+    }
+
+    /**
+     * Order quantity that expired due to STP.
+     *
+     * @return preventedQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getPreventedQuantity() {
+        return preventedQuantity;
+    }
+
+    public void setPreventedQuantity(@jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+        return this;
+    }
+
+    /**
+     * Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
+     *
+     * @return stopPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getStopPrice() {
+        return stopPrice;
+    }
+
+    public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
+        this.stopPrice = stopPrice;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner strategyId(
+            @jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyId parameter was provided upon order placement.
+     *
+     * @return strategyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner strategyType(
+            @jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyType parameter was provided upon order placement.
+     *
+     * @return strategyType
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(@jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner trailingDelta(
+            @jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+        return this;
+    }
+
+    /**
+     * Delta price change required before order activation.
+     *
+     * @return trailingDelta
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingDelta() {
+        return trailingDelta;
+    }
+
+    public void setTrailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner trailingTime(
+            @jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+        return this;
+    }
+
+    /**
+     * Time when the trailing order is now active and tracking price changes.
+     *
+     * @return trailingTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingTime() {
+        return trailingTime;
+    }
+
+    public void setTrailingTime(@jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner usedSor(
+            @jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+        return this;
+    }
+
+    /**
+     * Field that determines whether order used SOR.
+     *
+     * @return usedSor
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getUsedSor() {
+        return usedSor;
+    }
+
+    public void setUsedSor(@jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner workingFloor(
+            @jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+        return this;
+    }
+
+    /**
+     * Determines whether the order is being filled by the SOR or by the order book.
+     *
+     * @return workingFloor
+     */
+    @jakarta.annotation.Nullable
+    public String getWorkingFloor() {
+        return workingFloor;
+    }
+
+    public void setWorkingFloor(@jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner pegPriceType(
+            @jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Price peg type. Only for pegged orders.
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner pegOffsetType(
+            @jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Price peg offset type. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner pegOffsetValue(
+            @jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price peg offset value. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Long getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner peggedPrice(
+            @jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+        return this;
+    }
+
+    /**
+     * Current price order is pegged at. Only for pegged orders, once determined.
+     *
+     * @return peggedPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getPeggedPrice() {
+        return peggedPrice;
+    }
+
+    public void setPeggedPrice(@jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+    }
+
+    public OrderListOpocoResponseOrderReportsInner expiryReason(
+            @jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
+        return this;
+    }
+
+    /**
+     * Cause of the order&#39;s expiration. Appears when an order has expired.
+     *
+     * @return expiryReason
+     */
+    @jakarta.annotation.Nullable
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(@jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
     }
 
     @Override
@@ -517,8 +881,37 @@ public class OrderListOpocoResponseOrderReportsInner {
                 && Objects.equals(
                         this.selfTradePreventionMode,
                         orderListOpocoResponseOrderReportsInner.selfTradePreventionMode)
+                && Objects.equals(this.origQty, orderListOpocoResponseOrderReportsInner.origQty)
+                && Objects.equals(
+                        this.icebergQty, orderListOpocoResponseOrderReportsInner.icebergQty)
+                && Objects.equals(
+                        this.preventedMatchId,
+                        orderListOpocoResponseOrderReportsInner.preventedMatchId)
+                && Objects.equals(
+                        this.preventedQuantity,
+                        orderListOpocoResponseOrderReportsInner.preventedQuantity)
                 && Objects.equals(this.stopPrice, orderListOpocoResponseOrderReportsInner.stopPrice)
-                && Objects.equals(this.origQty, orderListOpocoResponseOrderReportsInner.origQty);
+                && Objects.equals(
+                        this.strategyId, orderListOpocoResponseOrderReportsInner.strategyId)
+                && Objects.equals(
+                        this.strategyType, orderListOpocoResponseOrderReportsInner.strategyType)
+                && Objects.equals(
+                        this.trailingDelta, orderListOpocoResponseOrderReportsInner.trailingDelta)
+                && Objects.equals(
+                        this.trailingTime, orderListOpocoResponseOrderReportsInner.trailingTime)
+                && Objects.equals(this.usedSor, orderListOpocoResponseOrderReportsInner.usedSor)
+                && Objects.equals(
+                        this.workingFloor, orderListOpocoResponseOrderReportsInner.workingFloor)
+                && Objects.equals(
+                        this.pegPriceType, orderListOpocoResponseOrderReportsInner.pegPriceType)
+                && Objects.equals(
+                        this.pegOffsetType, orderListOpocoResponseOrderReportsInner.pegOffsetType)
+                && Objects.equals(
+                        this.pegOffsetValue, orderListOpocoResponseOrderReportsInner.pegOffsetValue)
+                && Objects.equals(
+                        this.peggedPrice, orderListOpocoResponseOrderReportsInner.peggedPrice)
+                && Objects.equals(
+                        this.expiryReason, orderListOpocoResponseOrderReportsInner.expiryReason);
     }
 
     @Override
@@ -539,8 +932,22 @@ public class OrderListOpocoResponseOrderReportsInner {
                 side,
                 workingTime,
                 selfTradePreventionMode,
+                origQty,
+                icebergQty,
+                preventedMatchId,
+                preventedQuantity,
                 stopPrice,
-                origQty);
+                strategyId,
+                strategyType,
+                trailingDelta,
+                trailingTime,
+                usedSor,
+                workingFloor,
+                pegPriceType,
+                pegOffsetType,
+                pegOffsetValue,
+                peggedPrice,
+                expiryReason);
     }
 
     @Override
@@ -566,8 +973,22 @@ public class OrderListOpocoResponseOrderReportsInner {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
-        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
+        sb.append("		preventedMatchId: ").append(toIndentedString(preventedMatchId)).append("\n");
+        sb.append("		preventedQuantity: ").append(toIndentedString(preventedQuantity)).append("\n");
+        sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		strategyId: ").append(toIndentedString(strategyId)).append("\n");
+        sb.append("		strategyType: ").append(toIndentedString(strategyType)).append("\n");
+        sb.append("		trailingDelta: ").append(toIndentedString(trailingDelta)).append("\n");
+        sb.append("		trailingTime: ").append(toIndentedString(trailingTime)).append("\n");
+        sb.append("		usedSor: ").append(toIndentedString(usedSor)).append("\n");
+        sb.append("		workingFloor: ").append(toIndentedString(workingFloor)).append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		peggedPrice: ").append(toIndentedString(peggedPrice)).append("\n");
+        sb.append("		expiryReason: ").append(toIndentedString(expiryReason)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -641,14 +1062,72 @@ public class OrderListOpocoResponseOrderReportsInner {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
-        Object stopPriceValue = getStopPrice();
-        String stopPriceValueAsString = "";
-        stopPriceValueAsString = stopPriceValue.toString();
-        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
         sb.append("origQty=").append(urlEncode(origQtyValueAsString)).append("");
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
+        Object preventedMatchIdValue = getPreventedMatchId();
+        String preventedMatchIdValueAsString = "";
+        preventedMatchIdValueAsString = preventedMatchIdValue.toString();
+        sb.append("preventedMatchId=").append(urlEncode(preventedMatchIdValueAsString)).append("");
+        Object preventedQuantityValue = getPreventedQuantity();
+        String preventedQuantityValueAsString = "";
+        preventedQuantityValueAsString = preventedQuantityValue.toString();
+        sb.append("preventedQuantity=")
+                .append(urlEncode(preventedQuantityValueAsString))
+                .append("");
+        Object stopPriceValue = getStopPrice();
+        String stopPriceValueAsString = "";
+        stopPriceValueAsString = stopPriceValue.toString();
+        sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object strategyIdValue = getStrategyId();
+        String strategyIdValueAsString = "";
+        strategyIdValueAsString = strategyIdValue.toString();
+        sb.append("strategyId=").append(urlEncode(strategyIdValueAsString)).append("");
+        Object strategyTypeValue = getStrategyType();
+        String strategyTypeValueAsString = "";
+        strategyTypeValueAsString = strategyTypeValue.toString();
+        sb.append("strategyType=").append(urlEncode(strategyTypeValueAsString)).append("");
+        Object trailingDeltaValue = getTrailingDelta();
+        String trailingDeltaValueAsString = "";
+        trailingDeltaValueAsString = trailingDeltaValue.toString();
+        sb.append("trailingDelta=").append(urlEncode(trailingDeltaValueAsString)).append("");
+        Object trailingTimeValue = getTrailingTime();
+        String trailingTimeValueAsString = "";
+        trailingTimeValueAsString = trailingTimeValue.toString();
+        sb.append("trailingTime=").append(urlEncode(trailingTimeValueAsString)).append("");
+        Object usedSorValue = getUsedSor();
+        String usedSorValueAsString = "";
+        usedSorValueAsString = usedSorValue.toString();
+        sb.append("usedSor=").append(urlEncode(usedSorValueAsString)).append("");
+        Object workingFloorValue = getWorkingFloor();
+        String workingFloorValueAsString = "";
+        workingFloorValueAsString = workingFloorValue.toString();
+        sb.append("workingFloor=").append(urlEncode(workingFloorValueAsString)).append("");
+        Object pegPriceTypeValue = getPegPriceType();
+        String pegPriceTypeValueAsString = "";
+        pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+        sb.append("pegPriceType=").append(urlEncode(pegPriceTypeValueAsString)).append("");
+        Object pegOffsetTypeValue = getPegOffsetType();
+        String pegOffsetTypeValueAsString = "";
+        pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+        sb.append("pegOffsetType=").append(urlEncode(pegOffsetTypeValueAsString)).append("");
+        Object pegOffsetValueValue = getPegOffsetValue();
+        String pegOffsetValueValueAsString = "";
+        pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+        sb.append("pegOffsetValue=").append(urlEncode(pegOffsetValueValueAsString)).append("");
+        Object peggedPriceValue = getPeggedPrice();
+        String peggedPriceValueAsString = "";
+        peggedPriceValueAsString = peggedPriceValue.toString();
+        sb.append("peggedPrice=").append(urlEncode(peggedPriceValueAsString)).append("");
+        Object expiryReasonValue = getExpiryReason();
+        String expiryReasonValueAsString = "";
+        expiryReasonValueAsString = expiryReasonValue.toString();
+        sb.append("expiryReason=").append(urlEncode(expiryReasonValueAsString)).append("");
         return sb.toString();
     }
 
@@ -692,8 +1171,22 @@ public class OrderListOpocoResponseOrderReportsInner {
         openapiFields.add("side");
         openapiFields.add("workingTime");
         openapiFields.add("selfTradePreventionMode");
-        openapiFields.add("stopPrice");
         openapiFields.add("origQty");
+        openapiFields.add("icebergQty");
+        openapiFields.add("preventedMatchId");
+        openapiFields.add("preventedQuantity");
+        openapiFields.add("stopPrice");
+        openapiFields.add("strategyId");
+        openapiFields.add("strategyType");
+        openapiFields.add("trailingDelta");
+        openapiFields.add("trailingTime");
+        openapiFields.add("usedSor");
+        openapiFields.add("workingFloor");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("peggedPrice");
+        openapiFields.add("expiryReason");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -811,6 +1304,31 @@ public class OrderListOpocoResponseOrderReportsInner {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
         }
+        if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
+                && !jsonObj.get("origQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `origQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("origQty").toString()));
+        }
+        if ((jsonObj.get("icebergQty") != null && !jsonObj.get("icebergQty").isJsonNull())
+                && !jsonObj.get("icebergQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `icebergQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("icebergQty").toString()));
+        }
+        if ((jsonObj.get("preventedQuantity") != null
+                        && !jsonObj.get("preventedQuantity").isJsonNull())
+                && !jsonObj.get("preventedQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `preventedQuantity` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("preventedQuantity").toString()));
+        }
         if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
                 && !jsonObj.get("stopPrice").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -819,13 +1337,45 @@ public class OrderListOpocoResponseOrderReportsInner {
                                     + " string but got `%s`",
                             jsonObj.get("stopPrice").toString()));
         }
-        if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
-                && !jsonObj.get("origQty").isJsonPrimitive()) {
+        if ((jsonObj.get("workingFloor") != null && !jsonObj.get("workingFloor").isJsonNull())
+                && !jsonObj.get("workingFloor").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `origQty` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("origQty").toString()));
+                            "Expected the field `workingFloor` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("workingFloor").toString()));
+        }
+        if ((jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull())
+                && !jsonObj.get("pegPriceType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegPriceType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegPriceType").toString()));
+        }
+        if ((jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull())
+                && !jsonObj.get("pegOffsetType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegOffsetType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegOffsetType").toString()));
+        }
+        if ((jsonObj.get("peggedPrice") != null && !jsonObj.get("peggedPrice").isJsonNull())
+                && !jsonObj.get("peggedPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `peggedPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("peggedPrice").toString()));
+        }
+        if ((jsonObj.get("expiryReason") != null && !jsonObj.get("expiryReason").isJsonNull())
+                && !jsonObj.get("expiryReason").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `expiryReason` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("expiryReason").toString()));
         }
     }
 

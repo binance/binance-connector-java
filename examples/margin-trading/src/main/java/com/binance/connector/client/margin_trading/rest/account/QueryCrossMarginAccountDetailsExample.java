@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossMarginAccountDetailsResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryCrossMarginAccountDetailsExample {
@@ -28,11 +29,11 @@ public class QueryCrossMarginAccountDetailsExample {
     /**
      * Query Cross Margin Account Details (USER_DATA)
      *
-     * <p>Query Cross Margin Account Details Weight: 10(IP)
+     * <p>Query Cross Margin Account Details Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCrossMarginAccountDetailsExample() throws ApiException {
+    public void queryCrossMarginAccountDetailsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryCrossMarginAccountDetailsResponse> response =
                 getApi().queryCrossMarginAccountDetails(recvWindow);

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInformationResponseOptionContractsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseOptionContractsInner {
     public static final String SERIALIZED_NAME_BASE_ASSET = "baseAsset";
 
@@ -69,7 +69,7 @@ public class ExchangeInformationResponseOptionContractsInner {
     }
 
     /**
-     * Get baseAsset
+     * Base currency
      *
      * @return baseAsset
      */
@@ -89,7 +89,7 @@ public class ExchangeInformationResponseOptionContractsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quotation asset
      *
      * @return quoteAsset
      */
@@ -109,7 +109,7 @@ public class ExchangeInformationResponseOptionContractsInner {
     }
 
     /**
-     * Get underlying
+     * Name of the underlying asset of the option contract
      *
      * @return underlying
      */
@@ -129,7 +129,7 @@ public class ExchangeInformationResponseOptionContractsInner {
     }
 
     /**
-     * Get settleAsset
+     * Settlement currency
      *
      * @return settleAsset
      */

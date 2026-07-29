@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.GetLoanableAssetsDataResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetLoanableAssetsDataExample {
@@ -25,15 +26,15 @@ public class GetLoanableAssetsDataExample {
     }
 
     /**
-     * Get Loanable Assets Data(USER_DATA)
+     * Get Loanable Assets Data (USER_DATA)
      *
      * <p>Get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD
-     * value. Weight: 400
+     * value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLoanableAssetsDataExample() throws ApiException {
-        String loanCoin = "";
+    public void getLoanableAssetsDataExample() throws ApiException, IOException {
+        String loanCoin = "BUSD";
         Long vipLevel = 1L;
         Long recvWindow = 5000L;
         ApiResponse<GetLoanableAssetsDataResponse> response =

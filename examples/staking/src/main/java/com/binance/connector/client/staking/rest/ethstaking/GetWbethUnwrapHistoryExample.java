@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetWbethUnwrapHistoryResponse;
+import java.io.IOException;
 
 /** API examples for EthStakingApi */
 public class GetWbethUnwrapHistoryExample {
@@ -25,19 +26,19 @@ public class GetWbethUnwrapHistoryExample {
     }
 
     /**
-     * Get WBETH unwrap history(USER_DATA)
+     * Get WBETH unwrap history (USER_DATA)
      *
-     * <p>Get WBETH unwrap history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get WBETH unwrap history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getWbethUnwrapHistoryExample() throws ApiException {
+    public void getWbethUnwrapHistoryExample() throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

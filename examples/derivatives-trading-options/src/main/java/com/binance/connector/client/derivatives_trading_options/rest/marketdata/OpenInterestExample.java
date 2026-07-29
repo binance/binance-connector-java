@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OpenInterestExample {
@@ -28,13 +29,13 @@ public class OpenInterestExample {
     /**
      * Open Interest
      *
-     * <p>Get open interest for specific underlying asset on specific expiration date. Weight: 0
+     * <p>Get open interest for specific underlying asset on specific expiration date. Weight(IP): 0
      *
      * @throws ApiException if the Api call fails
      */
-    public void openInterestExample() throws ApiException {
-        String underlyingAsset = "";
-        String expiration = "";
+    public void openInterestExample() throws ApiException, IOException {
+        String underlyingAsset = "ETH/BTC";
+        String expiration = "221225";
         ApiResponse<OpenInterestResponse> response =
                 getApi().openInterest(underlyingAsset, expiration);
         System.out.println(response.getData());

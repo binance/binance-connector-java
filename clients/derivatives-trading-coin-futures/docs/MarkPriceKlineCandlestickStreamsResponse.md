@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | Event Name |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
+|**ps** | **String** | Pair |  [optional] |
 |**kLowerCase** | [**MarkPriceKlineCandlestickStreamsResponseK**](MarkPriceKlineCandlestickStreamsResponseK.md) |  |  [optional] |
 
 

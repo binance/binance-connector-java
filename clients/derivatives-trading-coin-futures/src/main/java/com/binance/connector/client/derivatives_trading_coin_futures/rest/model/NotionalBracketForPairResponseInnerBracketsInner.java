@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NotionalBracketForPairResponseInnerBracketsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalBracketForPairResponseInnerBracketsInner {
     public static final String SERIALIZED_NAME_BRACKET = "bracket";
 
@@ -82,7 +82,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get bracket
+     * bracket level
      *
      * @return bracket
      */
@@ -102,7 +102,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get initialLeverage
+     * the maximum leverage
      *
      * @return initialLeverage
      */
@@ -122,7 +122,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get qtyCap
+     * upper edge of base asset quantity
      *
      * @return qtyCap
      */
@@ -142,7 +142,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get qtylFloor
+     * lower edge of base asset quantity
      *
      * @return qtylFloor
      */
@@ -162,7 +162,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get maintMarginRatio
+     * Maintenance margin ratio.
      *
      * @return maintMarginRatio
      */
@@ -183,7 +183,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get cum
+     * Cumulative value.
      *
      * @return cum
      */

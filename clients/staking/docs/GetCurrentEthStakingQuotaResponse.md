@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**leftStakingPersonalQuota** | **String** |  |  [optional] |
-|**leftRedemptionPersonalQuota** | **String** |  |  [optional] |
+|**leftStakingPersonalQuota** | **String** | Show min (Daily available limit, total personal staking quota) |  [optional] |
+|**leftRedemptionPersonalQuota** | **String** | Show min (Daily personal redeem quota, total redemption limit) |  [optional] |
 |**minStakeAmount** | **String** |  |  [optional] |
 |**minRedeemAmount** | **String** |  |  [optional] |
 |**redeemPeriod** | **Long** |  |  [optional] |

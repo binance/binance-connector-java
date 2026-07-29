@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_BUYER = "buyer";
 
@@ -128,7 +128,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Buyer.
      *
      * @return buyer
      */
@@ -148,7 +148,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -168,7 +168,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -187,7 +187,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * Id.
      *
      * @return id
      */
@@ -206,7 +206,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Maker.
      *
      * @return maker
      */
@@ -225,7 +225,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -244,7 +244,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -263,7 +263,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -282,7 +282,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Quote Qty.
      *
      * @return quoteQty
      */
@@ -302,7 +302,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized Pnl.
      *
      * @return realizedPnl
      */
@@ -321,7 +321,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -341,7 +341,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -360,7 +360,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -379,7 +379,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */

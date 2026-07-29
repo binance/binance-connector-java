@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** AllOrderListsResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllOrderListsResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -89,7 +89,7 @@ public class AllOrderListsResponseResultInner extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_ORDERS)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderListCancelResponseResultOrdersInner> orders;
+    private List<@Valid AllOrderListsResponseResultInnerOrdersInner> orders;
 
     public AllOrderListsResponseResultInner() {}
 
@@ -234,13 +234,13 @@ public class AllOrderListsResponseResultInner extends BaseDTO {
 
     public AllOrderListsResponseResultInner orders(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderListCancelResponseResultOrdersInner> orders) {
+                    List<@Valid AllOrderListsResponseResultInnerOrdersInner> orders) {
         this.orders = orders;
         return this;
     }
 
     public AllOrderListsResponseResultInner addOrdersItem(
-            OrderListCancelResponseResultOrdersInner ordersItem) {
+            AllOrderListsResponseResultInnerOrdersInner ordersItem) {
         if (this.orders == null) {
             this.orders = new ArrayList<>();
         }
@@ -255,13 +255,13 @@ public class AllOrderListsResponseResultInner extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderListCancelResponseResultOrdersInner> getOrders() {
+    public List<@Valid AllOrderListsResponseResultInnerOrdersInner> getOrders() {
         return orders;
     }
 
     public void setOrders(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderListCancelResponseResultOrdersInner> orders) {
+                    List<@Valid AllOrderListsResponseResultInnerOrdersInner> orders) {
         this.orders = orders;
     }
 
@@ -358,7 +358,7 @@ public class AllOrderListsResponseResultInner extends BaseDTO {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
         }
-        List<@Valid OrderListCancelResponseResultOrdersInner> ordersValue = getOrders();
+        List<@Valid AllOrderListsResponseResultInnerOrdersInner> ordersValue = getOrders();
         if (ordersValue != null) {
             String ordersValueAsString = JSON.getGson().toJson(ordersValue);
             valMap.put("orders", ordersValueAsString);
@@ -531,7 +531,7 @@ public class AllOrderListsResponseResultInner extends BaseDTO {
 
                 // validate the optional field `orders` (array)
                 for (int i = 0; i < jsonArrayorders.size(); i++) {
-                    OrderListCancelResponseResultOrdersInner.validateJsonElement(
+                    AllOrderListsResponseResultInnerOrdersInner.validateJsonElement(
                             jsonArrayorders.get(i));
                 }
                 ;

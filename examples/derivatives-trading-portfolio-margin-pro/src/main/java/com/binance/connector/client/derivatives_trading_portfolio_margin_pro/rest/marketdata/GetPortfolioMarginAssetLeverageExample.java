@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginAssetLeverageResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetPortfolioMarginAssetLeverageExample {
@@ -26,13 +27,13 @@ public class GetPortfolioMarginAssetLeverageExample {
     }
 
     /**
-     * Get Portfolio Margin Asset Leverage(USER_DATA)
+     * Get Portfolio Margin Asset Leverage (USER_DATA)
      *
-     * <p>Get Portfolio Margin Asset Leverage Weight: 50
+     * <p>Get Portfolio Margin Asset Leverage Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getPortfolioMarginAssetLeverageExample() throws ApiException {
+    public void getPortfolioMarginAssetLeverageExample() throws ApiException, IOException {
         ApiResponse<GetPortfolioMarginAssetLeverageResponse> response =
                 getApi().getPortfolioMarginAssetLeverage();
         System.out.println(response.getData());

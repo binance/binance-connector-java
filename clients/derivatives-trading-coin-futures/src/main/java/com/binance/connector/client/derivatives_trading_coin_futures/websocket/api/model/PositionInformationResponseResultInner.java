@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** PositionInformationResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -144,7 +144,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -164,7 +164,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -184,7 +184,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get entryPrice
+     * Position entry price.
      *
      * @return entryPrice
      */
@@ -204,7 +204,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get markPrice
+     * mark price
      *
      * @return markPrice
      */
@@ -224,7 +224,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get unRealizedProfit
+     * Unrealized profit.
      *
      * @return unRealizedProfit
      */
@@ -244,7 +244,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation price.
      *
      * @return liquidationPrice
      */
@@ -264,7 +264,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get leverage
+     * Leverage value.
      *
      * @return leverage
      */
@@ -284,7 +284,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get maxQty
+     * maximum quantity of base asset
      *
      * @return maxQty
      */
@@ -304,7 +304,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get marginType
+     * Margin type.
      *
      * @return marginType
      */
@@ -324,7 +324,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated margin amount.
      *
      * @return isolatedMargin
      */
@@ -344,7 +344,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get isAutoAddMargin
+     * Whether auto-add margin is enabled.
      *
      * @return isAutoAddMargin
      */
@@ -364,7 +364,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -384,7 +384,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get notionalValue
+     * Notional value.
      *
      * @return notionalValue
      */
@@ -404,7 +404,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get isolatedWallet
+     * Isolated wallet balance.
      *
      * @return isolatedWallet
      */
@@ -424,7 +424,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -444,7 +444,7 @@ public class PositionInformationResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get breakEvenPrice
+     * break-even price
      *
      * @return breakEvenPrice
      */

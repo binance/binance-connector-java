@@ -29,13 +29,14 @@ public class SessionLogonExample {
     }
 
     /**
-     * WebSocket Log in with API key
+     * Log in with API key (USER_DATA)
      *
      * <p>Authenticate WebSocket connection using the provided API key. After calling
      * &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and &#x60;signature&#x60;
      * parameters for future requests that require them. Note that only one API key can be
      * authenticated. Calling &#x60;session.logon&#x60; multiple times changes the current
-     * authenticated API key. Weight: 2
+     * authenticated API key. **Note:** Only Ed25519 keys are supported for this feature.
+     * Weight(IP): 2 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void sessionLogonExampleAsync() {
         SessionLogonRequest sessionLogonRequest = new SessionLogonRequest();
@@ -51,13 +52,14 @@ public class SessionLogonExample {
     }
 
     /**
-     * WebSocket Log in with API key
+     * Log in with API key (USER_DATA)
      *
      * <p>Authenticate WebSocket connection using the provided API key. After calling
      * &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and &#x60;signature&#x60;
      * parameters for future requests that require them. Note that only one API key can be
      * authenticated. Calling &#x60;session.logon&#x60; multiple times changes the current
-     * authenticated API key. Weight: 2
+     * authenticated API key. **Note:** Only Ed25519 keys are supported for this feature.
+     * Weight(IP): 2 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void sessionLogonExampleSync() {
         SessionLogonRequest sessionLogonRequest = new SessionLogonRequest();

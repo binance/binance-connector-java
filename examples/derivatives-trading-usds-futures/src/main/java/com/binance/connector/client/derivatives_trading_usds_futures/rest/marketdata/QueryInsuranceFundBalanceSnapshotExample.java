@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryInsuranceFundBalanceSnapshotResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryInsuranceFundBalanceSnapshotExample {
@@ -28,12 +29,12 @@ public class QueryInsuranceFundBalanceSnapshotExample {
     /**
      * Query Insurance Fund Balance Snapshot
      *
-     * <p>Query Insurance Fund Balance Snapshot Weight: 1
+     * <p>Query Insurance Fund Balance Snapshot Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryInsuranceFundBalanceSnapshotExample() throws ApiException {
-        String symbol = "";
+    public void queryInsuranceFundBalanceSnapshotExample() throws ApiException, IOException {
+        String symbol = "BNBUSDT";
         ApiResponse<QueryInsuranceFundBalanceSnapshotResponse> response =
                 getApi().queryInsuranceFundBalanceSnapshot(symbol);
         System.out.println(response.getData());

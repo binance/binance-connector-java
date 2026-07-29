@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedPersonalLeftQuotaResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class GetOnChainYieldsLockedPersonalLeftQuotaExample {
@@ -27,11 +28,11 @@ public class GetOnChainYieldsLockedPersonalLeftQuotaExample {
     /**
      * Get On-chain Yields Locked Personal Left Quota (USER_DATA)
      *
-     * <p>Get On-chain Yields Locked Personal Left Quota Weight: 50
+     * <p>Get On-chain Yields Locked Personal Left Quota Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOnChainYieldsLockedPersonalLeftQuotaExample() throws ApiException {
+    public void getOnChainYieldsLockedPersonalLeftQuotaExample() throws ApiException, IOException {
         String projectId = "1";
         Long recvWindow = 5000L;
         ApiResponse<GetOnChainYieldsLockedPersonalLeftQuotaResponse> response =

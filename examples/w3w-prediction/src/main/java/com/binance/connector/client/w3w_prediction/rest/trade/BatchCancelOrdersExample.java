@@ -8,6 +8,7 @@ import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.BatchCancelOrdersRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.BatchCancelOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class BatchCancelOrdersExample {
@@ -27,7 +28,7 @@ public class BatchCancelOrdersExample {
     }
 
     /**
-     * Batch Cancel Orders
+     * Batch Cancel Orders (TRADE)
      *
      * <p>Cancel one or more active prediction orders in a single request. Requires SAS
      * authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint uses indexed
@@ -49,7 +50,7 @@ public class BatchCancelOrdersExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void batchCancelOrdersExample() throws ApiException {
+    public void batchCancelOrdersExample() throws ApiException, IOException {
         BatchCancelOrdersRequest batchCancelOrdersRequest = new BatchCancelOrdersRequest();
         batchCancelOrdersRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         batchCancelOrdersRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");

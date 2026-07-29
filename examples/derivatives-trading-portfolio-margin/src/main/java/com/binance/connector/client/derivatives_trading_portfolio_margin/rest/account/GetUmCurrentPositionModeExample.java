@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUmCurrentPositionModeResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetUmCurrentPositionModeExample {
@@ -26,14 +27,14 @@ public class GetUmCurrentPositionModeExample {
     }
 
     /**
-     * Get UM Current Position Mode(USER_DATA)
+     * Get UM Current Position Mode (USER_DATA)
      *
-     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM Weight:
-     * 30
+     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM
+     * Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getUmCurrentPositionModeExample() throws ApiException {
+    public void getUmCurrentPositionModeExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetUmCurrentPositionModeResponse> response =
                 getApi().getUmCurrentPositionMode(recvWindow);

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**dualSidePosition** | **String** |  |  |
+|**dualSidePosition** | **String** | \&quot;true\&quot;: Hedge Mode; \&quot;false\&quot;: One-way Mode |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

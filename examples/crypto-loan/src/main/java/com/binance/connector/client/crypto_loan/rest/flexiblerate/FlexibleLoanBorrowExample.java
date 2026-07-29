@@ -8,6 +8,7 @@ import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanBorrowResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class FlexibleLoanBorrowExample {
@@ -27,17 +28,18 @@ public class FlexibleLoanBorrowExample {
     }
 
     /**
-     * Flexible Loan Borrow(TRADE)
+     * Flexible Loan Borrow (TRADE)
      *
-     * <p>Borrow Flexible Loan * Only available for master account * You can customize LTV by
-     * entering loanAmount and collateralAmount. Weight: 6000
+     * <p>Borrow Flexible Loan Weight(IP): 6000 Security Type: TRADE Notes: - This endpoint is
+     * available for both master and sub-accounts. - You can customize LTV by entering
+     * &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
-    public void flexibleLoanBorrowExample() throws ApiException {
+    public void flexibleLoanBorrowExample() throws ApiException, IOException {
         FlexibleLoanBorrowRequest flexibleLoanBorrowRequest = new FlexibleLoanBorrowRequest();
-        flexibleLoanBorrowRequest.loanCoin("");
-        flexibleLoanBorrowRequest.collateralCoin("");
+        flexibleLoanBorrowRequest.loanCoin("BUSD");
+        flexibleLoanBorrowRequest.collateralCoin("BNB");
         ApiResponse<FlexibleLoanBorrowResponse> response =
                 getApi().flexibleLoanBorrow(flexibleLoanBorrowRequest);
         System.out.println(response.getData());

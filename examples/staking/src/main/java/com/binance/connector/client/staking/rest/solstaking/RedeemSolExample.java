@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.RedeemSolRequest;
 import com.binance.connector.client.staking.rest.model.RedeemSolResponse;
+import java.io.IOException;
 
 /** API examples for SolStakingApi */
 public class RedeemSolExample {
@@ -26,14 +27,14 @@ public class RedeemSolExample {
     }
 
     /**
-     * Redeem SOL(TRADE)
+     * Redeem SOL (TRADE)
      *
-     * <p>Redeem BNSOL get SOL * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Redeem BNSOL get SOL Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable
+     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void redeemSolExample() throws ApiException {
+    public void redeemSolExample() throws ApiException, IOException {
         RedeemSolRequest redeemSolRequest = new RedeemSolRequest();
         redeemSolRequest.amount(1.0d);
         ApiResponse<RedeemSolResponse> response = getApi().redeemSol(redeemSolRequest);

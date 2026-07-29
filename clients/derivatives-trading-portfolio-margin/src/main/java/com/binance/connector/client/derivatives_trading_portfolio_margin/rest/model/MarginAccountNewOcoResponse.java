@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOcoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOcoResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -116,7 +116,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -136,7 +136,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get contingencyType
+     * Contingency Type.
      *
      * @return contingencyType
      */
@@ -156,7 +156,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listStatusType
+     * List Status Type.
      *
      * @return listStatusType
      */
@@ -176,7 +176,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * List Order Status.
      *
      * @return listOrderStatus
      */
@@ -196,7 +196,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * List Client Order ID.
      *
      * @return listClientOrderId
      */
@@ -216,7 +216,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get transactionTime
+     * Transaction Time.
      *
      * @return transactionTime
      */
@@ -235,7 +235,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -255,7 +255,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get marginBuyBorrowAmount
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAmount
      */
@@ -276,7 +276,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get marginBuyBorrowAsset
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAsset
      */
@@ -306,7 +306,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orders
+     * Orders.
      *
      * @return orders
      */
@@ -339,7 +339,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orderReports
+     * Order Reports.
      *
      * @return orderReports
      */

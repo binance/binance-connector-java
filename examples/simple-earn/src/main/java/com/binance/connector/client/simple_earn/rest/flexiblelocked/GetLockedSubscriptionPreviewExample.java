@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetLockedSubscriptionPreviewResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class GetLockedSubscriptionPreviewExample {
@@ -26,16 +27,16 @@ public class GetLockedSubscriptionPreviewExample {
     }
 
     /**
-     * Get Locked Subscription Preview(USER_DATA)
+     * Get Locked Subscription Preview (USER_DATA)
      *
-     * <p>Get Locked Subscription Preview Weight: 150
+     * <p>Get Locked Subscription Preview Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLockedSubscriptionPreviewExample() throws ApiException {
+    public void getLockedSubscriptionPreviewExample() throws ApiException, IOException {
         String projectId = "1";
         Double amount = 1.0d;
-        Boolean autoSubscribe = false;
+        Boolean autoSubscribe = true;
         Long recvWindow = 5000L;
         ApiResponse<GetLockedSubscriptionPreviewResponse> response =
                 getApi().getLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);

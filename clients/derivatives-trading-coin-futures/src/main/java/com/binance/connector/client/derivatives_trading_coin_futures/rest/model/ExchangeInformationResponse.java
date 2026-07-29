@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponse {
     public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
 
@@ -89,7 +89,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get exchangeFilters
+     * Exchange filters.
      *
      * @return exchangeFilters
      */
@@ -119,7 +119,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get rateLimits
+     * Rate limit definitions.
      *
      * @return rateLimits
      */
@@ -141,7 +141,8 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get serverTime
+     * Ignore please. If you want to check current server time, please check via \&quot;GET
+     * /dapi/v1/time\&quot;
      *
      * @return serverTime
      */
@@ -171,7 +172,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get symbols
+     * Supported trading symbols.
      *
      * @return symbols
      */
@@ -193,7 +194,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get timezone
+     * Timezone of market data.
      *
      * @return timezone
      */

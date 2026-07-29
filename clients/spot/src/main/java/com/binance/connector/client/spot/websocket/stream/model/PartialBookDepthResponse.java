@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** PartialBookDepthResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PartialBookDepthResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
 
@@ -68,7 +68,7 @@ public class PartialBookDepthResponse extends BaseDTO {
     }
 
     /**
-     * Get lastUpdateId
+     * Last update ID
      *
      * @return lastUpdateId
      */
@@ -95,7 +95,7 @@ public class PartialBookDepthResponse extends BaseDTO {
     }
 
     /**
-     * Get bids
+     * Bids to be updated
      *
      * @return bids
      */
@@ -123,7 +123,7 @@ public class PartialBookDepthResponse extends BaseDTO {
     }
 
     /**
-     * Get asks
+     * Asks to be updated
      *
      * @return asks
      */

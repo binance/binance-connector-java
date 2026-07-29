@@ -29,13 +29,13 @@ public class ReferencePriceExample {
     }
 
     /**
-     * WebSocket Query Reference Price
+     * Query Reference Price
      *
-     * <p>Weight: 2
+     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void referencePriceExampleAsync() {
         ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest();
-        referencePriceRequest.symbol("BNBUSDT");
+        referencePriceRequest.symbol("BAZUSD");
         CompletableFuture<ReferencePriceResponse> future =
                 getApi().referencePrice(referencePriceRequest);
         future.handle(
@@ -49,13 +49,13 @@ public class ReferencePriceExample {
     }
 
     /**
-     * WebSocket Query Reference Price
+     * Query Reference Price
      *
-     * <p>Weight: 2
+     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void referencePriceExampleSync() {
         ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest();
-        referencePriceRequest.symbol("BNBUSDT");
+        referencePriceRequest.symbol("BAZUSD");
         CompletableFuture<ReferencePriceResponse> future =
                 getApi().referencePrice(referencePriceRequest);
         ReferencePriceResponse response = future.join();

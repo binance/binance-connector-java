@@ -5,6 +5,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class TestConnectivityExample {
@@ -26,11 +27,11 @@ public class TestConnectivityExample {
     /**
      * Test Connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight: 1
+     * <p>Test connectivity to the Rest API. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void testConnectivityExample() throws ApiException {
+    public void testConnectivityExample() throws ApiException, IOException {
         getApi().testConnectivity();
     }
 }

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SetSoftStakingResponse;
+import java.io.IOException;
 
 /** API examples for SoftStakingApi */
 public class SetSoftStakingExample {
@@ -27,11 +28,11 @@ public class SetSoftStakingExample {
     /**
      * Set Soft Staking (USER_DATA)
      *
-     * <p>Enable or disable Soft Staking. Weight: 50
+     * <p>Enable or disable Soft Staking. Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void setSoftStakingExample() throws ApiException {
+    public void setSoftStakingExample() throws ApiException, IOException {
         Boolean softStaking = true;
         Long recvWindow = 5000L;
         ApiResponse<SetSoftStakingResponse> response =

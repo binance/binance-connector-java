@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryOrderResponse {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -174,6 +174,25 @@ public class QueryOrderResponse {
     @jakarta.annotation.Nullable
     private Boolean priceProtect;
 
+    public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_MATCH)
+    @jakarta.annotation.Nullable
+    private String priceMatch;
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
+
+    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
+    @jakarta.annotation.Nullable
+    private Long goodTillDate;
+
     public QueryOrderResponse() {}
 
     public QueryOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
@@ -182,7 +201,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -201,7 +220,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order Id.
      *
      * @return clientOrderId
      */
@@ -220,7 +239,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -239,7 +258,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -258,7 +277,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -277,7 +296,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -296,7 +315,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -315,7 +334,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -334,7 +353,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -353,7 +372,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -372,7 +391,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -391,7 +410,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -410,7 +429,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -429,7 +448,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -448,7 +467,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -467,7 +486,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -486,7 +505,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -505,7 +524,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get type
+     * Type.
      *
      * @return type
      */
@@ -524,7 +543,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -543,7 +562,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -562,7 +581,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -581,7 +600,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -600,7 +619,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -611,6 +630,65 @@ public class QueryOrderResponse {
 
     public void setPriceProtect(@jakarta.annotation.Nullable Boolean priceProtect) {
         this.priceProtect = priceProtect;
+    }
+
+    public QueryOrderResponse priceMatch(@jakarta.annotation.Nullable String priceMatch) {
+        this.priceMatch = priceMatch;
+        return this;
+    }
+
+    /**
+     * Price Match.
+     *
+     * @return priceMatch
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceMatch() {
+        return priceMatch;
+    }
+
+    public void setPriceMatch(@jakarta.annotation.Nullable String priceMatch) {
+        this.priceMatch = priceMatch;
+    }
+
+    public QueryOrderResponse selfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Self Trade Prevention Mode.
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    public String getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public QueryOrderResponse goodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+        return this;
+    }
+
+    /**
+     * Good Till Date.
+     *
+     * @return goodTillDate
+     */
+    @jakarta.annotation.Nullable
+    public Long getGoodTillDate() {
+        return goodTillDate;
+    }
+
+    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
     }
 
     @Override
@@ -644,7 +722,11 @@ public class QueryOrderResponse {
                 && Objects.equals(this.priceRate, queryOrderResponse.priceRate)
                 && Objects.equals(this.updateTime, queryOrderResponse.updateTime)
                 && Objects.equals(this.workingType, queryOrderResponse.workingType)
-                && Objects.equals(this.priceProtect, queryOrderResponse.priceProtect);
+                && Objects.equals(this.priceProtect, queryOrderResponse.priceProtect)
+                && Objects.equals(this.priceMatch, queryOrderResponse.priceMatch)
+                && Objects.equals(
+                        this.selfTradePreventionMode, queryOrderResponse.selfTradePreventionMode)
+                && Objects.equals(this.goodTillDate, queryOrderResponse.goodTillDate);
     }
 
     @Override
@@ -672,7 +754,10 @@ public class QueryOrderResponse {
                 priceRate,
                 updateTime,
                 workingType,
-                priceProtect);
+                priceProtect,
+                priceMatch,
+                selfTradePreventionMode,
+                goodTillDate);
     }
 
     @Override
@@ -702,6 +787,11 @@ public class QueryOrderResponse {
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
+        sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
+        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -801,6 +891,20 @@ public class QueryOrderResponse {
         String priceProtectValueAsString = "";
         priceProtectValueAsString = priceProtectValue.toString();
         sb.append("priceProtect=").append(urlEncode(priceProtectValueAsString)).append("");
+        Object priceMatchValue = getPriceMatch();
+        String priceMatchValueAsString = "";
+        priceMatchValueAsString = priceMatchValue.toString();
+        sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
+        Object goodTillDateValue = getGoodTillDate();
+        String goodTillDateValueAsString = "";
+        goodTillDateValueAsString = goodTillDateValue.toString();
+        sb.append("goodTillDate=").append(urlEncode(goodTillDateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -852,6 +956,9 @@ public class QueryOrderResponse {
         openapiFields.add("updateTime");
         openapiFields.add("workingType");
         openapiFields.add("priceProtect");
+        openapiFields.add("priceMatch");
+        openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("goodTillDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1010,6 +1117,23 @@ public class QueryOrderResponse {
                             "Expected the field `workingType` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("workingType").toString()));
+        }
+        if ((jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull())
+                && !jsonObj.get("priceMatch").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceMatch` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("priceMatch").toString()));
+        }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
         }
     }
 

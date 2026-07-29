@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(UserDataStreamEventsResponse.class.getName());
@@ -47,18 +47,18 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<OutboundAccountPosition> adapterOutboundAccountPosition =
-                    gson.getDelegateAdapter(this, TypeToken.get(OutboundAccountPosition.class));
             final TypeAdapter<BalanceUpdate> adapterBalanceUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(BalanceUpdate.class));
-            final TypeAdapter<ExecutionReport> adapterExecutionReport =
-                    gson.getDelegateAdapter(this, TypeToken.get(ExecutionReport.class));
-            final TypeAdapter<ListStatus> adapterListStatus =
-                    gson.getDelegateAdapter(this, TypeToken.get(ListStatus.class));
             final TypeAdapter<EventStreamTerminated> adapterEventStreamTerminated =
                     gson.getDelegateAdapter(this, TypeToken.get(EventStreamTerminated.class));
+            final TypeAdapter<ExecutionReport> adapterExecutionReport =
+                    gson.getDelegateAdapter(this, TypeToken.get(ExecutionReport.class));
             final TypeAdapter<ExternalLockUpdate> adapterExternalLockUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(ExternalLockUpdate.class));
+            final TypeAdapter<ListStatus> adapterListStatus =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListStatus.class));
+            final TypeAdapter<OutboundAccountPosition> adapterOutboundAccountPosition =
+                    gson.getDelegateAdapter(this, TypeToken.get(OutboundAccountPosition.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<UserDataStreamEventsResponse>() {
@@ -70,36 +70,11 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
-                            // check if the actual instance is of the type `OutboundAccountPosition`
-                            if (value.getActualInstance() instanceof OutboundAccountPosition) {
-                                JsonElement element =
-                                        adapterOutboundAccountPosition.toJsonTree(
-                                                (OutboundAccountPosition)
-                                                        value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
                             // check if the actual instance is of the type `BalanceUpdate`
                             if (value.getActualInstance() instanceof BalanceUpdate) {
                                 JsonElement element =
                                         adapterBalanceUpdate.toJsonTree(
                                                 (BalanceUpdate) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `ExecutionReport`
-                            if (value.getActualInstance() instanceof ExecutionReport) {
-                                JsonElement element =
-                                        adapterExecutionReport.toJsonTree(
-                                                (ExecutionReport) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `ListStatus`
-                            if (value.getActualInstance() instanceof ListStatus) {
-                                JsonElement element =
-                                        adapterListStatus.toJsonTree(
-                                                (ListStatus) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
@@ -111,11 +86,36 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 elementAdapter.write(out, element);
                                 return;
                             }
+                            // check if the actual instance is of the type `ExecutionReport`
+                            if (value.getActualInstance() instanceof ExecutionReport) {
+                                JsonElement element =
+                                        adapterExecutionReport.toJsonTree(
+                                                (ExecutionReport) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
                             // check if the actual instance is of the type `ExternalLockUpdate`
                             if (value.getActualInstance() instanceof ExternalLockUpdate) {
                                 JsonElement element =
                                         adapterExternalLockUpdate.toJsonTree(
                                                 (ExternalLockUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `ListStatus`
+                            if (value.getActualInstance() instanceof ListStatus) {
+                                JsonElement element =
+                                        adapterListStatus.toJsonTree(
+                                                (ListStatus) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `OutboundAccountPosition`
+                            if (value.getActualInstance() instanceof OutboundAccountPosition) {
+                                JsonElement element =
+                                        adapterOutboundAccountPosition.toJsonTree(
+                                                (OutboundAccountPosition)
+                                                        value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
@@ -203,28 +203,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
-                            // deserialize OutboundAccountPosition
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                OutboundAccountPosition.validateJsonElement(jsonElement);
-                                actualAdapter = adapterOutboundAccountPosition;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'OutboundAccountPosition'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for OutboundAccountPosition failed"
-                                                        + " with `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema"
-                                                + " 'OutboundAccountPosition'",
-                                        e);
-                            }
                             // deserialize BalanceUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -242,43 +220,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 log.log(
                                         Level.FINER,
                                         "Input data does not match schema 'BalanceUpdate'",
-                                        e);
-                            }
-                            // deserialize ExecutionReport
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                ExecutionReport.validateJsonElement(jsonElement);
-                                actualAdapter = adapterExecutionReport;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'ExecutionReport'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for ExecutionReport failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'ExecutionReport'",
-                                        e);
-                            }
-                            // deserialize ListStatus
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                ListStatus.validateJsonElement(jsonElement);
-                                actualAdapter = adapterListStatus;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'ListStatus'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for ListStatus failed with `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'ListStatus'",
                                         e);
                             }
                             // deserialize EventStreamTerminated
@@ -302,6 +243,25 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         "Input data does not match schema 'EventStreamTerminated'",
                                         e);
                             }
+                            // deserialize ExecutionReport
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExecutionReport.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExecutionReport;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'ExecutionReport'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ExecutionReport failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ExecutionReport'",
+                                        e);
+                            }
                             // deserialize ExternalLockUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -321,6 +281,46 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 log.log(
                                         Level.FINER,
                                         "Input data does not match schema 'ExternalLockUpdate'",
+                                        e);
+                            }
+                            // deserialize ListStatus
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ListStatus.validateJsonElement(jsonElement);
+                                actualAdapter = adapterListStatus;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'ListStatus'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ListStatus failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ListStatus'",
+                                        e);
+                            }
+                            // deserialize OutboundAccountPosition
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                OutboundAccountPosition.validateJsonElement(jsonElement);
+                                actualAdapter = adapterOutboundAccountPosition;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'OutboundAccountPosition'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for OutboundAccountPosition failed"
+                                                        + " with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'OutboundAccountPosition'",
                                         e);
                             }
 
@@ -356,12 +356,12 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("OutboundAccountPosition", OutboundAccountPosition.class);
         schemas.put("BalanceUpdate", BalanceUpdate.class);
-        schemas.put("ExecutionReport", ExecutionReport.class);
-        schemas.put("ListStatus", ListStatus.class);
         schemas.put("EventStreamTerminated", EventStreamTerminated.class);
+        schemas.put("ExecutionReport", ExecutionReport.class);
         schemas.put("ExternalLockUpdate", ExternalLockUpdate.class);
+        schemas.put("ListStatus", ListStatus.class);
+        schemas.put("OutboundAccountPosition", OutboundAccountPosition.class);
     }
 
     @Override
@@ -378,22 +378,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof OutboundAccountPosition) {
-            super.setActualInstance(instance);
-            return;
-        }
-
         if (instance instanceof BalanceUpdate) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof ExecutionReport) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof ListStatus) {
             super.setActualInstance(instance);
             return;
         }
@@ -403,7 +388,22 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             return;
         }
 
+        if (instance instanceof ExecutionReport) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof ExternalLockUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ListStatus) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof OutboundAccountPosition) {
             super.setActualInstance(instance);
             return;
         }
@@ -427,17 +427,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `OutboundAccountPosition`. If the actual instance is not
-     * `OutboundAccountPosition`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `OutboundAccountPosition`
-     * @throws ClassCastException if the instance is not `OutboundAccountPosition`
-     */
-    public OutboundAccountPosition getOutboundAccountPosition() throws ClassCastException {
-        return (OutboundAccountPosition) super.getActualInstance();
-    }
-
-    /**
      * Get the actual instance of `BalanceUpdate`. If the actual instance is not `BalanceUpdate`,
      * the ClassCastException will be thrown.
      *
@@ -446,28 +435,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
      */
     public BalanceUpdate getBalanceUpdate() throws ClassCastException {
         return (BalanceUpdate) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `ExecutionReport`. If the actual instance is not
-     * `ExecutionReport`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `ExecutionReport`
-     * @throws ClassCastException if the instance is not `ExecutionReport`
-     */
-    public ExecutionReport getExecutionReport() throws ClassCastException {
-        return (ExecutionReport) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `ListStatus`. If the actual instance is not `ListStatus`, the
-     * ClassCastException will be thrown.
-     *
-     * @return The actual instance of `ListStatus`
-     * @throws ClassCastException if the instance is not `ListStatus`
-     */
-    public ListStatus getListStatus() throws ClassCastException {
-        return (ListStatus) super.getActualInstance();
     }
 
     /**
@@ -482,6 +449,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
+     * Get the actual instance of `ExecutionReport`. If the actual instance is not
+     * `ExecutionReport`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExecutionReport`
+     * @throws ClassCastException if the instance is not `ExecutionReport`
+     */
+    public ExecutionReport getExecutionReport() throws ClassCastException {
+        return (ExecutionReport) super.getActualInstance();
+    }
+
+    /**
      * Get the actual instance of `ExternalLockUpdate`. If the actual instance is not
      * `ExternalLockUpdate`, the ClassCastException will be thrown.
      *
@@ -490,6 +468,28 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
      */
     public ExternalLockUpdate getExternalLockUpdate() throws ClassCastException {
         return (ExternalLockUpdate) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ListStatus`. If the actual instance is not `ListStatus`, the
+     * ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ListStatus`
+     * @throws ClassCastException if the instance is not `ListStatus`
+     */
+    public ListStatus getListStatus() throws ClassCastException {
+        return (ListStatus) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `OutboundAccountPosition`. If the actual instance is not
+     * `OutboundAccountPosition`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `OutboundAccountPosition`
+     * @throws ClassCastException if the instance is not `OutboundAccountPosition`
+     */
+    public OutboundAccountPosition getOutboundAccountPosition() throws ClassCastException {
+        return (OutboundAccountPosition) super.getActualInstance();
     }
 
     /**
@@ -503,17 +503,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with OutboundAccountPosition
-        try {
-            OutboundAccountPosition.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for OutboundAccountPosition failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
         // validate the json string with BalanceUpdate
         try {
             BalanceUpdate.validateJsonElement(jsonElement);
@@ -522,27 +511,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             errorMessages.add(
                     String.format(
                             "Deserialization for BalanceUpdate failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with ExecutionReport
-        try {
-            ExecutionReport.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for ExecutionReport failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with ListStatus
-        try {
-            ListStatus.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for ListStatus failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with EventStreamTerminated
@@ -556,6 +524,17 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             e.getMessage()));
             // continue to the next one
         }
+        // validate the json string with ExecutionReport
+        try {
+            ExecutionReport.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExecutionReport failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with ExternalLockUpdate
         try {
             ExternalLockUpdate.validateJsonElement(jsonElement);
@@ -564,6 +543,27 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             errorMessages.add(
                     String.format(
                             "Deserialization for ExternalLockUpdate failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ListStatus
+        try {
+            ListStatus.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ListStatus failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with OutboundAccountPosition
+        try {
+            OutboundAccountPosition.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for OutboundAccountPosition failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }

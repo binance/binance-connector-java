@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SubscribeEthStakingRequest;
 import com.binance.connector.client.staking.rest.model.SubscribeEthStakingResponse;
+import java.io.IOException;
 
 /** API examples for EthStakingApi */
 public class SubscribeEthStakingExample {
@@ -26,14 +27,14 @@ public class SubscribeEthStakingExample {
     }
 
     /**
-     * Subscribe ETH Staking(TRADE)
+     * Subscribe ETH Staking (TRADE)
      *
-     * <p>Subscribe ETH Staking * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Subscribe ETH Staking Weight(IP): 150 Security Type: TRADE Notes: - You need to open
+     * Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeEthStakingExample() throws ApiException {
+    public void subscribeEthStakingExample() throws ApiException, IOException {
         SubscribeEthStakingRequest subscribeEthStakingRequest = new SubscribeEthStakingRequest();
         subscribeEthStakingRequest.amount(1.0d);
         ApiResponse<SubscribeEthStakingResponse> response =

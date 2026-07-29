@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RecentTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RecentTradesListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -86,7 +86,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get id
+     * Id.
      *
      * @return id
      */
@@ -105,7 +105,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -124,7 +124,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -143,7 +143,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Quote Qty.
      *
      * @return quoteQty
      */
@@ -162,7 +162,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */
@@ -182,7 +182,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get isBuyerMaker
+     * Is Buyer Maker.
      *
      * @return isBuyerMaker
      */
@@ -202,7 +202,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get isRPITrade
+     * Is RPITrade.
      *
      * @return isRPITrade
      */

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class PortfolioMarginProBankruptcyLoanRepayExample {
@@ -27,14 +28,15 @@ public class PortfolioMarginProBankruptcyLoanRepayExample {
     }
 
     /**
-     * Portfolio Margin Pro Bankruptcy Loan Repay
+     * Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
      *
-     * <p>Repay Portfolio Margin Pro Bankruptcy Loan * Please note that the API Key has enabled Spot
-     * &amp; Margin Trading permissions to access this endpoint. Weight: 3000
+     * <p>Repay Portfolio Margin Pro Bankruptcy Loan Weight(UID): 3000 Security Type: TRADE Notes: -
+     * Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void portfolioMarginProBankruptcyLoanRepayExample() throws ApiException {
+    public void portfolioMarginProBankruptcyLoanRepayExample() throws ApiException, IOException {
         PortfolioMarginProBankruptcyLoanRepayRequest portfolioMarginProBankruptcyLoanRepayRequest =
                 new PortfolioMarginProBankruptcyLoanRepayRequest();
         ApiResponse<PortfolioMarginProBankruptcyLoanRepayResponse> response =

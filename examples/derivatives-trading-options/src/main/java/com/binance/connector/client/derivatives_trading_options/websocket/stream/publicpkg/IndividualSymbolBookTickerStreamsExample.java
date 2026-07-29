@@ -33,7 +33,6 @@ public class IndividualSymbolBookTickerStreamsExample {
             throws ApiException, InterruptedException {
         IndividualSymbolBookTickerStreamsRequest individualSymbolBookTickerStreamsRequest =
                 new IndividualSymbolBookTickerStreamsRequest();
-        individualSymbolBookTickerStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse> response =
                 getApi().individualSymbolBookTickerStreams(
                                 individualSymbolBookTickerStreamsRequest);

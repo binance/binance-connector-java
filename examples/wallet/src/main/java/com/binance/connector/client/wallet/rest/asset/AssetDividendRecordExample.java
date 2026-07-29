@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class AssetDividendRecordExample {
@@ -27,16 +28,16 @@ public class AssetDividendRecordExample {
     /**
      * Asset Dividend Record (USER_DATA)
      *
-     * <p>Query asset dividend record. * There cannot be more than 180 days between parameter
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60;. Weight: 10
+     * <p>Query asset dividend record. Weight(IP): 10 Security Type: USER_DATA Notes: - There cannot
+     * be more than 180 days between parameter &#x60;startTime&#x60; and &#x60;endTime&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
-    public void assetDividendRecordExample() throws ApiException {
-        String asset = "";
+    public void assetDividendRecordExample() throws ApiException, IOException {
+        String asset = "BTC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 7L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<AssetDividendRecordResponse> response =
                 getApi().assetDividendRecord(asset, startTime, endTime, limit, recvWindow);

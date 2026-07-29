@@ -19,42 +19,8 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AggregateTradeStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllBookTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllBookTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContractInfoStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContractInfoStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.DiffBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.DiffBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.IndividualSymbolTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.KlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.LiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.LiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -316,8 +282,8 @@ public class MarketApiTest {
                         new ContinuousContractKlineCandlestickStreamsRequest();
 
         continuousContractKlineCandlestickStreamsRequest.pair("btcusdt");
-        continuousContractKlineCandlestickStreamsRequest.contractType("next_quarter");
-        continuousContractKlineCandlestickStreamsRequest.interval("1m");
+        continuousContractKlineCandlestickStreamsRequest.contractType(ContractType.next_quarter);
+        continuousContractKlineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse> response =
                 api.continuousContractKlineCandlestickStreams(
@@ -466,7 +432,7 @@ public class MarketApiTest {
                 new KlineCandlestickStreamsRequest();
 
         klineCandlestickStreamsRequest.symbol("btcusdt");
-        klineCandlestickStreamsRequest.interval("1m");
+        klineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> response =
                 api.klineCandlestickStreams(klineCandlestickStreamsRequest);
@@ -593,40 +559,6 @@ public class MarketApiTest {
         URL resource =
                 MarketApiTest.class.getResource(
                         "/expected/stream/WebsocketMarketStreamsApi/markPrice@arrupdateSpeed-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * Multi-Assets Mode Asset Index
-     *
-     * <p>Asset index for multi-assets mode user Update Speed: 1s
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void multiAssetsModeAssetIndexTest()
-            throws ApiException, URISyntaxException, IOException {
-        MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest =
-                new MultiAssetsModeAssetIndexRequest();
-
-        StreamBlockingQueueWrapper<MultiAssetsModeAssetIndexResponse> response =
-                api.multiAssetsModeAssetIndex(multiAssetsModeAssetIndexRequest);
-        ArgumentCaptor<RequestWrapperDTO<Set<String>, MultiAssetsModeAssetIndexResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<Set<String>, MultiAssetsModeAssetIndexResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        Set<String> params = requestWrapperDTO.getParams();
-        // TODO: test validations
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                MarketApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/!assetIndex@arr-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }

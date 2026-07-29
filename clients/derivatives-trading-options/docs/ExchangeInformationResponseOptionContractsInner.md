@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**baseAsset** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
-|**underlying** | **String** |  |  [optional] |
-|**settleAsset** | **String** |  |  [optional] |
+|**baseAsset** | **String** | Base currency |  [optional] |
+|**quoteAsset** | **String** | Quotation asset |  [optional] |
+|**underlying** | **String** | Name of the underlying asset of the option contract |  [optional] |
+|**settleAsset** | **String** | Settlement currency |  [optional] |
 
 
 

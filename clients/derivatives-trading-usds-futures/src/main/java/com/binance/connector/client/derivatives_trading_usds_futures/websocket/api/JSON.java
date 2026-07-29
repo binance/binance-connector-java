@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -116,6 +116,10 @@ public class JSON {
                         .model.AccountInformationResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
+                        .model.AccountInformationResponseRateLimitsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.AccountInformationResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
@@ -131,10 +135,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.AccountInformationV2Response.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
-                        .model.AccountInformationV2ResponseRateLimitsInner
-                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.AccountInformationV2ResponseResult.CustomTypeAdapterFactory());
@@ -184,14 +184,13 @@ public class JSON {
                         .model.FuturesAccountBalanceResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
+                        .model.FuturesAccountBalanceResponseResultInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.FuturesAccountBalanceV2Request.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.FuturesAccountBalanceV2Response.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
-                        .model.FuturesAccountBalanceV2ResponseResultInner
-                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.KeepaliveUserDataStreamRequest.CustomTypeAdapterFactory());
@@ -243,12 +242,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.OrderBookResponseResult.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
-                        .model.OrderBookResponseResultAsksItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
-                        .model.OrderBookResponseResultBidsItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.PositionInformationRequest.CustomTypeAdapterFactory());
@@ -306,6 +299,10 @@ public class JSON {
                         .model.SymbolOrderBookTickerResponse2.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
+                        .model.SymbolOrderBookTickerResponse2ResultInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.SymbolPriceTickerRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
@@ -319,6 +316,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
                         .model.SymbolPriceTickerResponse2.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_usds_futures.websocket.api
+                        .model.SymbolPriceTickerResponse2ResultInner.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

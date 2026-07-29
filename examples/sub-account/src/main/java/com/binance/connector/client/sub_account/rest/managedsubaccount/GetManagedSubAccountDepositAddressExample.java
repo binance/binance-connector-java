@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetManagedSubAccountDepositAddressResponse;
+import java.io.IOException;
 
 /** API examples for ManagedSubAccountApi */
 public class GetManagedSubAccountDepositAddressExample {
@@ -28,16 +29,17 @@ public class GetManagedSubAccountDepositAddressExample {
     /**
      * Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
      *
-     * <p>Get investor&#39;s managed sub-account deposit address. * If &#x60;network&#x60; is not
-     * send, return with default &#x60;network&#x60; of the &#x60;coin&#x60;. * * &#x60;amount&#x60;
-     * needs to be sent if using LIGHTNING network Weight: 1
+     * <p>Get investor&#39;s managed sub-account deposit address. Weight(UID): 1 Security Type:
+     * USER_DATA Notes: - If &#x60;network&#x60; is not sent, the default &#x60;network&#x60; for
+     * the &#x60;coin&#x60; is returned. - When using &#x60;LIGHTNING&#x60;, &#x60;amount&#x60; must
+     * be provided.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getManagedSubAccountDepositAddressExample() throws ApiException {
-        String email = "sub-account-email@email.com";
-        String coin = "";
-        String network = "";
+    public void getManagedSubAccountDepositAddressExample() throws ApiException, IOException {
+        String email = "abc@test.com";
+        String coin = "USDT";
+        String network = "LIGHTNING";
         Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetManagedSubAccountDepositAddressResponse> response =

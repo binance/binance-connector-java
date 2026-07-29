@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetLockedSubscriptionPreviewResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetLockedSubscriptionPreviewResponseInner {
     public static final String SERIALIZED_NAME_REWARD_ASSET = "rewardAsset";
 
@@ -83,31 +83,31 @@ public class GetLockedSubscriptionPreviewResponseInner {
 
     @SerializedName(SERIALIZED_NAME_NEXT_PAY_DATE)
     @jakarta.annotation.Nullable
-    private String nextPayDate;
+    private Long nextPayDate;
 
     public static final String SERIALIZED_NAME_VALUE_DATE = "valueDate";
 
     @SerializedName(SERIALIZED_NAME_VALUE_DATE)
     @jakarta.annotation.Nullable
-    private String valueDate;
+    private Long valueDate;
 
     public static final String SERIALIZED_NAME_REWARDS_END_DATE = "rewardsEndDate";
 
     @SerializedName(SERIALIZED_NAME_REWARDS_END_DATE)
     @jakarta.annotation.Nullable
-    private String rewardsEndDate;
+    private Long rewardsEndDate;
 
     public static final String SERIALIZED_NAME_DELIVER_DATE = "deliverDate";
 
     @SerializedName(SERIALIZED_NAME_DELIVER_DATE)
     @jakarta.annotation.Nullable
-    private String deliverDate;
+    private Long deliverDate;
 
     public static final String SERIALIZED_NAME_NEXT_SUBSCRIPTION_DATE = "nextSubscriptionDate";
 
     @SerializedName(SERIALIZED_NAME_NEXT_SUBSCRIPTION_DATE)
     @jakarta.annotation.Nullable
-    private String nextSubscriptionDate;
+    private Long nextSubscriptionDate;
 
     public GetLockedSubscriptionPreviewResponseInner() {}
 
@@ -253,7 +253,7 @@ public class GetLockedSubscriptionPreviewResponseInner {
     }
 
     public GetLockedSubscriptionPreviewResponseInner nextPayDate(
-            @jakarta.annotation.Nullable String nextPayDate) {
+            @jakarta.annotation.Nullable Long nextPayDate) {
         this.nextPayDate = nextPayDate;
         return this;
     }
@@ -264,16 +264,16 @@ public class GetLockedSubscriptionPreviewResponseInner {
      * @return nextPayDate
      */
     @jakarta.annotation.Nullable
-    public String getNextPayDate() {
+    public Long getNextPayDate() {
         return nextPayDate;
     }
 
-    public void setNextPayDate(@jakarta.annotation.Nullable String nextPayDate) {
+    public void setNextPayDate(@jakarta.annotation.Nullable Long nextPayDate) {
         this.nextPayDate = nextPayDate;
     }
 
     public GetLockedSubscriptionPreviewResponseInner valueDate(
-            @jakarta.annotation.Nullable String valueDate) {
+            @jakarta.annotation.Nullable Long valueDate) {
         this.valueDate = valueDate;
         return this;
     }
@@ -284,16 +284,16 @@ public class GetLockedSubscriptionPreviewResponseInner {
      * @return valueDate
      */
     @jakarta.annotation.Nullable
-    public String getValueDate() {
+    public Long getValueDate() {
         return valueDate;
     }
 
-    public void setValueDate(@jakarta.annotation.Nullable String valueDate) {
+    public void setValueDate(@jakarta.annotation.Nullable Long valueDate) {
         this.valueDate = valueDate;
     }
 
     public GetLockedSubscriptionPreviewResponseInner rewardsEndDate(
-            @jakarta.annotation.Nullable String rewardsEndDate) {
+            @jakarta.annotation.Nullable Long rewardsEndDate) {
         this.rewardsEndDate = rewardsEndDate;
         return this;
     }
@@ -304,16 +304,16 @@ public class GetLockedSubscriptionPreviewResponseInner {
      * @return rewardsEndDate
      */
     @jakarta.annotation.Nullable
-    public String getRewardsEndDate() {
+    public Long getRewardsEndDate() {
         return rewardsEndDate;
     }
 
-    public void setRewardsEndDate(@jakarta.annotation.Nullable String rewardsEndDate) {
+    public void setRewardsEndDate(@jakarta.annotation.Nullable Long rewardsEndDate) {
         this.rewardsEndDate = rewardsEndDate;
     }
 
     public GetLockedSubscriptionPreviewResponseInner deliverDate(
-            @jakarta.annotation.Nullable String deliverDate) {
+            @jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
         return this;
     }
@@ -324,16 +324,16 @@ public class GetLockedSubscriptionPreviewResponseInner {
      * @return deliverDate
      */
     @jakarta.annotation.Nullable
-    public String getDeliverDate() {
+    public Long getDeliverDate() {
         return deliverDate;
     }
 
-    public void setDeliverDate(@jakarta.annotation.Nullable String deliverDate) {
+    public void setDeliverDate(@jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
     }
 
     public GetLockedSubscriptionPreviewResponseInner nextSubscriptionDate(
-            @jakarta.annotation.Nullable String nextSubscriptionDate) {
+            @jakarta.annotation.Nullable Long nextSubscriptionDate) {
         this.nextSubscriptionDate = nextSubscriptionDate;
         return this;
     }
@@ -344,11 +344,11 @@ public class GetLockedSubscriptionPreviewResponseInner {
      * @return nextSubscriptionDate
      */
     @jakarta.annotation.Nullable
-    public String getNextSubscriptionDate() {
+    public Long getNextSubscriptionDate() {
         return nextSubscriptionDate;
     }
 
-    public void setNextSubscriptionDate(@jakarta.annotation.Nullable String nextSubscriptionDate) {
+    public void setNextSubscriptionDate(@jakarta.annotation.Nullable Long nextSubscriptionDate) {
         this.nextSubscriptionDate = nextSubscriptionDate;
     }
 
@@ -617,47 +617,6 @@ public class GetLockedSubscriptionPreviewResponseInner {
                             "Expected the field `nextPay` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("nextPay").toString()));
-        }
-        if ((jsonObj.get("nextPayDate") != null && !jsonObj.get("nextPayDate").isJsonNull())
-                && !jsonObj.get("nextPayDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `nextPayDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("nextPayDate").toString()));
-        }
-        if ((jsonObj.get("valueDate") != null && !jsonObj.get("valueDate").isJsonNull())
-                && !jsonObj.get("valueDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `valueDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("valueDate").toString()));
-        }
-        if ((jsonObj.get("rewardsEndDate") != null && !jsonObj.get("rewardsEndDate").isJsonNull())
-                && !jsonObj.get("rewardsEndDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `rewardsEndDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("rewardsEndDate").toString()));
-        }
-        if ((jsonObj.get("deliverDate") != null && !jsonObj.get("deliverDate").isJsonNull())
-                && !jsonObj.get("deliverDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `deliverDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("deliverDate").toString()));
-        }
-        if ((jsonObj.get("nextSubscriptionDate") != null
-                        && !jsonObj.get("nextSubscriptionDate").isJsonNull())
-                && !jsonObj.get("nextSubscriptionDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `nextSubscriptionDate` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("nextSubscriptionDate").toString()));
         }
     }
 

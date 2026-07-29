@@ -29,10 +29,10 @@ public class OpenOrdersCancelAllExample {
     }
 
     /**
-     * WebSocket Cancel open orders
+     * Cancel open orders (TRADE)
      *
      * <p>Cancel all open orders on a symbol. This includes orders that are part of an order list.
-     * Weight: 1
+     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void openOrdersCancelAllExampleAsync() {
         OpenOrdersCancelAllRequest openOrdersCancelAllRequest = new OpenOrdersCancelAllRequest();
@@ -50,10 +50,10 @@ public class OpenOrdersCancelAllExample {
     }
 
     /**
-     * WebSocket Cancel open orders
+     * Cancel open orders (TRADE)
      *
      * <p>Cancel all open orders on a symbol. This includes orders that are part of an order list.
-     * Weight: 1
+     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
      */
     public void openOrdersCancelAllExampleSync() {
         OpenOrdersCancelAllRequest openOrdersCancelAllRequest = new OpenOrdersCancelAllRequest();

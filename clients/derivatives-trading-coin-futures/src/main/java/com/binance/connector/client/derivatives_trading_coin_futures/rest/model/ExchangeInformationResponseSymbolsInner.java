@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInformationResponseSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseSymbolsInner {
     public static final String SERIALIZED_NAME_FILTERS = "filters";
 
@@ -211,7 +211,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get filters
+     * Trading filters and constraints.
      *
      * @return filters
      */
@@ -242,7 +242,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get orderTypes
+     * Supported order types.
      *
      * @return orderTypes
      */
@@ -270,7 +270,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -290,7 +290,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get liquidationFee
+     * liquidation fee rate
      *
      * @return liquidationFee
      */
@@ -310,7 +310,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marketTakeBound
+     * the max price difference rate( from mark price) a market order can make
      *
      * @return marketTakeBound
      */
@@ -330,7 +330,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -349,7 +349,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -369,7 +369,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractType
+     * Contract type.
      *
      * @return contractType
      */
@@ -389,7 +389,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get deliveryDate
+     * Delivery timestamp.
      *
      * @return deliveryDate
      */
@@ -409,7 +409,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get onboardDate
+     * Onboard timestamp.
      *
      * @return onboardDate
      */
@@ -429,7 +429,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractStatus
+     * Contract status.
      *
      * @return contractStatus
      */
@@ -449,7 +449,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractSize
+     * Contract size.
      *
      * @return contractSize
      */
@@ -469,7 +469,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quote asset symbol.
      *
      * @return quoteAsset
      */
@@ -489,7 +489,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAsset
+     * Base asset symbol.
      *
      * @return baseAsset
      */
@@ -509,7 +509,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin asset.
      *
      * @return marginAsset
      */
@@ -529,7 +529,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pricePrecision
+     * please do not use it as tickSize
      *
      * @return pricePrecision
      */
@@ -549,7 +549,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quantityPrecision
+     * please do not use it as stepSize
      *
      * @return quantityPrecision
      */
@@ -569,7 +569,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAssetPrecision
+     * Base asset precision.
      *
      * @return baseAssetPrecision
      */
@@ -589,7 +589,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quotePrecision
+     * Quote asset precision.
      *
      * @return quotePrecision
      */
@@ -609,7 +609,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get equalQtyPrecision
+     * ignore
      *
      * @return equalQtyPrecision
      */
@@ -629,7 +629,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get triggerProtect
+     * threshold for algo order with \&quot;priceProtect\&quot;
      *
      * @return triggerProtect
      */
@@ -649,7 +649,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get maintMarginPercent
+     * ignore
      *
      * @return maintMarginPercent
      */
@@ -669,7 +669,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get requiredMarginPercent
+     * ignore
      *
      * @return requiredMarginPercent
      */
@@ -690,7 +690,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get underlyingType
+     * Underlying asset type.
      *
      * @return underlyingType
      */
@@ -719,7 +719,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get underlyingSubType
+     * Underlying asset sub-type.
      *
      * @return underlyingSubType
      */

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetApiKeyPermissionResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetApiKeyPermissionExample {
@@ -27,11 +28,11 @@ public class GetApiKeyPermissionExample {
     /**
      * Get API Key Permission (USER_DATA)
      *
-     * <p>Get API Key Permission Weight: 1
+     * <p>Get API Key Permission Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getApiKeyPermissionExample() throws ApiException {
+    public void getApiKeyPermissionExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetApiKeyPermissionResponse> response =
                 getApi().getApiKeyPermission(recvWindow);

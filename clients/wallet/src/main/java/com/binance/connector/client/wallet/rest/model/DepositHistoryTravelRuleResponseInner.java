@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** DepositHistoryTravelRuleResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DepositHistoryTravelRuleResponseInner {
     public static final String SERIALIZED_NAME_TR_ID = "trId";
 
@@ -78,6 +78,12 @@ public class DepositHistoryTravelRuleResponseInner {
     @jakarta.annotation.Nullable
     private Long travelRuleStatus;
 
+    public static final String SERIALIZED_NAME_TRAVEL_RULE_STATUS_V2 = "travelRuleStatusV2";
+
+    @SerializedName(SERIALIZED_NAME_TRAVEL_RULE_STATUS_V2)
+    @jakarta.annotation.Nullable
+    private String travelRuleStatusV2;
+
     public static final String SERIALIZED_NAME_ADDRESS = "address";
 
     @SerializedName(SERIALIZED_NAME_ADDRESS)
@@ -102,6 +108,12 @@ public class DepositHistoryTravelRuleResponseInner {
     @jakarta.annotation.Nullable
     private Long insertTime;
 
+    public static final String SERIALIZED_NAME_COMPLETE_TIME = "completeTime";
+
+    @SerializedName(SERIALIZED_NAME_COMPLETE_TIME)
+    @jakarta.annotation.Nullable
+    private Long completeTime;
+
     public static final String SERIALIZED_NAME_TRANSFER_TYPE = "transferType";
 
     @SerializedName(SERIALIZED_NAME_TRANSFER_TYPE)
@@ -113,18 +125,6 @@ public class DepositHistoryTravelRuleResponseInner {
     @SerializedName(SERIALIZED_NAME_CONFIRM_TIMES)
     @jakarta.annotation.Nullable
     private String confirmTimes;
-
-    public static final String SERIALIZED_NAME_UNLOCK_CONFIRM = "unlockConfirm";
-
-    @SerializedName(SERIALIZED_NAME_UNLOCK_CONFIRM)
-    @jakarta.annotation.Nullable
-    private Long unlockConfirm;
-
-    public static final String SERIALIZED_NAME_WALLET_TYPE = "walletType";
-
-    @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
-    @jakarta.annotation.Nullable
-    private Long walletType;
 
     public static final String SERIALIZED_NAME_REQUIRE_QUESTIONNAIRE = "requireQuestionnaire";
 
@@ -277,6 +277,28 @@ public class DepositHistoryTravelRuleResponseInner {
         this.travelRuleStatus = travelRuleStatus;
     }
 
+    public DepositHistoryTravelRuleResponseInner travelRuleStatusV2(
+            @jakarta.annotation.Nullable String travelRuleStatusV2) {
+        this.travelRuleStatusV2 = travelRuleStatusV2;
+        return this;
+    }
+
+    /**
+     * Overall travel rule verification status (GTR + sanctions screening combined).
+     * \&quot;PASSED\&quot;: verification complete, deposit released. \&quot;PENDING\&quot;:
+     * verification in progress, deposit frozen. \&quot;REJECTED\&quot;: verification failed.
+     *
+     * @return travelRuleStatusV2
+     */
+    @jakarta.annotation.Nullable
+    public String getTravelRuleStatusV2() {
+        return travelRuleStatusV2;
+    }
+
+    public void setTravelRuleStatusV2(@jakarta.annotation.Nullable String travelRuleStatusV2) {
+        this.travelRuleStatusV2 = travelRuleStatusV2;
+    }
+
     public DepositHistoryTravelRuleResponseInner address(
             @jakarta.annotation.Nullable String address) {
         this.address = address;
@@ -356,6 +378,26 @@ public class DepositHistoryTravelRuleResponseInner {
         this.insertTime = insertTime;
     }
 
+    public DepositHistoryTravelRuleResponseInner completeTime(
+            @jakarta.annotation.Nullable Long completeTime) {
+        this.completeTime = completeTime;
+        return this;
+    }
+
+    /**
+     * Timestamp when the deposit was fully completed/credited (epoch ms).
+     *
+     * @return completeTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getCompleteTime() {
+        return completeTime;
+    }
+
+    public void setCompleteTime(@jakarta.annotation.Nullable Long completeTime) {
+        this.completeTime = completeTime;
+    }
+
     public DepositHistoryTravelRuleResponseInner transferType(
             @jakarta.annotation.Nullable Long transferType) {
         this.transferType = transferType;
@@ -394,46 +436,6 @@ public class DepositHistoryTravelRuleResponseInner {
 
     public void setConfirmTimes(@jakarta.annotation.Nullable String confirmTimes) {
         this.confirmTimes = confirmTimes;
-    }
-
-    public DepositHistoryTravelRuleResponseInner unlockConfirm(
-            @jakarta.annotation.Nullable Long unlockConfirm) {
-        this.unlockConfirm = unlockConfirm;
-        return this;
-    }
-
-    /**
-     * Get unlockConfirm
-     *
-     * @return unlockConfirm
-     */
-    @jakarta.annotation.Nullable
-    public Long getUnlockConfirm() {
-        return unlockConfirm;
-    }
-
-    public void setUnlockConfirm(@jakarta.annotation.Nullable Long unlockConfirm) {
-        this.unlockConfirm = unlockConfirm;
-    }
-
-    public DepositHistoryTravelRuleResponseInner walletType(
-            @jakarta.annotation.Nullable Long walletType) {
-        this.walletType = walletType;
-        return this;
-    }
-
-    /**
-     * Get walletType
-     *
-     * @return walletType
-     */
-    @jakarta.annotation.Nullable
-    public Long getWalletType() {
-        return walletType;
-    }
-
-    public void setWalletType(@jakarta.annotation.Nullable Long walletType) {
-        this.walletType = walletType;
     }
 
     public DepositHistoryTravelRuleResponseInner requireQuestionnaire(
@@ -496,17 +498,19 @@ public class DepositHistoryTravelRuleResponseInner {
                 && Objects.equals(
                         this.travelRuleStatus,
                         depositHistoryTravelRuleResponseInner.travelRuleStatus)
+                && Objects.equals(
+                        this.travelRuleStatusV2,
+                        depositHistoryTravelRuleResponseInner.travelRuleStatusV2)
                 && Objects.equals(this.address, depositHistoryTravelRuleResponseInner.address)
                 && Objects.equals(this.addressTag, depositHistoryTravelRuleResponseInner.addressTag)
                 && Objects.equals(this.txId, depositHistoryTravelRuleResponseInner.txId)
                 && Objects.equals(this.insertTime, depositHistoryTravelRuleResponseInner.insertTime)
                 && Objects.equals(
+                        this.completeTime, depositHistoryTravelRuleResponseInner.completeTime)
+                && Objects.equals(
                         this.transferType, depositHistoryTravelRuleResponseInner.transferType)
                 && Objects.equals(
                         this.confirmTimes, depositHistoryTravelRuleResponseInner.confirmTimes)
-                && Objects.equals(
-                        this.unlockConfirm, depositHistoryTravelRuleResponseInner.unlockConfirm)
-                && Objects.equals(this.walletType, depositHistoryTravelRuleResponseInner.walletType)
                 && Objects.equals(
                         this.requireQuestionnaire,
                         depositHistoryTravelRuleResponseInner.requireQuestionnaire)
@@ -524,14 +528,14 @@ public class DepositHistoryTravelRuleResponseInner {
                 network,
                 depositStatus,
                 travelRuleStatus,
+                travelRuleStatusV2,
                 address,
                 addressTag,
                 txId,
                 insertTime,
+                completeTime,
                 transferType,
                 confirmTimes,
-                unlockConfirm,
-                walletType,
                 requireQuestionnaire,
                 questionnaire);
     }
@@ -547,14 +551,16 @@ public class DepositHistoryTravelRuleResponseInner {
         sb.append("		network: ").append(toIndentedString(network)).append("\n");
         sb.append("		depositStatus: ").append(toIndentedString(depositStatus)).append("\n");
         sb.append("		travelRuleStatus: ").append(toIndentedString(travelRuleStatus)).append("\n");
+        sb.append("		travelRuleStatusV2: ")
+                .append(toIndentedString(travelRuleStatusV2))
+                .append("\n");
         sb.append("		address: ").append(toIndentedString(address)).append("\n");
         sb.append("		addressTag: ").append(toIndentedString(addressTag)).append("\n");
         sb.append("		txId: ").append(toIndentedString(txId)).append("\n");
         sb.append("		insertTime: ").append(toIndentedString(insertTime)).append("\n");
+        sb.append("		completeTime: ").append(toIndentedString(completeTime)).append("\n");
         sb.append("		transferType: ").append(toIndentedString(transferType)).append("\n");
         sb.append("		confirmTimes: ").append(toIndentedString(confirmTimes)).append("\n");
-        sb.append("		unlockConfirm: ").append(toIndentedString(unlockConfirm)).append("\n");
-        sb.append("		walletType: ").append(toIndentedString(walletType)).append("\n");
         sb.append("		requireQuestionnaire: ")
                 .append(toIndentedString(requireQuestionnaire))
                 .append("\n");
@@ -594,6 +600,12 @@ public class DepositHistoryTravelRuleResponseInner {
         String travelRuleStatusValueAsString = "";
         travelRuleStatusValueAsString = travelRuleStatusValue.toString();
         sb.append("travelRuleStatus=").append(urlEncode(travelRuleStatusValueAsString)).append("");
+        Object travelRuleStatusV2Value = getTravelRuleStatusV2();
+        String travelRuleStatusV2ValueAsString = "";
+        travelRuleStatusV2ValueAsString = travelRuleStatusV2Value.toString();
+        sb.append("travelRuleStatusV2=")
+                .append(urlEncode(travelRuleStatusV2ValueAsString))
+                .append("");
         Object addressValue = getAddress();
         String addressValueAsString = "";
         addressValueAsString = addressValue.toString();
@@ -610,6 +622,10 @@ public class DepositHistoryTravelRuleResponseInner {
         String insertTimeValueAsString = "";
         insertTimeValueAsString = insertTimeValue.toString();
         sb.append("insertTime=").append(urlEncode(insertTimeValueAsString)).append("");
+        Object completeTimeValue = getCompleteTime();
+        String completeTimeValueAsString = "";
+        completeTimeValueAsString = completeTimeValue.toString();
+        sb.append("completeTime=").append(urlEncode(completeTimeValueAsString)).append("");
         Object transferTypeValue = getTransferType();
         String transferTypeValueAsString = "";
         transferTypeValueAsString = transferTypeValue.toString();
@@ -618,14 +634,6 @@ public class DepositHistoryTravelRuleResponseInner {
         String confirmTimesValueAsString = "";
         confirmTimesValueAsString = confirmTimesValue.toString();
         sb.append("confirmTimes=").append(urlEncode(confirmTimesValueAsString)).append("");
-        Object unlockConfirmValue = getUnlockConfirm();
-        String unlockConfirmValueAsString = "";
-        unlockConfirmValueAsString = unlockConfirmValue.toString();
-        sb.append("unlockConfirm=").append(urlEncode(unlockConfirmValueAsString)).append("");
-        Object walletTypeValue = getWalletType();
-        String walletTypeValueAsString = "";
-        walletTypeValueAsString = walletTypeValue.toString();
-        sb.append("walletType=").append(urlEncode(walletTypeValueAsString)).append("");
         Object requireQuestionnaireValue = getRequireQuestionnaire();
         String requireQuestionnaireValueAsString = "";
         requireQuestionnaireValueAsString = requireQuestionnaireValue.toString();
@@ -671,14 +679,14 @@ public class DepositHistoryTravelRuleResponseInner {
         openapiFields.add("network");
         openapiFields.add("depositStatus");
         openapiFields.add("travelRuleStatus");
+        openapiFields.add("travelRuleStatusV2");
         openapiFields.add("address");
         openapiFields.add("addressTag");
         openapiFields.add("txId");
         openapiFields.add("insertTime");
+        openapiFields.add("completeTime");
         openapiFields.add("transferType");
         openapiFields.add("confirmTimes");
-        openapiFields.add("unlockConfirm");
-        openapiFields.add("walletType");
         openapiFields.add("requireQuestionnaire");
         openapiFields.add("questionnaire");
 
@@ -729,6 +737,15 @@ public class DepositHistoryTravelRuleResponseInner {
                             "Expected the field `network` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("network").toString()));
+        }
+        if ((jsonObj.get("travelRuleStatusV2") != null
+                        && !jsonObj.get("travelRuleStatusV2").isJsonNull())
+                && !jsonObj.get("travelRuleStatusV2").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `travelRuleStatusV2` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("travelRuleStatusV2").toString()));
         }
         if ((jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull())
                 && !jsonObj.get("address").isJsonPrimitive()) {

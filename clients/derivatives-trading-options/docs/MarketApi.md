@@ -6,9 +6,9 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**indexPriceStreams**](MarketApi.md#indexPriceStreams) | **POST** /!index@arr | Index Price Streams |
 | [**klineCandlestickStreams**](MarketApi.md#klineCandlestickStreams) | **POST** /&lt;symbol&gt;@kline_&lt;interval&gt; | Kline/Candlestick Streams |
-| [**markPrice**](MarketApi.md#markPrice) | **POST** /&lt;underlying&gt;@optionMarkPrice | Mark Price |
 | [**newSymbolInfo**](MarketApi.md#newSymbolInfo) | **POST** /!optionSymbol | New Symbol Info |
-| [**openInterest**](MarketApi.md#openInterest) | **POST** /underlying@optionOpenInterest@&lt;expirationDate&gt; | Open Interest |
+| [**openInterest**](MarketApi.md#openInterest) | **POST** /&lt;underlying&gt;@openInterest@&lt;expirationDate&gt; | Open Interest |
+| [**optionMarkPrice**](MarketApi.md#optionMarkPrice) | **POST** /&lt;underlying&gt;@optionMarkPrice | Option Mark Price |
 
 
 <a id="indexPriceStreams"></a>
@@ -135,68 +135,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Kline/Candlestick Streams |  -  |
 
-<a id="markPrice"></a>
-# **markPrice**
-> MarkPriceResponse markPrice(markPriceRequest)
-
-Mark Price
-
-The mark price for all option symbols on specific underlying asset. E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)  Update Speed: 1000ms
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.api.MarketApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    MarketApi apiInstance = new MarketApi(defaultClient);
-    MarkPriceRequest markPriceRequest = new MarkPriceRequest(); // MarkPriceRequest | 
-    try {
-      MarkPriceResponse result = apiInstance.markPrice(markPriceRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketApi#markPrice");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **markPriceRequest** | [**MarkPriceRequest**](MarkPriceRequest.md)|  | |
-
-### Return type
-
-[**MarkPriceResponse**](MarkPriceResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Mark Price |  -  |
-
 <a id="newSymbolInfo"></a>
 # **newSymbolInfo**
 > NewSymbolInfoResponse newSymbolInfo(newSymbolInfoRequest)
@@ -320,4 +258,66 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Open Interest |  -  |
+
+<a id="optionMarkPrice"></a>
+# **optionMarkPrice**
+> OptionMarkPriceResponse optionMarkPrice(optionMarkPriceRequest)
+
+Option Mark Price
+
+The mark price for all option symbols on specific underlying asset. E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)  Update Speed: 1000ms
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.api.MarketApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    MarketApi apiInstance = new MarketApi(defaultClient);
+    OptionMarkPriceRequest optionMarkPriceRequest = new OptionMarkPriceRequest(); // OptionMarkPriceRequest | 
+    try {
+      OptionMarkPriceResponse result = apiInstance.optionMarkPrice(optionMarkPriceRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketApi#optionMarkPrice");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **optionMarkPriceRequest** | [**OptionMarkPriceRequest**](OptionMarkPriceRequest.md)|  | |
+
+### Return type
+
+[**OptionMarkPriceResponse**](OptionMarkPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Mark Price |  -  |
 

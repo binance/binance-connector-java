@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class GetForceLiquidationRecordExample {
@@ -28,14 +29,15 @@ public class GetForceLiquidationRecordExample {
     /**
      * Get Force Liquidation Record (USER_DATA)
      *
-     * <p>Get Force Liquidation Record * Response in descending order Weight: 1(IP)
+     * <p>Get Force Liquidation Record Weight(IP): 1 Security Type: USER_DATA Notes: - Response in
+     * descending order
      *
      * @throws ApiException if the Api call fails
      */
-    public void getForceLiquidationRecordExample() throws ApiException {
+    public void getForceLiquidationRecordExample() throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        String isolatedSymbol = "";
+        String isolatedSymbol = "BTCUSDT";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

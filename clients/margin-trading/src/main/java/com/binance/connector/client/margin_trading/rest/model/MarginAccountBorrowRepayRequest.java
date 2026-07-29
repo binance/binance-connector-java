@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountBorrowRepayRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountBorrowRepayRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -46,12 +47,12 @@ public class MarginAccountBorrowRepayRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nonnull
-    private String isIsolated;
+    private IsIsolated isIsolated = IsIsolated.FALSE;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
@@ -64,7 +65,7 @@ public class MarginAccountBorrowRepayRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -95,7 +96,7 @@ public class MarginAccountBorrowRepayRequest {
     }
 
     public MarginAccountBorrowRepayRequest isIsolated(
-            @jakarta.annotation.Nonnull String isIsolated) {
+            @jakarta.annotation.Nonnull IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
         return this;
     }
@@ -107,31 +108,31 @@ public class MarginAccountBorrowRepayRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getIsIsolated() {
+    @Valid
+    public IsIsolated getIsIsolated() {
         return isIsolated;
     }
 
-    public void setIsIsolated(@jakarta.annotation.Nonnull String isIsolated) {
+    public void setIsIsolated(@jakarta.annotation.Nonnull IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
     }
 
-    public MarginAccountBorrowRepayRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public MarginAccountBorrowRepayRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Only for Isolated margin
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
@@ -155,7 +156,7 @@ public class MarginAccountBorrowRepayRequest {
         this.amount = amount;
     }
 
-    public MarginAccountBorrowRepayRequest type(@jakarta.annotation.Nonnull String type) {
+    public MarginAccountBorrowRepayRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -167,11 +168,12 @@ public class MarginAccountBorrowRepayRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -182,11 +184,12 @@ public class MarginAccountBorrowRepayRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -298,7 +301,6 @@ public class MarginAccountBorrowRepayRequest {
         openapiRequiredFields = new HashSet<String>();
         openapiRequiredFields.add("asset");
         openapiRequiredFields.add("isIsolated");
-        openapiRequiredFields.add("symbol");
         openapiRequiredFields.add("amount");
         openapiRequiredFields.add("type");
     }
@@ -339,14 +341,10 @@ public class MarginAccountBorrowRepayRequest {
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
         }
-        if (!jsonObj.get("isIsolated").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isIsolated` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("isIsolated").toString()));
-        }
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        // validate the required field `isIsolated`
+        IsIsolated.validateJsonElement(jsonObj.get("isIsolated"));
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
@@ -360,13 +358,8 @@ public class MarginAccountBorrowRepayRequest {
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
         }
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

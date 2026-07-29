@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** GetDualInvestmentProductListResponseListInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetDualInvestmentProductListResponseListInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -311,7 +311,7 @@ public class GetDualInvestmentProductListResponseListInner {
     }
 
     /**
-     * Get canPurchase
+     * Whether the product can be subscribed to currently
      *
      * @return canPurchase
      */
@@ -451,7 +451,7 @@ public class GetDualInvestmentProductListResponseListInner {
     }
 
     /**
-     * Get isAutoCompoundEnable
+     * Whether auto-compound is enabled for this product
      *
      * @return isAutoCompoundEnable
      */
@@ -480,7 +480,7 @@ public class GetDualInvestmentProductListResponseListInner {
     }
 
     /**
-     * Get autoCompoundPlanList
+     * Available auto-compound plans for this product
      *
      * @return autoCompoundPlanList
      */

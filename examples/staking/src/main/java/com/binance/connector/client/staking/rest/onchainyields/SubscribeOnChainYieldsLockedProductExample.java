@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SubscribeOnChainYieldsLockedProductRequest;
 import com.binance.connector.client.staking.rest.model.SubscribeOnChainYieldsLockedProductResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class SubscribeOnChainYieldsLockedProductExample {
@@ -26,14 +27,15 @@ public class SubscribeOnChainYieldsLockedProductExample {
     }
 
     /**
-     * Subscribe On-chain Yields Locked Product(TRADE)
+     * Subscribe On-chain Yields Locked Product (TRADE)
      *
-     * <p>Subscribe On-chain Yields Locked Product * You need to open &#x60;Enable Spot &amp; Margin
-     * Trading&#x60; permission for the API Key which requests this endpoint. Weight: 200
+     * <p>Subscribe On-chain Yields Locked Product Weight(IP): 200 Security Type: TRADE Notes: - You
+     * need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which
+     * requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeOnChainYieldsLockedProductExample() throws ApiException {
+    public void subscribeOnChainYieldsLockedProductExample() throws ApiException, IOException {
         SubscribeOnChainYieldsLockedProductRequest subscribeOnChainYieldsLockedProductRequest =
                 new SubscribeOnChainYieldsLockedProductRequest();
         subscribeOnChainYieldsLockedProductRequest.projectId("1");

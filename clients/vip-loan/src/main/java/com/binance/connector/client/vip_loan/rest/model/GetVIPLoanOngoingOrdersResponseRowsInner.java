@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetVIPLoanOngoingOrdersResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetVIPLoanOngoingOrdersResponseRowsInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -184,7 +184,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
     }
 
     /**
-     * Get loanRate
+     * For flexible loans, this is the flexible rate.
      *
      * @return loanRate
      */
@@ -326,7 +326,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
     }
 
     /**
-     * Get expirationTime
+     * For flexible loans, this value is &#x60;0&#x60;.
      *
      * @return expirationTime
      */
@@ -366,7 +366,7 @@ public class GetVIPLoanOngoingOrdersResponseRowsInner {
     }
 
     /**
-     * Get loanTerm
+     * For flexible loans, this value is &#x60;open term&#x60;.
      *
      * @return loanTerm
      */

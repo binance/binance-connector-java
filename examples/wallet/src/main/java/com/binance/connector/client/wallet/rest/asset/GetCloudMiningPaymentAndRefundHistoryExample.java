@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class GetCloudMiningPaymentAndRefundHistoryExample {
@@ -27,18 +28,18 @@ public class GetCloudMiningPaymentAndRefundHistoryExample {
     /**
      * Get Cloud-Mining payment and refund history (USER_DATA)
      *
-     * <p>The query of Cloud-Mining payment and refund history * Just return the SUCCESS records of
-     * payment and refund. * For response, type &#x3D; 248 means payment, type &#x3D; 249 means
-     * refund, status &#x3D;S means SUCCESS. Weight: 600
+     * <p>The query of Cloud-Mining payment and refund history Weight(UID): 600 Security Type:
+     * USER_DATA Notes: - Just return the SUCCESS records of payment and refund. - For response,
+     * type &#x3D; 248 means payment, type &#x3D; 249 means refund, status &#x3D;S means SUCCESS.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCloudMiningPaymentAndRefundHistoryExample() throws ApiException {
+    public void getCloudMiningPaymentAndRefundHistoryExample() throws ApiException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long tranId = 1L;
         String clientTranId = "1";
-        String asset = "";
+        String asset = "BTC";
         Long current = 1L;
         Long size = 10L;
         ApiResponse<GetCloudMiningPaymentAndRefundHistoryResponse> response =

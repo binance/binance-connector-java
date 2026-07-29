@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** RequestForMinerListResponseDataWorkerDatasInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RequestForMinerListResponseDataWorkerDatasInner {
     public static final String SERIALIZED_NAME_WORKER_ID = "workerId";
 
@@ -88,7 +88,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get workerId
+     * Miner ID
      *
      * @return workerId
      */
@@ -108,7 +108,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get workerName
+     * Miner name
      *
      * @return workerName
      */
@@ -128,7 +128,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get status
+     * Status: 1 Valid, 2 Invalid, 3 No longer valid
      *
      * @return status
      */
@@ -148,7 +148,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get hashRate
+     * Real-time rate
      *
      * @return hashRate
      */
@@ -168,7 +168,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get dayHashRate
+     * 24H hashrate
      *
      * @return dayHashRate
      */
@@ -189,7 +189,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get rejectRate
+     * Real-time rejection rate
      *
      * @return rejectRate
      */
@@ -209,7 +209,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get lastShareTime
+     * Last share time
      *
      * @return lastShareTime
      */

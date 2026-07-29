@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class QueryUserDelegationHistoryExample {
@@ -25,18 +27,18 @@ public class QueryUserDelegationHistoryExample {
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA)
+     * Query User Delegation History(For Master Account) (USER_DATA)
      *
-     * <p>Query User Delegation History Weight: 60
+     * <p>Query User Delegation History Weight(IP): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryUserDelegationHistoryExample() throws ApiException {
-        String email = "";
+    public void queryUserDelegationHistoryExample() throws ApiException, IOException {
+        String email = "abc@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        String type = "";
-        String asset = "";
+        OrderType type = OrderType.MAIN_UMFUTURE;
+        String asset = "BTC";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

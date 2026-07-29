@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**code** | **String** |  |  [optional] |
-|**msg** | **String** |  |  [optional] |
+|**code** | **String** | Code. |  [optional] |
+|**msg** | **String** | Msg. |  [optional] |
 
 
 

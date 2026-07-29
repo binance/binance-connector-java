@@ -29,9 +29,14 @@ public class OrderListCancelExample {
     }
 
     /**
-     * WebSocket Cancel Order list
+     * Cancel Order list (TRADE)
      *
-     * <p>Cancel an active order list. Weight: 1
+     * <p>Cancel an active order list. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Notes: * If both &#x60;orderListId&#x60; and &#x60;listClientOrderId&#x60;
+     * parameters are provided, the &#x60;orderListId&#x60; is searched first, then the
+     * &#x60;listClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * Canceling an individual order with
+     * [&#x60;order.cancel&#x60;](#order-cancel) will cancel the entire order list as well.
      */
     public void orderListCancelExampleAsync() {
         OrderListCancelRequest orderListCancelRequest = new OrderListCancelRequest();
@@ -49,9 +54,14 @@ public class OrderListCancelExample {
     }
 
     /**
-     * WebSocket Cancel Order list
+     * Cancel Order list (TRADE)
      *
-     * <p>Cancel an active order list. Weight: 1
+     * <p>Cancel an active order list. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Notes: * If both &#x60;orderListId&#x60; and &#x60;listClientOrderId&#x60;
+     * parameters are provided, the &#x60;orderListId&#x60; is searched first, then the
+     * &#x60;listClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * Canceling an individual order with
+     * [&#x60;order.cancel&#x60;](#order-cancel) will cancel the entire order list as well.
      */
     public void orderListCancelExampleSync() {
         OrderListCancelRequest orderListCancelRequest = new OrderListCancelRequest();

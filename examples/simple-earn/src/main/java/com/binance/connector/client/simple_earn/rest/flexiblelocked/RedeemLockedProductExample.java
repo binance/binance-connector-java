@@ -8,6 +8,7 @@ import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class RedeemLockedProductExample {
@@ -27,14 +28,15 @@ public class RedeemLockedProductExample {
     }
 
     /**
-     * Redeem Locked Product(TRADE)
+     * Redeem Locked Product (TRADE)
      *
-     * <p>Redeem Locked Product * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 1/3s per account
+     * <p>Redeem Locked Product Weight(IP): 1 Security Type: TRADE Notes: - You need to open
+     * &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void redeemLockedProductExample() throws ApiException {
+    public void redeemLockedProductExample() throws ApiException, IOException {
         RedeemLockedProductRequest redeemLockedProductRequest = new RedeemLockedProductRequest();
         redeemLockedProductRequest.positionId("1");
         ApiResponse<RedeemLockedProductResponse> response =

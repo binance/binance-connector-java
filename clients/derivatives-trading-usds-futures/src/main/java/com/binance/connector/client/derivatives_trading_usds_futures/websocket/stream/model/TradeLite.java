@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** TradeLite */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradeLite extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -119,7 +119,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -138,7 +138,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction Time
      *
      * @return T
      */
@@ -157,7 +157,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -176,7 +176,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Original Quantity
      *
      * @return qLowerCase
      */
@@ -195,7 +195,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Original Price
      *
      * @return pLowerCase
      */
@@ -214,7 +214,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is this trade the maker side?
      *
      * @return mLowerCase
      */
@@ -233,7 +233,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Client Order Id
      *
      * @return cLowerCase
      */
@@ -252,7 +252,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -271,7 +271,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last Filled Price
      *
      * @return L
      */
@@ -290,7 +290,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Order Last Filled Quantity
      *
      * @return lLowerCase
      */
@@ -309,7 +309,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Trade Id
      *
      * @return tLowerCase
      */
@@ -328,7 +328,7 @@ public class TradeLite extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Order Id
      *
      * @return iLowerCase
      */

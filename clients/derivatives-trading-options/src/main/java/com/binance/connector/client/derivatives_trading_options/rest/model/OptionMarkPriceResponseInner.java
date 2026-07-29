@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** OptionMarkPriceResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarkPriceResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -116,7 +116,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -135,7 +135,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark price
      *
      * @return markPrice
      */
@@ -154,7 +154,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get bidIV
+     * Implied volatility Buy
      *
      * @return bidIV
      */
@@ -173,7 +173,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get askIV
+     * Implied volatility Sell
      *
      * @return askIV
      */
@@ -192,7 +192,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get markIV
+     * Implied volatility mark
      *
      * @return markIV
      */
@@ -211,7 +211,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get delta
+     * delta
      *
      * @return delta
      */
@@ -230,7 +230,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get theta
+     * theta
      *
      * @return theta
      */
@@ -249,7 +249,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get gamma
+     * gamma
      *
      * @return gamma
      */
@@ -268,7 +268,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get vega
+     * vega
      *
      * @return vega
      */
@@ -288,7 +288,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get highPriceLimit
+     * Current highest buy price
      *
      * @return highPriceLimit
      */
@@ -308,7 +308,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get lowPriceLimit
+     * Current lowest sell price
      *
      * @return lowPriceLimit
      */
@@ -328,7 +328,7 @@ public class OptionMarkPriceResponseInner {
     }
 
     /**
-     * Get riskFreeInterest
+     * risk free rate
      *
      * @return riskFreeInterest
      */

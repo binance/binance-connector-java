@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponseAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -122,7 +122,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -142,7 +142,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get walletBalance
+     * total wallet balance
      *
      * @return walletBalance
      */
@@ -162,7 +162,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit or loss
      *
      * @return unrealizedProfit
      */
@@ -182,7 +182,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get marginBalance
+     * margin balance
      *
      * @return marginBalance
      */
@@ -202,7 +202,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -222,7 +222,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -242,7 +242,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -263,7 +263,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -284,7 +284,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * maximum amount for transfer out
      *
      * @return maxWithdrawAmount
      */
@@ -304,7 +304,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * wallet balance for crossed margin
      *
      * @return crossWalletBalance
      */
@@ -324,7 +324,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get crossUnPnl
+     * total unrealized profit or loss of crossed positions
      *
      * @return crossUnPnl
      */
@@ -344,7 +344,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get availableBalance
+     * available margin balance
      *
      * @return availableBalance
      */
@@ -364,7 +364,7 @@ public class AccountInformationResponseAssetsInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */

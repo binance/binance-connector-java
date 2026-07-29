@@ -12,6 +12,7 @@ import com.binance.connector.client.spot.rest.model.PendingSide;
 import com.binance.connector.client.spot.rest.model.PendingType;
 import com.binance.connector.client.spot.rest.model.WorkingSide;
 import com.binance.connector.client.spot.rest.model.WorkingType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OrderListOpoExample {
@@ -30,20 +31,22 @@ public class OrderListOpoExample {
     }
 
     /**
-     * New Order List - OPO
+     * New Order List - OPO (TRADE)
      *
-     * <p>Place an [OPO](./faqs/opo.md). * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter
-     * and MAX_NUM_ORDERS filter. Weight: 1 Unfilled Order Count: 2
+     * <p>Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60; filter.
+     * Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching
+     * Engine
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderListOpoExample() throws ApiException {
+    public void orderListOpoExample() throws ApiException, IOException {
         OrderListOpoRequest orderListOpoRequest = new OrderListOpoRequest();
         orderListOpoRequest.symbol("BNBUSDT");
         orderListOpoRequest.workingType(WorkingType.LIMIT);
         orderListOpoRequest.workingSide(WorkingSide.BUY);
-        orderListOpoRequest.workingPrice(1.0d);
-        orderListOpoRequest.workingQuantity(1.0d);
+        orderListOpoRequest.workingPrice(1d);
+        orderListOpoRequest.workingQuantity(1d);
         orderListOpoRequest.pendingType(PendingType.LIMIT);
         orderListOpoRequest.pendingSide(PendingSide.BUY);
         ApiResponse<OrderListOpoResponse> response = getApi().orderListOpo(orderListOpoRequest);

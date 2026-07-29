@@ -6,8 +6,11 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.Asset;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferType;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class TransferLdusdtRwusdForPortfolioMarginExample {
@@ -27,18 +30,19 @@ public class TransferLdusdtRwusdForPortfolioMarginExample {
     }
 
     /**
-     * Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
+     * Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
      *
-     * <p>Transfer LDUSDT/RWUSD as collateral for all types of Portfolio Margin account Weight: 1500
+     * <p>Transfer LDUSDT/RWUSD as collateral for all types of Portfolio Margin account Weight(UID):
+     * 1500 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void transferLdusdtRwusdForPortfolioMarginExample() throws ApiException {
+    public void transferLdusdtRwusdForPortfolioMarginExample() throws ApiException, IOException {
         TransferLdusdtRwusdForPortfolioMarginRequest transferLdusdtRwusdForPortfolioMarginRequest =
                 new TransferLdusdtRwusdForPortfolioMarginRequest();
-        transferLdusdtRwusdForPortfolioMarginRequest.asset("");
-        transferLdusdtRwusdForPortfolioMarginRequest.transferType("");
-        transferLdusdtRwusdForPortfolioMarginRequest.amount(1.0d);
+        transferLdusdtRwusdForPortfolioMarginRequest.asset(Asset.LDUSDT);
+        transferLdusdtRwusdForPortfolioMarginRequest.transferType(TransferType.EARN_TO_FUTURE);
+        transferLdusdtRwusdForPortfolioMarginRequest.amount(1d);
         ApiResponse<TransferLdusdtRwusdForPortfolioMarginResponse> response =
                 getApi().transferLdusdtRwusdForPortfolioMargin(
                                 transferLdusdtRwusdForPortfolioMarginRequest);

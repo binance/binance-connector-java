@@ -10,6 +10,7 @@ import com.binance.connector.client.spot.rest.model.OrderTestRequest;
 import com.binance.connector.client.spot.rest.model.OrderTestResponse;
 import com.binance.connector.client.spot.rest.model.OrderType;
 import com.binance.connector.client.spot.rest.model.Side;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OrderTestExample {
@@ -28,16 +29,16 @@ public class OrderTestExample {
     }
 
     /**
-     * Test new order
+     * Test new order (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow long. Creates and validates a new order
-     * but does not send it into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * but does not send it into the matching engine. Weight: |Condition|Weight| |---|---| |Without
+     * &#x60;computeCommissionRates&#x60;|1| |With &#x60;computeCommissionRates&#x60;|20| Security
+     * Type: TRADE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderTestExample() throws ApiException {
+    public void orderTestExample() throws ApiException, IOException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
         orderTestRequest.symbol("BNBUSDT");
         orderTestRequest.side(Side.BUY);

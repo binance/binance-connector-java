@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMarginAccountOcoOrdersResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -129,7 +129,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -149,7 +149,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get origClientOrderId
+     * Orig Client Order ID.
      *
      * @return origClientOrderId
      */
@@ -169,7 +169,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -189,7 +189,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -209,7 +209,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -229,7 +229,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -249,7 +249,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -269,7 +269,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -289,7 +289,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -309,7 +309,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -329,7 +329,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -349,7 +349,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -369,7 +369,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -389,7 +389,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */

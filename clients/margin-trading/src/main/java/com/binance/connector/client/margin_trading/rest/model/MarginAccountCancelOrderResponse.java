@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,19 +34,13 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountCancelOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelOrderResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
-
-    public static final String SERIALIZED_NAME_IS_ISOLATED = "isIsolated";
-
-    @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
-    @jakarta.annotation.Nullable
-    private Boolean isIsolated;
 
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -114,6 +108,12 @@ public class MarginAccountCancelOrderResponse {
     @jakarta.annotation.Nullable
     private String side;
 
+    public static final String SERIALIZED_NAME_IS_ISOLATED = "isIsolated";
+
+    @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
+    @jakarta.annotation.Nullable
+    private Boolean isIsolated;
+
     public MarginAccountCancelOrderResponse() {}
 
     public MarginAccountCancelOrderResponse symbol(@jakarta.annotation.Nullable String symbol) {
@@ -122,7 +122,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -135,33 +135,13 @@ public class MarginAccountCancelOrderResponse {
         this.symbol = symbol;
     }
 
-    public MarginAccountCancelOrderResponse isIsolated(
-            @jakarta.annotation.Nullable Boolean isIsolated) {
-        this.isIsolated = isIsolated;
-        return this;
-    }
-
-    /**
-     * Get isIsolated
-     *
-     * @return isIsolated
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getIsIsolated() {
-        return isIsolated;
-    }
-
-    public void setIsIsolated(@jakarta.annotation.Nullable Boolean isIsolated) {
-        this.isIsolated = isIsolated;
-    }
-
     public MarginAccountCancelOrderResponse orderId(@jakarta.annotation.Nullable String orderId) {
         this.orderId = orderId;
         return this;
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -181,7 +161,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get origClientOrderId
+     * orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -201,7 +181,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -220,7 +200,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -239,7 +219,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -259,7 +239,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -279,7 +259,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -298,7 +278,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -318,7 +298,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -337,7 +317,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -356,7 +336,7 @@ public class MarginAccountCancelOrderResponse {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -367,6 +347,26 @@ public class MarginAccountCancelOrderResponse {
 
     public void setSide(@jakarta.annotation.Nullable String side) {
         this.side = side;
+    }
+
+    public MarginAccountCancelOrderResponse isIsolated(
+            @jakarta.annotation.Nullable Boolean isIsolated) {
+        this.isIsolated = isIsolated;
+        return this;
+    }
+
+    /**
+     * if isolated margin
+     *
+     * @return isIsolated
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getIsIsolated() {
+        return isIsolated;
+    }
+
+    public void setIsIsolated(@jakarta.annotation.Nullable Boolean isIsolated) {
+        this.isIsolated = isIsolated;
     }
 
     @Override
@@ -380,7 +380,6 @@ public class MarginAccountCancelOrderResponse {
         MarginAccountCancelOrderResponse marginAccountCancelOrderResponse =
                 (MarginAccountCancelOrderResponse) o;
         return Objects.equals(this.symbol, marginAccountCancelOrderResponse.symbol)
-                && Objects.equals(this.isIsolated, marginAccountCancelOrderResponse.isIsolated)
                 && Objects.equals(this.orderId, marginAccountCancelOrderResponse.orderId)
                 && Objects.equals(
                         this.origClientOrderId, marginAccountCancelOrderResponse.origClientOrderId)
@@ -395,14 +394,14 @@ public class MarginAccountCancelOrderResponse {
                 && Objects.equals(this.status, marginAccountCancelOrderResponse.status)
                 && Objects.equals(this.timeInForce, marginAccountCancelOrderResponse.timeInForce)
                 && Objects.equals(this.type, marginAccountCancelOrderResponse.type)
-                && Objects.equals(this.side, marginAccountCancelOrderResponse.side);
+                && Objects.equals(this.side, marginAccountCancelOrderResponse.side)
+                && Objects.equals(this.isIsolated, marginAccountCancelOrderResponse.isIsolated);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
                 symbol,
-                isIsolated,
                 orderId,
                 origClientOrderId,
                 clientOrderId,
@@ -413,7 +412,8 @@ public class MarginAccountCancelOrderResponse {
                 status,
                 timeInForce,
                 type,
-                side);
+                side,
+                isIsolated);
     }
 
     @Override
@@ -421,7 +421,6 @@ public class MarginAccountCancelOrderResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class MarginAccountCancelOrderResponse {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
-        sb.append("		isIsolated: ").append(toIndentedString(isIsolated)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origClientOrderId: ").append(toIndentedString(origClientOrderId)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
@@ -435,6 +434,7 @@ public class MarginAccountCancelOrderResponse {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
+        sb.append("		isIsolated: ").append(toIndentedString(isIsolated)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -446,10 +446,6 @@ public class MarginAccountCancelOrderResponse {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
-        Object isIsolatedValue = getIsIsolated();
-        String isIsolatedValueAsString = "";
-        isIsolatedValueAsString = isIsolatedValue.toString();
-        sb.append("isIsolated=").append(urlEncode(isIsolatedValueAsString)).append("");
         Object orderIdValue = getOrderId();
         String orderIdValueAsString = "";
         orderIdValueAsString = orderIdValue.toString();
@@ -498,6 +494,10 @@ public class MarginAccountCancelOrderResponse {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
+        Object isIsolatedValue = getIsIsolated();
+        String isIsolatedValueAsString = "";
+        isIsolatedValueAsString = isIsolatedValue.toString();
+        sb.append("isIsolated=").append(urlEncode(isIsolatedValueAsString)).append("");
         return sb.toString();
     }
 
@@ -527,7 +527,6 @@ public class MarginAccountCancelOrderResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
-        openapiFields.add("isIsolated");
         openapiFields.add("orderId");
         openapiFields.add("origClientOrderId");
         openapiFields.add("clientOrderId");
@@ -539,6 +538,7 @@ public class MarginAccountCancelOrderResponse {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
+        openapiFields.add("isIsolated");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

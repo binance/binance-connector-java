@@ -28,9 +28,10 @@ public class TimeExample {
     }
 
     /**
-     * WebSocket Check server time
+     * Check server time
      *
-     * <p>Test connectivity to the WebSocket API and get the current server time. Weight: 1
+     * <p>Test connectivity to the WebSocket API and get the current server time. Weight(IP): 1
+     * Security Type: NONE Notes: **Data Source:** Memory
      */
     public void timeExampleAsync() {
         CompletableFuture<TimeResponse> future = getApi().time();
@@ -45,9 +46,10 @@ public class TimeExample {
     }
 
     /**
-     * WebSocket Check server time
+     * Check server time
      *
-     * <p>Test connectivity to the WebSocket API and get the current server time. Weight: 1
+     * <p>Test connectivity to the WebSocket API and get the current server time. Weight(IP): 1
+     * Security Type: NONE Notes: **Data Source:** Memory
      */
     public void timeExampleSync() {
         CompletableFuture<TimeResponse> future = getApi().time();

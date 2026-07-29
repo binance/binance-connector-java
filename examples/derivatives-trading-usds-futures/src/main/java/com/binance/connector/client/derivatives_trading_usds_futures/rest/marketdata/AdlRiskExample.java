@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AdlRiskResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class AdlRiskExample {
@@ -32,12 +33,12 @@ public class AdlRiskExample {
      * during liquidation, and the rating takes into account the insurance fund balance, position
      * concentration on the symbol, order book depth, price volatility, average leverage, unrealized
      * PnL, and margin utilization at the symbol level. The rating can be high, medium and low, and
-     * is updated every 30 minutes. Weight: 1
+     * is updated every 30 minutes. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void adlRiskExample() throws ApiException {
-        String symbol = "";
+    public void adlRiskExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         ApiResponse<AdlRiskResponse> response = getApi().adlRisk(symbol);
         System.out.println(response.getData());
     }

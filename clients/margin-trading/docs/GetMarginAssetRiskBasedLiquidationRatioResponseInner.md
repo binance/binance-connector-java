@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**riskBasedLiquidationRatio** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**riskBasedLiquidationRatio** | **String** | risk Based Liquidation Ratio. |  [optional] |
 
 
 

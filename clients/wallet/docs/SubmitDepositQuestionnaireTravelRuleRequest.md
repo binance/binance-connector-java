@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tranId** | **Long** |  |  |
-|**questionnaire** | **String** |  |  |
+|**tranId** | **Long** | Wallet tran ID |  |
+|**questionnaire** | **String** | JSON format questionnaire answers. |  |
 
 
 

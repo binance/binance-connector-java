@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanLiquidationHistoryResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class GetFlexibleLoanLiquidationHistoryExample {
@@ -28,13 +29,13 @@ public class GetFlexibleLoanLiquidationHistoryExample {
     /**
      * Get Flexible Loan Liquidation History (USER_DATA)
      *
-     * <p>Weight: 400
+     * <p>Get Flexible Loan Liquidation History Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFlexibleLoanLiquidationHistoryExample() throws ApiException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void getFlexibleLoanLiquidationHistoryExample() throws ApiException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

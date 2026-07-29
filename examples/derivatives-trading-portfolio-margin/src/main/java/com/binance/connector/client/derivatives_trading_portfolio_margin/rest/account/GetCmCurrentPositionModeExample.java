@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetCmCurrentPositionModeResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetCmCurrentPositionModeExample {
@@ -26,14 +27,14 @@ public class GetCmCurrentPositionModeExample {
     }
 
     /**
-     * Get CM Current Position Mode(USER_DATA)
+     * Get CM Current Position Mode (USER_DATA)
      *
-     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM Weight:
-     * 30
+     * <p>Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM
+     * Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCmCurrentPositionModeExample() throws ApiException {
+    public void getCmCurrentPositionModeExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCmCurrentPositionModeResponse> response =
                 getApi().getCmCurrentPositionMode(recvWindow);

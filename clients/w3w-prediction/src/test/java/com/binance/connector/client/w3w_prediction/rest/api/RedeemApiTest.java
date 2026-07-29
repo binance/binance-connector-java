@@ -28,6 +28,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.BatchRedeemRespons
 import com.binance.connector.client.w3w_prediction.rest.model.GetRedeemStatusResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.TokenIds;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,7 +80,7 @@ public class RedeemApiTest {
     }
 
     /**
-     * Batch Redeem
+     * Batch Redeem (TRADE)
      *
      * <p>Redeem one or more settled prediction tokens on-chain to claim winnings. Requires SAS
      * authorization. Weight(IP): 200 Security Type: TRADE
@@ -87,7 +88,7 @@ public class RedeemApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void batchRedeemTest() throws ApiException, CryptoException {
+    public void batchRedeemTest() throws ApiException, CryptoException, IOException {
         BatchRedeemRequest batchRedeemRequest = new BatchRedeemRequest();
         batchRedeemRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         batchRedeemRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");
@@ -102,7 +103,6 @@ public class RedeemApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -112,7 +112,7 @@ public class RedeemApiTest {
     }
 
     /**
-     * Get Redeem Status
+     * Get Redeem Status (USER_DATA)
      *
      * <p>Query the on-chain transaction status of a previously submitted redeem request.
      * Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: | Value |
@@ -124,7 +124,7 @@ public class RedeemApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getRedeemStatusTest() throws ApiException, CryptoException {
+    public void getRedeemStatusTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String txHash = "0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd";
         Long recvWindow = 5000L;
@@ -137,7 +137,6 @@ public class RedeemApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

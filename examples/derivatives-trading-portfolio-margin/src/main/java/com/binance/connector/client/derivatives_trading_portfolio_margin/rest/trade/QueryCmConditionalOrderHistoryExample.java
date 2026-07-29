@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCmConditionalOrderHistoryResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryCmConditionalOrderHistoryExample {
@@ -26,18 +27,18 @@ public class QueryCmConditionalOrderHistoryExample {
     }
 
     /**
-     * Query CM Conditional Order History(USER_DATA)
+     * Query CM Conditional Order History (USER_DATA)
      *
-     * <p>Query CM Conditional Order History * Either &#x60;strategyId&#x60; or
-     * &#x60;newClientStrategyId&#x60; must be sent. * &#x60;NEW&#x60; orders will not be found. *
-     * These orders will not be found: * order status is &#x60;CANCELED&#x60; or
-     * &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 7 days
-     * &lt; current time Weight: 1
+     * <p>Query CM Conditional Order History Weight(IP): 1 Security Type: USER_DATA Notes: - Either
+     * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60;
+     * orders will not be found. - These orders will not be found: - order status is
+     * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** - order has NO filled trade, **AND** -
+     * created time + 7 days &lt; current time
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCmConditionalOrderHistoryExample() throws ApiException {
-        String symbol = "";
+    public void queryCmConditionalOrderHistoryExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Long strategyId = 1L;
         String newClientStrategyId = "1";
         Long recvWindow = 5000L;

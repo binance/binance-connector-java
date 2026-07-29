@@ -9,26 +9,27 @@ import com.binance.connector.client.rebate.rest.model.GetSpotRebateHistoryRecord
 
 public class RebateRestApi {
 
-    private final RebateApi rebateApi;
+    private final DefaultApi defaultApi;
 
     public RebateRestApi(ClientConfiguration configuration) {
         this(RebateRestApiUtil.getDefaultClient(configuration));
     }
 
     public RebateRestApi(ApiClient apiClient) {
-        this.rebateApi = new RebateApi(apiClient);
+        this.defaultApi = new DefaultApi(apiClient);
     }
 
     /**
-     * Get Spot Rebate History Records (USER_DATA) Get Spot Rebate History Records * The max
-     * interval between startTime and endTime is 30 days. * If startTime and endTime are not sent,
-     * the recent 7 days&#39; data will be returned. * The earliest startTime is supported on June
-     * 10, 2020 * Return up to 200 records per request. Weight: 12000
+     * Get Spot Rebate History Records (USER_DATA) Get Spot Rebate History Records Weight(UID):
+     * 12000 Security Type: USER_DATA Notes: - The max interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, the recent 7 days&#39; data will be returned. - The earliest supported
+     * &#x60;startTime&#x60; is June 10, 2020. - Return up to 200 records per request.
      *
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param page Default 1 (optional)
-     * @param recvWindow (optional)
+     * @param startTime Start time in milliseconds. (optional)
+     * @param endTime End time in milliseconds. (optional)
+     * @param page Page number. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetSpotRebateHistoryRecordsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -40,11 +41,11 @@ public class RebateRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/rebate/rest-api/Get-Spot-Rebate-History-Records">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-rebate/api/rest-api/~#get-spot-rebate-history-records">Get
      *     Spot Rebate History Records (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSpotRebateHistoryRecordsResponse> getSpotRebateHistoryRecords(
             Long startTime, Long endTime, Long page, Long recvWindow) throws ApiException {
-        return rebateApi.getSpotRebateHistoryRecords(startTime, endTime, page, recvWindow);
+        return defaultApi.getSpotRebateHistoryRecords(startTime, endTime, page, recvWindow);
     }
 }

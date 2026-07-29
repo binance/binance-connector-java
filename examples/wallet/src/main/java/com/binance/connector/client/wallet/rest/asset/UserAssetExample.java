@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.UserAssetRequest;
 import com.binance.connector.client.wallet.rest.model.UserAssetResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class UserAssetExample {
@@ -28,13 +29,13 @@ public class UserAssetExample {
     /**
      * User Asset (USER_DATA)
      *
-     * <p>Get user assets, just for positive data. * If asset is set, then return this asset,
-     * otherwise return all assets positive. * If needBtcValuation is set, then return
-     * btcValudation. Weight: 5
+     * <p>Get user assets, just for positive data. Weight(IP): 5 Security Type: USER_DATA Notes: -
+     * If asset is set, then return this asset, otherwise return all assets positive. - If
+     * needBtcValuation is set, then return btcValudation.
      *
      * @throws ApiException if the Api call fails
      */
-    public void userAssetExample() throws ApiException {
+    public void userAssetExample() throws ApiException, IOException {
         UserAssetRequest userAssetRequest = new UserAssetRequest();
         ApiResponse<UserAssetResponse> response = getApi().userAsset(userAssetRequest);
         System.out.println(response.getData());

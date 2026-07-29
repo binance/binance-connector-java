@@ -10,6 +10,7 @@ import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.Ticker24hrResponse;
 import com.binance.connector.client.spot.rest.model.TickerType;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class Ticker24hrExample {
@@ -40,13 +41,14 @@ public class Ticker24hrExample {
      * &lt;td&gt;2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;21-100&lt;/td&gt;
      * &lt;td&gt;40&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;101 or more&lt;/td&gt;
      * &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbols parameter is
-     * omitted&lt;/td&gt; &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+     * omitted&lt;/td&gt; &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; Security
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void ticker24hrExample() throws ApiException {
+    public void ticker24hrExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
         TickerType type = TickerType.FULL;
         SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<Ticker24hrResponse> response =

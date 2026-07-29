@@ -33,13 +33,14 @@ public class QueryOrderExample {
      *
      * <p>Check an order&#39;s status. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created
-     * time + 3 days &lt; current time * order create time + 90 days &lt; current time * Either
-     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * &#x60;orderId&#x60; is
-     * self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time + 3 days &lt; current time * order create time + 90 days &lt; current time Weight(IP): 1
+     * Security Type: USER_DATA Notes: Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - &#x60;orderId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      */
     public void queryOrderExampleAsync() {
         QueryOrderRequest queryOrderRequest = new QueryOrderRequest();
-        queryOrderRequest.symbol("");
+        queryOrderRequest.symbol("BTCUSDT");
         CompletableFuture<QueryOrderResponse> future = getApi().queryOrder(queryOrderRequest);
         future.handle(
                 (response, error) -> {
@@ -56,13 +57,14 @@ public class QueryOrderExample {
      *
      * <p>Check an order&#39;s status. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created
-     * time + 3 days &lt; current time * order create time + 90 days &lt; current time * Either
-     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * &#x60;orderId&#x60; is
-     * self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time + 3 days &lt; current time * order create time + 90 days &lt; current time Weight(IP): 1
+     * Security Type: USER_DATA Notes: Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - &#x60;orderId&#x60; is self-increment for each
+     * specific &#x60;symbol&#x60;
      */
     public void queryOrderExampleSync() {
         QueryOrderRequest queryOrderRequest = new QueryOrderRequest();
-        queryOrderRequest.symbol("");
+        queryOrderRequest.symbol("BTCUSDT");
         CompletableFuture<QueryOrderResponse> future = getApi().queryOrder(queryOrderRequest);
         QueryOrderResponse response = future.join();
         System.out.println(response);

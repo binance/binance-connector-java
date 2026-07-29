@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOcoResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsOcoExample {
@@ -28,13 +30,14 @@ public class QueryMarginAccountsOcoExample {
     /**
      * Query Margin Account&#39;s OCO (USER_DATA)
      *
-     * <p>Retrieves a specific OCO based on provided optional parameters Weight: 10(IP)
+     * <p>Retrieves a specific OCO based on provided optional parameters Weight(IP): 10 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsOcoExample() throws ApiException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryMarginAccountsOcoExample() throws ApiException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "LTCBTC";
         Long orderListId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;

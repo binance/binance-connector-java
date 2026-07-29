@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetLockedProductPositionResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class GetLockedProductPositionExample {
@@ -26,14 +27,14 @@ public class GetLockedProductPositionExample {
     }
 
     /**
-     * Get Locked Product Position
+     * Get Locked Product Position (USER_DATA)
      *
-     * <p>Get Locked Product Position Weight: 150
+     * <p>Get Locked Product Position Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getLockedProductPositionExample() throws ApiException {
-        String asset = "";
+    public void getLockedProductPositionExample() throws ApiException, IOException {
+        String asset = "USDC";
         String positionId = "1";
         String projectId = "1";
         Long current = 1L;

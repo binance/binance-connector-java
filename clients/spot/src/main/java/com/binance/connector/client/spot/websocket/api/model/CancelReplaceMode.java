@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,7 +21,11 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets cancelReplaceMode */
+/**
+ * The allowed values are: &lt;br/&gt; &#x60;STOP_ON_FAILURE&#x60; - If the cancel request fails,
+ * the new order placement will not be attempted. &lt;br/&gt; &#x60;ALLOW_FAILURE&#x60; - new order
+ * placement will be attempted even if cancel request fails.
+ */
 @JsonAdapter(CancelReplaceMode.Adapter.class)
 public enum CancelReplaceMode {
     STOP_ON_FAILURE("STOP_ON_FAILURE"),

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetMarginCallLevelResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetMarginCallLevelExample {
@@ -28,11 +29,12 @@ public class GetMarginCallLevelExample {
     /**
      * Get Margin Call Level (USER_DATA)
      *
-     * <p>Get the margin call level for a Portfolio Margin account. Weight: 1500
+     * <p>Get the margin call level for a Portfolio Margin account. Weight(IP): 1500 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getMarginCallLevelExample() throws ApiException {
+    public void getMarginCallLevelExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetMarginCallLevelResponse> response = getApi().getMarginCallLevel(recvWindow);
         System.out.println(response.getData());

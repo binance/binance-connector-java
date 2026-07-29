@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryCurrentMarginOrderCountUsageResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryCurrentMarginOrderCountUsageExample {
@@ -28,13 +30,14 @@ public class QueryCurrentMarginOrderCountUsageExample {
     /**
      * Query Current Margin Order Count Usage (TRADE)
      *
-     * <p>Displays the user&#39;s current margin order count usage for all intervals. Weight: 20(IP)
+     * <p>Displays the user&#39;s current margin order count usage for all intervals. Weight(IP): 20
+     * Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCurrentMarginOrderCountUsageExample() throws ApiException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryCurrentMarginOrderCountUsageExample() throws ApiException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentMarginOrderCountUsageResponse> response =
                 getApi().queryCurrentMarginOrderCountUsage(isIsolated, symbol, recvWindow);

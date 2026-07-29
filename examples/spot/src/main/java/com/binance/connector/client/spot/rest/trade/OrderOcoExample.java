@@ -9,6 +9,7 @@ import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.OrderOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderOcoResponse;
 import com.binance.connector.client.spot.rest.model.Side;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OrderOcoExample {
@@ -27,24 +28,24 @@ public class OrderOcoExample {
     }
 
     /**
-     * New OCO - Deprecated
+     * New OCO - Deprecated (TRADE)
      *
-     * <p>Send in a new OCO. * Price Restrictions: * &#x60;SELL&#x60;: Limit Price &gt; Last Price
-     * &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price * Quantity
-     * Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60; quantities
-     * however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * <p>Send in a new OCO. - Price Restrictions: - &#x60;SELL&#x60;: Limit Price &gt; Last Price
+     * &gt; Stop Price - &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price - Quantity
+     * Restrictions: - Both legs must have the same quantity. - &#x60;ICEBERG&#x60; quantities
+     * however do not have to be the same - &#x60;OCO&#x60; adds **2 orders** to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
+     * 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderOcoExample() throws ApiException {
+    public void orderOcoExample() throws ApiException, IOException {
         OrderOcoRequest orderOcoRequest = new OrderOcoRequest();
         orderOcoRequest.symbol("BNBUSDT");
         orderOcoRequest.side(Side.BUY);
-        orderOcoRequest.quantity(1.0d);
-        orderOcoRequest.price(1.0d);
-        orderOcoRequest.stopPrice(1.0d);
+        orderOcoRequest.quantity(1d);
+        orderOcoRequest.price(1d);
+        orderOcoRequest.stopPrice(1d);
         ApiResponse<OrderOcoResponse> response = getApi().orderOco(orderOcoRequest);
         System.out.println(response.getData());
     }

@@ -8,6 +8,7 @@ import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.ReferencePriceCalculationResponse;
 import com.binance.connector.client.spot.rest.model.SymbolStatus;
+import java.io.IOException;
 
 /** API examples for MarketApi */
 public class ReferencePriceCalculationExample {
@@ -28,11 +29,12 @@ public class ReferencePriceCalculationExample {
     /**
      * Query Reference Price Calculation
      *
-     * <p>Describes how reference price is calculated for a given symbol. Weight: 2
+     * <p>Describes how reference price is calculated for a given symbol. Weight(IP): 2 Security
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void referencePriceCalculationExample() throws ApiException {
+    public void referencePriceCalculationExample() throws ApiException, IOException {
         String symbol = "BNBUSDT";
         SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<ReferencePriceCalculationResponse> response =

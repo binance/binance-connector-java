@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.AccountInfoResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class AccountInfoExample {
@@ -27,11 +28,11 @@ public class AccountInfoExample {
     /**
      * Account info (USER_DATA)
      *
-     * <p>Fetch account info detail. Weight: 1
+     * <p>Fetch account info detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void accountInfoExample() throws ApiException {
+    public void accountInfoExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountInfoResponse> response = getApi().accountInfo(recvWindow);
         System.out.println(response.getData());

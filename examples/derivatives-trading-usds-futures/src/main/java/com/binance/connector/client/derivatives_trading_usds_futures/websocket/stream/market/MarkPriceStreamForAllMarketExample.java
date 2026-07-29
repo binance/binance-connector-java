@@ -25,8 +25,10 @@ public class MarkPriceStreamForAllMarketExample {
      * Mark Price Stream for All market
      *
      * <p>Mark price and funding rate for all symbols pushed every 3 seconds or every second.
-     * **Note**: TradFi symbols will be pushed through a seperate message. Update Speed: 3000ms or
-     * 1000ms
+     * **Note:** - TradFi symbols will be pushed through a seperate message. &gt; **After CM
+     * migration**, the payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D;
+     * UM, &#x60;2&#x60; &#x3D; CM); both &#x60;fstream&#x60; and &#x60;dstream&#x60; may subscribe
+     * to either UM or CM symbols on this stream. Update Speed: 3s or 1s
      *
      * @throws ApiException if the Api call fails
      */

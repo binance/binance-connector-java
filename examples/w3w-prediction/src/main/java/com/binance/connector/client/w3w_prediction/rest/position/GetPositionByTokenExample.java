@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.GetPositionByTokenResponse;
+import java.io.IOException;
 
 /** API examples for PositionApi */
 public class GetPositionByTokenExample {
@@ -26,14 +27,14 @@ public class GetPositionByTokenExample {
     }
 
     /**
-     * Get Position by Token
+     * Get Position by Token (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s position detail for a specific prediction token.
      * Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getPositionByTokenExample() throws ApiException {
+    public void getPositionByTokenExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long recvWindow = 5000L;

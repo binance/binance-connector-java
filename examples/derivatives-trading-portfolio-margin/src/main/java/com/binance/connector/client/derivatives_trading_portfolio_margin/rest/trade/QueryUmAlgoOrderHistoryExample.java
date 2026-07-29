@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmAlgoOrderHistoryResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryUmAlgoOrderHistoryExample {
@@ -28,19 +29,19 @@ public class QueryUmAlgoOrderHistoryExample {
     /**
      * Query UM Algo Order History (USER_DATA)
      *
-     * <p>Get all algo orders; ACTIVE, CANCELED, TRIGGERED or FINISHED . * If &#x60;algoId&#x60; is
-     * set, it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are
-     * returned. * The query time period must be less then 7 days( default as the recent 7 days).
-     * Weight: 5
+     * <p>Get all algo orders: ACTIVE, CANCELED, TRIGGERED or FINISHED. Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that
+     * &#x60;algoId&#x60;. Otherwise most recent orders are returned. - The query time period must
+     * be less than 7 days (default as the recent 7 days).
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryUmAlgoOrderHistoryExample() throws ApiException {
-        String symbol = "";
-        Long algoId = 1L;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
-        Long limit = 100L;
+    public void queryUmAlgoOrderHistoryExample() throws ApiException, IOException {
+        String symbol = "BNBUSDT";
+        Long algoId = 2146760L;
+        Long startTime = 1770130294138L;
+        Long endTime = 1770736694138L;
+        Long limit = 500L;
         Long recvWindow = 5000L;
         ApiResponse<QueryUmAlgoOrderHistoryResponse> response =
                 getApi().queryUmAlgoOrderHistory(

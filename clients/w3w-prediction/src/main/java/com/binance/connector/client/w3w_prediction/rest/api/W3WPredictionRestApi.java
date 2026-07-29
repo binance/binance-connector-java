@@ -81,7 +81,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
      *     Market Detail Documentation</a>
      */
     public ApiResponse<GetMarketDetailResponse> getMarketDetail(Long marketTopicId)
@@ -104,7 +104,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
      *     Prediction Categories Documentation</a>
      */
     public ApiResponse<ListPredictionCategoriesResponse> listPredictionCategories()
@@ -134,7 +134,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
      *     Prediction Markets Documentation</a>
      */
     public ApiResponse<ListPredictionMarketsResponse> listPredictionMarkets(
@@ -165,7 +165,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
      *     Search Documentation</a>
      */
     public ApiResponse<MarketSearchResponse> marketSearch(String query, Integer topK)
@@ -189,7 +189,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
      *     Last Trade Price Documentation</a>
      */
     public ApiResponse<QueryLastTradePriceResponse> queryLastTradePrice(Long marketId)
@@ -215,7 +215,7 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
      *     Order Book Documentation</a>
      */
     public ApiResponse<QueryOrderBookResponse> queryOrderBook(
@@ -224,8 +224,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Get Position by Token Get the authenticated user&#39;s position detail for a specific
-     * prediction token. Weight(IP): 200 Security Type: USER_DATA
+     * Get Position by Token (USER_DATA) Get the authenticated user&#39;s position detail for a
+     * specific prediction token. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Prediction outcome token ID (required)
@@ -241,8 +241,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token">Get
-     *     Position by Token Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token">Get
+     *     Position by Token (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPositionByTokenResponse> getPositionByToken(
             String walletAddress, String tokenId, Long recvWindow) throws ApiException {
@@ -250,9 +250,10 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query PnL Query profit and loss records for the authenticated user&#39;s prediction
-     * positions. When &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;;
-     * otherwise returns a list in &#x60;pnlList&#x60;. Weight(IP): 200 Security Type: USER_DATA
+     * Query PnL (USER_DATA) Query profit and loss records for the authenticated user&#39;s
+     * prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in
+     * &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;. Weight(IP): 200 Security
+     * Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Filter by prediction token ID (optional)
@@ -271,8 +272,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l">Query
-     *     PnL Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l">Query
+     *     PnL (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPnLResponse> queryPnL(
             String walletAddress,
@@ -287,8 +288,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Positions Get the authenticated user&#39;s prediction token positions with portfolio
-     * summary and tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
+     * Query Positions (USER_DATA) Get the authenticated user&#39;s prediction token positions with
+     * portfolio summary and tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tab Position status tab. Values from &#x60;PositionQueryType&#x60;. Default
@@ -307,8 +308,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions">Query
-     *     Positions Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions">Query
+     *     Positions (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPositionsResponse> queryPositions(
             String walletAddress, String tab, Integer offset, Integer limit, Long recvWindow)
@@ -317,8 +318,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Positions by Filter Get prediction positions filtered by wallet address and/or market
-     * topic ID. Both parameters are optional. Weight(IP): 200 Security Type: USER_DATA
+     * Query Positions by Filter (USER_DATA) Get prediction positions filtered by wallet address
+     * and/or market topic ID. Both parameters are optional. Weight(IP): 200 Security Type:
+     * USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (optional)
      * @param marketTopicId Filter by market topic ID (optional)
@@ -334,8 +336,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter">Query
-     *     Positions by Filter Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter">Query
+     *     Positions by Filter (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPositionsByFilterResponse> queryPositionsByFilter(
             String walletAddress, Long marketTopicId, Long recvWindow) throws ApiException {
@@ -343,8 +345,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Settled Position History Get the authenticated user&#39;s settled (resolved) prediction
-     * position history with optional filters. Weight(IP): 200 Security Type: USER_DATA
+     * Query Settled Position History (USER_DATA) Get the authenticated user&#39;s settled
+     * (resolved) prediction position history with optional filters. Weight(IP): 200 Security Type:
+     * USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)
@@ -367,8 +370,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history">Query
-     *     Settled Position History Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history">Query
+     *     Settled Position History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySettledPositionHistoryResponse> querySettledPositionHistory(
             String walletAddress,
@@ -385,7 +388,7 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Batch Redeem Redeem one or more settled prediction tokens on-chain to claim winnings.
+     * Batch Redeem (TRADE) Redeem one or more settled prediction tokens on-chain to claim winnings.
      * Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
      *
      * @param batchRedeemRequest (required)
@@ -400,8 +403,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem">Batch
-     *     Redeem Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem">Batch
+     *     Redeem (TRADE) Documentation</a>
      */
     public ApiResponse<BatchRedeemResponse> batchRedeem(BatchRedeemRequest batchRedeemRequest)
             throws ApiException {
@@ -409,9 +412,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Get Redeem Status Query the on-chain transaction status of a previously submitted redeem
-     * request. Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: | Value |
-     * Description | | ----------- | -------------------------------------------- | |
+     * Get Redeem Status (USER_DATA) Query the on-chain transaction status of a previously submitted
+     * redeem request. Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: |
+     * Value | Description | | ----------- | -------------------------------------------- | |
      * &#x60;PENDING&#x60; | Transaction submitted, awaiting confirmation | | &#x60;CONFIRMED&#x60;
      * | Transaction confirmed on-chain | | &#x60;FAILED&#x60; | Transaction failed | |
      * &#x60;NOT_FOUND&#x60; | Transaction hash not found |
@@ -430,8 +433,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status">Get
-     *     Redeem Status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status">Get
+     *     Redeem Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRedeemStatusResponse> getRedeemStatus(
             String walletAddress, String txHash, Long recvWindow) throws ApiException {
@@ -439,9 +442,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Batch Cancel Orders Cancel one or more active prediction orders in a single request. Requires
-     * SAS authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint uses
-     * indexed bracket notation (&#x60;cancelInfoList[0].orderId&#x60;). Binance SAPI signature
+     * Batch Cancel Orders (TRADE) Cancel one or more active prediction orders in a single request.
+     * Requires SAS authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint
+     * uses indexed bracket notation (&#x60;cancelInfoList[0].orderId&#x60;). Binance SAPI signature
      * verification runs over the **raw, unencoded** canonical string. However, mainstream HTTP
      * libraries (Python &#x60;requests&#x60;, Java &#x60;HttpURLConnection&#x60;/&#x60;URI&#x60;,
      * Go &#x60;net/url&#x60;, Node.js &#x60;url&#x60;) automatically percent-encode &#x60;[&#x60; →
@@ -469,8 +472,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
-     *     Cancel Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
+     *     Cancel Orders (TRADE) Documentation</a>
      */
     public ApiResponse<BatchCancelOrdersResponse> batchCancelOrders(
             BatchCancelOrdersRequest batchCancelOrdersRequest) throws ApiException {
@@ -478,16 +481,17 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Get Quote Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be
-     * used in the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE Response
-     * Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18 decimals) and
-     * may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is also a string
-     * to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60; and
-     * &#x60;slippageBps&#x60; are integers and will never exceed safe integer bounds. - **MARKET
-     * order minimum amount:** For &#x60;MARKET&#x60; orders, &#x60;amountIn&#x60; must be at least
-     * approximately **1.5 USDT** (in wei: &#x60;1500000000000000000&#x60;). The exact minimum
-     * varies by market liquidity. If the amount is too small, the server returns &#x60;-9000 Your
-     * order amount is too small&#x60;. This limit does **not** apply to &#x60;LIMIT&#x60; orders.
+     * Get Quote (TRADE) Get a price quote for a prediction order. The returned &#x60;quoteId&#x60;
+     * must be used in the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE
+     * Response Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18
+     * decimals) and may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is
+     * also a string to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60;
+     * and &#x60;slippageBps&#x60; are integers and will never exceed safe integer bounds. -
+     * **MARKET order minimum amount:** For &#x60;MARKET&#x60; orders, &#x60;amountIn&#x60; must be
+     * at least approximately **1.5 USDT** (in wei: &#x60;1500000000000000000&#x60;). The exact
+     * minimum varies by market liquidity. If the amount is too small, the server returns
+     * &#x60;-9000 Your order amount is too small&#x60;. This limit does **not** apply to
+     * &#x60;LIMIT&#x60; orders.
      *
      * @param getQuoteRequest (required)
      * @return ApiResponse&lt;GetQuoteResponse&gt;
@@ -501,8 +505,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
-     *     Quote Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
+     *     Quote (TRADE) Documentation</a>
      */
     public ApiResponse<GetQuoteResponse> getQuote(GetQuoteRequest getQuoteRequest)
             throws ApiException {
@@ -510,7 +514,7 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Place Order Place a prediction order using a previously obtained quote. Requires SAS
+     * Place Order (TRADE) Place a prediction order using a previously obtained quote. Requires SAS
      * authorization. Weight(IP): 200 Security Type: TRADE Notes: - Validation rules: | orderType |
      * timeInForce | priceLimit | | --------- | ------------- | --------------------- | |
      * &#x60;MARKET&#x60; | Must be &#x60;FOK&#x60; | Not required | | &#x60;LIMIT&#x60; | Must be
@@ -528,8 +532,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
-     *     Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<PlaceOrderResponse> placeOrder(PlaceOrderRequest placeOrderRequest)
             throws ApiException {
@@ -537,8 +541,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Active Orders Get active (open) prediction orders for the authenticated user.
-     * Weight(IP): 200 Security Type: USER_DATA
+     * Query Active Orders (USER_DATA) Get active (open) prediction orders for the authenticated
+     * user. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tradeSide Filter by trade side. Enum: &#x60;BUY&#x60;, &#x60;SELL&#x60; (optional)
@@ -558,8 +562,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
-     *     Active Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
+     *     Active Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryActiveOrdersResponse> queryActiveOrders(
             String walletAddress,
@@ -575,8 +579,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Order History Get historical prediction orders (all statuses) for the authenticated
-     * user, with optional filters. Weight(IP): 200 Security Type: USER_DATA
+     * Query Order History (USER_DATA) Get historical prediction orders (all statuses) for the
+     * authenticated user, with optional filters. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)
@@ -600,8 +604,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
-     *     Order History Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
+     *     Order History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryOrderHistoryResponse> queryOrderHistory(
             String walletAddress,
@@ -627,10 +631,10 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Create Inbound Transfer Transfer funds from the prediction wallet back to the user&#39;s CEX
-     * account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization Required:**
-     * This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled
-     * for the wallet, the request will be rejected with &#x60;-31003 SAS authorization
+     * Create Inbound Transfer (TRADE) Transfer funds from the prediction wallet back to the
+     * user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization
+     * Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is
+     * not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization
      * required&#x60;. Enable SAS for your wallet before calling this endpoint. Weight(IP): 200
      * Security Type: TRADE
      *
@@ -646,8 +650,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
-     *     Inbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
+     *     Inbound Transfer (TRADE) Documentation</a>
      */
     public ApiResponse<CreateInboundTransferResponse> createInboundTransfer(
             CreateInboundTransferRequest createInboundTransferRequest) throws ApiException {
@@ -655,8 +659,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Create Outbound Transfer Transfer funds from the user&#39;s CEX account (SPOT or FUNDING)
-     * into the prediction wallet. Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
+     * Create Outbound Transfer (TRADE) Transfer funds from the user&#39;s CEX account (SPOT or
+     * FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 200 Security
+     * Type: TRADE
      *
      * @param createOutboundTransferRequest (required)
      * @return ApiResponse&lt;CreateOutboundTransferResponse&gt;
@@ -670,8 +675,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
-     *     Outbound Transfer Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
+     *     Outbound Transfer (TRADE) Documentation</a>
      */
     public ApiResponse<CreateOutboundTransferResponse> createOutboundTransfer(
             CreateOutboundTransferRequest createOutboundTransferRequest) throws ApiException {
@@ -679,8 +684,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Transfer List Get the authenticated user&#39;s prediction wallet transfer history
-     * within a date range. Weight(IP): 200 Security Type: USER_DATA
+     * Query Transfer List (USER_DATA) Get the authenticated user&#39;s prediction wallet transfer
+     * history within a date range. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param startDate Start date. Format: &#x60;yyyy-MM-dd&#x60;. Must be ≤ &#x60;endDate&#x60;
@@ -704,8 +709,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
-     *     Transfer List Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
+     *     Transfer List (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryTransferListResponse> queryTransferList(
             String walletAddress,
@@ -729,8 +734,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Transfer Status Query the current status of a prediction wallet transfer by transfer
-     * ID. **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
+     * Query Transfer Status (USER_DATA) Query the current status of a prediction wallet transfer by
+     * transfer ID. **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
      * &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;.
      * **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state. Weight(IP): 200
      * Security Type: USER_DATA
@@ -748,8 +753,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
-     *     Transfer Status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
+     *     Transfer Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryTransferStatusResponse> queryTransferStatus(
             String transferId, Long recvWindow) throws ApiException {
@@ -757,9 +762,9 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Get Portfolio Get the authenticated user&#39;s prediction portfolio overview including active
-     * positions count, aggregated PnL, and full position list. Weight(IP): 200 Security Type:
-     * USER_DATA
+     * Get Portfolio (USER_DATA) Get the authenticated user&#39;s prediction portfolio overview
+     * including active positions count, aggregated PnL, and full position list. Weight(IP): 200
+     * Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Filter by prediction token ID (optional)
@@ -778,8 +783,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio">Get
-     *     Portfolio Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio">Get
+     *     Portfolio (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetPortfolioResponse> getPortfolio(
             String walletAddress,
@@ -794,8 +799,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Get Quota Status Query the current user&#39;s daily trading quota limit and remaining
-     * allowance for prediction markets. Weight(IP): 200 Security Type: USER_DATA
+     * Get Quota Status (USER_DATA) Query the current user&#39;s daily trading quota limit and
+     * remaining allowance for prediction markets. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetQuotaStatusResponse&gt;
@@ -809,16 +814,16 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status">Get
-     *     Quota Status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status">Get
+     *     Quota Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetQuotaStatusResponse> getQuotaStatus(Long recvWindow) throws ApiException {
         return walletApi.getQuotaStatus(recvWindow);
     }
 
     /**
-     * List Prediction Wallets Get all prediction wallets registered for the authenticated user.
-     * Weight(IP): 200 Security Type: USER_DATA
+     * List Prediction Wallets (USER_DATA) Get all prediction wallets registered for the
+     * authenticated user. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;ListPredictionWalletsResponse&gt;
@@ -832,8 +837,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets">List
-     *     Prediction Wallets Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets">List
+     *     Prediction Wallets (USER_DATA) Documentation</a>
      */
     public ApiResponse<ListPredictionWalletsResponse> listPredictionWallets(Long recvWindow)
             throws ApiException {
@@ -841,8 +846,8 @@ public class W3WPredictionRestApi {
     }
 
     /**
-     * Query Payment Option Balances Get available balances for each payment option that can be used
-     * for prediction trading. Weight(IP): 200 Security Type: USER_DATA
+     * Query Payment Option Balances (USER_DATA) Get available balances for each payment option that
+     * can be used for prediction trading. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryPaymentOptionBalancesResponse&gt;
@@ -856,8 +861,8 @@ public class W3WPredictionRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances">Query
-     *     Payment Option Balances Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances">Query
+     *     Payment Option Balances (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPaymentOptionBalancesResponse> queryPaymentOptionBalances(
             Long recvWindow) throws ApiException {

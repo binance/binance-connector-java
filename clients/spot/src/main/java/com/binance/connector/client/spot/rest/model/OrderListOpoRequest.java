@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListOpoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOpoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -247,7 +247,10 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
+     * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
+     * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -353,7 +356,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingClientOrderId
+     * Arbitrary unique ID among open orders for the working order. Automatically generated if not
+     * sent.
      *
      * @return workingClientOrderId
      */
@@ -372,7 +376,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingPrice
+     * Price for the working order.
      *
      * @return workingPrice
      */
@@ -393,7 +397,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingQuantity
+     * Sets the quantity for the working order.
      *
      * @return workingQuantity
      */
@@ -415,7 +419,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingIcebergQty
+     * This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if
+     * &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return workingIcebergQty
      */
@@ -458,7 +463,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingStrategyId
+     * Arbitrary numeric value identifying the working order within an order strategy.
      *
      * @return workingStrategyId
      */
@@ -478,7 +483,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get workingStrategyType
+     * Arbitrary numeric value identifying the working order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return workingStrategyType
      */
@@ -605,7 +611,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingClientOrderId
+     * Arbitrary unique ID among open orders for the pending order. Automatically generated if not
+     * sent.
      *
      * @return pendingClientOrderId
      */
@@ -624,7 +631,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingPrice
+     * Price for the pending order.
      *
      * @return pendingPrice
      */
@@ -645,7 +652,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingStopPrice
+     * Stop price for the pending order.
      *
      * @return pendingStopPrice
      */
@@ -666,7 +673,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingTrailingDelta
+     * Trailing delta for the pending order.
      *
      * @return pendingTrailingDelta
      */
@@ -687,7 +694,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingIcebergQty
+     * This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if
+     * &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return pendingIcebergQty
      */
@@ -730,7 +738,7 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingStrategyId
+     * Arbitrary numeric value identifying the pending order within an order strategy.
      *
      * @return pendingStrategyId
      */
@@ -750,7 +758,8 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get pendingStrategyType
+     * Arbitrary numeric value identifying the pending order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return pendingStrategyType
      */
@@ -834,12 +843,14 @@ public class OrderListOpoRequest {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }

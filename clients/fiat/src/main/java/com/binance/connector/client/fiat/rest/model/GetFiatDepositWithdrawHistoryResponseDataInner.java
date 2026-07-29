@@ -1,6 +1,6 @@
 /*
- * Binance Fiat REST API
- * OpenAPI Specification for the Binance Fiat REST API
+ * Fiat REST API
+ * Query Binance fiat deposit and withdrawal history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetFiatDepositWithdrawHistoryResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFiatDepositWithdrawHistoryResponseDataInner {
     public static final String SERIALIZED_NAME_ORDER_NO = "orderNo";
 
@@ -219,7 +219,8 @@ public class GetFiatDepositWithdrawHistoryResponseDataInner {
     }
 
     /**
-     * Get status
+     * Processing, Failed, Successful, Finished, Refunding, Refunded, Refund Failed, Order Partial
+     * Credit Stopped
      *
      * @return status
      */

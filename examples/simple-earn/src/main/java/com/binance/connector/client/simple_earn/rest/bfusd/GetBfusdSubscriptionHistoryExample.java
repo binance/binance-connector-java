@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.Asset;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdSubscriptionHistoryResponse;
+import java.io.IOException;
 
 /** API examples for BfusdApi */
 public class GetBfusdSubscriptionHistoryExample {
@@ -26,21 +28,22 @@ public class GetBfusdSubscriptionHistoryExample {
     }
 
     /**
-     * Get BFUSD subscription history(USER_DATA)
+     * Get BFUSD subscription history (USER_DATA)
      *
-     * <p>Get BFUSD subscription history * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
-     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
-     * defaults to the current time advanced by one month, and data between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; will be returned. Weight: 150
+     * <p>Get BFUSD subscription history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
+     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBfusdSubscriptionHistoryExample() throws ApiException {
-        String asset = "";
+    public void getBfusdSubscriptionHistoryExample() throws ApiException, IOException {
+        Asset asset = Asset.USDT;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

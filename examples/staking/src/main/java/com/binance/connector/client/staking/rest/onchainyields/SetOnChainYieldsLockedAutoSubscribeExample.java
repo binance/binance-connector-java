@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedAutoSubscribeRequest;
 import com.binance.connector.client.staking.rest.model.SetOnChainYieldsLockedAutoSubscribeResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class SetOnChainYieldsLockedAutoSubscribeExample {
@@ -26,17 +27,17 @@ public class SetOnChainYieldsLockedAutoSubscribeExample {
     }
 
     /**
-     * Set On-chain Yields Locked Auto Subscribe(USER_DATA)
+     * Set On-chain Yields Locked Auto Subscribe (USER_DATA)
      *
-     * <p>Set On-chain Yield locked auto subscribe Weight: 50
+     * <p>Set On-chain Yield locked auto subscribe Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void setOnChainYieldsLockedAutoSubscribeExample() throws ApiException {
+    public void setOnChainYieldsLockedAutoSubscribeExample() throws ApiException, IOException {
         SetOnChainYieldsLockedAutoSubscribeRequest setOnChainYieldsLockedAutoSubscribeRequest =
                 new SetOnChainYieldsLockedAutoSubscribeRequest();
         setOnChainYieldsLockedAutoSubscribeRequest.positionId("1");
-        setOnChainYieldsLockedAutoSubscribeRequest.autoSubscribe(false);
+        setOnChainYieldsLockedAutoSubscribeRequest.autoSubscribe(true);
         ApiResponse<SetOnChainYieldsLockedAutoSubscribeResponse> response =
                 getApi().setOnChainYieldsLockedAutoSubscribe(
                                 setOnChainYieldsLockedAutoSubscribeRequest);

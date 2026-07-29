@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,13 +24,15 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets timeInForce */
 @JsonAdapter(TimeInForce.Adapter.class)
 public enum TimeInForce {
-    GTC("GTC"),
-
     IOC("IOC"),
+
+    GTC("GTC"),
 
     FOK("FOK"),
 
-    GTX("GTX");
+    GTX("GTX"),
+
+    GTD("GTD");
 
     private String value;
 

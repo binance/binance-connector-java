@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.SubAccountFuturesAssetTransferRequest;
 import com.binance.connector.client.sub_account.rest.model.SubAccountFuturesAssetTransferResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class SubAccountFuturesAssetTransferExample {
@@ -29,18 +30,19 @@ public class SubAccountFuturesAssetTransferExample {
     /**
      * Sub-account Futures Asset Transfer (For Master Account) (USER_DATA)
      *
-     * <p>Sub-account Futures Asset Transfer * Master account can transfer max 2000 times a minute *
-     * There must be sufficient margin balance in futures wallet to execute transferring. Weight: 1
+     * <p>Sub-account Futures Asset Transfer Weight(IP): 1 Security Type: USER_DATA Notes: - A
+     * master account can transfer at most 2000 times per minute. - The futures wallet must have
+     * sufficient margin balance to execute the transfer.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subAccountFuturesAssetTransferExample() throws ApiException {
+    public void subAccountFuturesAssetTransferExample() throws ApiException, IOException {
         SubAccountFuturesAssetTransferRequest subAccountFuturesAssetTransferRequest =
                 new SubAccountFuturesAssetTransferRequest();
-        subAccountFuturesAssetTransferRequest.fromEmail("");
-        subAccountFuturesAssetTransferRequest.toEmail("");
-        subAccountFuturesAssetTransferRequest.futuresType(0L);
-        subAccountFuturesAssetTransferRequest.asset("");
+        subAccountFuturesAssetTransferRequest.fromEmail("abc@test.com");
+        subAccountFuturesAssetTransferRequest.toEmail("def@test.com");
+        subAccountFuturesAssetTransferRequest.futuresType(1L);
+        subAccountFuturesAssetTransferRequest.asset("BTC");
         subAccountFuturesAssetTransferRequest.amount(1.0d);
         ApiResponse<SubAccountFuturesAssetTransferResponse> response =
                 getApi().subAccountFuturesAssetTransfer(subAccountFuturesAssetTransferRequest);

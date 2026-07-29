@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**leverage** | **Long** |  |  [optional] |
-|**maxQty** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**leverage** | **Long** | Leverage value. |  [optional] |
+|**maxQty** | **String** | maximum quantity of base asset |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
 
 
 

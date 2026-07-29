@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderAmendKeepPriorityRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderAmendKeepPriorityRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -101,7 +101,7 @@ public class OrderAmendKeepPriorityRequest {
     }
 
     /**
-     * Get orderId
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent
      *
      * @return orderId
      */
@@ -121,7 +121,7 @@ public class OrderAmendKeepPriorityRequest {
     }
 
     /**
-     * Get origClientOrderId
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent
      *
      * @return origClientOrderId
      */
@@ -141,7 +141,9 @@ public class OrderAmendKeepPriorityRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will
+     * be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by
+     * sending it as the &#x60;newClientOrderId&#x60;.
      *
      * @return newClientOrderId
      */
@@ -160,7 +162,7 @@ public class OrderAmendKeepPriorityRequest {
     }
 
     /**
-     * Get newQty
+     * &#x60;newQty&#x60; must be greater than 0 and less than the order&#39;s quantity.
      *
      * @return newQty
      */
@@ -182,7 +184,8 @@ public class OrderAmendKeepPriorityRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal
+     * places of precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */

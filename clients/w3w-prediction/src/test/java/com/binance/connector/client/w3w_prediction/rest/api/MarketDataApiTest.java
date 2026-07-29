@@ -32,6 +32,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.QueryLastTradePric
 import com.binance.connector.client.w3w_prediction.rest.model.QueryOrderBookResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.SortBy;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -91,7 +92,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getMarketDetailTest() throws ApiException, CryptoException {
+    public void getMarketDetailTest() throws ApiException, CryptoException, IOException {
         Long marketTopicId = 4229564L;
         ApiResponse<GetMarketDetailResponse> response = api.getMarketDetail(marketTopicId);
 
@@ -101,7 +102,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -120,7 +120,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void listPredictionCategoriesTest() throws ApiException, CryptoException {
+    public void listPredictionCategoriesTest() throws ApiException, CryptoException, IOException {
         ApiResponse<ListPredictionCategoriesResponse> response = api.listPredictionCategories();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -129,7 +129,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -150,7 +149,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void listPredictionMarketsTest() throws ApiException, CryptoException {
+    public void listPredictionMarketsTest() throws ApiException, CryptoException, IOException {
         String l1Category = "crypto";
         String l2Category = "up-down";
         SortBy sortBy = SortBy.RECOMMENDED;
@@ -166,7 +165,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -186,7 +184,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marketSearchTest() throws ApiException, CryptoException {
+    public void marketSearchTest() throws ApiException, CryptoException, IOException {
         String query = "BTC price";
         Integer topK = 20;
         ApiResponse<MarketSearchResponse> response = api.marketSearch(query, topK);
@@ -197,7 +195,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -215,7 +212,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryLastTradePriceTest() throws ApiException, CryptoException {
+    public void queryLastTradePriceTest() throws ApiException, CryptoException, IOException {
         Long marketId = 5567895L;
         ApiResponse<QueryLastTradePriceResponse> response = api.queryLastTradePrice(marketId);
 
@@ -225,7 +222,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
@@ -245,7 +241,7 @@ public class MarketDataApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryOrderBookTest() throws ApiException, CryptoException {
+    public void queryOrderBookTest() throws ApiException, CryptoException, IOException {
         String vendor = "predict_fun";
         Long marketId = 5567895L;
         String tokenId = "112233";
@@ -258,7 +254,6 @@ public class MarketDataApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

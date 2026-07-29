@@ -28,10 +28,10 @@ public class SessionStatusExample {
     }
 
     /**
-     * WebSocket Query session status
+     * Query session status
      *
      * <p>Query the status of the WebSocket connection, inspecting which API key (if any) is used to
-     * authorize requests. Weight: 2
+     * authorize requests. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionStatusExampleAsync() {
         CompletableFuture<SessionStatusResponse> future = getApi().sessionStatus();
@@ -46,10 +46,10 @@ public class SessionStatusExample {
     }
 
     /**
-     * WebSocket Query session status
+     * Query session status
      *
      * <p>Query the status of the WebSocket connection, inspecting which API key (if any) is used to
-     * authorize requests. Weight: 2
+     * authorize requests. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void sessionStatusExampleSync() {
         CompletableFuture<SessionStatusResponse> future = getApi().sessionStatus();

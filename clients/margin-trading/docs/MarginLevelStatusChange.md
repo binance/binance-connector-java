@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**E** | **Long** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
+|**lLowerCase** | **String** | Margin level |  [optional] |
+|**sLowerCase** | **String** | Margin call status |  [optional] |
 
 
 

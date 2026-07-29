@@ -29,11 +29,13 @@ public class TickerTradingDayExample {
     }
 
     /**
-     * WebSocket Trading Day Ticker
+     * Trading Day Ticker
      *
-     * <p>Price change statistics for a trading day. Weight: 4 for each requested
-     * &lt;tt&gt;symbol&lt;/tt&gt;. &lt;br/&gt;&lt;br/&gt; The weight for this request will cap at
-     * 200 once the number of &#x60;symbols&#x60; in the request is more than 50.
+     * <p>Price change statistics for a trading day. Weight: 4 for each requested symbol regardless
+     * of windowSize. The weight for this request will cap at 200 once the number of symbols in the
+     * request is more than 50. Security Type: NONE Notes: **Data Source:** Database **Notes:** *
+     * Supported values for &#x60;timeZone&#x60;: * Hours and minutes (e.g. &#x60;-1:00&#x60;,
+     * &#x60;05:45&#x60;) * Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;)
      */
     public void tickerTradingDayExampleAsync() {
         TickerTradingDayRequest tickerTradingDayRequest = new TickerTradingDayRequest();
@@ -50,11 +52,13 @@ public class TickerTradingDayExample {
     }
 
     /**
-     * WebSocket Trading Day Ticker
+     * Trading Day Ticker
      *
-     * <p>Price change statistics for a trading day. Weight: 4 for each requested
-     * &lt;tt&gt;symbol&lt;/tt&gt;. &lt;br/&gt;&lt;br/&gt; The weight for this request will cap at
-     * 200 once the number of &#x60;symbols&#x60; in the request is more than 50.
+     * <p>Price change statistics for a trading day. Weight: 4 for each requested symbol regardless
+     * of windowSize. The weight for this request will cap at 200 once the number of symbols in the
+     * request is more than 50. Security Type: NONE Notes: **Data Source:** Database **Notes:** *
+     * Supported values for &#x60;timeZone&#x60;: * Hours and minutes (e.g. &#x60;-1:00&#x60;,
+     * &#x60;05:45&#x60;) * Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;)
      */
     public void tickerTradingDayExampleSync() {
         TickerTradingDayRequest tickerTradingDayRequest = new TickerTradingDayRequest();

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestResponse;
+import java.io.IOException;
 
 /** API examples for ConvertApi */
 public class SendQuoteRequestExample {
@@ -27,18 +28,18 @@ public class SendQuoteRequestExample {
     }
 
     /**
-     * Send Quote Request(USER_DATA)
+     * Send Quote Request (USER_DATA)
      *
-     * <p>Request a quote for the requested token pairs * Either fromAmount or toAmount should be
-     * sent * &#x60;quoteId&#x60; will be returned only if you have enough funds to convert Weight:
-     * 50(IP)
+     * <p>Request a quote for the requested token pairs Weight: 50(IP) 360/hour, 500/day Security
+     * Type: USER_DATA Notes: - Either fromAmount or toAmount should be sent - &#x60;quoteId&#x60;
+     * will be returned only if you have enough funds to convert
      *
      * @throws ApiException if the Api call fails
      */
-    public void sendQuoteRequestExample() throws ApiException {
+    public void sendQuoteRequestExample() throws ApiException, IOException {
         SendQuoteRequestRequest sendQuoteRequestRequest = new SendQuoteRequestRequest();
-        sendQuoteRequestRequest.fromAsset("");
-        sendQuoteRequestRequest.toAsset("");
+        sendQuoteRequestRequest.fromAsset("BTC");
+        sendQuoteRequestRequest.toAsset("USDT");
         ApiResponse<SendQuoteRequestResponse> response =
                 getApi().sendQuoteRequest(sendQuoteRequestRequest);
         System.out.println(response.getData());

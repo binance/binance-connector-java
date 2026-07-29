@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,8 +24,10 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AccountFundingFlowResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Currency;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,17 +81,18 @@ public class AccountApiTest {
     /**
      * Account Funding Flow (USER_DATA)
      *
-     * <p>Query account funding flows. Weight: 1
+     * <p>Query account funding flows. Weight(IP): 1 Security Type: USER_DATA Notes: - Only support
+     * querying data in the past 3 months
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountFundingFlowTest() throws ApiException, CryptoException {
-        String currency = "";
-        Long recordId = 1L;
+    public void accountFundingFlowTest() throws ApiException, CryptoException, IOException {
+        Currency currency = Currency.USDT;
+        Long recordId = 100000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<AccountFundingFlowResponse> response =
                 api.accountFundingFlow(currency, recordId, startTime, endTime, limit, recvWindow);
@@ -104,21 +107,22 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("currency=&recordId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("currency=USDT&recordId=100000&startTime=1623319461670&endTime=1641782889000&limit=20&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "f0086e9f3895b2783af30133a64c5d01c9b045c0032c9eea19078ecf24771e9d", actualRequest.url().queryParameter("signature"));
+                "85cc8f051d30b5b14b5a6cc4c0782d4e692c05485d3026835dd7b0de4fd06a8c", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/bill", actualRequest.url().encodedPath());
     }
 
     /**
      * Option Margin Account Information (USER_DATA)
      *
-     * <p>Get current account information. Weight: 3
+     * <p>Get current account information. Weight(IP): 3 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void optionMarginAccountInformationTest() throws ApiException, CryptoException {
+    public void optionMarginAccountInformationTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<OptionMarginAccountInformationResponse> response =
                 api.optionMarginAccountInformation(recvWindow);

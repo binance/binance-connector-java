@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryUmModifyOrderHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUmModifyOrderHistoryResponseInner {
     public static final String SERIALIZED_NAME_AMENDMENT_ID = "amendmentId";
 
@@ -94,7 +94,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get amendmentId
+     * Order modification ID
      *
      * @return amendmentId
      */
@@ -114,7 +114,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -133,7 +133,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -153,7 +153,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -173,7 +173,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -192,7 +192,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Order modification time
      *
      * @return time
      */
@@ -236,7 +236,7 @@ public class QueryUmModifyOrderHistoryResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */

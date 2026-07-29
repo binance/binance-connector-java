@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderTradeUpdateO */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTradeUpdateO extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -110,6 +110,12 @@ public class OrderTradeUpdateO extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
     @jakarta.annotation.Nullable
     private Long iLowerCase;
+
+    public static final String SERIALIZED_NAME_M = "M";
+
+    @SerializedName(SERIALIZED_NAME_M)
+    @jakarta.annotation.Nullable
+    private String M;
 
     public static final String SERIALIZED_NAME_L_LOWER_CASE = "l";
 
@@ -269,7 +275,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -288,7 +294,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Client Order Id
      *
      * @return cLowerCase
      */
@@ -307,7 +313,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -326,7 +332,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Order Type
      *
      * @return oLowerCase
      */
@@ -345,7 +351,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in Force
      *
      * @return fLowerCase
      */
@@ -364,7 +370,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Original Quantity
      *
      * @return qLowerCase
      */
@@ -383,7 +389,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Original Price
      *
      * @return pLowerCase
      */
@@ -402,7 +408,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ap
+     * Average Price
      *
      * @return ap
      */
@@ -421,7 +427,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get sp
+     * Stop Price. Please ignore with TRAILING_STOP_MARKET order
      *
      * @return sp
      */
@@ -440,7 +446,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Execution Type
      *
      * @return xLowerCase
      */
@@ -459,7 +465,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get X
+     * Order Status
      *
      * @return X
      */
@@ -478,7 +484,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Order Id
      *
      * @return iLowerCase
      */
@@ -491,13 +497,33 @@ public class OrderTradeUpdateO extends BaseDTO {
         this.iLowerCase = iLowerCase;
     }
 
+    public OrderTradeUpdateO M(@jakarta.annotation.Nullable String M) {
+        this.M = M;
+        return this;
+    }
+
+    /**
+     * modifyId, only pushed for AMENDMENT (order modification) events when a modifyId was provided
+     * in the request
+     *
+     * @return M
+     */
+    @jakarta.annotation.Nullable
+    public String getM() {
+        return M;
+    }
+
+    public void setM(@jakarta.annotation.Nullable String M) {
+        this.M = M;
+    }
+
     public OrderTradeUpdateO lLowerCase(@jakarta.annotation.Nullable String lLowerCase) {
         this.lLowerCase = lLowerCase;
         return this;
     }
 
     /**
-     * Get lLowerCase
+     * Order Last Filled Quantity
      *
      * @return lLowerCase
      */
@@ -516,7 +542,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get zLowerCase
+     * Order Filled Accumulated Quantity
      *
      * @return zLowerCase
      */
@@ -535,7 +561,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last Filled Price
      *
      * @return L
      */
@@ -554,7 +580,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get N
+     * Commission Asset
      *
      * @return N
      */
@@ -573,7 +599,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Commission
      *
      * @return nLowerCase
      */
@@ -592,7 +618,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Order Trade Time
      *
      * @return T
      */
@@ -611,7 +637,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Trade Id
      *
      * @return tLowerCase
      */
@@ -630,7 +656,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Bids Notional
      *
      * @return bLowerCase
      */
@@ -649,7 +675,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Ask Notional
      *
      * @return aLowerCase
      */
@@ -668,7 +694,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is this trade the maker side?
      *
      * @return mLowerCase
      */
@@ -687,7 +713,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get R
+     * Is this reduce only
      *
      * @return R
      */
@@ -706,7 +732,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get wt
+     * Stop Price Working Type
      *
      * @return wt
      */
@@ -725,7 +751,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ot
+     * Original Order Type
      *
      * @return ot
      */
@@ -744,7 +770,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Position Side
      *
      * @return ps
      */
@@ -763,7 +789,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get cp
+     * If Close-All, pushed with conditional order
      *
      * @return cp
      */
@@ -782,7 +808,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get AP
+     * Activation Price, only pushed with TRAILING_STOP_MARKET order
      *
      * @return AP
      */
@@ -801,7 +827,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get cr
+     * Callback Rate, only pushed with TRAILING_STOP_MARKET order
      *
      * @return cr
      */
@@ -820,7 +846,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pP
+     * If price protection is turned on
      *
      * @return pP
      */
@@ -839,7 +865,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get si
+     * ignore
      *
      * @return si
      */
@@ -858,7 +884,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ss
+     * ignore
      *
      * @return ss
      */
@@ -877,7 +903,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get rp
+     * Realized Profit of the trade
      *
      * @return rp
      */
@@ -896,7 +922,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get V
+     * STP mode
      *
      * @return V
      */
@@ -915,7 +941,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pm
+     * Price match mode
      *
      * @return pm
      */
@@ -934,7 +960,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get gtd
+     * TIF GTD order auto cancel time
      *
      * @return gtd
      */
@@ -953,7 +979,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get er
+     * Expiry Reason
      *
      * @return er
      */
@@ -987,6 +1013,7 @@ public class OrderTradeUpdateO extends BaseDTO {
                 && Objects.equals(this.xLowerCase, orderTradeUpdateO.xLowerCase)
                 && Objects.equals(this.X, orderTradeUpdateO.X)
                 && Objects.equals(this.iLowerCase, orderTradeUpdateO.iLowerCase)
+                && Objects.equals(this.M, orderTradeUpdateO.M)
                 && Objects.equals(this.lLowerCase, orderTradeUpdateO.lLowerCase)
                 && Objects.equals(this.zLowerCase, orderTradeUpdateO.zLowerCase)
                 && Objects.equals(this.L, orderTradeUpdateO.L)
@@ -1029,6 +1056,7 @@ public class OrderTradeUpdateO extends BaseDTO {
                 xLowerCase,
                 X,
                 iLowerCase,
+                M,
                 lLowerCase,
                 zLowerCase,
                 L,
@@ -1072,6 +1100,7 @@ public class OrderTradeUpdateO extends BaseDTO {
         sb.append("		xLowerCase: ").append(toIndentedString(xLowerCase)).append("\n");
         sb.append("		X: ").append(toIndentedString(X)).append("\n");
         sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
+        sb.append("		M: ").append(toIndentedString(M)).append("\n");
         sb.append("		lLowerCase: ").append(toIndentedString(lLowerCase)).append("\n");
         sb.append("		zLowerCase: ").append(toIndentedString(zLowerCase)).append("\n");
         sb.append("		L: ").append(toIndentedString(L)).append("\n");
@@ -1164,6 +1193,11 @@ public class OrderTradeUpdateO extends BaseDTO {
         if (iLowerCaseValue != null) {
             String iLowerCaseValueAsString = iLowerCaseValue.toString();
             valMap.put("iLowerCase", iLowerCaseValueAsString);
+        }
+        String MValue = getM();
+        if (MValue != null) {
+            String MValueAsString = MValue.toString();
+            valMap.put("M", MValueAsString);
         }
         String lLowerCaseValue = getlLowerCase();
         if (lLowerCaseValue != null) {
@@ -1349,6 +1383,10 @@ public class OrderTradeUpdateO extends BaseDTO {
         if (iLowerCaseValue != null) {
             valMap.put("iLowerCase", iLowerCaseValue);
         }
+        Object MValue = getM();
+        if (MValue != null) {
+            valMap.put("M", MValue);
+        }
         Object lLowerCaseValue = getlLowerCase();
         if (lLowerCaseValue != null) {
             valMap.put("lLowerCase", lLowerCaseValue);
@@ -1487,6 +1525,7 @@ public class OrderTradeUpdateO extends BaseDTO {
         openapiFields.add("x");
         openapiFields.add("X");
         openapiFields.add("i");
+        openapiFields.add("M");
         openapiFields.add("l");
         openapiFields.add("z");
         openapiFields.add("L");
@@ -1634,6 +1673,14 @@ public class OrderTradeUpdateO extends BaseDTO {
                             "Expected the field `X` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("X").toString()));
+        }
+        if ((jsonObj.get("M") != null && !jsonObj.get("M").isJsonNull())
+                && !jsonObj.get("M").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `M` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("M").toString()));
         }
         if ((jsonObj.get("l") != null && !jsonObj.get("l").isJsonNull())
                 && !jsonObj.get("l").isJsonPrimitive()) {

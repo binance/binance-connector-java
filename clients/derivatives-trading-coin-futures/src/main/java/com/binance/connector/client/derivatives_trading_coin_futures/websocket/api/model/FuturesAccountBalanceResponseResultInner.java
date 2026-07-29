@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** FuturesAccountBalanceResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ACCOUNT_ALIAS = "accountAlias";
 
@@ -96,7 +96,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get accountAlias
+     * unique account code
      *
      * @return accountAlias
      */
@@ -116,7 +116,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -136,7 +136,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get balance
+     * Account balance.
      *
      * @return balance
      */
@@ -156,7 +156,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get withdrawAvailable
+     * Available amount for withdrawal.
      *
      * @return withdrawAvailable
      */
@@ -176,7 +176,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get crossWalletBalance
+     * wallet balance for crossed margin
      *
      * @return crossWalletBalance
      */
@@ -196,7 +196,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get crossUnPnl
+     * total unrealized profit or loss of crossed positions
      *
      * @return crossUnPnl
      */
@@ -216,7 +216,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get availableBalance
+     * available margin balance
      *
      * @return availableBalance
      */
@@ -236,7 +236,7 @@ public class FuturesAccountBalanceResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */

@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for AccountManagementApi */
 public class EnableOptionsForSubAccountExample {
@@ -29,14 +30,15 @@ public class EnableOptionsForSubAccountExample {
     /**
      * Enable Options for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Enable Options for Sub-account (For Master Account). Weight: 1
+     * <p>Enable Options for Sub-account (For Master Account). Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void enableOptionsForSubAccountExample() throws ApiException {
+    public void enableOptionsForSubAccountExample() throws ApiException, IOException {
         EnableOptionsForSubAccountRequest enableOptionsForSubAccountRequest =
                 new EnableOptionsForSubAccountRequest();
-        enableOptionsForSubAccountRequest.email("sub-account-email@email.com");
+        enableOptionsForSubAccountRequest.email("123@test.com");
         ApiResponse<EnableOptionsForSubAccountResponse> response =
                 getApi().enableOptionsForSubAccount(enableOptionsForSubAccountRequest);
         System.out.println(response.getData());

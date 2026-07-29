@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCurrentUmOpenConditionalOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentUmOpenConditionalOrderResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -160,7 +160,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -180,7 +180,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -200,7 +200,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -220,7 +220,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -240,7 +240,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -260,7 +260,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -280,7 +280,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -300,7 +300,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -320,7 +320,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -340,7 +340,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -360,7 +360,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -380,7 +380,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get bookTime
+     * order time
      *
      * @return bookTime
      */
@@ -400,7 +400,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -420,7 +420,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -440,7 +440,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -460,7 +460,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -480,7 +480,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -501,7 +501,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -521,7 +521,7 @@ public class QueryCurrentUmOpenConditionalOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */

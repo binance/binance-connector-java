@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**sessionSubscriptions**](UserDataStreamApi.md#sessionSubscriptions) | **POST** /session.subscriptions | WebSocket Listing all subscriptions |
-| [**userDataStreamSubscribe**](UserDataStreamApi.md#userDataStreamSubscribe) | **POST** /userDataStream.subscribe | WebSocket Subscribe to User Data Stream |
-| [**userDataStreamSubscribeSignature**](UserDataStreamApi.md#userDataStreamSubscribeSignature) | **POST** /userDataStream.subscribe.signature | WebSocket Subscribe to User Data Stream through signature subscription |
+| [**sessionSubscriptions**](UserDataStreamApi.md#sessionSubscriptions) | **POST** /session.subscriptions | Listing all subscriptions |
+| [**userDataStreamSubscribe**](UserDataStreamApi.md#userDataStreamSubscribe) | **POST** /userDataStream.subscribe | Subscribe to User Data Stream |
+| [**userDataStreamSubscribeSignature**](UserDataStreamApi.md#userDataStreamSubscribeSignature) | **POST** /userDataStream.subscribe.signature | Subscribe to User Data Stream through signature subscription (USER_STREAM) |
 | [**userDataStreamUnsubscribe**](UserDataStreamApi.md#userDataStreamUnsubscribe) | **POST** /userDataStream.unsubscribe | WebSocket Unsubscribe from User Data Stream |
 
 
@@ -14,9 +14,9 @@ All URIs are relative to *http://localhost*
 # **sessionSubscriptions**
 > SessionSubscriptionsResponse sessionSubscriptions()
 
-WebSocket Listing all subscriptions
+Listing all subscriptions
 
- Weight: 2  **Data Source**: Memory
+**Note:**  * Users should track the corresponding subscription status of related accounts as needed.  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -72,9 +72,9 @@ No authorization required
 # **userDataStreamSubscribe**
 > UserDataStreamSubscribeResponse userDataStreamSubscribe()
 
-WebSocket Subscribe to User Data Stream
+Subscribe to User Data Stream
 
-Subscribe to the User Data Stream in the current WebSocket connection. Weight: 2
+Subscribe to the User Data Stream in the current WebSocket connection.  **Notes:**   - This method requires an authenticated WebSocket connection using Ed25519 keys. Please refer to [&#x60;session.logon&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon).   - To check the subscription status, use [&#x60;session.status&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-status), see the &#x60;userDataStream&#x60; flag indicating you have have an active subscription.   - User Data Stream events are available in both JSON and [SBE](/products/spot/faqs/sbe_faq) sessions.     - Please refer to [User Data Streams](/products/spot/user-data-stream) for the event format details.     - For SBE, only SBE schema 2:1 or later is supported.  Weight(IP): 2  Security Type: NONE
 
 ### Example
 ```java
@@ -128,11 +128,11 @@ No authorization required
 
 <a id="userDataStreamSubscribeSignature"></a>
 # **userDataStreamSubscribeSignature**
-> UserDataStreamSubscribeSignatureResponse userDataStreamSubscribeSignature(userDataStreamSubscribeSignatureRequest)
+> UserDataStreamSubscribeSignatureResponse userDataStreamSubscribeSignature()
 
-WebSocket Subscribe to User Data Stream through signature subscription
+Subscribe to User Data Stream through signature subscription (USER_STREAM)
 
- Weight: 2
+Weight(IP): 2  Security Type: USER_STREAM  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -149,9 +149,8 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
-    UserDataStreamSubscribeSignatureRequest userDataStreamSubscribeSignatureRequest = new UserDataStreamSubscribeSignatureRequest(); // UserDataStreamSubscribeSignatureRequest | 
     try {
-      UserDataStreamSubscribeSignatureResponse result = apiInstance.userDataStreamSubscribeSignature(userDataStreamSubscribeSignatureRequest);
+      UserDataStreamSubscribeSignatureResponse result = apiInstance.userDataStreamSubscribeSignature();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserDataStreamApi#userDataStreamSubscribeSignature");
@@ -165,10 +164,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **userDataStreamSubscribeSignatureRequest** | [**UserDataStreamSubscribeSignatureRequest**](UserDataStreamSubscribeSignatureRequest.md)|  | [optional] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -180,7 +176,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -194,7 +190,7 @@ No authorization required
 
 WebSocket Unsubscribe from User Data Stream
 
-Stop listening to the User Data Stream in the current WebSocket connection.  Note that &#x60;session.logout&#x60; will only close the subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with &#x60;userDataStream.subscribe.signature&#x60;. Weight: 2
+Stop listening to the User Data Stream in the current WebSocket connection.  Note that &#x60;session.logout&#x60; will only close the subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with &#x60;userDataStream.subscribe.signature&#x60;.  Weight(IP): 2
 
 ### Example
 ```java

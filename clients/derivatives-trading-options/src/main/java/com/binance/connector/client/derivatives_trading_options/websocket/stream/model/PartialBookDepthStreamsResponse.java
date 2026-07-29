@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** PartialBookDepthStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PartialBookDepthStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -88,13 +88,13 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<PartialBookDepthStreamsResponseBItem> bLowerCase;
+    private List<List<String>> bLowerCase;
 
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
     @SerializedName(SERIALIZED_NAME_A_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<PartialBookDepthStreamsResponseAItem> aLowerCase;
+    private List<List<String>> aLowerCase;
 
     public PartialBookDepthStreamsResponse() {}
 
@@ -105,7 +105,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -124,7 +124,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */
@@ -143,7 +143,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * transaction time
      *
      * @return T
      */
@@ -163,7 +163,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option symbol
      *
      * @return sLowerCase
      */
@@ -182,7 +182,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get U
+     * First update ID in event
      *
      * @return U
      */
@@ -202,7 +202,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * Final update ID in event
      *
      * @return uLowerCase
      */
@@ -221,7 +221,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get pu
+     * Final update Id in last stream(ie &#x60;u&#x60; in last stream)
      *
      * @return pu
      */
@@ -235,13 +235,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     public PartialBookDepthStreamsResponse bLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseBItem> bLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
         return this;
     }
 
-    public PartialBookDepthStreamsResponse addBLowerCaseItem(
-            PartialBookDepthStreamsResponseBItem bLowerCaseItem) {
+    public PartialBookDepthStreamsResponse addBLowerCaseItem(List<String> bLowerCaseItem) {
         if (this.bLowerCase == null) {
             this.bLowerCase = new ArrayList<>();
         }
@@ -250,29 +249,27 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Buy order
      *
      * @return bLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<PartialBookDepthStreamsResponseBItem> getbLowerCase() {
+    public List<List<String>> getbLowerCase() {
         return bLowerCase;
     }
 
-    public void setbLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseBItem> bLowerCase) {
+    public void setbLowerCase(@jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
     }
 
     public PartialBookDepthStreamsResponse aLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseAItem> aLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
         return this;
     }
 
-    public PartialBookDepthStreamsResponse addALowerCaseItem(
-            PartialBookDepthStreamsResponseAItem aLowerCaseItem) {
+    public PartialBookDepthStreamsResponse addALowerCaseItem(List<String> aLowerCaseItem) {
         if (this.aLowerCase == null) {
             this.aLowerCase = new ArrayList<>();
         }
@@ -281,18 +278,17 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Sell order
      *
      * @return aLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<PartialBookDepthStreamsResponseAItem> getaLowerCase() {
+    public List<List<String>> getaLowerCase() {
         return aLowerCase;
     }
 
-    public void setaLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseAItem> aLowerCase) {
+    public void setaLowerCase(@jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
     }
 
@@ -379,12 +375,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
             String puValueAsString = puValue.toString();
             valMap.put("pu", puValueAsString);
         }
-        List<PartialBookDepthStreamsResponseBItem> bLowerCaseValue = getbLowerCase();
+        List<List<String>> bLowerCaseValue = getbLowerCase();
         if (bLowerCaseValue != null) {
             String bLowerCaseValueAsString = JSON.getGson().toJson(bLowerCaseValue);
             valMap.put("bLowerCase", bLowerCaseValueAsString);
         }
-        List<PartialBookDepthStreamsResponseAItem> aLowerCaseValue = getaLowerCase();
+        List<List<String>> aLowerCaseValue = getaLowerCase();
         if (aLowerCaseValue != null) {
             String aLowerCaseValueAsString = JSON.getGson().toJson(aLowerCaseValue);
             valMap.put("aLowerCase", aLowerCaseValueAsString);

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginMaxBorrowResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class MarginMaxBorrowExample {
@@ -26,14 +27,14 @@ public class MarginMaxBorrowExample {
     }
 
     /**
-     * Margin Max Borrow(USER_DATA)
+     * Margin Max Borrow (USER_DATA)
      *
-     * <p>Query margin max borrow Weight: 5
+     * <p>Query margin max borrow Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginMaxBorrowExample() throws ApiException {
-        String asset = "";
+    public void marginMaxBorrowExample() throws ApiException, IOException {
+        String asset = "USDT";
         Long recvWindow = 5000L;
         ApiResponse<MarginMaxBorrowResponse> response = getApi().marginMaxBorrow(asset, recvWindow);
         System.out.println(response.getData());

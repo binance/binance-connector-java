@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** TickerTradingDayResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerTradingDayResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -157,7 +157,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change
      *
      * @return priceChange
      */
@@ -177,7 +177,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get priceChangePercent
+     * Relative price change in percent
      *
      * @return priceChangePercent
      */
@@ -197,7 +197,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get weightedAvgPrice
+     * quoteVolume / volume
      *
      * @return weightedAvgPrice
      */
@@ -296,7 +296,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get volume
+     * Volume in base asset
      *
      * @return volume
      */
@@ -316,7 +316,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get quoteVolume
+     * Volume in quote asset
      *
      * @return quoteVolume
      */
@@ -375,7 +375,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get firstId
+     * Trade ID of the first trade in the interval
      *
      * @return firstId
      */
@@ -394,7 +394,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get lastId
+     * Trade ID of the last trade in the interval
      *
      * @return lastId
      */
@@ -413,7 +413,7 @@ public class TickerTradingDayResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get count
+     * Number of trades in the interval
      *
      * @return count
      */

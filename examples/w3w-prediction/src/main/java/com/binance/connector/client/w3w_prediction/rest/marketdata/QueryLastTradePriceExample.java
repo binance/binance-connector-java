@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryLastTradePriceResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryLastTradePriceExample {
@@ -32,7 +33,7 @@ public class QueryLastTradePriceExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryLastTradePriceExample() throws ApiException {
+    public void queryLastTradePriceExample() throws ApiException, IOException {
         Long marketId = 5567895L;
         ApiResponse<QueryLastTradePriceResponse> response = getApi().queryLastTradePrice(marketId);
         System.out.println(response.getData());

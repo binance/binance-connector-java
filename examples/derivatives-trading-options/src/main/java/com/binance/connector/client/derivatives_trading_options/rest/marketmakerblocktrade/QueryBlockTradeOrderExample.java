@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryBlockTradeOrderResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class QueryBlockTradeOrderExample {
@@ -28,15 +29,15 @@ public class QueryBlockTradeOrderExample {
     /**
      * Query Block Trade Order (TRADE)
      *
-     * <p>Check block trade order status. Weight: 5
+     * <p>Check block trade order status. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryBlockTradeOrderExample() throws ApiException {
-        String blockOrderMatchingKey = "";
+    public void queryBlockTradeOrderExample() throws ApiException, IOException {
+        String blockOrderMatchingKey = "7d046e6e-a429-4335-ab9d-6a681febcde5";
         Long endTime = 1641782889000L;
         Long startTime = 1623319461670L;
-        String underlying = "";
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryBlockTradeOrderResponse> response =
                 getApi().queryBlockTradeOrder(

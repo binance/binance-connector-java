@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -52,6 +52,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.TopTraderLongShortRatioAccountsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.TopTraderLongShortRatioPositionsResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -105,17 +106,17 @@ public class MarketDataApiTest {
     /**
      * Basis
      *
-     * <p>Query basis * If startTime and endTime are not sent, the most recent data is returned. *
-     * Only the data of the latest 30 days is available. Weight: 1
+     * <p>Query basis Weight(IP): 1 Notes: - If startTime and endTime are not sent, the most recent
+     * data is returned. - Only the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void basisTest() throws ApiException, CryptoException {
+    public void basisTest() throws ApiException, CryptoException, IOException {
         String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<BasisResponse> response =
@@ -135,12 +136,12 @@ public class MarketDataApiTest {
     /**
      * Check Server time
      *
-     * <p>Test connectivity to the Rest API and get the current server time. Weight: 1
+     * <p>Test connectivity to the Rest API and get the current server time. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void checkServerTimeTest() throws ApiException, CryptoException {
+    public void checkServerTimeTest() throws ApiException, CryptoException, IOException {
         ApiResponse<CheckServerTimeResponse> response = api.checkServerTime();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -150,7 +151,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/time", actualRequest.url().encodedPath());
     }
 
@@ -158,25 +160,26 @@ public class MarketDataApiTest {
      * Compressed/Aggregate Trades List
      *
      * <p>Get compressed, aggregate trades. Market trades that fill in 100ms with the same price and
-     * the same taking side will have the quantity aggregated. * support querying futures trade
-     * histories that are not older than one year * If both &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must
-     * be less than 1 hour. * If &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60;
-     * are not sent, the most recent aggregate trades will be returned. * Only market trades will be
-     * aggregated and returned, which means the insurance fund trades and ADL trades won&#39;t be
-     * aggregated. * Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60;
-     * might cause response timeout, please send either &#x60;fromId&#x60; or
-     * &#x60;startTime&#x60;/&#x60;endTime&#x60; Weight: 20
+     * the same taking side will have the quantity aggregated. Weight(IP): 20 Notes: - support
+     * querying futures trade histories that are not older than 24 hours - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; must be less than 1 hour. - If &#x60;fromId&#x60;,
+     * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades
+     * will be returned. - Only market trades will be aggregated and returned, which means the
+     * insurance fund trades and ADL trades won&#39;t be aggregated. - Sending both
+     * &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response
+     * timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void compressedAggregateTradesListTest() throws ApiException, CryptoException {
+    public void compressedAggregateTradesListTest()
+            throws ApiException, CryptoException, IOException {
         String symbol = "";
         Long fromId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<CompressedAggregateTradesListResponse> response =
                 api.compressedAggregateTradesList(symbol, fromId, startTime, endTime, limit);
 
@@ -187,7 +190,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/aggTrades", actualRequest.url().encodedPath());
     }
 
@@ -195,27 +200,28 @@ public class MarketDataApiTest {
      * Continuous Contract Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for a specific contract type. Klines are uniquely identified by
-     * their open time. * Contract type: * PERPETUAL * CURRENT_QUARTER * NEXT_QUARTER 1000 | 10 *
-     * The difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200
-     * days * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent
-     * &#x60;limit&#x60; data from &#x60;endTime&#x60; will be returned: * If &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; are not sent, current timestamp will be set as &#x60;endTime&#x60;,
-     * and the most recent data will be returned. * If &#x60;startTime&#x60; is sent only, the
-     * timestamp of 200 days after &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to
-     * the current time) * If &#x60;endTime&#x60; is sent only, the timestamp of 200 days before
-     * &#x60;endTime&#x60; will be set as &#x60;startTime&#x60; Weight: based on parameter LIMIT
-     * LIMIT | weight ---|--- [1,100) | 1 [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * their open time. Weight: based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | ---
+     * | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The
+     * difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days -
+     * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data
+     * from &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * are not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data
+     * will be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void continuousContractKlineCandlestickDataTest() throws ApiException, CryptoException {
-        String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+    public void continuousContractKlineCandlestickDataTest()
+            throws ApiException, CryptoException, IOException {
+        String pair = "BTCUSD";
+        ContractType contractType = ContractType.ALL;
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<ContinuousContractKlineCandlestickDataResponse> response =
                 api.continuousContractKlineCandlestickData(
                         pair, contractType, interval, startTime, endTime, limit);
@@ -227,19 +233,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/dapi/v1/continuousKlines", actualRequest.url().encodedPath());
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/dapi/v1/continuousKlines", actualRequest.url().encodedPath());
     }
 
     /**
      * Exchange Information
      *
-     * <p>Current exchange trading rules and symbol information Weight: 1
+     * <p>Current exchange trading rules and symbol information Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void exchangeInformationTest() throws ApiException, CryptoException {
+    public void exchangeInformationTest() throws ApiException, CryptoException, IOException {
         ApiResponse<ExchangeInformationResponse> response = api.exchangeInformation();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -249,24 +258,26 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/exchangeInfo", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Funding Rate History of Perpetual Futures
      *
-     * <p>Get Funding Rate History of Perpetual Futures * empty array will be returned for delivery
-     * symbols. Weight: 1
+     * <p>Get Funding Rate History of Perpetual Futures Weight(IP): 1 Notes: - empty array will be
+     * returned for delivery symbols.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFundingRateHistoryOfPerpetualFuturesTest() throws ApiException, CryptoException {
+    public void getFundingRateHistoryOfPerpetualFuturesTest()
+            throws ApiException, CryptoException, IOException {
         String symbol = "";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<GetFundingRateHistoryOfPerpetualFuturesResponse> response =
                 api.getFundingRateHistoryOfPerpetualFutures(symbol, startTime, endTime, limit);
 
@@ -277,20 +288,24 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/dapi/v1/fundingRate", actualRequest.url().encodedPath());
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/dapi/v1/fundingRate",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Get Funding Rate Info
      *
-     * <p>Query funding rate info for symbols that had FundingRateCap/ FundingRateFloor /
-     * fundingIntervalHours adjustment Weight: 0
+     * <p>Query funding rate info for symbols that had
+     * FundingRateCap/FundingRateFloor/fundingIntervalHours adjustment
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFundingRateInfoTest() throws ApiException, CryptoException {
+    public void getFundingRateInfoTest() throws ApiException, CryptoException, IOException {
         ApiResponse<GetFundingRateInfoResponse> response = api.getFundingRateInfo();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -300,21 +315,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/fundingInfo", actualRequest.url().encodedPath());
     }
 
     /**
      * Index Price and Mark Price
      *
-     * <p>Query index price and mark price Weight: 10
+     * <p>Query index price and mark price Weight(IP): 10
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void indexPriceAndMarkPriceTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String pair = "";
+    public void indexPriceAndMarkPriceTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_PERP";
+        String pair = "BTCUSD";
         ApiResponse<IndexPriceAndMarkPriceResponse> response =
                 api.indexPriceAndMarkPrice(symbol, pair);
 
@@ -325,7 +341,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/premiumIndex", actualRequest.url().encodedPath());
     }
 
@@ -333,26 +351,27 @@ public class MarketDataApiTest {
      * Index Price Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for the index price of a pair. Klines are uniquely identified by
-     * their open time. 1000 | 10 * The difference between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can only be up to 200 days * Between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data from &#x60;endTime&#x60; will be
-     * returned: * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, current timestamp
-     * will be set as &#x60;endTime&#x60;, and the most recent data will be returned. * If
-     * &#x60;startTime&#x60; is sent only, the timestamp of 200 days after &#x60;startTime&#x60;
-     * will be set as &#x60;endTime&#x60;(up to the current time) * If &#x60;endTime&#x60; is sent
-     * only, the timestamp of 200 days before &#x60;endTime&#x60; will be set as
-     * &#x60;startTime&#x60; Weight: based on parameter LIMIT LIMIT | weight ---|--- [1,100) | 1
-     * [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * their open time. Weight: Based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | ---
+     * | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The
+     * difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days -
+     * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data
+     * from &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * are not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data
+     * will be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void indexPriceKlineCandlestickDataTest() throws ApiException, CryptoException {
-        String pair = "";
+    public void indexPriceKlineCandlestickDataTest()
+            throws ApiException, CryptoException, IOException {
+        String pair = "BTCUSD";
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<IndexPriceKlineCandlestickDataResponse> response =
                 api.indexPriceKlineCandlestickData(pair, interval, startTime, endTime, limit);
 
@@ -363,7 +382,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/indexPriceKlines", actualRequest.url().encodedPath());
     }
 
@@ -371,25 +392,26 @@ public class MarketDataApiTest {
      * Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
-     * 1000 | 10 * The difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be
-     * up to 200 days * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent
-     * &#x60;limit&#x60; data from &#x60;endTime&#x60; will be returned: * If &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; are not sent, current timestamp will be set as &#x60;endTime&#x60;,
-     * and the most recent data will be returned. * If &#x60;startTime&#x60; is sent only, the
-     * timestamp of 200 days after &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to
-     * the current time) * If &#x60;endTime&#x60; is sent only, the timestamp of 200 days before
-     * &#x60;endTime&#x60; will be set as &#x60;startTime&#x60; Weight: based on parameter LIMIT
-     * LIMIT | weight ---|--- [1,100) | 1 [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * Weight: Based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | --- | | [1,100) | 1 |
+     * | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The difference between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days - Between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data from
+     * &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are
+     * not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data will
+     * be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void klineCandlestickDataTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void klineCandlestickDataTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD";
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<KlineCandlestickDataResponse> response =
                 api.klineCandlestickData(symbol, interval, startTime, endTime, limit);
 
@@ -400,23 +422,25 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/klines", actualRequest.url().encodedPath());
     }
 
     /**
      * Long/Short Ratio
      *
-     * <p>Query symbol Long/Short Ratio * If startTime and endTime are not sent, the most recent
-     * data is returned. * Only the data of the latest 30 days is available. Weight: 1
+     * <p>Query symbol Long/Short Ratio Weight(IP): 1 Notes: - If startTime and endTime are not
+     * sent, the most recent data is returned. - Only the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void longShortRatioTest() throws ApiException, CryptoException {
+    public void longShortRatioTest() throws ApiException, CryptoException, IOException {
         String pair = "";
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<LongShortRatioResponse> response =
@@ -430,34 +454,34 @@ public class MarketDataApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/futures/data/globalLongShortAccountRatio", actualRequest.url().encodedPath());
+        assertEquals("/futures/data/globalLongShortAccountRatio", actualRequest.url().encodedPath());
     }
 
     /**
      * Mark Price Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for the mark price of a symbol. Klines are uniquely identified by
-     * their open time. 1000 | 10 * The difference between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can only be up to 200 days * Between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data from &#x60;endTime&#x60; will be
-     * returned: * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, current timestamp
-     * will be set as &#x60;endTime&#x60;, and the most recent data will be returned. * If
-     * &#x60;startTime&#x60; is sent only, the timestamp of 200 days after &#x60;startTime&#x60;
-     * will be set as &#x60;endTime&#x60;(up to the current time) * If &#x60;endTime&#x60; is sent
-     * only, the timestamp of 200 days before &#x60;endTime&#x60; will be set as
-     * &#x60;startTime&#x60; Weight: based on parameter LIMIT LIMIT | weight ---|--- [1,100) | 1
-     * [100, 500) | 2 [500, 1000] | 5 &gt; 1000 | 10
+     * their open time. Weight: Based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | --- | ---
+     * | | [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - The
+     * difference between &#x60;startTime&#x60; and &#x60;endTime&#x60; can only be up to 200 days -
+     * Between &#x60;startTime&#x60; and &#x60;endTime&#x60;, the most recent &#x60;limit&#x60; data
+     * from &#x60;endTime&#x60; will be returned: - If &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * are not sent, current timestamp will be set as &#x60;endTime&#x60;, and the most recent data
+     * will be returned. - If &#x60;startTime&#x60; is sent only, the timestamp of 200 days after
+     * &#x60;startTime&#x60; will be set as &#x60;endTime&#x60;(up to the current time) - If
+     * &#x60;endTime&#x60; is sent only, the timestamp of 200 days before &#x60;endTime&#x60; will
+     * be set as &#x60;startTime&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void markPriceKlineCandlestickDataTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void markPriceKlineCandlestickDataTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD";
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<MarkPriceKlineCandlestickDataResponse> response =
                 api.markPriceKlineCandlestickData(symbol, interval, startTime, endTime, limit);
 
@@ -468,24 +492,27 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/markPriceKlines", actualRequest.url().encodedPath());
     }
 
     /**
-     * Old Trades Lookup(MARKET_DATA)
+     * Old Trades Lookup (MARKET_DATA)
      *
-     * <p>Get older market historical trades. * Market trades means trades filled in the order book.
-     * Only market trades will be returned, which means the insurance fund trades and ADL trades
-     * won&#39;t be returned. Weight: 20
+     * <p>Get older market historical trades. Weight(IP): 20 Security Type: MARKET_DATA Notes: -
+     * Market trades means trades filled in the order book. Only market trades will be returned,
+     * which means the insurance fund trades and ADL trades won&#39;t be returned. - Only supports
+     * data from within the last one month
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void oldTradesLookupTest() throws ApiException, CryptoException {
+    public void oldTradesLookupTest() throws ApiException, CryptoException, IOException {
         String symbol = "";
-        Long limit = 100L;
-        Long fromId = 1L;
+        Long limit = 30L;
+        Long fromId = 595103L;
         ApiResponse<OldTradesLookupResponse> response = api.oldTradesLookup(symbol, limit, fromId);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -495,20 +522,21 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/historicalTrades", actualRequest.url().encodedPath());
     }
 
     /**
      * Open Interest
      *
-     * <p>Get present open interest of a specific symbol. Weight: 1
+     * <p>Get present open interest of a specific symbol. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void openInterestTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void openInterestTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_200626";
         ApiResponse<OpenInterestResponse> response = api.openInterest(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -525,17 +553,17 @@ public class MarketDataApiTest {
     /**
      * Open Interest Statistics
      *
-     * <p>Query open interest stats * If startTime and endTime are not sent, the most recent data is
-     * returned. * Only the data of the latest 30 days is available. Weight: 1
+     * <p>Query open interest stats Weight(IP): 1 Notes: - If startTime and endTime are not sent,
+     * the most recent data is returned. - Only the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void openInterestStatisticsTest() throws ApiException, CryptoException {
-        String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+    public void openInterestStatisticsTest() throws ApiException, CryptoException, IOException {
+        String pair = "BTCUSD";
+        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<OpenInterestStatisticsResponse> response =
@@ -548,22 +576,24 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/futures/data/openInterestHist", actualRequest.url().encodedPath());
     }
 
     /**
      * Order Book
      *
-     * <p>Query orderbook on specific symbol Weight: Adjusted based on the limit: Limit | Weight
-     * ------------ | ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * <p>Query orderbook on specific symbol Weight: Adjusted based on the limit: | Limit | Weight |
+     * | ------------ | ------------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderBookTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long limit = 100L;
+    public void orderBookTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_PERP";
+        Long limit = 500L;
         ApiResponse<OrderBookResponse> response = api.orderBook(symbol, limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -580,20 +610,20 @@ public class MarketDataApiTest {
     /**
      * Premium index Kline Data
      *
-     * <p>Premium index kline bars of a symbol. Klines are uniquely identified by their open time. *
-     * If startTime and endTime are not sent, the most recent klines are returned. Weight: based on
-     * parameter LIMIT | LIMIT | weight | | ----------- | ------ | | [1,100) | 1 | | [100, 500) | 2
-     * | | [500, 1000] | 5 | | &gt; 1000 | 10 |
+     * <p>Premium index kline bars of a symbol. Klines are uniquely identified by their open time.
+     * Weight: Based on parameter &#x60;LIMIT&#x60; | LIMIT | weight | | ----------- | ------ | |
+     * [1,100) | 1 | | [100, 500) | 2 | | [500, 1000] | 5 | | &gt; 1000 | 10 | Notes: - If startTime
+     * and endTime are not sent, the most recent klines are returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void premiumIndexKlineDataTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void premiumIndexKlineDataTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD";
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 30L;
         ApiResponse<PremiumIndexKlineDataResponse> response =
                 api.premiumIndexKlineData(symbol, interval, startTime, endTime, limit);
 
@@ -604,20 +634,23 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/premiumIndexKlines", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Index Price Constituents
      *
-     * <p>Query index price constituents Weight: 2
+     * <p>Query index price constituents Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryIndexPriceConstituentsTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void queryIndexPriceConstituentsTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD";
         ApiResponse<QueryIndexPriceConstituentsResponse> response =
                 api.queryIndexPriceConstituents(symbol);
 
@@ -628,23 +661,25 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/constituents", actualRequest.url().encodedPath());
     }
 
     /**
      * Recent Trades List
      *
-     * <p>Get recent market trades * Market trades means trades filled in the order book. Only
-     * market trades will be returned, which means the insurance fund trades and ADL trades
-     * won&#39;t be returned. Weight: 5
+     * <p>Get recent market trades Weight(IP): 5 Notes: - Market trades means trades filled in the
+     * order book. Only market trades will be returned, which means the insurance fund trades and
+     * ADL trades won&#39;t be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void recentTradesListTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long limit = 100L;
+    public void recentTradesListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD";
+        Long limit = 30L;
         ApiResponse<RecentTradesListResponse> response = api.recentTradesList(symbol, limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -654,24 +689,25 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/trades", actualRequest.url().encodedPath());
     }
 
     /**
      * Symbol Order Book Ticker
      *
-     * <p>Best price/qty on the order book for a symbol or symbols. * Symbol and pair cannot be sent
-     * together * If a pair is sent,tickers for all symbols of the pair will be returned * If either
-     * a pair or symbol is sent, tickers for all symbols of all pairs will be returned Weight: 2 for
-     * a single symbol, 5 when the symbol parameter is omitted
+     * <p>Best price/qty on the order book for a symbol or symbols. Weight: **2** for a single
+     * symbol, **5** when the symbol parameter is omitted Notes: - Symbol and pair cannot be sent
+     * together - If a pair is sent,tickers for all symbols of the pair will be returned - If either
+     * a pair or symbol is sent, tickers for all symbols of all pairs will be returned
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void symbolOrderBookTickerTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String pair = "";
+    public void symbolOrderBookTickerTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_200626";
+        String pair = "BTCUSD";
         ApiResponse<SymbolOrderBookTickerResponse> response =
                 api.symbolOrderBookTicker(symbol, pair);
 
@@ -682,24 +718,26 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/ticker/bookTicker", actualRequest.url().encodedPath());
     }
 
     /**
      * Symbol Price Ticker
      *
-     * <p>Latest price for a symbol or symbols. * Symbol and pair cannot be sent together * If a
-     * pair is sent,tickers for all symbols of the pair will be returned * If either a pair or
-     * symbol is sent, tickers for all symbols of all pairs will be returned Weight: 1 for a single
-     * symbol, 2 when the symbol parameter is omitted
+     * <p>Latest price for a symbol or symbols. Weight: **1** for a single symbol, **2** when the
+     * symbol parameter is omitted Notes: - Symbol and pair cannot be sent together - If a pair is
+     * sent,tickers for all symbols of the pair will be returned - If either a pair or symbol is
+     * sent, tickers for all symbols of all pairs will be returned
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void symbolPriceTickerTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String pair = "";
+    public void symbolPriceTickerTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_200626";
+        String pair = "BTCUSD";
         ApiResponse<SymbolPriceTickerResponse> response = api.symbolPriceTicker(symbol, pair);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -709,7 +747,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/ticker/price", actualRequest.url().encodedPath());
     }
 
@@ -717,18 +756,18 @@ public class MarketDataApiTest {
      * Taker Buy/Sell Volume
      *
      * <p>Taker Buy Volume: the total volume of buy orders filled by takers within the period. Taker
-     * Sell Volume: the total volume of sell orders filled by takers within the period. * If
-     * startTime and endTime are not sent, the most recent data is returned. * Only the data of the
-     * latest 30 days is available. Weight: 1
+     * Sell Volume: the total volume of sell orders filled by takers within the period. Weight(IP):
+     * 1 Notes: - If startTime and endTime are not sent, the most recent data is returned. - Only
+     * the data of the latest 30 days is available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void takerBuySellVolumeTest() throws ApiException, CryptoException {
-        String pair = "";
-        ContractType contractType = ContractType.PERPETUAL;
+    public void takerBuySellVolumeTest() throws ApiException, CryptoException, IOException {
+        String pair = "BTCUSD";
+        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TakerBuySellVolumeResponse> response =
@@ -741,19 +780,20 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/futures/data/takerBuySellVol", actualRequest.url().encodedPath());
     }
 
     /**
      * Test Connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight: 1
+     * <p>Test connectivity to the Rest API. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void testConnectivityTest() throws ApiException, CryptoException {
+    public void testConnectivityTest() throws ApiException, CryptoException, IOException {
         api.testConnectivity();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -762,25 +802,27 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/ping", actualRequest.url().encodedPath());
     }
 
     /**
      * 24hr Ticker Price Change Statistics
      *
-     * <p>24 hour rolling window price change statistics. * Symbol and pair cannot be sent together
-     * * If a pair is sent,tickers for all symbols of the pair will be returned * If either a pair
-     * or symbol is sent, tickers for all symbols of all pairs will be returned Weight: 1 for a
-     * single symbol, 40 when the symbol parameter is omitted Careful when accessing this with no
-     * symbol.
+     * <p>24 hour rolling window price change statistics. Weight: **1** for a single symbol, **40**
+     * when the symbol parameter is omitted **Careful** when accessing this with no symbol. Notes: -
+     * Symbol and pair cannot be sent together - If a pair is sent,tickers for all symbols of the
+     * pair will be returned - If either a pair or symbol is sent, tickers for all symbols of all
+     * pairs will be returned
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void ticker24hrPriceChangeStatisticsTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String pair = "";
+    public void ticker24hrPriceChangeStatisticsTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSD_200925";
+        String pair = "BTCUSD";
         ApiResponse<Ticker24hrPriceChangeStatisticsResponse> response =
                 api.ticker24hrPriceChangeStatistics(symbol, pair);
 
@@ -791,28 +833,32 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/ticker/24hr", actualRequest.url().encodedPath());
     }
 
     /**
-     * Top Trader Long/Short Ratio (Accounts)
+     * Top Trader Long/Short Account Ratio
      *
      * <p>The proportion of net long and net short accounts to total accounts of the top 20% users
      * with the highest margin balance. Each account is counted once only. Long Account % &#x3D;
      * Accounts of top traders with net long positions / Total accounts of top traders with open
      * positions Short Account % &#x3D; Accounts of top traders with net short positions / Total
      * accounts of top traders with open positions Long/Short Ratio (Accounts) &#x3D; Long Account %
-     * / Short Account % * If startTime and endTime are not sent, the most recent data is returned.
-     * * Only the data of the latest 30 days is available. Weight: 1
+     * / Short Account % Weight(IP): 1 Security Type: Accounts Notes: - If startTime and endTime are
+     * not sent, the most recent data is returned. - Only the data of the latest 30 days is
+     * available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void topTraderLongShortRatioAccountsTest() throws ApiException, CryptoException {
+    public void topTraderLongShortRatioAccountsTest()
+            throws ApiException, CryptoException, IOException {
         String symbol = "";
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioAccountsResponse> response =
@@ -825,27 +871,31 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/futures/data/topLongShortAccountRatio", actualRequest.url().encodedPath());
     }
 
     /**
-     * Top Trader Long/Short Ratio (Positions)
+     * Top Trader Long/Short Position Ratio
      *
      * <p>The proportion of net long and net short positions to total open positions of the top 20%
      * users with the highest margin balance. Long Position % &#x3D; Long positions of top traders /
      * Total open positions of top traders Short Position % &#x3D; Short positions of top traders /
      * Total open positions of top traders Long/Short Ratio (Positions) &#x3D; Long Position % /
-     * Short Position % * If startTime and endTime are not sent, the most recent data is returned. *
-     * Only the data of the latest 30 days is available. Weight: 1
+     * Short Position % Weight(IP): 1 Security Type: Positions Notes: - If startTime and endTime are
+     * not sent, the most recent data is returned. - Only the data of the latest 30 days is
+     * available.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void topTraderLongShortRatioPositionsTest() throws ApiException, CryptoException {
-        String pair = "";
+    public void topTraderLongShortRatioPositionsTest()
+            throws ApiException, CryptoException, IOException {
+        String pair = "BTCUSD";
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioPositionsResponse> response =
@@ -858,7 +908,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/futures/data/topLongShortPositionRatio", actualRequest.url().encodedPath());
     }
 }

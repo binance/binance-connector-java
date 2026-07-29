@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.api.Derivat
 import com.binance.connector.client.derivatives_trading_options.rest.model.Orders;
 import com.binance.connector.client.derivatives_trading_options.rest.model.PlaceMultipleOrdersRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.PlaceMultipleOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class PlaceMultipleOrdersExample {
@@ -28,14 +29,16 @@ public class PlaceMultipleOrdersExample {
     }
 
     /**
-     * Place Multiple Orders(TRADE)
+     * Place Multiple Orders (TRADE)
      *
-     * <p>Send multiple option orders. * Parameter rules are same with New Order * Batch orders are
-     * processed concurrently, and the order of matching is not guaranteed. Weight: 5
+     * <p>Send multiple option orders. Weight(IP): 5 Security Type: TRADE Notes: Some parameters are
+     * mandatory depending on the order type as follows: Type | Mandatory parameters ------------ |
+     * ------------ LIMIT | timeInForce, quantity, price - Parameter rules are same with New Order -
+     * Batch orders are processed concurrently, and the order of matching is not guaranteed.
      *
      * @throws ApiException if the Api call fails
      */
-    public void placeMultipleOrdersExample() throws ApiException {
+    public void placeMultipleOrdersExample() throws ApiException, IOException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
         placeMultipleOrdersRequest.orders(new Orders());
         ApiResponse<PlaceMultipleOrdersResponse> response =

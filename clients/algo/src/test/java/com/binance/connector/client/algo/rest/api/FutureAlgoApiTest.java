@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -18,8 +18,10 @@ import com.binance.connector.client.algo.rest.model.CancelAlgoOrderFutureAlgoRes
 import com.binance.connector.client.algo.rest.model.QueryCurrentAlgoOpenOrdersFutureAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QueryHistoricalAlgoOrdersFutureAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QuerySubOrdersFutureAlgoResponse;
+import com.binance.connector.client.algo.rest.model.Side;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceFutureAlgoRequest;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceFutureAlgoResponse;
+import com.binance.connector.client.algo.rest.model.Urgency;
 import com.binance.connector.client.algo.rest.model.VolumeParticipationFutureAlgoRequest;
 import com.binance.connector.client.algo.rest.model.VolumeParticipationFutureAlgoResponse;
 import com.binance.connector.client.common.ApiClient;
@@ -32,6 +34,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -83,15 +86,16 @@ public class FutureAlgoApiTest {
     }
 
     /**
-     * Cancel Algo Order(TRADE)
+     * Cancel Futures Algo Order (TRADE)
      *
-     * <p>Cancel an active order. * You need to enable &#x60;Futures Trading Permission&#x60; for
-     * the api key which requests this endpoint. * Base URL: https://api.binance.com Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - You need to enable
+     * &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base
+     * URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelAlgoOrderFutureAlgoTest() throws ApiException, CryptoException {
+    public void cancelAlgoOrderFutureAlgoTest() throws ApiException, CryptoException, IOException {
         Long algoId = 1L;
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderFutureAlgoResponse> response =
@@ -107,8 +111,7 @@ public class FutureAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "algoId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("algoId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "4dcc675276dcc7a5eddf3f11f98e221dc22b447b227be14ec73a51c61602f2a5",
                 actualRequest.url().queryParameter("signature"));
@@ -116,15 +119,17 @@ public class FutureAlgoApiTest {
     }
 
     /**
-     * Query Current Algo Open Orders(USER_DATA)
+     * Query Current Futures Algo Open Orders (USER_DATA)
      *
-     * <p>Query Current Algo Open Orders * You need to enable &#x60;Futures Trading Permission&#x60;
-     * for the api key which requests this endpoint. * Base URL: https://api.binance.com Weight: 1
+     * <p>Query Current Algo Open Orders Weight(IP): 1 Security Type: USER_DATA Notes: - You need to
+     * enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. -
+     * Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCurrentAlgoOpenOrdersFutureAlgoTest() throws ApiException, CryptoException {
+    public void queryCurrentAlgoOpenOrdersFutureAlgoTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentAlgoOpenOrdersFutureAlgoResponse> response =
                 api.queryCurrentAlgoOpenOrdersFutureAlgo(recvWindow);
@@ -139,25 +144,29 @@ public class FutureAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/algo/futures/openOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/algo/futures/openOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Historical Algo Orders(USER_DATA)
+     * Query Historical Futures Algo Orders (USER_DATA)
      *
-     * <p>Query Historical Algo Order * You need to enable &#x60;Futures Trading Permission&#x60;
-     * for the api key which requests this endpoint. * Base URL: https://api.binance.com Weight: 1
+     * <p>Query Historical Algo Order Weight(IP): 1 Security Type: USER_DATA Notes: - You need to
+     * enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. -
+     * Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryHistoricalAlgoOrdersFutureAlgoTest() throws ApiException, CryptoException {
+    public void queryHistoricalAlgoOrdersFutureAlgoTest()
+            throws ApiException, CryptoException, IOException {
         String symbol = "BTCUSDT";
-        String side = "BUY";
+        Side side = Side.BUY;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
@@ -178,25 +187,25 @@ public class FutureAlgoApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=BTCUSDT&side=BUY&startTime=1623319461670&endTime=1641782889000&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "symbol=BTCUSDT&side=BUY&startTime=1623319461670&endTime=1641782889000&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "0e8d5de4dda9f55852d3ecc886e0ca289d66e4696a2fc21f553d9348242a14f1",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/algo/futures/historicalOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/algo/futures/historicalOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub Orders(USER_DATA)
+     * Query Futures Sub Orders (USER_DATA)
      *
-     * <p>Get respective sub orders for a specified algoId * You need to enable &#x60;Futures
-     * Trading Permission&#x60; for the api key which requests this endpoint. * Base URL:
-     * https://api.binance.com Weight: 1
+     * <p>Get respective sub orders for a specified algoId Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that
+     * requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubOrdersFutureAlgoTest() throws ApiException, CryptoException {
+    public void querySubOrdersFutureAlgoTest() throws ApiException, CryptoException, IOException {
         Long algoId = 1L;
         Long page = 1L;
         Long pageSize = 100L;
@@ -214,9 +223,7 @@ public class FutureAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "algoId=1&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("algoId=1&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "a862a7c54c6a5c1f71b2563d1d86c61f8763cb9514dc20641231cc60f7ac0445",
                 actualRequest.url().queryParameter("signature"));
@@ -224,32 +231,30 @@ public class FutureAlgoApiTest {
     }
 
     /**
-     * Time-Weighted Average Price(Twap) New Order(TRADE)
+     * Time-Weighted Futures Average Price (Twap) New Order (TRADE)
      *
-     * <p>Send in a Twap new order. Only support on USDⓈ-M Contracts. * Total Algo open orders max
-     * allowed: &#x60;30&#x60; orders. * Leverage of symbols and position mode will be the same as
-     * your futures account settings. You can set up through the trading page or fapi. * Receiving
-     * &#x60;\&quot;success\&quot;: true&#x60; does not mean that your order will be executed.
-     * Please use the query order endpoints（&#x60;GET sapi/v1/algo/futures/openOrders&#x60; or
-     * &#x60;GET sapi/v1/algo/futures/historicalOrders&#x60;） to check the order status. For
-     * example: Your futures balance is insufficient, or open position with reduce only or position
-     * side is inconsistent with your own setting. In these cases you will receive
-     * &#x60;\&quot;success\&quot;: true&#x60;, but the order status will be &#x60;expired&#x60;
-     * after we check it. * &#x60;quantity&#x60; * 60 / &#x60;duration&#x60; should be larger than
-     * minQty * &#x60;duration&#x60; cannot be less than 5 mins or more than 24 hours. * For
-     * delivery contracts, TWAP end time should be one hour earlier than the delivery time of the
-     * symbol. * You need to enable &#x60;Futures Trading Permission&#x60; for the api key which
-     * requests this endpoint. * Base URL: https://api.binance.com Weight: 3000
+     * <p>Send in a Twap new order. Only support on USDⓈ-M Contracts. Weight(UID): 3000 Security
+     * Type: TRADE Notes: - Other info: - Total Algo open orders max allowed: &#x60;30&#x60; orders.
+     * - Leverage and position mode follow your futures account settings. - Receiving
+     * &#x60;\&quot;success\&quot;: true&#x60; does not guarantee execution; query order endpoints
+     * for final status. - If balance/position constraints fail, response may still return success
+     * but order status becomes &#x60;expired&#x60;. - &#x60;quantity * 60 / duration&#x60; must be
+     * greater than &#x60;minQty&#x60;. - &#x60;duration&#x60; cannot be less than 5 minutes or
+     * greater than 24 hours. - For delivery contracts, TWAP end time should be one hour earlier
+     * than symbol delivery time. - You need to enable the corresponding permission for the API key
+     * requesting this endpoint: - &#x60;Futures Trading Permission&#x60; — for Classic Trading
+     * Account mode - &#x60;Portfolio Margin Trading Permission&#x60; — for Portfolio Margin Account
+     * mode - Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void timeWeightedAveragePriceFutureAlgoTest() throws ApiException, CryptoException {
+    public void timeWeightedAveragePriceFutureAlgoTest()
+            throws ApiException, CryptoException, IOException {
         TimeWeightedAveragePriceFutureAlgoRequest timeWeightedAveragePriceFutureAlgoRequest =
                 new TimeWeightedAveragePriceFutureAlgoRequest();
-
         timeWeightedAveragePriceFutureAlgoRequest.symbol("BTCUSDT");
-        timeWeightedAveragePriceFutureAlgoRequest.side("BUY");
+        timeWeightedAveragePriceFutureAlgoRequest.side(Side.BUY);
         timeWeightedAveragePriceFutureAlgoRequest.quantity(1d);
         timeWeightedAveragePriceFutureAlgoRequest.duration(5000L);
 
@@ -267,40 +272,38 @@ public class FutureAlgoApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000duration=5000&symbol=BTCUSDT&side=BUY&quantity=1",
-                signInputCaptor.getValue());
+                "timestamp=1736393892000duration=5000&symbol=BTCUSDT&side=BUY&quantity=1", signInputCaptor.getValue());
         assertEquals(
                 "cedadcc9e9190f0546a7247d2b7b627c8814e5e1f47b616211656ed04130a1a6",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/algo/futures/newOrderTwap", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/algo/futures/newOrderTwap", actualRequest.url().encodedPath());
     }
 
     /**
-     * Volume Participation(VP) New Order (TRADE)
+     * Volume Participation (VP) New Order (TRADE)
      *
-     * <p>Send in a VP new order. Only support on USDⓈ-M Contracts. * Total Algo open orders max
-     * allowed: &#x60;10&#x60; orders. * Leverage of symbols and position mode will be the same as
-     * your futures account settings. You can set up through the trading page or fapi. * Receiving
-     * &#x60;\&quot;success\&quot;: true&#x60; does not mean that your order will be executed.
-     * Please use the query order endpoints（&#x60;GET sapi/v1/algo/futures/openOrders&#x60; or
-     * &#x60;GET sapi/v1/algo/futures/historicalOrders&#x60;） to check the order status. For
-     * example: Your futures balance is insufficient, or open position with reduce only or position
-     * side is inconsistent with your own setting. In these cases you will receive
-     * &#x60;\&quot;success\&quot;: true&#x60;, but the order status will be &#x60;expired&#x60;
-     * after we check it. * You need to enable &#x60;Futures Trading Permission&#x60; for the api
-     * key which requests this endpoint. * Base URL: https://api.binance.com Weight: 300
+     * <p>Send in a VP new order. Only support on USDⓈ-M Contracts. Weight(UID): 300 Security Type:
+     * TRADE Notes: - Other info: - Total Algo open orders max allowed: &#x60;10&#x60; orders. -
+     * Leverage and position mode follow your futures account settings. - Receiving
+     * &#x60;\&quot;success\&quot;: true&#x60; does not guarantee execution; query order endpoints
+     * for final status. - If balance/position constraints fail, response may still return success
+     * but order status becomes &#x60;expired&#x60;. - You need to enable the corresponding
+     * permission for the API key requesting this endpoint: - &#x60;Futures Trading Permission&#x60;
+     * — for Classic Trading Account mode - &#x60;Portfolio Margin Trading Permission&#x60; — for
+     * Portfolio Margin Account mode - Base URL: &#x60;https://api.binance.com&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void volumeParticipationFutureAlgoTest() throws ApiException, CryptoException {
+    public void volumeParticipationFutureAlgoTest()
+            throws ApiException, CryptoException, IOException {
         VolumeParticipationFutureAlgoRequest volumeParticipationFutureAlgoRequest =
                 new VolumeParticipationFutureAlgoRequest();
-
         volumeParticipationFutureAlgoRequest.symbol("BTCUSDT");
-        volumeParticipationFutureAlgoRequest.side("BUY");
+        volumeParticipationFutureAlgoRequest.side(Side.BUY);
         volumeParticipationFutureAlgoRequest.quantity(1d);
-        volumeParticipationFutureAlgoRequest.urgency("LOW");
+        volumeParticipationFutureAlgoRequest.urgency(Urgency.LOW);
 
         ApiResponse<VolumeParticipationFutureAlgoResponse> response =
                 api.volumeParticipationFutureAlgo(volumeParticipationFutureAlgoRequest);
@@ -315,9 +318,7 @@ public class FutureAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BTCUSDT&side=BUY&quantity=1&urgency=LOW",
-                signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&quantity=1&urgency=LOW", signInputCaptor.getValue());
         assertEquals(
                 "9e2d0455a2944d1f036cd1f966b9b5c9db75725ee79e38c7f94e49cf6b30e586",
                 actualRequest.url().queryParameter("signature"));

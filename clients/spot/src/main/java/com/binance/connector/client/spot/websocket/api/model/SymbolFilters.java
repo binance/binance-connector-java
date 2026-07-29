@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SymbolFilters extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(SymbolFilters.class.getName());
 
@@ -333,90 +333,6 @@ public class SymbolFilters extends AbstractOpenApiSchema {
                                                 adapterTPlusSellFilter.fromJsonTree(jsonObject);
                                         newSymbolFilters.setActualInstance(deserialized);
                                         return newSymbolFilters;
-                                    case "IcebergPartsFilter":
-                                        deserialized =
-                                                adapterIcebergPartsFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "LotSizeFilter":
-                                        deserialized =
-                                                adapterLotSizeFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MarketLotSizeFilter":
-                                        deserialized =
-                                                adapterMarketLotSizeFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxNumAlgoOrdersFilter":
-                                        deserialized =
-                                                adapterMaxNumAlgoOrdersFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxNumIcebergOrdersFilter":
-                                        deserialized =
-                                                adapterMaxNumIcebergOrdersFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxNumOrderAmendsFilter":
-                                        deserialized =
-                                                adapterMaxNumOrderAmendsFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxNumOrderListsFilter":
-                                        deserialized =
-                                                adapterMaxNumOrderListsFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxNumOrdersFilter":
-                                        deserialized =
-                                                adapterMaxNumOrdersFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MaxPositionFilter":
-                                        deserialized =
-                                                adapterMaxPositionFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "MinNotionalFilter":
-                                        deserialized =
-                                                adapterMinNotionalFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "NotionalFilter":
-                                        deserialized =
-                                                adapterNotionalFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "PercentPriceBySideFilter":
-                                        deserialized =
-                                                adapterPercentPriceBySideFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "PercentPriceFilter":
-                                        deserialized =
-                                                adapterPercentPriceFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "PriceFilter":
-                                        deserialized = adapterPriceFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "TPlusSellFilter":
-                                        deserialized =
-                                                adapterTPlusSellFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
-                                    case "TrailingDeltaFilter":
-                                        deserialized =
-                                                adapterTrailingDeltaFilter.fromJsonTree(jsonObject);
-                                        newSymbolFilters.setActualInstance(deserialized);
-                                        return newSymbolFilters;
                                     default:
                                         newSymbolFilters.setActualInstance(jsonElement.toString());
                                         log.log(
@@ -431,21 +347,8 @@ public class SymbolFilters extends AbstractOpenApiSchema {
                                                             + " MAX_NUM_ORDER_LISTS MAX_POSITION"
                                                             + " MIN_NOTIONAL NOTIONAL PERCENT_PRICE"
                                                             + " PERCENT_PRICE_BY_SIDE PRICE_FILTER"
-                                                            + " TRAILING_DELTA T_PLUS_SELL"
-                                                            + " IcebergPartsFilter LotSizeFilter"
-                                                            + " MarketLotSizeFilter"
-                                                            + " MaxNumAlgoOrdersFilter"
-                                                            + " MaxNumIcebergOrdersFilter"
-                                                            + " MaxNumOrderAmendsFilter"
-                                                            + " MaxNumOrderListsFilter"
-                                                            + " MaxNumOrdersFilter"
-                                                            + " MaxPositionFilter MinNotionalFilter"
-                                                            + " NotionalFilter"
-                                                            + " PercentPriceBySideFilter"
-                                                            + " PercentPriceFilter PriceFilter"
-                                                            + " TPlusSellFilter"
-                                                            + " TrailingDeltaFilter. Falling back"
-                                                            + " to String.",
+                                                            + " TRAILING_DELTA T_PLUS_SELL. Falling"
+                                                            + " back to String.",
                                                         jsonObject
                                                                 .get("filterType")
                                                                 .getAsString()));

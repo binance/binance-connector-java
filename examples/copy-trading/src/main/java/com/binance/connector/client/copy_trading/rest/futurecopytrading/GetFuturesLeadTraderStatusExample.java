@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.copy_trading.rest.CopyTradingRestApiUtil;
 import com.binance.connector.client.copy_trading.rest.api.CopyTradingRestApi;
 import com.binance.connector.client.copy_trading.rest.model.GetFuturesLeadTraderStatusResponse;
+import java.io.IOException;
 
 /** API examples for FutureCopyTradingApi */
 public class GetFuturesLeadTraderStatusExample {
@@ -26,13 +27,13 @@ public class GetFuturesLeadTraderStatusExample {
     }
 
     /**
-     * Get Futures Lead Trader Status(TRADE)
+     * Get Futures Lead Trader Status (TRADE)
      *
-     * <p>Get Futures Lead Trader Status Weight: 20
+     * <p>Get Futures Lead Trader Status Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFuturesLeadTraderStatusExample() throws ApiException {
+    public void getFuturesLeadTraderStatusExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesLeadTraderStatusResponse> response =
                 getApi().getFuturesLeadTraderStatus(recvWindow);

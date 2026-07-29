@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** SubscribeOnChainYieldsLockedProductRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeOnChainYieldsLockedProductRequest {
     public static final String SERIALIZED_NAME_PROJECT_ID = "projectId";
 
@@ -53,19 +53,19 @@ public class SubscribeOnChainYieldsLockedProductRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_SUBSCRIBE)
     @jakarta.annotation.Nullable
-    private Boolean autoSubscribe;
+    private Boolean autoSubscribe = false;
 
     public static final String SERIALIZED_NAME_SOURCE_ACCOUNT = "sourceAccount";
 
     @SerializedName(SERIALIZED_NAME_SOURCE_ACCOUNT)
     @jakarta.annotation.Nullable
-    private String sourceAccount;
+    private SourceAccount sourceAccount = SourceAccount.SPOT;
 
     public static final String SERIALIZED_NAME_REDEEM_TO = "redeemTo";
 
     @SerializedName(SERIALIZED_NAME_REDEEM_TO)
     @jakarta.annotation.Nullable
-    private String redeemTo;
+    private RedeemTo redeemTo = RedeemTo.FLEXIBLE;
 
     public static final String SERIALIZED_NAME_CHANNEL_ID = "channelId";
 
@@ -151,7 +151,7 @@ public class SubscribeOnChainYieldsLockedProductRequest {
     }
 
     public SubscribeOnChainYieldsLockedProductRequest sourceAccount(
-            @jakarta.annotation.Nullable String sourceAccount) {
+            @jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
         return this;
     }
@@ -162,16 +162,17 @@ public class SubscribeOnChainYieldsLockedProductRequest {
      * @return sourceAccount
      */
     @jakarta.annotation.Nullable
-    public String getSourceAccount() {
+    @Valid
+    public SourceAccount getSourceAccount() {
         return sourceAccount;
     }
 
-    public void setSourceAccount(@jakarta.annotation.Nullable String sourceAccount) {
+    public void setSourceAccount(@jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
     }
 
     public SubscribeOnChainYieldsLockedProductRequest redeemTo(
-            @jakarta.annotation.Nullable String redeemTo) {
+            @jakarta.annotation.Nullable RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
         return this;
     }
@@ -182,11 +183,12 @@ public class SubscribeOnChainYieldsLockedProductRequest {
      * @return redeemTo
      */
     @jakarta.annotation.Nullable
-    public String getRedeemTo() {
+    @Valid
+    public RedeemTo getRedeemTo() {
         return redeemTo;
     }
 
-    public void setRedeemTo(@jakarta.annotation.Nullable String redeemTo) {
+    public void setRedeemTo(@jakarta.annotation.Nullable RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
     }
 
@@ -237,11 +239,12 @@ public class SubscribeOnChainYieldsLockedProductRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -424,21 +427,13 @@ public class SubscribeOnChainYieldsLockedProductRequest {
                                     + " string but got `%s`",
                             jsonObj.get("projectId").toString()));
         }
-        if ((jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull())
-                && !jsonObj.get("sourceAccount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sourceAccount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sourceAccount").toString()));
+        // validate the optional field `sourceAccount`
+        if (jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull()) {
+            SourceAccount.validateJsonElement(jsonObj.get("sourceAccount"));
         }
-        if ((jsonObj.get("redeemTo") != null && !jsonObj.get("redeemTo").isJsonNull())
-                && !jsonObj.get("redeemTo").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `redeemTo` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("redeemTo").toString()));
+        // validate the optional field `redeemTo`
+        if (jsonObj.get("redeemTo") != null && !jsonObj.get("redeemTo").isJsonNull()) {
+            RedeemTo.validateJsonElement(jsonObj.get("redeemTo"));
         }
         if ((jsonObj.get("channelId") != null && !jsonObj.get("channelId").isJsonNull())
                 && !jsonObj.get("channelId").isJsonPrimitive()) {

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -69,12 +69,6 @@ public class NewOrderResponseResult extends BaseDTO {
     @jakarta.annotation.Nullable
     private String price;
 
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
-
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
     @SerializedName(SERIALIZED_NAME_ORIG_QTY)
@@ -92,12 +86,6 @@ public class NewOrderResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -281,25 +269,6 @@ public class NewOrderResponseResult extends BaseDTO {
         this.price = price;
     }
 
-    public NewOrderResponseResult avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public NewOrderResponseResult origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
@@ -355,25 +324,6 @@ public class NewOrderResponseResult extends BaseDTO {
 
     public void setCumQty(@jakarta.annotation.Nullable String cumQty) {
         this.cumQty = cumQty;
-    }
-
-    public NewOrderResponseResult cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Get cumQuote
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
     }
 
     public NewOrderResponseResult timeInForce(@jakarta.annotation.Nullable String timeInForce) {
@@ -659,11 +609,9 @@ public class NewOrderResponseResult extends BaseDTO {
                 && Objects.equals(this.status, newOrderResponseResult.status)
                 && Objects.equals(this.clientOrderId, newOrderResponseResult.clientOrderId)
                 && Objects.equals(this.price, newOrderResponseResult.price)
-                && Objects.equals(this.avgPrice, newOrderResponseResult.avgPrice)
                 && Objects.equals(this.origQty, newOrderResponseResult.origQty)
                 && Objects.equals(this.executedQty, newOrderResponseResult.executedQty)
                 && Objects.equals(this.cumQty, newOrderResponseResult.cumQty)
-                && Objects.equals(this.cumQuote, newOrderResponseResult.cumQuote)
                 && Objects.equals(this.timeInForce, newOrderResponseResult.timeInForce)
                 && Objects.equals(this.type, newOrderResponseResult.type)
                 && Objects.equals(this.reduceOnly, newOrderResponseResult.reduceOnly)
@@ -690,11 +638,9 @@ public class NewOrderResponseResult extends BaseDTO {
                 status,
                 clientOrderId,
                 price,
-                avgPrice,
                 origQty,
                 executedQty,
                 cumQty,
-                cumQuote,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -720,11 +666,9 @@ public class NewOrderResponseResult extends BaseDTO {
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -774,11 +718,6 @@ public class NewOrderResponseResult extends BaseDTO {
             String priceValueAsString = priceValue.toString();
             valMap.put("price", priceValueAsString);
         }
-        String avgPriceValue = getAvgPrice();
-        if (avgPriceValue != null) {
-            String avgPriceValueAsString = avgPriceValue.toString();
-            valMap.put("avgPrice", avgPriceValueAsString);
-        }
         String origQtyValue = getOrigQty();
         if (origQtyValue != null) {
             String origQtyValueAsString = origQtyValue.toString();
@@ -793,11 +732,6 @@ public class NewOrderResponseResult extends BaseDTO {
         if (cumQtyValue != null) {
             String cumQtyValueAsString = cumQtyValue.toString();
             valMap.put("cumQty", cumQtyValueAsString);
-        }
-        String cumQuoteValue = getCumQuote();
-        if (cumQuoteValue != null) {
-            String cumQuoteValueAsString = cumQuoteValue.toString();
-            valMap.put("cumQuote", cumQuoteValueAsString);
         }
         String timeInForceValue = getTimeInForce();
         if (timeInForceValue != null) {
@@ -900,10 +834,6 @@ public class NewOrderResponseResult extends BaseDTO {
         if (priceValue != null) {
             valMap.put("price", priceValue);
         }
-        Object avgPriceValue = getAvgPrice();
-        if (avgPriceValue != null) {
-            valMap.put("avgPrice", avgPriceValue);
-        }
         Object origQtyValue = getOrigQty();
         if (origQtyValue != null) {
             valMap.put("origQty", origQtyValue);
@@ -915,10 +845,6 @@ public class NewOrderResponseResult extends BaseDTO {
         Object cumQtyValue = getCumQty();
         if (cumQtyValue != null) {
             valMap.put("cumQty", cumQtyValue);
-        }
-        Object cumQuoteValue = getCumQuote();
-        if (cumQuoteValue != null) {
-            valMap.put("cumQuote", cumQuoteValue);
         }
         Object timeInForceValue = getTimeInForce();
         if (timeInForceValue != null) {
@@ -1007,11 +933,9 @@ public class NewOrderResponseResult extends BaseDTO {
         openapiFields.add("status");
         openapiFields.add("clientOrderId");
         openapiFields.add("price");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -1093,14 +1017,6 @@ public class NewOrderResponseResult extends BaseDTO {
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
         }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
-        }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1124,14 +1040,6 @@ public class NewOrderResponseResult extends BaseDTO {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {

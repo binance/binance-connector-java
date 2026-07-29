@@ -24,7 +24,9 @@ public class ContinuousContractKlineCandlestickStreamsExample {
     /**
      * Continuous Contract Kline/Candlestick Streams
      *
-     * <p>Update Speed: 250ms
+     * <p>Continuous Contract Kline/Candlestick Streams &gt; **After CM migration**, both
+     * &#x60;fstream&#x60; and &#x60;dstream&#x60; may subscribe to either UM or CM symbols on this
+     * stream. Update Speed: 250ms
      *
      * @throws ApiException if the Api call fails
      */
@@ -33,9 +35,6 @@ public class ContinuousContractKlineCandlestickStreamsExample {
         ContinuousContractKlineCandlestickStreamsRequest
                 continuousContractKlineCandlestickStreamsRequest =
                         new ContinuousContractKlineCandlestickStreamsRequest();
-        continuousContractKlineCandlestickStreamsRequest.pair("btcusdt");
-        continuousContractKlineCandlestickStreamsRequest.contractType("next_quarter");
-        continuousContractKlineCandlestickStreamsRequest.interval("1m");
         StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse> response =
                 getApi().continuousContractKlineCandlestickStreams(
                                 continuousContractKlineCandlestickStreamsRequest);

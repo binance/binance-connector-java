@@ -24,13 +24,18 @@ public class TradingSessionStreamExample {
     /**
      * Trading Session Stream
      *
-     * <p>Trading session information for the underlying assets of TradFi Perpetual
-     * contracts—covering the U.S. equity market and the commodity market—is updated every second.
-     * Trading session information for different underlying markets is pushed in separate messages.
-     * Session types for the equity market include \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
-     * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;. Session
-     * types for the commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;.
-     * Update Speed: 1s
+     * <p>Trading session information for the underlying assets of TradFi Perpetual contracts,
+     * covering the U.S. equity market, Korean equity market, Hong Kong equity market, and the
+     * commodity market, is updated every second. Trading session information for different
+     * underlying markets is pushed in separate messages. **Event type:** -
+     * &#x60;EquityUpdate&#x60;: Session types for the U.S. equity market include
+     * \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
+     * \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;. - &#x60;CommodityUpdate&#x60;: Session
+     * types for the commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. -
+     * &#x60;KR_EquityUpdate&#x60;: Session types for the Korean equity market include
+     * \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. - &#x60;HK_EquityUpdate&#x60;: Session
+     * types for the Hong Kong equity market include \&quot;REGULAR\&quot; and
+     * \&quot;NO_TRADING\&quot;. Update Speed: 1s
      *
      * @throws ApiException if the Api call fails
      */

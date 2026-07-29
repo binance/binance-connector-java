@@ -29,10 +29,11 @@ public class PositionInformationExample {
     }
 
     /**
-     * Position Information(USER_DATA)
+     * Position Information (USER_DATA)
      *
-     * <p>Get current position information. * Please use with user data stream
-     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * <p>Get current position information. Weight(IP): 5 Security Type: USER_DATA Notes: - Please
+     * use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy
+     * needs.
      */
     public void positionInformationExampleAsync() {
         PositionInformationRequest positionInformationRequest = new PositionInformationRequest();
@@ -49,10 +50,11 @@ public class PositionInformationExample {
     }
 
     /**
-     * Position Information(USER_DATA)
+     * Position Information (USER_DATA)
      *
-     * <p>Get current position information. * Please use with user data stream
-     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * <p>Get current position information. Weight(IP): 5 Security Type: USER_DATA Notes: - Please
+     * use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy
+     * needs.
      */
     public void positionInformationExampleSync() {
         PositionInformationRequest positionInformationRequest = new PositionInformationRequest();

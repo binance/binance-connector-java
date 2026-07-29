@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**base** | **String** |  |  [optional] |
-|**id** | **Long** |  |  [optional] |
-|**isBuyAllowed** | **Boolean** |  |  [optional] |
-|**isMarginTrade** | **Boolean** |  |  [optional] |
-|**isSellAllowed** | **Boolean** |  |  [optional] |
-|**quote** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**delistTime** | **Long** |  |  [optional] |
+|**base** | **String** | base. |  [optional] |
+|**id** | **Long** | id. |  [optional] |
+|**isBuyAllowed** | **Boolean** | is Buy Allowed. |  [optional] |
+|**isMarginTrade** | **Boolean** | is Margin Trade. |  [optional] |
+|**isSellAllowed** | **Boolean** | is Sell Allowed. |  [optional] |
+|**quote** | **String** | quote. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**delistTime** | **Long** | delist Time. |  [optional] |
 
 
 

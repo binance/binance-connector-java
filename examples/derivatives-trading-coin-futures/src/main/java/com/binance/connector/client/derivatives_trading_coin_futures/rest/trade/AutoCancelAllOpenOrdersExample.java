@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.AutoCancelAllOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class AutoCancelAllOpenOrdersExample {
@@ -38,15 +39,15 @@ public class AutoCancelAllOpenOrdersExample {
      * small. * Example usage: Call this endpoint at 30s intervals with an countdownTime of 120000
      * (120s). If this endpoint is not called within 120 seconds, all your orders of the specified
      * symbol will be automatically canceled. If this endpoint is called with an countdownTime of 0,
-     * the countdown timer will be stopped. Weight: 10
+     * the countdown timer will be stopped. Weight(IP): 10 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void autoCancelAllOpenOrdersExample() throws ApiException {
+    public void autoCancelAllOpenOrdersExample() throws ApiException, IOException {
         AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest =
                 new AutoCancelAllOpenOrdersRequest();
-        autoCancelAllOpenOrdersRequest.symbol("");
-        autoCancelAllOpenOrdersRequest.countdownTime(0L);
+        autoCancelAllOpenOrdersRequest.symbol("BTCUSD_200925");
+        autoCancelAllOpenOrdersRequest.countdownTime(1000L);
         ApiResponse<AutoCancelAllOpenOrdersResponse> response =
                 getApi().autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
         System.out.println(response.getData());

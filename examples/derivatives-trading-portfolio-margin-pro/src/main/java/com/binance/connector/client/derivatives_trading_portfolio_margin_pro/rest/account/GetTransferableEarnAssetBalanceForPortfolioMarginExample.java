@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetTransferableEarnAssetBalanceForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferType;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetTransferableEarnAssetBalanceForPortfolioMarginExample {
@@ -28,13 +30,15 @@ public class GetTransferableEarnAssetBalanceForPortfolioMarginExample {
     /**
      * Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA)
      *
-     * <p>Get transferable earn asset balance for all types of Portfolio Margin account Weight: 1500
+     * <p>Get transferable earn asset balance for all types of Portfolio Margin account Weight(IP):
+     * 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getTransferableEarnAssetBalanceForPortfolioMarginExample() throws ApiException {
-        String asset = "";
-        String transferType = "";
+    public void getTransferableEarnAssetBalanceForPortfolioMarginExample()
+            throws ApiException, IOException {
+        String asset = "LDUSDT";
+        TransferType transferType = TransferType.EARN_TO_FUTURE;
         Long recvWindow = 5000L;
         ApiResponse<GetTransferableEarnAssetBalanceForPortfolioMarginResponse> response =
                 getApi().getTransferableEarnAssetBalanceForPortfolioMargin(

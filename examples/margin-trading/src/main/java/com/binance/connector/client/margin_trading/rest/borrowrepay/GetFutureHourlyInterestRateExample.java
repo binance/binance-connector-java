@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
+import java.io.IOException;
 
 /** API examples for BorrowRepayApi */
 public class GetFutureHourlyInterestRateExample {
@@ -28,13 +30,13 @@ public class GetFutureHourlyInterestRateExample {
     /**
      * Get future hourly interest rate (USER_DATA)
      *
-     * <p>Get future hourly interest rate Weight: 100
+     * <p>Get future hourly interest rate Weight(IP): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFutureHourlyInterestRateExample() throws ApiException {
-        String assets = "";
-        String isIsolated = "false";
+    public void getFutureHourlyInterestRateExample() throws ApiException, IOException {
+        String assets = "BTC,ETH";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         ApiResponse<GetFutureHourlyInterestRateResponse> response =
                 getApi().getFutureHourlyInterestRate(assets, isIsolated);
         System.out.println(response.getData());

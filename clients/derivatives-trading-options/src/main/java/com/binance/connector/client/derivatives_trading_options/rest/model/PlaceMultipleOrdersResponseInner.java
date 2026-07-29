@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** PlaceMultipleOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PlaceMultipleOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -66,6 +66,12 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String executedQty;
 
+    public static final String SERIALIZED_NAME_FEE = "fee";
+
+    @SerializedName(SERIALIZED_NAME_FEE)
+    @jakarta.annotation.Nullable
+    private Long fee;
+
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -90,6 +96,12 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
 
+    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
+
+    @SerializedName(SERIALIZED_NAME_POST_ONLY)
+    @jakarta.annotation.Nullable
+    private Boolean postOnly;
+
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
     @SerializedName(SERIALIZED_NAME_CREATE_TIME)
@@ -113,12 +125,6 @@ public class PlaceMultipleOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_AVG_PRICE)
     @jakarta.annotation.Nullable
     private String avgPrice;
-
-    public static final String SERIALIZED_NAME_SOURCE = "source";
-
-    @SerializedName(SERIALIZED_NAME_SOURCE)
-    @jakarta.annotation.Nullable
-    private String source;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -163,6 +169,12 @@ public class PlaceMultipleOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_SOURCE = "source";
+
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    @jakarta.annotation.Nullable
+    private String source;
+
     public PlaceMultipleOrdersResponseInner() {}
 
     public PlaceMultipleOrdersResponseInner orderId(@jakarta.annotation.Nullable Long orderId) {
@@ -171,7 +183,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -190,7 +202,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -209,7 +221,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -228,7 +240,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -248,7 +260,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Number of executed quantity
      *
      * @return executedQty
      */
@@ -261,13 +273,32 @@ public class PlaceMultipleOrdersResponseInner {
         this.executedQty = executedQty;
     }
 
+    public PlaceMultipleOrdersResponseInner fee(@jakarta.annotation.Nullable Long fee) {
+        this.fee = fee;
+        return this;
+    }
+
+    /**
+     * fee
+     *
+     * @return fee
+     */
+    @jakarta.annotation.Nullable
+    public Long getFee() {
+        return fee;
+    }
+
+    public void setFee(@jakarta.annotation.Nullable Long fee) {
+        this.fee = fee;
+    }
+
     public PlaceMultipleOrdersResponseInner side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -286,7 +317,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -306,7 +337,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -326,7 +357,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -339,6 +370,26 @@ public class PlaceMultipleOrdersResponseInner {
         this.reduceOnly = reduceOnly;
     }
 
+    public PlaceMultipleOrdersResponseInner postOnly(
+            @jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+        return this;
+    }
+
+    /**
+     * post Only
+     *
+     * @return postOnly
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPostOnly() {
+        return postOnly;
+    }
+
+    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+    }
+
     public PlaceMultipleOrdersResponseInner createTime(
             @jakarta.annotation.Nullable Long createTime) {
         this.createTime = createTime;
@@ -346,7 +397,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -366,7 +417,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update time
      *
      * @return updateTime
      */
@@ -385,7 +436,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -404,7 +455,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -417,25 +468,6 @@ public class PlaceMultipleOrdersResponseInner {
         this.avgPrice = avgPrice;
     }
 
-    public PlaceMultipleOrdersResponseInner source(@jakarta.annotation.Nullable String source) {
-        this.source = source;
-        return this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return source
-     */
-    @jakarta.annotation.Nullable
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(@jakarta.annotation.Nullable String source) {
-        this.source = source;
-    }
-
     public PlaceMultipleOrdersResponseInner clientOrderId(
             @jakarta.annotation.Nullable String clientOrderId) {
         this.clientOrderId = clientOrderId;
@@ -443,7 +475,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -463,7 +495,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -483,7 +515,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -503,7 +535,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -523,7 +555,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -542,7 +574,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */
@@ -576,6 +608,25 @@ public class PlaceMultipleOrdersResponseInner {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
+    public PlaceMultipleOrdersResponseInner source(@jakarta.annotation.Nullable String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(@jakarta.annotation.Nullable String source) {
+        this.source = source;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -591,15 +642,16 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.price, placeMultipleOrdersResponseInner.price)
                 && Objects.equals(this.quantity, placeMultipleOrdersResponseInner.quantity)
                 && Objects.equals(this.executedQty, placeMultipleOrdersResponseInner.executedQty)
+                && Objects.equals(this.fee, placeMultipleOrdersResponseInner.fee)
                 && Objects.equals(this.side, placeMultipleOrdersResponseInner.side)
                 && Objects.equals(this.type, placeMultipleOrdersResponseInner.type)
                 && Objects.equals(this.timeInForce, placeMultipleOrdersResponseInner.timeInForce)
                 && Objects.equals(this.reduceOnly, placeMultipleOrdersResponseInner.reduceOnly)
+                && Objects.equals(this.postOnly, placeMultipleOrdersResponseInner.postOnly)
                 && Objects.equals(this.createTime, placeMultipleOrdersResponseInner.createTime)
                 && Objects.equals(this.updateTime, placeMultipleOrdersResponseInner.updateTime)
                 && Objects.equals(this.status, placeMultipleOrdersResponseInner.status)
                 && Objects.equals(this.avgPrice, placeMultipleOrdersResponseInner.avgPrice)
-                && Objects.equals(this.source, placeMultipleOrdersResponseInner.source)
                 && Objects.equals(
                         this.clientOrderId, placeMultipleOrdersResponseInner.clientOrderId)
                 && Objects.equals(this.priceScale, placeMultipleOrdersResponseInner.priceScale)
@@ -610,7 +662,8 @@ public class PlaceMultipleOrdersResponseInner {
                 && Objects.equals(this.mmp, placeMultipleOrdersResponseInner.mmp)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        placeMultipleOrdersResponseInner.selfTradePreventionMode);
+                        placeMultipleOrdersResponseInner.selfTradePreventionMode)
+                && Objects.equals(this.source, placeMultipleOrdersResponseInner.source);
     }
 
     @Override
@@ -621,22 +674,24 @@ public class PlaceMultipleOrdersResponseInner {
                 price,
                 quantity,
                 executedQty,
+                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
+                postOnly,
                 createTime,
                 updateTime,
                 status,
                 avgPrice,
-                source,
                 clientOrderId,
                 priceScale,
                 quantityScale,
                 optionSide,
                 quoteAsset,
                 mmp,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                source);
     }
 
     @Override
@@ -648,15 +703,16 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
+        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
-        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
@@ -666,6 +722,7 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		source: ").append(toIndentedString(source)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -693,6 +750,10 @@ public class PlaceMultipleOrdersResponseInner {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
+        Object feeValue = getFee();
+        String feeValueAsString = "";
+        feeValueAsString = feeValue.toString();
+        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -709,6 +770,10 @@ public class PlaceMultipleOrdersResponseInner {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object postOnlyValue = getPostOnly();
+        String postOnlyValueAsString = "";
+        postOnlyValueAsString = postOnlyValue.toString();
+        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -725,10 +790,6 @@ public class PlaceMultipleOrdersResponseInner {
         String avgPriceValueAsString = "";
         avgPriceValueAsString = avgPriceValue.toString();
         sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
-        Object sourceValue = getSource();
-        String sourceValueAsString = "";
-        sourceValueAsString = sourceValue.toString();
-        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         Object clientOrderIdValue = getClientOrderId();
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
@@ -759,6 +820,10 @@ public class PlaceMultipleOrdersResponseInner {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object sourceValue = getSource();
+        String sourceValueAsString = "";
+        sourceValueAsString = sourceValue.toString();
+        sb.append("source=").append(urlEncode(sourceValueAsString)).append("");
         return sb.toString();
     }
 
@@ -792,15 +857,16 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
+        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
+        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");
         openapiFields.add("avgPrice");
-        openapiFields.add("source");
         openapiFields.add("clientOrderId");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
@@ -808,6 +874,7 @@ public class PlaceMultipleOrdersResponseInner {
         openapiFields.add("quoteAsset");
         openapiFields.add("mmp");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("source");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -904,14 +971,6 @@ public class PlaceMultipleOrdersResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("avgPrice").toString()));
         }
-        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
-                && !jsonObj.get("source").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `source` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("source").toString()));
-        }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -944,6 +1003,14 @@ public class PlaceMultipleOrdersResponseInner {
                             "Expected the field `selfTradePreventionMode` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
+                && !jsonObj.get("source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `source` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("source").toString()));
         }
     }
 

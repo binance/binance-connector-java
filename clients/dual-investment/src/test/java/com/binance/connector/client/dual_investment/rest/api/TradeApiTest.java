@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,13 +23,16 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.dual_investment.rest.model.AutoCompoundPlan;
 import com.binance.connector.client.dual_investment.rest.model.ChangeAutoCompoundStatusRequest;
 import com.binance.connector.client.dual_investment.rest.model.ChangeAutoCompoundStatusResponse;
 import com.binance.connector.client.dual_investment.rest.model.CheckDualInvestmentAccountsResponse;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentPositionsResponse;
+import com.binance.connector.client.dual_investment.rest.model.Status;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsRequest;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -81,18 +84,19 @@ public class TradeApiTest {
     }
 
     /**
-     * Change Auto-Compound status(USER_DATA)
+     * Change Auto-Compound status (USER_DATA)
      *
-     * <p>Change Auto-Compound status Weight: 1(IP)
+     * <p>Change Auto-Compound status Weight(IP): 1 Security Type: USER_DATA Notes: - 15:31 ~ 16:00
+     * UTC+8: This function is disabled.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changeAutoCompoundStatusTest() throws ApiException, CryptoException {
+    public void changeAutoCompoundStatusTest() throws ApiException, CryptoException, IOException {
         ChangeAutoCompoundStatusRequest changeAutoCompoundStatusRequest =
                 new ChangeAutoCompoundStatusRequest();
-
-        changeAutoCompoundStatusRequest.positionId("1");
+        changeAutoCompoundStatusRequest.positionId("741590");
+        changeAutoCompoundStatusRequest.autoCompoundPlan(AutoCompoundPlan.NONE);
 
         ApiResponse<ChangeAutoCompoundStatusResponse> response =
                 api.changeAutoCompoundStatus(changeAutoCompoundStatusRequest);
@@ -107,24 +111,23 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000positionId=1", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000autoCompoundPlan=NONE&positionId=741590", signInputCaptor.getValue());
         assertEquals(
-                "05345189012e725ecf394a569c76b468c3a9d6377f5b644a1b90e1551920ce91",
+                "e31bd851a2eedfec73db47922e033769393a8018b305c7d5fdf13a5cc6fb776e",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/dci/product/auto_compound/edit-status",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/dci/product/auto_compound/edit-status", actualRequest.url().encodedPath());
     }
 
     /**
-     * Check Dual Investment accounts(USER_DATA)
+     * Check Dual Investment accounts (USER_DATA)
      *
-     * <p>Check Dual Investment accounts Weight: 1(IP)
+     * <p>Check Dual Investment accounts Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void checkDualInvestmentAccountsTest() throws ApiException, CryptoException {
+    public void checkDualInvestmentAccountsTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<CheckDualInvestmentAccountsResponse> response =
                 api.checkDualInvestmentAccounts(recvWindow);
@@ -147,15 +150,15 @@ public class TradeApiTest {
     }
 
     /**
-     * Get Dual Investment positions(USER_DATA)
+     * Get Dual Investment positions (USER_DATA)
      *
-     * <p>Get Dual Investment positions (batch) Weight: 1(IP)
+     * <p>Get Dual Investment positions (batch) Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDualInvestmentPositionsTest() throws ApiException, CryptoException {
-        String status = "";
+    public void getDualInvestmentPositionsTest() throws ApiException, CryptoException, IOException {
+        Status status = Status.PENDING;
         Long pageSize = 10L;
         Long pageIndex = 1L;
         Long recvWindow = 5000L;
@@ -172,33 +175,31 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("status=PENDING&pageSize=10&pageIndex=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "status=&pageSize=10&pageIndex=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "8d4826ce79b5dc7d026d0e57a40f1e16a368e00c38fe09afd78f785093d092d7",
+                "80e88e826b339ac8dbaaddc768a17b0f696bf4d702159e4cb583ce7ffbb8c5ee",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/dci/product/positions", actualRequest.url().encodedPath());
     }
 
     /**
-     * Subscribe Dual Investment products(USER_DATA)
+     * Subscribe Dual Investment products (USER_DATA)
      *
-     * <p>Subscribe Dual Investment products * Products are not available. // this means APR changes
-     * to lower value, or orders are not unavailable. * Failed. This means System or network errors.
-     * Weight: 1(IP)
+     * <p>Subscribe Dual Investment products Weight(IP): 1 Security Type: USER_DATA Notes: - Failed
+     * messages: - Products are not available. This means APR changed to a lower value, or the order
+     * is unavailable. - Failed. This means system or network errors.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void subscribeDualInvestmentProductsTest() throws ApiException, CryptoException {
+    public void subscribeDualInvestmentProductsTest()
+            throws ApiException, CryptoException, IOException {
         SubscribeDualInvestmentProductsRequest subscribeDualInvestmentProductsRequest =
                 new SubscribeDualInvestmentProductsRequest();
-
-        subscribeDualInvestmentProductsRequest.id("");
-        subscribeDualInvestmentProductsRequest.orderId("1");
+        subscribeDualInvestmentProductsRequest.id("741590");
+        subscribeDualInvestmentProductsRequest.orderId("8257205859");
         subscribeDualInvestmentProductsRequest.depositAmount(1d);
-        subscribeDualInvestmentProductsRequest.autoCompoundPlan("NONE");
+        subscribeDualInvestmentProductsRequest.autoCompoundPlan(AutoCompoundPlan.NONE);
 
         ApiResponse<SubscribeDualInvestmentProductsResponse> response =
                 api.subscribeDualInvestmentProducts(subscribeDualInvestmentProductsRequest);
@@ -213,11 +214,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000depositAmount=1&autoCompoundPlan=NONE&orderId=8257205859&id=741590", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000depositAmount=1&autoCompoundPlan=NONE&orderId=1&id=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "c33f9d1dd0044db4e3dce19f93fcb81487a9c92151363981c666833756aab241",
+                "93d9f0e227ea10a44ee9b5a5640a430a90f71cfe7ab210baa867b35cfe527c7c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/dci/product/subscribe", actualRequest.url().encodedPath());
     }

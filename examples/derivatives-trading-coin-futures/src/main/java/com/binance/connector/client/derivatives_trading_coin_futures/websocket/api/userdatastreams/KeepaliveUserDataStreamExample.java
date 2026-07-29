@@ -32,7 +32,8 @@ public class KeepaliveUserDataStreamExample {
      * Keepalive User Data Stream (USER_STREAM)
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight: 1
+     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight(IP): 1 Security
+     * Type: USER_STREAM
      */
     public void keepaliveUserDataStreamExampleAsync() {
         KeepaliveUserDataStreamRequest keepaliveUserDataStreamRequest =
@@ -53,7 +54,8 @@ public class KeepaliveUserDataStreamExample {
      * Keepalive User Data Stream (USER_STREAM)
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight: 1
+     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight(IP): 1 Security
+     * Type: USER_STREAM
      */
     public void keepaliveUserDataStreamExampleSync() {
         KeepaliveUserDataStreamRequest keepaliveUserDataStreamRequest =

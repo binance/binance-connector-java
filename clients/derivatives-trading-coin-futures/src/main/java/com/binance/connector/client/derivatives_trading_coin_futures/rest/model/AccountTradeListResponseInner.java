@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -140,7 +140,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -159,7 +159,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -178,7 +178,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -197,7 +197,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -216,7 +216,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -235,7 +235,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -254,7 +254,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Quantity.
      *
      * @return qty
      */
@@ -274,7 +274,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized PnL.
      *
      * @return realizedPnl
      */
@@ -294,7 +294,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin asset.
      *
      * @return marginAsset
      */
@@ -313,7 +313,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get baseQty
+     * Base asset quantity.
      *
      * @return baseQty
      */
@@ -333,7 +333,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Transaction Fee (in Crypto)
      *
      * @return commission
      */
@@ -353,7 +353,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission asset.
      *
      * @return commissionAsset
      */
@@ -372,7 +372,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -392,7 +392,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -411,7 +411,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Whether the trade is a buy side for the account.
      *
      * @return buyer
      */
@@ -430,7 +430,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Whether the account is maker in this trade.
      *
      * @return maker
      */

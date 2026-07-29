@@ -5,6 +5,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
+import java.io.IOException;
 
 /** API examples for UserDataStreamsApi */
 public class CloseUserDataStreamExample {
@@ -26,11 +27,11 @@ public class CloseUserDataStreamExample {
     /**
      * Close User Data Stream (USER_STREAM)
      *
-     * <p>Close out a user data stream. Weight: 1
+     * <p>Close out a user data stream. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
-    public void closeUserDataStreamExample() throws ApiException {
+    public void closeUserDataStreamExample() throws ApiException, IOException {
         getApi().closeUserDataStream();
     }
 }

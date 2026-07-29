@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.UmNotionalAndLeverageBracketsResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class UmNotionalAndLeverageBracketsExample {
@@ -28,12 +29,12 @@ public class UmNotionalAndLeverageBracketsExample {
     /**
      * UM Notional and Leverage Brackets (USER_DATA)
      *
-     * <p>Query UM notional and leverage brackets Weight: 1
+     * <p>Query UM notional and leverage brackets Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void umNotionalAndLeverageBracketsExample() throws ApiException {
-        String symbol = "";
+    public void umNotionalAndLeverageBracketsExample() throws ApiException, IOException {
+        String symbol = "ETHUSDT";
         Long recvWindow = 5000L;
         ApiResponse<UmNotionalAndLeverageBracketsResponse> response =
                 getApi().umNotionalAndLeverageBrackets(symbol, recvWindow);

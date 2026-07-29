@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderResponse {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -48,12 +48,6 @@ public class NewOrderResponse {
     @jakarta.annotation.Nullable
     private String cumQty;
 
-    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
-
-    @SerializedName(SERIALIZED_NAME_CUM_BASE)
-    @jakarta.annotation.Nullable
-    private String cumBase;
-
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
@@ -65,12 +59,6 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
     private Long orderId;
-
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
 
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
@@ -89,6 +77,12 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
+
+    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
+
+    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
+    @jakarta.annotation.Nullable
+    private Boolean closePosition;
 
     public static final String SERIALIZED_NAME_SIDE = "side";
 
@@ -113,12 +107,6 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
     private String stopPrice;
-
-    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
-
-    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
-    @jakarta.annotation.Nullable
-    private Boolean closePosition;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -201,7 +189,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -220,7 +208,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get cumQty
+     * Cumulative filled quantity.
      *
      * @return cumQty
      */
@@ -233,32 +221,13 @@ public class NewOrderResponse {
         this.cumQty = cumQty;
     }
 
-    public NewOrderResponse cumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-        return this;
-    }
-
-    /**
-     * Get cumBase
-     *
-     * @return cumBase
-     */
-    @jakarta.annotation.Nullable
-    public String getCumBase() {
-        return cumBase;
-    }
-
-    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-    }
-
     public NewOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -277,7 +246,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -290,32 +259,13 @@ public class NewOrderResponse {
         this.orderId = orderId;
     }
 
-    public NewOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public NewOrderResponse origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -334,7 +284,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -353,7 +303,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -366,13 +316,32 @@ public class NewOrderResponse {
         this.reduceOnly = reduceOnly;
     }
 
+    public NewOrderResponse closePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+        return this;
+    }
+
+    /**
+     * if Close-All
+     *
+     * @return closePosition
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+    }
+
     public NewOrderResponse side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -391,7 +360,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -410,7 +379,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -429,7 +398,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -442,32 +411,13 @@ public class NewOrderResponse {
         this.stopPrice = stopPrice;
     }
 
-    public NewOrderResponse closePosition(@jakarta.annotation.Nullable Boolean closePosition) {
-        this.closePosition = closePosition;
-        return this;
-    }
-
-    /**
-     * Get closePosition
-     *
-     * @return closePosition
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getClosePosition() {
-        return closePosition;
-    }
-
-    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
-        this.closePosition = closePosition;
-    }
-
     public NewOrderResponse symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -486,7 +436,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -505,7 +455,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -524,7 +474,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -543,7 +493,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -562,7 +512,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -581,7 +531,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -600,7 +550,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -619,7 +569,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -638,7 +588,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -657,7 +607,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -677,7 +627,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -702,18 +652,16 @@ public class NewOrderResponse {
         NewOrderResponse newOrderResponse = (NewOrderResponse) o;
         return Objects.equals(this.clientOrderId, newOrderResponse.clientOrderId)
                 && Objects.equals(this.cumQty, newOrderResponse.cumQty)
-                && Objects.equals(this.cumBase, newOrderResponse.cumBase)
                 && Objects.equals(this.executedQty, newOrderResponse.executedQty)
                 && Objects.equals(this.orderId, newOrderResponse.orderId)
-                && Objects.equals(this.avgPrice, newOrderResponse.avgPrice)
                 && Objects.equals(this.origQty, newOrderResponse.origQty)
                 && Objects.equals(this.price, newOrderResponse.price)
                 && Objects.equals(this.reduceOnly, newOrderResponse.reduceOnly)
+                && Objects.equals(this.closePosition, newOrderResponse.closePosition)
                 && Objects.equals(this.side, newOrderResponse.side)
                 && Objects.equals(this.positionSide, newOrderResponse.positionSide)
                 && Objects.equals(this.status, newOrderResponse.status)
                 && Objects.equals(this.stopPrice, newOrderResponse.stopPrice)
-                && Objects.equals(this.closePosition, newOrderResponse.closePosition)
                 && Objects.equals(this.symbol, newOrderResponse.symbol)
                 && Objects.equals(this.pair, newOrderResponse.pair)
                 && Objects.equals(this.timeInForce, newOrderResponse.timeInForce)
@@ -734,18 +682,16 @@ public class NewOrderResponse {
         return Objects.hash(
                 clientOrderId,
                 cumQty,
-                cumBase,
                 executedQty,
                 orderId,
-                avgPrice,
                 origQty,
                 price,
                 reduceOnly,
+                closePosition,
                 side,
                 positionSide,
                 status,
                 stopPrice,
-                closePosition,
                 symbol,
                 pair,
                 timeInForce,
@@ -766,18 +712,16 @@ public class NewOrderResponse {
         sb.append("class NewOrderResponse {\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
-        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
@@ -807,10 +751,6 @@ public class NewOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumBaseValue = getCumBase();
-        String cumBaseValueAsString = "";
-        cumBaseValueAsString = cumBaseValue.toString();
-        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -819,10 +759,6 @@ public class NewOrderResponse {
         String orderIdValueAsString = "";
         orderIdValueAsString = orderIdValue.toString();
         sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
@@ -835,6 +771,10 @@ public class NewOrderResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object closePositionValue = getClosePosition();
+        String closePositionValueAsString = "";
+        closePositionValueAsString = closePositionValue.toString();
+        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -851,10 +791,6 @@ public class NewOrderResponse {
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
-        Object closePositionValue = getClosePosition();
-        String closePositionValueAsString = "";
-        closePositionValueAsString = closePositionValue.toString();
-        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -935,18 +871,16 @@ public class NewOrderResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumBase");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
+        openapiFields.add("closePosition");
         openapiFields.add("side");
         openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
-        openapiFields.add("closePosition");
         openapiFields.add("symbol");
         openapiFields.add("pair");
         openapiFields.add("timeInForce");
@@ -998,14 +932,6 @@ public class NewOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
         }
-        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
-                && !jsonObj.get("cumBase").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumBase` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("cumBase").toString()));
-        }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1013,14 +939,6 @@ public class NewOrderResponse {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
         }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {

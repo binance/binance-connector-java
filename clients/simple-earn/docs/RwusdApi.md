@@ -9,9 +9,9 @@ All URIs are relative to *https://api.binance.com*
 | [**getRwusdRateHistory**](RwusdApi.md#getRwusdRateHistory) | **GET** /sapi/v1/rwusd/history/rateHistory | Get RWUSD Rate History (USER_DATA) |
 | [**getRwusdRedemptionHistory**](RwusdApi.md#getRwusdRedemptionHistory) | **GET** /sapi/v1/rwusd/history/redemptionHistory | Get RWUSD Redemption History (USER_DATA) |
 | [**getRwusdRewardsHistory**](RwusdApi.md#getRwusdRewardsHistory) | **GET** /sapi/v1/rwusd/history/rewardsHistory | Get RWUSD Rewards History (USER_DATA) |
-| [**getRwusdSubscriptionHistory**](RwusdApi.md#getRwusdSubscriptionHistory) | **GET** /sapi/v1/rwusd/history/subscriptionHistory | Get RWUSD subscription history(USER_DATA) |
-| [**redeemRwusd**](RwusdApi.md#redeemRwusd) | **POST** /sapi/v1/rwusd/redeem | Redeem RWUSD(TRADE) |
-| [**subscribeRwusd**](RwusdApi.md#subscribeRwusd) | **POST** /sapi/v1/rwusd/subscribe | Subscribe RWUSD(TRADE) |
+| [**getRwusdSubscriptionHistory**](RwusdApi.md#getRwusdSubscriptionHistory) | **GET** /sapi/v1/rwusd/history/subscriptionHistory | Get RWUSD subscription history (USER_DATA) |
+| [**redeemRwusd**](RwusdApi.md#redeemRwusd) | **POST** /sapi/v1/rwusd/redeem | Redeem RWUSD (TRADE) |
+| [**subscribeRwusd**](RwusdApi.md#subscribeRwusd) | **POST** /sapi/v1/rwusd/subscribe | Subscribe RWUSD (TRADE) |
 
 
 <a id="getRwusdAccount"></a>
@@ -20,7 +20,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get RWUSD Account (USER_DATA)
 
-Get RWUSD account information.  Weight: 150
+Get RWUSD account information.  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -37,7 +37,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdAccountResponse result = apiInstance.getRwusdAccount(recvWindow);
       System.out.println(result);
@@ -82,7 +82,7 @@ No authorization required
 
 Get RWUSD Quota Details (USER_DATA)
 
-Get RWUSD quota details including subscription quota, fast redemption quota, and standard redemption quota.  Weight: 150
+Get RWUSD quota details including subscription quota, fast redemption quota, and standard redemption quota.  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -99,7 +99,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdQuotaDetailsResponse result = apiInstance.getRwusdQuotaDetails(recvWindow);
       System.out.println(result);
@@ -144,7 +144,7 @@ No authorization required
 
 Get RWUSD Rate History (USER_DATA)
 
-Get RWUSD rate history sorted by descending order.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get RWUSD rate history sorted by descending order.  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -161,11 +161,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRateHistoryResponse result = apiInstance.getRwusdRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -186,8 +186,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -214,7 +214,7 @@ No authorization required
 
 Get RWUSD Redemption History (USER_DATA)
 
-Get RWUSD redemption history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get RWUSD redemption history.  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -231,11 +231,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRedemptionHistoryResponse result = apiInstance.getRwusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -256,8 +256,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -284,7 +284,7 @@ No authorization required
 
 Get RWUSD Rewards History (USER_DATA)
 
-Get RWUSD rewards history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get RWUSD rewards history.  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -301,11 +301,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdRewardsHistoryResponse result = apiInstance.getRwusdRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -326,8 +326,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -352,9 +352,9 @@ No authorization required
 # **getRwusdSubscriptionHistory**
 > GetRwusdSubscriptionHistoryResponse getRwusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow)
 
-Get RWUSD subscription history(USER_DATA)
+Get RWUSD subscription history (USER_DATA)
 
-Get RWUSD subscription history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get RWUSD subscription history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month,   and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -371,12 +371,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Asset asset = Asset.fromValue("USDT"); // Asset | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
     try {
       GetRwusdSubscriptionHistoryResponse result = apiInstance.getRwusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -395,11 +395,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | [**Asset**](.md)|  | [optional] [enum: USDT, USDC] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
 
 ### Return type
@@ -424,9 +424,9 @@ No authorization required
 # **redeemRwusd**
 > RedeemRwusdResponse redeemRwusd(redeemRwusdRequest)
 
-Redeem RWUSD(TRADE)
+Redeem RWUSD (TRADE)
 
-Redeem RWUSD to USDC  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Redeem RWUSD to USDC  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint. - This API only supports RWUSD redemption to the Spot Account. Redemptions to the Funding Account or any other account type are not supported.
 
 ### Example
 ```java
@@ -486,9 +486,9 @@ No authorization required
 # **subscribeRwusd**
 > SubscribeRwusdResponse subscribeRwusd(subscribeRwusdRequest)
 
-Subscribe RWUSD(TRADE)
+Subscribe RWUSD (TRADE)
 
-Subscribe RWUSD  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Subscribe RWUSD  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint. - This API only supports RWUSD subscription using assets held in the Spot Account. Subscriptions initiated from the Funding Account or any other account type are not supported.
 
 ### Example
 ```java

@@ -31,11 +31,12 @@ public class SymbolOrderBookTickerExample {
     /**
      * Symbol Order Book Ticker
      *
-     * <p>Best price/qty on the order book for a symbol or symbols. Retail Price Improvement(RPI)
-     * orders are not visible and excluded in the response message. * If the symbol is not sent,
-     * bookTickers for all symbols will be returned in an array. * The field
+     * <p>Best price/qty on the order book for a symbol or symbols. **Note:** - Retail Price
+     * Improvement(RPI) orders are not visible and excluded in the response message. Weight: **2**
+     * for a single symbol; **5** when the symbol parameter is omitted Notes: - If the symbol is not
+     * sent, bookTickers for all symbols will be returned in an array. - The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
-     * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
+     * please ignore.
      */
     public void symbolOrderBookTickerExampleAsync() {
         SymbolOrderBookTickerRequest symbolOrderBookTickerRequest =
@@ -55,11 +56,12 @@ public class SymbolOrderBookTickerExample {
     /**
      * Symbol Order Book Ticker
      *
-     * <p>Best price/qty on the order book for a symbol or symbols. Retail Price Improvement(RPI)
-     * orders are not visible and excluded in the response message. * If the symbol is not sent,
-     * bookTickers for all symbols will be returned in an array. * The field
+     * <p>Best price/qty on the order book for a symbol or symbols. **Note:** - Retail Price
+     * Improvement(RPI) orders are not visible and excluded in the response message. Weight: **2**
+     * for a single symbol; **5** when the symbol parameter is omitted Notes: - If the symbol is not
+     * sent, bookTickers for all symbols will be returned in an array. - The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
-     * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
+     * please ignore.
      */
     public void symbolOrderBookTickerExampleSync() {
         SymbolOrderBookTickerRequest symbolOrderBookTickerRequest =

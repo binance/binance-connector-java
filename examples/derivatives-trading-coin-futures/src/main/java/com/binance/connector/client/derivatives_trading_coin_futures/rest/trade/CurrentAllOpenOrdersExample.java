@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.CurrentAllOpenOrdersResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CurrentAllOpenOrdersExample {
@@ -28,14 +29,15 @@ public class CurrentAllOpenOrdersExample {
     /**
      * Current All Open Orders (USER_DATA)
      *
-     * <p>Get all open orders on a symbol. **Careful** when accessing this with no symbol. Weight: 1
-     * for a single symbol, 40 for mutltiple symbols
+     * <p>Get all open orders on a symbol. **Careful** when accessing this with no symbol.
+     * Weight(IP): null Weight: **1** for a single symbol, **40** for mutltiple symbols Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void currentAllOpenOrdersExample() throws ApiException {
-        String symbol = "";
-        String pair = "";
+    public void currentAllOpenOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_200925";
+        String pair = "BTCUSD";
         Long recvWindow = 5000L;
         ApiResponse<CurrentAllOpenOrdersResponse> response =
                 getApi().currentAllOpenOrders(symbol, pair, recvWindow);

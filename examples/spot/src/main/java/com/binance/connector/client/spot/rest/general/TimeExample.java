@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.TimeResponse;
+import java.io.IOException;
 
 /** API examples for GeneralApi */
 public class TimeExample {
@@ -27,11 +28,12 @@ public class TimeExample {
     /**
      * Check server time
      *
-     * <p>Test connectivity to the Rest API and get the current server time. Weight: 1
+     * <p>Test connectivity to the Rest API and get the current server time. Weight(IP): 1 Security
+     * Type: NONE
      *
      * @throws ApiException if the Api call fails
      */
-    public void timeExample() throws ApiException {
+    public void timeExample() throws ApiException, IOException {
         ApiResponse<TimeResponse> response = getApi().time();
         System.out.println(response.getData());
     }

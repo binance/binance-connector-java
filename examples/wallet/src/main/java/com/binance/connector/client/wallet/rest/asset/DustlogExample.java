@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
+import com.binance.connector.client.wallet.rest.model.AccountType;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class DustlogExample {
@@ -25,14 +27,15 @@ public class DustlogExample {
     }
 
     /**
-     * DustLog(USER_DATA)
+     * DustLog (USER_DATA)
      *
-     * <p>Dustlog * Only return last 100 records * Only return records after 2020/12/01 Weight: 1
+     * <p>Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last 100 records -
+     * Only return records after 2020/12/01
      *
      * @throws ApiException if the Api call fails
      */
-    public void dustlogExample() throws ApiException {
-        String accountType = "SPOT";
+    public void dustlogExample() throws ApiException, IOException {
+        AccountType accountType = AccountType.SPOT;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;

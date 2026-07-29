@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.RedeemOnChainYieldsLockedProductRequest;
 import com.binance.connector.client.staking.rest.model.RedeemOnChainYieldsLockedProductResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class RedeemOnChainYieldsLockedProductExample {
@@ -28,13 +29,13 @@ public class RedeemOnChainYieldsLockedProductExample {
     /**
      * Redeem On-chain Yields Locked Product (TRADE)
      *
-     * <p>Redeem On-chain Yields Locked Product * You need to open &#x60;Enable Spot &amp; Margin
-     * Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1/3s per
-     * account
+     * <p>Redeem On-chain Yields Locked Product Weight(IP): 200 Security Type: TRADE Notes: - You
+     * need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which
+     * requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void redeemOnChainYieldsLockedProductExample() throws ApiException {
+    public void redeemOnChainYieldsLockedProductExample() throws ApiException, IOException {
         RedeemOnChainYieldsLockedProductRequest redeemOnChainYieldsLockedProductRequest =
                 new RedeemOnChainYieldsLockedProductRequest();
         redeemOnChainYieldsLockedProductRequest.positionId("1");

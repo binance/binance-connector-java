@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsOpenOcoResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsOpenOcoExample {
@@ -28,11 +29,11 @@ public class QueryMarginAccountsOpenOcoExample {
     /**
      * Query Margin Account&#39;s Open OCO (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Open OCO Weight: 5
+     * <p>Query Margin Account&#39;s Open OCO Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsOpenOcoExample() throws ApiException {
+    public void queryMarginAccountsOpenOcoExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsOpenOcoResponse> response =
                 getApi().queryMarginAccountsOpenOco(recvWindow);

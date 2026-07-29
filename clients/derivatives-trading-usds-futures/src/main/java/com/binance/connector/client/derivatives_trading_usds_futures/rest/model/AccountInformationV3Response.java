@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationV3Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV3Response {
     public static final String SERIALIZED_NAME_TOTAL_INITIAL_MARGIN = "totalInitialMargin";
 
@@ -132,7 +132,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalInitialMargin
+     * Total initial margin requirement.
      *
      * @return totalInitialMargin
      */
@@ -152,7 +152,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalMaintMargin
+     * Total maintenance margin requirement.
      *
      * @return totalMaintMargin
      */
@@ -172,7 +172,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalWalletBalance
+     * Total wallet balance.
      *
      * @return totalWalletBalance
      */
@@ -192,7 +192,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalUnrealizedProfit
+     * Total unrealized profit.
      *
      * @return totalUnrealizedProfit
      */
@@ -213,7 +213,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalMarginBalance
+     * Total margin balance.
      *
      * @return totalMarginBalance
      */
@@ -233,7 +233,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalPositionInitialMargin
+     * Initial margin required for positions.
      *
      * @return totalPositionInitialMargin
      */
@@ -254,7 +254,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalOpenOrderInitialMargin
+     * Initial margin required for open orders.
      *
      * @return totalOpenOrderInitialMargin
      */
@@ -275,7 +275,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalCrossWalletBalance
+     * Cross wallet balance.
      *
      * @return totalCrossWalletBalance
      */
@@ -296,7 +296,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalCrossUnPnl
+     * Unrealized PnL for cross positions.
      *
      * @return totalCrossUnPnl
      */
@@ -316,7 +316,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get availableBalance
+     * Available balance.
      *
      * @return availableBalance
      */
@@ -336,7 +336,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount.
      *
      * @return maxWithdrawAmount
      */
@@ -366,7 +366,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get assets
+     * Asset-level account details.
      *
      * @return assets
      */
@@ -399,7 +399,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get positions
+     * Position details for symbols.
      *
      * @return positions
      */

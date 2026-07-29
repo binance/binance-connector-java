@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.FuturesTransferForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.FuturesTransferForSubAccountResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class FuturesTransferForSubAccountExample {
@@ -29,18 +30,19 @@ public class FuturesTransferForSubAccountExample {
     /**
      * Futures Transfer for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Futures Transfer for Sub-account * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Futures Transfer for Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need
+     * to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void futuresTransferForSubAccountExample() throws ApiException {
+    public void futuresTransferForSubAccountExample() throws ApiException, IOException {
         FuturesTransferForSubAccountRequest futuresTransferForSubAccountRequest =
                 new FuturesTransferForSubAccountRequest();
-        futuresTransferForSubAccountRequest.email("sub-account-email@email.com");
-        futuresTransferForSubAccountRequest.asset("");
+        futuresTransferForSubAccountRequest.email("123@test.com");
+        futuresTransferForSubAccountRequest.asset("USDT");
         futuresTransferForSubAccountRequest.amount(1.0d);
-        futuresTransferForSubAccountRequest.type(0L);
+        futuresTransferForSubAccountRequest.type(1L);
         ApiResponse<FuturesTransferForSubAccountResponse> response =
                 getApi().futuresTransferForSubAccount(futuresTransferForSubAccountRequest);
         System.out.println(response.getData());

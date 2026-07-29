@@ -8,6 +8,7 @@ import com.binance.connector.client.gift_card.rest.GiftCardRestApiUtil;
 import com.binance.connector.client.gift_card.rest.api.GiftCardRestApi;
 import com.binance.connector.client.gift_card.rest.model.CreateADualTokenGiftCardRequest;
 import com.binance.connector.client.gift_card.rest.model.CreateADualTokenGiftCardResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CreateADualTokenGiftCardExample {
@@ -26,27 +27,27 @@ public class CreateADualTokenGiftCardExample {
     }
 
     /**
-     * Create a dual-token gift card(fixed value, discount feature)(TRADE)
+     * Create a dual-token gift card (fixed value, discount feature) (TRADE)
      *
      * <p>* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You
      * may create a gift card using USDT as baseToken, that is redeemable to another designated
      * token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100
-     * USDT plus 1 USDT fee. This gift card can keep the value fixed at 100 USDT before redemption,
+     * USDT plus minting fee. This gift card can keep the value fixed at 100 USDT before redemption,
      * and will be redeemable to BTC equivalent to 100 USDT upon redemption. * Once successfully
      * created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee
      * would be deducted from your funding wallet. * To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
      * and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key
-     * which requests this endpoint. Weight: 1
+     * which requests this endpoint. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void createADualTokenGiftCardExample() throws ApiException {
+    public void createADualTokenGiftCardExample() throws ApiException, IOException {
         CreateADualTokenGiftCardRequest createADualTokenGiftCardRequest =
                 new CreateADualTokenGiftCardRequest();
-        createADualTokenGiftCardRequest.baseToken("");
-        createADualTokenGiftCardRequest.faceToken("");
-        createADualTokenGiftCardRequest.baseTokenAmount(1.0d);
+        createADualTokenGiftCardRequest.baseToken("BUSD");
+        createADualTokenGiftCardRequest.faceToken("BNB");
+        createADualTokenGiftCardRequest.baseTokenAmount(1d);
         ApiResponse<CreateADualTokenGiftCardResponse> response =
                 getApi().createADualTokenGiftCard(createADualTokenGiftCardRequest);
         System.out.println(response.getData());

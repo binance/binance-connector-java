@@ -8,6 +8,7 @@ import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayRequest;
 import com.binance.connector.client.crypto_loan.rest.model.FlexibleLoanRepayResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class FlexibleLoanRepayExample {
@@ -27,18 +28,18 @@ public class FlexibleLoanRepayExample {
     }
 
     /**
-     * Flexible Loan Repay(TRADE)
+     * Flexible Loan Repay (TRADE)
      *
-     * <p>Flexible Loan Repay * repayAmount is mandatory even fullRepayment &#x3D; FALSE Weight:
-     * 6000
+     * <p>Flexible Loan Repay Weight(IP): 6000 Security Type: TRADE Notes: - &#x60;repayAmount&#x60;
+     * is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
-    public void flexibleLoanRepayExample() throws ApiException {
+    public void flexibleLoanRepayExample() throws ApiException, IOException {
         FlexibleLoanRepayRequest flexibleLoanRepayRequest = new FlexibleLoanRepayRequest();
-        flexibleLoanRepayRequest.loanCoin("");
-        flexibleLoanRepayRequest.collateralCoin("");
-        flexibleLoanRepayRequest.repayAmount(1.0d);
+        flexibleLoanRepayRequest.loanCoin("BUSD");
+        flexibleLoanRepayRequest.collateralCoin("BNB");
+        flexibleLoanRepayRequest.repayAmount(1d);
         ApiResponse<FlexibleLoanRepayResponse> response =
                 getApi().flexibleLoanRepay(flexibleLoanRepayRequest);
         System.out.println(response.getData());

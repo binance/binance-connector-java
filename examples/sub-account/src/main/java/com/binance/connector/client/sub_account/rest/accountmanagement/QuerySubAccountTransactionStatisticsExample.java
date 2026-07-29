@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountTransactionStatisticsResponse;
+import java.io.IOException;
 
 /** API examples for AccountManagementApi */
 public class QuerySubAccountTransactionStatisticsExample {
@@ -28,12 +29,13 @@ public class QuerySubAccountTransactionStatisticsExample {
     /**
      * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account Transaction statistics (For Master Account). Weight: 60
+     * <p>Query Sub-account Transaction statistics (For Master Account). Weight(IP): 60 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySubAccountTransactionStatisticsExample() throws ApiException {
-        String email = "";
+    public void querySubAccountTransactionStatisticsExample() throws ApiException, IOException {
+        String email = "abc@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountTransactionStatisticsResponse> response =
                 getApi().querySubAccountTransactionStatistics(email, recvWindow);

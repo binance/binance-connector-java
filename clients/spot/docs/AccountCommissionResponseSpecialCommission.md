@@ -2,6 +2,7 @@
 
 # AccountCommissionResponseSpecialCommission
 
+Special commission rates from the order.
 
 ## Properties
 

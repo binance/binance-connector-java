@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,25 +41,19 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInfoResponse extends BaseDTO {
-    public static final String SERIALIZED_NAME_ID = "id";
+    public static final String SERIALIZED_NAME_TIMEZONE = "timezone";
 
-    @SerializedName(SERIALIZED_NAME_ID)
+    @SerializedName(SERIALIZED_NAME_TIMEZONE)
     @jakarta.annotation.Nullable
-    private String id;
+    private String timezone;
 
-    public static final String SERIALIZED_NAME_STATUS = "status";
+    public static final String SERIALIZED_NAME_SERVER_TIME = "serverTime";
 
-    @SerializedName(SERIALIZED_NAME_STATUS)
+    @SerializedName(SERIALIZED_NAME_SERVER_TIME)
     @jakarta.annotation.Nullable
-    private Long status;
-
-    public static final String SERIALIZED_NAME_RESULT = "result";
-
-    @SerializedName(SERIALIZED_NAME_RESULT)
-    @jakarta.annotation.Nullable
-    private ExchangeInfoResponseResult result;
+    private Long serverTime;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -67,65 +61,62 @@ public class ExchangeInfoResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private List<@Valid RateLimits> rateLimits;
 
+    public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
+
+    @SerializedName(SERIALIZED_NAME_EXCHANGE_FILTERS)
+    @jakarta.annotation.Nullable
+    private List<ExchangeFilters> exchangeFilters;
+
+    public static final String SERIALIZED_NAME_SYMBOLS = "symbols";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOLS)
+    @jakarta.annotation.Nullable
+    private List<@Valid ExchangeInfoResponseSymbolsInner> symbols;
+
+    public static final String SERIALIZED_NAME_SORS = "sors";
+
+    @SerializedName(SERIALIZED_NAME_SORS)
+    @jakarta.annotation.Nullable
+    private List<@Valid ExchangeInfoResponseSorsInner> sors;
+
     public ExchangeInfoResponse() {}
 
-    public ExchangeInfoResponse id(@jakarta.annotation.Nullable String id) {
-        this.id = id;
+    public ExchangeInfoResponse timezone(@jakarta.annotation.Nullable String timezone) {
+        this.timezone = timezone;
         return this;
     }
 
     /**
-     * Get id
+     * Get timezone
      *
-     * @return id
+     * @return timezone
      */
     @jakarta.annotation.Nullable
-    public String getId() {
-        return id;
+    public String getTimezone() {
+        return timezone;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
-        this.id = id;
+    public void setTimezone(@jakarta.annotation.Nullable String timezone) {
+        this.timezone = timezone;
     }
 
-    public ExchangeInfoResponse status(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
+    public ExchangeInfoResponse serverTime(@jakarta.annotation.Nullable Long serverTime) {
+        this.serverTime = serverTime;
         return this;
     }
 
     /**
-     * Get status
+     * Get serverTime
      *
-     * @return status
+     * @return serverTime
      */
     @jakarta.annotation.Nullable
-    public Long getStatus() {
-        return status;
+    public Long getServerTime() {
+        return serverTime;
     }
 
-    public void setStatus(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
-    }
-
-    public ExchangeInfoResponse result(
-            @jakarta.annotation.Nullable ExchangeInfoResponseResult result) {
-        this.result = result;
-        return this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return result
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public ExchangeInfoResponseResult getResult() {
-        return result;
-    }
-
-    public void setResult(@jakarta.annotation.Nullable ExchangeInfoResponseResult result) {
-        this.result = result;
+    public void setServerTime(@jakarta.annotation.Nullable Long serverTime) {
+        this.serverTime = serverTime;
     }
 
     public ExchangeInfoResponse rateLimits(
@@ -157,6 +148,96 @@ public class ExchangeInfoResponse extends BaseDTO {
         this.rateLimits = rateLimits;
     }
 
+    public ExchangeInfoResponse exchangeFilters(
+            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+        this.exchangeFilters = exchangeFilters;
+        return this;
+    }
+
+    public ExchangeInfoResponse addExchangeFiltersItem(ExchangeFilters exchangeFiltersItem) {
+        if (this.exchangeFilters == null) {
+            this.exchangeFilters = new ArrayList<>();
+        }
+        this.exchangeFilters.add(exchangeFiltersItem);
+        return this;
+    }
+
+    /**
+     * Get exchangeFilters
+     *
+     * @return exchangeFilters
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<ExchangeFilters> getExchangeFilters() {
+        return exchangeFilters;
+    }
+
+    public void setExchangeFilters(
+            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+        this.exchangeFilters = exchangeFilters;
+    }
+
+    public ExchangeInfoResponse symbols(
+            @jakarta.annotation.Nullable List<@Valid ExchangeInfoResponseSymbolsInner> symbols) {
+        this.symbols = symbols;
+        return this;
+    }
+
+    public ExchangeInfoResponse addSymbolsItem(ExchangeInfoResponseSymbolsInner symbolsItem) {
+        if (this.symbols == null) {
+            this.symbols = new ArrayList<>();
+        }
+        this.symbols.add(symbolsItem);
+        return this;
+    }
+
+    /**
+     * Get symbols
+     *
+     * @return symbols
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid ExchangeInfoResponseSymbolsInner> getSymbols() {
+        return symbols;
+    }
+
+    public void setSymbols(
+            @jakarta.annotation.Nullable List<@Valid ExchangeInfoResponseSymbolsInner> symbols) {
+        this.symbols = symbols;
+    }
+
+    public ExchangeInfoResponse sors(
+            @jakarta.annotation.Nullable List<@Valid ExchangeInfoResponseSorsInner> sors) {
+        this.sors = sors;
+        return this;
+    }
+
+    public ExchangeInfoResponse addSorsItem(ExchangeInfoResponseSorsInner sorsItem) {
+        if (this.sors == null) {
+            this.sors = new ArrayList<>();
+        }
+        this.sors.add(sorsItem);
+        return this;
+    }
+
+    /**
+     * Get sors
+     *
+     * @return sors
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid ExchangeInfoResponseSorsInner> getSors() {
+        return sors;
+    }
+
+    public void setSors(
+            @jakarta.annotation.Nullable List<@Valid ExchangeInfoResponseSorsInner> sors) {
+        this.sors = sors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,25 +247,29 @@ public class ExchangeInfoResponse extends BaseDTO {
             return false;
         }
         ExchangeInfoResponse exchangeInfoResponse = (ExchangeInfoResponse) o;
-        return Objects.equals(this.id, exchangeInfoResponse.id)
-                && Objects.equals(this.status, exchangeInfoResponse.status)
-                && Objects.equals(this.result, exchangeInfoResponse.result)
-                && Objects.equals(this.rateLimits, exchangeInfoResponse.rateLimits);
+        return Objects.equals(this.timezone, exchangeInfoResponse.timezone)
+                && Objects.equals(this.serverTime, exchangeInfoResponse.serverTime)
+                && Objects.equals(this.rateLimits, exchangeInfoResponse.rateLimits)
+                && Objects.equals(this.exchangeFilters, exchangeInfoResponse.exchangeFilters)
+                && Objects.equals(this.symbols, exchangeInfoResponse.symbols)
+                && Objects.equals(this.sors, exchangeInfoResponse.sors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, result, rateLimits);
+        return Objects.hash(timezone, serverTime, rateLimits, exchangeFilters, symbols, sors);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class ExchangeInfoResponse {\n");
-        sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		status: ").append(toIndentedString(status)).append("\n");
-        sb.append("		result: ").append(toIndentedString(result)).append("\n");
+        sb.append("		timezone: ").append(toIndentedString(timezone)).append("\n");
+        sb.append("		serverTime: ").append(toIndentedString(serverTime)).append("\n");
         sb.append("		rateLimits: ").append(toIndentedString(rateLimits)).append("\n");
+        sb.append("		exchangeFilters: ").append(toIndentedString(exchangeFilters)).append("\n");
+        sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
+        sb.append("		sors: ").append(toIndentedString(sors)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -193,25 +278,35 @@ public class ExchangeInfoResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
-        if (idValue != null) {
-            String idValueAsString = idValue.toString();
-            valMap.put("id", idValueAsString);
+        String timezoneValue = getTimezone();
+        if (timezoneValue != null) {
+            String timezoneValueAsString = timezoneValue.toString();
+            valMap.put("timezone", timezoneValueAsString);
         }
-        Long statusValue = getStatus();
-        if (statusValue != null) {
-            String statusValueAsString = statusValue.toString();
-            valMap.put("status", statusValueAsString);
-        }
-        ExchangeInfoResponseResult resultValue = getResult();
-        if (resultValue != null) {
-            String resultValueAsString = JSON.getGson().toJson(resultValue);
-            valMap.put("result", resultValueAsString);
+        Long serverTimeValue = getServerTime();
+        if (serverTimeValue != null) {
+            String serverTimeValueAsString = serverTimeValue.toString();
+            valMap.put("serverTime", serverTimeValueAsString);
         }
         List<@Valid RateLimits> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
+        }
+        List<ExchangeFilters> exchangeFiltersValue = getExchangeFilters();
+        if (exchangeFiltersValue != null) {
+            String exchangeFiltersValueAsString = JSON.getGson().toJson(exchangeFiltersValue);
+            valMap.put("exchangeFilters", exchangeFiltersValueAsString);
+        }
+        List<@Valid ExchangeInfoResponseSymbolsInner> symbolsValue = getSymbols();
+        if (symbolsValue != null) {
+            String symbolsValueAsString = JSON.getGson().toJson(symbolsValue);
+            valMap.put("symbols", symbolsValueAsString);
+        }
+        List<@Valid ExchangeInfoResponseSorsInner> sorsValue = getSors();
+        if (sorsValue != null) {
+            String sorsValueAsString = JSON.getGson().toJson(sorsValue);
+            valMap.put("sors", sorsValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -224,21 +319,29 @@ public class ExchangeInfoResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object idValue = getId();
-        if (idValue != null) {
-            valMap.put("id", idValue);
+        Object timezoneValue = getTimezone();
+        if (timezoneValue != null) {
+            valMap.put("timezone", timezoneValue);
         }
-        Object statusValue = getStatus();
-        if (statusValue != null) {
-            valMap.put("status", statusValue);
-        }
-        Object resultValue = getResult();
-        if (resultValue != null) {
-            valMap.put("result", resultValue);
+        Object serverTimeValue = getServerTime();
+        if (serverTimeValue != null) {
+            valMap.put("serverTime", serverTimeValue);
         }
         Object rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             valMap.put("rateLimits", rateLimitsValue);
+        }
+        Object exchangeFiltersValue = getExchangeFilters();
+        if (exchangeFiltersValue != null) {
+            valMap.put("exchangeFilters", exchangeFiltersValue);
+        }
+        Object symbolsValue = getSymbols();
+        if (symbolsValue != null) {
+            valMap.put("symbols", symbolsValue);
+        }
+        Object sorsValue = getSors();
+        if (sorsValue != null) {
+            valMap.put("sors", sorsValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -266,10 +369,12 @@ public class ExchangeInfoResponse extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("id");
-        openapiFields.add("status");
-        openapiFields.add("result");
+        openapiFields.add("timezone");
+        openapiFields.add("serverTime");
         openapiFields.add("rateLimits");
+        openapiFields.add("exchangeFilters");
+        openapiFields.add("symbols");
+        openapiFields.add("sors");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -305,17 +410,13 @@ public class ExchangeInfoResponse extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
+        if ((jsonObj.get("timezone") != null && !jsonObj.get("timezone").isJsonNull())
+                && !jsonObj.get("timezone").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        // validate the optional field `result`
-        if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            ExchangeInfoResponseResult.validateJsonElement(jsonObj.get("result"));
+                            "Expected the field `timezone` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("timezone").toString()));
         }
         if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
             JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
@@ -332,6 +433,64 @@ public class ExchangeInfoResponse extends BaseDTO {
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
                     RateLimits.validateJsonElement(jsonArrayrateLimits.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("exchangeFilters") != null
+                && !jsonObj.get("exchangeFilters").isJsonNull()) {
+            JsonArray jsonArrayexchangeFilters = jsonObj.getAsJsonArray("exchangeFilters");
+            if (jsonArrayexchangeFilters != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("exchangeFilters").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `exchangeFilters` to be an array in the"
+                                            + " JSON string but got `%s`",
+                                    jsonObj.get("exchangeFilters").toString()));
+                }
+
+                // validate the optional field `exchangeFilters` (array)
+                for (int i = 0; i < jsonArrayexchangeFilters.size(); i++) {
+                    ExchangeFilters.validateJsonElement(jsonArrayexchangeFilters.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("symbols") != null && !jsonObj.get("symbols").isJsonNull()) {
+            JsonArray jsonArraysymbols = jsonObj.getAsJsonArray("symbols");
+            if (jsonArraysymbols != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("symbols").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `symbols` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("symbols").toString()));
+                }
+
+                // validate the optional field `symbols` (array)
+                for (int i = 0; i < jsonArraysymbols.size(); i++) {
+                    ExchangeInfoResponseSymbolsInner.validateJsonElement(jsonArraysymbols.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("sors") != null && !jsonObj.get("sors").isJsonNull()) {
+            JsonArray jsonArraysors = jsonObj.getAsJsonArray("sors");
+            if (jsonArraysors != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("sors").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `sors` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("sors").toString()));
+                }
+
+                // validate the optional field `sors` (array)
+                for (int i = 0; i < jsonArraysors.size(); i++) {
+                    ExchangeInfoResponseSorsInner.validateJsonElement(jsonArraysors.get(i));
                 }
                 ;
             }

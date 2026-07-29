@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,6 +25,7 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ClassicPortfolioMarginAccountInformationResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -78,15 +79,15 @@ public class PortfolioMarginEndpointsApiTest {
     /**
      * Classic Portfolio Margin Account Information (USER_DATA)
      *
-     * <p>Get Classic Portfolio Margin current account information. * maxWithdrawAmount is for asset
-     * transfer out to the spot wallet. Weight: 5
+     * <p>Get Classic Portfolio Margin current account information. Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - maxWithdrawAmount is for asset transfer out to the spot wallet.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void classicPortfolioMarginAccountInformationTest()
-            throws ApiException, CryptoException {
-        String asset = "";
+            throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<ClassicPortfolioMarginAccountInformationResponse> response =
                 api.classicPortfolioMarginAccountInformation(asset, recvWindow);
@@ -101,10 +102,14 @@ public class PortfolioMarginEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("asset=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "a8610b861691761550acea81c71e6fe676ac39bd2020c66ff1115710eaf265a4",
+                "asset=BTC&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "34cb82e49b7593f1656dc5e9f9c353c60ac924411707c46e3d5a527235965fe5",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/fapi/v1/pmAccountInfo", actualRequest.url().encodedPath());
+        assertEquals(
+                "/fapi/v1/pmAccountInfo",
+                actualRequest.url().encodedPath());
     }
 }

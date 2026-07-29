@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountRepayDebtRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.MarginAccountRepayDebtResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountRepayDebtExample {
@@ -27,21 +28,22 @@ public class MarginAccountRepayDebtExample {
     }
 
     /**
-     * Margin Account Repay Debt(TRADE)
+     * Margin Account Repay Debt (TRADE)
      *
-     * <p>Repay debt for a margin loan. * The repay asset amount cannot exceed 50000 USD equivalent
-     * value for a single request. * If &#x60;amount&#x60; is not sent, all the asset loan will be
-     * repaid if having enough specific repay assets. * If &#x60;amount&#x60; is sent, only the
-     * certain amount of the asset loan will be repaid if having enough specific repay assets. * The
-     * system will use the same asset to repay the loan first (if have) no matter whether put the
-     * asset in &#x60;specifyRepayAssets&#x60; Weight: 3000
+     * <p>Repay debt for a margin loan. Weight(IP): 3000 Security Type: TRADE Notes: - The repay
+     * asset amount cannot exceed 50000 USD equivalent value for a single request. - If
+     * &#x60;amount&#x60; is not sent, all the asset loan will be repaid if having enough specific
+     * repay assets. - If &#x60;amount&#x60; is sent, only the certain amount of the asset loan will
+     * be repaid if having enough specific repay assets. - The system will use the same asset to
+     * repay the loan first (if have) no matter whether put the asset in
+     * &#x60;specifyRepayAssets&#x60;
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountRepayDebtExample() throws ApiException {
+    public void marginAccountRepayDebtExample() throws ApiException, IOException {
         MarginAccountRepayDebtRequest marginAccountRepayDebtRequest =
                 new MarginAccountRepayDebtRequest();
-        marginAccountRepayDebtRequest.asset("");
+        marginAccountRepayDebtRequest.asset("USDT");
         ApiResponse<MarginAccountRepayDebtResponse> response =
                 getApi().marginAccountRepayDebt(marginAccountRepayDebtRequest);
         System.out.println(response.getData());

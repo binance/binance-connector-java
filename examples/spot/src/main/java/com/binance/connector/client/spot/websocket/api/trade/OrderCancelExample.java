@@ -29,9 +29,18 @@ public class OrderCancelExample {
     }
 
     /**
-     * WebSocket Cancel order
+     * Cancel order (TRADE)
      *
-     * <p>Cancel an active order. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Notes: * If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60;
+     * parameters are provided, the &#x60;orderId&#x60; is searched first, then the
+     * &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * &#x60;newClientOrderId&#x60; will
+     * replace &#x60;clientOrderId&#x60; of the canceled order, freeing it up for new orders. * If
+     * you cancel an order that is a part of an order list, the entire order list is canceled. * The
+     * performance for canceling an order (single cancel or as part of a cancel-replace) is always
+     * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
      */
     public void orderCancelExampleAsync() {
         OrderCancelRequest orderCancelRequest = new OrderCancelRequest();
@@ -48,9 +57,18 @@ public class OrderCancelExample {
     }
 
     /**
-     * WebSocket Cancel order
+     * Cancel order (TRADE)
      *
-     * <p>Cancel an active order. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Notes: * If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60;
+     * parameters are provided, the &#x60;orderId&#x60; is searched first, then the
+     * &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * &#x60;newClientOrderId&#x60; will
+     * replace &#x60;clientOrderId&#x60; of the canceled order, freeing it up for new orders. * If
+     * you cancel an order that is a part of an order list, the entire order list is canceled. * The
+     * performance for canceling an order (single cancel or as part of a cancel-replace) is always
+     * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
      */
     public void orderCancelExampleSync() {
         OrderCancelRequest orderCancelRequest = new OrderCancelRequest();

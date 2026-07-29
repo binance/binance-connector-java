@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**pair** | **String** |  |  [optional] |
-|**openInterest** | **String** |  |  [optional] |
-|**contractType** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**pair** | **String** | Pair |  [optional] |
+|**openInterest** | **String** | Open interest. |  [optional] |
+|**contractType** | **String** | Contract type. |  [optional] |
+|**time** | **Long** | Time |  [optional] |
 
 
 

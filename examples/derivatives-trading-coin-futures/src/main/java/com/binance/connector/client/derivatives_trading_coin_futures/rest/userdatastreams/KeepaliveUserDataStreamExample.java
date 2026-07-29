@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KeepaliveUserDataStreamResponse;
+import java.io.IOException;
 
 /** API examples for UserDataStreamsApi */
 public class KeepaliveUserDataStreamExample {
@@ -29,11 +30,11 @@ public class KeepaliveUserDataStreamExample {
      * Keepalive User Data Stream (USER_STREAM)
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. Weight: 1
+     * minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
-    public void keepaliveUserDataStreamExample() throws ApiException {
+    public void keepaliveUserDataStreamExample() throws ApiException, IOException {
         ApiResponse<KeepaliveUserDataStreamResponse> response = getApi().keepaliveUserDataStream();
         System.out.println(response.getData());
     }

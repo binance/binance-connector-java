@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** SorOrderTestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SorOrderTestRequest {
     public static final String SERIALIZED_NAME_COMPUTE_COMMISSION_RATES = "computeCommissionRates";
 
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
     @jakarta.annotation.Nullable
-    private Boolean computeCommissionRates;
+    private Boolean computeCommissionRates = false;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -275,7 +275,9 @@ public class SorOrderTestRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Orders with the same
+     * &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise
+     * the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -313,7 +315,7 @@ public class SorOrderTestRequest {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return strategyType
      */
@@ -332,7 +334,7 @@ public class SorOrderTestRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60; to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -396,7 +398,8 @@ public class SorOrderTestRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */

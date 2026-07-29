@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAlgoOrderResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelAlgoOrderExample {
@@ -28,14 +29,15 @@ public class CancelAlgoOrderExample {
     /**
      * Cancel Algo Order (TRADE)
      *
-     * <p>Cancel an active algo order. * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must
-     * be sent. Weight: 1
+     * <p>Cancel an active algo (conditional) order, including TP/SL (Take Profit / Stop Loss) and
+     * trailing stop orders on USD-M Futures. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAlgoOrderExample() throws ApiException {
-        Long algoId = 1L;
-        String clientAlgoId = "1";
+    public void cancelAlgoOrderExample() throws ApiException, IOException {
+        Long algoId = 2146760L;
+        String clientAlgoId = "6B2I9XVcJpCjqPAJ4YoFX7";
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderResponse> response =
                 getApi().cancelAlgoOrder(algoId, clientAlgoId, recvWindow);

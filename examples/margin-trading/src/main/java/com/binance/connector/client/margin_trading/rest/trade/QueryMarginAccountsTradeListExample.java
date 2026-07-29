@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsTradeListResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class QueryMarginAccountsTradeListExample {
@@ -28,15 +30,15 @@ public class QueryMarginAccountsTradeListExample {
     /**
      * Query Margin Account&#39;s Trade List (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Trade List * If fromId is set, it will get trades &gt;&#x3D;
-     * that fromId. Otherwise the trades within 24 hours are returned. * Less than 24 hours between
-     * startTime and endTime. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Trade List Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * fromId is set, it will get trades &gt;&#x3D; that fromId. Otherwise the trades within 24
+     * hours are returned. - Less than 24 hours between startTime and endTime.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryMarginAccountsTradeListExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsTradeListExample() throws ApiException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

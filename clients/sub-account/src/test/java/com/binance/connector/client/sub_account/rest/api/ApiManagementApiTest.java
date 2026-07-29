@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,9 +25,15 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyRequest;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyResponse;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyRequest;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.DeleteIpListForASubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.GetIpRestrictionForASubAccountApiKeyResponse;
+import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKeyPermissionRequest;
+import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKeyPermissionResponse;
+import com.binance.connector.client.sub_account.rest.model.QuerySubAccountApiKeyResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,21 +85,23 @@ public class ApiManagementApiTest {
     }
 
     /**
-     * Add IP Restriction for Sub-Account API key(For Master Account)
+     * Add IP Restriction for Sub-Account API key (For Master Account) (USER_DATA)
      *
-     * <p>Add IP Restriction for Sub-Account API key * You need to enable Enable Spot &amp; Margin
-     * Trading option for the api key which requests this endpoint Weight: 3000
+     * <p>Add IP Restriction for Sub-Account API key Weight(UID): 3000 Security Type: USER_DATA
+     * Notes: - You need to enable Enable Spot &amp; Margin Trading option for the api key which
+     * requests this endpoint
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void addIpRestrictionForSubAccountApiKeyTest() throws ApiException, CryptoException {
+    public void addIpRestrictionForSubAccountApiKeyTest()
+            throws ApiException, CryptoException, IOException {
         AddIpRestrictionForSubAccountApiKeyRequest addIpRestrictionForSubAccountApiKeyRequest =
                 new AddIpRestrictionForSubAccountApiKeyRequest();
-
-        addIpRestrictionForSubAccountApiKeyRequest.email("sub-account-email@email.com");
-        addIpRestrictionForSubAccountApiKeyRequest.subAccountApiKey("");
-        addIpRestrictionForSubAccountApiKeyRequest.status(0L);
+        addIpRestrictionForSubAccountApiKeyRequest.email("123@test.com");
+        addIpRestrictionForSubAccountApiKeyRequest.subAccountApiKey(
+                "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf");
+        addIpRestrictionForSubAccountApiKeyRequest.status(1L);
 
         ApiResponse<AddIpRestrictionForSubAccountApiKeyResponse> response =
                 api.addIpRestrictionForSubAccountApiKey(addIpRestrictionForSubAccountApiKeyRequest);
@@ -109,29 +117,67 @@ public class ApiManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000subAccountApiKey=&email=sub-account-email%40email.com&status=0",
-                signInputCaptor.getValue());
+                "timestamp=1736393892000subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&email=123%40test.com&status=1", signInputCaptor.getValue());
         assertEquals(
-                "d353219f3c6ee7a2df7814796f98e89d858731d4dd62d05bc95115557ac07395",
+                "10b9be96322a99a8df7350adc4a31ad362107b2424fbc87df0fefb76179c5f71",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v2/sub-account/subAccountApi/ipRestriction",
-                actualRequest.url().encodedPath());
+                "/sapi/v2/sub-account/subAccountApi/ipRestriction", actualRequest.url().encodedPath());
     }
 
     /**
-     * Delete IP List For a Sub-account API Key(For Master Account)
+     * Create Sub-account API Key (For Master Account) (USER_DATA)
      *
-     * <p>Delete IP List For a Sub-account API Key * You need to enable Enable Spot &amp; Margin
-     * Trading option for the api key which requests this endpoint Weight: 3000
+     * <p>Create a new API Key for a sub-account. Weight(UID): 3000 Security Type: USER_DATA Notes:
+     * - &#x60;status&#x3D;2&#x60; requires &#x60;ipAddress&#x60; - &#x60;status&#x3D;3&#x60;
+     * requires &#x60;thirdPartyName&#x60; - Asset Sub Account is not supported - The caller must
+     * pass the KYC IP restriction check
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteIpListForASubAccountApiKeyTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String subAccountApiKey = "";
-        String ipAddress = "";
+    public void createSubAccountApiKeyTest() throws ApiException, CryptoException, IOException {
+        CreateSubAccountApiKeyRequest createSubAccountApiKeyRequest =
+                new CreateSubAccountApiKeyRequest();
+        createSubAccountApiKeyRequest.email("123@test.com");
+        createSubAccountApiKeyRequest.apiName("myKey");
+        createSubAccountApiKeyRequest.status(2L);
+
+        ApiResponse<CreateSubAccountApiKeyResponse> response =
+                api.createSubAccountApiKey(createSubAccountApiKeyRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000apiName=myKey&email=123%40test.com&status=2", signInputCaptor.getValue());
+        assertEquals(
+                "af3018ac7a726476eede3f9d14eea6149c3520387882cc202a0d111836564410",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sub-account/subAccountApi", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Delete IP List For a Sub-account API Key (For Master Account) (USER_DATA)
+     *
+     * <p>Delete IP List For a Sub-account API Key Weight(UID): 3000 Security Type: USER_DATA Notes:
+     * - You need to enable Enable Spot &amp; Margin Trading option for the api key which requests
+     * this endpoint
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void deleteIpListForASubAccountApiKeyTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String subAccountApiKey = "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf";
+        String ipAddress = "69.210.67.14";
         Long recvWindow = 5000L;
         ApiResponse<DeleteIpListForASubAccountApiKeyResponse> response =
                 api.deleteIpListForASubAccountApiKey(
@@ -148,27 +194,58 @@ public class ApiManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&subAccountApiKey=&ipAddress=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&ipAddress=69.210.67.14&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "dbfd7714cbc071ac272d2f9402317af166eb5054a8365e3e2960cf219547989f",
+                "fcf6da2e048cde255b743acc675bf3d57be293cec543273c464be1bc04a24bef",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get IP Restriction for a Sub-account API Key(For Master Account)
+     * Delete Sub-account API Key (For Master Account) (USER_DATA)
      *
-     * <p>Get IP Restriction for a Sub-account API Key Weight: 3000
+     * <p>Delete an API Key of a sub-account. Weight(UID): 3000 Security Type: USER_DATA Notes: -
+     * Asset Sub Account is not supported - The caller must pass the KYC IP restriction check
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getIpRestrictionForASubAccountApiKeyTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String subAccountApiKey = "";
+    public void deleteSubAccountApiKeyTest() throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String subAccountApiKey = "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf";
+        Long recvWindow = 5000L;
+        ApiResponse<Object> response =
+                api.deleteSubAccountApiKey(email, subAccountApiKey, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("email=123%40test.com&subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "80e6a8dde164d84d85ddb6a4aa6079b30842518b288430f6cf260f1c70069c30",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sub-account/subAccountApi", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA)
+     *
+     * <p>Get IP Restriction for a Sub-account API Key Weight(UID): 3000 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getIpRestrictionForASubAccountApiKeyTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String subAccountApiKey = "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf";
         Long recvWindow = 5000L;
         ApiResponse<GetIpRestrictionForASubAccountApiKeyResponse> response =
                 api.getIpRestrictionForASubAccountApiKey(email, subAccountApiKey, recvWindow);
@@ -184,13 +261,84 @@ public class ApiManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&subAccountApiKey=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "0ed08ff7787abeae64a40e4a8ddebfefa8063a9c5015b702faa20ffa367a3a3e",
+                "80e6a8dde164d84d85ddb6a4aa6079b30842518b288430f6cf260f1c70069c30",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/sub-account/subAccountApi/ipRestriction",
-                actualRequest.url().encodedPath());
+                "/sapi/v1/sub-account/subAccountApi/ipRestriction", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Modify Sub-account API Key Permission (For Master Account) (USER_DATA)
+     *
+     * <p>Modify the trading permissions of a sub-account API Key. Weight(UID): 3000 Security Type:
+     * USER_DATA Notes: - Portfolio Margin Retail User is not supported - Asset Sub Account is not
+     * supported - The caller must pass the KYC IP restriction check
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void modifySubAccountApiKeyPermissionTest()
+            throws ApiException, CryptoException, IOException {
+        ModifySubAccountApiKeyPermissionRequest modifySubAccountApiKeyPermissionRequest =
+                new ModifySubAccountApiKeyPermissionRequest();
+        modifySubAccountApiKeyPermissionRequest.email("123@test.com");
+        modifySubAccountApiKeyPermissionRequest.subAccountApiKey(
+                "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf");
+
+        ApiResponse<ModifySubAccountApiKeyPermissionResponse> response =
+                api.modifySubAccountApiKeyPermission(modifySubAccountApiKeyPermissionRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                "timestamp=1736393892000subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&email=123%40test.com", signInputCaptor.getValue());
+        assertEquals(
+                "7116a15872faa072b6a520117252274d64df2a4cbd96e08e9e8d0445af0e4b23",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sub-account/subAccountApiPermission", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Sub-account API Key (For Master Account) (USER_DATA)
+     *
+     * <p>Query the API Key list of a sub-account. Weight(UID): 3000 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void querySubAccountApiKeyTest() throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String subAccountApiKey = "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf";
+        Long page = 1L;
+        Long size = 30L;
+        Long recvWindow = 5000L;
+        ApiResponse<QuerySubAccountApiKeyResponse> response =
+                api.querySubAccountApiKey(email, subAccountApiKey, page, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("email=123%40test.com&subAccountApiKey=k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf&page=1&size=30&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "352ad470dd82f59a301f0fd900b181fdab2fe9f33c3fd6cad968480b7aa41b28",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/sub-account/subAccountApi", actualRequest.url().encodedPath());
     }
 }

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.Derivatives
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AcceptBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AcceptBlockTradeOrderResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class AcceptBlockTradeOrderExample {
@@ -29,14 +30,14 @@ public class AcceptBlockTradeOrderExample {
     /**
      * Accept Block Trade Order (TRADE)
      *
-     * <p>Accept a block trade order Weight: 5
+     * <p>Accept a block trade order Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void acceptBlockTradeOrderExample() throws ApiException {
+    public void acceptBlockTradeOrderExample() throws ApiException, IOException {
         AcceptBlockTradeOrderRequest acceptBlockTradeOrderRequest =
                 new AcceptBlockTradeOrderRequest();
-        acceptBlockTradeOrderRequest.blockOrderMatchingKey("");
+        acceptBlockTradeOrderRequest.blockOrderMatchingKey("7d046e6e-a429-4335-ab9d-6a681febcde5");
         ApiResponse<AcceptBlockTradeOrderResponse> response =
                 getApi().acceptBlockTradeOrder(acceptBlockTradeOrderRequest);
         System.out.println(response.getData());

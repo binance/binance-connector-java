@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** TradingScheduleResponseMarketSchedules */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradingScheduleResponseMarketSchedules {
     public static final String SERIALIZED_NAME_E_Q_U_I_T_Y = "EQUITY";
 
@@ -48,6 +48,18 @@ public class TradingScheduleResponseMarketSchedules {
     @SerializedName(SERIALIZED_NAME_C_O_M_M_O_D_I_T_Y)
     @jakarta.annotation.Nullable
     private TradingScheduleResponseMarketSchedulesCOMMODITY COMMODITY;
+
+    public static final String SERIALIZED_NAME_K_R_E_Q_U_I_T_Y = "KR_EQUITY";
+
+    @SerializedName(SERIALIZED_NAME_K_R_E_Q_U_I_T_Y)
+    @jakarta.annotation.Nullable
+    private TradingScheduleResponseMarketSchedulesKREQUITY KR_EQUITY;
+
+    public static final String SERIALIZED_NAME_H_K_E_Q_U_I_T_Y = "HK_EQUITY";
+
+    @SerializedName(SERIALIZED_NAME_H_K_E_Q_U_I_T_Y)
+    @jakarta.annotation.Nullable
+    private TradingScheduleResponseMarketSchedulesHKEQUITY HK_EQUITY;
 
     public TradingScheduleResponseMarketSchedules() {}
 
@@ -97,6 +109,50 @@ public class TradingScheduleResponseMarketSchedules {
         this.COMMODITY = COMMODITY;
     }
 
+    public TradingScheduleResponseMarketSchedules KR_EQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesKREQUITY KR_EQUITY) {
+        this.KR_EQUITY = KR_EQUITY;
+        return this;
+    }
+
+    /**
+     * Get KR_EQUITY
+     *
+     * @return KR_EQUITY
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TradingScheduleResponseMarketSchedulesKREQUITY getKREQUITY() {
+        return KR_EQUITY;
+    }
+
+    public void setKREQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesKREQUITY KR_EQUITY) {
+        this.KR_EQUITY = KR_EQUITY;
+    }
+
+    public TradingScheduleResponseMarketSchedules HK_EQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesHKEQUITY HK_EQUITY) {
+        this.HK_EQUITY = HK_EQUITY;
+        return this;
+    }
+
+    /**
+     * Get HK_EQUITY
+     *
+     * @return HK_EQUITY
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TradingScheduleResponseMarketSchedulesHKEQUITY getHKEQUITY() {
+        return HK_EQUITY;
+    }
+
+    public void setHKEQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesHKEQUITY HK_EQUITY) {
+        this.HK_EQUITY = HK_EQUITY;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -108,12 +164,14 @@ public class TradingScheduleResponseMarketSchedules {
         TradingScheduleResponseMarketSchedules tradingScheduleResponseMarketSchedules =
                 (TradingScheduleResponseMarketSchedules) o;
         return Objects.equals(this.EQUITY, tradingScheduleResponseMarketSchedules.EQUITY)
-                && Objects.equals(this.COMMODITY, tradingScheduleResponseMarketSchedules.COMMODITY);
+                && Objects.equals(this.COMMODITY, tradingScheduleResponseMarketSchedules.COMMODITY)
+                && Objects.equals(this.KR_EQUITY, tradingScheduleResponseMarketSchedules.KR_EQUITY)
+                && Objects.equals(this.HK_EQUITY, tradingScheduleResponseMarketSchedules.HK_EQUITY);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EQUITY, COMMODITY);
+        return Objects.hash(EQUITY, COMMODITY, KR_EQUITY, HK_EQUITY);
     }
 
     @Override
@@ -122,6 +180,8 @@ public class TradingScheduleResponseMarketSchedules {
         sb.append("class TradingScheduleResponseMarketSchedules {\n");
         sb.append("		EQUITY: ").append(toIndentedString(EQUITY)).append("\n");
         sb.append("		COMMODITY: ").append(toIndentedString(COMMODITY)).append("\n");
+        sb.append("		KR_EQUITY: ").append(toIndentedString(KR_EQUITY)).append("\n");
+        sb.append("		HK_EQUITY: ").append(toIndentedString(HK_EQUITY)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -137,6 +197,14 @@ public class TradingScheduleResponseMarketSchedules {
         String COMMODITYValueAsString = "";
         COMMODITYValueAsString = COMMODITYValue.toString();
         sb.append("COMMODITY=").append(urlEncode(COMMODITYValueAsString)).append("");
+        Object KR_EQUITYValue = getKREQUITY();
+        String KR_EQUITYValueAsString = "";
+        KR_EQUITYValueAsString = KR_EQUITYValue.toString();
+        sb.append("KR_EQUITY=").append(urlEncode(KR_EQUITYValueAsString)).append("");
+        Object HK_EQUITYValue = getHKEQUITY();
+        String HK_EQUITYValueAsString = "";
+        HK_EQUITYValueAsString = HK_EQUITYValue.toString();
+        sb.append("HK_EQUITY=").append(urlEncode(HK_EQUITYValueAsString)).append("");
         return sb.toString();
     }
 
@@ -167,6 +235,8 @@ public class TradingScheduleResponseMarketSchedules {
         openapiFields = new HashSet<String>();
         openapiFields.add("EQUITY");
         openapiFields.add("COMMODITY");
+        openapiFields.add("KR_EQUITY");
+        openapiFields.add("HK_EQUITY");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -200,6 +270,16 @@ public class TradingScheduleResponseMarketSchedules {
         if (jsonObj.get("COMMODITY") != null && !jsonObj.get("COMMODITY").isJsonNull()) {
             TradingScheduleResponseMarketSchedulesCOMMODITY.validateJsonElement(
                     jsonObj.get("COMMODITY"));
+        }
+        // validate the optional field `KR_EQUITY`
+        if (jsonObj.get("KR_EQUITY") != null && !jsonObj.get("KR_EQUITY").isJsonNull()) {
+            TradingScheduleResponseMarketSchedulesKREQUITY.validateJsonElement(
+                    jsonObj.get("KR_EQUITY"));
+        }
+        // validate the optional field `HK_EQUITY`
+        if (jsonObj.get("HK_EQUITY") != null && !jsonObj.get("HK_EQUITY").isJsonNull()) {
+            TradingScheduleResponseMarketSchedulesHKEQUITY.validateJsonElement(
+                    jsonObj.get("HK_EQUITY"));
         }
     }
 

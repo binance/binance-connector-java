@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** IndexPriceAndMarkPriceResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndexPriceAndMarkPriceResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -98,7 +98,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -117,7 +117,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -137,7 +137,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get markPrice
+     * mark price
      *
      * @return markPrice
      */
@@ -157,7 +157,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get indexPrice
+     * index price
      *
      * @return indexPrice
      */
@@ -177,7 +177,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get estimatedSettlePrice
+     * Estimated Settle Price, only useful in the last hour before the settlement starts.
      *
      * @return estimatedSettlePrice
      */
@@ -197,7 +197,8 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get lastFundingRate
+     * the lasted funding rate, for perpetual contract symbols only. For delivery symbols,
+     * \&quot;\&quot; will be shown.
      *
      * @return lastFundingRate
      */
@@ -217,7 +218,8 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get interestRate
+     * the base asset interest rate, for perpetual contract symbols only. For delivery symbols,
+     * \&quot;\&quot; will be shown.
      *
      * @return interestRate
      */
@@ -237,7 +239,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get nextFundingTime
+     * For perpetual contract symbols only. For delivery symbols, 0 will be shown
      *
      * @return nextFundingTime
      */
@@ -256,7 +258,7 @@ public class IndexPriceAndMarkPriceResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */

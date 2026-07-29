@@ -37,7 +37,7 @@ import org.mockito.Mockito;
 /** API tests for FiatApi */
 public class FiatApiTest {
 
-    private FiatApi api;
+    private FiatRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -73,7 +73,7 @@ public class FiatApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new FiatApi(apiClientSpy);
+        api = new FiatRestApi(apiClientSpy);
     }
 
     /**

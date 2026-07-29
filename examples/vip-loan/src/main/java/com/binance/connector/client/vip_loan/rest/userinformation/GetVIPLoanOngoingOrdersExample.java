@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
+import java.io.IOException;
 
 /** API examples for UserInformationApi */
 public class GetVIPLoanOngoingOrdersExample {
@@ -25,17 +26,17 @@ public class GetVIPLoanOngoingOrdersExample {
     }
 
     /**
-     * Get VIP Loan Ongoing Orders(USER_DATA)
+     * Get VIP Loan Ongoing Orders (USER_DATA)
      *
-     * <p>VIP loan is available for VIP users only. Weight: 400
+     * <p>VIP loan is available for VIP users only. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getVIPLoanOngoingOrdersExample() throws ApiException {
+    public void getVIPLoanOngoingOrdersExample() throws ApiException, IOException {
         Long orderId = 1L;
         Long collateralAccountId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB,BTC,ETH";
         Long current = 1L;
         Long limit = 10L;
         Long recvWindow = 5000L;

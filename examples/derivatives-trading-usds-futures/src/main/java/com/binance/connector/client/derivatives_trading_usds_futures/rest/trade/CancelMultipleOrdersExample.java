@@ -9,6 +9,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.De
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderIdList;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrigClientOrderIdList;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelMultipleOrdersExample {
@@ -30,15 +31,16 @@ public class CancelMultipleOrdersExample {
     /**
      * Cancel Multiple Orders (TRADE)
      *
-     * <p>Cancel Multiple Orders * Either &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList
-     * &#x60; must be sent. Weight: 1
+     * <p>Cancel Multiple Orders Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList &#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelMultipleOrdersExample() throws ApiException {
-        String symbol = "";
-        OrderIdList orderIdList = null;
-        OrigClientOrderIdList origClientOrderIdList = null;
+    public void cancelMultipleOrdersExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        OrderIdList orderIdList = OrderIdList.fromJson("[1234567]");
+        OrigClientOrderIdList origClientOrderIdList =
+                OrigClientOrderIdList.fromJson("[\"my_id_1\"]");
         Long recvWindow = 5000L;
         ApiResponse<CancelMultipleOrdersResponse> response =
                 getApi().cancelMultipleOrders(

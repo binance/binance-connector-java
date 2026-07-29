@@ -29,15 +29,16 @@ public class DepthExample {
     }
 
     /**
-     * WebSocket Order book
+     * Order book
      *
      * <p>Get current order book. Note that this request returns limited market depth. If you need
      * to continuously monitor order book updates, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60; You can use
      * &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to [maintain
-     * a local order book](web-socket-streams.md#how-to-manage-a-local-order-book-correctly).
-     * Weight: Adjusted based on the limit: | Limit | Weight | |:---------:|:------:| | 1–100 | 5 |
-     * | 101–500 | 25| | 501–1000 | 50 | | 1001–5000 | 250 |
+     * a local order
+     * book](/products/spot/web-socket-streams#how-to-manage-a-local-order-book-correctly). Weight:
+     * Adjusted based on the limit: |Limit|Request Weight ------|------- 1-100| 5 101-500| 25
+     * 501-1000| 50 1001-5000| 250 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void depthExampleAsync() {
         DepthRequest depthRequest = new DepthRequest();
@@ -54,15 +55,16 @@ public class DepthExample {
     }
 
     /**
-     * WebSocket Order book
+     * Order book
      *
      * <p>Get current order book. Note that this request returns limited market depth. If you need
      * to continuously monitor order book updates, please consider using WebSocket Streams: *
      * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60; You can use
      * &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to [maintain
-     * a local order book](web-socket-streams.md#how-to-manage-a-local-order-book-correctly).
-     * Weight: Adjusted based on the limit: | Limit | Weight | |:---------:|:------:| | 1–100 | 5 |
-     * | 101–500 | 25| | 501–1000 | 50 | | 1001–5000 | 250 |
+     * a local order
+     * book](/products/spot/web-socket-streams#how-to-manage-a-local-order-book-correctly). Weight:
+     * Adjusted based on the limit: |Limit|Request Weight ------|------- 1-100| 5 101-500| 25
+     * 501-1000| 50 1001-5000| 250 Security Type: NONE Notes: **Data Source:** Memory
      */
     public void depthExampleSync() {
         DepthRequest depthRequest = new DepthRequest();

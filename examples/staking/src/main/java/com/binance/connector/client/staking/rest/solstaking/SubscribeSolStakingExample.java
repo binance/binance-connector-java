@@ -8,6 +8,7 @@ import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.SubscribeSolStakingRequest;
 import com.binance.connector.client.staking.rest.model.SubscribeSolStakingResponse;
+import java.io.IOException;
 
 /** API examples for SolStakingApi */
 public class SubscribeSolStakingExample {
@@ -26,14 +27,14 @@ public class SubscribeSolStakingExample {
     }
 
     /**
-     * Subscribe SOL Staking(TRADE)
+     * Subscribe SOL Staking (TRADE)
      *
-     * <p>Subscribe SOL Staking * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Subscribe SOL Staking Weight(IP): 150 Security Type: TRADE Notes: - You need to open
+     * Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeSolStakingExample() throws ApiException {
+    public void subscribeSolStakingExample() throws ApiException, IOException {
         SubscribeSolStakingRequest subscribeSolStakingRequest = new SubscribeSolStakingRequest();
         subscribeSolStakingRequest.amount(1.0d);
         ApiResponse<SubscribeSolStakingResponse> response =

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+ * Portfolio Margin Pro WebSocket Market Streams
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(UserDataStreamEventsResponse.class.getName());
@@ -114,18 +114,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
-                                    case "pmProAccountUpdate":
-                                        deserialized =
-                                                adapterPmProAccountUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "risklevelchange":
-                                        deserialized =
-                                                adapterRisklevelchange.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
                                     default:
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 jsonElement.toString());
@@ -136,8 +124,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                             + " for UserDataStreamEventsResponse."
                                                             + " Possible values:"
                                                             + " PM_PRO_ACCOUNT_UPDATE"
-                                                            + " riskLevelChange pmProAccountUpdate"
-                                                            + " risklevelchange. Falling back to"
+                                                            + " riskLevelChange. Falling back to"
                                                             + " String.",
                                                         jsonObject.get("e").getAsString()));
                                 }

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class GetRegionListExample {
@@ -28,13 +29,15 @@ public class GetRegionListExample {
      * Get Region List (USER_DATA)
      *
      * <p>Query the active region/city list for a given country. Currently, only supports AU entity.
-     * Weight: 1
+     * Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getRegionListExample() throws ApiException {
-        String countryCode = "";
-        ApiResponse<GetRegionListResponse> response = getApi().getRegionList(countryCode);
+    public void getRegionListExample() throws ApiException, IOException {
+        String countryCode = "au";
+        Long recvWindow = 5000L;
+        ApiResponse<GetRegionListResponse> response =
+                getApi().getRegionList(countryCode, recvWindow);
         System.out.println(response.getData());
     }
 }

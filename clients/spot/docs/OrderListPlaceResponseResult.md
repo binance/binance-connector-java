@@ -14,7 +14,7 @@
 |**listClientOrderId** | **String** |  |  [optional] |
 |**transactionTime** | **Long** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
-|**orders** | [**List&lt;OrderListCancelResponseResultOrdersInner&gt;**](OrderListCancelResponseResultOrdersInner.md) |  |  [optional] |
+|**orders** | [**List&lt;AllOrderListsResponseResultInnerOrdersInner&gt;**](AllOrderListsResponseResultInnerOrdersInner.md) |  |  [optional] |
 |**orderReports** | [**List&lt;OrderListPlaceResponseResultOrderReportsInner&gt;**](OrderListPlaceResponseResultOrderReportsInner.md) |  |  [optional] |
 
 

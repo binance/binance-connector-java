@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.OrderType;
 import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdResponse;
+import java.io.IOException;
 
 /** API examples for BfusdApi */
 public class RedeemBfusdExample {
@@ -27,17 +29,19 @@ public class RedeemBfusdExample {
     }
 
     /**
-     * Redeem BFUSD(TRADE)
+     * Redeem BFUSD (TRADE)
      *
-     * <p>Redeem BFUSD to USDT * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Redeem BFUSD to USDT Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable
+     * Spot &amp; Margin Trading permission for the API Key which requests this endpoint. - This API
+     * only supports BFUSD redemption to the Spot Account. Redemptions to the Funding Account or any
+     * other account type are not supported.
      *
      * @throws ApiException if the Api call fails
      */
-    public void redeemBfusdExample() throws ApiException {
+    public void redeemBfusdExample() throws ApiException, IOException {
         RedeemBfusdRequest redeemBfusdRequest = new RedeemBfusdRequest();
         redeemBfusdRequest.amount(1.0d);
-        redeemBfusdRequest.type("s");
+        redeemBfusdRequest.type(OrderType.FAST);
         ApiResponse<RedeemBfusdResponse> response = getApi().redeemBfusd(redeemBfusdRequest);
         System.out.println(response.getData());
     }

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class TickerExample {
@@ -25,15 +26,15 @@ public class TickerExample {
     }
 
     /**
-     * Ticker (24hr Price Statistics)
+     * Ticker
      *
      * <p>Gets the 24-hour rolling window price change statistics for a symbol, including volume and
-     * price changes. Weight: 0
+     * price changes.
      *
      * @throws ApiException if the Api call fails
      */
-    public void tickerExample() throws ApiException {
-        String symbol = "";
+    public void tickerExample() throws ApiException, IOException {
+        String symbol = "ALPHA_175USDT";
         ApiResponse<TickerResponse> response = getApi().ticker(symbol);
         System.out.println(response.getData());
     }

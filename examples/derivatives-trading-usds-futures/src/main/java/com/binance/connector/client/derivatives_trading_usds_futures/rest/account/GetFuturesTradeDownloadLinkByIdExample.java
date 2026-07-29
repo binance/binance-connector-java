@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetFuturesTradeDownloadLinkByIdResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetFuturesTradeDownloadLinkByIdExample {
@@ -26,14 +27,15 @@ public class GetFuturesTradeDownloadLinkByIdExample {
     }
 
     /**
-     * Get Futures Trade Download Link by Id(USER_DATA)
+     * Get Futures Trade Download Link by Id (USER_DATA)
      *
-     * <p>Get futures trade download link by Id * Download link expiration: 24h Weight: 10
+     * <p>Get futures trade download link by Id Weight(IP): 10 Security Type: USER_DATA Notes: -
+     * Download link expiration: 7 days
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFuturesTradeDownloadLinkByIdExample() throws ApiException {
-        String downloadId = "1";
+    public void getFuturesTradeDownloadLinkByIdExample() throws ApiException, IOException {
+        String downloadId = "545923594199212032";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesTradeDownloadLinkByIdResponse> response =
                 getApi().getFuturesTradeDownloadLinkById(downloadId, recvWindow);

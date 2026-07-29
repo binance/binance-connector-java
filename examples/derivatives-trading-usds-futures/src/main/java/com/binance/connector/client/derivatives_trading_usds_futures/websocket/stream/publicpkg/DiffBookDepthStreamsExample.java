@@ -25,14 +25,15 @@ public class DiffBookDepthStreamsExample {
      * Diff. Book Depth Streams
      *
      * <p>Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100 milliseconds (if
-     * existing) Retail Price Improvement(RPI) orders are not visible and excluded in the response
-     * message. Update Speed: 250ms, 500ms, 100ms
+     * existing). &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60;
+     * field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair
+     * symbol). Update Speed: 250ms, 500ms, 100ms Response Notes: - Retail Price Improvement(RPI)
+     * orders are not visible and excluded in the response message.
      *
      * @throws ApiException if the Api call fails
      */
     public void diffBookDepthStreamsExample() throws ApiException, InterruptedException {
         DiffBookDepthStreamsRequest diffBookDepthStreamsRequest = new DiffBookDepthStreamsRequest();
-        diffBookDepthStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> response =
                 getApi().diffBookDepthStreams(diffBookDepthStreamsRequest);
         while (true) {

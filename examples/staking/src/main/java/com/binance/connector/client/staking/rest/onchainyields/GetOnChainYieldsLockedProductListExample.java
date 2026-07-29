@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetOnChainYieldsLockedProductListResponse;
+import java.io.IOException;
 
 /** API examples for OnChainYieldsApi */
 public class GetOnChainYieldsLockedProductListExample {
@@ -27,13 +28,13 @@ public class GetOnChainYieldsLockedProductListExample {
     /**
      * Get On-chain Yields Locked Product List (USER_DATA)
      *
-     * <p>Get available On-chain Yields Locked product list * Get available On-chain Yields Locked
-     * product list Weight: 50
+     * <p>Get available On-chain Yields Locked product list Weight(IP): 50 Security Type: USER_DATA
+     * Notes: - Get available On-chain Yields Locked product list
      *
      * @throws ApiException if the Api call fails
      */
-    public void getOnChainYieldsLockedProductListExample() throws ApiException {
-        String asset = "";
+    public void getOnChainYieldsLockedProductListExample() throws ApiException, IOException {
+        String asset = "SOL";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** GetAssetsThatCanBeConvertedIntoBnbRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetAssetsThatCanBeConvertedIntoBnbRequest {
     public static final String SERIALIZED_NAME_ACCOUNT_TYPE = "accountType";
 
     @SerializedName(SERIALIZED_NAME_ACCOUNT_TYPE)
     @jakarta.annotation.Nullable
-    private String accountType;
+    private AccountType accountType = AccountType.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -51,7 +52,7 @@ public class GetAssetsThatCanBeConvertedIntoBnbRequest {
     public GetAssetsThatCanBeConvertedIntoBnbRequest() {}
 
     public GetAssetsThatCanBeConvertedIntoBnbRequest accountType(
-            @jakarta.annotation.Nullable String accountType) {
+            @jakarta.annotation.Nullable AccountType accountType) {
         this.accountType = accountType;
         return this;
     }
@@ -62,11 +63,12 @@ public class GetAssetsThatCanBeConvertedIntoBnbRequest {
      * @return accountType
      */
     @jakarta.annotation.Nullable
-    public String getAccountType() {
+    @Valid
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(@jakarta.annotation.Nullable String accountType) {
+    public void setAccountType(@jakarta.annotation.Nullable AccountType accountType) {
         this.accountType = accountType;
     }
 
@@ -77,11 +79,12 @@ public class GetAssetsThatCanBeConvertedIntoBnbRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -188,13 +191,9 @@ public class GetAssetsThatCanBeConvertedIntoBnbRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull())
-                && !jsonObj.get("accountType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `accountType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("accountType").toString()));
+        // validate the optional field `accountType`
+        if (jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull()) {
+            AccountType.validateJsonElement(jsonObj.get("accountType"));
         }
     }
 

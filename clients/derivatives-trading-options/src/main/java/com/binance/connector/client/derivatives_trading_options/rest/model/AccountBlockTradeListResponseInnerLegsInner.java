@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountBlockTradeListResponseInnerLegsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountBlockTradeListResponseInnerLegsInner {
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -160,7 +160,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get createTime
+     * create Time
      *
      * @return createTime
      */
@@ -180,7 +180,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get updateTime
+     * update Time
      *
      * @return updateTime
      */
@@ -200,7 +200,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -220,7 +220,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderId
+     * order Id
      *
      * @return orderId
      */
@@ -240,7 +240,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderPrice
+     * order Price
      *
      * @return orderPrice
      */
@@ -261,7 +261,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderQuantity
+     * order Quantity
      *
      * @return orderQuantity
      */
@@ -282,7 +282,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderStatus
+     * order Status
      *
      * @return orderStatus
      */
@@ -302,7 +302,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty
      *
      * @return executedQty
      */
@@ -323,7 +323,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get executedAmount
+     * executed Amount
      *
      * @return executedAmount
      */
@@ -344,7 +344,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get fee
+     * fee
      *
      * @return fee
      */
@@ -365,7 +365,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderType
+     * order Type
      *
      * @return orderType
      */
@@ -385,7 +385,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get orderSide
+     * order Side
      *
      * @return orderSide
      */
@@ -404,7 +404,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
@@ -424,7 +424,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get tradeId
+     * trade Id
      *
      * @return tradeId
      */
@@ -444,7 +444,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get tradePrice
+     * trade Price
      *
      * @return tradePrice
      */
@@ -465,7 +465,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get tradeQty
+     * trade Qty
      *
      * @return tradeQty
      */
@@ -486,7 +486,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get tradeTime
+     * trade Time
      *
      * @return tradeTime
      */
@@ -506,7 +506,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get liquidity
+     * liquidity
      *
      * @return liquidity
      */
@@ -526,7 +526,7 @@ public class AccountBlockTradeListResponseInnerLegsInner {
     }
 
     /**
-     * Get commission
+     * commission
      *
      * @return commission
      */

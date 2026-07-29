@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** SymbolOrderBookTickerResponse2 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SymbolOrderBookTickerResponse2 extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,7 +59,7 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid SymbolOrderBookTickerResponse1Result> result;
+    private List<@Valid SymbolOrderBookTickerResponse2ResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -108,13 +108,14 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
     }
 
     public SymbolOrderBookTickerResponse2 result(
-            @jakarta.annotation.Nullable List<@Valid SymbolOrderBookTickerResponse1Result> result) {
+            @jakarta.annotation.Nullable
+                    List<@Valid SymbolOrderBookTickerResponse2ResultInner> result) {
         this.result = result;
         return this;
     }
 
     public SymbolOrderBookTickerResponse2 addResultItem(
-            SymbolOrderBookTickerResponse1Result resultItem) {
+            SymbolOrderBookTickerResponse2ResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -129,12 +130,13 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid SymbolOrderBookTickerResponse1Result> getResult() {
+    public List<@Valid SymbolOrderBookTickerResponse2ResultInner> getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable List<@Valid SymbolOrderBookTickerResponse1Result> result) {
+            @jakarta.annotation.Nullable
+                    List<@Valid SymbolOrderBookTickerResponse2ResultInner> result) {
         this.result = result;
     }
 
@@ -218,7 +220,7 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid SymbolOrderBookTickerResponse1Result> resultValue = getResult();
+        List<@Valid SymbolOrderBookTickerResponse2ResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
@@ -344,7 +346,7 @@ public class SymbolOrderBookTickerResponse2 extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    SymbolOrderBookTickerResponse1Result.validateJsonElement(
+                    SymbolOrderBookTickerResponse2ResultInner.validateJsonElement(
                             jsonArrayresult.get(i));
                 }
                 ;

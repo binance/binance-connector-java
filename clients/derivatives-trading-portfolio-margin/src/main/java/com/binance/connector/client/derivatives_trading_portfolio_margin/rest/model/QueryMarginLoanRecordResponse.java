@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryMarginLoanRecordResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginLoanRecordResponse {
     public static final String SERIALIZED_NAME_ROWS = "rows";
 
@@ -72,7 +72,7 @@ public class QueryMarginLoanRecordResponse {
     }
 
     /**
-     * Get rows
+     * Rows.
      *
      * @return rows
      */
@@ -93,7 +93,7 @@ public class QueryMarginLoanRecordResponse {
     }
 
     /**
-     * Get total
+     * Total.
      *
      * @return total
      */

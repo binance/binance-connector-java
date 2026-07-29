@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AggregatedTradesResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AggregatedTradesResponseDataInner {
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
@@ -87,7 +87,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get aLowerCase
+     * Aggregate trade ID.
      *
      * @return aLowerCase
      */
@@ -107,7 +107,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get pLowerCase
+     * Trade price.
      *
      * @return pLowerCase
      */
@@ -127,7 +127,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get qLowerCase
+     * Trade quantity.
      *
      * @return qLowerCase
      */
@@ -147,7 +147,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get fLowerCase
+     * First trade ID in the aggregation.
      *
      * @return fLowerCase
      */
@@ -167,7 +167,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get lLowerCase
+     * Last trade ID in the aggregation.
      *
      * @return lLowerCase
      */
@@ -186,7 +186,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get T
+     * Trade timestamp in milliseconds.
      *
      * @return T
      */
@@ -206,7 +206,7 @@ public class AggregatedTradesResponseDataInner {
     }
 
     /**
-     * Get mLowerCase
+     * Whether buyer is the market maker (deprecated).
      *
      * @return mLowerCase
      */

@@ -10,6 +10,7 @@ import com.binance.connector.client.spot.rest.model.OrderType;
 import com.binance.connector.client.spot.rest.model.Side;
 import com.binance.connector.client.spot.rest.model.SorOrderTestRequest;
 import com.binance.connector.client.spot.rest.model.SorOrderTestResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class SorOrderTestExample {
@@ -28,21 +29,21 @@ public class SorOrderTestExample {
     }
 
     /**
-     * Test new order using SOR
+     * Test new order using SOR (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow using smart order routing (SOR). Creates
-     * and validates a new order but does not send it into the matching engine. Weight: | Condition
-     * | Request Weight | | --------- | -------------- | | Without
-     * &#x60;computeCommissionRates&#x60; | 1 | | With &#x60;computeCommissionRates&#x60; | 20 |
+     * and validates a new order but does not send it into the matching engine. Weight:
+     * |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1| |With
+     * &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void sorOrderTestExample() throws ApiException {
+    public void sorOrderTestExample() throws ApiException, IOException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
         sorOrderTestRequest.symbol("BNBUSDT");
         sorOrderTestRequest.side(Side.BUY);
         sorOrderTestRequest.type(OrderType.MARKET);
-        sorOrderTestRequest.quantity(1.0d);
+        sorOrderTestRequest.quantity(1d);
         ApiResponse<SorOrderTestResponse> response = getApi().sorOrderTest(sorOrderTestRequest);
         System.out.println(response.getData());
     }

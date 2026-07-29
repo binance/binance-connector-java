@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.CrossMarginCollateralRatioResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class CrossMarginCollateralRatioExample {
@@ -28,11 +29,11 @@ public class CrossMarginCollateralRatioExample {
     /**
      * Cross margin collateral ratio (MARKET_DATA)
      *
-     * <p>Cross margin collateral ratio Weight: 100(IP)
+     * <p>Cross margin collateral ratio Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void crossMarginCollateralRatioExample() throws ApiException {
+    public void crossMarginCollateralRatioExample() throws ApiException, IOException {
         ApiResponse<CrossMarginCollateralRatioResponse> response =
                 getApi().crossMarginCollateralRatio();
         System.out.println(response.getData());

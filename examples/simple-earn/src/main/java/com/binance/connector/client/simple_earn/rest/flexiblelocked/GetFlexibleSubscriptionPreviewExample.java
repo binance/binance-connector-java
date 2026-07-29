@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexibleSubscriptionPreviewResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleLockedApi */
 public class GetFlexibleSubscriptionPreviewExample {
@@ -26,13 +27,13 @@ public class GetFlexibleSubscriptionPreviewExample {
     }
 
     /**
-     * Get Flexible Subscription Preview(USER_DATA)
+     * Get Flexible Subscription Preview (USER_DATA)
      *
-     * <p>Get Flexible Subscription Preview Weight: 150
+     * <p>Get Flexible Subscription Preview Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFlexibleSubscriptionPreviewExample() throws ApiException {
+    public void getFlexibleSubscriptionPreviewExample() throws ApiException, IOException {
         String productId = "1";
         Double amount = 1.0d;
         Long recvWindow = 5000L;

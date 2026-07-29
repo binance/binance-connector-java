@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderTestResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTestResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_STANDARD_COMMISSION_FOR_ORDER =
             "standardCommissionForOrder";
@@ -52,7 +52,7 @@ public class OrderTestResponseResult extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION_FOR_ORDER)
     @jakarta.annotation.Nullable
-    private OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder;
+    private OrderTestResponseResultStandardCommissionForOrder specialCommissionForOrder;
 
     public static final String SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER = "taxCommissionForOrder";
 
@@ -94,7 +94,7 @@ public class OrderTestResponseResult extends BaseDTO {
 
     public OrderTestResponseResult specialCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder) {
+                    OrderTestResponseResultStandardCommissionForOrder specialCommissionForOrder) {
         this.specialCommissionForOrder = specialCommissionForOrder;
         return this;
     }
@@ -106,13 +106,13 @@ public class OrderTestResponseResult extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public OrderTestResponseResultSpecialCommissionForOrder getSpecialCommissionForOrder() {
+    public OrderTestResponseResultStandardCommissionForOrder getSpecialCommissionForOrder() {
         return specialCommissionForOrder;
     }
 
     public void setSpecialCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrder) {
+                    OrderTestResponseResultStandardCommissionForOrder specialCommissionForOrder) {
         this.specialCommissionForOrder = specialCommissionForOrder;
     }
 
@@ -219,7 +219,7 @@ public class OrderTestResponseResult extends BaseDTO {
                     JSON.getGson().toJson(standardCommissionForOrderValue);
             valMap.put("standardCommissionForOrder", standardCommissionForOrderValueAsString);
         }
-        OrderTestResponseResultSpecialCommissionForOrder specialCommissionForOrderValue =
+        OrderTestResponseResultStandardCommissionForOrder specialCommissionForOrderValue =
                 getSpecialCommissionForOrder();
         if (specialCommissionForOrderValue != null) {
             String specialCommissionForOrderValueAsString =
@@ -339,7 +339,7 @@ public class OrderTestResponseResult extends BaseDTO {
         // validate the optional field `specialCommissionForOrder`
         if (jsonObj.get("specialCommissionForOrder") != null
                 && !jsonObj.get("specialCommissionForOrder").isJsonNull()) {
-            OrderTestResponseResultSpecialCommissionForOrder.validateJsonElement(
+            OrderTestResponseResultStandardCommissionForOrder.validateJsonElement(
                     jsonObj.get("specialCommissionForOrder"));
         }
         // validate the optional field `taxCommissionForOrder`

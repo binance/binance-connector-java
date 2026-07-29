@@ -7,7 +7,6 @@ import com.binance.connector.client.common.websocket.service.StreamBlockingQueue
 import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
 import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
 
 /** API examples for UserDataStreamApi */
@@ -31,14 +30,13 @@ public class UserDataStreamSubscribeSignatureExample {
     }
 
     /**
-     * WebSocket Subscribe to User Data Stream through signature subscription
+     * Subscribe to User Data Stream through signature subscription (USER_STREAM)
      *
-     * <p>Weight: 2
+     * <p>Weight(IP): 2 Security Type: USER_STREAM Notes: **Data Source:** Memory
      */
     public void userDataStreamSubscribeSignatureExampleStream() throws InterruptedException {
-
         StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
-                resp = getApi().userDataStreamSubscribeSignature(new UserDataStreamSubscribeSignatureRequest());
+                resp = getApi().userDataStreamSubscribeSignature();
         resp.getResponse()
                 .thenAccept(
                         responseResult -> {

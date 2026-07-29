@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** AccountInformationV3ResponsePositionsInner */
+/** positions of all symbols user had position/ open orders are returned */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV3ResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -105,7 +105,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -125,7 +125,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * Position side.
      *
      * @return positionSide
      */
@@ -145,7 +145,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * Position quantity.
      *
      * @return positionAmt
      */
@@ -165,7 +165,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * Unrealized profit.
      *
      * @return unrealizedProfit
      */
@@ -185,7 +185,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated margin.
      *
      * @return isolatedMargin
      */
@@ -205,7 +205,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get notional
+     * Position notional value.
      *
      * @return notional
      */
@@ -225,7 +225,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get isolatedWallet
+     * Isolated wallet balance.
      *
      * @return isolatedWallet
      */
@@ -245,7 +245,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * Initial margin requirement.
      *
      * @return initialMargin
      */
@@ -265,7 +265,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * Maintenance margin requirement.
      *
      * @return maintMargin
      */
@@ -285,7 +285,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */

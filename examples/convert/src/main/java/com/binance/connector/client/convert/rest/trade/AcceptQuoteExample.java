@@ -8,6 +8,7 @@ import com.binance.connector.client.convert.rest.ConvertRestApiUtil;
 import com.binance.connector.client.convert.rest.api.ConvertRestApi;
 import com.binance.connector.client.convert.rest.model.AcceptQuoteRequest;
 import com.binance.connector.client.convert.rest.model.AcceptQuoteResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class AcceptQuoteExample {
@@ -28,11 +29,11 @@ public class AcceptQuoteExample {
     /**
      * Accept Quote (TRADE)
      *
-     * <p>Accept the offered quote by quote ID. Weight: 500(UID)
+     * <p>Accept the offered quote by quote ID. Weight(UID): 500 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void acceptQuoteExample() throws ApiException {
+    public void acceptQuoteExample() throws ApiException, IOException {
         AcceptQuoteRequest acceptQuoteRequest = new AcceptQuoteRequest();
         acceptQuoteRequest.quoteId("1");
         ApiResponse<AcceptQuoteResponse> response = getApi().acceptQuote(acceptQuoteRequest);

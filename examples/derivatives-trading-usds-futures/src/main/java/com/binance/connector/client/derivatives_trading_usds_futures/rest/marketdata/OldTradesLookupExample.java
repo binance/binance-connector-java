@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OldTradesLookupResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OldTradesLookupExample {
@@ -28,15 +29,16 @@ public class OldTradesLookupExample {
     /**
      * Old Trades Lookup (MARKET_DATA)
      *
-     * <p>Get older market historical trades. * Market trades means trades filled in the order book.
-     * Only market trades will be returned, which means the insurance fund trades and ADL trades
-     * won&#39;t be returned. * Only supports data from within the last one month Weight: 20
+     * <p>Get older market historical trades. Weight(IP): 20 Security Type: MARKET_DATA Notes: -
+     * Market trades means trades filled in the order book. Only market trades will be returned,
+     * which means the insurance fund trades and ADL trades won&#39;t be returned. - Only supports
+     * data from within the last one month
      *
      * @throws ApiException if the Api call fails
      */
-    public void oldTradesLookupExample() throws ApiException {
-        String symbol = "";
-        Long limit = 100L;
+    public void oldTradesLookupExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        Long limit = 50L;
         Long fromId = 1L;
         ApiResponse<OldTradesLookupResponse> response =
                 getApi().oldTradesLookup(symbol, limit, fromId);

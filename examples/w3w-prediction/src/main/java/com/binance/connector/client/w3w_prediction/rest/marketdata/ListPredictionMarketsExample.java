@@ -9,6 +9,7 @@ import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi
 import com.binance.connector.client.w3w_prediction.rest.model.ListPredictionMarketsResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.OrderBy;
 import com.binance.connector.client.w3w_prediction.rest.model.SortBy;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class ListPredictionMarketsExample {
@@ -35,7 +36,7 @@ public class ListPredictionMarketsExample {
      *
      * @throws ApiException if the Api call fails
      */
-    public void listPredictionMarketsExample() throws ApiException {
+    public void listPredictionMarketsExample() throws ApiException, IOException {
         String l1Category = "crypto";
         String l2Category = "up-down";
         SortBy sortBy = SortBy.RECOMMENDED;

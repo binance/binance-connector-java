@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TradingScheduleResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class TradingScheduleExample {
@@ -29,15 +30,18 @@ public class TradingScheduleExample {
      * Trading Schedule
      *
      * <p>Trading session schedules for the underlying assets of TradFi Perps are provided for a
-     * one-week period starting from the day prior to the query time, covering both the U.S. equity
-     * and commodity markets. Equity market session types include \&quot;PRE_MARKET\&quot;,
-     * \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and
-     * \&quot;NO_TRADING\&quot;, while commodity market session types include \&quot;REGULAR\&quot;
-     * and \&quot;NO_TRADING\&quot;. Weight: 5
+     * one-week period forward and one-week period backward starting from the day prior to the query
+     * time, covering the U.S. equity market, Korean equity market, Hong Kong equity market, and the
+     * commodity market. Session types per market: - U.S. equity market: \&quot;PRE_MARKET\&quot;,
+     * \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;,
+     * \&quot;NO_TRADING\&quot;. - Commodity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. - Korean equity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. - Hong Kong equity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
-    public void tradingScheduleExample() throws ApiException {
+    public void tradingScheduleExample() throws ApiException, IOException {
         ApiResponse<TradingScheduleResponse> response = getApi().tradingSchedule();
         System.out.println(response.getData());
     }

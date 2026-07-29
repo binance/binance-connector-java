@@ -6,7 +6,9 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelAllOpenOrdersOnASymbolResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountCancelAllOpenOrdersOnASymbolExample {
@@ -29,13 +31,14 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolExample {
      * Margin Account Cancel all Open Orders on a Symbol (TRADE)
      *
      * <p>Cancels all active orders on a symbol for margin account.&lt;br&gt;&lt;/br&gt; This
-     * includes OCO orders. Weight: 1
+     * includes OCO orders. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountCancelAllOpenOrdersOnASymbolExample() throws ApiException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void marginAccountCancelAllOpenOrdersOnASymbolExample()
+            throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long recvWindow = 5000L;
         ApiResponse<MarginAccountCancelAllOpenOrdersOnASymbolResponse> response =
                 getApi().marginAccountCancelAllOpenOrdersOnASymbol(symbol, isIsolated, recvWindow);

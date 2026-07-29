@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
 |**adlQuantile** | [**PositionAdlQuantileEstimationResponseInnerAdlQuantile**](PositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
 
 

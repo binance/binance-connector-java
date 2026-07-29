@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.spot.rest.SpotRestApiUtil;
 import com.binance.connector.client.spot.rest.api.SpotRestApi;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class RateLimitOrderExample {
@@ -25,14 +26,15 @@ public class RateLimitOrderExample {
     }
 
     /**
-     * Query Unfilled Order Count
+     * Query Unfilled Order Count (USER_DATA)
      *
-     * <p>Displays the user&#39;s unfilled order count for all intervals. Weight: 40
+     * <p>Displays the user&#39;s unfilled order count for all intervals. Weight(IP): 40 Security
+     * Type: USER_DATA Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
-    public void rateLimitOrderExample() throws ApiException {
-        Double recvWindow = 5000.0d;
+    public void rateLimitOrderExample() throws ApiException, IOException {
+        Double recvWindow = 5000d;
         ApiResponse<RateLimitOrderResponse> response = getApi().rateLimitOrder(recvWindow);
         System.out.println(response.getData());
     }

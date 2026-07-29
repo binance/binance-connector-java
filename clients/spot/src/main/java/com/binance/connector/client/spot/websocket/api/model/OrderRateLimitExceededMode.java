@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,7 +21,11 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets orderRateLimitExceededMode */
+/**
+ * Supported values: &lt;br&gt; &#x60;DO_NOTHING&#x60; (default)- will only attempt to cancel the
+ * order if account has not exceeded the unfilled order rate limit&lt;br&gt; &#x60;CANCEL_ONLY&#x60;
+ * - will always cancel the order
+ */
 @JsonAdapter(OrderRateLimitExceededMode.Adapter.class)
 public enum OrderRateLimitExceededMode {
     DO_NOTHING("DO_NOTHING"),

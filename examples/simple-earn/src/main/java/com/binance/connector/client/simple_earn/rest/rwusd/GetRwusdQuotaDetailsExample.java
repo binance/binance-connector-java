@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdQuotaDetailsResponse;
+import java.io.IOException;
 
 /** API examples for RwusdApi */
 public class GetRwusdQuotaDetailsExample {
@@ -29,11 +30,11 @@ public class GetRwusdQuotaDetailsExample {
      * Get RWUSD Quota Details (USER_DATA)
      *
      * <p>Get RWUSD quota details including subscription quota, fast redemption quota, and standard
-     * redemption quota. Weight: 150
+     * redemption quota. Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getRwusdQuotaDetailsExample() throws ApiException {
+    public void getRwusdQuotaDetailsExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetRwusdQuotaDetailsResponse> response =
                 getApi().getRwusdQuotaDetails(recvWindow);

@@ -8,8 +8,9 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewCmOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewCmOrderResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.OrderType;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.Side;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.Type;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class NewCmOrderExample {
@@ -29,20 +30,21 @@ public class NewCmOrderExample {
     }
 
     /**
-     * New CM Order(TRADE)
+     * New CM Order (TRADE)
      *
-     * <p>Place new CM order * If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60; : *
-     * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. *
-     * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the
-     * order(FILLED or EXPIRED) will be returned directly. Weight: 1
+     * <p>Place new CM order Weight(IP): 1 Security Type: TRADE Notes: - Additional mandatory
+     * parameters based on &#x60;type&#x60;: - If &#x60;newOrderRespType&#x60; is sent as
+     * &#x60;RESULT&#x60; : - &#x60;MARKET&#x60; order: the final FILLED result of the order will be
+     * return directly. - &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final
+     * status result of the order(FILLED or EXPIRED) will be returned directly.
      *
      * @throws ApiException if the Api call fails
      */
-    public void newCmOrderExample() throws ApiException {
+    public void newCmOrderExample() throws ApiException, IOException {
         NewCmOrderRequest newCmOrderRequest = new NewCmOrderRequest();
-        newCmOrderRequest.symbol("");
+        newCmOrderRequest.symbol("BTCUSDT");
         newCmOrderRequest.side(Side.BUY);
-        newCmOrderRequest.type(Type.LIMIT);
+        newCmOrderRequest.type(OrderType.STOP);
         ApiResponse<NewCmOrderResponse> response = getApi().newCmOrder(newCmOrderRequest);
         System.out.println(response.getData());
     }

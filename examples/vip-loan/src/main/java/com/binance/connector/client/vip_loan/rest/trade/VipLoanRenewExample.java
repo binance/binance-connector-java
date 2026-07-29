@@ -8,6 +8,7 @@ import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class VipLoanRenewExample {
@@ -26,16 +27,16 @@ public class VipLoanRenewExample {
     }
 
     /**
-     * VIP Loan Renew(TRADE)
+     * VIP Loan Renew (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. Weight: 6000
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void vipLoanRenewExample() throws ApiException {
+    public void vipLoanRenewExample() throws ApiException, IOException {
         VipLoanRenewRequest vipLoanRenewRequest = new VipLoanRenewRequest();
         vipLoanRenewRequest.orderId(1L);
-        vipLoanRenewRequest.loanTerm(0L);
+        vipLoanRenewRequest.loanTerm(30L);
         ApiResponse<VipLoanRenewResponse> response = getApi().vipLoanRenew(vipLoanRenewRequest);
         System.out.println(response.getData());
     }

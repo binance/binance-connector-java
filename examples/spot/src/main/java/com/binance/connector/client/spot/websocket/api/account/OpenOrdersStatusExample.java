@@ -29,13 +29,14 @@ public class OpenOrdersStatusExample {
     }
 
     /**
-     * WebSocket Current open orders
+     * Current open orders (USER_DATA)
      *
      * <p>Query execution status of all open orders. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the
-     * number of requested symbols: | Parameter | Weight | | --------- | ------ | |
-     * &#x60;symbol&#x60; | 6 | | none | 80 |
+     * status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
+     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
      */
     public void openOrdersStatusExampleAsync() {
         OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();
@@ -52,13 +53,14 @@ public class OpenOrdersStatusExample {
     }
 
     /**
-     * WebSocket Current open orders
+     * Current open orders (USER_DATA)
      *
      * <p>Query execution status of all open orders. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the
-     * number of requested symbols: | Parameter | Weight | | --------- | ------ | |
-     * &#x60;symbol&#x60; | 6 | | none | 80 |
+     * status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
+     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
      */
     public void openOrdersStatusExampleSync() {
         OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();

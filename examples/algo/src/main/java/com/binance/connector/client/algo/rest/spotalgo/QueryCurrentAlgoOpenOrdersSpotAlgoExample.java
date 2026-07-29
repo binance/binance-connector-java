@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for SpotAlgoApi */
 public class QueryCurrentAlgoOpenOrdersSpotAlgoExample {
@@ -25,13 +26,13 @@ public class QueryCurrentAlgoOpenOrdersSpotAlgoExample {
     }
 
     /**
-     * Query Current Algo Open Orders(USER_DATA)
+     * Query Current Spot Algo Open Orders (USER_DATA)
      *
-     * <p>Get all open SPOT TWAP orders Weight: 1
+     * <p>Get all open SPOT TWAP orders Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryCurrentAlgoOpenOrdersSpotAlgoExample() throws ApiException {
+    public void queryCurrentAlgoOpenOrdersSpotAlgoExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentAlgoOpenOrdersSpotAlgoResponse> response =
                 getApi().queryCurrentAlgoOpenOrdersSpotAlgo(recvWindow);

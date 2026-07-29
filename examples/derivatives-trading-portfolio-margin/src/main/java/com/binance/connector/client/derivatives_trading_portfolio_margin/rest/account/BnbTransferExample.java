@@ -8,6 +8,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.BnbTransferRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.BnbTransferResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.TransferSide;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class BnbTransferExample {
@@ -29,15 +31,15 @@ public class BnbTransferExample {
     /**
      * BNB transfer (TRADE)
      *
-     * <p>Transfer BNB in and out of UM * The endpoint can only be called 10 times per 10 minutes in
-     * a rolling manner Weight: 750
+     * <p>Transfer BNB in and out of UM Weight(IP): 750 Security Type: TRADE Notes: - The endpoint
+     * can only be called 10 times per 10 minutes in a rolling manner
      *
      * @throws ApiException if the Api call fails
      */
-    public void bnbTransferExample() throws ApiException {
+    public void bnbTransferExample() throws ApiException, IOException {
         BnbTransferRequest bnbTransferRequest = new BnbTransferRequest();
         bnbTransferRequest.amount(1.0d);
-        bnbTransferRequest.transferSide("");
+        bnbTransferRequest.transferSide(TransferSide.TO_UM);
         ApiResponse<BnbTransferResponse> response = getApi().bnbTransfer(bnbTransferRequest);
         System.out.println(response.getData());
     }

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.GetSubAccountDepositHistoryResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class GetSubAccountDepositHistoryExample {
@@ -28,13 +29,14 @@ public class GetSubAccountDepositHistoryExample {
     /**
      * Get Sub-account Deposit History (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account deposit history Weight: 1
+     * <p>Fetch sub-account deposit history Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getSubAccountDepositHistoryExample() throws ApiException {
-        String email = "sub-account-email@email.com";
-        String coin = "";
+    public void getSubAccountDepositHistoryExample() throws ApiException, IOException {
+        String email = "123@test.com";
+        Boolean includeSource = false;
+        String coin = "BTC";
         Long status = 0L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -45,6 +47,7 @@ public class GetSubAccountDepositHistoryExample {
         ApiResponse<GetSubAccountDepositHistoryResponse> response =
                 getApi().getSubAccountDepositHistory(
                                 email,
+                                includeSource,
                                 coin,
                                 status,
                                 startTime,

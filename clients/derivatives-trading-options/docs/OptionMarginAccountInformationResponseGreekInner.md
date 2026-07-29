@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**underlying** | **String** |  |  [optional] |
-|**delta** | **String** |  |  [optional] |
-|**theta** | **String** |  |  [optional] |
-|**gamma** | **String** |  |  [optional] |
-|**vega** | **String** |  |  [optional] |
+|**underlying** | **String** | underlying |  [optional] |
+|**delta** | **String** | delta |  [optional] |
+|**gamma** | **String** | gamma |  [optional] |
+|**theta** | **String** | theta |  [optional] |
+|**vega** | **String** | vega |  [optional] |
 
 
 

@@ -25,7 +25,7 @@ public class LiquidationOrderStreamsExample {
      * Liquidation Order Streams
      *
      * <p>The Liquidation Order Snapshot Streams push force liquidation order information for
-     * specific symbol. For each symbol，only the largest one liquidation order within 1000ms will be
+     * specific symbol. For each symbol，only the latest one liquidation order within 1000ms will be
      * pushed as the snapshot. If no liquidation happens in the interval of 1000ms, no stream will
      * be pushed. Update Speed: 1000ms
      *
@@ -34,7 +34,6 @@ public class LiquidationOrderStreamsExample {
     public void liquidationOrderStreamsExample() throws ApiException, InterruptedException {
         LiquidationOrderStreamsRequest liquidationOrderStreamsRequest =
                 new LiquidationOrderStreamsRequest();
-        liquidationOrderStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> response =
                 getApi().liquidationOrderStreams(liquidationOrderStreamsRequest);
         while (true) {

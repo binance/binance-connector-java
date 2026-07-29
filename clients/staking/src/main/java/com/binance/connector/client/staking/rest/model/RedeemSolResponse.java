@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RedeemSolResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemSolResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -48,6 +48,12 @@ public class RedeemSolResponse {
     @jakarta.annotation.Nullable
     private String solAmount;
 
+    public static final String SERIALIZED_NAME_REDEEM_ID = "redeemId";
+
+    @SerializedName(SERIALIZED_NAME_REDEEM_ID)
+    @jakarta.annotation.Nullable
+    private Long redeemId;
+
     public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchangeRate";
 
     @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
@@ -59,12 +65,6 @@ public class RedeemSolResponse {
     @SerializedName(SERIALIZED_NAME_ARRIVAL_TIME)
     @jakarta.annotation.Nullable
     private Long arrivalTime;
-
-    public static final String SERIALIZED_NAME_REDEEM_ID = "redeemId";
-
-    @SerializedName(SERIALIZED_NAME_REDEEM_ID)
-    @jakarta.annotation.Nullable
-    private Long redeemId;
 
     public RedeemSolResponse() {}
 
@@ -106,6 +106,25 @@ public class RedeemSolResponse {
         this.solAmount = solAmount;
     }
 
+    public RedeemSolResponse redeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+        return this;
+    }
+
+    /**
+     * Get redeemId
+     *
+     * @return redeemId
+     */
+    @jakarta.annotation.Nullable
+    public Long getRedeemId() {
+        return redeemId;
+    }
+
+    public void setRedeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+    }
+
     public RedeemSolResponse exchangeRate(@jakarta.annotation.Nullable String exchangeRate) {
         this.exchangeRate = exchangeRate;
         return this;
@@ -144,25 +163,6 @@ public class RedeemSolResponse {
         this.arrivalTime = arrivalTime;
     }
 
-    public RedeemSolResponse redeemId(@jakarta.annotation.Nullable Long redeemId) {
-        this.redeemId = redeemId;
-        return this;
-    }
-
-    /**
-     * Get redeemId
-     *
-     * @return redeemId
-     */
-    @jakarta.annotation.Nullable
-    public Long getRedeemId() {
-        return redeemId;
-    }
-
-    public void setRedeemId(@jakarta.annotation.Nullable Long redeemId) {
-        this.redeemId = redeemId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -174,14 +174,14 @@ public class RedeemSolResponse {
         RedeemSolResponse redeemSolResponse = (RedeemSolResponse) o;
         return Objects.equals(this.success, redeemSolResponse.success)
                 && Objects.equals(this.solAmount, redeemSolResponse.solAmount)
+                && Objects.equals(this.redeemId, redeemSolResponse.redeemId)
                 && Objects.equals(this.exchangeRate, redeemSolResponse.exchangeRate)
-                && Objects.equals(this.arrivalTime, redeemSolResponse.arrivalTime)
-                && Objects.equals(this.redeemId, redeemSolResponse.redeemId);
+                && Objects.equals(this.arrivalTime, redeemSolResponse.arrivalTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, solAmount, exchangeRate, arrivalTime, redeemId);
+        return Objects.hash(success, solAmount, redeemId, exchangeRate, arrivalTime);
     }
 
     @Override
@@ -190,9 +190,9 @@ public class RedeemSolResponse {
         sb.append("class RedeemSolResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		solAmount: ").append(toIndentedString(solAmount)).append("\n");
+        sb.append("		redeemId: ").append(toIndentedString(redeemId)).append("\n");
         sb.append("		exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
         sb.append("		arrivalTime: ").append(toIndentedString(arrivalTime)).append("\n");
-        sb.append("		redeemId: ").append(toIndentedString(redeemId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -208,6 +208,10 @@ public class RedeemSolResponse {
         String solAmountValueAsString = "";
         solAmountValueAsString = solAmountValue.toString();
         sb.append("solAmount=").append(urlEncode(solAmountValueAsString)).append("");
+        Object redeemIdValue = getRedeemId();
+        String redeemIdValueAsString = "";
+        redeemIdValueAsString = redeemIdValue.toString();
+        sb.append("redeemId=").append(urlEncode(redeemIdValueAsString)).append("");
         Object exchangeRateValue = getExchangeRate();
         String exchangeRateValueAsString = "";
         exchangeRateValueAsString = exchangeRateValue.toString();
@@ -216,10 +220,6 @@ public class RedeemSolResponse {
         String arrivalTimeValueAsString = "";
         arrivalTimeValueAsString = arrivalTimeValue.toString();
         sb.append("arrivalTime=").append(urlEncode(arrivalTimeValueAsString)).append("");
-        Object redeemIdValue = getRedeemId();
-        String redeemIdValueAsString = "";
-        redeemIdValueAsString = redeemIdValue.toString();
-        sb.append("redeemId=").append(urlEncode(redeemIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -250,9 +250,9 @@ public class RedeemSolResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("solAmount");
+        openapiFields.add("redeemId");
         openapiFields.add("exchangeRate");
         openapiFields.add("arrivalTime");
-        openapiFields.add("redeemId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

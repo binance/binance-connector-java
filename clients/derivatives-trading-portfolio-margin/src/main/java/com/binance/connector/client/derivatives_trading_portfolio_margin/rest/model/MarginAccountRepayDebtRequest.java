@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,7 +22,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -35,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountRepayDebtRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountRepayDebtRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -47,7 +46,7 @@ public class MarginAccountRepayDebtRequest {
 
     @SerializedName(SERIALIZED_NAME_AMOUNT)
     @jakarta.annotation.Nullable
-    private Double amount;
+    private String amount;
 
     public static final String SERIALIZED_NAME_SPECIFY_REPAY_ASSETS = "specifyRepayAssets";
 
@@ -83,7 +82,7 @@ public class MarginAccountRepayDebtRequest {
         this.asset = asset;
     }
 
-    public MarginAccountRepayDebtRequest amount(@jakarta.annotation.Nullable Double amount) {
+    public MarginAccountRepayDebtRequest amount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
         return this;
     }
@@ -94,12 +93,11 @@ public class MarginAccountRepayDebtRequest {
      * @return amount
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(@jakarta.annotation.Nullable Double amount) {
+    public void setAmount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
     }
 
@@ -110,7 +108,7 @@ public class MarginAccountRepayDebtRequest {
     }
 
     /**
-     * Get specifyRepayAssets
+     * Specific asset list to repay debt; Can be added in batch, separated by commas
      *
      * @return specifyRepayAssets
      */
@@ -129,7 +127,7 @@ public class MarginAccountRepayDebtRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than 60000
      *
      * @return recvWindow
      */
@@ -272,6 +270,14 @@ public class MarginAccountRepayDebtRequest {
                             "Expected the field `asset` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
+        }
+        if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull())
+                && !jsonObj.get("amount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `amount` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("amount").toString()));
         }
         if ((jsonObj.get("specifyRepayAssets") != null
                         && !jsonObj.get("specifyRepayAssets").isJsonNull())

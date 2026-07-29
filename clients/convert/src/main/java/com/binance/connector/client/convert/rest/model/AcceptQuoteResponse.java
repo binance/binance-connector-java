@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AcceptQuoteResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AcceptQuoteResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -100,7 +100,7 @@ public class AcceptQuoteResponse {
     }
 
     /**
-     * Get orderStatus
+     * Order processing status
      *
      * @return orderStatus
      */

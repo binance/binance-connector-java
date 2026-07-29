@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryResponse;
+import com.binance.connector.client.wallet.rest.model.Status;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class DepositHistoryExample {
@@ -27,22 +29,21 @@ public class DepositHistoryExample {
     /**
      * Deposit History (supporting network) (USER_DATA)
      *
-     * <p>Fetch deposit history. * Please notice the default &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. * If both
-     * &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are sent, time between
-     * &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must be less than 90
-     * days. Weight: 1
+     * <p>Fetch deposit history. Weight(IP): 1 Security Type: USER_DATA Notes: - Please notice the
+     * default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is
+     * within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days.
      *
      * @throws ApiException if the Api call fails
      */
-    public void depositHistoryExample() throws ApiException {
+    public void depositHistoryExample() throws ApiException, IOException {
         Boolean includeSource = false;
-        String coin = "";
-        Long status = 0L;
+        String coin = "BTC";
+        Status status = Status.STATUS_0;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         Long recvWindow = 5000L;
         String txId = "1";
         ApiResponse<DepositHistoryResponse> response =

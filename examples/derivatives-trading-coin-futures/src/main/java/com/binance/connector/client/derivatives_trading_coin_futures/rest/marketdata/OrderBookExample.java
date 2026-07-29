@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.OrderBookResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class OrderBookExample {
@@ -28,14 +29,14 @@ public class OrderBookExample {
     /**
      * Order Book
      *
-     * <p>Query orderbook on specific symbol Weight: Adjusted based on the limit: Limit | Weight
-     * ------------ | ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * <p>Query orderbook on specific symbol Weight: Adjusted based on the limit: | Limit | Weight |
+     * | ------------ | ------------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderBookExample() throws ApiException {
-        String symbol = "";
-        Long limit = 100L;
+    public void orderBookExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_PERP";
+        Long limit = 500L;
         ApiResponse<OrderBookResponse> response = getApi().orderBook(symbol, limit);
         System.out.println(response.getData());
     }

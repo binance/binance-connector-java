@@ -32,7 +32,6 @@ public class TradeStreamsExample {
      */
     public void tradeStreamsExample() throws ApiException, InterruptedException {
         TradeStreamsRequest tradeStreamsRequest = new TradeStreamsRequest();
-        tradeStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<TradeStreamsResponse> response =
                 getApi().tradeStreams(tradeStreamsRequest);
         while (true) {

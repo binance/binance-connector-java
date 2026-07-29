@@ -7,6 +7,7 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import java.io.IOException;
 
 /** API examples for SpotAlgoApi */
 public class CancelAlgoOrderSpotAlgoExample {
@@ -25,14 +26,14 @@ public class CancelAlgoOrderSpotAlgoExample {
     }
 
     /**
-     * Cancel Algo Order(TRADE)
+     * Cancel Spot Algo Order (TRADE)
      *
-     * <p>Cancel an open TWAP order Weight: 1
+     * <p>Cancel an open TWAP order Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAlgoOrderSpotAlgoExample() throws ApiException {
-        Long algoId = 1L;
+    public void cancelAlgoOrderSpotAlgoExample() throws ApiException, IOException {
+        Long algoId = 14511L;
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderSpotAlgoResponse> response =
                 getApi().cancelAlgoOrderSpotAlgo(algoId, recvWindow);

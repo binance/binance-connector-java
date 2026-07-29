@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,12 +23,13 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
-import com.binance.connector.client.crypto_loan.rest.model.CheckCollateralRepayRateStableRateResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetCryptoLoansIncomeHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanBorrowHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanLtvAdjustmentHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanRepaymentHistoryResponse;
+import com.binance.connector.client.crypto_loan.rest.model.OrderType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -80,55 +81,20 @@ public class StableRateApiTest {
     }
 
     /**
-     * Check Collateral Repay Rate(USER_DATA)
+     * Get Crypto Loans Income History (USER_DATA)
      *
-     * <p>Get the the rate of collateral coin / loan coin when using collateral repay, the rate will
-     * be valid within 8 second. Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void checkCollateralRepayRateStableRateTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
-        Double repayAmount = 1d;
-        Long recvWindow = 5000L;
-        ApiResponse<CheckCollateralRepayRateStableRateResponse> response =
-                api.checkCollateralRepayRateStableRate(
-                        loanCoin, collateralCoin, repayAmount, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "loanCoin=&collateralCoin=&repayAmount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "daf94761a57c1455fad13013a2f9ee4ce20c3214895583fec61620ef05b9a867",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/repay/collateral/rate", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Crypto Loans Income History(USER_DATA)
-     *
-     * <p>Get Crypto Loans Income History * If startTime and endTime are not sent, the recent 7-day
-     * data will be returned. * The max interval between startTime and endTime is 30 days. Weight:
-     * 6000
+     * <p>Get Crypto Loans Income History Weight(UID): 6000 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, the most recent 7 days of
+     * data are returned. - The maximum interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 30 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCryptoLoansIncomeHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
-        String type = "1";
+    public void getCryptoLoansIncomeHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BUSD";
+        OrderType type = OrderType.borrowIn;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 10L;
@@ -146,28 +112,28 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BUSD&type=borrowIn&startTime=1623319461670&endTime=1641782889000&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&type=1&startTime=1623319461670&endTime=1641782889000&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "fc6cecaab649b163a845cc9e78ea8541f91768db6412aab193710efb1c4155fb",
+                "b0dbea90dc8b771494ba76c8682f1b4df66dd5aff20d97822203b06c71c2f8d6",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/income", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan Borrow History(USER_DATA)
+     * Get Loan Borrow History (USER_DATA)
      *
-     * <p>Get Loan Borrow History * If startTime and endTime are not sent, the recent 90-day data
-     * will be returned. * The max interval between startTime and endTime is 180 days. Weight: 400
+     * <p>Get Loan Borrow History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanBorrowHistoryTest() throws ApiException, CryptoException {
+    public void getLoanBorrowHistoryTest() throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -194,29 +160,29 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/borrow/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan LTV Adjustment History(USER_DATA)
+     * Get Loan LTV Adjustment History (USER_DATA)
      *
-     * <p>Get Loan LTV Adjustment History * If startTime and endTime are not sent, the recent 90-day
-     * data will be returned. * The max interval between startTime and endTime is 180 days. Weight:
-     * 400
+     * <p>Get Loan LTV Adjustment History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanLtvAdjustmentHistoryTest() throws ApiException, CryptoException {
+    public void getLoanLtvAdjustmentHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -243,28 +209,28 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/ltv/adjustment/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan Repayment History(USER_DATA)
+     * Get Loan Repayment History (USER_DATA)
      *
-     * <p>Get Loan Repayment History * If startTime and endTime are not sent, the recent 90-day data
-     * will be returned. * The max interval between startTime and endTime is 180 days. Weight: 400
+     * <p>Get Loan Repayment History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanRepaymentHistoryTest() throws ApiException, CryptoException {
+    public void getLoanRepaymentHistoryTest() throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -291,11 +257,9 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/repay/history", actualRequest.url().encodedPath());
     }

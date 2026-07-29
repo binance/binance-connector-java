@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.staking.rest.StakingRestApiUtil;
 import com.binance.connector.client.staking.rest.api.StakingRestApi;
 import com.binance.connector.client.staking.rest.model.GetBoostRewardsHistoryResponse;
+import com.binance.connector.client.staking.rest.model.OrderType;
+import java.io.IOException;
 
 /** API examples for SolStakingApi */
 public class GetBoostRewardsHistoryExample {
@@ -25,20 +27,20 @@ public class GetBoostRewardsHistoryExample {
     }
 
     /**
-     * Get Boost Rewards History(USER_DATA)
+     * Get Boost Rewards History (USER_DATA)
      *
-     * <p>Get Boost rewards history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get Boost rewards history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBoostRewardsHistoryExample() throws ApiException {
-        String type = "CLAIM";
+    public void getBoostRewardsHistoryExample() throws ApiException, IOException {
+        OrderType type = OrderType.CLAIM;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

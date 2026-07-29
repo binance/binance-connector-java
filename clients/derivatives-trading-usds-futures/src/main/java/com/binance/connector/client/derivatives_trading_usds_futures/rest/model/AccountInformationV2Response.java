@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationV2Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV2Response {
     public static final String SERIALIZED_NAME_FEE_TIER = "feeTier";
 
@@ -53,6 +53,12 @@ public class AccountInformationV2Response {
     @SerializedName(SERIALIZED_NAME_FEE_BURN)
     @jakarta.annotation.Nullable
     private Boolean feeBurn;
+
+    public static final String SERIALIZED_NAME_CAN_TRADE = "canTrade";
+
+    @SerializedName(SERIALIZED_NAME_CAN_TRADE)
+    @jakarta.annotation.Nullable
+    private Boolean canTrade;
 
     public static final String SERIALIZED_NAME_CAN_DEPOSIT = "canDeposit";
 
@@ -165,12 +171,6 @@ public class AccountInformationV2Response {
     @jakarta.annotation.Nullable
     private List<@Valid AccountInformationV2ResponsePositionsInner> positions;
 
-    public static final String SERIALIZED_NAME_CAN_TRADE = "canTrade";
-
-    @SerializedName(SERIALIZED_NAME_CAN_TRADE)
-    @jakarta.annotation.Nullable
-    private Boolean canTrade;
-
     public AccountInformationV2Response() {}
 
     public AccountInformationV2Response feeTier(@jakarta.annotation.Nullable Long feeTier) {
@@ -179,7 +179,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get feeTier
+     * Account commission tier.
      *
      * @return feeTier
      */
@@ -198,7 +198,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get feeBurn
+     * Whether fee discount is enabled.
      *
      * @return feeBurn
      */
@@ -211,6 +211,25 @@ public class AccountInformationV2Response {
         this.feeBurn = feeBurn;
     }
 
+    public AccountInformationV2Response canTrade(@jakarta.annotation.Nullable Boolean canTrade) {
+        this.canTrade = canTrade;
+        return this;
+    }
+
+    /**
+     * Whether trading is enabled.
+     *
+     * @return canTrade
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanTrade() {
+        return canTrade;
+    }
+
+    public void setCanTrade(@jakarta.annotation.Nullable Boolean canTrade) {
+        this.canTrade = canTrade;
+    }
+
     public AccountInformationV2Response canDeposit(
             @jakarta.annotation.Nullable Boolean canDeposit) {
         this.canDeposit = canDeposit;
@@ -218,7 +237,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get canDeposit
+     * Whether transfer-in is enabled.
      *
      * @return canDeposit
      */
@@ -238,7 +257,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get canWithdraw
+     * Whether transfer-out is enabled.
      *
      * @return canWithdraw
      */
@@ -257,7 +276,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get updateTime
+     * Reserved field, ignore.
      *
      * @return updateTime
      */
@@ -277,7 +296,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get multiAssetsMargin
+     * Whether multi-assets mode is enabled.
      *
      * @return multiAssetsMargin
      */
@@ -297,7 +316,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get tradeGroupId
+     * Trade group identifier.
      *
      * @return tradeGroupId
      */
@@ -317,7 +336,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalInitialMargin
+     * Total initial margin requirement.
      *
      * @return totalInitialMargin
      */
@@ -337,7 +356,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalMaintMargin
+     * Total maintenance margin requirement.
      *
      * @return totalMaintMargin
      */
@@ -357,7 +376,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalWalletBalance
+     * Total wallet balance.
      *
      * @return totalWalletBalance
      */
@@ -377,7 +396,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalUnrealizedProfit
+     * Total unrealized profit.
      *
      * @return totalUnrealizedProfit
      */
@@ -398,7 +417,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalMarginBalance
+     * Total margin balance.
      *
      * @return totalMarginBalance
      */
@@ -418,7 +437,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalPositionInitialMargin
+     * Initial margin required for positions.
      *
      * @return totalPositionInitialMargin
      */
@@ -439,7 +458,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalOpenOrderInitialMargin
+     * Initial margin required for open orders.
      *
      * @return totalOpenOrderInitialMargin
      */
@@ -460,7 +479,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalCrossWalletBalance
+     * Cross wallet balance.
      *
      * @return totalCrossWalletBalance
      */
@@ -481,7 +500,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get totalCrossUnPnl
+     * Unrealized PnL for cross positions.
      *
      * @return totalCrossUnPnl
      */
@@ -501,7 +520,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get availableBalance
+     * Available balance.
      *
      * @return availableBalance
      */
@@ -521,7 +540,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount.
      *
      * @return maxWithdrawAmount
      */
@@ -551,7 +570,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get assets
+     * Asset-level account details.
      *
      * @return assets
      */
@@ -584,7 +603,7 @@ public class AccountInformationV2Response {
     }
 
     /**
-     * Get positions
+     * Position details for symbols. One-way mode returns BOTH; hedge mode returns LONG/SHORT.
      *
      * @return positions
      */
@@ -600,25 +619,6 @@ public class AccountInformationV2Response {
         this.positions = positions;
     }
 
-    public AccountInformationV2Response canTrade(@jakarta.annotation.Nullable Boolean canTrade) {
-        this.canTrade = canTrade;
-        return this;
-    }
-
-    /**
-     * Get canTrade
-     *
-     * @return canTrade
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getCanTrade() {
-        return canTrade;
-    }
-
-    public void setCanTrade(@jakarta.annotation.Nullable Boolean canTrade) {
-        this.canTrade = canTrade;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -631,6 +631,7 @@ public class AccountInformationV2Response {
                 (AccountInformationV2Response) o;
         return Objects.equals(this.feeTier, accountInformationV2Response.feeTier)
                 && Objects.equals(this.feeBurn, accountInformationV2Response.feeBurn)
+                && Objects.equals(this.canTrade, accountInformationV2Response.canTrade)
                 && Objects.equals(this.canDeposit, accountInformationV2Response.canDeposit)
                 && Objects.equals(this.canWithdraw, accountInformationV2Response.canWithdraw)
                 && Objects.equals(this.updateTime, accountInformationV2Response.updateTime)
@@ -664,8 +665,7 @@ public class AccountInformationV2Response {
                 && Objects.equals(
                         this.maxWithdrawAmount, accountInformationV2Response.maxWithdrawAmount)
                 && Objects.equals(this.assets, accountInformationV2Response.assets)
-                && Objects.equals(this.positions, accountInformationV2Response.positions)
-                && Objects.equals(this.canTrade, accountInformationV2Response.canTrade);
+                && Objects.equals(this.positions, accountInformationV2Response.positions);
     }
 
     @Override
@@ -673,6 +673,7 @@ public class AccountInformationV2Response {
         return Objects.hash(
                 feeTier,
                 feeBurn,
+                canTrade,
                 canDeposit,
                 canWithdraw,
                 updateTime,
@@ -690,8 +691,7 @@ public class AccountInformationV2Response {
                 availableBalance,
                 maxWithdrawAmount,
                 assets,
-                positions,
-                canTrade);
+                positions);
     }
 
     @Override
@@ -700,6 +700,7 @@ public class AccountInformationV2Response {
         sb.append("class AccountInformationV2Response {\n");
         sb.append("		feeTier: ").append(toIndentedString(feeTier)).append("\n");
         sb.append("		feeBurn: ").append(toIndentedString(feeBurn)).append("\n");
+        sb.append("		canTrade: ").append(toIndentedString(canTrade)).append("\n");
         sb.append("		canDeposit: ").append(toIndentedString(canDeposit)).append("\n");
         sb.append("		canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
@@ -732,7 +733,6 @@ public class AccountInformationV2Response {
         sb.append("		maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
         sb.append("		assets: ").append(toIndentedString(assets)).append("\n");
         sb.append("		positions: ").append(toIndentedString(positions)).append("\n");
-        sb.append("		canTrade: ").append(toIndentedString(canTrade)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -748,6 +748,10 @@ public class AccountInformationV2Response {
         String feeBurnValueAsString = "";
         feeBurnValueAsString = feeBurnValue.toString();
         sb.append("feeBurn=").append(urlEncode(feeBurnValueAsString)).append("");
+        Object canTradeValue = getCanTrade();
+        String canTradeValueAsString = "";
+        canTradeValueAsString = canTradeValue.toString();
+        sb.append("canTrade=").append(urlEncode(canTradeValueAsString)).append("");
         Object canDepositValue = getCanDeposit();
         String canDepositValueAsString = "";
         canDepositValueAsString = canDepositValue.toString();
@@ -844,10 +848,6 @@ public class AccountInformationV2Response {
                         ((Collection) positionsValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("positions=").append(urlEncode(positionsValueAsString)).append("");
-        Object canTradeValue = getCanTrade();
-        String canTradeValueAsString = "";
-        canTradeValueAsString = canTradeValue.toString();
-        sb.append("canTrade=").append(urlEncode(canTradeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -878,6 +878,7 @@ public class AccountInformationV2Response {
         openapiFields = new HashSet<String>();
         openapiFields.add("feeTier");
         openapiFields.add("feeBurn");
+        openapiFields.add("canTrade");
         openapiFields.add("canDeposit");
         openapiFields.add("canWithdraw");
         openapiFields.add("updateTime");
@@ -896,7 +897,6 @@ public class AccountInformationV2Response {
         openapiFields.add("maxWithdrawAmount");
         openapiFields.add("assets");
         openapiFields.add("positions");
-        openapiFields.add("canTrade");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

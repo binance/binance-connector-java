@@ -6,8 +6,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
 import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.Asset;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeRwusdRequest;
 import com.binance.connector.client.simple_earn.rest.model.SubscribeRwusdResponse;
+import java.io.IOException;
 
 /** API examples for RwusdApi */
 public class SubscribeRwusdExample {
@@ -27,16 +29,18 @@ public class SubscribeRwusdExample {
     }
 
     /**
-     * Subscribe RWUSD(TRADE)
+     * Subscribe RWUSD (TRADE)
      *
-     * <p>Subscribe RWUSD * You need to open Enable Spot &amp; Margin Trading permission for the API
-     * Key which requests this endpoint. Weight: 150
+     * <p>Subscribe RWUSD Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable Spot
+     * &amp; Margin Trading permission for the API Key which requests this endpoint. - This API only
+     * supports RWUSD subscription using assets held in the Spot Account. Subscriptions initiated
+     * from the Funding Account or any other account type are not supported.
      *
      * @throws ApiException if the Api call fails
      */
-    public void subscribeRwusdExample() throws ApiException {
+    public void subscribeRwusdExample() throws ApiException, IOException {
         SubscribeRwusdRequest subscribeRwusdRequest = new SubscribeRwusdRequest();
-        subscribeRwusdRequest.asset("");
+        subscribeRwusdRequest.asset(Asset.USDT);
         subscribeRwusdRequest.amount(1.0d);
         ApiResponse<SubscribeRwusdResponse> response =
                 getApi().subscribeRwusd(subscribeRwusdRequest);

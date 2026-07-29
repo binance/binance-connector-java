@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.DailyAccountSnapshotResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class DailyAccountSnapshotExample {
@@ -27,14 +29,14 @@ public class DailyAccountSnapshotExample {
     /**
      * Daily Account Snapshot (USER_DATA)
      *
-     * <p>Daily account snapshot * The query time period must be less then 30 days * Support query
-     * within the last one month only * If startTimeand endTime not sent, return records of the last
-     * 7 days by default Weight: 2400
+     * <p>Daily account snapshot Weight(IP): 2400 Security Type: USER_DATA Notes: - The query time
+     * period must be less then 30 days - Support query within the last one month only - If
+     * startTimeand endTime not sent, return records of the last 7 days by default
      *
      * @throws ApiException if the Api call fails
      */
-    public void dailyAccountSnapshotExample() throws ApiException {
-        String type = "";
+    public void dailyAccountSnapshotExample() throws ApiException, IOException {
+        OrderType type = OrderType.MAIN_UMFUTURE;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 7L;

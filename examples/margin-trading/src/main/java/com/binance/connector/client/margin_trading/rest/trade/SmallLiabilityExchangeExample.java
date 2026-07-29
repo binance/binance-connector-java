@@ -5,8 +5,8 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
-import com.binance.connector.client.margin_trading.rest.model.AssetNames;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class SmallLiabilityExchangeExample {
@@ -28,15 +28,16 @@ public class SmallLiabilityExchangeExample {
     /**
      * Small Liability Exchange (MARGIN)
      *
-     * <p>Small Liability Exchange * Only convert once within 6 hours * Only liability valuation
-     * less than 10 USDT are supported * The maximum number of coin is 10 Weight: 3000(UID)
+     * <p>Small Liability Exchange Weight(UID): 3000 Security Type: MARGIN Notes: - Only convert
+     * once within 6 hours - Only liability valuation less than 10 USDT are supported - The maximum
+     * number of coin is 10
      *
      * @throws ApiException if the Api call fails
      */
-    public void smallLiabilityExchangeExample() throws ApiException {
+    public void smallLiabilityExchangeExample() throws ApiException, IOException {
         SmallLiabilityExchangeRequest smallLiabilityExchangeRequest =
                 new SmallLiabilityExchangeRequest();
-        smallLiabilityExchangeRequest.assetNames(new AssetNames());
+        smallLiabilityExchangeRequest.assetNames("BTC,ETH");
         getApi().smallLiabilityExchange(smallLiabilityExchangeRequest);
     }
 }

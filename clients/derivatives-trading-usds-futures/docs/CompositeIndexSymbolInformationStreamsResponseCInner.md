@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**bLowerCase** | **String** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
-|**wLowerCase** | **String** |  |  [optional] |
-|**W** | **String** |  |  [optional] |
-|**iLowerCase** | **String** |  |  [optional] |
+|**bLowerCase** | **String** | Base asset |  [optional] |
+|**qLowerCase** | **String** | Quote asset |  [optional] |
+|**wLowerCase** | **String** | Weight in quantity |  [optional] |
+|**W** | **String** | Weight in percentage |  [optional] |
+|**iLowerCase** | **String** | Index price |  [optional] |
 
 
 

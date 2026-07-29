@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** RiskLevelChange */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RiskLevelChange extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -71,7 +71,7 @@ public class RiskLevelChange extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -90,7 +90,8 @@ public class RiskLevelChange extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Risk level. This feature only applies to VIP and Market Maker accounts. Risk level is
+     * re-evaluated on: funds transfer, trade fill, option expiry.
      *
      * @return sLowerCase
      */
@@ -109,7 +110,7 @@ public class RiskLevelChange extends BaseDTO {
     }
 
     /**
-     * Get mb
+     * Margin balance
      *
      * @return mb
      */
@@ -128,7 +129,7 @@ public class RiskLevelChange extends BaseDTO {
     }
 
     /**
-     * Get mm
+     * Maintenance margin
      *
      * @return mm
      */

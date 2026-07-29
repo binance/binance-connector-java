@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** NewMarginOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewMarginOrderResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -140,7 +140,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -159,7 +159,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -178,7 +178,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -197,7 +197,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get transactTime
+     * Transact Time.
      *
      * @return transactTime
      */
@@ -216,7 +216,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -235,7 +235,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -254,7 +254,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -274,7 +274,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -293,7 +293,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -312,7 +312,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -331,7 +331,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -350,7 +350,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -370,7 +370,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get marginBuyBorrowAmount
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAmount
      */
@@ -391,7 +391,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get marginBuyBorrowAsset
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAsset
      */
@@ -419,7 +419,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get fills
+     * Fills.
      *
      * @return fills
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryOptionOrderHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryOptionOrderHistoryResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -158,7 +158,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id
      *
      * @return orderId
      */
@@ -177,7 +177,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -196,7 +196,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get price
+     * price
      *
      * @return price
      */
@@ -216,7 +216,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get quantity
+     * quantity
      *
      * @return quantity
      */
@@ -236,7 +236,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty
      *
      * @return executedQty
      */
@@ -255,7 +255,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get side
+     * side
      *
      * @return side
      */
@@ -274,7 +274,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get type
+     * type
      *
      * @return type
      */
@@ -294,7 +294,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force
      *
      * @return timeInForce
      */
@@ -314,7 +314,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * reduce Only
      *
      * @return reduceOnly
      */
@@ -334,7 +334,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get createTime
+     * create Time
      *
      * @return createTime
      */
@@ -354,7 +354,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update Time
      *
      * @return updateTime
      */
@@ -373,7 +373,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get status
+     * status
      *
      * @return status
      */
@@ -393,7 +393,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * avg Price
      *
      * @return avgPrice
      */
@@ -413,7 +413,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id
      *
      * @return clientOrderId
      */
@@ -433,7 +433,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -453,7 +453,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -473,7 +473,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -493,7 +493,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -512,7 +512,7 @@ public class QueryOptionOrderHistoryResponseInner {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */

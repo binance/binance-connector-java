@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryResponse;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class WithdrawHistoryExample {
@@ -27,24 +28,24 @@ public class WithdrawHistoryExample {
     /**
      * Withdraw History (supporting network) (USER_DATA)
      *
-     * <p>Fetch withdraw history. * &#x60;network&#x60; may not be in the response for old withdraw.
-     * * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that
-     * time interval is within 0-90 days. * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are
-     * sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. *
+     * <p>Fetch withdraw history Weight(UID): 18000 (10 requests per second) Security Type:
+     * USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old withdraw. - Please
+     * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
+     * interval is within 0-90 days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are
+     * sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. -
      * If &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; must be less than 7 days. * If &#x60;withdrawOrderId&#x60; is sent,
+     * &#x60;endTime&#x60; must be less than 7 days. - If &#x60;withdrawOrderId&#x60; is sent,
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records
-     * by default. * Maximum support &#x60;idList&#x60; number is 45. Weight: 18000 Request limit:
-     * 10 requests per second
+     * by default. - Maximum support &#x60;idList&#x60; number is 45.
      *
      * @throws ApiException if the Api call fails
      */
-    public void withdrawHistoryExample() throws ApiException {
-        String coin = "";
+    public void withdrawHistoryExample() throws ApiException, IOException {
+        String coin = "BTC";
         String withdrawOrderId = "1";
         Long status = 0L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         String idList = "";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

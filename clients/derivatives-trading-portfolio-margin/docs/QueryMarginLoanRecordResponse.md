@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rows** | [**List&lt;QueryMarginLoanRecordResponseRowsInner&gt;**](QueryMarginLoanRecordResponseRowsInner.md) |  |  [optional] |
-|**total** | **Long** |  |  [optional] |
+|**rows** | [**List&lt;QueryMarginLoanRecordResponseRowsInner&gt;**](QueryMarginLoanRecordResponseRowsInner.md) | Rows. |  [optional] |
+|**total** | **Long** | Total. |  [optional] |
 
 
 

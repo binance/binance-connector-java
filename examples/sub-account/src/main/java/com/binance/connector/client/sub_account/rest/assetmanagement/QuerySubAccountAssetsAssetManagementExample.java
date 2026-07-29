@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountAssetsAssetManagementResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class QuerySubAccountAssetsAssetManagementExample {
@@ -26,14 +27,14 @@ public class QuerySubAccountAssetsAssetManagementExample {
     }
 
     /**
-     * Query Sub-account Assets (For Master Account) (USER_DATA)
+     * Query Sub-account Assets V4 (For Master Account) (USER_DATA)
      *
-     * <p>Fetch sub-account assets Weight: 60
+     * <p>Fetch sub-account assets Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void querySubAccountAssetsAssetManagementExample() throws ApiException {
-        String email = "sub-account-email@email.com";
+    public void querySubAccountAssetsAssetManagementExample() throws ApiException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountAssetsAssetManagementResponse> response =
                 getApi().querySubAccountAssetsAssetManagement(email, recvWindow);

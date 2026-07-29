@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset */
+/** quote Asset object. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -105,7 +105,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -125,7 +125,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get borrowEnabled
+     * borrow Enabled.
      *
      * @return borrowEnabled
      */
@@ -145,7 +145,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get borrowed
+     * borrowed.
      *
      * @return borrowed
      */
@@ -165,7 +165,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get free
+     * free.
      *
      * @return free
      */
@@ -185,7 +185,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get interest
+     * interest.
      *
      * @return interest
      */
@@ -205,7 +205,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get locked
+     * locked.
      *
      * @return locked
      */
@@ -225,7 +225,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get netAsset
+     * net Asset.
      *
      * @return netAsset
      */
@@ -245,7 +245,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get netAssetOfBtc
+     * net Asset Of Btc.
      *
      * @return netAssetOfBtc
      */
@@ -265,7 +265,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get repayEnabled
+     * repay Enabled.
      *
      * @return repayEnabled
      */
@@ -285,7 +285,7 @@ public class QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset {
     }
 
     /**
-     * Get totalAsset
+     * total Asset.
      *
      * @return totalAsset
      */

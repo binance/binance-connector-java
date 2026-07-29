@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,17 +24,13 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets contractType */
 @JsonAdapter(ContractType.Adapter.class)
 public enum ContractType {
+    ALL("ALL"),
+
     PERPETUAL("PERPETUAL"),
 
     CURRENT_QUARTER("CURRENT_QUARTER"),
 
-    NEXT_QUARTER("NEXT_QUARTER"),
-
-    CURRENT_QUARTER_DELIVERING("CURRENT_QUARTER_DELIVERING"),
-
-    NEXT_QUARTER_DELIVERING("NEXT_QUARTER_DELIVERING"),
-
-    PERPETUAL_DELIVERING("PERPETUAL_DELIVERING");
+    NEXT_QUARTER("NEXT_QUARTER");
 
     private String value;
 

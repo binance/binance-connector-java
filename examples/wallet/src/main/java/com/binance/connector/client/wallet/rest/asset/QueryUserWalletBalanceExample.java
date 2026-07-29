@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.QueryUserWalletBalanceResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class QueryUserWalletBalanceExample {
@@ -27,11 +28,11 @@ public class QueryUserWalletBalanceExample {
     /**
      * Query User Wallet Balance (USER_DATA)
      *
-     * <p>Query User Wallet Balance Weight: 60
+     * <p>Query User Wallet Balance Weight(IP): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryUserWalletBalanceExample() throws ApiException {
+    public void queryUserWalletBalanceExample() throws ApiException, IOException {
         String quoteAsset = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<QueryUserWalletBalanceResponse> response =

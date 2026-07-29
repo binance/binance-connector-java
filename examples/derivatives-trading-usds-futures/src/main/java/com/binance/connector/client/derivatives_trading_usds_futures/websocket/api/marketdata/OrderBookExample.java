@@ -35,13 +35,13 @@ public class OrderBookExample {
      * to continuously monitor order book updates, please consider using Websocket Market Streams: *
      * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60; You can use
      * &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to maintain
-     * a local order book. Retail Price Improvement(RPI) orders are not visible and excluded in the
-     * response message. Weight: Adjusted based on the limit: | Limit | Weight | | ------------- |
-     * ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
+     * a local order book. **Note:** - Retail Price Improvement(RPI) orders are not visible and
+     * excluded in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
+     * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      */
     public void orderBookExampleAsync() {
         OrderBookRequest orderBookRequest = new OrderBookRequest();
-        orderBookRequest.symbol("");
+        orderBookRequest.symbol("BTCUSDT");
         CompletableFuture<OrderBookResponse> future = getApi().orderBook(orderBookRequest);
         future.handle(
                 (response, error) -> {
@@ -60,13 +60,13 @@ public class OrderBookExample {
      * to continuously monitor order book updates, please consider using Websocket Market Streams: *
      * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60; You can use
      * &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to maintain
-     * a local order book. Retail Price Improvement(RPI) orders are not visible and excluded in the
-     * response message. Weight: Adjusted based on the limit: | Limit | Weight | | ------------- |
-     * ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
+     * a local order book. **Note:** - Retail Price Improvement(RPI) orders are not visible and
+     * excluded in the response message. Weight: Adjusted based on the limit: | Limit | Weight | |
+     * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
      */
     public void orderBookExampleSync() {
         OrderBookRequest orderBookRequest = new OrderBookRequest();
-        orderBookRequest.symbol("");
+        orderBookRequest.symbol("BTCUSDT");
         CompletableFuture<OrderBookResponse> future = getApi().orderBook(orderBookRequest);
         OrderBookResponse response = future.join();
         System.out.println(response);

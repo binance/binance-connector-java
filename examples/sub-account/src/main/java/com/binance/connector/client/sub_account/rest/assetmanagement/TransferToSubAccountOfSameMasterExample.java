@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.TransferToSubAccountOfSameMasterRequest;
 import com.binance.connector.client.sub_account.rest.model.TransferToSubAccountOfSameMasterResponse;
+import java.io.IOException;
 
 /** API examples for AssetManagementApi */
 public class TransferToSubAccountOfSameMasterExample {
@@ -29,16 +30,17 @@ public class TransferToSubAccountOfSameMasterExample {
     /**
      * Transfer to Sub-account of Same Master (For Sub-account) (USER_DATA)
      *
-     * <p>Transfer to Sub-account of Same Master * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 1
+     * <p>Transfer to Sub-account of Same Master Weight(IP): 1 Security Type: USER_DATA Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
-    public void transferToSubAccountOfSameMasterExample() throws ApiException {
+    public void transferToSubAccountOfSameMasterExample() throws ApiException, IOException {
         TransferToSubAccountOfSameMasterRequest transferToSubAccountOfSameMasterRequest =
                 new TransferToSubAccountOfSameMasterRequest();
-        transferToSubAccountOfSameMasterRequest.toEmail("");
-        transferToSubAccountOfSameMasterRequest.asset("");
+        transferToSubAccountOfSameMasterRequest.toEmail("abc@test.com");
+        transferToSubAccountOfSameMasterRequest.asset("BTC");
         transferToSubAccountOfSameMasterRequest.amount(1.0d);
         ApiResponse<TransferToSubAccountOfSameMasterResponse> response =
                 getApi().transferToSubAccountOfSameMaster(transferToSubAccountOfSameMasterRequest);

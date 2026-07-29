@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.GetBorrowInterestRateResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetBorrowInterestRateExample {
@@ -25,14 +26,14 @@ public class GetBorrowInterestRateExample {
     }
 
     /**
-     * Get Borrow Interest Rate(USER_DATA)
+     * Get Borrow Interest Rate (USER_DATA)
      *
-     * <p>Get Borrow Interest Rate Weight: 400
+     * <p>Get Borrow Interest Rate Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getBorrowInterestRateExample() throws ApiException {
-        String loanCoin = "";
+    public void getBorrowInterestRateExample() throws ApiException, IOException {
+        String loanCoin = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<GetBorrowInterestRateResponse> response =
                 getApi().getBorrowInterestRate(loanCoin, recvWindow);

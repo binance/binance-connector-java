@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -135,7 +135,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -155,7 +155,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origClientOrderId
+     * Orig Client Order ID.
      *
      * @return origClientOrderId
      */
@@ -175,7 +175,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -195,7 +195,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -215,7 +215,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -235,7 +235,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -255,7 +255,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -275,7 +275,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -295,7 +295,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -315,7 +315,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -335,7 +335,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -355,7 +355,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -375,7 +375,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -395,7 +395,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -415,7 +415,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get icebergQty
+     * Iceberg Qty.
      *
      * @return icebergQty
      */

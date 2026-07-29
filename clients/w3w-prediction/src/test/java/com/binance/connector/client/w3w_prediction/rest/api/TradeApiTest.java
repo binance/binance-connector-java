@@ -36,6 +36,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.QueryOrderHistoryR
 import com.binance.connector.client.w3w_prediction.rest.model.Side;
 import com.binance.connector.client.w3w_prediction.rest.model.TradeSide;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -87,7 +88,7 @@ public class TradeApiTest {
     }
 
     /**
-     * Batch Cancel Orders
+     * Batch Cancel Orders (TRADE)
      *
      * <p>Cancel one or more active prediction orders in a single request. Requires SAS
      * authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint uses indexed
@@ -110,7 +111,7 @@ public class TradeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void batchCancelOrdersTest() throws ApiException, CryptoException {
+    public void batchCancelOrdersTest() throws ApiException, CryptoException, IOException {
         BatchCancelOrdersRequest batchCancelOrdersRequest = new BatchCancelOrdersRequest();
         batchCancelOrdersRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         batchCancelOrdersRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");
@@ -135,7 +136,7 @@ public class TradeApiTest {
     }
 
     /**
-     * Get Quote
+     * Get Quote (TRADE)
      *
      * <p>Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be used in
      * the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE Response Notes: -
@@ -151,7 +152,7 @@ public class TradeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getQuoteTest() throws ApiException, CryptoException {
+    public void getQuoteTest() throws ApiException, CryptoException, IOException {
         GetQuoteRequest getQuoteRequest = new GetQuoteRequest();
         getQuoteRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         getQuoteRequest.tokenId("112233");
@@ -169,7 +170,6 @@ public class TradeApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -179,7 +179,7 @@ public class TradeApiTest {
     }
 
     /**
-     * Place Order
+     * Place Order (TRADE)
      *
      * <p>Place a prediction order using a previously obtained quote. Requires SAS authorization.
      * Weight(IP): 200 Security Type: TRADE Notes: - Validation rules: | orderType | timeInForce |
@@ -190,7 +190,7 @@ public class TradeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void placeOrderTest() throws ApiException, CryptoException {
+    public void placeOrderTest() throws ApiException, CryptoException, IOException {
         PlaceOrderRequest placeOrderRequest = new PlaceOrderRequest();
         placeOrderRequest.walletAddress("0x12e32db8817e292508c34111cbc4b23340df542c");
         placeOrderRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");
@@ -209,7 +209,6 @@ public class TradeApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -219,7 +218,7 @@ public class TradeApiTest {
     }
 
     /**
-     * Query Active Orders
+     * Query Active Orders (USER_DATA)
      *
      * <p>Get active (open) prediction orders for the authenticated user. Weight(IP): 200 Security
      * Type: USER_DATA
@@ -227,7 +226,7 @@ public class TradeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryActiveOrdersTest() throws ApiException, CryptoException {
+    public void queryActiveOrdersTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         TradeSide tradeSide = TradeSide.BUY;
         String l1Category = "crypto";
@@ -246,7 +245,6 @@ public class TradeApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -257,7 +255,7 @@ public class TradeApiTest {
     }
 
     /**
-     * Query Order History
+     * Query Order History (USER_DATA)
      *
      * <p>Get historical prediction orders (all statuses) for the authenticated user, with optional
      * filters. Weight(IP): 200 Security Type: USER_DATA
@@ -265,7 +263,7 @@ public class TradeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryOrderHistoryTest() throws ApiException, CryptoException {
+    public void queryOrderHistoryTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String l1Category = "crypto";
         OrderType orderType = OrderType.MARKET;
@@ -293,7 +291,6 @@ public class TradeApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

@@ -2,6 +2,7 @@
 
 # Permissions
 
+Filter symbols by permissions
 
 ## Properties
 

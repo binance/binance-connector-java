@@ -11,9 +11,5 @@
 
 * `FULL` (value: `"FULL"`)
 
-* `MARKET` (value: `"MARKET"`)
-
-* `LIMIT` (value: `"LIMIT"`)
-
 
 

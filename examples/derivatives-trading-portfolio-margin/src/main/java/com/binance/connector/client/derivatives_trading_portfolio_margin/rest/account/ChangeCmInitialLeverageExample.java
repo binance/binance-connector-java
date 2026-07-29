@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.De
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.ChangeCmInitialLeverageRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.ChangeCmInitialLeverageResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class ChangeCmInitialLeverageExample {
@@ -29,15 +30,16 @@ public class ChangeCmInitialLeverageExample {
     /**
      * Change CM Initial Leverage (TRADE)
      *
-     * <p>Change user&#39;s initial leverage of specific symbol in CM. Weight: 1
+     * <p>Change user&#39;s initial leverage of specific symbol in CM. Weight(IP): 1 Security Type:
+     * TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changeCmInitialLeverageExample() throws ApiException {
+    public void changeCmInitialLeverageExample() throws ApiException, IOException {
         ChangeCmInitialLeverageRequest changeCmInitialLeverageRequest =
                 new ChangeCmInitialLeverageRequest();
-        changeCmInitialLeverageRequest.symbol("");
-        changeCmInitialLeverageRequest.leverage(0L);
+        changeCmInitialLeverageRequest.symbol("BTCUSD_200925");
+        changeCmInitialLeverageRequest.leverage(21L);
         ApiResponse<ChangeCmInitialLeverageResponse> response =
                 getApi().changeCmInitialLeverage(changeCmInitialLeverageRequest);
         System.out.println(response.getData());

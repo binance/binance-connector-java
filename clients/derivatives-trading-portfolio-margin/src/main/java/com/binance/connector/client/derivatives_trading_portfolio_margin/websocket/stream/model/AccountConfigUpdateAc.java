@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+ * Portfolio Margin WebSocket Market Streams
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountConfigUpdateAc */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountConfigUpdateAc extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -59,7 +59,7 @@ public class AccountConfigUpdateAc extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -78,7 +78,7 @@ public class AccountConfigUpdateAc extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Leverage
      *
      * @return lLowerCase
      */

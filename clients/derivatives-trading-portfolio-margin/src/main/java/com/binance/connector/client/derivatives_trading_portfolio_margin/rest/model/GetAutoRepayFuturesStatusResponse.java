@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetAutoRepayFuturesStatusResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetAutoRepayFuturesStatusResponse {
     public static final String SERIALIZED_NAME_AUTO_REPAY = "autoRepay";
 
@@ -51,7 +51,8 @@ public class GetAutoRepayFuturesStatusResponse {
     }
 
     /**
-     * Get autoRepay
+     * \&quot;true\&quot; for turn on the auto-repay futures; \&quot;false\&quot; for turn off the
+     * auto-repay futures
      *
      * @return autoRepay
      */

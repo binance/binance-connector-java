@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.dual_investment.rest.DualInvestmentRestApiUtil;
 import com.binance.connector.client.dual_investment.rest.api.DualInvestmentRestApi;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentProductListResponse;
+import com.binance.connector.client.dual_investment.rest.model.OptionType;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetDualInvestmentProductListExample {
@@ -28,14 +30,14 @@ public class GetDualInvestmentProductListExample {
     /**
      * Get Dual Investment product list
      *
-     * <p>Get Dual Investment product list Weight: 1(IP)
+     * <p>Get Dual Investment product list Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
-    public void getDualInvestmentProductListExample() throws ApiException {
-        String optionType = "";
-        String exercisedCoin = "";
-        String investCoin = "";
+    public void getDualInvestmentProductListExample() throws ApiException, IOException {
+        OptionType optionType = OptionType.CALL;
+        String exercisedCoin = "USDT";
+        String investCoin = "BNB";
         Long pageSize = 10L;
         Long pageIndex = 1L;
         Long recvWindow = 5000L;

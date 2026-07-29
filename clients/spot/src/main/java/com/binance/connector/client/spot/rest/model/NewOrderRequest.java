@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -302,7 +302,9 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with
+     * the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled,
+     * otherwise the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -340,11 +342,12 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;. minimum: 1000000
      *
      * @return strategyType
      */
     @jakarta.annotation.Nullable
+    @Min(1000000)
     public Integer getStrategyType() {
         return strategyType;
     }
@@ -359,7 +362,8 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -379,7 +383,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get trailingDelta
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */
@@ -398,7 +402,8 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -482,11 +487,12 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get pegOffsetValue
+     * Price level to peg the price to (max: 100). See Pegged Orders Info maximum: 100
      *
      * @return pegOffsetValue
      */
     @jakarta.annotation.Nullable
+    @Max(100)
     public Integer getPegOffsetValue() {
         return pegOffsetValue;
     }
@@ -521,12 +527,14 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }

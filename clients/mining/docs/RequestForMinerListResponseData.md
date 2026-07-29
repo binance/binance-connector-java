@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**workerDatas** | [**List&lt;RequestForMinerListResponseDataWorkerDatasInner&gt;**](RequestForMinerListResponseDataWorkerDatasInner.md) |  |  [optional] |
-|**totalNum** | **Long** |  |  [optional] |
-|**pageSize** | **Long** |  |  [optional] |
+|**totalNum** | **Long** | Total amount |  [optional] |
+|**pageSize** | **Long** | Rows per page |  [optional] |
 
 
 

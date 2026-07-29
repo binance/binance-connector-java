@@ -12,6 +12,7 @@ import com.binance.connector.client.spot.rest.model.PendingAboveType;
 import com.binance.connector.client.spot.rest.model.PendingSide;
 import com.binance.connector.client.spot.rest.model.WorkingSide;
 import com.binance.connector.client.spot.rest.model.WorkingType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class OrderListOpocoExample {
@@ -30,19 +31,20 @@ public class OrderListOpocoExample {
     }
 
     /**
-     * New Order List - OPOCO
+     * New Order List - OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](./faqs/opo.md). Weight: 1 Unfilled Order Count: 3
+     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
-    public void orderListOpocoExample() throws ApiException {
+    public void orderListOpocoExample() throws ApiException, IOException {
         OrderListOpocoRequest orderListOpocoRequest = new OrderListOpocoRequest();
         orderListOpocoRequest.symbol("BNBUSDT");
         orderListOpocoRequest.workingType(WorkingType.LIMIT);
         orderListOpocoRequest.workingSide(WorkingSide.BUY);
-        orderListOpocoRequest.workingPrice(1.0d);
-        orderListOpocoRequest.workingQuantity(1.0d);
+        orderListOpocoRequest.workingPrice(1d);
+        orderListOpocoRequest.workingQuantity(1d);
         orderListOpocoRequest.pendingSide(PendingSide.BUY);
         orderListOpocoRequest.pendingAboveType(PendingAboveType.STOP_LOSS_LIMIT);
         ApiResponse<OrderListOpocoResponse> response =

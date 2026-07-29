@@ -2,6 +2,7 @@
 
 # FuturesTradingQuantitativeRulesIndicatorsResponseIndicators
 
+indicator: quantitative rules indicators, value: user's indicators value, triggerValue: trigger indicator value threshold of quantitative rules.
 
 ## Properties
 

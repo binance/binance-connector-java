@@ -20,7 +20,7 @@ import java.util.UUID;
 public class MarginTradingWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
@@ -38,6 +38,12 @@ public class MarginTradingWebSocketStreams {
             connection.connect();
         }
         this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     /**

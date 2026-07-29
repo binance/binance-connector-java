@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCrossMarginFeeDataResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCrossMarginFeeDataResponseInner {
     public static final String SERIALIZED_NAME_VIP_LEVEL = "vipLevel";
 
@@ -97,7 +97,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get vipLevel
+     * vip Level.
      *
      * @return vipLevel
      */
@@ -116,7 +116,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get coin
+     * coin.
      *
      * @return coin
      */
@@ -136,7 +136,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get transferIn
+     * transfer In.
      *
      * @return transferIn
      */
@@ -156,7 +156,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get borrowable
+     * borrowable.
      *
      * @return borrowable
      */
@@ -176,7 +176,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get dailyInterest
+     * daily Interest.
      *
      * @return dailyInterest
      */
@@ -196,7 +196,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get yearlyInterest
+     * yearly Interest.
      *
      * @return yearlyInterest
      */
@@ -216,7 +216,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get borrowLimit
+     * borrow Limit.
      *
      * @return borrowLimit
      */
@@ -244,7 +244,7 @@ public class QueryCrossMarginFeeDataResponseInner {
     }
 
     /**
-     * Get marginablePairs
+     * marginable Pairs list.
      *
      * @return marginablePairs
      */

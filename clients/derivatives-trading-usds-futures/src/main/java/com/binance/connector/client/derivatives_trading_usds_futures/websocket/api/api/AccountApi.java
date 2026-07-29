@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -47,11 +47,11 @@ public class AccountApi {
     }
 
     /**
-     * Account Information(USER_DATA) Get current account information. User in single-asset/
+     * Account Information (USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
-     * @param accountInformationRequest (required)
+     * @param accountInformationRequest (optional)
      * @return AccountInformationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -63,8 +63,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information">Account
-     *     Information(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#account-information">Account
+     *     Information (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountInformationResponse> accountInformation(
             AccountInformationRequest accountInformationRequest) throws ApiException {
@@ -111,11 +111,11 @@ public class AccountApi {
     }
 
     /**
-     * Account Information V2(USER_DATA) Get current account information. User in single-asset/
+     * Account Information V2 (USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
-     * @param accountInformationV2Request (required)
+     * @param accountInformationV2Request (optional)
      * @return AccountInformationV2Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -127,8 +127,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2">Account
-     *     Information V2(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#account-information-v2">Account
+     *     Information V2 (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountInformationV2Response> accountInformationV2(
             AccountInformationV2Request accountInformationV2Request) throws ApiException {
@@ -175,9 +175,10 @@ public class AccountApi {
     }
 
     /**
-     * Futures Account Balance(USER_DATA) Query account balance info Weight: 5
+     * Futures Account Balance (USER_DATA) Futures Account Balance Weight(IP): 5 Security Type:
+     * USER_DATA
      *
-     * @param futuresAccountBalanceRequest (required)
+     * @param futuresAccountBalanceRequest (optional)
      * @return FuturesAccountBalanceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -189,8 +190,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance">Futures
-     *     Account Balance(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#futures-account-balance">Futures
+     *     Account Balance (USER_DATA) Documentation</a>
      */
     public CompletableFuture<FuturesAccountBalanceResponse> futuresAccountBalance(
             FuturesAccountBalanceRequest futuresAccountBalanceRequest) throws ApiException {
@@ -237,9 +238,10 @@ public class AccountApi {
     }
 
     /**
-     * Futures Account Balance V2(USER_DATA) Query account balance info Weight: 5
+     * Futures Account Balance V2 (USER_DATA) Futures Account Balance V2 Weight(IP): 5 Security
+     * Type: USER_DATA
      *
-     * @param futuresAccountBalanceV2Request (required)
+     * @param futuresAccountBalanceV2Request (optional)
      * @return FuturesAccountBalanceV2Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -251,8 +253,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2">Futures
-     *     Account Balance V2(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#futures-account-balance-v2">Futures
+     *     Account Balance V2 (USER_DATA) Documentation</a>
      */
     public CompletableFuture<FuturesAccountBalanceV2Response> futuresAccountBalanceV2(
             FuturesAccountBalanceV2Request futuresAccountBalanceV2Request) throws ApiException {

@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Period;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TopTraderLongShortRatioAccountsResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class TopTraderLongShortRatioAccountsExample {
@@ -27,23 +28,23 @@ public class TopTraderLongShortRatioAccountsExample {
     }
 
     /**
-     * Top Trader Long/Short Ratio (Accounts)
+     * Top Trader Long/Short Account Ratio (MARKET_DATA)
      *
      * <p>The proportion of net long and net short accounts to total accounts of the top 20% users
      * with the highest margin balance. Each account is counted once only. Long Account % &#x3D;
      * Accounts of top traders with net long positions / Total accounts of top traders with open
      * positions Short Account % &#x3D; Accounts of top traders with net short positions / Total
      * accounts of top traders with open positions Long/Short Ratio (Accounts) &#x3D; Long Account %
-     * / Short Account % * If startTime and endTime are not sent, the most recent data is returned.
-     * * Only the data of the latest 30 days is available. * IP rate limit 1000 requests/5min
-     * Weight: 0
+     * / Short Account % Security Type: MARKET_DATA Notes: - If startTime and endTime are not sent,
+     * the most recent data is returned. - Only the data of the latest 30 days is available. - IP
+     * rate limit 1000 requests/5min
      *
      * @throws ApiException if the Api call fails
      */
-    public void topTraderLongShortRatioAccountsExample() throws ApiException {
-        String symbol = "";
+    public void topTraderLongShortRatioAccountsExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         Period period = Period.PERIOD_5m;
-        Long limit = 100L;
+        Long limit = 50L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioAccountsResponse> response =

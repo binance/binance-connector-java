@@ -49,7 +49,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/1.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +100,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
      *     Market Detail Documentation</a>
      */
     private okhttp3.Call getMarketDetailCall(Long marketTopicId) throws ApiException {
@@ -209,7 +209,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail">Get
      *     Market Detail Documentation</a>
      */
     public ApiResponse<GetMarketDetailResponse> getMarketDetail(
@@ -233,7 +233,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
      *     Prediction Categories Documentation</a>
      */
     private okhttp3.Call listPredictionCategoriesCall() throws ApiException {
@@ -336,7 +336,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories">List
      *     Prediction Categories Documentation</a>
      */
     public ApiResponse<ListPredictionCategoriesResponse> listPredictionCategories()
@@ -367,7 +367,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
      *     Prediction Markets Documentation</a>
      */
     private okhttp3.Call listPredictionMarketsCall(
@@ -525,7 +525,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets">List
      *     Prediction Markets Documentation</a>
      */
     public ApiResponse<ListPredictionMarketsResponse> listPredictionMarkets(
@@ -559,7 +559,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
      *     Search Documentation</a>
      */
     private okhttp3.Call marketSearchCall(String query, Integer topK) throws ApiException {
@@ -672,7 +672,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search">Market
      *     Search Documentation</a>
      */
     public ApiResponse<MarketSearchResponse> marketSearch(
@@ -697,7 +697,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
      *     Last Trade Price Documentation</a>
      */
     private okhttp3.Call queryLastTradePriceCall(Long marketId) throws ApiException {
@@ -805,7 +805,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price">Query
      *     Last Trade Price Documentation</a>
      */
     public ApiResponse<QueryLastTradePriceResponse> queryLastTradePrice(
@@ -832,7 +832,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
      *     Order Book Documentation</a>
      */
     private okhttp3.Call queryOrderBookCall(String vendor, Long marketId, String tokenId)
@@ -954,7 +954,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book">Query
      *     Order Book Documentation</a>
      */
     public ApiResponse<QueryOrderBookResponse> queryOrderBook(

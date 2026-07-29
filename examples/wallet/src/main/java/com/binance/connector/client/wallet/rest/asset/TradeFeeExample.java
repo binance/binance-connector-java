@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.TradeFeeResponse;
+import java.io.IOException;
 
 /** API examples for AssetApi */
 public class TradeFeeExample {
@@ -27,12 +28,12 @@ public class TradeFeeExample {
     /**
      * Trade Fee (USER_DATA)
      *
-     * <p>Fetch trade fee Weight: 1
+     * <p>Fetch trade fee Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void tradeFeeExample() throws ApiException {
-        String symbol = "";
+    public void tradeFeeExample() throws ApiException, IOException {
+        String symbol = "ADABNB";
         Long recvWindow = 5000L;
         ApiResponse<TradeFeeResponse> response = getApi().tradeFee(symbol, recvWindow);
         System.out.println(response.getData());

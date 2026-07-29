@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**leverage** | **Long** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**leverage** | **Long** | leverage. |  [optional] |
 
 
 

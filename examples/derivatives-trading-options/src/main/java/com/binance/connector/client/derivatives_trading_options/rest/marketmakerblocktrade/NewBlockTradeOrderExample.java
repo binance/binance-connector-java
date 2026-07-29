@@ -7,8 +7,10 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Legs;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Liquidity;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewBlockTradeOrderResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class NewBlockTradeOrderExample {
@@ -30,13 +32,13 @@ public class NewBlockTradeOrderExample {
     /**
      * New Block Trade Order (TRADE)
      *
-     * <p>Send in a new block trade order. Weight: 5
+     * <p>Send in a new block trade order. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void newBlockTradeOrderExample() throws ApiException {
+    public void newBlockTradeOrderExample() throws ApiException, IOException {
         NewBlockTradeOrderRequest newBlockTradeOrderRequest = new NewBlockTradeOrderRequest();
-        newBlockTradeOrderRequest.liquidity("");
+        newBlockTradeOrderRequest.liquidity(Liquidity.MAKER);
         newBlockTradeOrderRequest.legs(new Legs());
         ApiResponse<NewBlockTradeOrderResponse> response =
                 getApi().newBlockTradeOrder(newBlockTradeOrderRequest);

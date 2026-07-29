@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,10 +37,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** ExchangeInformationResponseSymbolsInner */
+/** symbols. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseSymbolsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -195,7 +195,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -214,7 +214,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -234,7 +234,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractType
+     * Contract Type.
      *
      * @return contractType
      */
@@ -254,7 +254,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get deliveryDate
+     * Delivery Date.
      *
      * @return deliveryDate
      */
@@ -274,7 +274,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get onboardDate
+     * Onboard Date.
      *
      * @return onboardDate
      */
@@ -294,7 +294,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -314,7 +314,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get maintMarginPercent
+     * ignore
      *
      * @return maintMarginPercent
      */
@@ -334,7 +334,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get requiredMarginPercent
+     * ignore
      *
      * @return requiredMarginPercent
      */
@@ -355,7 +355,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAsset
+     * Base Asset.
      *
      * @return baseAsset
      */
@@ -375,7 +375,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quote Asset.
      *
      * @return quoteAsset
      */
@@ -395,7 +395,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin Asset.
      *
      * @return marginAsset
      */
@@ -415,7 +415,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pricePrecision
+     * please do not use it as tickSize
      *
      * @return pricePrecision
      */
@@ -435,7 +435,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quantityPrecision
+     * please do not use it as stepSize
      *
      * @return quantityPrecision
      */
@@ -455,7 +455,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAssetPrecision
+     * Base Asset Precision.
      *
      * @return baseAssetPrecision
      */
@@ -475,7 +475,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quotePrecision
+     * Quote Precision.
      *
      * @return quotePrecision
      */
@@ -564,7 +564,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get triggerProtect
+     * threshold for algo order with \&quot;priceProtect\&quot;
      *
      * @return triggerProtect
      */
@@ -653,7 +653,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -673,7 +673,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get liquidationFee
+     * liquidation fee rate
      *
      * @return liquidationFee
      */
@@ -693,7 +693,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marketTakeBound
+     * the max price difference rate( from mark price) a market order can make
      *
      * @return marketTakeBound
      */

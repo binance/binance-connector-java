@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationV2ResponseResultAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -111,17 +111,17 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     @jakarta.annotation.Nullable
     private String maxWithdrawAmount;
 
-    public static final String SERIALIZED_NAME_UPDATE_TIME = "updateTime";
-
-    @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
-    @jakarta.annotation.Nullable
-    private Long updateTime;
-
     public static final String SERIALIZED_NAME_MARGIN_AVAILABLE = "marginAvailable";
 
     @SerializedName(SERIALIZED_NAME_MARGIN_AVAILABLE)
     @jakarta.annotation.Nullable
     private Boolean marginAvailable;
+
+    public static final String SERIALIZED_NAME_UPDATE_TIME = "updateTime";
+
+    @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+    @jakarta.annotation.Nullable
+    private Long updateTime;
 
     public AccountInformationV2ResponseResultAssetsInner() {}
 
@@ -132,7 +132,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -152,7 +152,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get walletBalance
+     * wallet balance
      *
      * @return walletBalance
      */
@@ -172,7 +172,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -192,7 +192,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get marginBalance
+     * margin balance
      *
      * @return marginBalance
      */
@@ -212,7 +212,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -232,7 +232,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -252,7 +252,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -273,7 +273,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -294,7 +294,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossWalletBalance
+     * crossed wallet balance
      *
      * @return crossWalletBalance
      */
@@ -314,7 +314,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossUnPnl
+     * unrealized profit of crossed positions
      *
      * @return crossUnPnl
      */
@@ -334,7 +334,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get availableBalance
+     * available balance, only for USDT asset
      *
      * @return availableBalance
      */
@@ -354,7 +354,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * maximum amount for transfer out, only for USDT asset
      *
      * @return maxWithdrawAmount
      */
@@ -367,26 +367,6 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
         this.maxWithdrawAmount = maxWithdrawAmount;
     }
 
-    public AccountInformationV2ResponseResultAssetsInner updateTime(
-            @jakarta.annotation.Nullable Long updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    /**
-     * Get updateTime
-     *
-     * @return updateTime
-     */
-    @jakarta.annotation.Nullable
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(@jakarta.annotation.Nullable Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public AccountInformationV2ResponseResultAssetsInner marginAvailable(
             @jakarta.annotation.Nullable Boolean marginAvailable) {
         this.marginAvailable = marginAvailable;
@@ -394,7 +374,7 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get marginAvailable
+     * whether the asset can be used as margin in Multi-Assets mode
      *
      * @return marginAvailable
      */
@@ -405,6 +385,26 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
 
     public void setMarginAvailable(@jakarta.annotation.Nullable Boolean marginAvailable) {
         this.marginAvailable = marginAvailable;
+    }
+
+    public AccountInformationV2ResponseResultAssetsInner updateTime(
+            @jakarta.annotation.Nullable Long updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    /**
+     * last update time
+     *
+     * @return updateTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(@jakarta.annotation.Nullable Long updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -451,10 +451,10 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
                         this.maxWithdrawAmount,
                         accountInformationV2ResponseResultAssetsInner.maxWithdrawAmount)
                 && Objects.equals(
-                        this.updateTime, accountInformationV2ResponseResultAssetsInner.updateTime)
-                && Objects.equals(
                         this.marginAvailable,
-                        accountInformationV2ResponseResultAssetsInner.marginAvailable);
+                        accountInformationV2ResponseResultAssetsInner.marginAvailable)
+                && Objects.equals(
+                        this.updateTime, accountInformationV2ResponseResultAssetsInner.updateTime);
     }
 
     @Override
@@ -472,8 +472,8 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
                 crossUnPnl,
                 availableBalance,
                 maxWithdrawAmount,
-                updateTime,
-                marginAvailable);
+                marginAvailable,
+                updateTime);
     }
 
     @Override
@@ -498,8 +498,8 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
         sb.append("		crossUnPnl: ").append(toIndentedString(crossUnPnl)).append("\n");
         sb.append("		availableBalance: ").append(toIndentedString(availableBalance)).append("\n");
         sb.append("		maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
-        sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		marginAvailable: ").append(toIndentedString(marginAvailable)).append("\n");
+        sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -568,15 +568,15 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
             String maxWithdrawAmountValueAsString = maxWithdrawAmountValue.toString();
             valMap.put("maxWithdrawAmount", maxWithdrawAmountValueAsString);
         }
-        Long updateTimeValue = getUpdateTime();
-        if (updateTimeValue != null) {
-            String updateTimeValueAsString = updateTimeValue.toString();
-            valMap.put("updateTime", updateTimeValueAsString);
-        }
         Boolean marginAvailableValue = getMarginAvailable();
         if (marginAvailableValue != null) {
             String marginAvailableValueAsString = marginAvailableValue.toString();
             valMap.put("marginAvailable", marginAvailableValueAsString);
+        }
+        Long updateTimeValue = getUpdateTime();
+        if (updateTimeValue != null) {
+            String updateTimeValueAsString = updateTimeValue.toString();
+            valMap.put("updateTime", updateTimeValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -637,13 +637,13 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
         if (maxWithdrawAmountValue != null) {
             valMap.put("maxWithdrawAmount", maxWithdrawAmountValue);
         }
-        Object updateTimeValue = getUpdateTime();
-        if (updateTimeValue != null) {
-            valMap.put("updateTime", updateTimeValue);
-        }
         Object marginAvailableValue = getMarginAvailable();
         if (marginAvailableValue != null) {
             valMap.put("marginAvailable", marginAvailableValue);
+        }
+        Object updateTimeValue = getUpdateTime();
+        if (updateTimeValue != null) {
+            valMap.put("updateTime", updateTimeValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -683,8 +683,8 @@ public class AccountInformationV2ResponseResultAssetsInner extends BaseDTO {
         openapiFields.add("crossUnPnl");
         openapiFields.add("availableBalance");
         openapiFields.add("maxWithdrawAmount");
-        openapiFields.add("updateTime");
         openapiFields.add("marginAvailable");
+        openapiFields.add("updateTime");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

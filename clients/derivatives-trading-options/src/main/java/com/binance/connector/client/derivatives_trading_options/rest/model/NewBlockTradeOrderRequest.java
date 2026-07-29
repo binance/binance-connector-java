@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** NewBlockTradeOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewBlockTradeOrderRequest {
     public static final String SERIALIZED_NAME_LIQUIDITY = "liquidity";
 
     @SerializedName(SERIALIZED_NAME_LIQUIDITY)
     @jakarta.annotation.Nonnull
-    private String liquidity;
+    private Liquidity liquidity;
 
     public static final String SERIALIZED_NAME_LEGS = "legs";
 
@@ -57,7 +57,7 @@ public class NewBlockTradeOrderRequest {
 
     public NewBlockTradeOrderRequest() {}
 
-    public NewBlockTradeOrderRequest liquidity(@jakarta.annotation.Nonnull String liquidity) {
+    public NewBlockTradeOrderRequest liquidity(@jakarta.annotation.Nonnull Liquidity liquidity) {
         this.liquidity = liquidity;
         return this;
     }
@@ -69,11 +69,12 @@ public class NewBlockTradeOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getLiquidity() {
+    @Valid
+    public Liquidity getLiquidity() {
         return liquidity;
     }
 
-    public void setLiquidity(@jakarta.annotation.Nonnull String liquidity) {
+    public void setLiquidity(@jakarta.annotation.Nonnull Liquidity liquidity) {
         this.liquidity = liquidity;
     }
 
@@ -104,11 +105,12 @@ public class NewBlockTradeOrderRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -228,13 +230,8 @@ public class NewBlockTradeOrderRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("liquidity").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `liquidity` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("liquidity").toString()));
-        }
+        // validate the required field `liquidity`
+        Liquidity.validateJsonElement(jsonObj.get("liquidity"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

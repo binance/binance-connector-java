@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.copy_trading.rest.CopyTradingRestApiUtil;
 import com.binance.connector.client.copy_trading.rest.api.CopyTradingRestApi;
 import com.binance.connector.client.copy_trading.rest.model.GetFuturesLeadTradingSymbolWhitelistResponse;
+import java.io.IOException;
 
 /** API examples for FutureCopyTradingApi */
 public class GetFuturesLeadTradingSymbolWhitelistExample {
@@ -26,13 +27,13 @@ public class GetFuturesLeadTradingSymbolWhitelistExample {
     }
 
     /**
-     * Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+     * Get Futures Lead Trading Symbol Whitelist (USER_DATA)
      *
-     * <p>Get Futures Lead Trading Symbol Whitelist Weight: 20
+     * <p>Get Futures Lead Trading Symbol Whitelist Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFuturesLeadTradingSymbolWhitelistExample() throws ApiException {
+    public void getFuturesLeadTradingSymbolWhitelistExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesLeadTradingSymbolWhitelistResponse> response =
                 getApi().getFuturesLeadTradingSymbolWhitelist(recvWindow);

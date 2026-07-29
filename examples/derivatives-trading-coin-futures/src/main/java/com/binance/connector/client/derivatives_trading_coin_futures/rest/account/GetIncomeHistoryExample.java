@@ -7,6 +7,8 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetIncomeHistoryResponse;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IncomeType;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetIncomeHistoryExample {
@@ -26,22 +28,22 @@ public class GetIncomeHistoryExample {
     }
 
     /**
-     * Get Income History(USER_DATA)
+     * Get Income History (USER_DATA)
      *
-     * <p>Get income history * If &#x60;incomeType &#x60; is not sent, all kinds of flow will be
-     * returned * \&quot;trandId\&quot; is unique in the same \&quot;incomeType\&quot; for a user *
-     * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
-     * Weight: 20
+     * <p>Get income history Weight(IP): 20 Security Type: USER_DATA Notes: - If &#x60;incomeType
+     * &#x60; is not sent, all kinds of flow will be returned - \&quot;trandId\&quot; is unique in
+     * the same \&quot;incomeType\&quot; for a user - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @throws ApiException if the Api call fails
      */
-    public void getIncomeHistoryExample() throws ApiException {
-        String symbol = "";
-        String incomeType = "";
+    public void getIncomeHistoryExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
+        IncomeType incomeType = IncomeType.TRANSFER;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 100L;
+        Long page = 1L;
+        Long limit = 30L;
         Long recvWindow = 5000L;
         ApiResponse<GetIncomeHistoryResponse> response =
                 getApi().getIncomeHistory(

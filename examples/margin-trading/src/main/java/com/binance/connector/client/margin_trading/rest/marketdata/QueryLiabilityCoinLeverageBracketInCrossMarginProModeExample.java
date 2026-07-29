@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample {
@@ -26,13 +27,15 @@ public class QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample {
     }
 
     /**
-     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
+     * Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA)
      *
-     * <p>Liability Coin Leverage Bracket in Cross Margin Pro Mode Weight: 1
+     * <p>Liability Coin Leverage Bracket in Cross Margin Pro Mode Weight(IP): 1 Security Type:
+     * MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryLiabilityCoinLeverageBracketInCrossMarginProModeExample() throws ApiException {
+    public void queryLiabilityCoinLeverageBracketInCrossMarginProModeExample()
+            throws ApiException, IOException {
         ApiResponse<QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse> response =
                 getApi().queryLiabilityCoinLeverageBracketInCrossMarginProMode();
         System.out.println(response.getData());

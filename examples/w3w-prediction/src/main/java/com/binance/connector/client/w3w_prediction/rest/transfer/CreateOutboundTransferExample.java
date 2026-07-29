@@ -10,6 +10,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.AccountType;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateOutboundTransferRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateOutboundTransferResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.SourceBiz;
+import java.io.IOException;
 
 /** API examples for TransferApi */
 public class CreateOutboundTransferExample {
@@ -29,14 +30,14 @@ public class CreateOutboundTransferExample {
     }
 
     /**
-     * Create Outbound Transfer
+     * Create Outbound Transfer (TRADE)
      *
      * <p>Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction
      * wallet. Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void createOutboundTransferExample() throws ApiException {
+    public void createOutboundTransferExample() throws ApiException, IOException {
         CreateOutboundTransferRequest createOutboundTransferRequest =
                 new CreateOutboundTransferRequest();
         createOutboundTransferRequest.walletId("5b5c1ec3be4e4416a5872b21c1ca5d20");

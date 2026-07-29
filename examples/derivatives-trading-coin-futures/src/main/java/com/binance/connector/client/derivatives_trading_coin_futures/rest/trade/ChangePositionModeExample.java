@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.Deriva
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangePositionModeRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ChangePositionModeResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class ChangePositionModeExample {
@@ -27,16 +28,19 @@ public class ChangePositionModeExample {
     }
 
     /**
-     * Change Position Mode(TRADE)
+     * Change Position Mode (TRADE)
      *
-     * <p>Change user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol***
-     * Weight: 1
+     * <p>Change user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol***.
+     * **After CM migration**, UM and CM share the **same** &#x60;dualSidePosition&#x60; setting.
+     * Calling this endpoint flips both UM and CM at once. If either side has any open order or open
+     * position, the change is rejected: - &#x60;-4067&#x60; (open orders exist) - &#x60;-4068&#x60;
+     * (open position exists) Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void changePositionModeExample() throws ApiException {
+    public void changePositionModeExample() throws ApiException, IOException {
         ChangePositionModeRequest changePositionModeRequest = new ChangePositionModeRequest();
-        changePositionModeRequest.dualSidePosition("");
+        changePositionModeRequest.dualSidePosition("true");
         ApiResponse<ChangePositionModeResponse> response =
                 getApi().changePositionMode(changePositionModeRequest);
         System.out.println(response.getData());

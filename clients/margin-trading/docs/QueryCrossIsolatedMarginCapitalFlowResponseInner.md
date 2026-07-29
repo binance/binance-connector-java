@@ -7,13 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Long** |  |  [optional] |
-|**tranId** | **Long** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
+|**id** | **Long** | id. |  [optional] |
+|**tranId** | **Long** | tran Id. |  [optional] |
+|**timestamp** | **Long** | timestamp. |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**type** | **String** | type. |  [optional] |
+|**amount** | **String** | amount. |  [optional] |
+|**note** | **String** | note. |  [optional] |
 
 
 

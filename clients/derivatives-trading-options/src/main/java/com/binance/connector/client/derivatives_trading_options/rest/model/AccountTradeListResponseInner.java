@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -140,7 +140,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * unique id
      *
      * @return id
      */
@@ -159,7 +159,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get tradeId
+     * trade id
      *
      * @return tradeId
      */
@@ -178,7 +178,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * order id
      *
      * @return orderId
      */
@@ -197,7 +197,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * option symbol
      *
      * @return symbol
      */
@@ -216,7 +216,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * trade price
      *
      * @return price
      */
@@ -235,7 +235,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quantity
+     * trade quantity
      *
      * @return quantity
      */
@@ -254,7 +254,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get fee
+     * fee(negative is fee deduction)
      *
      * @return fee
      */
@@ -274,7 +274,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedProfit
+     * realized profit/loss
      *
      * @return realizedProfit
      */
@@ -293,7 +293,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * order side
      *
      * @return side
      */
@@ -312,7 +312,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get type
+     * order type
      *
      * @return type
      */
@@ -331,7 +331,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get liquidity
+     * TAKER or MAKER
      *
      * @return liquidity
      */
@@ -350,7 +350,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * trade time
      *
      * @return time
      */
@@ -369,7 +369,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -389,7 +389,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -409,7 +409,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -429,7 +429,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */

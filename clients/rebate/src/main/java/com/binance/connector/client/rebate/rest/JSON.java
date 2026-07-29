@@ -1,6 +1,6 @@
 /*
- * Binance Rebate REST API
- * OpenAPI Specification for the Binance Rebate REST API
+ * Rebate REST API
+ * Query spot trading rebate history records.
  *
  * The version of the OpenAPI document: 1.0.0
  *

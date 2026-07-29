@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_options.rest.DerivativesTradingOptionsRestApiUtil;
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.CancelAllOptionOrdersOnSpecificSymbolResponse;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class CancelAllOptionOrdersOnSpecificSymbolExample {
@@ -28,12 +29,12 @@ public class CancelAllOptionOrdersOnSpecificSymbolExample {
     /**
      * Cancel all Option orders on specific symbol (TRADE)
      *
-     * <p>Cancel all active order on a symbol. Weight: 5
+     * <p>Cancel all active order on a symbol. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void cancelAllOptionOrdersOnSpecificSymbolExample() throws ApiException {
-        String symbol = "";
+    public void cancelAllOptionOrdersOnSpecificSymbolExample() throws ApiException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllOptionOrdersOnSpecificSymbolResponse> response =
                 getApi().cancelAllOptionOrdersOnSpecificSymbol(symbol, recvWindow);

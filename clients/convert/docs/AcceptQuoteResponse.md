@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**orderId** | **String** |  |  [optional] |
 |**createTime** | **Long** |  |  [optional] |
-|**orderStatus** | **String** |  |  [optional] |
+|**orderStatus** | **String** | Order processing status |  [optional] |
 
 
 

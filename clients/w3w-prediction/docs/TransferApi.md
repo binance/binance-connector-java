@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createInboundTransfer**](TransferApi.md#createInboundTransfer) | **POST** /sapi/v1/w3w/wallet/prediction/transfer/inbound | Create Inbound Transfer |
-| [**createOutboundTransfer**](TransferApi.md#createOutboundTransfer) | **POST** /sapi/v1/w3w/wallet/prediction/transfer/outbound | Create Outbound Transfer |
-| [**queryTransferList**](TransferApi.md#queryTransferList) | **GET** /sapi/v1/w3w/wallet/prediction/transfer/list | Query Transfer List |
-| [**queryTransferStatus**](TransferApi.md#queryTransferStatus) | **GET** /sapi/v1/w3w/wallet/prediction/transfer/status | Query Transfer Status |
+| [**createInboundTransfer**](TransferApi.md#createInboundTransfer) | **POST** /sapi/v1/w3w/wallet/prediction/transfer/inbound | Create Inbound Transfer (TRADE) |
+| [**createOutboundTransfer**](TransferApi.md#createOutboundTransfer) | **POST** /sapi/v1/w3w/wallet/prediction/transfer/outbound | Create Outbound Transfer (TRADE) |
+| [**queryTransferList**](TransferApi.md#queryTransferList) | **GET** /sapi/v1/w3w/wallet/prediction/transfer/list | Query Transfer List (USER_DATA) |
+| [**queryTransferStatus**](TransferApi.md#queryTransferStatus) | **GET** /sapi/v1/w3w/wallet/prediction/transfer/status | Query Transfer Status (USER_DATA) |
 
 
 <a id="createInboundTransfer"></a>
 # **createInboundTransfer**
 > CreateInboundTransferResponse createInboundTransfer(createInboundTransferRequest)
 
-Create Inbound Transfer
+Create Inbound Transfer (TRADE)
 
 Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization.  ⚠️ **SAS Authorization Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization required&#x60;. Enable SAS for your wallet before calling this endpoint.  Weight(IP): 200  Security Type: TRADE
 
@@ -76,7 +76,7 @@ No authorization required
 # **createOutboundTransfer**
 > CreateOutboundTransferResponse createOutboundTransfer(createOutboundTransferRequest)
 
-Create Outbound Transfer
+Create Outbound Transfer (TRADE)
 
 Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization.  Weight(IP): 200  Security Type: TRADE
 
@@ -138,7 +138,7 @@ No authorization required
 # **queryTransferList**
 > QueryTransferListResponse queryTransferList(walletAddress, startDate, endDate, tokenSymbol, direction, offset, limit, recvWindow)
 
-Query Transfer List
+Query Transfer List (USER_DATA)
 
 Get the authenticated user&#39;s prediction wallet transfer history within a date range.  Weight(IP): 200  Security Type: USER_DATA
 
@@ -214,7 +214,7 @@ No authorization required
 # **queryTransferStatus**
 > QueryTransferStatusResponse queryTransferStatus(transferId, recvWindow)
 
-Query Transfer Status
+Query Transfer Status (USER_DATA)
 
 Query the current status of a prediction wallet transfer by transfer ID.  **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;. **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state.  Weight(IP): 200  Security Type: USER_DATA
 

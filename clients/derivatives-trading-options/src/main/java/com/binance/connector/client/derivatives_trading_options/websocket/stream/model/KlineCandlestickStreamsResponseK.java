@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** KlineCandlestickStreamsResponseK */
+/** k */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -144,7 +144,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * kline start time
      *
      * @return tLowerCase
      */
@@ -163,7 +163,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * kline end time
      *
      * @return T
      */
@@ -183,7 +183,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option trading symbol
      *
      * @return sLowerCase
      */
@@ -203,7 +203,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * candle period
      *
      * @return iLowerCase
      */
@@ -223,7 +223,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * first trade ID
      *
      * @return fLowerCase
      */
@@ -242,7 +242,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * last trade ID
      *
      * @return L
      */
@@ -262,7 +262,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * open
      *
      * @return oLowerCase
      */
@@ -282,7 +282,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * close
      *
      * @return cLowerCase
      */
@@ -302,7 +302,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * high
      *
      * @return hLowerCase
      */
@@ -322,7 +322,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * low
      *
      * @return lLowerCase
      */
@@ -342,7 +342,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * volume(in contracts)
      *
      * @return vLowerCase
      */
@@ -362,7 +362,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * number of trades
      *
      * @return nLowerCase
      */
@@ -382,7 +382,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * current candle has been completed Y/N
      *
      * @return xLowerCase
      */
@@ -402,7 +402,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * completed trade amount   (in quote asset)
      *
      * @return qLowerCase
      */
@@ -421,7 +421,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * taker completed trade volume (in contracts)
      *
      * @return V
      */
@@ -440,7 +440,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * taker trade amount(in quote asset)
      *
      * @return Q
      */

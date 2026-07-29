@@ -1,6 +1,6 @@
 /*
- * Binance Gift Card REST API
- * OpenAPI Specification for the Binance Gift Card REST API
+ * Gift Card REST API
+ * Create, redeem, and check the value of Binance crypto gift cards.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** CreateADualTokenGiftCardRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CreateADualTokenGiftCardRequest {
     public static final String SERIALIZED_NAME_BASE_TOKEN = "baseToken";
 
@@ -69,7 +69,7 @@ public class CreateADualTokenGiftCardRequest {
     }
 
     /**
-     * Get baseToken
+     * The token you want to pay, example: BUSD
      *
      * @return baseToken
      */
@@ -89,7 +89,8 @@ public class CreateADualTokenGiftCardRequest {
     }
 
     /**
-     * Get faceToken
+     * The token you want to buy, example: BNB. If faceToken &#x3D; baseToken, it&#39;s the same as
+     * createCode endpoint.
      *
      * @return faceToken
      */
@@ -110,7 +111,7 @@ public class CreateADualTokenGiftCardRequest {
     }
 
     /**
-     * Get baseTokenAmount
+     * The base token asset quantity, example : 1.002
      *
      * @return baseTokenAmount
      */
@@ -132,11 +133,12 @@ public class CreateADualTokenGiftCardRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

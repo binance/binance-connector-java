@@ -8,6 +8,7 @@ import com.binance.connector.client.sub_account.rest.SubAccountRestApiUtil;
 import com.binance.connector.client.sub_account.rest.api.SubAccountRestApi;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyRequest;
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyResponse;
+import java.io.IOException;
 
 /** API examples for ApiManagementApi */
 public class AddIpRestrictionForSubAccountApiKeyExample {
@@ -29,17 +30,19 @@ public class AddIpRestrictionForSubAccountApiKeyExample {
     /**
      * Add IP Restriction for Sub-Account API key (For Master Account) (USER_DATA)
      *
-     * <p>Add IP Restriction for Sub-Account API key * You need to enable Enable Spot &amp; Margin
-     * Trading option for the api key which requests this endpoint Weight: 3000
+     * <p>Add IP Restriction for Sub-Account API key Weight(UID): 3000 Security Type: USER_DATA
+     * Notes: - You need to enable Enable Spot &amp; Margin Trading option for the api key which
+     * requests this endpoint
      *
      * @throws ApiException if the Api call fails
      */
-    public void addIpRestrictionForSubAccountApiKeyExample() throws ApiException {
+    public void addIpRestrictionForSubAccountApiKeyExample() throws ApiException, IOException {
         AddIpRestrictionForSubAccountApiKeyRequest addIpRestrictionForSubAccountApiKeyRequest =
                 new AddIpRestrictionForSubAccountApiKeyRequest();
-        addIpRestrictionForSubAccountApiKeyRequest.email("sub-account-email@email.com");
-        addIpRestrictionForSubAccountApiKeyRequest.subAccountApiKey("");
-        addIpRestrictionForSubAccountApiKeyRequest.status(0L);
+        addIpRestrictionForSubAccountApiKeyRequest.email("123@test.com");
+        addIpRestrictionForSubAccountApiKeyRequest.subAccountApiKey(
+                "k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf");
+        addIpRestrictionForSubAccountApiKeyRequest.status(1L);
         ApiResponse<AddIpRestrictionForSubAccountApiKeyResponse> response =
                 getApi().addIpRestrictionForSubAccountApiKey(
                                 addIpRestrictionForSubAccountApiKeyRequest);

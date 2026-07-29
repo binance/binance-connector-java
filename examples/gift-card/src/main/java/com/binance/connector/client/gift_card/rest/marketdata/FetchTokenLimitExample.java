@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.gift_card.rest.GiftCardRestApiUtil;
 import com.binance.connector.client.gift_card.rest.api.GiftCardRestApi;
 import com.binance.connector.client.gift_card.rest.model.FetchTokenLimitResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class FetchTokenLimitExample {
@@ -25,15 +26,16 @@ public class FetchTokenLimitExample {
     }
 
     /**
-     * Fetch Token Limit(USER_DATA)
+     * Fetch Token Limit (USER_DATA)
      *
      * <p>This API is to help you verify which tokens are available for you to create
-     * Stablecoin-Denominated gift cards as mentioned in section 2 and its’ limitation. Weight: 1
+     * Stablecoin-Denominated gift cards as mentioned in section 2 and its’ limitation. Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void fetchTokenLimitExample() throws ApiException {
-        String baseToken = "";
+    public void fetchTokenLimitExample() throws ApiException, IOException {
+        String baseToken = "BUSD";
         Long recvWindow = 5000L;
         ApiResponse<FetchTokenLimitResponse> response =
                 getApi().fetchTokenLimit(baseToken, recvWindow);

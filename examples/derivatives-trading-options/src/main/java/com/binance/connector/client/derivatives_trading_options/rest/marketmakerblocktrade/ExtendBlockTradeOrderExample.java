@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.Derivatives
 import com.binance.connector.client.derivatives_trading_options.rest.api.DerivativesTradingOptionsRestApi;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExtendBlockTradeOrderResponse;
+import java.io.IOException;
 
 /** API examples for MarketMakerBlockTradeApi */
 public class ExtendBlockTradeOrderExample {
@@ -29,14 +30,15 @@ public class ExtendBlockTradeOrderExample {
     /**
      * Extend Block Trade Order (TRADE)
      *
-     * <p>Extends a block trade expire time by 30 mins from the current time. Weight: 5
+     * <p>Extends a block trade expire time by 30 mins from the current time. Weight(IP): 5 Security
+     * Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
-    public void extendBlockTradeOrderExample() throws ApiException {
+    public void extendBlockTradeOrderExample() throws ApiException, IOException {
         ExtendBlockTradeOrderRequest extendBlockTradeOrderRequest =
                 new ExtendBlockTradeOrderRequest();
-        extendBlockTradeOrderRequest.blockOrderMatchingKey("");
+        extendBlockTradeOrderRequest.blockOrderMatchingKey("3668822b8-1baa-6a2f-adb8-d3de6289b361");
         ApiResponse<ExtendBlockTradeOrderResponse> response =
                 getApi().extendBlockTradeOrder(extendBlockTradeOrderRequest);
         System.out.println(response.getData());

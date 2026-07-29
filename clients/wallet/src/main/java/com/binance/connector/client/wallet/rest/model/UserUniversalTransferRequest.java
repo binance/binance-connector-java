@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** UserUniversalTransferRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserUniversalTransferRequest {
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -59,13 +59,13 @@ public class UserUniversalTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_FROM_SYMBOL)
     @jakarta.annotation.Nullable
-    private String fromSymbol;
+    private FromSymbol fromSymbol;
 
     public static final String SERIALIZED_NAME_TO_SYMBOL = "toSymbol";
 
     @SerializedName(SERIALIZED_NAME_TO_SYMBOL)
     @jakarta.annotation.Nullable
-    private String toSymbol;
+    private ToSymbol toSymbol;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -75,7 +75,7 @@ public class UserUniversalTransferRequest {
 
     public UserUniversalTransferRequest() {}
 
-    public UserUniversalTransferRequest type(@jakarta.annotation.Nonnull String type) {
+    public UserUniversalTransferRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -87,11 +87,12 @@ public class UserUniversalTransferRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -136,7 +137,8 @@ public class UserUniversalTransferRequest {
         this.amount = amount;
     }
 
-    public UserUniversalTransferRequest fromSymbol(@jakarta.annotation.Nullable String fromSymbol) {
+    public UserUniversalTransferRequest fromSymbol(
+            @jakarta.annotation.Nullable FromSymbol fromSymbol) {
         this.fromSymbol = fromSymbol;
         return this;
     }
@@ -147,15 +149,16 @@ public class UserUniversalTransferRequest {
      * @return fromSymbol
      */
     @jakarta.annotation.Nullable
-    public String getFromSymbol() {
+    @Valid
+    public FromSymbol getFromSymbol() {
         return fromSymbol;
     }
 
-    public void setFromSymbol(@jakarta.annotation.Nullable String fromSymbol) {
+    public void setFromSymbol(@jakarta.annotation.Nullable FromSymbol fromSymbol) {
         this.fromSymbol = fromSymbol;
     }
 
-    public UserUniversalTransferRequest toSymbol(@jakarta.annotation.Nullable String toSymbol) {
+    public UserUniversalTransferRequest toSymbol(@jakarta.annotation.Nullable ToSymbol toSymbol) {
         this.toSymbol = toSymbol;
         return this;
     }
@@ -166,11 +169,12 @@ public class UserUniversalTransferRequest {
      * @return toSymbol
      */
     @jakarta.annotation.Nullable
-    public String getToSymbol() {
+    @Valid
+    public ToSymbol getToSymbol() {
         return toSymbol;
     }
 
-    public void setToSymbol(@jakarta.annotation.Nullable String toSymbol) {
+    public void setToSymbol(@jakarta.annotation.Nullable ToSymbol toSymbol) {
         this.toSymbol = toSymbol;
     }
 
@@ -180,11 +184,12 @@ public class UserUniversalTransferRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -328,13 +333,8 @@ public class UserUniversalTransferRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
         if (!jsonObj.get("asset").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
@@ -342,21 +342,13 @@ public class UserUniversalTransferRequest {
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
         }
-        if ((jsonObj.get("fromSymbol") != null && !jsonObj.get("fromSymbol").isJsonNull())
-                && !jsonObj.get("fromSymbol").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fromSymbol` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("fromSymbol").toString()));
+        // validate the optional field `fromSymbol`
+        if (jsonObj.get("fromSymbol") != null && !jsonObj.get("fromSymbol").isJsonNull()) {
+            FromSymbol.validateJsonElement(jsonObj.get("fromSymbol"));
         }
-        if ((jsonObj.get("toSymbol") != null && !jsonObj.get("toSymbol").isJsonNull())
-                && !jsonObj.get("toSymbol").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `toSymbol` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("toSymbol").toString()));
+        // validate the optional field `toSymbol`
+        if (jsonObj.get("toSymbol") != null && !jsonObj.get("toSymbol").isJsonNull()) {
+            ToSymbol.validateJsonElement(jsonObj.get("toSymbol"));
         }
     }
 

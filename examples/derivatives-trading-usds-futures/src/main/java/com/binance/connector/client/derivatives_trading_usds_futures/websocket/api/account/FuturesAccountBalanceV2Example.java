@@ -29,9 +29,9 @@ public class FuturesAccountBalanceV2Example {
     }
 
     /**
-     * Futures Account Balance V2(USER_DATA)
+     * Futures Account Balance V2 (USER_DATA)
      *
-     * <p>Query account balance info Weight: 5
+     * <p>Futures Account Balance V2 Weight(IP): 5 Security Type: USER_DATA
      */
     public void futuresAccountBalanceV2ExampleAsync() {
         FuturesAccountBalanceV2Request futuresAccountBalanceV2Request =
@@ -49,9 +49,9 @@ public class FuturesAccountBalanceV2Example {
     }
 
     /**
-     * Futures Account Balance V2(USER_DATA)
+     * Futures Account Balance V2 (USER_DATA)
      *
-     * <p>Query account balance info Weight: 5
+     * <p>Futures Account Balance V2 Weight(IP): 5 Security Type: USER_DATA
      */
     public void futuresAccountBalanceV2ExampleSync() {
         FuturesAccountBalanceV2Request futuresAccountBalanceV2Request =

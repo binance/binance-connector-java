@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Request;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Response;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class SubmitDepositQuestionnaireV2Example {
@@ -31,13 +32,14 @@ public class SubmitDepositQuestionnaireV2Example {
      *
      * <p>Submit questionnaire for local entities that require travel rule. The questionnaire is
      * only applies to transactions from unhosted wallets or VASPs that are not yet onboarded with
-     * GTR. * Questionnaire is different for each local entity, please refer * If getting error like
-     * &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;,
-     * Weight: 600
+     * GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is different for each
+     * local entity, please refer to &#x60;Deposit Questionnaire Content&#x60; page. - If getting
+     * error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be
+     * blank&#x60;, please try to verify the format of the questionnaire and use URL-encoded format.
      *
      * @throws ApiException if the Api call fails
      */
-    public void submitDepositQuestionnaireV2Example() throws ApiException {
+    public void submitDepositQuestionnaireV2Example() throws ApiException, IOException {
         SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request =
                 new SubmitDepositQuestionnaireV2Request();
         submitDepositQuestionnaireV2Request.depositId(1L);

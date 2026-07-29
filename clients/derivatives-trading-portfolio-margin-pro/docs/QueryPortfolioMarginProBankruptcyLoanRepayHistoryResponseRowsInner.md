@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
-|**repayTime** | **Long** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**amount** | **String** | amount. |  [optional] |
+|**repayTime** | **Long** | repay Time. |  [optional] |
 
 
 

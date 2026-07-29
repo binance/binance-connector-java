@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.DerivativesTradingPortfolioMarginProRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginCollateralRateResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class PortfolioMarginCollateralRateExample {
@@ -26,13 +27,13 @@ public class PortfolioMarginCollateralRateExample {
     }
 
     /**
-     * Portfolio Margin Collateral Rate(MARKET_DATA)
+     * Portfolio Margin Collateral Rate (MARKET_DATA)
      *
-     * <p>Portfolio Margin Collateral Rate Weight: 50
+     * <p>Portfolio Margin Collateral Rate Weight(IP): 50 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void portfolioMarginCollateralRateExample() throws ApiException {
+    public void portfolioMarginCollateralRateExample() throws ApiException, IOException {
         ApiResponse<PortfolioMarginCollateralRateResponse> response =
                 getApi().portfolioMarginCollateralRate();
         System.out.println(response.getData());

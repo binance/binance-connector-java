@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sLowerCase** | **String** |  |  [optional] |
-|**pa** | **String** |  |  [optional] |
-|**ep** | **String** |  |  [optional] |
-|**bep** | **String** |  |  [optional] |
-|**cr** | **String** |  |  [optional] |
-|**up** | **String** |  |  [optional] |
-|**mt** | **String** |  |  [optional] |
-|**iw** | **String** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**pa** | **String** | Position Amount |  [optional] |
+|**ep** | **String** | Entry Price |  [optional] |
+|**bep** | **String** | Break-Even Price |  [optional] |
+|**cr** | **String** | (Pre-fee) Accumulated Realized |  [optional] |
+|**up** | **String** | Unrealized PnL |  [optional] |
+|**mt** | **String** | Margin Type |  [optional] |
+|**iw** | **String** | Isolated Wallet (if isolated position) |  [optional] |
+|**ps** | **String** | Position Side |  [optional] |
 
 
 

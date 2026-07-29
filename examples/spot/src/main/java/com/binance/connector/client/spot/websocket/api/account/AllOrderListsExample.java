@@ -29,9 +29,16 @@ public class AllOrderListsExample {
     }
 
     /**
-     * WebSocket Account order list history
+     * Account order list history (USER_DATA)
      *
-     * <p>Query information about all your order lists, filtered by time range. Weight: 20
+     * <p>Query information about all your order lists, filtered by time range. Weight(IP): 20
+     * Security Type: USER_DATA Notes: **Data Source:** Database Notes: * If &#x60;startTime&#x60;
+     * and/or &#x60;endTime&#x60; are specified, &#x60;fromId&#x60; is ignored. Order lists are
+     * filtered by &#x60;transactionTime&#x60; of the last order list execution status update. * If
+     * &#x60;fromId&#x60; is specified, return order lists with order list ID &gt;&#x3D;
+     * &#x60;fromId&#x60;. * If no condition is specified, the most recent order lists are returned.
+     * * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24
+     * hours.
      */
     public void allOrderListsExampleAsync() {
         AllOrderListsRequest allOrderListsRequest = new AllOrderListsRequest();
@@ -48,9 +55,16 @@ public class AllOrderListsExample {
     }
 
     /**
-     * WebSocket Account order list history
+     * Account order list history (USER_DATA)
      *
-     * <p>Query information about all your order lists, filtered by time range. Weight: 20
+     * <p>Query information about all your order lists, filtered by time range. Weight(IP): 20
+     * Security Type: USER_DATA Notes: **Data Source:** Database Notes: * If &#x60;startTime&#x60;
+     * and/or &#x60;endTime&#x60; are specified, &#x60;fromId&#x60; is ignored. Order lists are
+     * filtered by &#x60;transactionTime&#x60; of the last order list execution status update. * If
+     * &#x60;fromId&#x60; is specified, return order lists with order list ID &gt;&#x3D;
+     * &#x60;fromId&#x60;. * If no condition is specified, the most recent order lists are returned.
+     * * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24
+     * hours.
      */
     public void allOrderListsExampleSync() {
         AllOrderListsRequest allOrderListsRequest = new AllOrderListsRequest();

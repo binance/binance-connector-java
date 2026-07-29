@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -53,7 +53,7 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -71,25 +71,25 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce;
+    private TimeInForce timeInForce = TimeInForce.GTC;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean reduceOnly;
+    private Boolean reduceOnly = false;
 
     public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
 
     @SerializedName(SERIALIZED_NAME_POST_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean postOnly;
+    private Boolean postOnly = false;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -159,7 +159,7 @@ public class NewOrderRequest {
         this.side = side;
     }
 
-    public NewOrderRequest type(@jakarta.annotation.Nonnull Type type) {
+    public NewOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -172,11 +172,11 @@ public class NewOrderRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public Type getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -186,7 +186,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -207,7 +207,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -307,7 +307,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get clientOrderId
+     * User-defined order ID cannot be repeated in pending orders
      *
      * @return clientOrderId
      */
@@ -326,7 +326,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get isMmp
+     * is market maker protection order
      *
      * @return isMmp
      */
@@ -591,7 +591,7 @@ public class NewOrderRequest {
         // validate the required field `side`
         Side.validateJsonElement(jsonObj.get("side"));
         // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));

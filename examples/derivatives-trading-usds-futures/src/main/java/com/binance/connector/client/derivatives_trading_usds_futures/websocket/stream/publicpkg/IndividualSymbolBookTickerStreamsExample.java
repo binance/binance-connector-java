@@ -25,8 +25,10 @@ public class IndividualSymbolBookTickerStreamsExample {
      * Individual Symbol Book Ticker Streams
      *
      * <p>Pushes any update to the best bid or ask&#39;s price or quantity in real-time for a
-     * specified symbol. Retail Price Improvement(RPI) orders are not visible and excluded in the
-     * response message. Update Speed: Real-time
+     * specified symbol. &gt; **After CM migration**, the payload is appended with a new
+     * &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM). Update Speed:
+     * Real-time Response Notes: Retail Price Improvement (RPI) orders are not visible and excluded
+     * in the response message.
      *
      * @throws ApiException if the Api call fails
      */
@@ -34,7 +36,6 @@ public class IndividualSymbolBookTickerStreamsExample {
             throws ApiException, InterruptedException {
         IndividualSymbolBookTickerStreamsRequest individualSymbolBookTickerStreamsRequest =
                 new IndividualSymbolBookTickerStreamsRequest();
-        individualSymbolBookTickerStreamsRequest.symbol("btcusdt");
         StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse> response =
                 getApi().individualSymbolBookTickerStreams(
                                 individualSymbolBookTickerStreamsRequest);

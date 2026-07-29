@@ -31,7 +31,7 @@ public class CloseUserDataStreamExample {
     /**
      * Close User Data Stream (USER_STREAM)
      *
-     * <p>Close out a user data stream. Weight: 1
+     * <p>Close out a user data stream. Weight(IP): 1 Security Type: USER_STREAM
      */
     public void closeUserDataStreamExampleAsync() {
         CloseUserDataStreamRequest closeUserDataStreamRequest = new CloseUserDataStreamRequest();
@@ -50,7 +50,7 @@ public class CloseUserDataStreamExample {
     /**
      * Close User Data Stream (USER_STREAM)
      *
-     * <p>Close out a user data stream. Weight: 1
+     * <p>Close out a user data stream. Weight(IP): 1 Security Type: USER_STREAM
      */
     public void closeUserDataStreamExampleSync() {
         CloseUserDataStreamRequest closeUserDataStreamRequest = new CloseUserDataStreamRequest();

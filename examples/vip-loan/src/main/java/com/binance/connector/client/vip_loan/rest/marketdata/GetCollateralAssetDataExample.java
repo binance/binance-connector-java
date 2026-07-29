@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.vip_loan.rest.VipLoanRestApiUtil;
 import com.binance.connector.client.vip_loan.rest.api.VipLoanRestApi;
 import com.binance.connector.client.vip_loan.rest.model.GetCollateralAssetDataResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetCollateralAssetDataExample {
@@ -25,14 +26,14 @@ public class GetCollateralAssetDataExample {
     }
 
     /**
-     * Get Collateral Asset Data(USER_DATA)
+     * Get Collateral Asset Data (USER_DATA)
      *
-     * <p>Get Collateral Asset Data Weight: 400
+     * <p>Get Collateral Asset Data Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCollateralAssetDataExample() throws ApiException {
-        String collateralCoin = "";
+    public void getCollateralAssetDataExample() throws ApiException, IOException {
+        String collateralCoin = "BUSD";
         Long recvWindow = 5000L;
         ApiResponse<GetCollateralAssetDataResponse> response =
                 getApi().getCollateralAssetData(collateralCoin, recvWindow);

@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -44,7 +44,7 @@ public class SoftStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/5.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -85,9 +85,9 @@ public class SoftStakingApi {
      * Build call for getSoftStakingProductList
      *
      * @param asset (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -97,8 +97,9 @@ public class SoftStakingApi {
      * <tr><td> 200 </td><td> Get Soft Staking Product List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/">Get Soft Staking
-     *     Product List (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-product-list">Get
+     *     Soft Staking Product List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSoftStakingProductListCall(
             String asset, Long current, Long size, Long recvWindow) throws ApiException {
@@ -212,12 +213,12 @@ public class SoftStakingApi {
 
     /**
      * Get Soft Staking Product List (USER_DATA) Get the available Soft Staking product list.
-     * Weight: 50
+     * Weight(IP): 50 Security Type: USER_DATA
      *
      * @param asset (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetSoftStakingProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -228,11 +229,13 @@ public class SoftStakingApi {
      * <tr><td> 200 </td><td> Get Soft Staking Product List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/">Get Soft Staking
-     *     Product List (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-product-list">Get
+     *     Soft Staking Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSoftStakingProductListResponse> getSoftStakingProductList(
-            String asset, Long current, Long size, Long recvWindow) throws ApiException {
+            String asset, @Min(1L) Long current, @Max(100L) Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 getSoftStakingProductListValidateBeforeCall(asset, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -246,9 +249,9 @@ public class SoftStakingApi {
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -259,8 +262,8 @@ public class SoftStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/soft-staking/Get-Soft-Staking-Rewards-History">Get
-     *     Soft Staking Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-rewards-history">Get
+     *     Soft Staking Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSoftStakingRewardsHistoryCall(
             String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -386,20 +389,21 @@ public class SoftStakingApi {
     }
 
     /**
-     * Get Soft Staking Rewards History(USER_DATA) * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
+     * Get Soft Staking Rewards History (USER_DATA) Get Soft Staking Rewards History Weight(IP): 50
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
      * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
      * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 50
+     * returned.
      *
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetSoftStakingRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -411,11 +415,16 @@ public class SoftStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/soft-staking/Get-Soft-Staking-Rewards-History">Get
-     *     Soft Staking Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-rewards-history">Get
+     *     Soft Staking Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSoftStakingRewardsHistoryResponse> getSoftStakingRewardsHistory(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            String asset,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSoftStakingRewardsHistoryValidateBeforeCall(
@@ -428,8 +437,8 @@ public class SoftStakingApi {
     /**
      * Build call for setSoftStaking
      *
-     * @param softStaking true or false (required)
-     * @param recvWindow (optional)
+     * @param softStaking (required)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -439,7 +448,8 @@ public class SoftStakingApi {
      * <tr><td> 200 </td><td> Set Soft Staking </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/Set-Soft-Staking">Set
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#set-soft-staking">Set
      *     Soft Staking (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setSoftStakingCall(Boolean softStaking, Long recvWindow)
@@ -539,10 +549,11 @@ public class SoftStakingApi {
     }
 
     /**
-     * Set Soft Staking (USER_DATA) Enable or disable Soft Staking. Weight: 50
+     * Set Soft Staking (USER_DATA) Enable or disable Soft Staking. Weight(IP): 50 Security Type:
+     * USER_DATA
      *
-     * @param softStaking true or false (required)
-     * @param recvWindow (optional)
+     * @param softStaking (required)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;SetSoftStakingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -553,11 +564,12 @@ public class SoftStakingApi {
      * <tr><td> 200 </td><td> Set Soft Staking </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/soft-staking/Set-Soft-Staking">Set
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#set-soft-staking">Set
      *     Soft Staking (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetSoftStakingResponse> setSoftStaking(
-            @NotNull Boolean softStaking, Long recvWindow) throws ApiException {
+            @NotNull Boolean softStaking, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = setSoftStakingValidateBeforeCall(softStaking, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<SetSoftStakingResponse>() {}.getType();

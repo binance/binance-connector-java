@@ -8,6 +8,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.DerivativesTradingPortfolioMarginProRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class FundCollectionByAssetExample {
@@ -27,17 +28,17 @@ public class FundCollectionByAssetExample {
     }
 
     /**
-     * Fund Collection by Asset(USER_DATA)
+     * Fund Collection by Asset (USER_DATA)
      *
-     * <p>Transfers specific asset from Futures Account to Margin account * The BNB transfer is not
-     * be supported Weight: 60
+     * <p>Transfers specific asset from Futures Account to Margin account Weight(IP): 60 Security
+     * Type: USER_DATA Notes: - The BNB transfer is not be supported
      *
      * @throws ApiException if the Api call fails
      */
-    public void fundCollectionByAssetExample() throws ApiException {
+    public void fundCollectionByAssetExample() throws ApiException, IOException {
         FundCollectionByAssetRequest fundCollectionByAssetRequest =
                 new FundCollectionByAssetRequest();
-        fundCollectionByAssetRequest.asset("");
+        fundCollectionByAssetRequest.asset("USDT");
         ApiResponse<FundCollectionByAssetResponse> response =
                 getApi().fundCollectionByAsset(fundCollectionByAssetRequest);
         System.out.println(response.getData());

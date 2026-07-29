@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.gift_card.rest.GiftCardRestApiUtil;
 import com.binance.connector.client.gift_card.rest.api.GiftCardRestApi;
 import com.binance.connector.client.gift_card.rest.model.FetchRsaPublicKeyResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class FetchRsaPublicKeyExample {
@@ -25,15 +26,15 @@ public class FetchRsaPublicKeyExample {
     }
 
     /**
-     * Fetch RSA Public Key(USER_DATA)
+     * Fetch RSA Public Key (USER_DATA)
      *
      * <p>This API is for fetching the RSA Public Key. This RSA Public key will be used to encrypt
      * the card code. **Please note that the RSA Public key fetched is valid only for the current
-     * day.** Weight: 1
+     * day.** Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void fetchRsaPublicKeyExample() throws ApiException {
+    public void fetchRsaPublicKeyExample() throws ApiException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<FetchRsaPublicKeyResponse> response = getApi().fetchRsaPublicKey(recvWindow);
         System.out.println(response.getData());

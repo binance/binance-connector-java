@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.DerivativesTradingPortfolioMarginRestApiUtil;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.DerivativesTradingPortfolioMarginRestApi;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.GetUserCommissionRateForCmResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class GetUserCommissionRateForCmExample {
@@ -26,14 +27,14 @@ public class GetUserCommissionRateForCmExample {
     }
 
     /**
-     * Get User Commission Rate for CM(USER_DATA)
+     * Get User Commission Rate for CM (USER_DATA)
      *
-     * <p>Get User Commission Rate for CM Weight: 20
+     * <p>Get User Commission Rate for CM Weight(IP): 20 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getUserCommissionRateForCmExample() throws ApiException {
-        String symbol = "";
+    public void getUserCommissionRateForCmExample() throws ApiException, IOException {
+        String symbol = "BTCUSD_PERP";
         Long recvWindow = 5000L;
         ApiResponse<GetUserCommissionRateForCmResponse> response =
                 getApi().getUserCommissionRateForCm(symbol, recvWindow);

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.FetchDepositAddressListWithNetworkResponse;
+import java.io.IOException;
 
 /** API examples for CapitalApi */
 public class FetchDepositAddressListWithNetworkExample {
@@ -25,16 +26,14 @@ public class FetchDepositAddressListWithNetworkExample {
     }
 
     /**
-     * Fetch deposit address list with network(USER_DATA)
+     * Fetch deposit address list with network (USER_DATA)
      *
-     * <p>Fetch deposit address list with network. * If network is not send, return with default
-     * network of the coin. * You can get network and isDefault in networkList in the response of
-     * &#x60;Get /sapi/v1/capital/config/getall&#x60;. Weight: 10
+     * <p>Fetch deposit address list with network. Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void fetchDepositAddressListWithNetworkExample() throws ApiException {
-        String coin = "";
+    public void fetchDepositAddressListWithNetworkExample() throws ApiException, IOException {
+        String coin = "BTC";
         String network = "";
         ApiResponse<FetchDepositAddressListWithNetworkResponse> response =
                 getApi().fetchDepositAddressListWithNetwork(coin, network);

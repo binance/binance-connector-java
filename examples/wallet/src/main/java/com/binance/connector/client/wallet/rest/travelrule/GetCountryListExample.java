@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.api.WalletRestApi;
 import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
+import java.io.IOException;
 
 /** API examples for TravelRuleApi */
 public class GetCountryListExample {
@@ -28,12 +29,13 @@ public class GetCountryListExample {
      * Get Country List (USER_DATA)
      *
      * <p>Query the active country list for travel rule questionnaires. Currently, only supports AU
-     * entity. Weight: 1
+     * entity. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void getCountryListExample() throws ApiException {
-        ApiResponse<GetCountryListResponse> response = getApi().getCountryList();
+    public void getCountryListExample() throws ApiException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetCountryListResponse> response = getApi().getCountryList(recvWindow);
         System.out.println(response.getData());
     }
 }

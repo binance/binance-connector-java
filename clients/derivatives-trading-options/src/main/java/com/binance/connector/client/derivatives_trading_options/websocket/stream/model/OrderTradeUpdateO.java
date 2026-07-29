@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderTradeUpdateO */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTradeUpdateO extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -197,7 +197,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -216,7 +216,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Client Order Id
      *
      * @return cLowerCase
      */
@@ -235,7 +235,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -254,7 +254,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Order Type
      *
      * @return oLowerCase
      */
@@ -273,7 +273,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in Force
      *
      * @return fLowerCase
      */
@@ -292,7 +292,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Original Quantity
      *
      * @return qLowerCase
      */
@@ -311,7 +311,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Original Price
      *
      * @return pLowerCase
      */
@@ -330,7 +330,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ap
+     * Average Price
      *
      * @return ap
      */
@@ -349,7 +349,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Execution Type
      *
      * @return xLowerCase
      */
@@ -368,7 +368,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get X
+     * Order Status
      *
      * @return X
      */
@@ -387,7 +387,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Order Id
      *
      * @return iLowerCase
      */
@@ -406,7 +406,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Order Last Filled Quantity
      *
      * @return lLowerCase
      */
@@ -425,7 +425,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get zLowerCase
+     * Order Filled Accumulated Quantity
      *
      * @return zLowerCase
      */
@@ -444,7 +444,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last Filled Price
      *
      * @return L
      */
@@ -463,7 +463,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get N
+     * Commission Asset
      *
      * @return N
      */
@@ -482,7 +482,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Commission, negative means fee charge
      *
      * @return nLowerCase
      */
@@ -501,7 +501,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Order Trade Time
      *
      * @return T
      */
@@ -520,7 +520,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Trade Id
      *
      * @return tLowerCase
      */
@@ -539,7 +539,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Bids qty
      *
      * @return bLowerCase
      */
@@ -558,7 +558,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Ask qty
      *
      * @return aLowerCase
      */
@@ -577,7 +577,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is this trade the maker side?
      *
      * @return mLowerCase
      */
@@ -596,7 +596,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get R
+     * Is this reduce only
      *
      * @return R
      */
@@ -615,7 +615,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get ot
+     * Original Order Type
      *
      * @return ot
      */
@@ -634,7 +634,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get rp
+     * Realized Profit of the trade
      *
      * @return rp
      */
@@ -653,7 +653,7 @@ public class OrderTradeUpdateO extends BaseDTO {
     }
 
     /**
-     * Get V
+     * STP mode
      *
      * @return V
      */

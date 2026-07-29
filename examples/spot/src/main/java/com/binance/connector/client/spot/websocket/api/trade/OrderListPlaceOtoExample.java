@@ -33,7 +33,7 @@ public class OrderListPlaceOtoExample {
     }
 
     /**
-     * WebSocket Place new Order list - OTO
+     * Place new Order list - OTO (TRADE)
      *
      * <p>Places an OTO. * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. *
      * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or
@@ -47,18 +47,29 @@ public class OrderListPlaceOtoExample {
      * &#x60;FILLED&#x60; but the pending order will still appear as &#x60;PENDING_NEW&#x60;. You
      * need to query the status of the pending order again to see its updated status. * OTOs add **2
      * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1 Unfilled Order Count: 2
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine **Mandatory parameters based on &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;** Depending on the &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; | |&#x60;pendingType&#x60; &#x3D;
+     * &#x60;LIMIT&#x60; |&#x60;pendingPrice&#x60;, &#x60;pendingTimeInForce&#x60; |
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or &#x60;TAKE_PROFIT&#x60;
+     * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
+     * |&#x60;pendingType&#x60; &#x3D;&#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
      */
     public void orderListPlaceOtoExampleAsync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();
         orderListPlaceOtoRequest.symbol("BNBUSDT");
         orderListPlaceOtoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOtoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOtoRequest.workingPrice(1.0d);
-        orderListPlaceOtoRequest.workingQuantity(1.0d);
+        orderListPlaceOtoRequest.workingPrice(1d);
+        orderListPlaceOtoRequest.workingQuantity(1d);
         orderListPlaceOtoRequest.pendingType(PendingType.LIMIT);
         orderListPlaceOtoRequest.pendingSide(PendingSide.BUY);
-        orderListPlaceOtoRequest.pendingQuantity(1.0d);
+        orderListPlaceOtoRequest.pendingQuantity(1d);
         CompletableFuture<OrderListPlaceOtoResponse> future =
                 getApi().orderListPlaceOto(orderListPlaceOtoRequest);
         future.handle(
@@ -72,7 +83,7 @@ public class OrderListPlaceOtoExample {
     }
 
     /**
-     * WebSocket Place new Order list - OTO
+     * Place new Order list - OTO (TRADE)
      *
      * <p>Places an OTO. * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. *
      * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or
@@ -86,18 +97,29 @@ public class OrderListPlaceOtoExample {
      * &#x60;FILLED&#x60; but the pending order will still appear as &#x60;PENDING_NEW&#x60;. You
      * need to query the status of the pending order again to see its updated status. * OTOs add **2
      * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1 Unfilled Order Count: 2
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine **Mandatory parameters based on &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;** Depending on the &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; | |&#x60;pendingType&#x60; &#x3D;
+     * &#x60;LIMIT&#x60; |&#x60;pendingPrice&#x60;, &#x60;pendingTimeInForce&#x60; |
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or &#x60;TAKE_PROFIT&#x60;
+     * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
+     * |&#x60;pendingType&#x60; &#x3D;&#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
      */
     public void orderListPlaceOtoExampleSync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();
         orderListPlaceOtoRequest.symbol("BNBUSDT");
         orderListPlaceOtoRequest.workingType(WorkingType.LIMIT);
         orderListPlaceOtoRequest.workingSide(WorkingSide.BUY);
-        orderListPlaceOtoRequest.workingPrice(1.0d);
-        orderListPlaceOtoRequest.workingQuantity(1.0d);
+        orderListPlaceOtoRequest.workingPrice(1d);
+        orderListPlaceOtoRequest.workingQuantity(1d);
         orderListPlaceOtoRequest.pendingType(PendingType.LIMIT);
         orderListPlaceOtoRequest.pendingSide(PendingSide.BUY);
-        orderListPlaceOtoRequest.pendingQuantity(1.0d);
+        orderListPlaceOtoRequest.pendingQuantity(1d);
         CompletableFuture<OrderListPlaceOtoResponse> future =
                 getApi().orderListPlaceOto(orderListPlaceOtoRequest);
         OrderListPlaceOtoResponse response = future.join();

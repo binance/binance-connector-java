@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
 import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
 import com.binance.connector.client.crypto_loan.rest.model.CheckCollateralRepayRateResponse;
+import java.io.IOException;
 
 /** API examples for FlexibleRateApi */
 public class CheckCollateralRepayRateExample {
@@ -26,15 +27,16 @@ public class CheckCollateralRepayRateExample {
     }
 
     /**
-     * Check Collateral Repay Rate (USER_DATA)
+     * Check Collateral Flexible Repay Rate (USER_DATA)
      *
-     * <p>Weight: 6000
+     * <p>Get the latest rate of collateral coin/loan coin when using collateral repay. Weight(IP):
+     * 6000 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void checkCollateralRepayRateExample() throws ApiException {
-        String loanCoin = "";
-        String collateralCoin = "";
+    public void checkCollateralRepayRateExample() throws ApiException, IOException {
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long recvWindow = 5000L;
         ApiResponse<CheckCollateralRepayRateResponse> response =
                 getApi().checkCollateralRepayRate(loanCoin, collateralCoin, recvWindow);

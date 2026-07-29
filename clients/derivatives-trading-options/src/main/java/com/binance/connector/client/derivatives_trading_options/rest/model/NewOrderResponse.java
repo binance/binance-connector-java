@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -66,6 +66,12 @@ public class NewOrderResponse {
     @jakarta.annotation.Nullable
     private String executedQty;
 
+    public static final String SERIALIZED_NAME_FEE = "fee";
+
+    @SerializedName(SERIALIZED_NAME_FEE)
+    @jakarta.annotation.Nullable
+    private Long fee;
+
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -89,6 +95,12 @@ public class NewOrderResponse {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
+
+    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
+
+    @SerializedName(SERIALIZED_NAME_POST_ONLY)
+    @jakarta.annotation.Nullable
+    private Boolean postOnly;
 
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -171,7 +183,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -190,7 +202,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -209,7 +221,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -228,7 +240,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -247,7 +259,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Number of executed quantity
      *
      * @return executedQty
      */
@@ -260,13 +272,32 @@ public class NewOrderResponse {
         this.executedQty = executedQty;
     }
 
+    public NewOrderResponse fee(@jakarta.annotation.Nullable Long fee) {
+        this.fee = fee;
+        return this;
+    }
+
+    /**
+     * fee
+     *
+     * @return fee
+     */
+    @jakarta.annotation.Nullable
+    public Long getFee() {
+        return fee;
+    }
+
+    public void setFee(@jakarta.annotation.Nullable Long fee) {
+        this.fee = fee;
+    }
+
     public NewOrderResponse side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -285,7 +316,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -304,7 +335,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -323,7 +354,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -336,13 +367,32 @@ public class NewOrderResponse {
         this.reduceOnly = reduceOnly;
     }
 
+    public NewOrderResponse postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+        return this;
+    }
+
+    /**
+     * post Only
+     *
+     * @return postOnly
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPostOnly() {
+        return postOnly;
+    }
+
+    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+    }
+
     public NewOrderResponse createTime(@jakarta.annotation.Nullable Long createTime) {
         this.createTime = createTime;
         return this;
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -361,7 +411,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * Update time
      *
      * @return updateTime
      */
@@ -380,7 +430,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -399,7 +449,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -418,7 +468,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get source
+     * source
      *
      * @return source
      */
@@ -437,7 +487,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -456,7 +506,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -475,7 +525,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -494,7 +544,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -513,7 +563,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -532,7 +582,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */
@@ -552,7 +602,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * Self-trade prevention mode
      *
      * @return selfTradePreventionMode
      */
@@ -580,10 +630,12 @@ public class NewOrderResponse {
                 && Objects.equals(this.price, newOrderResponse.price)
                 && Objects.equals(this.quantity, newOrderResponse.quantity)
                 && Objects.equals(this.executedQty, newOrderResponse.executedQty)
+                && Objects.equals(this.fee, newOrderResponse.fee)
                 && Objects.equals(this.side, newOrderResponse.side)
                 && Objects.equals(this.type, newOrderResponse.type)
                 && Objects.equals(this.timeInForce, newOrderResponse.timeInForce)
                 && Objects.equals(this.reduceOnly, newOrderResponse.reduceOnly)
+                && Objects.equals(this.postOnly, newOrderResponse.postOnly)
                 && Objects.equals(this.createTime, newOrderResponse.createTime)
                 && Objects.equals(this.updateTime, newOrderResponse.updateTime)
                 && Objects.equals(this.status, newOrderResponse.status)
@@ -607,10 +659,12 @@ public class NewOrderResponse {
                 price,
                 quantity,
                 executedQty,
+                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
+                postOnly,
                 createTime,
                 updateTime,
                 status,
@@ -634,10 +688,12 @@ public class NewOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
+        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
@@ -679,6 +735,10 @@ public class NewOrderResponse {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
+        Object feeValue = getFee();
+        String feeValueAsString = "";
+        feeValueAsString = feeValue.toString();
+        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -695,6 +755,10 @@ public class NewOrderResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object postOnlyValue = getPostOnly();
+        String postOnlyValueAsString = "";
+        postOnlyValueAsString = postOnlyValue.toString();
+        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -778,10 +842,12 @@ public class NewOrderResponse {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
+        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
+        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");

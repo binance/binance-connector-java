@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderTestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTestRequest {
     public static final String SERIALIZED_NAME_COMPUTE_COMMISSION_RATES = "computeCommissionRates";
 
@@ -167,7 +167,8 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get computeCommissionRates
+     * Default: &#x60;false&#x60; &lt;br&gt; See [Commissions
+     * FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more.
      *
      * @return computeCommissionRates
      */
@@ -329,7 +330,9 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Orders with the same
+     * &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise
+     * the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -367,7 +370,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return strategyType
      */
@@ -386,7 +389,8 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -406,7 +410,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get trailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return trailingDelta
      */
@@ -425,7 +429,8 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -509,7 +514,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get pegOffsetValue
+     * Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders)
      *
      * @return pegOffsetValue
      */
@@ -549,7 +554,8 @@ public class OrderTestRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */

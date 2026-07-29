@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  |
-|**transferType** | **String** |  |  |
+|**asset** | **Asset** |  |  |
+|**transferType** | **TransferType** |  |  |
 |**amount** | **Double** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 

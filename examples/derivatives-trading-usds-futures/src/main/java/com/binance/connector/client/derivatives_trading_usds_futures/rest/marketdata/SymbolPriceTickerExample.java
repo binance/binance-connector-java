@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.DerivativesTradingUsdsFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.api.DerivativesTradingUsdsFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SymbolPriceTickerResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class SymbolPriceTickerExample {
@@ -28,14 +29,14 @@ public class SymbolPriceTickerExample {
     /**
      * Symbol Price Ticker
      *
-     * <p>Latest price for a symbol or symbols. * If the symbol is not sent, prices for all symbols
-     * will be returned in an array. Weight: 1 for a single symbol; 2 when the symbol parameter is
-     * omitted
+     * <p>Latest price for a symbol or symbols. Weight: 1 for a single symbol; 2 when the symbol
+     * parameter is omitted Notes: - If the symbol is not sent, prices for all symbols will be
+     * returned in an array.
      *
      * @throws ApiException if the Api call fails
      */
-    public void symbolPriceTickerExample() throws ApiException {
-        String symbol = "";
+    public void symbolPriceTickerExample() throws ApiException, IOException {
+        String symbol = "BTCUSDT";
         ApiResponse<SymbolPriceTickerResponse> response = getApi().symbolPriceTicker(symbol);
         System.out.println(response.getData());
     }

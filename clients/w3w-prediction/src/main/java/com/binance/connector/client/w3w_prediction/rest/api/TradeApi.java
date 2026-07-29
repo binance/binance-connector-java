@@ -53,7 +53,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/1.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,8 +104,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
-     *     Cancel Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
+     *     Cancel Orders (TRADE) Documentation</a>
      */
     private okhttp3.Call batchCancelOrdersCall(BatchCancelOrdersRequest batchCancelOrdersRequest)
             throws ApiException {
@@ -209,9 +209,9 @@ public class TradeApi {
     }
 
     /**
-     * Batch Cancel Orders Cancel one or more active prediction orders in a single request. Requires
-     * SAS authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint uses
-     * indexed bracket notation (&#x60;cancelInfoList[0].orderId&#x60;). Binance SAPI signature
+     * Batch Cancel Orders (TRADE) Cancel one or more active prediction orders in a single request.
+     * Requires SAS authorization. **Known Issue — Bracket Encoding Incompatibility:** This endpoint
+     * uses indexed bracket notation (&#x60;cancelInfoList[0].orderId&#x60;). Binance SAPI signature
      * verification runs over the **raw, unencoded** canonical string. However, mainstream HTTP
      * libraries (Python &#x60;requests&#x60;, Java &#x60;HttpURLConnection&#x60;/&#x60;URI&#x60;,
      * Go &#x60;net/url&#x60;, Node.js &#x60;url&#x60;) automatically percent-encode &#x60;[&#x60; →
@@ -239,8 +239,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
-     *     Cancel Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders">Batch
+     *     Cancel Orders (TRADE) Documentation</a>
      */
     public ApiResponse<BatchCancelOrdersResponse> batchCancelOrders(
             @Valid @NotNull BatchCancelOrdersRequest batchCancelOrdersRequest) throws ApiException {
@@ -264,8 +264,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
-     *     Quote Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
+     *     Quote (TRADE) Documentation</a>
      */
     private okhttp3.Call getQuoteCall(GetQuoteRequest getQuoteRequest) throws ApiException {
         String basePath = null;
@@ -398,16 +398,17 @@ public class TradeApi {
     }
 
     /**
-     * Get Quote Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be
-     * used in the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE Response
-     * Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18 decimals) and
-     * may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is also a string
-     * to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60; and
-     * &#x60;slippageBps&#x60; are integers and will never exceed safe integer bounds. - **MARKET
-     * order minimum amount:** For &#x60;MARKET&#x60; orders, &#x60;amountIn&#x60; must be at least
-     * approximately **1.5 USDT** (in wei: &#x60;1500000000000000000&#x60;). The exact minimum
-     * varies by market liquidity. If the amount is too small, the server returns &#x60;-9000 Your
-     * order amount is too small&#x60;. This limit does **not** apply to &#x60;LIMIT&#x60; orders.
+     * Get Quote (TRADE) Get a price quote for a prediction order. The returned &#x60;quoteId&#x60;
+     * must be used in the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE
+     * Response Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18
+     * decimals) and may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is
+     * also a string to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60;
+     * and &#x60;slippageBps&#x60; are integers and will never exceed safe integer bounds. -
+     * **MARKET order minimum amount:** For &#x60;MARKET&#x60; orders, &#x60;amountIn&#x60; must be
+     * at least approximately **1.5 USDT** (in wei: &#x60;1500000000000000000&#x60;). The exact
+     * minimum varies by market liquidity. If the amount is too small, the server returns
+     * &#x60;-9000 Your order amount is too small&#x60;. This limit does **not** apply to
+     * &#x60;LIMIT&#x60; orders.
      *
      * @param getQuoteRequest (required)
      * @return ApiResponse&lt;GetQuoteResponse&gt;
@@ -421,8 +422,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
-     *     Quote Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote">Get
+     *     Quote (TRADE) Documentation</a>
      */
     public ApiResponse<GetQuoteResponse> getQuote(@Valid @NotNull GetQuoteRequest getQuoteRequest)
             throws ApiException {
@@ -445,8 +446,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
-     *     Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
+     *     Order (TRADE) Documentation</a>
      */
     private okhttp3.Call placeOrderCall(PlaceOrderRequest placeOrderRequest) throws ApiException {
         String basePath = null;
@@ -575,7 +576,7 @@ public class TradeApi {
     }
 
     /**
-     * Place Order Place a prediction order using a previously obtained quote. Requires SAS
+     * Place Order (TRADE) Place a prediction order using a previously obtained quote. Requires SAS
      * authorization. Weight(IP): 200 Security Type: TRADE Notes: - Validation rules: | orderType |
      * timeInForce | priceLimit | | --------- | ------------- | --------------------- | |
      * &#x60;MARKET&#x60; | Must be &#x60;FOK&#x60; | Not required | | &#x60;LIMIT&#x60; | Must be
@@ -593,8 +594,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
-     *     Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order">Place
+     *     Order (TRADE) Documentation</a>
      */
     public ApiResponse<PlaceOrderResponse> placeOrder(
             @Valid @NotNull PlaceOrderRequest placeOrderRequest) throws ApiException {
@@ -624,8 +625,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
-     *     Active Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
+     *     Active Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryActiveOrdersCall(
             String walletAddress,
@@ -771,8 +772,8 @@ public class TradeApi {
     }
 
     /**
-     * Query Active Orders Get active (open) prediction orders for the authenticated user.
-     * Weight(IP): 200 Security Type: USER_DATA
+     * Query Active Orders (USER_DATA) Get active (open) prediction orders for the authenticated
+     * user. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tradeSide Filter by trade side. Enum: &#x60;BUY&#x60;, &#x60;SELL&#x60; (optional)
@@ -792,8 +793,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
-     *     Active Orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders">Query
+     *     Active Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryActiveOrdersResponse> queryActiveOrders(
             @NotNull String walletAddress,
@@ -836,8 +837,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
-     *     Order History Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
+     *     Order History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryOrderHistoryCall(
             String walletAddress,
@@ -1013,8 +1014,8 @@ public class TradeApi {
     }
 
     /**
-     * Query Order History Get historical prediction orders (all statuses) for the authenticated
-     * user, with optional filters. Weight(IP): 200 Security Type: USER_DATA
+     * Query Order History (USER_DATA) Get historical prediction orders (all statuses) for the
+     * authenticated user, with optional filters. Weight(IP): 200 Security Type: USER_DATA
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)
@@ -1038,8 +1039,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
-     *     Order History Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history">Query
+     *     Order History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryOrderHistoryResponse> queryOrderHistory(
             @NotNull String walletAddress,

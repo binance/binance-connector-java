@@ -29,7 +29,7 @@ public class MyPreventedMatchesExample {
     }
 
     /**
-     * WebSocket Account prevented matches
+     * Account prevented matches (USER_DATA)
      *
      * <p>Displays the list of orders that were expired due to STP. These are the combinations
      * supported: * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; +
@@ -37,7 +37,8 @@ public class MyPreventedMatchesExample {
      * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60;
      * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
      * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
-     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20
+     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20 Security Type:
+     * USER_DATA Notes: **Data Source:** Database
      */
     public void myPreventedMatchesExampleAsync() {
         MyPreventedMatchesRequest myPreventedMatchesRequest = new MyPreventedMatchesRequest();
@@ -55,7 +56,7 @@ public class MyPreventedMatchesExample {
     }
 
     /**
-     * WebSocket Account prevented matches
+     * Account prevented matches (USER_DATA)
      *
      * <p>Displays the list of orders that were expired due to STP. These are the combinations
      * supported: * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; +
@@ -63,7 +64,8 @@ public class MyPreventedMatchesExample {
      * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60;
      * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
      * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
-     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20
+     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20 Security Type:
+     * USER_DATA Notes: **Data Source:** Database
      */
     public void myPreventedMatchesExampleSync() {
         MyPreventedMatchesRequest myPreventedMatchesRequest = new MyPreventedMatchesRequest();

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RecentTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RecentTradesListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -80,7 +80,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -99,7 +99,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -118,7 +118,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get qty
+     * Quantity.
      *
      * @return qty
      */
@@ -137,7 +137,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get baseQty
+     * Base asset quantity.
      *
      * @return baseQty
      */
@@ -156,7 +156,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -176,7 +176,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get isBuyerMaker
+     * Whether buyer is market maker.
      *
      * @return isBuyerMaker
      */

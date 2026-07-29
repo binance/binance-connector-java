@@ -31,12 +31,12 @@ public class OrderTestExample {
     }
 
     /**
-     * WebSocket Test new order
+     * Test new order (TRADE)
      *
      * <p>Test order placement. Validates new order parameters and verifies your signature but does
-     * not send the order into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * not send the order into the matching engine. Weight: | Condition | Request Weight | | --- |
+     * --- | | Without &#x60;computeCommissionRates&#x60; | 1 | | With
+     * &#x60;computeCommissionRates&#x60; | 20 | Security Type: TRADE Notes: **Data Source:** Memory
      */
     public void orderTestExampleAsync() {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
@@ -55,12 +55,12 @@ public class OrderTestExample {
     }
 
     /**
-     * WebSocket Test new order
+     * Test new order (TRADE)
      *
      * <p>Test order placement. Validates new order parameters and verifies your signature but does
-     * not send the order into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * not send the order into the matching engine. Weight: | Condition | Request Weight | | --- |
+     * --- | | Without &#x60;computeCommissionRates&#x60; | 1 | | With
+     * &#x60;computeCommissionRates&#x60; | 20 | Security Type: TRADE Notes: **Data Source:** Memory
      */
     public void orderTestExampleSync() {
         OrderTestRequest orderTestRequest = new OrderTestRequest();

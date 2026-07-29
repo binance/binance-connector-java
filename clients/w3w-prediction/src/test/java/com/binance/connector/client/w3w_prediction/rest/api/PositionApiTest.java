@@ -29,6 +29,7 @@ import com.binance.connector.client.w3w_prediction.rest.model.QueryPositionsByFi
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPositionsResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.QuerySettledPositionHistoryResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -80,7 +81,7 @@ public class PositionApiTest {
     }
 
     /**
-     * Get Position by Token
+     * Get Position by Token (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s position detail for a specific prediction token.
      * Weight(IP): 200 Security Type: USER_DATA
@@ -88,7 +89,7 @@ public class PositionApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPositionByTokenTest() throws ApiException, CryptoException {
+    public void getPositionByTokenTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long recvWindow = 5000L;
@@ -102,7 +103,6 @@ public class PositionApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -113,7 +113,7 @@ public class PositionApiTest {
     }
 
     /**
-     * Query PnL
+     * Query PnL (USER_DATA)
      *
      * <p>Query profit and loss records for the authenticated user&#39;s prediction positions. When
      * &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise
@@ -122,7 +122,7 @@ public class PositionApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryPnLTest() throws ApiException, CryptoException {
+    public void queryPnLTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tokenId = "112233";
         Long marketId = 5567895L;
@@ -140,7 +140,6 @@ public class PositionApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -150,7 +149,7 @@ public class PositionApiTest {
     }
 
     /**
-     * Query Positions
+     * Query Positions (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s prediction token positions with portfolio summary and
      * tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
@@ -158,7 +157,7 @@ public class PositionApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryPositionsTest() throws ApiException, CryptoException {
+    public void queryPositionsTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String tab = "ONGOING";
         Integer offset = 0;
@@ -174,7 +173,6 @@ public class PositionApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -184,7 +182,7 @@ public class PositionApiTest {
     }
 
     /**
-     * Query Positions by Filter
+     * Query Positions by Filter (USER_DATA)
      *
      * <p>Get prediction positions filtered by wallet address and/or market topic ID. Both
      * parameters are optional. Weight(IP): 200 Security Type: USER_DATA
@@ -192,7 +190,7 @@ public class PositionApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryPositionsByFilterTest() throws ApiException, CryptoException {
+    public void queryPositionsByFilterTest() throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         Long marketTopicId = 4229564L;
         Long recvWindow = 5000L;
@@ -206,7 +204,6 @@ public class PositionApiTest {
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
 
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
@@ -218,7 +215,7 @@ public class PositionApiTest {
     }
 
     /**
-     * Query Settled Position History
+     * Query Settled Position History (USER_DATA)
      *
      * <p>Get the authenticated user&#39;s settled (resolved) prediction position history with
      * optional filters. Weight(IP): 200 Security Type: USER_DATA
@@ -226,7 +223,8 @@ public class PositionApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySettledPositionHistoryTest() throws ApiException, CryptoException {
+    public void querySettledPositionHistoryTest()
+            throws ApiException, CryptoException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         String l1Category = "crypto";
         Integer result = 1;
@@ -252,7 +250,6 @@ public class PositionApiTest {
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();

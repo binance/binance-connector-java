@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.w3w_prediction.rest.W3WPredictionRestApiUtil;
 import com.binance.connector.client.w3w_prediction.rest.api.W3WPredictionRestApi;
 import com.binance.connector.client.w3w_prediction.rest.model.QueryPositionsByFilterResponse;
+import java.io.IOException;
 
 /** API examples for PositionApi */
 public class QueryPositionsByFilterExample {
@@ -26,14 +27,14 @@ public class QueryPositionsByFilterExample {
     }
 
     /**
-     * Query Positions by Filter
+     * Query Positions by Filter (USER_DATA)
      *
      * <p>Get prediction positions filtered by wallet address and/or market topic ID. Both
      * parameters are optional. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryPositionsByFilterExample() throws ApiException {
+    public void queryPositionsByFilterExample() throws ApiException, IOException {
         String walletAddress = "0x12e32db8817e292508c34111cbc4b23340df542c";
         Long marketTopicId = 4229564L;
         Long recvWindow = 5000L;

@@ -8,6 +8,11 @@ import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOtoRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOtoResponse;
+import com.binance.connector.client.margin_trading.rest.model.PendingSide;
+import com.binance.connector.client.margin_trading.rest.model.PendingType;
+import com.binance.connector.client.margin_trading.rest.model.WorkingSide;
+import com.binance.connector.client.margin_trading.rest.model.WorkingType;
+import java.io.IOException;
 
 /** API examples for TradeApi */
 public class MarginAccountNewOtoExample {
@@ -41,23 +46,36 @@ public class MarginAccountNewOtoExample {
      * order as &#x60;FILLED&#x60; but the pending order will still appear as
      * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
      * updated status. - OTOs add **2 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. *
-     * autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid under high
-     * frequent new order/cancel order execution * Depending on the &#x60;pendingType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory: Weight: 6(UID)
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
+     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
+     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
+     * under high frequent new order/cancel order execution - Depending on the
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;, some optional - parameters will become
+     * mandatory: | Type | Additional mandatory parameters | Additional information | |
+     * -------------------------------------------------------- |
+     * ------------------------------------------------------------ | ---------------------- | |
+     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
+     * &#x60;pendingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or
+     * &#x60;TAKE_PROFIT&#x60; | &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60; | | | &#x60;pendingType&#x60; &#x3D;
+     * &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingTrailingDelta&#x60; is provided |
+     * &#x60;pendingPrice&#x60; | |
      *
      * @throws ApiException if the Api call fails
      */
-    public void marginAccountNewOtoExample() throws ApiException {
+    public void marginAccountNewOtoExample() throws ApiException, IOException {
         MarginAccountNewOtoRequest marginAccountNewOtoRequest = new MarginAccountNewOtoRequest();
-        marginAccountNewOtoRequest.symbol("");
-        marginAccountNewOtoRequest.workingType("");
-        marginAccountNewOtoRequest.workingSide("");
+        marginAccountNewOtoRequest.symbol("BTCUSDT");
+        marginAccountNewOtoRequest.workingType(WorkingType.LIMIT);
+        marginAccountNewOtoRequest.workingSide(WorkingSide.BUY);
         marginAccountNewOtoRequest.workingPrice(1.0d);
         marginAccountNewOtoRequest.workingQuantity(1.0d);
         marginAccountNewOtoRequest.workingIcebergQty(1.0d);
-        marginAccountNewOtoRequest.pendingType("Order Types");
-        marginAccountNewOtoRequest.pendingSide("");
+        marginAccountNewOtoRequest.pendingType(PendingType.LIMIT);
+        marginAccountNewOtoRequest.pendingSide(PendingSide.BUY);
         marginAccountNewOtoRequest.pendingQuantity(1.0d);
         ApiResponse<MarginAccountNewOtoResponse> response =
                 getApi().marginAccountNewOto(marginAccountNewOtoRequest);

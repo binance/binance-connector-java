@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginAccountInfoResponse;
+import java.io.IOException;
 
 /** API examples for AccountApi */
 public class QueryIsolatedMarginAccountInfoExample {
@@ -28,14 +29,14 @@ public class QueryIsolatedMarginAccountInfoExample {
     /**
      * Query Isolated Margin Account Info (USER_DATA)
      *
-     * <p>Query Isolated Margin Account Info * If \&quot;symbols\&quot; is not sent, all isolated
-     * assets will be returned. * If \&quot;symbols\&quot; is sent, only the isolated assets of the
-     * sent symbols will be returned. Weight: 10(IP)
+     * <p>Query Isolated Margin Account Info Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * \&quot;symbols\&quot; is not sent, all isolated assets will be returned. - If
+     * \&quot;symbols\&quot; is sent, only the isolated assets of the sent symbols will be returned.
      *
      * @throws ApiException if the Api call fails
      */
-    public void queryIsolatedMarginAccountInfoExample() throws ApiException {
-        String symbols = "";
+    public void queryIsolatedMarginAccountInfoExample() throws ApiException, IOException {
+        String symbols = "BTCUSDT,BNBUSDT,ADAUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryIsolatedMarginAccountInfoResponse> response =
                 getApi().queryIsolatedMarginAccountInfo(symbols, recvWindow);

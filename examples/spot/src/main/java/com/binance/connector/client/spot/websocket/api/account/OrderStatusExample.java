@@ -29,9 +29,15 @@ public class OrderStatusExample {
     }
 
     /**
-     * WebSocket Query order
+     * Query order (USER_DATA)
      *
-     * <p>Check execution status of an order. Weight: 4
+     * <p>Check execution status of an order. Weight(IP): 4 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database Notes: * If both &#x60;orderId&#x60; and
+     * &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60; is searched first, then
+     * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * For some historical orders the
+     * &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data is not
+     * available at this time.
      */
     public void orderStatusExampleAsync() {
         OrderStatusRequest orderStatusRequest = new OrderStatusRequest();
@@ -48,9 +54,15 @@ public class OrderStatusExample {
     }
 
     /**
-     * WebSocket Query order
+     * Query order (USER_DATA)
      *
-     * <p>Check execution status of an order. Weight: 4
+     * <p>Check execution status of an order. Weight(IP): 4 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database Notes: * If both &#x60;orderId&#x60; and
+     * &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60; is searched first, then
+     * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. * For some historical orders the
+     * &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data is not
+     * available at this time.
      */
     public void orderStatusExampleSync() {
         OrderStatusRequest orderStatusRequest = new OrderStatusRequest();

@@ -7,6 +7,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetFundingRateInfoResponse;
+import java.io.IOException;
 
 /** API examples for MarketDataApi */
 public class GetFundingRateInfoExample {
@@ -28,12 +29,12 @@ public class GetFundingRateInfoExample {
     /**
      * Get Funding Rate Info
      *
-     * <p>Query funding rate info for symbols that had FundingRateCap/ FundingRateFloor /
-     * fundingIntervalHours adjustment Weight: 0
+     * <p>Query funding rate info for symbols that had
+     * FundingRateCap/FundingRateFloor/fundingIntervalHours adjustment
      *
      * @throws ApiException if the Api call fails
      */
-    public void getFundingRateInfoExample() throws ApiException {
+    public void getFundingRateInfoExample() throws ApiException, IOException {
         ApiResponse<GetFundingRateInfoResponse> response = getApi().getFundingRateInfo();
         System.out.println(response.getData());
     }

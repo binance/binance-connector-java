@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getSymbolsDelistScheduleForSpot**](OthersApi.md#getSymbolsDelistScheduleForSpot) | **GET** /sapi/v1/spot/delist-schedule | Get symbols delist schedule for spot (MARKET_DATA) |
-| [**systemStatus**](OthersApi.md#systemStatus) | **GET** /sapi/v1/system/status | System Status (System) |
+| [**getSymbolsDelistScheduleForSpot**](OthersApi.md#getSymbolsDelistScheduleForSpot) | **GET** /sapi/v1/spot/delist-schedule | Get Spot Delist Schedule (MARKET_DATA) |
+| [**systemStatus**](OthersApi.md#systemStatus) | **GET** /sapi/v1/system/status | System Status |
 
 
 <a id="getSymbolsDelistScheduleForSpot"></a>
 # **getSymbolsDelistScheduleForSpot**
 > GetSymbolsDelistScheduleForSpotResponse getSymbolsDelistScheduleForSpot(recvWindow)
 
-Get symbols delist schedule for spot (MARKET_DATA)
+Get Spot Delist Schedule (MARKET_DATA)
 
-Get symbols delist schedule for spot  Weight: 100
+Get symbols delist schedule for spot  Weight(IP): 100  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -31,7 +31,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OthersApi apiInstance = new OthersApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSymbolsDelistScheduleForSpotResponse result = apiInstance.getSymbolsDelistScheduleForSpot(recvWindow);
       System.out.println(result);
@@ -74,9 +74,9 @@ No authorization required
 # **systemStatus**
 > SystemStatusResponse systemStatus()
 
-System Status (System)
+System Status
 
-Fetch system status.  Weight: 1
+Fetch system status.  Weight(IP): 1  Security Type: System
 
 ### Example
 ```java
