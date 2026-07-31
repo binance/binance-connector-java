@@ -31,11 +31,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** QuerySubAccountApiKeyResponseListInner */
+/** QuerySubAccountApiKeyResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
-public class QuerySubAccountApiKeyResponseListInner {
+public class QuerySubAccountApiKeyResponseRowsInner {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
     @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -90,9 +90,9 @@ public class QuerySubAccountApiKeyResponseListInner {
     @jakarta.annotation.Nullable
     private Long timestamp;
 
-    public QuerySubAccountApiKeyResponseListInner() {}
+    public QuerySubAccountApiKeyResponseRowsInner() {}
 
-    public QuerySubAccountApiKeyResponseListInner email(@jakarta.annotation.Nullable String email) {
+    public QuerySubAccountApiKeyResponseRowsInner email(@jakarta.annotation.Nullable String email) {
         this.email = email;
         return this;
     }
@@ -111,7 +111,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.email = email;
     }
 
-    public QuerySubAccountApiKeyResponseListInner apiName(
+    public QuerySubAccountApiKeyResponseRowsInner apiName(
             @jakarta.annotation.Nullable String apiName) {
         this.apiName = apiName;
         return this;
@@ -131,7 +131,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.apiName = apiName;
     }
 
-    public QuerySubAccountApiKeyResponseListInner apikey(
+    public QuerySubAccountApiKeyResponseRowsInner apikey(
             @jakarta.annotation.Nullable String apikey) {
         this.apikey = apikey;
         return this;
@@ -151,7 +151,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.apikey = apikey;
     }
 
-    public QuerySubAccountApiKeyResponseListInner canTrade(
+    public QuerySubAccountApiKeyResponseRowsInner canTrade(
             @jakarta.annotation.Nullable Boolean canTrade) {
         this.canTrade = canTrade;
         return this;
@@ -171,7 +171,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.canTrade = canTrade;
     }
 
-    public QuerySubAccountApiKeyResponseListInner canMarginLoanRepay(
+    public QuerySubAccountApiKeyResponseRowsInner canMarginLoanRepay(
             @jakarta.annotation.Nullable Boolean canMarginLoanRepay) {
         this.canMarginLoanRepay = canMarginLoanRepay;
         return this;
@@ -191,7 +191,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.canMarginLoanRepay = canMarginLoanRepay;
     }
 
-    public QuerySubAccountApiKeyResponseListInner canFuturesTrade(
+    public QuerySubAccountApiKeyResponseRowsInner canFuturesTrade(
             @jakarta.annotation.Nullable Boolean canFuturesTrade) {
         this.canFuturesTrade = canFuturesTrade;
         return this;
@@ -211,7 +211,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.canFuturesTrade = canFuturesTrade;
     }
 
-    public QuerySubAccountApiKeyResponseListInner canUniversalTransfer(
+    public QuerySubAccountApiKeyResponseRowsInner canUniversalTransfer(
             @jakarta.annotation.Nullable Boolean canUniversalTransfer) {
         this.canUniversalTransfer = canUniversalTransfer;
         return this;
@@ -231,7 +231,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.canUniversalTransfer = canUniversalTransfer;
     }
 
-    public QuerySubAccountApiKeyResponseListInner canVanillaOptions(
+    public QuerySubAccountApiKeyResponseRowsInner canVanillaOptions(
             @jakarta.annotation.Nullable Boolean canVanillaOptions) {
         this.canVanillaOptions = canVanillaOptions;
         return this;
@@ -251,7 +251,7 @@ public class QuerySubAccountApiKeyResponseListInner {
         this.canVanillaOptions = canVanillaOptions;
     }
 
-    public QuerySubAccountApiKeyResponseListInner timestamp(
+    public QuerySubAccountApiKeyResponseRowsInner timestamp(
             @jakarta.annotation.Nullable Long timestamp) {
         this.timestamp = timestamp;
         return this;
@@ -279,25 +279,25 @@ public class QuerySubAccountApiKeyResponseListInner {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        QuerySubAccountApiKeyResponseListInner querySubAccountApiKeyResponseListInner =
-                (QuerySubAccountApiKeyResponseListInner) o;
-        return Objects.equals(this.email, querySubAccountApiKeyResponseListInner.email)
-                && Objects.equals(this.apiName, querySubAccountApiKeyResponseListInner.apiName)
-                && Objects.equals(this.apikey, querySubAccountApiKeyResponseListInner.apikey)
-                && Objects.equals(this.canTrade, querySubAccountApiKeyResponseListInner.canTrade)
+        QuerySubAccountApiKeyResponseRowsInner querySubAccountApiKeyResponseRowsInner =
+                (QuerySubAccountApiKeyResponseRowsInner) o;
+        return Objects.equals(this.email, querySubAccountApiKeyResponseRowsInner.email)
+                && Objects.equals(this.apiName, querySubAccountApiKeyResponseRowsInner.apiName)
+                && Objects.equals(this.apikey, querySubAccountApiKeyResponseRowsInner.apikey)
+                && Objects.equals(this.canTrade, querySubAccountApiKeyResponseRowsInner.canTrade)
                 && Objects.equals(
                         this.canMarginLoanRepay,
-                        querySubAccountApiKeyResponseListInner.canMarginLoanRepay)
+                        querySubAccountApiKeyResponseRowsInner.canMarginLoanRepay)
                 && Objects.equals(
                         this.canFuturesTrade,
-                        querySubAccountApiKeyResponseListInner.canFuturesTrade)
+                        querySubAccountApiKeyResponseRowsInner.canFuturesTrade)
                 && Objects.equals(
                         this.canUniversalTransfer,
-                        querySubAccountApiKeyResponseListInner.canUniversalTransfer)
+                        querySubAccountApiKeyResponseRowsInner.canUniversalTransfer)
                 && Objects.equals(
                         this.canVanillaOptions,
-                        querySubAccountApiKeyResponseListInner.canVanillaOptions)
-                && Objects.equals(this.timestamp, querySubAccountApiKeyResponseListInner.timestamp);
+                        querySubAccountApiKeyResponseRowsInner.canVanillaOptions)
+                && Objects.equals(this.timestamp, querySubAccountApiKeyResponseRowsInner.timestamp);
     }
 
     @Override
@@ -317,7 +317,7 @@ public class QuerySubAccountApiKeyResponseListInner {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class QuerySubAccountApiKeyResponseListInner {\n");
+        sb.append("class QuerySubAccountApiKeyResponseRowsInner {\n");
         sb.append("		email: ").append(toIndentedString(email)).append("\n");
         sb.append("		apiName: ").append(toIndentedString(apiName)).append("\n");
         sb.append("		apikey: ").append(toIndentedString(apikey)).append("\n");
@@ -427,17 +427,17 @@ public class QuerySubAccountApiKeyResponseListInner {
      *
      * @param jsonElement JSON Element
      * @throws IOException if the JSON Element is invalid with respect to
-     *     QuerySubAccountApiKeyResponseListInner
+     *     QuerySubAccountApiKeyResponseRowsInner
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!QuerySubAccountApiKeyResponseListInner.openapiRequiredFields
+            if (!QuerySubAccountApiKeyResponseRowsInner.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
-                                "The required field(s) %s in QuerySubAccountApiKeyResponseListInner"
+                                "The required field(s) %s in QuerySubAccountApiKeyResponseRowsInner"
                                         + " is not found in the empty JSON string",
-                                QuerySubAccountApiKeyResponseListInner.openapiRequiredFields
+                                QuerySubAccountApiKeyResponseRowsInner.openapiRequiredFields
                                         .toString()));
             }
         }
@@ -472,27 +472,27 @@ public class QuerySubAccountApiKeyResponseListInner {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!QuerySubAccountApiKeyResponseListInner.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'QuerySubAccountApiKeyResponseListInner'
+            if (!QuerySubAccountApiKeyResponseRowsInner.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'QuerySubAccountApiKeyResponseRowsInner'
                 // and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<QuerySubAccountApiKeyResponseListInner> thisAdapter =
+            final TypeAdapter<QuerySubAccountApiKeyResponseRowsInner> thisAdapter =
                     gson.getDelegateAdapter(
-                            this, TypeToken.get(QuerySubAccountApiKeyResponseListInner.class));
+                            this, TypeToken.get(QuerySubAccountApiKeyResponseRowsInner.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<QuerySubAccountApiKeyResponseListInner>() {
+                    new TypeAdapter<QuerySubAccountApiKeyResponseRowsInner>() {
                         @Override
                         public void write(
-                                JsonWriter out, QuerySubAccountApiKeyResponseListInner value)
+                                JsonWriter out, QuerySubAccountApiKeyResponseRowsInner value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public QuerySubAccountApiKeyResponseListInner read(JsonReader in)
+                        public QuerySubAccountApiKeyResponseRowsInner read(JsonReader in)
                                 throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
@@ -503,20 +503,20 @@ public class QuerySubAccountApiKeyResponseListInner {
     }
 
     /**
-     * Create an instance of QuerySubAccountApiKeyResponseListInner given an JSON string
+     * Create an instance of QuerySubAccountApiKeyResponseRowsInner given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of QuerySubAccountApiKeyResponseListInner
+     * @return An instance of QuerySubAccountApiKeyResponseRowsInner
      * @throws IOException if the JSON string is invalid with respect to
-     *     QuerySubAccountApiKeyResponseListInner
+     *     QuerySubAccountApiKeyResponseRowsInner
      */
-    public static QuerySubAccountApiKeyResponseListInner fromJson(String jsonString)
+    public static QuerySubAccountApiKeyResponseRowsInner fromJson(String jsonString)
             throws IOException {
-        return JSON.getGson().fromJson(jsonString, QuerySubAccountApiKeyResponseListInner.class);
+        return JSON.getGson().fromJson(jsonString, QuerySubAccountApiKeyResponseRowsInner.class);
     }
 
     /**
-     * Convert an instance of QuerySubAccountApiKeyResponseListInner to an JSON string
+     * Convert an instance of QuerySubAccountApiKeyResponseRowsInner to an JSON string
      *
      * @return JSON string
      */

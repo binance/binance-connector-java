@@ -1,6 +1,6 @@
 
 
-# QuerySubAccountApiKeyResponseListInner
+# QuerySubAccountApiKeyResponseRowsInner
 
 
 ## Properties

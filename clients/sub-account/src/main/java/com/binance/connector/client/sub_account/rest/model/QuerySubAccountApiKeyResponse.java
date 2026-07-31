@@ -48,11 +48,11 @@ public class QuerySubAccountApiKeyResponse {
     @jakarta.annotation.Nullable
     private Long total;
 
-    public static final String SERIALIZED_NAME_LIST = "list";
+    public static final String SERIALIZED_NAME_ROWS = "rows";
 
-    @SerializedName(SERIALIZED_NAME_LIST)
+    @SerializedName(SERIALIZED_NAME_ROWS)
     @jakarta.annotation.Nullable
-    private List<@Valid QuerySubAccountApiKeyResponseListInner> _list;
+    private List<@Valid QuerySubAccountApiKeyResponseRowsInner> rows;
 
     public QuerySubAccountApiKeyResponse() {}
 
@@ -75,37 +75,35 @@ public class QuerySubAccountApiKeyResponse {
         this.total = total;
     }
 
-    public QuerySubAccountApiKeyResponse _list(
-            @jakarta.annotation.Nullable
-                    List<@Valid QuerySubAccountApiKeyResponseListInner> _list) {
-        this._list = _list;
+    public QuerySubAccountApiKeyResponse rows(
+            @jakarta.annotation.Nullable List<@Valid QuerySubAccountApiKeyResponseRowsInner> rows) {
+        this.rows = rows;
         return this;
     }
 
-    public QuerySubAccountApiKeyResponse addListItem(
-            QuerySubAccountApiKeyResponseListInner _listItem) {
-        if (this._list == null) {
-            this._list = new ArrayList<>();
+    public QuerySubAccountApiKeyResponse addRowsItem(
+            QuerySubAccountApiKeyResponseRowsInner rowsItem) {
+        if (this.rows == null) {
+            this.rows = new ArrayList<>();
         }
-        this._list.add(_listItem);
+        this.rows.add(rowsItem);
         return this;
     }
 
     /**
-     * Get _list
+     * Get rows
      *
-     * @return _list
+     * @return rows
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid QuerySubAccountApiKeyResponseListInner> getList() {
-        return _list;
+    public List<@Valid QuerySubAccountApiKeyResponseRowsInner> getRows() {
+        return rows;
     }
 
-    public void setList(
-            @jakarta.annotation.Nullable
-                    List<@Valid QuerySubAccountApiKeyResponseListInner> _list) {
-        this._list = _list;
+    public void setRows(
+            @jakarta.annotation.Nullable List<@Valid QuerySubAccountApiKeyResponseRowsInner> rows) {
+        this.rows = rows;
     }
 
     @Override
@@ -119,12 +117,12 @@ public class QuerySubAccountApiKeyResponse {
         QuerySubAccountApiKeyResponse querySubAccountApiKeyResponse =
                 (QuerySubAccountApiKeyResponse) o;
         return Objects.equals(this.total, querySubAccountApiKeyResponse.total)
-                && Objects.equals(this._list, querySubAccountApiKeyResponse._list);
+                && Objects.equals(this.rows, querySubAccountApiKeyResponse.rows);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(total, _list);
+        return Objects.hash(total, rows);
     }
 
     @Override
@@ -132,7 +130,7 @@ public class QuerySubAccountApiKeyResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class QuerySubAccountApiKeyResponse {\n");
         sb.append("		total: ").append(toIndentedString(total)).append("\n");
-        sb.append("		_list: ").append(toIndentedString(_list)).append("\n");
+        sb.append("		rows: ").append(toIndentedString(rows)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -144,13 +142,13 @@ public class QuerySubAccountApiKeyResponse {
         String totalValueAsString = "";
         totalValueAsString = totalValue.toString();
         sb.append("total=").append(urlEncode(totalValueAsString)).append("");
-        Object _listValue = getList();
-        String _listValueAsString = "";
-        _listValueAsString =
+        Object rowsValue = getRows();
+        String rowsValueAsString = "";
+        rowsValueAsString =
                 (String)
-                        ((Collection) _listValue)
+                        ((Collection) rowsValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
-        sb.append("_list=").append(urlEncode(_listValueAsString)).append("");
+        sb.append("rows=").append(urlEncode(rowsValueAsString)).append("");
         return sb.toString();
     }
 
@@ -180,7 +178,7 @@ public class QuerySubAccountApiKeyResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("total");
-        openapiFields.add("list");
+        openapiFields.add("rows");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -205,22 +203,22 @@ public class QuerySubAccountApiKeyResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (jsonObj.get("list") != null && !jsonObj.get("list").isJsonNull()) {
-            JsonArray jsonArray_list = jsonObj.getAsJsonArray("list");
-            if (jsonArray_list != null) {
+        if (jsonObj.get("rows") != null && !jsonObj.get("rows").isJsonNull()) {
+            JsonArray jsonArrayrows = jsonObj.getAsJsonArray("rows");
+            if (jsonArrayrows != null) {
                 // ensure the json data is an array
-                if (!jsonObj.get("list").isJsonArray()) {
+                if (!jsonObj.get("rows").isJsonArray()) {
                     throw new IllegalArgumentException(
                             String.format(
-                                    "Expected the field `list` to be an array in the JSON string"
+                                    "Expected the field `rows` to be an array in the JSON string"
                                             + " but got `%s`",
-                                    jsonObj.get("list").toString()));
+                                    jsonObj.get("rows").toString()));
                 }
 
-                // validate the optional field `list` (array)
-                for (int i = 0; i < jsonArray_list.size(); i++) {
-                    QuerySubAccountApiKeyResponseListInner.validateJsonElement(
-                            jsonArray_list.get(i));
+                // validate the optional field `rows` (array)
+                for (int i = 0; i < jsonArrayrows.size(); i++) {
+                    QuerySubAccountApiKeyResponseRowsInner.validateJsonElement(
+                            jsonArrayrows.get(i));
                 }
                 ;
             }

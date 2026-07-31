@@ -377,7 +377,7 @@ public class JSON {
                         .QuerySubAccountApiKeyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
-                        .QuerySubAccountApiKeyResponseListInner.CustomTypeAdapterFactory());
+                        .QuerySubAccountApiKeyResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .QuerySubAccountAssetsAssetManagementResponse.CustomTypeAdapterFactory());
