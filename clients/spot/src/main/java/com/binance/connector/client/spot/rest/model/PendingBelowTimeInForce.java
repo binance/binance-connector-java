@@ -21,10 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/**
- * Required if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or
- * &#x60;TAKE_PROFIT_LIMIT&#x60;.
- */
+/** Supported values: [Time In Force](/products/spot/enums#timeinforce) */
 @JsonAdapter(PendingBelowTimeInForce.Adapter.class)
 public enum PendingBelowTimeInForce {
     GTC("GTC"),

@@ -26,7 +26,17 @@ import org.hibernate.validator.constraints.*;
 public enum OrderType {
     MARKET("MARKET"),
 
-    LIMIT("LIMIT");
+    LIMIT("LIMIT"),
+
+    STOP_LOSS("STOP_LOSS"),
+
+    STOP_LOSS_LIMIT("STOP_LOSS_LIMIT"),
+
+    TAKE_PROFIT("TAKE_PROFIT"),
+
+    TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT"),
+
+    LIMIT_MAKER("LIMIT_MAKER");
 
     private String value;
 

@@ -21,9 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/**
- * Only &#x60;PRICE_LEVEL&#x60; is supported. See [Pegged Orders](/products/spot/faqs/pegged_orders)
- */
+/** Only &#x60;PRICE_LEVEL&#x60; is supported. See Pegged Orders Info */
 @JsonAdapter(PegOffsetType.Adapter.class)
 public enum PegOffsetType {
     PRICE_LEVEL("PRICE_LEVEL");

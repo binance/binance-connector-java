@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets workingPegOffsetType */
+/** See [Pegged Orders](/products/spot/faqs/pegged_orders) */
 @JsonAdapter(WorkingPegOffsetType.Adapter.class)
 public enum WorkingPegOffsetType {
     PRICE_LEVEL("PRICE_LEVEL");

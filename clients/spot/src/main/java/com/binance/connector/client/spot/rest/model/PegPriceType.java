@@ -21,10 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/**
- * &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60;. See [Pegged
- * Orders](/products/spot/faqs/pegged_orders)
- */
+/** See Pegged Orders Info */
 @JsonAdapter(PegPriceType.Adapter.class)
 public enum PegPriceType {
     PRIMARY_PEG("PRIMARY_PEG"),
