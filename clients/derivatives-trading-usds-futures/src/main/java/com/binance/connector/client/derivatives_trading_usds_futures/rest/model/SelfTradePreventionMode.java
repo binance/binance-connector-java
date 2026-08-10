@@ -22,9 +22,9 @@ import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
 /**
- * &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/
- * &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire
- * both orders when STP triggers; default &#x60;NONE&#x60;
+ * &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers / &#x60;EXPIRE_MAKER&#x60;:expire
+ * taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers;
+ * default &#x60;NONE&#x60;
  */
 @JsonAdapter(SelfTradePreventionMode.Adapter.class)
 public enum SelfTradePreventionMode {

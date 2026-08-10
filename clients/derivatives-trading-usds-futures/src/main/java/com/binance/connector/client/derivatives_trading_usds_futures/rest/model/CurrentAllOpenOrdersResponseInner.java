@@ -31,11 +31,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** AllOrdersResponseInner */
+/** CurrentAllOpenOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
-public class AllOrdersResponseInner {
+public class CurrentAllOpenOrdersResponseInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
     @SerializedName(SERIALIZED_NAME_AVG_PRICE)
@@ -53,12 +53,6 @@ public class AllOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
     @jakarta.annotation.Nullable
     private String cumQuote;
-
-    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
-
-    @SerializedName(SERIALIZED_NAME_CUM_BASE)
-    @jakarta.annotation.Nullable
-    private String cumBase;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -132,12 +126,6 @@ public class AllOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
-    public static final String SERIALIZED_NAME_PAIR = "pair";
-
-    @SerializedName(SERIALIZED_NAME_PAIR)
-    @jakarta.annotation.Nullable
-    private String pair;
-
     public static final String SERIALIZED_NAME_TIME = "time";
 
     @SerializedName(SERIALIZED_NAME_TIME)
@@ -205,9 +193,10 @@ public class AllOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Long goodTillDate;
 
-    public AllOrdersResponseInner() {}
+    public CurrentAllOpenOrdersResponseInner() {}
 
-    public AllOrdersResponseInner avgPrice(@jakarta.annotation.Nullable String avgPrice) {
+    public CurrentAllOpenOrdersResponseInner avgPrice(
+            @jakarta.annotation.Nullable String avgPrice) {
         this.avgPrice = avgPrice;
         return this;
     }
@@ -226,7 +215,8 @@ public class AllOrdersResponseInner {
         this.avgPrice = avgPrice;
     }
 
-    public AllOrdersResponseInner clientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
+    public CurrentAllOpenOrdersResponseInner clientOrderId(
+            @jakarta.annotation.Nullable String clientOrderId) {
         this.clientOrderId = clientOrderId;
         return this;
     }
@@ -245,7 +235,8 @@ public class AllOrdersResponseInner {
         this.clientOrderId = clientOrderId;
     }
 
-    public AllOrdersResponseInner cumQuote(@jakarta.annotation.Nullable String cumQuote) {
+    public CurrentAllOpenOrdersResponseInner cumQuote(
+            @jakarta.annotation.Nullable String cumQuote) {
         this.cumQuote = cumQuote;
         return this;
     }
@@ -264,26 +255,8 @@ public class AllOrdersResponseInner {
         this.cumQuote = cumQuote;
     }
 
-    public AllOrdersResponseInner cumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-        return this;
-    }
-
-    /**
-     * Cum Base.
-     *
-     * @return cumBase
-     */
-    @jakarta.annotation.Nullable
-    public String getCumBase() {
-        return cumBase;
-    }
-
-    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-    }
-
-    public AllOrdersResponseInner executedQty(@jakarta.annotation.Nullable String executedQty) {
+    public CurrentAllOpenOrdersResponseInner executedQty(
+            @jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
@@ -302,7 +275,7 @@ public class AllOrdersResponseInner {
         this.executedQty = executedQty;
     }
 
-    public AllOrdersResponseInner orderId(@jakarta.annotation.Nullable Long orderId) {
+    public CurrentAllOpenOrdersResponseInner orderId(@jakarta.annotation.Nullable Long orderId) {
         this.orderId = orderId;
         return this;
     }
@@ -321,7 +294,7 @@ public class AllOrdersResponseInner {
         this.orderId = orderId;
     }
 
-    public AllOrdersResponseInner origQty(@jakarta.annotation.Nullable String origQty) {
+    public CurrentAllOpenOrdersResponseInner origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
@@ -340,7 +313,8 @@ public class AllOrdersResponseInner {
         this.origQty = origQty;
     }
 
-    public AllOrdersResponseInner origType(@jakarta.annotation.Nullable String origType) {
+    public CurrentAllOpenOrdersResponseInner origType(
+            @jakarta.annotation.Nullable String origType) {
         this.origType = origType;
         return this;
     }
@@ -359,7 +333,7 @@ public class AllOrdersResponseInner {
         this.origType = origType;
     }
 
-    public AllOrdersResponseInner price(@jakarta.annotation.Nullable String price) {
+    public CurrentAllOpenOrdersResponseInner price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
@@ -378,7 +352,8 @@ public class AllOrdersResponseInner {
         this.price = price;
     }
 
-    public AllOrdersResponseInner reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
+    public CurrentAllOpenOrdersResponseInner reduceOnly(
+            @jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -397,7 +372,7 @@ public class AllOrdersResponseInner {
         this.reduceOnly = reduceOnly;
     }
 
-    public AllOrdersResponseInner side(@jakarta.annotation.Nullable String side) {
+    public CurrentAllOpenOrdersResponseInner side(@jakarta.annotation.Nullable String side) {
         this.side = side;
         return this;
     }
@@ -416,7 +391,8 @@ public class AllOrdersResponseInner {
         this.side = side;
     }
 
-    public AllOrdersResponseInner positionSide(@jakarta.annotation.Nullable String positionSide) {
+    public CurrentAllOpenOrdersResponseInner positionSide(
+            @jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
         return this;
     }
@@ -435,7 +411,7 @@ public class AllOrdersResponseInner {
         this.positionSide = positionSide;
     }
 
-    public AllOrdersResponseInner status(@jakarta.annotation.Nullable String status) {
+    public CurrentAllOpenOrdersResponseInner status(@jakarta.annotation.Nullable String status) {
         this.status = status;
         return this;
     }
@@ -454,7 +430,8 @@ public class AllOrdersResponseInner {
         this.status = status;
     }
 
-    public AllOrdersResponseInner stopPrice(@jakarta.annotation.Nullable String stopPrice) {
+    public CurrentAllOpenOrdersResponseInner stopPrice(
+            @jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
         return this;
     }
@@ -473,7 +450,7 @@ public class AllOrdersResponseInner {
         this.stopPrice = stopPrice;
     }
 
-    public AllOrdersResponseInner closePosition(
+    public CurrentAllOpenOrdersResponseInner closePosition(
             @jakarta.annotation.Nullable Boolean closePosition) {
         this.closePosition = closePosition;
         return this;
@@ -493,7 +470,7 @@ public class AllOrdersResponseInner {
         this.closePosition = closePosition;
     }
 
-    public AllOrdersResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
+    public CurrentAllOpenOrdersResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
@@ -512,26 +489,7 @@ public class AllOrdersResponseInner {
         this.symbol = symbol;
     }
 
-    public AllOrdersResponseInner pair(@jakarta.annotation.Nullable String pair) {
-        this.pair = pair;
-        return this;
-    }
-
-    /**
-     * Pair.
-     *
-     * @return pair
-     */
-    @jakarta.annotation.Nullable
-    public String getPair() {
-        return pair;
-    }
-
-    public void setPair(@jakarta.annotation.Nullable String pair) {
-        this.pair = pair;
-    }
-
-    public AllOrdersResponseInner time(@jakarta.annotation.Nullable Long time) {
+    public CurrentAllOpenOrdersResponseInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
@@ -550,7 +508,8 @@ public class AllOrdersResponseInner {
         this.time = time;
     }
 
-    public AllOrdersResponseInner timeInForce(@jakarta.annotation.Nullable String timeInForce) {
+    public CurrentAllOpenOrdersResponseInner timeInForce(
+            @jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
         return this;
     }
@@ -569,7 +528,7 @@ public class AllOrdersResponseInner {
         this.timeInForce = timeInForce;
     }
 
-    public AllOrdersResponseInner type(@jakarta.annotation.Nullable String type) {
+    public CurrentAllOpenOrdersResponseInner type(@jakarta.annotation.Nullable String type) {
         this.type = type;
         return this;
     }
@@ -588,7 +547,8 @@ public class AllOrdersResponseInner {
         this.type = type;
     }
 
-    public AllOrdersResponseInner activatePrice(@jakarta.annotation.Nullable String activatePrice) {
+    public CurrentAllOpenOrdersResponseInner activatePrice(
+            @jakarta.annotation.Nullable String activatePrice) {
         this.activatePrice = activatePrice;
         return this;
     }
@@ -607,7 +567,8 @@ public class AllOrdersResponseInner {
         this.activatePrice = activatePrice;
     }
 
-    public AllOrdersResponseInner priceRate(@jakarta.annotation.Nullable String priceRate) {
+    public CurrentAllOpenOrdersResponseInner priceRate(
+            @jakarta.annotation.Nullable String priceRate) {
         this.priceRate = priceRate;
         return this;
     }
@@ -626,7 +587,8 @@ public class AllOrdersResponseInner {
         this.priceRate = priceRate;
     }
 
-    public AllOrdersResponseInner updateTime(@jakarta.annotation.Nullable Long updateTime) {
+    public CurrentAllOpenOrdersResponseInner updateTime(
+            @jakarta.annotation.Nullable Long updateTime) {
         this.updateTime = updateTime;
         return this;
     }
@@ -645,7 +607,8 @@ public class AllOrdersResponseInner {
         this.updateTime = updateTime;
     }
 
-    public AllOrdersResponseInner workingType(@jakarta.annotation.Nullable String workingType) {
+    public CurrentAllOpenOrdersResponseInner workingType(
+            @jakarta.annotation.Nullable String workingType) {
         this.workingType = workingType;
         return this;
     }
@@ -664,7 +627,8 @@ public class AllOrdersResponseInner {
         this.workingType = workingType;
     }
 
-    public AllOrdersResponseInner priceProtect(@jakarta.annotation.Nullable Boolean priceProtect) {
+    public CurrentAllOpenOrdersResponseInner priceProtect(
+            @jakarta.annotation.Nullable Boolean priceProtect) {
         this.priceProtect = priceProtect;
         return this;
     }
@@ -683,7 +647,8 @@ public class AllOrdersResponseInner {
         this.priceProtect = priceProtect;
     }
 
-    public AllOrdersResponseInner priceMatch(@jakarta.annotation.Nullable String priceMatch) {
+    public CurrentAllOpenOrdersResponseInner priceMatch(
+            @jakarta.annotation.Nullable String priceMatch) {
         this.priceMatch = priceMatch;
         return this;
     }
@@ -702,7 +667,7 @@ public class AllOrdersResponseInner {
         this.priceMatch = priceMatch;
     }
 
-    public AllOrdersResponseInner selfTradePreventionMode(
+    public CurrentAllOpenOrdersResponseInner selfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
         return this;
@@ -723,7 +688,8 @@ public class AllOrdersResponseInner {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public AllOrdersResponseInner goodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+    public CurrentAllOpenOrdersResponseInner goodTillDate(
+            @jakarta.annotation.Nullable Long goodTillDate) {
         this.goodTillDate = goodTillDate;
         return this;
     }
@@ -750,37 +716,40 @@ public class AllOrdersResponseInner {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AllOrdersResponseInner allOrdersResponseInner = (AllOrdersResponseInner) o;
-        return Objects.equals(this.avgPrice, allOrdersResponseInner.avgPrice)
-                && Objects.equals(this.clientOrderId, allOrdersResponseInner.clientOrderId)
-                && Objects.equals(this.cumQuote, allOrdersResponseInner.cumQuote)
-                && Objects.equals(this.cumBase, allOrdersResponseInner.cumBase)
-                && Objects.equals(this.executedQty, allOrdersResponseInner.executedQty)
-                && Objects.equals(this.orderId, allOrdersResponseInner.orderId)
-                && Objects.equals(this.origQty, allOrdersResponseInner.origQty)
-                && Objects.equals(this.origType, allOrdersResponseInner.origType)
-                && Objects.equals(this.price, allOrdersResponseInner.price)
-                && Objects.equals(this.reduceOnly, allOrdersResponseInner.reduceOnly)
-                && Objects.equals(this.side, allOrdersResponseInner.side)
-                && Objects.equals(this.positionSide, allOrdersResponseInner.positionSide)
-                && Objects.equals(this.status, allOrdersResponseInner.status)
-                && Objects.equals(this.stopPrice, allOrdersResponseInner.stopPrice)
-                && Objects.equals(this.closePosition, allOrdersResponseInner.closePosition)
-                && Objects.equals(this.symbol, allOrdersResponseInner.symbol)
-                && Objects.equals(this.pair, allOrdersResponseInner.pair)
-                && Objects.equals(this.time, allOrdersResponseInner.time)
-                && Objects.equals(this.timeInForce, allOrdersResponseInner.timeInForce)
-                && Objects.equals(this.type, allOrdersResponseInner.type)
-                && Objects.equals(this.activatePrice, allOrdersResponseInner.activatePrice)
-                && Objects.equals(this.priceRate, allOrdersResponseInner.priceRate)
-                && Objects.equals(this.updateTime, allOrdersResponseInner.updateTime)
-                && Objects.equals(this.workingType, allOrdersResponseInner.workingType)
-                && Objects.equals(this.priceProtect, allOrdersResponseInner.priceProtect)
-                && Objects.equals(this.priceMatch, allOrdersResponseInner.priceMatch)
+        CurrentAllOpenOrdersResponseInner currentAllOpenOrdersResponseInner =
+                (CurrentAllOpenOrdersResponseInner) o;
+        return Objects.equals(this.avgPrice, currentAllOpenOrdersResponseInner.avgPrice)
+                && Objects.equals(
+                        this.clientOrderId, currentAllOpenOrdersResponseInner.clientOrderId)
+                && Objects.equals(this.cumQuote, currentAllOpenOrdersResponseInner.cumQuote)
+                && Objects.equals(this.executedQty, currentAllOpenOrdersResponseInner.executedQty)
+                && Objects.equals(this.orderId, currentAllOpenOrdersResponseInner.orderId)
+                && Objects.equals(this.origQty, currentAllOpenOrdersResponseInner.origQty)
+                && Objects.equals(this.origType, currentAllOpenOrdersResponseInner.origType)
+                && Objects.equals(this.price, currentAllOpenOrdersResponseInner.price)
+                && Objects.equals(this.reduceOnly, currentAllOpenOrdersResponseInner.reduceOnly)
+                && Objects.equals(this.side, currentAllOpenOrdersResponseInner.side)
+                && Objects.equals(this.positionSide, currentAllOpenOrdersResponseInner.positionSide)
+                && Objects.equals(this.status, currentAllOpenOrdersResponseInner.status)
+                && Objects.equals(this.stopPrice, currentAllOpenOrdersResponseInner.stopPrice)
+                && Objects.equals(
+                        this.closePosition, currentAllOpenOrdersResponseInner.closePosition)
+                && Objects.equals(this.symbol, currentAllOpenOrdersResponseInner.symbol)
+                && Objects.equals(this.time, currentAllOpenOrdersResponseInner.time)
+                && Objects.equals(this.timeInForce, currentAllOpenOrdersResponseInner.timeInForce)
+                && Objects.equals(this.type, currentAllOpenOrdersResponseInner.type)
+                && Objects.equals(
+                        this.activatePrice, currentAllOpenOrdersResponseInner.activatePrice)
+                && Objects.equals(this.priceRate, currentAllOpenOrdersResponseInner.priceRate)
+                && Objects.equals(this.updateTime, currentAllOpenOrdersResponseInner.updateTime)
+                && Objects.equals(this.workingType, currentAllOpenOrdersResponseInner.workingType)
+                && Objects.equals(this.priceProtect, currentAllOpenOrdersResponseInner.priceProtect)
+                && Objects.equals(this.priceMatch, currentAllOpenOrdersResponseInner.priceMatch)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        allOrdersResponseInner.selfTradePreventionMode)
-                && Objects.equals(this.goodTillDate, allOrdersResponseInner.goodTillDate);
+                        currentAllOpenOrdersResponseInner.selfTradePreventionMode)
+                && Objects.equals(
+                        this.goodTillDate, currentAllOpenOrdersResponseInner.goodTillDate);
     }
 
     @Override
@@ -789,7 +758,6 @@ public class AllOrdersResponseInner {
                 avgPrice,
                 clientOrderId,
                 cumQuote,
-                cumBase,
                 executedQty,
                 orderId,
                 origQty,
@@ -802,7 +770,6 @@ public class AllOrdersResponseInner {
                 stopPrice,
                 closePosition,
                 symbol,
-                pair,
                 time,
                 timeInForce,
                 type,
@@ -819,11 +786,10 @@ public class AllOrdersResponseInner {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class AllOrdersResponseInner {\n");
+        sb.append("class CurrentAllOpenOrdersResponseInner {\n");
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
-        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -836,7 +802,6 @@ public class AllOrdersResponseInner {
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
-        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -869,10 +834,6 @@ public class AllOrdersResponseInner {
         String cumQuoteValueAsString = "";
         cumQuoteValueAsString = cumQuoteValue.toString();
         sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
-        Object cumBaseValue = getCumBase();
-        String cumBaseValueAsString = "";
-        cumBaseValueAsString = cumBaseValue.toString();
-        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -921,10 +882,6 @@ public class AllOrdersResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
-        Object pairValue = getPair();
-        String pairValueAsString = "";
-        pairValueAsString = pairValue.toString();
-        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object timeValue = getTime();
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
@@ -1002,7 +959,6 @@ public class AllOrdersResponseInner {
         openapiFields.add("avgPrice");
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQuote");
-        openapiFields.add("cumBase");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
@@ -1015,7 +971,6 @@ public class AllOrdersResponseInner {
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
-        openapiFields.add("pair");
         openapiFields.add("time");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
@@ -1036,17 +991,19 @@ public class AllOrdersResponseInner {
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to AllOrdersResponseInner
+     * @throws IOException if the JSON Element is invalid with respect to
+     *     CurrentAllOpenOrdersResponseInner
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         if (jsonElement == null) {
-            if (!AllOrdersResponseInner.openapiRequiredFields
+            if (!CurrentAllOpenOrdersResponseInner.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
                 throw new IllegalArgumentException(
                         String.format(
-                                "The required field(s) %s in AllOrdersResponseInner is not found in"
-                                        + " the empty JSON string",
-                                AllOrdersResponseInner.openapiRequiredFields.toString()));
+                                "The required field(s) %s in CurrentAllOpenOrdersResponseInner is"
+                                        + " not found in the empty JSON string",
+                                CurrentAllOpenOrdersResponseInner.openapiRequiredFields
+                                        .toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1073,14 +1030,6 @@ public class AllOrdersResponseInner {
                             "Expected the field `cumQuote` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("cumQuote").toString()));
-        }
-        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
-                && !jsonObj.get("cumBase").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumBase` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("cumBase").toString()));
         }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
@@ -1154,14 +1103,6 @@ public class AllOrdersResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
-                && !jsonObj.get("pair").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `pair` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("pair").toString()));
-        }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1225,24 +1166,27 @@ public class AllOrdersResponseInner {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!AllOrdersResponseInner.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'AllOrdersResponseInner' and its subtypes
+            if (!CurrentAllOpenOrdersResponseInner.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CurrentAllOpenOrdersResponseInner' and
+                // its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<AllOrdersResponseInner> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(AllOrdersResponseInner.class));
+            final TypeAdapter<CurrentAllOpenOrdersResponseInner> thisAdapter =
+                    gson.getDelegateAdapter(
+                            this, TypeToken.get(CurrentAllOpenOrdersResponseInner.class));
 
             return (TypeAdapter<T>)
-                    new TypeAdapter<AllOrdersResponseInner>() {
+                    new TypeAdapter<CurrentAllOpenOrdersResponseInner>() {
                         @Override
-                        public void write(JsonWriter out, AllOrdersResponseInner value)
+                        public void write(JsonWriter out, CurrentAllOpenOrdersResponseInner value)
                                 throws IOException {
                             JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
                         @Override
-                        public AllOrdersResponseInner read(JsonReader in) throws IOException {
+                        public CurrentAllOpenOrdersResponseInner read(JsonReader in)
+                                throws IOException {
                             JsonElement jsonElement = elementAdapter.read(in);
                             // validateJsonElement(jsonElement);
                             return thisAdapter.fromJsonTree(jsonElement);
@@ -1252,18 +1196,19 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Create an instance of AllOrdersResponseInner given an JSON string
+     * Create an instance of CurrentAllOpenOrdersResponseInner given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of AllOrdersResponseInner
-     * @throws IOException if the JSON string is invalid with respect to AllOrdersResponseInner
+     * @return An instance of CurrentAllOpenOrdersResponseInner
+     * @throws IOException if the JSON string is invalid with respect to
+     *     CurrentAllOpenOrdersResponseInner
      */
-    public static AllOrdersResponseInner fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, AllOrdersResponseInner.class);
+    public static CurrentAllOpenOrdersResponseInner fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CurrentAllOpenOrdersResponseInner.class);
     }
 
     /**
-     * Convert an instance of AllOrdersResponseInner to an JSON string
+     * Convert an instance of CurrentAllOpenOrdersResponseInner to an JSON string
      *
      * @return JSON string
      */

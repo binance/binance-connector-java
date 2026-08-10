@@ -21,7 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets priceProtect */
+/**
+ * Used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60; order. when price reaches the
+ * triggerPrice ，the difference rate between \&quot;MARK_PRICE\&quot; and
+ * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the Price Protection Threshold of the
+ * symbol.&#39;
+ */
 @JsonAdapter(PriceProtect.Adapter.class)
 public enum PriceProtect {
     TRUE("true"),

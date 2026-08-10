@@ -32,6 +32,7 @@
 |**tt** | **Long** | Trigger time |  [optional] |
 |**gtd** | **Long** | Good till time for GTD time in force |  [optional] |
 |**rm** | **String** | Algo order failed reason |  [optional] |
+|**ia** | **Boolean** | Is activated or not, only meaningful for trailing order |  [optional] |
 
 
 

@@ -11,7 +11,7 @@
 |**sumOpenInterest** | **String** | total open interest |  [optional] |
 |**sumOpenInterestValue** | **String** | total open interest value |  [optional] |
 |**cmCCirculatingSupply** | **String** | circulating supply provided by CMC |  [optional] |
-|**timestamp** | **Long** | Timestamp in milliseconds. |  [optional] |
+|**timestamp** | **Long** | End time of the period, in milliseconds. |  [optional] |
 
 
 

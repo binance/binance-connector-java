@@ -1,5 +1,85 @@
 # Changelog
 
+## 12.0.1 - 2026-08-10
+
+### Changed (26)
+
+#### REST API
+
+- Modified response for `allOrders()` (`GET /fapi/v1/allOrders`):
+  - items: property `pair` added
+  - items: property `cumBase` added
+  - items: item property `pair` added
+  - items: item property `cumBase` added
+
+- Modified response for `usersForceOrders()` (`GET /fapi/v1/forceOrders`):
+  - items: property `pair` added
+  - items: property `cumBase` added
+  - items: item property `pair` added
+  - items: item property `cumBase` added
+
+- Modified response for `accountTradeList()` (`GET /fapi/v1/userTrades`):
+  - items: property `baseQty` added
+  - items: property `marginAsset` added
+  - items: property `pair` added
+  - items: item property `baseQty` added
+  - items: item property `marginAsset` added
+  - items: item property `pair` added
+
+- Modified response schema `accountTradeListResponse`:
+  - items: property `baseQty` added
+  - items: property `marginAsset` added
+  - items: property `pair` added
+  - items: item property `baseQty` added
+  - items: item property `marginAsset` added
+  - items: item property `pair` added
+- Modified response schema `allOrdersResponse`:
+  - items: property `pair` added
+  - items: property `cumBase` added
+  - items: item property `pair` added
+  - items: item property `cumBase` added
+- Modified response schema `usersForceOrdersResponse`:
+  - items: property `pair` added
+  - items: property `cumBase` added
+  - items: item property `pair` added
+  - items: item property `cumBase` added
+#### WebSocket Streams
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response for `rpiDiffBookDepthStreams()` (`<symbol>@rpiDepth@500ms` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `o`:
+  - property `ia` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `algoUpdate`
+- Modified response field `a`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+    - `rpiDiffBookDepthStreamsResponse`
+- Modified response field `b`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+    - `rpiDiffBookDepthStreamsResponse`
+
 ## 12.0.0 - 2026-07-29
 
 ### Changed (56)

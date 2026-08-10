@@ -22,7 +22,8 @@ import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
 /**
- * Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
+ * Cannot be sent in Hedge Mode; cannot be sent with
+ * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;&#39;
  */
 @JsonAdapter(ReduceOnly.Adapter.class)
 public enum ReduceOnly {

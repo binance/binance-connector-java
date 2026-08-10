@@ -226,7 +226,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get timestamp
+     * Start time of the period, in milliseconds.
      *
      * @return timestamp
      */

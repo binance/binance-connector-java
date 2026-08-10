@@ -1,6 +1,6 @@
 
 
-# AllOrdersResponseInner
+# CurrentAllOpenOrdersResponseInner
 
 
 ## Properties
@@ -10,7 +10,6 @@
 |**avgPrice** | **String** | Avg Price. |  [optional] |
 |**clientOrderId** | **String** | Client Order Id. |  [optional] |
 |**cumQuote** | **String** | Cum Quote. |  [optional] |
-|**cumBase** | **String** | Cum Base. |  [optional] |
 |**executedQty** | **String** | Executed Qty. |  [optional] |
 |**orderId** | **Long** | Order Id. |  [optional] |
 |**origQty** | **String** | Orig Qty. |  [optional] |
@@ -23,7 +22,6 @@
 |**stopPrice** | **String** | please ignore when order type is TRAILING_STOP_MARKET |  [optional] |
 |**closePosition** | **Boolean** | if Close-All |  [optional] |
 |**symbol** | **String** | Symbol. |  [optional] |
-|**pair** | **String** | Pair. |  [optional] |
 |**time** | **Long** | order time |  [optional] |
 |**timeInForce** | **String** | Time In Force. |  [optional] |
 |**type** | **String** | Type. |  [optional] |

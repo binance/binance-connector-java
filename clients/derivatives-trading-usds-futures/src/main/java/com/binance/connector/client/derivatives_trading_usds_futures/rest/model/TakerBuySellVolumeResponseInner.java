@@ -126,7 +126,7 @@ public class TakerBuySellVolumeResponseInner {
     }
 
     /**
-     * Timestamp in milliseconds.
+     * Start time of the period, in milliseconds.
      *
      * @return timestamp
      */

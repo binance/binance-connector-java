@@ -16,10 +16,13 @@
 |**price** | **String** | Price. |  [optional] |
 |**qty** | **String** | Qty. |  [optional] |
 |**quoteQty** | **String** | Quote Qty. |  [optional] |
+|**baseQty** | **String** | Base Qty. |  [optional] |
+|**marginAsset** | **String** | Margin Asset. |  [optional] |
 |**realizedPnl** | **String** | Realized Pnl. |  [optional] |
 |**side** | **String** | Side. |  [optional] |
 |**positionSide** | **String** | Position Side. |  [optional] |
 |**symbol** | **String** | Symbol. |  [optional] |
+|**pair** | **String** | Pair. |  [optional] |
 |**time** | **Long** | Time. |  [optional] |
 
 

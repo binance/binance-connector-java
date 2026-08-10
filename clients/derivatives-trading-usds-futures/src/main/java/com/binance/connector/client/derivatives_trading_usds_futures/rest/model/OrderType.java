@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets orderType */
+/** Order type */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
     LIMIT("LIMIT"),

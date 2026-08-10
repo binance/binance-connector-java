@@ -155,7 +155,7 @@ public class TopTraderLongShortRatioAccountsResponseInner {
     }
 
     /**
-     * Timestamp in milliseconds.
+     * End time of the period, in milliseconds.
      *
      * @return timestamp
      */

@@ -132,7 +132,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Total initial margin requirement.
+     * Total initial margin requirement. USDT only in single-asset mode; the sum of USD value of all
+     * cross positions/open order initial margin in multi-assets mode.
      *
      * @return totalInitialMargin
      */
@@ -152,7 +153,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Total maintenance margin requirement.
+     * Total maintenance margin requirement. USDT only in single-asset mode; the sum of USD value of
+     * all cross positions maintenance margin in multi-assets mode.
      *
      * @return totalMaintMargin
      */
@@ -172,7 +174,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Total wallet balance.
+     * Total wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalWalletBalance
      */
@@ -192,7 +194,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Total unrealized profit.
+     * Total unrealized profit. USDT only in single-asset mode; USD-denominated in multi-assets
+     * mode.
      *
      * @return totalUnrealizedProfit
      */
@@ -213,7 +216,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Total margin balance.
+     * Total margin balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalMarginBalance
      */
@@ -233,7 +236,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Initial margin required for positions.
+     * Initial margin required for positions. USDT only in single-asset mode; the sum of USD value
+     * of all cross positions initial margin in multi-assets mode.
      *
      * @return totalPositionInitialMargin
      */
@@ -254,7 +258,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Initial margin required for open orders.
+     * Initial margin required for open orders. USDT only in single-asset mode; USD-denominated in
+     * multi-assets mode.
      *
      * @return totalOpenOrderInitialMargin
      */
@@ -275,7 +280,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Cross wallet balance.
+     * Cross wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalCrossWalletBalance
      */
@@ -296,7 +301,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Unrealized PnL for cross positions.
+     * Unrealized PnL for cross positions. USDT only in single-asset mode; USD-denominated in
+     * multi-assets mode.
      *
      * @return totalCrossUnPnl
      */
@@ -316,7 +322,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Available balance.
+     * Available balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return availableBalance
      */
@@ -336,7 +342,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Maximum transferable/withdrawable amount.
+     * Maximum transferable/withdrawable amount. USDT only in single-asset mode; a maximum virtual
+     * USD amount in multi-assets mode.
      *
      * @return maxWithdrawAmount
      */

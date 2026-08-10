@@ -10,7 +10,7 @@
 |**buySellRatio** | **String** |  |  [optional] |
 |**buyVol** | **String** |  |  [optional] |
 |**sellVol** | **String** |  |  [optional] |
-|**timestamp** | **Long** | Timestamp in milliseconds. |  [optional] |
+|**timestamp** | **Long** | Start time of the period, in milliseconds. |  [optional] |
 
 
 
