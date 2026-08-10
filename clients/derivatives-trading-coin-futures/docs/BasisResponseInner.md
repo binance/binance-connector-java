@@ -14,7 +14,7 @@
 |**annualizedBasisRate** | **String** | Annualized basis rate. |  [optional] |
 |**basis** | **String** | Basis value. |  [optional] |
 |**pair** | **String** | Pair |  [optional] |
-|**timestamp** | **Long** | Timestamp in milliseconds. |  [optional] |
+|**timestamp** | **Long** | Start time of the period, in milliseconds. |  [optional] |
 
 
 

@@ -379,7 +379,7 @@ public class NewOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

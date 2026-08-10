@@ -110,7 +110,7 @@
 
 [PUT /dapi/v1/batchOrders](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/trade#modify-multiple-orders) - modifyMultipleOrders - [ModifyMultipleOrdersExample.java:44](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/ModifyMultipleOrdersExample.java#L44)
 
-[PUT /dapi/v1/order](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/trade#modify-order) - modifyOrder - [ModifyOrderExample.java:48](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/ModifyOrderExample.java#L48)
+[PUT /dapi/v1/order](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/trade#modify-order) - modifyOrder - [ModifyOrderExample.java:49](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/ModifyOrderExample.java#L49)
 
 [POST /dapi/v1/order](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/trade#new-order) - newOrder - [NewOrderExample.java:74](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/trade/NewOrderExample.java#L74)
 

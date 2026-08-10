@@ -360,7 +360,7 @@ public class CancelOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

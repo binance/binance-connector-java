@@ -10,6 +10,7 @@
 |**avgPrice** | **String** | Average execution price |  [optional] |
 |**clientOrderId** | **String** | Client order ID. |  [optional] |
 |**cumBase** | **String** | Cumulative base asset amount. |  [optional] |
+|**cumQuote** | **String** | Cumulative quote asset amount. |  [optional] |
 |**executedQty** | **String** | Executed quantity |  [optional] |
 |**orderId** | **Long** | Sub-order ID |  [optional] |
 |**origQty** | **String** | Original order quantity |  [optional] |
@@ -18,7 +19,7 @@
 |**reduceOnly** | **Boolean** | Whether the order is reduce-only. |  [optional] |
 |**side** | **String** | Trading side |  [optional] |
 |**positionSide** | **String** | Position side |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**stopPrice** | **String** | please ignore when order type is TRAILING_STOP_MARKET |  [optional] |
 |**closePosition** | **Boolean** | if Close-All |  [optional] |
 |**symbol** | **String** | Trading symbol |  [optional] |
@@ -33,6 +34,7 @@
 |**priceProtect** | **Boolean** | if conditional order trigger is protected |  [optional] |
 |**priceMatch** | **String** | price match mode |  [optional] |
 |**selfTradePreventionMode** | **String** | self trading preventation mode |  [optional] |
+|**goodTillDate** | **Long** | order pre-set auto cancel time for TIF GTD order |  [optional] |
 
 
 

@@ -854,7 +854,7 @@ public class DerivativesTradingCoinFuturesRestApi {
     }
 
     /**
-     * Old Trades Lookup (MARKET_DATA) Get older market historical trades. Weight(IP): 20 Security
+     * Old Trades Lookup (MARKET_DATA) Get older market historical trades. Weight(IP): 200 Security
      * Type: MARKET_DATA Notes: - Market trades means trades filled in the order book. Only market
      * trades will be returned, which means the insurance fund trades and ADL trades won&#39;t be
      * returned. - Only supports data from within the last one month
@@ -1708,8 +1708,9 @@ public class DerivativesTradingCoinFuturesRestApi {
      * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
      * the order will stay as it is. - However the order will be cancelled by the amendment in the
      * following situations: - when the order is in partially filled status and the new
-     * &#x60;quantity&#x60; - When the order is &#x60;GTX&#x60; and the new price will cause it to
-     * be executed immediately - One order can only be modfied for less than 10000 times
+     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
+     * and the new price will cause it to be executed immediately - One order can only be modfied
+     * for less than 10000 times
      *
      * @param modifyOrderRequest (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;

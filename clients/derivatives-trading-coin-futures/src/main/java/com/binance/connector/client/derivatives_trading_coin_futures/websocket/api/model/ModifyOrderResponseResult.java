@@ -230,7 +230,7 @@ public class ModifyOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

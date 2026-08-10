@@ -154,7 +154,7 @@ public class OpenInterestStatisticsResponseInner {
     }
 
     /**
-     * Timestamp in milliseconds.
+     * End time of the period, in milliseconds.
      *
      * @return timestamp
      */

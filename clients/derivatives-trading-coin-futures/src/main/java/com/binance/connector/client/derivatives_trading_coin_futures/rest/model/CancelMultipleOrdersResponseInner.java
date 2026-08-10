@@ -376,7 +376,7 @@ public class CancelMultipleOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

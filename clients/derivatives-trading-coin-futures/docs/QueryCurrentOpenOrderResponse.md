@@ -18,7 +18,7 @@
 |**reduceOnly** | **Boolean** | Whether the order is reduce-only. |  [optional] |
 |**side** | **String** | Trading side |  [optional] |
 |**positionSide** | **String** | Position side |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**stopPrice** | **String** | please ignore when order type is TRAILING_STOP_MARKET |  [optional] |
 |**closePosition** | **Boolean** | if Close-All |  [optional] |
 |**symbol** | **String** | Trading symbol |  [optional] |

@@ -1,5 +1,64 @@
 # Changelog
 
+## 8.0.1 - 2026-08-10
+
+### Changed (20)
+
+#### REST API
+
+- Modified response for `allOrders()` (`GET /dapi/v1/allOrders`):
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+
+- Modified response for `usersForceOrders()` (`GET /dapi/v1/forceOrders`):
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+
+- Modified response for `accountTradeList()` (`GET /dapi/v1/userTrades`):
+  - items: property `quoteQty` added
+  - items: item property `quoteQty` added
+
+- Modified response schema `accountTradeListResponse`:
+  - items: property `quoteQty` added
+  - items: item property `quoteQty` added
+- Modified response schema `allOrdersResponse`:
+  - items: property `cumQuote` added
+  - items: property `goodTillDate` added
+  - items: item property `cumQuote` added
+  - items: item property `goodTillDate` added
+- Modified response schema `usersForceOrdersResponse`:
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+#### WebSocket Streams
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `a`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+- Modified response field `b`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+
 ## 8.0.0 - 2026-07-29
 
 ### Added (1)

@@ -13,7 +13,7 @@
 |**takerSellVol** | **String** | unit: cont |  [optional] |
 |**takerBuyVolValue** | **String** | unit: base asset |  [optional] |
 |**takerSellVolValue** | **String** | unit: base asset |  [optional] |
-|**timestamp** | **Long** | Timestamp in milliseconds. |  [optional] |
+|**timestamp** | **Long** | Start time of the period, in milliseconds. |  [optional] |
 
 
 

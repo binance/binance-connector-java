@@ -224,7 +224,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

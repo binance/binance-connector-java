@@ -240,7 +240,7 @@ public class ModifyOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

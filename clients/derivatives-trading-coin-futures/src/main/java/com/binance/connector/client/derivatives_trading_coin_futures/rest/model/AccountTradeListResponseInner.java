@@ -96,6 +96,12 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String baseQty;
 
+    public static final String SERIALIZED_NAME_QUOTE_QTY = "quoteQty";
+
+    @SerializedName(SERIALIZED_NAME_QUOTE_QTY)
+    @jakarta.annotation.Nullable
+    private String quoteQty;
+
     public static final String SERIALIZED_NAME_COMMISSION = "commission";
 
     @SerializedName(SERIALIZED_NAME_COMMISSION)
@@ -326,6 +332,25 @@ public class AccountTradeListResponseInner {
         this.baseQty = baseQty;
     }
 
+    public AccountTradeListResponseInner quoteQty(@jakarta.annotation.Nullable String quoteQty) {
+        this.quoteQty = quoteQty;
+        return this;
+    }
+
+    /**
+     * Quote asset quantity.
+     *
+     * @return quoteQty
+     */
+    @jakarta.annotation.Nullable
+    public String getQuoteQty() {
+        return quoteQty;
+    }
+
+    public void setQuoteQty(@jakarta.annotation.Nullable String quoteQty) {
+        this.quoteQty = quoteQty;
+    }
+
     public AccountTradeListResponseInner commission(
             @jakarta.annotation.Nullable String commission) {
         this.commission = commission;
@@ -463,6 +488,7 @@ public class AccountTradeListResponseInner {
                 && Objects.equals(this.realizedPnl, accountTradeListResponseInner.realizedPnl)
                 && Objects.equals(this.marginAsset, accountTradeListResponseInner.marginAsset)
                 && Objects.equals(this.baseQty, accountTradeListResponseInner.baseQty)
+                && Objects.equals(this.quoteQty, accountTradeListResponseInner.quoteQty)
                 && Objects.equals(this.commission, accountTradeListResponseInner.commission)
                 && Objects.equals(
                         this.commissionAsset, accountTradeListResponseInner.commissionAsset)
@@ -485,6 +511,7 @@ public class AccountTradeListResponseInner {
                 realizedPnl,
                 marginAsset,
                 baseQty,
+                quoteQty,
                 commission,
                 commissionAsset,
                 time,
@@ -507,6 +534,7 @@ public class AccountTradeListResponseInner {
         sb.append("		realizedPnl: ").append(toIndentedString(realizedPnl)).append("\n");
         sb.append("		marginAsset: ").append(toIndentedString(marginAsset)).append("\n");
         sb.append("		baseQty: ").append(toIndentedString(baseQty)).append("\n");
+        sb.append("		quoteQty: ").append(toIndentedString(quoteQty)).append("\n");
         sb.append("		commission: ").append(toIndentedString(commission)).append("\n");
         sb.append("		commissionAsset: ").append(toIndentedString(commissionAsset)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
@@ -560,6 +588,10 @@ public class AccountTradeListResponseInner {
         String baseQtyValueAsString = "";
         baseQtyValueAsString = baseQtyValue.toString();
         sb.append("baseQty=").append(urlEncode(baseQtyValueAsString)).append("");
+        Object quoteQtyValue = getQuoteQty();
+        String quoteQtyValueAsString = "";
+        quoteQtyValueAsString = quoteQtyValue.toString();
+        sb.append("quoteQty=").append(urlEncode(quoteQtyValueAsString)).append("");
         Object commissionValue = getCommission();
         String commissionValueAsString = "";
         commissionValueAsString = commissionValue.toString();
@@ -622,6 +654,7 @@ public class AccountTradeListResponseInner {
         openapiFields.add("realizedPnl");
         openapiFields.add("marginAsset");
         openapiFields.add("baseQty");
+        openapiFields.add("quoteQty");
         openapiFields.add("commission");
         openapiFields.add("commissionAsset");
         openapiFields.add("time");
@@ -715,6 +748,14 @@ public class AccountTradeListResponseInner {
                             "Expected the field `baseQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("baseQty").toString()));
+        }
+        if ((jsonObj.get("quoteQty") != null && !jsonObj.get("quoteQty").isJsonNull())
+                && !jsonObj.get("quoteQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quoteQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quoteQty").toString()));
         }
         if ((jsonObj.get("commission") != null && !jsonObj.get("commission").isJsonNull())
                 && !jsonObj.get("commission").isJsonPrimitive()) {

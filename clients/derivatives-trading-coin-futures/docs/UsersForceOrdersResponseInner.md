@@ -10,13 +10,14 @@
 |**orderId** | **Long** | Sub-order ID |  [optional] |
 |**symbol** | **String** | Trading symbol |  [optional] |
 |**pair** | **String** | Pair |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**clientOrderId** | **String** | Client order ID. |  [optional] |
 |**price** | **String** | Latest token price. |  [optional] |
 |**avgPrice** | **String** | Average execution price |  [optional] |
 |**origQty** | **String** | Original order quantity |  [optional] |
 |**executedQty** | **String** | Executed quantity |  [optional] |
 |**cumBase** | **String** | Cumulative base asset amount. |  [optional] |
+|**cumQuote** | **String** | Cumulative quote asset amount. |  [optional] |
 |**timeInForce** | **String** | Time in force |  [optional] |
 |**type** | **String** | Order type. |  [optional] |
 |**reduceOnly** | **Boolean** | Whether the order is reduce-only. |  [optional] |
@@ -29,6 +30,7 @@
 |**origType** | **String** | Original order type. |  [optional] |
 |**time** | **Long** | Time |  [optional] |
 |**updateTime** | **Long** | update time |  [optional] |
+|**goodTillDate** | **Long** | order pre-set auto cancel time for TIF GTD order |  [optional] |
 
 
 

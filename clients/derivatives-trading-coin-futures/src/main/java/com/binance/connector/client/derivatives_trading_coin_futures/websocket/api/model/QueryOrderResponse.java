@@ -94,7 +94,7 @@ public class QueryOrderResponse extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Get status
      *
      * @return status
      */

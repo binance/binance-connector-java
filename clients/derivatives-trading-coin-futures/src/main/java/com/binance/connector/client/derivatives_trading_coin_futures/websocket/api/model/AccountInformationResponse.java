@@ -94,7 +94,7 @@ public class AccountInformationResponse extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Get status
      *
      * @return status
      */

@@ -11,7 +11,7 @@ Indicates that combined is set to true.
 |**orderId** | **Long** | Sub-order ID |  [optional] |
 |**symbol** | **String** | Trading symbol |  [optional] |
 |**pair** | **String** | Pair |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**clientOrderId** | **String** | Client order ID. |  [optional] |
 |**price** | **String** | Latest token price. |  [optional] |
 |**origQty** | **String** | Original order quantity |  [optional] |

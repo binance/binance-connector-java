@@ -96,6 +96,12 @@ public class UsersForceOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String cumBase;
 
+    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
+
+    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
+    @jakarta.annotation.Nullable
+    private String cumQuote;
+
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
@@ -168,6 +174,12 @@ public class UsersForceOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Long updateTime;
 
+    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
+
+    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
+    @jakarta.annotation.Nullable
+    private Long goodTillDate;
+
     public UsersForceOrdersResponseInner() {}
 
     public UsersForceOrdersResponseInner orderId(@jakarta.annotation.Nullable Long orderId) {
@@ -233,7 +245,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */
@@ -360,6 +372,25 @@ public class UsersForceOrdersResponseInner {
 
     public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
         this.cumBase = cumBase;
+    }
+
+    public UsersForceOrdersResponseInner cumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
+        return this;
+    }
+
+    /**
+     * Cumulative quote asset amount.
+     *
+     * @return cumQuote
+     */
+    @jakarta.annotation.Nullable
+    public String getCumQuote() {
+        return cumQuote;
+    }
+
+    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
     }
 
     public UsersForceOrdersResponseInner timeInForce(
@@ -596,6 +627,26 @@ public class UsersForceOrdersResponseInner {
         this.updateTime = updateTime;
     }
 
+    public UsersForceOrdersResponseInner goodTillDate(
+            @jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+        return this;
+    }
+
+    /**
+     * order pre-set auto cancel time for TIF GTD order
+     *
+     * @return goodTillDate
+     */
+    @jakarta.annotation.Nullable
+    public Long getGoodTillDate() {
+        return goodTillDate;
+    }
+
+    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -616,6 +667,7 @@ public class UsersForceOrdersResponseInner {
                 && Objects.equals(this.origQty, usersForceOrdersResponseInner.origQty)
                 && Objects.equals(this.executedQty, usersForceOrdersResponseInner.executedQty)
                 && Objects.equals(this.cumBase, usersForceOrdersResponseInner.cumBase)
+                && Objects.equals(this.cumQuote, usersForceOrdersResponseInner.cumQuote)
                 && Objects.equals(this.timeInForce, usersForceOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, usersForceOrdersResponseInner.type)
                 && Objects.equals(this.reduceOnly, usersForceOrdersResponseInner.reduceOnly)
@@ -627,7 +679,8 @@ public class UsersForceOrdersResponseInner {
                 && Objects.equals(this.priceProtect, usersForceOrdersResponseInner.priceProtect)
                 && Objects.equals(this.origType, usersForceOrdersResponseInner.origType)
                 && Objects.equals(this.time, usersForceOrdersResponseInner.time)
-                && Objects.equals(this.updateTime, usersForceOrdersResponseInner.updateTime);
+                && Objects.equals(this.updateTime, usersForceOrdersResponseInner.updateTime)
+                && Objects.equals(this.goodTillDate, usersForceOrdersResponseInner.goodTillDate);
     }
 
     @Override
@@ -643,6 +696,7 @@ public class UsersForceOrdersResponseInner {
                 origQty,
                 executedQty,
                 cumBase,
+                cumQuote,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -654,7 +708,8 @@ public class UsersForceOrdersResponseInner {
                 priceProtect,
                 origType,
                 time,
-                updateTime);
+                updateTime,
+                goodTillDate);
     }
 
     @Override
@@ -671,6 +726,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
+        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -683,6 +739,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
+        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -730,6 +787,10 @@ public class UsersForceOrdersResponseInner {
         String cumBaseValueAsString = "";
         cumBaseValueAsString = cumBaseValue.toString();
         sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
+        Object cumQuoteValue = getCumQuote();
+        String cumQuoteValueAsString = "";
+        cumQuoteValueAsString = cumQuoteValue.toString();
+        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -778,6 +839,10 @@ public class UsersForceOrdersResponseInner {
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
         sb.append("updateTime=").append(urlEncode(updateTimeValueAsString)).append("");
+        Object goodTillDateValue = getGoodTillDate();
+        String goodTillDateValueAsString = "";
+        goodTillDateValueAsString = goodTillDateValue.toString();
+        sb.append("goodTillDate=").append(urlEncode(goodTillDateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -816,6 +881,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumBase");
+        openapiFields.add("cumQuote");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -828,6 +894,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields.add("origType");
         openapiFields.add("time");
         openapiFields.add("updateTime");
+        openapiFields.add("goodTillDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -923,6 +990,14 @@ public class UsersForceOrdersResponseInner {
                             "Expected the field `cumBase` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumBase").toString()));
+        }
+        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
+                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumQuote` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {

@@ -410,7 +410,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

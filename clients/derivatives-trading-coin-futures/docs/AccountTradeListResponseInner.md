@@ -17,6 +17,7 @@
 |**realizedPnl** | **String** | Realized PnL. |  [optional] |
 |**marginAsset** | **String** | Margin asset. |  [optional] |
 |**baseQty** | **String** | Base asset quantity. |  [optional] |
+|**quoteQty** | **String** | Quote asset quantity. |  [optional] |
 |**commission** | **String** | Transaction Fee (in Crypto) |  [optional] |
 |**commissionAsset** | **String** | Commission asset. |  [optional] |
 |**time** | **Long** | Time |  [optional] |

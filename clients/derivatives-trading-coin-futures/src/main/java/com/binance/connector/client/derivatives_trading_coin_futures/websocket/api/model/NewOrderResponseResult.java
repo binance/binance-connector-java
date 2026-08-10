@@ -224,7 +224,7 @@ public class NewOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

@@ -29,7 +29,7 @@ public class OldTradesLookupExample {
     /**
      * Old Trades Lookup (MARKET_DATA)
      *
-     * <p>Get older market historical trades. Weight(IP): 20 Security Type: MARKET_DATA Notes: -
+     * <p>Get older market historical trades. Weight(IP): 200 Security Type: MARKET_DATA Notes: -
      * Market trades means trades filled in the order book. Only market trades will be returned,
      * which means the insurance fund trades and ADL trades won&#39;t be returned. - Only supports
      * data from within the last one month

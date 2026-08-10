@@ -376,7 +376,7 @@ public class PlaceMultipleOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

@@ -94,7 +94,7 @@ public class FuturesAccountBalanceResponse extends BaseDTO {
     }
 
     /**
-     * Enum：completed，processing
+     * Get status
      *
      * @return status
      */

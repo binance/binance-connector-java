@@ -252,7 +252,7 @@ public class ModifyMultipleOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */
