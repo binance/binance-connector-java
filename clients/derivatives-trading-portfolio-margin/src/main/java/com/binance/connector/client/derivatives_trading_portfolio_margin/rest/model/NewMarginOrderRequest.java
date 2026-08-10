@@ -107,14 +107,14 @@ public class NewMarginOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce = TimeInForce.GTC;
+    private TimeInForce timeInForce;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
+    private SelfTradePreventionMode selfTradePreventionMode;
 
     public static final String SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL = "autoRepayAtCancel";
 

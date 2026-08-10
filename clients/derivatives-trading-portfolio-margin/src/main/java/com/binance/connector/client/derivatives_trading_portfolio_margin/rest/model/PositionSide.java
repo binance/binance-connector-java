@@ -22,7 +22,8 @@ import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
 /**
- * Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode
+ * Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode.
+ * It must be sent in Hedge Mode.
  */
 @JsonAdapter(PositionSide.Adapter.class)
 public enum PositionSide {

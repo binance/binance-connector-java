@@ -309,7 +309,7 @@ public class MarginAccountNewOcoResponseOrderReportsInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

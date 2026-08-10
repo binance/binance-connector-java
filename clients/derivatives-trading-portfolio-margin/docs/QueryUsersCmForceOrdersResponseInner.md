@@ -10,7 +10,7 @@
 |**orderId** | **Long** | Normal orderID after trigger if appliable, only have when the strategy is triggered |  [optional] |
 |**symbol** | **String** | Trade symbol, if existing. |  [optional] |
 |**pair** | **String** | Pair. |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**clientOrderId** | **String** | Client Order ID. |  [optional] |
 |**price** | **String** | Price. |  [optional] |
 |**avgPrice** | **String** | Avg Price. |  [optional] |

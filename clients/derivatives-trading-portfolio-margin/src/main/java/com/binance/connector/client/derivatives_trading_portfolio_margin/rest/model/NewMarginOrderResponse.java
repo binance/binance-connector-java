@@ -293,7 +293,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

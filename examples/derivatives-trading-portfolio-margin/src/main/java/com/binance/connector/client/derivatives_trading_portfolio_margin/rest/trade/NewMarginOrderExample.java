@@ -40,7 +40,7 @@ public class NewMarginOrderExample {
         NewMarginOrderRequest newMarginOrderRequest = new NewMarginOrderRequest();
         newMarginOrderRequest.symbol("BTCUSDT");
         newMarginOrderRequest.side(Side.BUY);
-        newMarginOrderRequest.type(OrderType.STOP);
+        newMarginOrderRequest.type(OrderType.LIMIT);
         ApiResponse<NewMarginOrderResponse> response =
                 getApi().newMarginOrder(newMarginOrderRequest);
         System.out.println(response.getData());

@@ -55,7 +55,7 @@ public class NewUmAlgoOrderExample {
         newUmAlgoOrderRequest.algoType(AlgoType.CONDITIONAL);
         newUmAlgoOrderRequest.symbol("BNBUSDT");
         newUmAlgoOrderRequest.side(Side.BUY);
-        newUmAlgoOrderRequest.type(OrderType.STOP);
+        newUmAlgoOrderRequest.type(OrderType.LIMIT);
         newUmAlgoOrderRequest.quantity(0.01d);
         ApiResponse<NewUmAlgoOrderResponse> response =
                 getApi().newUmAlgoOrder(newUmAlgoOrderRequest);

@@ -53,7 +53,7 @@ public class NewCmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private PositionSide positionSide = PositionSide.BOTH;
 
     public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
 
@@ -65,7 +65,7 @@ public class NewCmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce = TimeInForce.GTC;
+    private TimeInForce timeInForce;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 

@@ -209,7 +209,7 @@ public class QueryUsersCmForceOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

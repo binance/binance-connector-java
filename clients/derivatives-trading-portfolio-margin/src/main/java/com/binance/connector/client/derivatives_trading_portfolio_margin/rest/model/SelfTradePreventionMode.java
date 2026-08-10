@@ -21,16 +21,20 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets selfTradePreventionMode */
+/**
+ * &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/
+ * &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire
+ * both orders when STP triggers
+ */
 @JsonAdapter(SelfTradePreventionMode.Adapter.class)
 public enum SelfTradePreventionMode {
     NONE("NONE"),
 
     EXPIRE_TAKER("EXPIRE_TAKER"),
 
-    EXPIRE_MAKER("EXPIRE_MAKER"),
+    EXPIRE_BOTH("EXPIRE_BOTH"),
 
-    EXPIRE_BOTH("EXPIRE_BOTH");
+    EXPIRE_MAKER("EXPIRE_MAKER");
 
     private String value;
 

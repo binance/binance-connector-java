@@ -318,7 +318,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

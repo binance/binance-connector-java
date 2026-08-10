@@ -72,12 +72,6 @@ public class ModifyUmOrderResponse {
     @jakarta.annotation.Nullable
     private String price;
 
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
-
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
     @SerializedName(SERIALIZED_NAME_ORIG_QTY)
@@ -95,12 +89,6 @@ public class ModifyUmOrderResponse {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -209,7 +197,7 @@ public class ModifyUmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */
@@ -279,25 +267,6 @@ public class ModifyUmOrderResponse {
         this.price = price;
     }
 
-    public ModifyUmOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Avg Price.
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public ModifyUmOrderResponse origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
@@ -353,25 +322,6 @@ public class ModifyUmOrderResponse {
 
     public void setCumQty(@jakarta.annotation.Nullable String cumQty) {
         this.cumQty = cumQty;
-    }
-
-    public ModifyUmOrderResponse cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Cum Quote.
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
     }
 
     public ModifyUmOrderResponse timeInForce(@jakarta.annotation.Nullable String timeInForce) {
@@ -581,11 +531,9 @@ public class ModifyUmOrderResponse {
                 && Objects.equals(this.clientOrderId, modifyUmOrderResponse.clientOrderId)
                 && Objects.equals(this.modifyId, modifyUmOrderResponse.modifyId)
                 && Objects.equals(this.price, modifyUmOrderResponse.price)
-                && Objects.equals(this.avgPrice, modifyUmOrderResponse.avgPrice)
                 && Objects.equals(this.origQty, modifyUmOrderResponse.origQty)
                 && Objects.equals(this.executedQty, modifyUmOrderResponse.executedQty)
                 && Objects.equals(this.cumQty, modifyUmOrderResponse.cumQty)
-                && Objects.equals(this.cumQuote, modifyUmOrderResponse.cumQuote)
                 && Objects.equals(this.timeInForce, modifyUmOrderResponse.timeInForce)
                 && Objects.equals(this.type, modifyUmOrderResponse.type)
                 && Objects.equals(this.reduceOnly, modifyUmOrderResponse.reduceOnly)
@@ -608,11 +556,9 @@ public class ModifyUmOrderResponse {
                 clientOrderId,
                 modifyId,
                 price,
-                avgPrice,
                 origQty,
                 executedQty,
                 cumQty,
-                cumQuote,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -635,11 +581,9 @@ public class ModifyUmOrderResponse {
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -683,10 +627,6 @@ public class ModifyUmOrderResponse {
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
@@ -699,10 +639,6 @@ public class ModifyUmOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumQuoteValue = getCumQuote();
-        String cumQuoteValueAsString = "";
-        cumQuoteValueAsString = cumQuoteValue.toString();
-        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -779,11 +715,9 @@ public class ModifyUmOrderResponse {
         openapiFields.add("clientOrderId");
         openapiFields.add("modifyId");
         openapiFields.add("price");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -849,14 +783,6 @@ public class ModifyUmOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
         }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
-        }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -880,14 +806,6 @@ public class ModifyUmOrderResponse {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {

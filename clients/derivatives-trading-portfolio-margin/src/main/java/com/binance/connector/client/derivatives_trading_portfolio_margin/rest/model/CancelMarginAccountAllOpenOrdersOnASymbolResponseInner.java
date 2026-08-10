@@ -352,7 +352,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

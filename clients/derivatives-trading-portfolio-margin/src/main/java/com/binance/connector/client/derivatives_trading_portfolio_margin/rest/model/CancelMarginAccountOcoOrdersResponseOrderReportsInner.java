@@ -309,7 +309,7 @@ public class CancelMarginAccountOcoOrdersResponseOrderReportsInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

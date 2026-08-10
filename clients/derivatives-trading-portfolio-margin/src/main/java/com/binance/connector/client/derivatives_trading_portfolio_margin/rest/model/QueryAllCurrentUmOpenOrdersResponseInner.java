@@ -385,7 +385,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

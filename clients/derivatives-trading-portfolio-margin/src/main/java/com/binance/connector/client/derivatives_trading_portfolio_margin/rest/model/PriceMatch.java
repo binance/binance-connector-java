@@ -21,7 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Can&#39;t be passed together with &#x60;price&#x60; */
+/**
+ * only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set
+ * to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/
+ * &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/
+ * &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+ */
 @JsonAdapter(PriceMatch.Adapter.class)
 public enum PriceMatch {
     OPPONENT("OPPONENT"),

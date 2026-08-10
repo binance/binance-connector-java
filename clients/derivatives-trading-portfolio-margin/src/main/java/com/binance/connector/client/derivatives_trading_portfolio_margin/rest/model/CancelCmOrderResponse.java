@@ -305,7 +305,7 @@ public class CancelCmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

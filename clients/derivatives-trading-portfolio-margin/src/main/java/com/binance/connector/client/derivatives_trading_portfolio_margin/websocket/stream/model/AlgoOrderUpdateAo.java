@@ -189,6 +189,12 @@ public class AlgoOrderUpdateAo extends BaseDTO {
     @jakarta.annotation.Nullable
     private String rm;
 
+    public static final String SERIALIZED_NAME_IA = "ia";
+
+    @SerializedName(SERIALIZED_NAME_IA)
+    @jakarta.annotation.Nullable
+    private Boolean ia;
+
     public AlgoOrderUpdateAo() {}
 
     public AlgoOrderUpdateAo caid(@jakarta.annotation.Nullable String caid) {
@@ -666,6 +672,25 @@ public class AlgoOrderUpdateAo extends BaseDTO {
         this.rm = rm;
     }
 
+    public AlgoOrderUpdateAo ia(@jakarta.annotation.Nullable Boolean ia) {
+        this.ia = ia;
+        return this;
+    }
+
+    /**
+     * Is activated or not, only meaningful for trailing order
+     *
+     * @return ia
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getIa() {
+        return ia;
+    }
+
+    public void setIa(@jakarta.annotation.Nullable Boolean ia) {
+        this.ia = ia;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -699,7 +724,8 @@ public class AlgoOrderUpdateAo extends BaseDTO {
                 && Objects.equals(this.R, algoOrderUpdateAo.R)
                 && Objects.equals(this.tt, algoOrderUpdateAo.tt)
                 && Objects.equals(this.gtd, algoOrderUpdateAo.gtd)
-                && Objects.equals(this.rm, algoOrderUpdateAo.rm);
+                && Objects.equals(this.rm, algoOrderUpdateAo.rm)
+                && Objects.equals(this.ia, algoOrderUpdateAo.ia);
     }
 
     @Override
@@ -729,7 +755,8 @@ public class AlgoOrderUpdateAo extends BaseDTO {
                 R,
                 tt,
                 gtd,
-                rm);
+                rm,
+                ia);
     }
 
     @Override
@@ -761,6 +788,7 @@ public class AlgoOrderUpdateAo extends BaseDTO {
         sb.append("		tt: ").append(toIndentedString(tt)).append("\n");
         sb.append("		gtd: ").append(toIndentedString(gtd)).append("\n");
         sb.append("		rm: ").append(toIndentedString(rm)).append("\n");
+        sb.append("		ia: ").append(toIndentedString(ia)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -894,6 +922,11 @@ public class AlgoOrderUpdateAo extends BaseDTO {
             String rmValueAsString = rmValue.toString();
             valMap.put("rm", rmValueAsString);
         }
+        Boolean iaValue = getIa();
+        if (iaValue != null) {
+            String iaValueAsString = iaValue.toString();
+            valMap.put("ia", iaValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -1005,6 +1038,10 @@ public class AlgoOrderUpdateAo extends BaseDTO {
         if (rmValue != null) {
             valMap.put("rm", rmValue);
         }
+        Object iaValue = getIa();
+        if (iaValue != null) {
+            valMap.put("ia", iaValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -1056,6 +1093,7 @@ public class AlgoOrderUpdateAo extends BaseDTO {
         openapiFields.add("tt");
         openapiFields.add("gtd");
         openapiFields.add("rm");
+        openapiFields.add("ia");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

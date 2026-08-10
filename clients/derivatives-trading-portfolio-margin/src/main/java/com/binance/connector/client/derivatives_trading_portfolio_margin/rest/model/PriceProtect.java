@@ -21,7 +21,11 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Price protection. Default &#x60;false&#x60; */
+/**
+ * \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with
+ * &#x60;STOP&#x60;/&#x60;STOP_MARKET&#x60; or
+ * &#x60;TAKE_PROFIT&#x60;/&#x60;TAKE_PROFIT_MARKET&#x60; orders
+ */
 @JsonAdapter(PriceProtect.Adapter.class)
 public enum PriceProtect {
     TRUE("true"),

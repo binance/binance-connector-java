@@ -21,12 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets timeInForce */
+/** Valid values */
 @JsonAdapter(TimeInForce.Adapter.class)
 public enum TimeInForce {
-    IOC("IOC"),
-
     GTC("GTC"),
+
+    IOC("IOC"),
 
     FOK("FOK"),
 

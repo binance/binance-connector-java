@@ -47,7 +47,7 @@ public class NewUmOrderExample {
         NewUmOrderRequest newUmOrderRequest = new NewUmOrderRequest();
         newUmOrderRequest.symbol("BTCUSDT");
         newUmOrderRequest.side(Side.BUY);
-        newUmOrderRequest.type(OrderType.STOP);
+        newUmOrderRequest.type(OrderType.LIMIT);
         ApiResponse<NewUmOrderResponse> response = getApi().newUmOrder(newUmOrderRequest);
         System.out.println(response.getData());
     }

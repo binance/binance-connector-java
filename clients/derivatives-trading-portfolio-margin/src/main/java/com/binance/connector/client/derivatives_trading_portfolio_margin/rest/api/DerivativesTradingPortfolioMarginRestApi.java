@@ -1994,8 +1994,8 @@ public class DerivativesTradingPortfolioMarginRestApi {
      * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
      * the order will stay as it is. - However the order will be cancelled by the amendment in the
      * following situations: - when the order is in partially filled status and the new
-     * &#x60;quantity&#x60; * When the order is &#x60;GTX&#x60; and the new price will cause it to
-     * be executed immediately
+     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
+     * and the new price will cause it to be executed immediately
      *
      * @param modifyCmOrderRequest (required)
      * @return ApiResponse&lt;ModifyCmOrderResponse&gt;
@@ -2024,8 +2024,9 @@ public class DerivativesTradingPortfolioMarginRestApi {
      * if both are sent. - Both quantity and price must be sent - When the new quantity or price
      * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
      * the order will stay as it is. - However the order will be cancelled by the amendment in the
-     * following situations: - when the order is in partially filled status and the new quantity *
-     * When the order is GTX and the new price will cause it to be executed immediately
+     * following situations: - when the order is in partially filled status and the new quantity
+     * &lt;&#x3D; executedQty - When the order is GTX and the new price will cause it to be executed
+     * immediately - The amendment keeps the order&#39;s original selfTradePreventionMode.
      *
      * @param modifyUmOrderRequest (required)
      * @return ApiResponse&lt;ModifyUmOrderResponse&gt;

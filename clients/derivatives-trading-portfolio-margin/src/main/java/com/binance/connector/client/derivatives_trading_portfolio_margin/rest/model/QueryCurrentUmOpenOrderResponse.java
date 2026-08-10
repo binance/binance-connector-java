@@ -378,7 +378,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

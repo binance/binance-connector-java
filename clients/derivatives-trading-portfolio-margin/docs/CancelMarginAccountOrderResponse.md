@@ -15,7 +15,7 @@
 |**origQty** | **String** | Orig Qty. |  [optional] |
 |**executedQty** | **String** | Executed Qty. |  [optional] |
 |**cummulativeQuoteQty** | **String** | Cummulative Quote Qty. |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**timeInForce** | **String** | Time In Force. |  [optional] |
 |**type** | **String** | Normal order type after trigger if appliable |  [optional] |
 |**side** | **String** | Side. |  [optional] |

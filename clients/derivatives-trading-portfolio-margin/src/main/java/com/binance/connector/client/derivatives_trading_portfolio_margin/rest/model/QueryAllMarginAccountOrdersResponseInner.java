@@ -345,7 +345,7 @@ public class QueryAllMarginAccountOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

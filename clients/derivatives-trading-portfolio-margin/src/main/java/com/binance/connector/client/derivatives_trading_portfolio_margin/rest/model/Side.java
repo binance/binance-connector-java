@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets side */
+/** Side */
 @JsonAdapter(Side.Adapter.class)
 public enum Side {
     BUY("BUY"),

@@ -24,9 +24,21 @@ import org.hibernate.validator.constraints.*;
 /** Conditional order type */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
-    STOP("STOP"),
+    LIMIT("LIMIT"),
+
+    MARKET("MARKET"),
+
+    STOP_LOSS("STOP_LOSS"),
+
+    STOP_LOSS_LIMIT("STOP_LOSS_LIMIT"),
 
     TAKE_PROFIT("TAKE_PROFIT"),
+
+    TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT"),
+
+    LIMIT_MAKER("LIMIT_MAKER"),
+
+    STOP("STOP"),
 
     STOP_MARKET("STOP_MARKET"),
 

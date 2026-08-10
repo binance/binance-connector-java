@@ -18,7 +18,7 @@
 |**reduceOnly** | **Boolean** | Reduce Only. |  [optional] |
 |**side** | **String** | Side. |  [optional] |
 |**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**symbol** | **String** | Trade symbol, if existing. |  [optional] |
 |**pair** | **String** | Pair. |  [optional] |
 |**time** | **Long** | order time |  [optional] |

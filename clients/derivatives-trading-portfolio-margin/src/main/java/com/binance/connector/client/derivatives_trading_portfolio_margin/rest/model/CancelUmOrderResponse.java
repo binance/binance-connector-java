@@ -318,7 +318,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

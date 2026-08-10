@@ -272,7 +272,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

@@ -184,7 +184,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

@@ -44,7 +44,7 @@ public class NewCmOrderExample {
         NewCmOrderRequest newCmOrderRequest = new NewCmOrderRequest();
         newCmOrderRequest.symbol("BTCUSDT");
         newCmOrderRequest.side(Side.BUY);
-        newCmOrderRequest.type(OrderType.STOP);
+        newCmOrderRequest.type(OrderType.LIMIT);
         ApiResponse<NewCmOrderResponse> response = getApi().newCmOrder(newCmOrderRequest);
         System.out.println(response.getData());
     }

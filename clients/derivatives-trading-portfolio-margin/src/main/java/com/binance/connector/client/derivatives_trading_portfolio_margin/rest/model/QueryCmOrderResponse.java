@@ -342,7 +342,7 @@ public class QueryCmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

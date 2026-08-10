@@ -16,7 +16,7 @@
 |**origQty** | **String** | Orig Qty. |  [optional] |
 |**price** | **String** | Price. |  [optional] |
 |**side** | **String** | Side. |  [optional] |
-|**status** | **String** | Enum：completed，processing |  [optional] |
+|**status** | **String** | Status. |  [optional] |
 |**stopPrice** | **String** | please ignore when order type is TRAILING_STOP_MARKET |  [optional] |
 |**symbol** | **String** | Trade symbol, if existing. |  [optional] |
 |**time** | **Long** | Event time. |  [optional] |

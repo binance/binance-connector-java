@@ -365,7 +365,7 @@ public class QueryAllCmOrdersResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

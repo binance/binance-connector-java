@@ -21,12 +21,14 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets newOrderRespType */
+/** \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; */
 @JsonAdapter(NewOrderRespType.Adapter.class)
 public enum NewOrderRespType {
     ACK("ACK"),
 
-    RESULT("RESULT");
+    RESULT("RESULT"),
+
+    FULL("FULL");
 
     private String value;
 

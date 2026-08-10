@@ -21,7 +21,10 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Trigger price type. Default &#x60;CONTRACT_PRICE&#x60; */
+/**
+ * stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default
+ * \&quot;CONTRACT_PRICE\&quot;
+ */
 @JsonAdapter(WorkingType.Adapter.class)
 public enum WorkingType {
     MARK_PRICE("MARK_PRICE"),

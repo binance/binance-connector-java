@@ -28,7 +28,9 @@ public enum SideEffectType {
 
     MARGIN_BUY("MARGIN_BUY"),
 
-    AUTO_REPAY("AUTO_REPAY");
+    AUTO_REPAY("AUTO_REPAY"),
+
+    AUTO_BORROW_REPAY("AUTO_BORROW_REPAY");
 
     private String value;
 

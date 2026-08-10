@@ -1521,7 +1521,7 @@ No authorization required
 
 Modify CM Order (TRADE)
 
-Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent - When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new &#x60;quantity&#x60;  * When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately
+Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent - When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60;   - When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately
 
 ### Example
 ```java
@@ -1583,7 +1583,7 @@ No authorization required
 
 Modify UM Order (TRADE)
 
-Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. - Both quantity and price must be sent - When the new quantity or price doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new quantity  * When the order is GTX and the new price will cause it to be executed immediately
+Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. - Both quantity and price must be sent - When the new quantity or price doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new quantity &lt;&#x3D; executedQty   - When the order is GTX and the new price will cause it to be executed immediately - The amendment keeps the order&#39;s original selfTradePreventionMode.
 
 ### Example
 ```java

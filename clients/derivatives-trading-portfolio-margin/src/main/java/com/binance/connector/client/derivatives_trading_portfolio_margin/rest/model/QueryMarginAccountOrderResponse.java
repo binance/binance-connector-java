@@ -341,7 +341,7 @@ public class QueryMarginAccountOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

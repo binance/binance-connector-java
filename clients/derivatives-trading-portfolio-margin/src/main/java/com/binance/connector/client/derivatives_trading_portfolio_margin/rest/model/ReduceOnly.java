@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Cannot be sent in Hedge Mode */
+/** \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode. */
 @JsonAdapter(ReduceOnly.Adapter.class)
 public enum ReduceOnly {
     TRUE("true"),

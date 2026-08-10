@@ -315,7 +315,7 @@ public class CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

@@ -33,6 +33,7 @@ Algo order info
 |**tt** | **Long** | Trigger Time |  [optional] |
 |**gtd** | **Long** | Good Till Date |  [optional] |
 |**rm** | **String** | Algo order failed reason |  [optional] |
+|**ia** | **Boolean** | Is activated or not, only meaningful for trailing order |  [optional] |
 
 
 

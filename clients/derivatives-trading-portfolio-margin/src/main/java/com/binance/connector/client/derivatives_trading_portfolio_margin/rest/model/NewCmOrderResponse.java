@@ -305,7 +305,7 @@ public class NewCmOrderResponse {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

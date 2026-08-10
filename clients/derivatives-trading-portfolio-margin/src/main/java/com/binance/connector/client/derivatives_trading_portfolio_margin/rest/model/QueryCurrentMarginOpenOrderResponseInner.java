@@ -345,7 +345,7 @@ public class QueryCurrentMarginOpenOrderResponseInner {
     }
 
     /**
-     * Enum：completed，processing
+     * Status.
      *
      * @return status
      */

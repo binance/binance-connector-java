@@ -136,7 +136,7 @@
 
 [PUT /papi/v1/cm/order](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#modify-cm-order) - modifyCmOrder - [ModifyCmOrderExample.java:47](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/ModifyCmOrderExample.java#L47)
 
-[PUT /papi/v1/um/order](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#modify-um-order) - modifyUmOrder - [ModifyUmOrderExample.java:45](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/ModifyUmOrderExample.java#L45)
+[PUT /papi/v1/um/order](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#modify-um-order) - modifyUmOrder - [ModifyUmOrderExample.java:46](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/ModifyUmOrderExample.java#L46)
 
 [POST /papi/v1/cm/conditional/order](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-cm-conditional-order) - newCmConditionalOrder - [NewCmConditionalOrderExample.java:48](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/NewCmConditionalOrderExample.java#L48)
 

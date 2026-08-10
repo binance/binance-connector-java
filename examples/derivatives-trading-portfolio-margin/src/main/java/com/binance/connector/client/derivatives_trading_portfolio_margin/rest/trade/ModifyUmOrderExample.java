@@ -37,8 +37,9 @@ public class ModifyUmOrderExample {
      * sent. - Both quantity and price must be sent - When the new quantity or price doesn&#39;t
      * satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order
      * will stay as it is. - However the order will be cancelled by the amendment in the following
-     * situations: - when the order is in partially filled status and the new quantity * When the
-     * order is GTX and the new price will cause it to be executed immediately
+     * situations: - when the order is in partially filled status and the new quantity &lt;&#x3D;
+     * executedQty - When the order is GTX and the new price will cause it to be executed
+     * immediately - The amendment keeps the order&#39;s original selfTradePreventionMode.
      *
      * @throws ApiException if the Api call fails
      */

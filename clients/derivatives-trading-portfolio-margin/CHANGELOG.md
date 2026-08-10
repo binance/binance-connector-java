@@ -1,5 +1,42 @@
 # Changelog
 
+## 7.0.1 - 2026-08-10
+
+### Changed (7)
+
+#### REST API
+
+- Modified response for `modifyCmOrder()` (`PUT /papi/v1/cm/order`):
+  - property `cumBase` deleted
+  - property `avgPrice` deleted
+
+- Modified response for `modifyUmOrder()` (`PUT /papi/v1/um/order`):
+  - property `avgPrice` deleted
+  - property `cumQuote` deleted
+
+- Removed response field `avgPrice`
+  - affected events:
+    - `modifyCmOrderResponse`
+    - `modifyUmOrderResponse`
+- Removed response field `cumBase`
+  - affected events:
+    - `modifyCmOrderResponse`
+- Removed response field `cumQuote`
+  - affected events:
+    - `modifyUmOrderResponse`
+#### WebSocket Streams
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `ao`:
+  - property `ia` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `algoOrderUpdate`
+
 ## 7.0.0 - 2026-07-29
 
 ### Changed (30)
