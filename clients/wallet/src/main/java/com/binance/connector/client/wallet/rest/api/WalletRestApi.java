@@ -43,6 +43,7 @@ import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRe
 import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
 import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
+import com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
@@ -403,7 +404,7 @@ public class WalletRestApi {
      * DustLog (USER_DATA) Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last
      * 100 records - Only return records after 2020/12/01
      *
-     * @param accountType (optional, default to SPOT)
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -541,6 +542,31 @@ public class WalletRestApi {
      */
     public ApiResponse<GetOpenSymbolListResponse> getOpenSymbolList() throws ApiException {
         return assetApi.getOpenSymbolList();
+    }
+
+    /**
+     * Get Spot Asset Tags (MARKET_DATA) Get the tags configured for spot-tradable assets.
+     * Weight(IP): 100 Security Type: MARKET_DATA
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return ApiResponse&lt;GetSpotAssetTagsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSpotAssetTagsResponse> getSpotAssetTags(String tag) throws ApiException {
+        return assetApi.getSpotAssetTags(tag);
     }
 
     /**
@@ -731,7 +757,7 @@ public class WalletRestApi {
     }
 
     /**
-     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 900 Security Type:
+     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 300 Security Type:
      * USER_DATA Notes: - You need to enable Permits Universal Transfer option for the API Key that
      * requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is
      * &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. -
@@ -843,8 +869,8 @@ public class WalletRestApi {
      * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
      * @param coin (optional)
-     * @param status 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User
-     *     confirm, 1: success (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
      * @param startTime Default: 90 days from current timestamp (optional)
      * @param endTime Default: present timestamp (optional)
      * @param offset (optional)

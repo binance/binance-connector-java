@@ -256,8 +256,8 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000accountType=SPOT&asset=BTC", signInputCaptor.getValue());
-        assertEquals("08d5ff4bb8057b68a02c2a1af2d0ac776fb05e4f3e00d1d45e4589a23665f92f", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000asset=BTC", signInputCaptor.getValue());
+        assertEquals("b4fd40e7e7afd13ae0d8945c84dfd847e5f7f2fd316cda06c13465e107a3eb78", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/dust", actualRequest.url().encodedPath());
     }
 
@@ -350,9 +350,9 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000accountType=SPOT", signInputCaptor.getValue());
+                "timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bf71615afc0579c36115b574fac3b21da2bfbbc2f6a306983b4525b4e4867581",
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/asset/dust-btc", actualRequest.url().encodedPath());

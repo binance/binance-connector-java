@@ -325,6 +325,12 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model.GetRegionListResponseRegionsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model
                         .GetSymbolsDelistScheduleForSpotResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

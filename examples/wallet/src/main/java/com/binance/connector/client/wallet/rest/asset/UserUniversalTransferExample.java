@@ -30,7 +30,7 @@ public class UserUniversalTransferExample {
     /**
      * User Universal Transfer (USER_DATA)
      *
-     * <p>User universal transfer Weight(UID): 900 Security Type: USER_DATA Notes: - You need to
+     * <p>User universal transfer Weight(UID): 300 Security Type: USER_DATA Notes: - You need to
      * enable Permits Universal Transfer option for the API Key that requests this endpoint. -
      * &#x60;fromSymbol&#x60; must be sent when type is &#x60;ISOLATEDMARGIN_MARGIN&#x60; or
      * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - &#x60;toSymbol&#x60; must be sent when type is
@@ -62,7 +62,7 @@ public class UserUniversalTransferExample {
     public void userUniversalTransferExample() throws ApiException, IOException {
         UserUniversalTransferRequest userUniversalTransferRequest =
                 new UserUniversalTransferRequest();
-        userUniversalTransferRequest.type(OrderType.MAIN_UMFUTURE);
+        userUniversalTransferRequest.type(OrderType.DELEGATE);
         userUniversalTransferRequest.asset("BTC");
         userUniversalTransferRequest.amount(1.0d);
         ApiResponse<UserUniversalTransferResponse> response =

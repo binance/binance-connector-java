@@ -170,7 +170,7 @@ public class Example {
     CapitalApi apiInstance = new CapitalApi(defaultClient);
     Boolean includeSource = false; // Boolean | return `sourceAddress` field when set to `true`
     String coin = "BTC"; // String | 
-    Status status = Status.fromValue("0"); // Status | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+    Status status = Status.fromValue("0"); // Status | 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm
     Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
     Long endTime = 1641782889000L; // Long | Default: present timestamp
     Long offset = 0L; // Long | 
@@ -197,7 +197,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **includeSource** | **Boolean**| return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | [optional] |
 | **coin** | **String**|  | [optional] |
-| **status** | [**Status**](.md)| 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success | [optional] [enum: 0, 1, 2, 6, 7, 8] |
+| **status** | [**Status**](.md)| 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm | [optional] [enum: 0, 1, 2, 6, 7, 8] |
 | **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |
 | **endTime** | **Long**| Default: present timestamp | [optional] |
 | **offset** | **Long**|  | [optional] |

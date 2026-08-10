@@ -5,6 +5,10 @@
 ## Enum
 
 
+* `DELEGATE` (value: `"DELEGATE"`)
+
+* `UNDELEGATE` (value: `"UNDELEGATE"`)
+
 * `MAIN_UMFUTURE` (value: `"MAIN_UMFUTURE"`)
 
 * `MAIN_CMFUTURE` (value: `"MAIN_CMFUTURE"`)

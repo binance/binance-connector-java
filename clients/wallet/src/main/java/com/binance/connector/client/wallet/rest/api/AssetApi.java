@@ -37,6 +37,7 @@ import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConverte
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse;
 import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserUniversalTransferHistoryResponse;
@@ -72,7 +73,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/6.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -883,7 +884,7 @@ public class AssetApi {
     /**
      * Build call for dustlog
      *
-     * @param accountType (optional, default to SPOT)
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -1017,7 +1018,7 @@ public class AssetApi {
      * DustLog (USER_DATA) Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last
      * 100 records - Only return records after 2020/12/01
      *
-     * @param accountType (optional, default to SPOT)
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -1675,6 +1676,141 @@ public class AssetApi {
         okhttp3.Call localVarCall = getOpenSymbolListValidateBeforeCall();
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetOpenSymbolListResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for getSpotAssetTags
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    private okhttp3.Call getSpotAssetTagsCall(String tag) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/spot/asset/tags";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (tag != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSpotAssetTagsValidateBeforeCall(String tag) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {tag};
+            Method method = this.getClass().getMethod("getSpotAssetTags", String.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getSpotAssetTagsCall(tag);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Spot Asset Tags (MARKET_DATA) Get the tags configured for spot-tradable assets.
+     * Weight(IP): 100 Security Type: MARKET_DATA
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return ApiResponse&lt;GetSpotAssetTagsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSpotAssetTagsResponse> getSpotAssetTags(String tag) throws ApiException {
+        okhttp3.Call localVarCall = getSpotAssetTagsValidateBeforeCall(tag);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetSpotAssetTagsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -2837,7 +2973,7 @@ public class AssetApi {
     }
 
     /**
-     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 900 Security Type:
+     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 300 Security Type:
      * USER_DATA Notes: - You need to enable Permits Universal Transfer option for the API Key that
      * requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is
      * &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. -

@@ -55,7 +55,7 @@ public class CapitalApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/6.0.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -401,8 +401,8 @@ public class CapitalApi {
      * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
      * @param coin (optional)
-     * @param status 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User
-     *     confirm, 1: success (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
      * @param startTime Default: 90 days from current timestamp (optional)
      * @param endTime Default: present timestamp (optional)
      * @param offset (optional)
@@ -597,8 +597,8 @@ public class CapitalApi {
      * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
      * @param coin (optional)
-     * @param status 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User
-     *     confirm, 1: success (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
      * @param startTime Default: 90 days from current timestamp (optional)
      * @param endTime Default: present timestamp (optional)
      * @param offset (optional)

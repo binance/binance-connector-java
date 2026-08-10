@@ -1,5 +1,15 @@
 # Changelog
 
+## 6.1.0 - 2026-08-10
+
+### Added (1)
+
+- `getSpotAssetTags()` (`GET /sapi/v1/spot/asset/tags`)
+
+### Changed (1)
+
+- Added response schema `getSpotAssetTagsResponse`
+
 ## 6.0.0 - 2026-07-29
 
 ### Changed (13)

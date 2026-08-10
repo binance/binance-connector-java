@@ -47,7 +47,7 @@ public class DustTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_ACCOUNT_TYPE)
     @jakarta.annotation.Nullable
-    private AccountType accountType = AccountType.SPOT;
+    private AccountType accountType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

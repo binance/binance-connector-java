@@ -36,7 +36,7 @@ public class DailyAccountSnapshotExample {
      * @throws ApiException if the Api call fails
      */
     public void dailyAccountSnapshotExample() throws ApiException, IOException {
-        OrderType type = OrderType.MAIN_UMFUTURE;
+        OrderType type = OrderType.DELEGATE;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 7L;

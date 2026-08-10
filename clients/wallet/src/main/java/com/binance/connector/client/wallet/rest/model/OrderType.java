@@ -24,6 +24,10 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets orderType */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
+    DELEGATE("DELEGATE"),
+
+    UNDELEGATE("UNDELEGATE"),
+
     MAIN_UMFUTURE("MAIN_UMFUTURE"),
 
     MAIN_CMFUTURE("MAIN_CMFUTURE"),

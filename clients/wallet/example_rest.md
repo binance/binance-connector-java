@@ -36,6 +36,8 @@
 
 [GET /sapi/v1/spot/open-symbol-list](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-open-symbol-list) - getOpenSymbolList - [GetOpenSymbolListExample.java:36](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/GetOpenSymbolListExample.java#L36)
 
+[GET /sapi/v1/spot/asset/tags](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags) - getSpotAssetTags - [GetSpotAssetTagsExample.java:36](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/GetSpotAssetTagsExample.java#L36)
+
 [GET /sapi/v1/asset/custody/transfer-history](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-delegation-history) - queryUserDelegationHistory - [QueryUserDelegationHistoryExample.java:36](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserDelegationHistoryExample.java#L36)
 
 [GET /sapi/v1/asset/transfer](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-universal-transfer-history) - queryUserUniversalTransferHistory - [QueryUserUniversalTransferHistoryExample.java:42](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/asset/QueryUserUniversalTransferHistoryExample.java#L42)

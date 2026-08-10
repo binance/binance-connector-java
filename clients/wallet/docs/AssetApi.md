@@ -14,6 +14,7 @@ All URIs are relative to *https://api.binance.com*
 | [**getAssetsThatCanBeConvertedIntoBnb**](AssetApi.md#getAssetsThatCanBeConvertedIntoBnb) | **POST** /sapi/v1/asset/dust-btc | Get Assets That Can Be Converted Into BNB (USER_DATA) |
 | [**getCloudMiningPaymentAndRefundHistory**](AssetApi.md#getCloudMiningPaymentAndRefundHistory) | **GET** /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage | Get Cloud-Mining payment and refund history (USER_DATA) |
 | [**getOpenSymbolList**](AssetApi.md#getOpenSymbolList) | **GET** /sapi/v1/spot/open-symbol-list | Get Open Symbol List (MARKET_DATA) |
+| [**getSpotAssetTags**](AssetApi.md#getSpotAssetTags) | **GET** /sapi/v1/spot/asset/tags | Get Spot Asset Tags (MARKET_DATA) |
 | [**queryUserDelegationHistory**](AssetApi.md#queryUserDelegationHistory) | **GET** /sapi/v1/asset/custody/transfer-history | Query User Delegation History(For Master Account) (USER_DATA) |
 | [**queryUserUniversalTransferHistory**](AssetApi.md#queryUserUniversalTransferHistory) | **GET** /sapi/v1/asset/transfer | Query User Universal Transfer History (USER_DATA) |
 | [**queryUserWalletBalance**](AssetApi.md#queryUserWalletBalance) | **GET** /sapi/v1/asset/wallet/balance | Query User Wallet Balance (USER_DATA) |
@@ -388,7 +389,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountType** | [**AccountType**](.md)|  | [optional] [default to SPOT] [enum: SPOT, MARGIN] |
+| **accountType** | [**AccountType**](.md)|  | [optional] [enum: SPOT, MARGIN] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -667,6 +668,68 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Get Open Symbol List |  -  |
 
+<a id="getSpotAssetTags"></a>
+# **getSpotAssetTags**
+> GetSpotAssetTagsResponse getSpotAssetTags(tag)
+
+Get Spot Asset Tags (MARKET_DATA)
+
+Get the tags configured for spot-tradable assets.  Weight(IP): 100  Security Type: MARKET_DATA
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.wallet.ApiClient;
+import com.binance.connector.client.wallet.ApiException;
+import com.binance.connector.client.wallet.Configuration;
+import com.binance.connector.client.wallet.models.*;
+import com.binance.connector.client.wallet.rest.api.AssetApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AssetApi apiInstance = new AssetApi(defaultClient);
+    String tag = "Layer1_Layer2,BSC"; // String | Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted.
+    try {
+      GetSpotAssetTagsResponse result = apiInstance.getSpotAssetTags(tag);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AssetApi#getSpotAssetTags");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tag** | **String**| Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted. | [optional] |
+
+### Return type
+
+[**GetSpotAssetTagsResponse**](GetSpotAssetTagsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Spot Asset Tags |  -  |
+
 <a id="queryUserDelegationHistory"></a>
 # **queryUserDelegationHistory**
 > QueryUserDelegationHistoryResponse queryUserDelegationHistory(email, startTime, endTime, type, asset, current, size, recvWindow)
@@ -693,7 +756,7 @@ public class Example {
     String email = "abc@test.com"; // String | 
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
-    OrderType type = OrderType.fromValue("MAIN_UMFUTURE"); // OrderType | 
+    OrderType type = OrderType.fromValue("DELEGATE"); // OrderType | 
     String asset = "BTC"; // String | 
     Long current = 1L; // Long | 
     Long size = 10L; // Long | 
@@ -719,7 +782,7 @@ public class Example {
 | **email** | **String**|  | |
 | **startTime** | **Long**|  | |
 | **endTime** | **Long**|  | |
-| **type** | [**OrderType**](.md)|  | [optional] [enum: MAIN_UMFUTURE, MAIN_CMFUTURE, MAIN_MARGIN, UMFUTURE_MAIN, UMFUTURE_MARGIN, CMFUTURE_MAIN, CMFUTURE_MARGIN, MARGIN_MAIN, MARGIN_UMFUTURE, MARGIN_CMFUTURE, ISOLATEDMARGIN_MARGIN, MARGIN_ISOLATEDMARGIN, ISOLATEDMARGIN_ISOLATEDMARGIN, MAIN_FUNDING, FUNDING_MAIN, FUNDING_UMFUTURE, UMFUTURE_FUNDING, MARGIN_FUNDING, FUNDING_MARGIN, FUNDING_CMFUTURE, CMFUTURE_FUNDING, MAIN_OPTION, OPTION_MAIN, UMFUTURE_OPTION, OPTION_UMFUTURE, MARGIN_OPTION, OPTION_MARGIN, FUNDING_OPTION, OPTION_FUNDING, MAIN_PORTFOLIO_MARGIN, PORTFOLIO_MARGIN_MAIN] |
+| **type** | [**OrderType**](.md)|  | [optional] [enum: DELEGATE, UNDELEGATE, MAIN_UMFUTURE, MAIN_CMFUTURE, MAIN_MARGIN, UMFUTURE_MAIN, UMFUTURE_MARGIN, CMFUTURE_MAIN, CMFUTURE_MARGIN, MARGIN_MAIN, MARGIN_UMFUTURE, MARGIN_CMFUTURE, ISOLATEDMARGIN_MARGIN, MARGIN_ISOLATEDMARGIN, ISOLATEDMARGIN_ISOLATEDMARGIN, MAIN_FUNDING, FUNDING_MAIN, FUNDING_UMFUTURE, UMFUTURE_FUNDING, MARGIN_FUNDING, FUNDING_MARGIN, FUNDING_CMFUTURE, CMFUTURE_FUNDING, MAIN_OPTION, OPTION_MAIN, UMFUTURE_OPTION, OPTION_UMFUTURE, MARGIN_OPTION, OPTION_MARGIN, FUNDING_OPTION, OPTION_FUNDING, MAIN_PORTFOLIO_MARGIN, PORTFOLIO_MARGIN_MAIN] |
 | **asset** | **String**|  | [optional] |
 | **current** | **Long**|  | [optional] |
 | **size** | **Long**|  | [optional] |
@@ -1077,7 +1140,7 @@ No authorization required
 
 User Universal Transfer (USER_DATA)
 
-User universal transfer  Weight(UID): 900  Security Type: USER_DATA  Notes: - You need to enable Permits Universal Transfer option for the API Key that requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - &#x60;toSymbol&#x60; must be sent when type is &#x60;MARGIN_ISOLATEDMARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - ENUM of transfer types: - &#x60;MAIN_UMFUTURE&#x60;: Spot → USDⓈ-M Futures - &#x60;MAIN_CMFUTURE&#x60;: Spot → COIN-M Futures - &#x60;MAIN_MARGIN&#x60;: Spot → Margin (cross) - &#x60;UMFUTURE_MAIN&#x60;: USDⓈ-M Futures → Spot - &#x60;UMFUTURE_MARGIN&#x60;: USDⓈ-M Futures → Margin (cross) - &#x60;CMFUTURE_MAIN&#x60;: COIN-M Futures → Spot - &#x60;CMFUTURE_MARGIN&#x60;: COIN-M Futures → Margin (cross) - &#x60;MARGIN_MAIN&#x60;: Margin (cross) → Spot - &#x60;MARGIN_UMFUTURE&#x60;: Margin (cross) → USDⓈ-M Futures - &#x60;MARGIN_CMFUTURE&#x60;: Margin (cross) → COIN-M Futures - &#x60;ISOLATEDMARGIN_MARGIN&#x60;: Isolated margin → Margin (cross) - &#x60;MARGIN_ISOLATEDMARGIN&#x60;: Margin (cross) → Isolated margin - &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;: Isolated margin → Isolated margin - &#x60;MAIN_FUNDING&#x60;: Spot → Funding - &#x60;FUNDING_MAIN&#x60;: Funding → Spot - &#x60;FUNDING_UMFUTURE&#x60;: Funding → USDⓈ-M Futures - &#x60;UMFUTURE_FUNDING&#x60;: USDⓈ-M Futures → Funding - &#x60;MARGIN_FUNDING&#x60;: Margin (cross) → Funding - &#x60;FUNDING_MARGIN&#x60;: Funding → Margin (cross) - &#x60;FUNDING_CMFUTURE&#x60;: Funding → COIN-M Futures - &#x60;CMFUTURE_FUNDING&#x60;: COIN-M Futures → Funding - &#x60;MAIN_OPTION&#x60;: Spot → Options - &#x60;OPTION_MAIN&#x60;: Options → Spot - &#x60;UMFUTURE_OPTION&#x60;: USDⓈ-M Futures → Options - &#x60;OPTION_UMFUTURE&#x60;: Options → USDⓈ-M Futures - &#x60;MARGIN_OPTION&#x60;: Margin (cross) → Options - &#x60;OPTION_MARGIN&#x60;: Options → Margin (cross) - &#x60;FUNDING_OPTION&#x60;: Funding → Options - &#x60;OPTION_FUNDING&#x60;: Options → Funding - &#x60;MAIN_PORTFOLIO_MARGIN&#x60;: Spot → Portfolio Margin - &#x60;PORTFOLIO_MARGIN_MAIN&#x60;: Portfolio Margin → Spot
+User universal transfer  Weight(UID): 300  Security Type: USER_DATA  Notes: - You need to enable Permits Universal Transfer option for the API Key that requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - &#x60;toSymbol&#x60; must be sent when type is &#x60;MARGIN_ISOLATEDMARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - ENUM of transfer types: - &#x60;MAIN_UMFUTURE&#x60;: Spot → USDⓈ-M Futures - &#x60;MAIN_CMFUTURE&#x60;: Spot → COIN-M Futures - &#x60;MAIN_MARGIN&#x60;: Spot → Margin (cross) - &#x60;UMFUTURE_MAIN&#x60;: USDⓈ-M Futures → Spot - &#x60;UMFUTURE_MARGIN&#x60;: USDⓈ-M Futures → Margin (cross) - &#x60;CMFUTURE_MAIN&#x60;: COIN-M Futures → Spot - &#x60;CMFUTURE_MARGIN&#x60;: COIN-M Futures → Margin (cross) - &#x60;MARGIN_MAIN&#x60;: Margin (cross) → Spot - &#x60;MARGIN_UMFUTURE&#x60;: Margin (cross) → USDⓈ-M Futures - &#x60;MARGIN_CMFUTURE&#x60;: Margin (cross) → COIN-M Futures - &#x60;ISOLATEDMARGIN_MARGIN&#x60;: Isolated margin → Margin (cross) - &#x60;MARGIN_ISOLATEDMARGIN&#x60;: Margin (cross) → Isolated margin - &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;: Isolated margin → Isolated margin - &#x60;MAIN_FUNDING&#x60;: Spot → Funding - &#x60;FUNDING_MAIN&#x60;: Funding → Spot - &#x60;FUNDING_UMFUTURE&#x60;: Funding → USDⓈ-M Futures - &#x60;UMFUTURE_FUNDING&#x60;: USDⓈ-M Futures → Funding - &#x60;MARGIN_FUNDING&#x60;: Margin (cross) → Funding - &#x60;FUNDING_MARGIN&#x60;: Funding → Margin (cross) - &#x60;FUNDING_CMFUTURE&#x60;: Funding → COIN-M Futures - &#x60;CMFUTURE_FUNDING&#x60;: COIN-M Futures → Funding - &#x60;MAIN_OPTION&#x60;: Spot → Options - &#x60;OPTION_MAIN&#x60;: Options → Spot - &#x60;UMFUTURE_OPTION&#x60;: USDⓈ-M Futures → Options - &#x60;OPTION_UMFUTURE&#x60;: Options → USDⓈ-M Futures - &#x60;MARGIN_OPTION&#x60;: Margin (cross) → Options - &#x60;OPTION_MARGIN&#x60;: Options → Margin (cross) - &#x60;FUNDING_OPTION&#x60;: Funding → Options - &#x60;OPTION_FUNDING&#x60;: Options → Funding - &#x60;MAIN_PORTFOLIO_MARGIN&#x60;: Spot → Portfolio Margin - &#x60;PORTFOLIO_MARGIN_MAIN&#x60;: Portfolio Margin → Spot
 
 ### Example
 ```java
